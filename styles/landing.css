@@ -1,0 +1,132 @@
+/* Landing Page Specific Styles */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(circle at center, #111827 0%, var(--bg-deep) 100%);
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 48%, var(--primary-glow) 50%, transparent 52%);
+    opacity: 0.1;
+    animation: flow 10s linear infinite;
+}
+
+@keyframes flow {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.hero-content {
+    z-index: 1;
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    margin-bottom: 20px;
+    line-height: 1;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.categories {
+    padding: var(--section-padding);
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.category-card {
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.category-card:hover img {
+    transform: scale(1.1);
+}
+
+.category-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px;
+}
+
+.featured {
+    padding: var(--section-padding);
+    background: var(--bg-surface);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    padding: 15px;
+}
+
+.product-img {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #1a1e26;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--glass-border);
+    position: relative;
+}
+
+.product-card:hover .product-img {
+     box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--accent);
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 4px;
+}
