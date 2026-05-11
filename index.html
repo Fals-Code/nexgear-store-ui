@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXGEAR | Premium Gaming & Gadgets</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* Landing Page Specific Styles */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #111827 0%, var(--bg-deep) 100%);
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 48%, var(--primary-glow) 50%, transparent 52%);
+            opacity: 0.1;
+            animation: flow 10s linear infinite;
+        }
+
+        @keyframes flow {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .hero-content {
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .categories {
+            padding: var(--section-padding);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+        }
+
+        .featured {
+            padding: var(--section-padding);
+            background: var(--bg-surface);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            padding: 15px;
+        }
+
+        .product-img {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #1a1e26;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--glass-border);
+            position: relative;
+        }
+        
+        .product-card:hover .product-img {
+             box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--accent);
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><span class="text-gradient">NEX</span>GEAR</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="catalog.html">Catalog</a></li>
+            <li><a href="#">Articles</a></li>
+            <li><a href="#">Support</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="#" class="btn btn-outline" style="padding: 8px 20px;">Login</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="glow-text">EVOLVE YOUR <br><span class="text-gradient">GAMEPLAY</span></h1>
+            <p>Gear up with the most advanced gaming hardware and cutting-edge gadgets. Designed for those who demand excellence.</p>
+            <div class="hero-btns">
+                <a href="catalog.html" class="btn btn-primary">Shop Now</a>
+                <a href="#" class="btn btn-outline" style="margin-left: 15px;">Learn More</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="categories container">
+        <div class="section-title">
+            <h2 class="text-gradient">Shop by Category</h2>
+            <p style="color: var(--text-muted);">Explore our curated collections</p>
+        </div>
+        <div class="category-grid">
+            <div class="category-card">
+                <div class="product-img" style="height: 100%; font-size: 1.5rem;">GAMING LAPTOPS</div>
+                <div class="category-overlay">
+                    <h3>Laptops</h3>
+                    <p>High-performance rigs</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="product-img" style="height: 100%; font-size: 1.5rem;">PERIPHERALS</div>
+                <div class="category-overlay">
+                    <h3>Peripherals</h3>
+                    <p>Precision tools for pro gamers</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="product-img" style="height: 100%; font-size: 1.5rem;">SMART GADGETS</div>
+                <div class="category-overlay">
+                    <h3>Gadgets</h3>
+                    <p>Next-gen technology</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="text-gradient">Trending Now</h2>
+                <p style="color: var(--text-muted);">Top picks for this week</p>
+            </div>
+            <div class="product-grid">
+                <!-- Product Card 1 -->
+                <div class="glass-card product-card">
+                    <div class="product-img">
+                        <span class="badge">NEW</span>
+                        IMG: KB-X900
+                    </div>
+                    <h4>Apex Pro TKL</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">Mechanical Keyboard</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--primary); font-weight: 700;">$199.99</span>
+                        <a href="#" class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Buy</a>
+                    </div>
+                </div>
+                <!-- Product Card 2 -->
+                <div class="glass-card product-card">
+                    <div class="product-img">
+                        IMG: MS-G2
+                    </div>
+                    <h4>Viper Ultimate</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">Wireless Gaming Mouse</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--primary); font-weight: 700;">$149.99</span>
+                        <a href="#" class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Buy</a>
+                    </div>
+                </div>
+                <!-- Product Card 3 -->
+                <div class="glass-card product-card">
+                    <div class="product-img">
+                        IMG: HD-700
+                    </div>
+                    <h4>Nova Pro Wireless</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">Gaming Headset</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--primary); font-weight: 700;">$349.99</span>
+                        <a href="#" class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Buy</a>
+                    </div>
+                </div>
+                <!-- Product Card 4 -->
+                <div class="glass-card product-card">
+                    <div class="product-img">
+                         <span class="badge" style="background: var(--primary);">HOT</span>
+                        IMG: LP-RTX
+                    </div>
+                    <h4>Blade 16</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">RTX 4090 Gaming Laptop</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--primary); font-weight: 700;">$3,299.99</span>
+                        <a href="#" class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Buy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid container">
+            <div>
+                <div class="logo" style="margin-bottom: 20px;"><span class="text-gradient">NEX</span>GEAR</div>
+                <p style="color: var(--text-muted);">The ultimate destination for gamers and tech enthusiasts. We provide only the best gear to level up your experience.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul style="margin-top: 15px;">
+                    <li><a href="#" style="color: var(--text-muted);">Home</a></li>
+                    <li><a href="#" style="color: var(--text-muted);">Catalog</a></li>
+                    <li><a href="#" style="color: var(--text-muted);">About Us</a></li>
+                    <li><a href="#" style="color: var(--text-muted);">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Categories</h4>
+                <ul style="margin-top: 15px;">
+                    <li><a href="#" style="color: var(--text-muted);">Laptops</a></li>
+                    <li><a href="#" style="color: var(--text-muted);">Peripherals</a></li>
+                    <li><a href="#" style="color: var(--text-muted);">Gadgets</a></li>
+                    <li><a href="#" style="color: var(--text-muted);">Accessories</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Newsletter</h4>
+                <p style="color: var(--text-muted); margin: 15px 0;">Get updates on new drops.</p>
+                <input type="text" placeholder="Email Address" style="width: 100%; padding: 10px; background: var(--bg-surface); border: 1px solid var(--glass-border); color: white; border-radius: 4px; margin-bottom: 10px;">
+                <button class="btn btn-primary" style="width: 100%;">Subscribe</button>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 NEXGEAR Gaming & Gadgets. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

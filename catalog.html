@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog | NEXGEAR</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .catalog-container {
+            padding: 120px 5% 60px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+        }
+
+        /* Sidebar Filters */
+        .filters {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .filter-group {
+            margin-bottom: 30px;
+        }
+
+        .filter-group h4 {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--primary);
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .filter-option:hover {
+            color: var(--primary);
+        }
+
+        .filter-option input {
+            accent-color: var(--primary);
+        }
+
+        /* Catalog Main */
+        .catalog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .search-bar {
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white;
+            width: 300px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .product-img {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #1a1e26;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--glass-border);
+            position: relative;
+        }
+
+        .price-range {
+            width: 100%;
+            accent-color: var(--primary);
+        }
+
+        @media (max-width: 992px) {
+            .catalog-container {
+                grid-template-columns: 1fr;
+            }
+            .filters {
+                display: none; /* Hide sidebar on mobile for simplicity, could be a modal */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><span class="text-gradient">NEX</span>GEAR</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="catalog.html">Catalog</a></li>
+            <li><a href="#">Articles</a></li>
+            <li><a href="#">Support</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="#" class="btn btn-outline" style="padding: 8px 20px;">Login</a>
+        </div>
+    </nav>
+
+    <div class="catalog-container container">
+        <aside class="filters glass-card">
+            <h3 style="margin-bottom: 20px;">Filters</h3>
+            
+            <div class="filter-group">
+                <h4>Category</h4>
+                <label class="filter-option"><input type="checkbox" checked> Laptops</label>
+                <label class="filter-option"><input type="checkbox" checked> Peripherals</label>
+                <label class="filter-option"><input type="checkbox" checked> Components</label>
+                <label class="filter-option"><input type="checkbox"> Accessories</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Price Range</h4>
+                <input type="range" class="price-range" min="0" max="5000">
+                <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; color: var(--text-muted);">
+                    <span>$0</span>
+                    <span>$5,000+</span>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h4>Brand</h4>
+                <label class="filter-option"><input type="checkbox"> Razer</label>
+                <label class="filter-option"><input type="checkbox"> SteelSeries</label>
+                <label class="filter-option"><input type="checkbox"> Logitech G</label>
+                <label class="filter-option"><input type="checkbox"> ASUS ROG</label>
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%; margin-top: 10px;">Apply Filters</button>
+        </aside>
+
+        <main class="catalog-main">
+            <div class="catalog-header">
+                <h2 class="text-gradient">Products</h2>
+                <input type="text" class="search-bar" placeholder="Search gear...">
+            </div>
+
+            <div class="product-grid">
+                <!-- Row 1 -->
+                <div class="glass-card product-card">
+                    <div class="product-img">IMG: LAPTOP-X</div>
+                    <h4>ROG Strix G16</h4>
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 10px;">RTX 4060, 16GB RAM</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--primary); font-weight: 700;">$1,399.99</span>
+                        <a href="#" class="btn btn-primary" style="padding: 5px 12px; font-size: 0.7rem;">Add</a>
+                    </div>
+                </div>
+
+                <div class="glass-card product-card">
+                    <div class="product-img">IMG: MOUSE-W</div>
+                    <h4>G Pro X Superlight</h4>
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 10px;">Ultra-lightweight Wireless</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--primary); font-weight: 700;">$159.99</span>
+                        <a href="#" class="btn btn-primary" style="padding: 5px 12px; font-size: 0.7rem;">Add</a>
+                    </div>
+                </div>
+
+                <div class="glass-card product-card">
+                    <div class="product-img">IMG: KB-RGB</div>
+                    <h4>Huntsman V3 Pro</h4>
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 10px;">Analog Optical Switches</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--primary); font-weight: 700;">$249.99</span>
+                        <a href="#" class="btn btn-primary" style="padding: 5px 12px; font-size: 0.7rem;">Add</a>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="glass-card product-card">
+                    <div class="product-img">IMG: MON-240</div>
+                    <h4>Alienware 27</h4>
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 10px;">280Hz, 1ms IPS</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--primary); font-weight: 700;">$599.99</span>
+                        <a href="#" class="btn btn-primary" style="padding: 5px 12px; font-size: 0.7rem;">Add</a>
+                    </div>
+                </div>
+
+                <div class="glass-card product-card">
+                    <div class="product-img">IMG: GPU-4070</div>
+                    <h4>RTX 4070 Ti Super</h4>
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 10px;">16GB GDDR6X</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--primary); font-weight: 700;">$799.99</span>
+                        <a href="#" class="btn btn-primary" style="padding: 5px 12px; font-size: 0.7rem;">Add</a>
+                    </div>
+                </div>
+
+                <div class="glass-card product-card">
+                    <div class="product-img">IMG: AUD-HIFI</div>
+                    <h4>Arctis Nova 7</h4>
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 10px;">Multi-platform Wireless</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--primary); font-weight: 700;">$179.99</span>
+                        <a href="#" class="btn btn-primary" style="padding: 5px 12px; font-size: 0.7rem;">Add</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 NEXGEAR Gaming & Gadgets. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
