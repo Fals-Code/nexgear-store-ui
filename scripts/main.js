@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const nav = document.querySelector('nav');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            nav.style.background = 'rgba(5, 7, 10, 0.95)';
+            nav.style.background = 'var(--bg-deep)';
             nav.style.padding = '10px 5%';
             nav.style.boxShadow = '0 5px 20px rgba(0,0,0,0.5)';
         } else {
-            nav.style.background = 'rgba(5, 7, 10, 0.8)';
+            nav.style.background = 'var(--bg-deep)';
             nav.style.padding = '0 5%';
             nav.style.boxShadow = 'none';
         }

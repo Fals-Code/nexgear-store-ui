@@ -8,7 +8,7 @@ NEXGEAR adalah platform e-commerce fiktif yang berfokus pada pengalaman pengguna
 ## ✨ Fitur & Desain
 - **Premium Dark Mode**: Estetika gelap yang mendalam untuk kenyamanan visual.
 - **Neon Accent System**: Menggunakan palet warna Neon Cyan dan Electric Purple.
-- **Glassmorphism UI**: Antarmuka berbasis transparansi dan blur yang modern.
+- **Clean Tech UI**: Antarmuka berbasis kartu solid yang tajam dan modern.
 - **Responsive Layout**: Optimal untuk perangkat mobile, tablet, dan desktop.
 - **Fast Loading**: Dibangun dengan HTML dan Vanilla CSS murni tanpa framework berat.
 

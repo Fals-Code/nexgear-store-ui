@@ -4,7 +4,7 @@
     /* Colors */
     --bg-deep: #05070a;
     --bg-surface: #0f121a;
-    --bg-card: rgba(15, 18, 26, 0.8);
+    --bg-card: #151921;
     --primary: #00d2ff;
     --primary-glow: rgba(0, 210, 255, 0.5);
     --secondary: #9d50bb;
@@ -113,10 +113,9 @@ ul {
     box-shadow: 0 0 15px var(--primary-glow);
 }
 
-/* Glassmorphism Card */
+/* Card Style */
 .glass-card {
     background: var(--bg-card);
-    backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
     padding: 20px;
@@ -140,8 +139,7 @@ nav {
     top: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(5, 7, 10, 0.8);
-    backdrop-filter: blur(10px);
+    background: var(--bg-deep);
     border-bottom: 1px solid var(--glass-border);
 }
 
