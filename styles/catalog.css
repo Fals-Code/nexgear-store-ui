@@ -17,17 +17,20 @@
 }
 
 .filter-group h4 {
-    margin-bottom: 15px;
-    font-size: 0.9rem;
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+    font-weight: 700;
     color: var(--primary);
+    letter-spacing: 1px;
 }
 
 .filter-option {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 12px;
+    margin-bottom: 12px;
     color: var(--text-muted);
+    font-size: 0.95rem;
     cursor: pointer;
     transition: 0.3s;
 }
