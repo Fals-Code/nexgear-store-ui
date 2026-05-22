@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXGEAR - Checkout</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/checkout.css">
+</head>
+<body>
+  <!-- Minimal Nav for Checkout -->
+  <nav class="scrolled">
+    <div class="nav-container container" style="display: flex; justify-content: center;">
+      <a href="index.html" class="logo font-gaming">NEXGEAR</a>
+    </div>
+  </nav>
+
+  <main class="checkout-wrapper">
+    <div class="checkout-form-section">
+      <div class="checkout-panel">
+        <h3>
+          <span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+          Informasi Pengiriman
+        </h3>
+        <form id="checkout-form">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" class="notepad-input" placeholder="Nama Depan" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="notepad-input" placeholder="Nama Belakang" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="email" class="notepad-input" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" class="notepad-input" placeholder="Nomor Telepon" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="notepad-input" placeholder="Alamat Lengkap" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" class="notepad-input" placeholder="Kota" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="notepad-input" placeholder="Kode Pos" required>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="checkout-panel sketch-card-alt">
+        <h3>
+          <span class="icon icon-sm"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
+          Metode Pembayaran
+        </h3>
+        <div class="form-group">
+          <label class="checkbox-label" style="display: flex; align-items: center; gap: 10px; padding: 15px; border: 1px dashed rgba(255,255,255,0.1); margin-bottom: 10px;">
+            <input type="radio" name="payment" checked> Kartu Kredit / Debit
+          </label>
+          <label class="checkbox-label" style="display: flex; align-items: center; gap: 10px; padding: 15px; border: 1px dashed rgba(255,255,255,0.1); margin-bottom: 10px;">
+            <input type="radio" name="payment"> Transfer Bank (Virtual Account)
+          </label>
+          <label class="checkbox-label" style="display: flex; align-items: center; gap: 10px; padding: 15px; border: 1px dashed rgba(255,255,255,0.1);">
+            <input type="radio" name="payment"> GoPay / OVO
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <aside class="order-summary-wrapper">
+      <div class="order-summary">
+        <div class="receipt-edge"></div>
+        <h3>Struk Belanja</h3>
+        
+        <div class="summary-items" id="checkout-items">
+          <!-- Injected via JS -->
+        </div>
+
+        <div class="summary-totals">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="checkout-subtotal">$0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Ongkos Kirim</span>
+            <span style="color: var(--success);">Gratis</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span id="checkout-total">$0.00</span>
+          </div>
+        </div>
+
+        <button type="submit" form="checkout-form" class="btn btn-accent" style="width: 100%; justify-content: center;">Bayar Sekarang</button>
+      </div>
+    </aside>
+  </main>
+
+  <script src="scripts/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const items = window.NexCart.items;
+      const container = document.getElementById("checkout-items");
+      const subtotalEl = document.getElementById("checkout-subtotal");
+      const totalEl = document.getElementById("checkout-total");
+      
+      if(items.length === 0) {
+        container.innerHTML = '<div class="summary-item"><span class="summary-item-name">Keranjang kosong</span></div>';
+      } else {
+        container.innerHTML = items.map(i => `
+          <div class="summary-item">
+            <span class="summary-item-name">${i.qty}x ${i.name}</span>
+            <span>$${(i.price * i.qty).toFixed(2)}</span>
+          </div>
+        `).join("");
+        subtotalEl.textContent = `$${window.NexCart.total.toFixed(2)}`;
+        totalEl.textContent = `$${window.NexCart.total.toFixed(2)}`;
+      }
+
+      document.getElementById("checkout-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        window.location.href = "success.html";
+      });
+    });
+  </script>
+</body>
+</html>

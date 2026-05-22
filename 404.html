@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Not Found - NEXGEAR</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <style>
+    .error-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .error-svg {
+      width: 250px;
+      height: 250px;
+      margin-bottom: 30px;
+    }
+    .error-code {
+      font-family: "Orbitron", sans-serif;
+      font-size: 6rem;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 10px;
+      text-shadow: 4px 4px 0 rgba(255,61,127,0.2);
+    }
+    .error-text {
+      font-family: "Caveat", cursive;
+      font-size: 2rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      transform: rotate(-2deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    <div class="error-svg">
+      <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Broken Cable / Plug -->
+        <path d="M40 160 Q 60 100, 100 120 T 150 50" stroke="rgba(255,255,255,0.2)" stroke-dasharray="5 5"/>
+        <path d="M40 160 Q 60 100, 95 118" stroke="var(--primary)"/>
+        <!-- Zap sparks -->
+        <path d="M90 105 L 85 95 L 95 90" stroke="var(--warning)"/>
+        <path d="M105 130 L 115 135 L 110 145" stroke="var(--warning)"/>
+        
+        <!-- Plug head -->
+        <rect x="140" y="40" width="20" height="30" rx="2" stroke="var(--text-muted)"/>
+        <line x1="145" y1="40" x2="145" y2="25" stroke="var(--text-muted)"/>
+        <line x1="155" y1="40" x2="155" y2="25" stroke="var(--text-muted)"/>
+        
+        <!-- Confused face -->
+        <circle cx="100" cy="180" r="10" stroke="var(--accent)"/>
+        <line x1="97" y1="178" x2="97" y2="178" stroke-width="3" stroke="var(--accent)"/>
+        <line x1="103" y1="178" x2="103" y2="178" stroke-width="3" stroke="var(--accent)"/>
+        <path d="M97 184 Q 100 182, 103 184" stroke="var(--accent)"/>
+      </svg>
+    </div>
+    
+    <h1 class="error-code">404</h1>
+    <p class="error-text">Ups! Kabelnya putus... Halaman tidak ditemukan.</p>
+    
+    <a href="index.html" class="btn btn-primary">Kembali ke Base</a>
+  </div>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>

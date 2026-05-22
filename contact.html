@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hubungi NEXGEAR. Punya pertanyaan atau butuh bantuan? Tim support kami siap membantu.">
+  <title>Hubungi Kami | NEXGEAR</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/contact.css">
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo"><span class="text-gradient">NEX</span>GEAR</a>
+    <ul class="nav-links">
+      <li><a href="index.html"><span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><polyline points="9 21 9 14 15 14 15 21"/></svg></span> Home</a></li>
+      <li><a href="catalog.html"><span class="icon icon-sm"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="8" y1="9" x2="8" y2="21"/></svg></span> Catalog</a></li>
+      <li><a href="about.html"><span class="icon icon-sm"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg></span> About</a></li>
+      <li><a href="contact.html"><span class="icon icon-sm"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 4 12 13 2 4"/></svg></span> Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-btn"><span class="icon"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 2h3l1 4"/></svg></span><span class="cart-badge"></span></a>
+      <a href="login.html" class="btn btn-outline" style="padding:8px 18px;font-size:0.75rem;"><span class="icon icon-sm"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg></span> Masuk</a>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>Hubungi <span class="text-gradient">Kami</span></h1>
+      <div class="subtitle">kami senang mendengar dari kamu~</div>
+      <div class="deco-line"></div>
+    </div>
+
+    <!-- ═══ Contact Layout ═══ -->
+    <section class="contact-container container reveal">
+      
+      <div class="contact-form-card sketch-card tape-corner">
+        <h3>Kirim Pesan</h3>
+        <form id="contact-form">
+          <div class="contact-form-group">
+            <label for="name">Nama Lengkap</label>
+            <input type="text" id="name" class="contact-input" placeholder="John Doe" required>
+          </div>
+          <div class="contact-form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="contact-input" placeholder="hello@example.com" required>
+          </div>
+          <div class="contact-form-group">
+            <label for="subject">Subjek</label>
+            <input type="text" id="subject" class="contact-input" placeholder="Tanya tentang produk" required>
+          </div>
+          <div class="contact-form-group">
+            <label for="message">Pesan</label>
+            <textarea id="message" class="contact-textarea" placeholder="Tulis pesanmu di sini..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary submit-btn">
+            <span class="icon icon-sm"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+            Kirim Pesan
+          </button>
+        </form>
+      </div>
+
+      <div class="contact-info-list">
+        <div class="info-card sketch-card-alt">
+          <div class="info-icon">
+            <span class="icon icon-md"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          </div>
+          <div class="info-content">
+            <h4>Alamat</h4>
+            <p>Jl. Gaming Boulevard No. 42,<br>Jakarta Selatan</p>
+          </div>
+        </div>
+        
+        <div class="info-card sketch-card">
+          <div class="info-icon">
+            <span class="icon icon-md"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+          </div>
+          <div class="info-content">
+            <h4>Email</h4>
+            <p>hello@nexgear.id<br>support@nexgear.id</p>
+          </div>
+        </div>
+
+        <div class="info-card sketch-card-alt">
+          <div class="info-icon">
+            <span class="icon icon-md"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          </div>
+          <div class="info-content">
+            <h4>Telepon</h4>
+            <p>+62 812 3456 7890<br>+62 21 9876 5432</p>
+          </div>
+        </div>
+
+        <div class="info-card sketch-card tape-corner">
+          <div class="info-icon">
+            <span class="icon icon-md"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+          </div>
+          <div class="info-content">
+            <h4>Jam Operasional</h4>
+            <p>Senin-Jumat: 09:00 - 18:00<br>Sabtu: 10:00 - 15:00<br>Minggu: Tutup</p>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+
+    <!-- ═══ Map Section ═══ -->
+    <section class="map-section container reveal">
+      <div class="map-card sketch-card">
+        <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <!-- Street lines -->
+          <path d="M-50,200 L850,200" stroke="rgba(255,255,255,0.08)" fill="none" stroke-width="12" />
+          <path d="M400,-50 L400,450" stroke="rgba(255,255,255,0.08)" fill="none" stroke-width="12" />
+          <path d="M200,-50 L200,450" stroke="rgba(255,255,255,0.05)" fill="none" stroke-width="8" />
+          <path d="M600,-50 L600,450" stroke="rgba(255,255,255,0.05)" fill="none" stroke-width="8" />
+          <path d="M-50,100 L850,100" stroke="rgba(255,255,255,0.05)" fill="none" stroke-width="8" />
+          <path d="M-50,300 L850,300" stroke="rgba(255,255,255,0.05)" fill="none" stroke-width="8" />
+          
+          <!-- Dashed lines in middle of streets -->
+          <path d="M-50,200 L850,200" stroke="rgba(255,255,255,0.2)" fill="none" stroke-width="2" stroke-dasharray="10 10"/>
+          <path d="M400,-50 L400,450" stroke="rgba(255,255,255,0.2)" fill="none" stroke-width="2" stroke-dasharray="10 10"/>
+          
+          <!-- Buildings -->
+          <rect x="220" y="120" width="160" height="60" rx="4" stroke="rgba(255,255,255,0.15)" fill="rgba(255,255,255,0.02)" stroke-width="2" stroke-dasharray="5 3"/>
+          <rect x="420" y="120" width="160" height="60" rx="4" stroke="rgba(255,255,255,0.15)" fill="rgba(255,255,255,0.02)" stroke-width="2" stroke-dasharray="5 3"/>
+          <rect x="220" y="220" width="160" height="60" rx="4" stroke="rgba(255,255,255,0.15)" fill="rgba(255,255,255,0.02)" stroke-width="2" stroke-dasharray="5 3"/>
+          <rect x="420" y="220" width="160" height="60" rx="4" stroke="rgba(255,255,255,0.15)" fill="rgba(255,255,255,0.02)" stroke-width="2" stroke-dasharray="5 3"/>
+          
+          <!-- Trees/Parks -->
+          <circle cx="280" cy="80" r="15" stroke="rgba(0,255,135,0.15)" fill="none" stroke-width="2" stroke-dasharray="4 2"/>
+          <circle cx="310" cy="70" r="12" stroke="rgba(0,255,135,0.15)" fill="none" stroke-width="2" stroke-dasharray="4 2"/>
+          <circle cx="480" cy="340" r="18" stroke="rgba(0,255,135,0.15)" fill="none" stroke-width="2" stroke-dasharray="4 2"/>
+          
+          <!-- Compass -->
+          <circle cx="70" cy="70" r="20" stroke="rgba(255,255,255,0.15)" fill="none" stroke-width="2"/>
+          <path d="M70 40 L75 65 L70 70 L65 65 Z" fill="rgba(255,255,255,0.2)"/>
+          <path d="M70 100 L75 75 L70 70 L65 75 Z" fill="rgba(255,255,255,0.1)"/>
+          <text x="70" y="32" text-anchor="middle" font-family="Inter" font-size="10" fill="rgba(255,255,255,0.3)">N</text>
+        </svg>
+        <div class="map-overlay">
+          <div class="hand-note">
+            <span class="icon icon-sm" style="color:var(--primary);"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            Lokasi Kami
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FAQ Section ═══ -->
+    <section class="faq-section reveal">
+      <h2>Pertanyaan <span class="text-gradient">Umum</span></h2>
+      <div class="faq-list">
+        
+        <div class="faq-item sketch-card">
+          <div class="faq-header">
+            <h4>Bagaimana cara melakukan pemesanan?</h4>
+            <span class="icon icon-sm faq-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
+          <div class="faq-body">
+            <p>Pilih produk yang kamu inginkan, klik "Tambah ke Keranjang", lalu ikuti proses checkout. Kamu dapat mendaftar akun atau checkout sebagai guest. Setelah pembayaran dikonfirmasi, pesanan akan segera diproses.</p>
+          </div>
+        </div>
+
+        <div class="faq-item sketch-card-alt">
+          <div class="faq-header">
+            <h4>Berapa lama waktu pengiriman?</h4>
+            <span class="icon icon-sm faq-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
+          <div class="faq-body">
+            <p>Untuk area Jabodetabek, pengiriman biasanya memakan waktu 1-2 hari kerja. Untuk luar Jabodetabek, estimasi pengiriman adalah 3-5 hari kerja. Tersedia juga opsi pengiriman instan (Same Day) untuk area tertentu.</p>
+          </div>
+        </div>
+
+        <div class="faq-item sketch-card">
+          <div class="faq-header">
+            <h4>Apakah bisa COD (Cash on Delivery)?</h4>
+            <span class="icon icon-sm faq-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
+          <div class="faq-body">
+            <p>Saat ini kami mendukung metode pembayaran transfer bank, e-wallet (GoPay, OVO, Dana), dan kartu kredit. Layanan COD masih dalam tahap pengembangan dan akan segera tersedia.</p>
+          </div>
+        </div>
+
+        <div class="faq-item sketch-card-alt tape-corner">
+          <div class="faq-header">
+            <h4>Bagaimana kebijakan pengembalian barang?</h4>
+            <span class="icon icon-sm faq-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
+          <div class="faq-body">
+            <p>Kamu dapat mengembalikan produk dalam waktu 7 hari setelah barang diterima, asalkan produk belum digunakan dan masih dalam kemasan asli. Silakan hubungi tim support kami melalui email atau telepon untuk proses lebih lanjut.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid container">
+      <div><div class="logo" style="margin-bottom:12px;"><span class="text-gradient">NEX</span>GEAR</div><p style="color:var(--text-muted);font-size:0.9rem;">Toko gaming handmade yang unik.</p></div>
+      <div><h4>Link Cepat</h4><ul><li><a href="index.html">Home</a></li><li><a href="catalog.html">Catalog</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Kategori</h4><ul><li><a href="catalog.html">Laptops</a></li><li><a href="catalog.html">Peripherals</a></li><li><a href="catalog.html">Components</a></li></ul></div>
+      <div><h4>Newsletter</h4><form class="footer-form" onsubmit="event.preventDefault();showToast('Berhasil mendaftar!');"><input type="email" placeholder="Email kamu" class="form-input" style="border:var(--sketch-border);border-radius:var(--sketch-radius);padding:10px 14px;"><button class="btn btn-primary" type="submit" style="padding:10px 20px;font-size:0.7rem;">Daftar</button></form></div>
+    </div>
+    <div class="footer-bottom container"><p>&copy; 2026 NEXGEAR. Semua hak cipta dilindungi.</p></div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+  <script>
+    // Form submit
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      showToast('Pesan berhasil dikirim! Kami akan segera membalasnya.');
+      e.target.reset();
+    });
+
+    // Accordion
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const header = item.querySelector('.faq-header');
+      const body = item.querySelector('.faq-body');
+      
+      header.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('active');
+          i.querySelector('.faq-body').style.maxHeight = null;
+        });
+        
+        // Open clicked if it wasn't active
+        if (!isActive) {
+          item.classList.add('active');
+          body.style.maxHeight = body.scrollHeight + "px";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

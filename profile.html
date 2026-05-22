@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil - NEXGEAR</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/profile.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-container container">
+      <a href="index.html" class="logo font-gaming">NEXGEAR</a>
+      <div class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="catalog.html">Katalog</a>
+        <a href="about.html">Tentang</a>
+        <a href="contact.html">Kontak</a>
+      </div>
+      <div class="nav-actions">
+        <a href="#" class="icon-btn cart-btn">
+          <span class="icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>
+          <span class="cart-badge"></span>
+        </a>
+        <a href="login.html" class="icon-btn">
+          <span class="icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        </a>
+        <button class="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="profile-wrapper">
+    <div class="binder-container">
+      <aside class="binder-sidebar">
+        <div class="profile-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <div>
+            <h3 class="font-gaming" style="font-size: 1rem;">Gamer Pro</h3>
+            <span style="font-family: 'Caveat', cursive; color: var(--text-muted);">Member sejak 2026</span>
+          </div>
+        </div>
+        <button class="binder-tab active" data-target="history">Riwayat Pesanan</button>
+        <button class="binder-tab" data-target="settings">Pengaturan Akun</button>
+        <button class="binder-tab" onclick="window.location.href='login.html'" style="color: var(--accent); margin-top: auto;">Keluar</button>
+      </aside>
+
+      <div class="binder-content">
+        <!-- Riwayat Pesanan -->
+        <div id="history" class="binder-page active">
+          <h2 class="font-gaming" style="margin-bottom: 30px; color: var(--primary);">Riwayat Pesanan</h2>
+          
+          <div class="order-card">
+            <div class="order-header">
+              <div>
+                <strong style="font-family: 'Orbitron', sans-serif;">#NEX-82910</strong><br>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">22 Mei 2026</span>
+              </div>
+              <div class="order-status">Sedang Diproses</div>
+            </div>
+            <div style="font-size: 0.9rem;">
+              <p>1x ROG Strix G16 - $1399.99</p>
+              <p style="text-align: right; margin-top: 10px;"><strong>Total: $1399.99</strong></p>
+            </div>
+          </div>
+
+          <div class="order-card">
+            <div class="order-header">
+              <div>
+                <strong style="font-family: 'Orbitron', sans-serif;">#NEX-10294</strong><br>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">10 Apr 2026</span>
+              </div>
+              <div class="order-status" style="color: var(--text-muted);">Selesai</div>
+            </div>
+            <div style="font-size: 0.9rem;">
+              <p>1x G Pro X Superlight - $149.99</p>
+              <p style="text-align: right; margin-top: 10px;"><strong>Total: $149.99</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pengaturan Akun -->
+        <div id="settings" class="binder-page">
+          <h2 class="font-gaming" style="margin-bottom: 30px; color: var(--secondary);">Pengaturan Akun</h2>
+          <form onsubmit="event.preventDefault(); showToast('Profil berhasil diperbarui!');">
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label style="color: var(--text-muted); font-size: 0.8rem;">Nama Tampilan</label>
+              <input type="text" class="notepad-input" value="Gamer Pro">
+            </div>
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label style="color: var(--text-muted); font-size: 0.8rem;">Email</label>
+              <input type="email" class="notepad-input" value="gamer@example.com">
+            </div>
+            <div class="form-group" style="margin-bottom: 30px;">
+              <label style="color: var(--text-muted); font-size: 0.8rem;">Alamat Pengiriman Default</label>
+              <textarea class="notepad-input" style="height: 80px;">Jl. Gaming Boulevard No. 42&#10;Jakarta Selatan, 12345</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="scripts/main.js"></script>
+  <script>
+    document.querySelectorAll('.binder-tab').forEach(tab => {
+      if(tab.dataset.target) {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.binder-tab').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.binder-page').forEach(p => p.classList.remove('active'));
+          
+          tab.classList.add('active');
+          document.getElementById(tab.dataset.target).classList.add('active');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

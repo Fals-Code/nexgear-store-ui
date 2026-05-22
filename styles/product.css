@@ -1,0 +1,491 @@
+/* ═══════════════════════════════════
+   PRODUCT DETAIL — Handmade Edition
+   ═══════════════════════════════════ */
+
+.product-hero {
+  padding: 100px 5% 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ── Product Image ── */
+.product-gallery {
+  position: sticky;
+  top: 90px;
+}
+
+.product-main-img {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2px dashed rgba(255, 255, 255, 0.12);
+  border-radius: var(--sketch-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.02);
+  position: relative;
+  overflow: hidden;
+}
+
+.product-main-img svg {
+  width: 70%;
+  height: 70%;
+}
+
+.product-main-img .badge-label {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--accent);
+  color: #fff;
+  font-family: "Caveat", cursive;
+  font-size: 1.1rem;
+  padding: 4px 14px;
+  border-radius: 8px 2px 6px 2px;
+  transform: rotate(-3deg);
+}
+
+.thumb-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.thumb-item {
+  width: 70px;
+  height: 70px;
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 10px 4px 8px 4px / 4px 10px 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.thumb-item:hover,
+.thumb-item.active {
+  border-color: var(--primary);
+}
+
+.thumb-item svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* ── Product Details ── */
+.product-details {
+  padding-top: 10px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.breadcrumb a:hover {
+  color: var(--primary);
+}
+
+.breadcrumb .sep {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.product-details h1 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin-bottom: 10px;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.star-filled {
+  color: var(--warning);
+}
+
+.star-empty {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.rating-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+
+.product-price-tag {
+  display: inline-block;
+  font-family: "Caveat", cursive;
+  font-size: 2.4rem;
+  color: var(--primary);
+  margin-bottom: 20px;
+  transform: rotate(-1deg);
+  position: relative;
+}
+
+.product-price-tag::after {
+  content: "✦ harga terbaik!";
+  position: absolute;
+  right: -130px;
+  top: 6px;
+  font-size: 1rem;
+  color: var(--accent);
+  transform: rotate(2deg);
+  white-space: nowrap;
+}
+
+.product-desc {
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+}
+
+/* ── Specs List ── */
+.specs-mini {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.spec-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 2px dashed rgba(255, 255, 255, 0.08);
+  border-radius: 10px 4px 8px 4px / 4px 10px 4px 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.spec-item .icon {
+  color: var(--primary);
+}
+
+.spec-item strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* ── Color Options ── */
+.color-options {
+  margin-bottom: 24px;
+}
+
+.color-options label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: "Orbitron", sans-serif;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.color-circles {
+  display: flex;
+  gap: 10px;
+}
+
+.color-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.color-circle:hover,
+.color-circle.active {
+  border-color: var(--primary);
+  transform: scale(1.1);
+}
+
+/* ── Quantity Selector ── */
+.quantity-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  border: 2px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 12px 4px 10px 4px / 4px 12px 4px 10px;
+  overflow: hidden;
+}
+
+.qty-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  font-size: 1.2rem;
+}
+
+.qty-btn:hover {
+  color: var(--primary);
+  background: rgba(0, 210, 255, 0.05);
+}
+
+.qty-value {
+  width: 50px;
+  text-align: center;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  border-left: 1px dashed rgba(255, 255, 255, 0.1);
+  border-right: 1px dashed rgba(255, 255, 255, 0.1);
+  padding: 8px 0;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+  flex: 1;
+  min-width: 160px;
+  justify-content: center;
+}
+
+/* ═══ TABS ═══ */
+.product-tabs {
+  padding: 40px 5% 60px;
+}
+
+.tab-nav {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
+  margin-bottom: 30px;
+}
+
+.tab-btn {
+  padding: 14px 28px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.tab-btn:hover {
+  color: var(--primary);
+}
+
+.tab-btn.active {
+  color: var(--primary);
+}
+
+.tab-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Tab: Specs Table ── */
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.specs-table tr {
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.specs-table td {
+  padding: 14px 16px;
+  font-size: 0.9rem;
+}
+
+.specs-table td:first-child {
+  color: var(--text-muted);
+  width: 180px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Tab: Reviews ── */
+.review-item {
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.review-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+.review-meta {
+  flex: 1;
+}
+
+.review-meta strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.review-meta .review-date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.review-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.review-body {
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-size: 0.9rem;
+}
+
+/* ═══ RELATED PRODUCTS ═══ */
+.related-section {
+  padding: 0 5% 80px;
+}
+
+.related-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.related-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.related-card .related-img {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.related-card .related-img svg {
+  width: 100px;
+  height: 80px;
+}
+
+.related-card .related-body {
+  padding: 20px;
+}
+
+.related-card .related-body h4 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.related-card .related-body p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+.related-card .related-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .product-hero {
+    grid-template-columns: 1fr;
+    padding-top: 90px;
+  }
+
+  .product-gallery {
+    position: static;
+  }
+
+  .product-price-tag::after {
+    display: none;
+  }
+
+  .specs-mini {
+    grid-template-columns: 1fr;
+  }
+
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tab-nav {
+    flex-wrap: wrap;
+  }
+}

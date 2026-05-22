@@ -1,0 +1,245 @@
+/* ═══════════════════════════════════
+   ABOUT PAGE — Handmade Edition
+   ═══════════════════════════════════ */
+
+/* ── Hero Story ── */
+.about-hero {
+  padding: 40px 5% 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-illustration {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2px dashed rgba(255,255,255,0.1);
+  border-radius: var(--sketch-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.015);
+  padding: 30px;
+}
+
+.about-illustration svg {
+  width: 100%;
+  height: 100%;
+}
+
+.about-story h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 18px;
+}
+
+.about-story p {
+  color: var(--text-muted);
+  line-height: 1.9;
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+}
+
+/* ── Stats ── */
+.stats-bar {
+  padding: 40px 5%;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 28px 16px;
+}
+
+.stat-card .stat-icon {
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.stat-card .stat-number {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.stat-card .stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Timeline ── */
+.timeline-section {
+  padding: 40px 5% 60px;
+}
+
+.timeline-section h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 40px;
+}
+
+.timeline {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  border-left: 2px dashed rgba(255,255,255,0.12);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 24px;
+  padding: 20px 24px;
+  margin-left: 20px;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 26px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px dashed var(--primary);
+  background: var(--bg-deep);
+}
+
+.timeline-item .timeline-year {
+  font-family: "Caveat", cursive;
+  font-size: 1.3rem;
+  color: var(--primary);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.timeline-item h4 {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.timeline-item p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+/* ── Team ── */
+.team-section {
+  padding: 40px 5% 60px;
+}
+
+.team-section h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 36px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.team-card {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.team-avatar {
+  width: 80px;
+  height: 80px;
+  border: 2px dashed rgba(255,255,255,0.15);
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+.team-card h4 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.team-card .team-role {
+  font-family: "Caveat", cursive;
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.team-card p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+/* ── Values ── */
+.values-section {
+  padding: 40px 5% 80px;
+}
+
+.values-section h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 36px;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.value-card {
+  padding: 28px;
+}
+
+.value-card .value-icon {
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.value-card h4 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.value-card p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .about-hero { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid, .values-grid { grid-template-columns: 1fr; }
+}
