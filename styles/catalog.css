@@ -30,33 +30,38 @@
 }
 
 .filter-drawer {
-  position: fixed;
-  right: 0;
-  top: 0;
-  height: 100vh;
-  width: 360px;
-  max-width: 92%;
-  padding: 18px 18px 24px 18px;
+  position: fixed !important;
+  right: 0 !important;
+  top: 0 !important;
+  height: 100vh !important;
+  width: 360px !important;
+  max-width: 92% !important;
+  padding: 18px 18px 24px 18px !important;
   background: linear-gradient(
     180deg,
     rgba(10, 12, 14, 0.98),
     rgba(11, 13, 15, 0.96)
-  );
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
-  z-index: 1000;
-  transform: translateX(110%);
+  ) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6) !important;
+  z-index: 1000 !important;
+  transform: translateX(110%) !important;
   transition:
     transform 0.32s cubic-bezier(0.2, 0.9, 0.3, 1),
-    opacity 0.25s;
-  opacity: 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+    opacity 0.25s !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .filter-drawer.show {
-  transform: translateX(0);
-  opacity: 1;
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.filter-drawer {
+  pointer-events: none;
 }
 
 .filter-drawer-header {
@@ -85,17 +90,72 @@
 }
 
 .filter-badge {
-  display: inline-block;
-  min-width: 18px;
-  height: 18px;
-  line-height: 18px;
-  font-size: 0.65rem;
-  background: var(--primary);
-  color: #071317;
-  border-radius: 999px;
-  text-align: center;
-  margin-left: 8px;
-  padding: 0 6px;
+  display: none !important;
+  position: absolute !important;
+  right: -8px !important;
+  top: -8px !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  line-height: 18px !important;
+  font-size: 0.65rem !important;
+  background: var(--primary) !important;
+  color: #071317 !important;
+  border-radius: 999px !important;
+  text-align: center !important;
+  padding: 0 6px !important;
+  font-weight: 700 !important;
+}
+
+.filter-badge:not(:empty) {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Active Filters Display */
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 8px 0;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(0, 210, 255, 0.12);
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  border-radius: 16px;
+  font-size: 0.8rem;
+  color: var(--text-default);
+  transition: var(--transition-smooth);
+}
+
+.filter-chip:hover {
+  background: rgba(0, 210, 255, 0.2);
+  border-color: rgba(0, 210, 255, 0.5);
+}
+
+.filter-chip-remove {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.filter-chip-remove:hover {
+  color: var(--primary);
+  transform: scale(1.2);
 }
 
 /* custom thin scrollbar inside drawer */
@@ -140,6 +200,7 @@
   gap: 8px;
   display: inline-flex;
   align-items: center;
+  position: relative;
 }
 
 /* ── Sidebar Filters (hidden by default, shown on desktop) ── */
@@ -368,9 +429,30 @@
     width: 100%;
   }
 
-  .filter-modal {
-    width: 95%;
-    max-width: none;
+  /* Mobile drawer → bottom sheet */
+  .filter-drawer {
+    right: auto;
+    left: 0;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    height: auto;
+    max-height: 75vh;
+    border-radius: 24px 24px 0 0;
+    transform: translateY(110%);
+    padding: 16px 16px 24px 16px;
+  }
+
+  .filter-drawer.show {
+    transform: translateY(0);
+  }
+
+  .filter-drawer-header {
+    padding-bottom: 12px;
+  }
+
+  .filter-drawer-content {
+    padding: 12px 6px 10px 0;
   }
 }
 

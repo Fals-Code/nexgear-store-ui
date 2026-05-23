@@ -25,27 +25,27 @@
         <form id="checkout-form">
           <div class="form-row">
             <div class="form-group">
-              <input type="text" class="notepad-input" placeholder="Nama Depan" required>
+              <input type="text" class="sketch-input" placeholder="Nama Depan" required>
             </div>
             <div class="form-group">
-              <input type="text" class="notepad-input" placeholder="Nama Belakang" required>
+              <input type="text" class="sketch-input" placeholder="Nama Belakang" required>
             </div>
           </div>
           <div class="form-group">
-            <input type="email" class="notepad-input" placeholder="Email" required>
+            <input type="email" class="sketch-input" placeholder="Email" required>
           </div>
           <div class="form-group">
-            <input type="tel" class="notepad-input" placeholder="Nomor Telepon" required>
+            <input type="tel" class="sketch-input" placeholder="Nomor Telepon" required>
           </div>
           <div class="form-group">
-            <input type="text" class="notepad-input" placeholder="Alamat Lengkap" required>
+            <input type="text" class="sketch-input" placeholder="Alamat Lengkap" required>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <input type="text" class="notepad-input" placeholder="Kota" required>
+              <input type="text" class="sketch-input" placeholder="Kota" required>
             </div>
             <div class="form-group">
-              <input type="text" class="notepad-input" placeholder="Kode Pos" required>
+              <input type="text" class="sketch-input" placeholder="Kode Pos" required>
             </div>
           </div>
         </form>
@@ -108,7 +108,14 @@
       const totalEl = document.getElementById("checkout-total");
       
       if(items.length === 0) {
-        container.innerHTML = '<div class="summary-item"><span class="summary-item-name">Keranjang kosong</span></div>';
+        alert("Keranjang belanja Anda masih kosong! Silakan pilih produk terlebih dahulu.");
+        window.location.href = "catalog.html";
+        return;
+      }
+      if (!window.NexAuth || !window.NexAuth.isLoggedIn) {
+        alert("Silakan login terlebih dahulu untuk melanjutkan pembayaran.");
+        window.location.href = "login.html";
+        return;
       } else {
         container.innerHTML = items.map(i => `
           <div class="summary-item">

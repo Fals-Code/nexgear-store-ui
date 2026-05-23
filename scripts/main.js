@@ -71,6 +71,37 @@
   // Expose Cart globally for page-specific scripts
   window.NexCart = Cart;
 
+  /* ── Simple Auth State (localStorage) ── */
+  const Auth = {
+    KEY: "nexgear_auth",
+    get isLoggedIn() {
+      return localStorage.getItem(this.KEY) === 'true';
+    },
+    login() {
+      localStorage.setItem(this.KEY, 'true');
+      this.updateUI();
+    },
+    logout() {
+      localStorage.removeItem(this.KEY);
+      this.updateUI();
+    },
+    updateUI() {
+      document.querySelectorAll('.nav-actions').forEach(container => {
+        const authBtn = container.querySelector('a[href="login.html"], a[href="profile.html"]');
+        if (authBtn) {
+          if (this.isLoggedIn) {
+            authBtn.href = "profile.html";
+            authBtn.innerHTML = '<span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> Profil';
+          } else {
+            authBtn.href = "login.html";
+            authBtn.innerHTML = '<span class="icon icon-sm"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg></span> Masuk';
+          }
+        }
+      });
+    }
+  };
+  window.NexAuth = Auth;
+
   /* ── Toast Notification ── */
   function showToast(msg) {
     const toast = document.createElement("div");
@@ -222,43 +253,177 @@
     document
       .querySelectorAll(".sketch-card, .sketch-card-alt")
       .forEach((card, i) => {
+        // Skip rotation for filter drawer elements
+        if (card.closest(".filter-drawer")) return;
         const deg = ((i % 5) - 2) * 0.4;
         card.style.setProperty("--sketch-rotate", `${deg}deg`);
         card.style.transform = `rotate(${deg}deg)`;
       });
   }
 
-  /* ── Filter Modal (catalog) ── */
-  function initFilterModal() {
+  /* ── Filter Drawer (catalog) ── */
+  function initFilterDrawer() {
     const openBtn = document.getElementById("openFilterBtn");
     const closeBtn = document.getElementById("closeFilterBtn");
+    const clearBtn = document.getElementById("clearFiltersBtn");
+    const applyBtn = document.getElementById("applyFiltersBtn");
     const overlay = document.getElementById("filterOverlay");
-    const modal = document.getElementById("filterModal");
+    const drawer = document.getElementById("filterDrawer");
+    const badge = document.getElementById("filterBadge");
+    const activeFiltersList = document.getElementById("activeFiltersList");
 
-    if (!openBtn || !modal) return;
+    if (!openBtn || !drawer) return;
+
+    function renderActiveFilters() {
+      // Get all checked filters
+      const checkboxes = drawer.querySelectorAll(
+        ".filter-option input[type='checkbox']:checked",
+      );
+      const range = drawer.querySelector(".price-range");
+      const maxPrice = range ? parseInt(range.value) : 5000;
+
+      const filters = [];
+
+      // Collect category filters
+      checkboxes.forEach((cb) => {
+        const label = cb.parentElement.textContent.trim();
+        filters.push({ name: label, element: cb });
+      });
+
+      // Add price filter if not at max
+      if (maxPrice < 5000) {
+        filters.push({
+          name: `Price: $0-$${maxPrice.toLocaleString()}`,
+          isPriceFilter: true,
+        });
+      }
+
+      // Render chips
+      activeFiltersList.innerHTML = "";
+      filters.forEach((filter) => {
+        const chip = document.createElement("div");
+        chip.className = "filter-chip";
+
+        const label = document.createElement("span");
+        label.textContent = filter.name;
+
+        const removeBtn = document.createElement("button");
+        removeBtn.className = "filter-chip-remove";
+        removeBtn.setAttribute("aria-label", `Remove ${filter.name}`);
+        removeBtn.innerHTML =
+          '<svg viewBox="0 0 24 24" style="width: 100%; height: 100%;"><line x1="18" y1="6" x2="6" y2="18" stroke-width="2" stroke="currentColor"/><line x1="6" y1="6" x2="18" y2="18" stroke-width="2" stroke="currentColor"/></svg>';
+
+        removeBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (filter.isPriceFilter) {
+            range.value = 5000;
+            const label = drawer.querySelector(".price-label-max");
+            if (label) label.textContent = "$5,000+";
+            range.dispatchEvent(new Event("input", { bubbles: true }));
+          } else if (filter.element) {
+            filter.element.checked = false;
+            filter.element.dispatchEvent(
+              new Event("change", { bubbles: true }),
+            );
+          }
+        });
+
+        chip.appendChild(label);
+        chip.appendChild(removeBtn);
+        activeFiltersList.appendChild(chip);
+      });
+
+      // Show/hide container
+      activeFiltersList.style.display = filters.length > 0 ? "flex" : "none";
+    }
+
+    function updateBadge() {
+      const checkboxes = drawer.querySelectorAll(
+        ".filter-option input[type='checkbox']:checked",
+      );
+      const range = drawer.querySelector(".price-range");
+      const maxPrice = range ? parseInt(range.value) : 5000;
+      const hasPrice = maxPrice < 5000;
+      const count = checkboxes.length + (hasPrice ? 1 : 0);
+
+      if (count > 0) {
+        badge.textContent = count;
+        badge.style.display = "inline-block";
+      } else {
+        badge.textContent = "";
+        badge.style.display = "none";
+      }
+
+      renderActiveFilters();
+    }
 
     function openFilter() {
-      modal.classList.add("show");
+      drawer.classList.add("show");
       overlay.classList.add("show");
       document.body.style.overflow = "hidden";
+      openBtn.setAttribute("aria-expanded", "true");
+      overlay.setAttribute("aria-hidden", "false");
     }
 
     function closeFilter() {
-      modal.classList.remove("show");
+      drawer.classList.remove("show");
       overlay.classList.remove("show");
       document.body.style.overflow = "";
+      openBtn.setAttribute("aria-expanded", "false");
+      overlay.setAttribute("aria-hidden", "true");
+      openBtn.focus();
+    }
+
+    function clearFilters() {
+      drawer
+        .querySelectorAll(".filter-option input[type='checkbox']")
+        .forEach((cb) => (cb.checked = false));
+      const range = drawer.querySelector(".price-range");
+      if (range) {
+        range.value = 5000;
+        const label = drawer.querySelector(".price-label-max");
+        if (label) label.textContent = "$5,000+";
+      }
+      updateBadge();
+    }
+
+    function applyFilters() {
+      // Trigger search/filter logic
+      const range = drawer.querySelector(".price-range");
+      if (range) {
+        range.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+      closeFilter();
     }
 
     openBtn.addEventListener("click", openFilter);
     if (closeBtn) closeBtn.addEventListener("click", closeFilter);
+    if (clearBtn) clearBtn.addEventListener("click", clearFilters);
+    if (applyBtn) applyBtn.addEventListener("click", applyFilters);
     overlay.addEventListener("click", closeFilter);
+
+    // Update badge when checkboxes change
+    drawer
+      .querySelectorAll(".filter-option input[type='checkbox']")
+      .forEach((cb) => {
+        cb.addEventListener("change", updateBadge);
+      });
+
+    // Update badge when price changes
+    const range = drawer.querySelector(".price-range");
+    if (range) {
+      range.addEventListener("input", updateBadge);
+    }
 
     // Close on Escape key
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal.classList.contains("show")) {
+      if (e.key === "Escape" && drawer.classList.contains("show")) {
         closeFilter();
       }
     });
+
+    // Initial badge state
+    updateBadge();
   }
 
   /* ── Mini-Cart Injection & Logic ── */
@@ -357,9 +522,10 @@
     initAddToCart();
     setActiveNav();
     initSketchRotations();
-    initFilterModal();
+    initFilterDrawer();
     Cart.updateBadge();
     initMiniCart();
+    Auth.updateUI();
   }
 
   if (document.readyState === "loading") {

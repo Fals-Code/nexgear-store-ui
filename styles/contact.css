@@ -34,30 +34,7 @@
   letter-spacing: 0.05em;
 }
 
-.contact-input,
-.contact-textarea {
-  width: 100%;
-  padding: 12px 14px;
-  background: rgba(255,255,255,0.02);
-  border: 2px dashed rgba(255,255,255,0.15);
-  border-radius: 10px 4px 8px 4px / 4px 10px 4px 8px;
-  color: var(--text-main);
-  font-family: "Inter", sans-serif;
-  font-size: 0.95rem;
-  transition: var(--transition-smooth);
-}
 
-.contact-textarea {
-  min-height: 140px;
-  resize: vertical;
-}
-
-.contact-input:focus,
-.contact-textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-  background: rgba(0,210,255,0.02);
-}
 
 .submit-btn {
   width: 100%;

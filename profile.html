@@ -47,7 +47,7 @@
         </div>
         <button class="binder-tab active" data-target="history">Riwayat Pesanan</button>
         <button class="binder-tab" data-target="settings">Pengaturan Akun</button>
-        <button class="binder-tab" onclick="window.location.href='login.html'" style="color: var(--accent); margin-top: auto;">Keluar</button>
+        <button class="binder-tab" onclick="window.NexAuth.logout(); window.location.href='login.html'" style="color: var(--accent); margin-top: auto;">Keluar</button>
       </aside>
 
       <div class="binder-content">
@@ -90,15 +90,15 @@
           <form onsubmit="event.preventDefault(); showToast('Profil berhasil diperbarui!');">
             <div class="form-group" style="margin-bottom: 20px;">
               <label style="color: var(--text-muted); font-size: 0.8rem;">Nama Tampilan</label>
-              <input type="text" class="notepad-input" value="Gamer Pro">
+              <input type="text" class="sketch-input" value="Gamer Pro">
             </div>
             <div class="form-group" style="margin-bottom: 20px;">
               <label style="color: var(--text-muted); font-size: 0.8rem;">Email</label>
-              <input type="email" class="notepad-input" value="gamer@example.com">
+              <input type="email" class="sketch-input" value="gamer@example.com">
             </div>
             <div class="form-group" style="margin-bottom: 30px;">
               <label style="color: var(--text-muted); font-size: 0.8rem;">Alamat Pengiriman Default</label>
-              <textarea class="notepad-input" style="height: 80px;">Jl. Gaming Boulevard No. 42&#10;Jakarta Selatan, 12345</textarea>
+              <textarea class="sketch-input" style="height: 80px;">Jl. Gaming Boulevard No. 42&#10;Jakarta Selatan, 12345</textarea>
             </div>
             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
           </form>
@@ -109,6 +109,9 @@
 
   <script src="scripts/main.js"></script>
   <script>
+    if (!window.NexAuth || !window.NexAuth.isLoggedIn) {
+      window.location.replace('login.html');
+    }
     document.querySelectorAll('.binder-tab').forEach(tab => {
       if(tab.dataset.target) {
         tab.addEventListener('click', () => {
