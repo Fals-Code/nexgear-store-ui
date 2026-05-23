@@ -1,29 +1,87 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Katalog produk gaming NEXGEAR — laptop, mouse, keyboard, monitor, GPU, dan headset terbaik.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Katalog produk gaming NEXGEAR — laptop, mouse, keyboard, monitor, GPU, dan headset terbaik."
+    />
     <title>Catalog | NEXGEAR</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/catalog.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/catalog.css" />
+  </head>
+  <body>
     <nav>
-      <a href="index.html" class="logo"><span class="text-gradient">NEX</span>GEAR</a>
+      <a href="index.html" class="logo"
+        ><span class="text-gradient">NEX</span>GEAR</a
+      >
       <ul class="nav-links">
-        <li><a href="index.html"><span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><polyline points="9 21 9 14 15 14 15 21"/></svg></span> Home</a></li>
-        <li><a href="catalog.html"><span class="icon icon-sm"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="8" y1="9" x2="8" y2="21"/></svg></span> Catalog</a></li>
-        <li><a href="about.html"><span class="icon icon-sm"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg></span> About</a></li>
-        <li><a href="contact.html"><span class="icon icon-sm"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 4 12 13 2 4"/></svg></span> Contact</a></li>
+        <li>
+          <a href="index.html"
+            ><span class="icon icon-sm"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
+                />
+                <polyline points="9 21 9 14 15 14 15 21" /></svg
+            ></span>
+            Home</a
+          >
+        </li>
+        <li>
+          <a href="catalog.html"
+            ><span class="icon icon-sm"
+              ><svg viewBox="0 0 24 24">
+                <rect x="2" y="3" width="20" height="18" rx="2" />
+                <line x1="2" y1="9" x2="22" y2="9" />
+                <line x1="8" y1="9" x2="8" y2="21" /></svg
+            ></span>
+            Catalog</a
+          >
+        </li>
+        <li>
+          <a href="about.html"
+            ><span class="icon icon-sm"
+              ><svg viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 20c0-4 4-7 8-7s8 3 8 7" /></svg
+            ></span>
+            About</a
+          >
+        </li>
+        <li>
+          <a href="contact.html"
+            ><span class="icon icon-sm"
+              ><svg viewBox="0 0 24 24">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <polyline points="22 4 12 13 2 4" /></svg
+            ></span>
+            Contact</a
+          >
+        </li>
       </ul>
       <div class="nav-actions">
         <a href="cart.html" class="cart-btn">
-          <span class="icon"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 2h3l1 4"/></svg></span>
+          <span class="icon"
+            ><svg viewBox="0 0 24 24">
+              <path d="M6 6h15l-1.5 9h-12z" />
+              <circle cx="9" cy="20" r="1.5" />
+              <circle cx="18" cy="20" r="1.5" />
+              <path d="M2 2h3l1 4" /></svg
+          ></span>
           <span class="cart-badge"></span>
         </a>
-        <a href="login.html" class="btn btn-outline" style="padding:8px 18px;font-size:0.75rem;">
-          <span class="icon icon-sm"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg></span>
+        <a
+          href="login.html"
+          class="btn btn-outline"
+          style="padding: 8px 18px; font-size: 0.75rem"
+        >
+          <span class="icon icon-sm"
+            ><svg viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 4-7 8-7s8 3 8 7" /></svg
+          ></span>
           Masuk
         </a>
         <div class="hamburger"><span></span><span></span><span></span></div>
@@ -31,229 +89,705 @@
     </nav>
 
     <div class="catalog-container container reveal">
-        <aside class="filters sketch-card tape-corner">
-            <h3 style="margin-bottom:20px;font-size:1rem;">
-              <span class="icon"><svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="10" cy="18" r="2"/></svg></span>
-              Filters
-            </h3>
-
-            <div class="filter-group">
-                <h4>
-                  <span class="icon icon-sm"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
-                  Category
-                </h4>
-                <label class="filter-option"><input type="checkbox" checked> Laptops</label>
-                <label class="filter-option"><input type="checkbox" checked> Peripherals</label>
-                <label class="filter-option"><input type="checkbox" checked> Components</label>
-                <label class="filter-option"><input type="checkbox"> Accessories</label>
-            </div>
-
-            <div class="filter-group">
-                <h4>
-                  <span class="icon icon-sm"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span>
-                  Price Range
-                </h4>
-                <input type="range" class="price-range" min="0" max="5000" value="5000">
-                <div class="price-labels">
-                    <span>$0</span>
-                    <span class="price-label-max">$5,000+</span>
-                </div>
-            </div>
-
-            <div class="filter-group">
-                <h4>
-                  <span class="icon icon-sm"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
-                  Brand
-                </h4>
-                <label class="filter-option"><input type="checkbox"> Razer</label>
-                <label class="filter-option"><input type="checkbox"> SteelSeries</label>
-                <label class="filter-option"><input type="checkbox"> Logitech G</label>
-                <label class="filter-option"><input type="checkbox"> ASUS ROG</label>
-            </div>
-
-            <button class="btn btn-primary" style="width:100%;padding:12px;font-size:0.75rem;">
-              <span class="icon icon-sm"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-              Apply Filters
+      <main class="catalog-main full-width">
+        <div class="catalog-header">
+          <div class="header-left">
+            <h2 class="text-gradient">Products</h2>
+            <button
+              id="openFilterBtn"
+              class="btn btn-outline filter-btn"
+              aria-haspopup="dialog"
+              aria-controls="filterDrawer"
+            >
+              <span class="icon icon-sm"
+                ><svg viewBox="0 0 24 24">
+                  <line x1="4" y1="6" x2="20" y2="6" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="18" x2="20" y2="18" />
+                  <circle cx="8" cy="6" r="2" />
+                  <circle cx="16" cy="12" r="2" />
+                  <circle cx="10" cy="18" r="2" /></svg
+              ></span>
+              Filter
+              <span
+                id="filterBadge"
+                class="filter-badge"
+                aria-hidden="true"
+              ></span>
             </button>
-        </aside>
+          </div>
+          <div class="search-wrapper">
+            <span class="icon icon-sm"
+              ><svg viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" /></svg
+            ></span>
+            <input type="text" class="search-bar" placeholder="Cari gear..." />
+          </div>
+        </div>
 
-        <main class="catalog-main">
-            <div class="catalog-header">
-                <h2 class="text-gradient">Products</h2>
-                <div class="search-wrapper">
-                    <span class="icon icon-sm"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-                    <input type="text" class="search-bar" placeholder="Cari gear...">
-                </div>
+        <div class="product-grid">
+          <!-- Product 1 -->
+          <div class="sketch-card product-card">
+            <span
+              class="hand-note"
+              style="
+                position: absolute;
+                top: -15px;
+                right: -15px;
+                font-size: 1.3rem;
+                z-index: 10;
+              "
+              >Terlaris!</span
+            >
+            <div class="product-img">
+              <svg viewBox="0 0 120 100" aria-hidden="true">
+                <rect
+                  x="10"
+                  y="8"
+                  width="100"
+                  height="55"
+                  rx="4"
+                  stroke="rgba(255,255,255,0.15)"
+                  fill="none"
+                  stroke-width="1.5"
+                  stroke-dasharray="5 3"
+                />
+                <rect
+                  x="16"
+                  y="14"
+                  width="88"
+                  height="43"
+                  rx="2"
+                  stroke="rgba(0,210,255,0.2)"
+                  fill="rgba(0,210,255,0.02)"
+                  stroke-width="1"
+                />
+                <path
+                  d="M5 68 Q60 75 115 68"
+                  stroke="rgba(255,255,255,0.12)"
+                  fill="none"
+                  stroke-width="1.5"
+                />
+                <line
+                  x1="5"
+                  y1="72"
+                  x2="115"
+                  y2="72"
+                  stroke="rgba(255,255,255,0.1)"
+                  stroke-width="1.5"
+                />
+              </svg>
             </div>
-
-            <div class="product-grid">
-                <!-- Product 1 -->
-                <div class="sketch-card product-card">
-                    <span class="hand-note" style="position: absolute; top: -15px; right: -15px; font-size: 1.3rem; z-index: 10;">Terlaris!</span>
-                    <div class="product-img">
-                      <svg viewBox="0 0 120 100" aria-hidden="true">
-                        <rect x="10" y="8" width="100" height="55" rx="4" stroke="rgba(255,255,255,0.15)" fill="none" stroke-width="1.5" stroke-dasharray="5 3"/>
-                        <rect x="16" y="14" width="88" height="43" rx="2" stroke="rgba(0,210,255,0.2)" fill="rgba(0,210,255,0.02)" stroke-width="1"/>
-                        <path d="M5 68 Q60 75 115 68" stroke="rgba(255,255,255,0.12)" fill="none" stroke-width="1.5"/>
-                        <line x1="5" y1="72" x2="115" y2="72" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
-                      </svg>
-                    </div>
-                    <div class="product-card-body">
-                        <h4>ROG Strix G16</h4>
-                        <p class="desc">RTX 4060, 16GB RAM</p>
-                        <div class="product-card-bottom">
-                            <span class="card-price">$1,399.99</span>
-                            <button class="btn btn-primary" data-add-cart data-name="ROG Strix G16" data-price="1399.99">
-                              <span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 2h3l1 4"/></svg></span>
-                              Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="sketch-card-alt product-card">
-                    <span class="hand-note" style="position: absolute; top: -15px; right: -15px; font-size: 1.3rem; z-index: 10; color: var(--accent);">Baru!</span>
-                    <div class="product-img">
-                      <svg viewBox="0 0 120 100" aria-hidden="true">
-                        <ellipse cx="60" cy="50" rx="25" ry="38" stroke="rgba(255,255,255,0.15)" fill="none" stroke-width="1.5" stroke-dasharray="5 3"/>
-                        <circle cx="60" cy="35" r="4" stroke="rgba(0,210,255,0.25)" fill="none" stroke-width="1"/>
-                        <ellipse cx="60" cy="60" rx="7" ry="4" stroke="rgba(255,255,255,0.12)" fill="none" stroke-width="1"/>
-                        <line x1="60" y1="15" x2="60" y2="25" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="2 2"/>
-                      </svg>
-                    </div>
-                    <div class="product-card-body">
-                        <h4>G Pro X Superlight</h4>
-                        <p class="desc">Ultra-lightweight Wireless</p>
-                        <div class="product-card-bottom">
-                            <span class="card-price">$159.99</span>
-                            <button class="btn btn-primary" data-add-cart data-name="G Pro X Superlight" data-price="159.99">
-                              <span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 2h3l1 4"/></svg></span>
-                              Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="sketch-card product-card">
-                    <div class="product-img">
-                      <svg viewBox="0 0 120 100" aria-hidden="true">
-                        <rect x="10" y="25" width="100" height="38" rx="4" stroke="rgba(255,255,255,0.15)" fill="none" stroke-width="1.5" stroke-dasharray="5 3"/>
-                        <g stroke="rgba(0,210,255,0.15)" fill="none" stroke-width="0.8">
-                          <rect x="16" y="30" width="7" height="7" rx="1"/><rect x="26" y="30" width="7" height="7" rx="1"/>
-                          <rect x="36" y="30" width="7" height="7" rx="1"/><rect x="46" y="30" width="7" height="7" rx="1"/>
-                          <rect x="56" y="30" width="7" height="7" rx="1"/><rect x="66" y="30" width="7" height="7" rx="1"/>
-                          <rect x="76" y="30" width="7" height="7" rx="1"/><rect x="86" y="30" width="7" height="7" rx="1"/>
-                          <rect x="96" y="30" width="7" height="7" rx="1"/>
-                          <rect x="20" y="42" width="7" height="7" rx="1"/><rect x="30" y="42" width="7" height="7" rx="1"/>
-                          <rect x="40" y="42" width="7" height="7" rx="1"/><rect x="50" y="42" width="7" height="7" rx="1"/>
-                          <rect x="60" y="42" width="7" height="7" rx="1"/><rect x="70" y="42" width="7" height="7" rx="1"/>
-                          <rect x="80" y="42" width="7" height="7" rx="1"/><rect x="90" y="42" width="7" height="7" rx="1"/>
-                          <rect x="30" y="54" width="50" height="6" rx="1"/>
-                        </g>
-                      </svg>
-                    </div>
-                    <div class="product-card-body">
-                        <h4>Huntsman V3 Pro</h4>
-                        <p class="desc">Analog Optical Switches</p>
-                        <div class="product-card-bottom">
-                            <span class="card-price">$249.99</span>
-                            <button class="btn btn-primary" data-add-cart data-name="Huntsman V3 Pro" data-price="249.99">
-                              <span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 2h3l1 4"/></svg></span>
-                              Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="sketch-card-alt product-card">
-                    <div class="product-img">
-                      <svg viewBox="0 0 120 100" aria-hidden="true">
-                        <rect x="10" y="15" width="100" height="60" rx="3" stroke="rgba(255,255,255,0.15)" fill="none" stroke-width="1.5" stroke-dasharray="5 3"/>
-                        <rect x="16" y="20" width="88" height="50" rx="2" stroke="rgba(0,210,255,0.2)" fill="rgba(0,210,255,0.02)" stroke-width="1"/>
-                        <rect x="50" y="78" width="20" height="8" rx="1" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="1"/>
-                        <rect x="40" y="86" width="40" height="4" rx="1" stroke="rgba(255,255,255,0.08)" fill="none" stroke-width="1"/>
-                      </svg>
-                    </div>
-                    <div class="product-card-body">
-                        <h4>Alienware 27</h4>
-                        <p class="desc">280Hz, 1ms IPS</p>
-                        <div class="product-card-bottom">
-                            <span class="card-price">$599.99</span>
-                            <button class="btn btn-primary" data-add-cart data-name="Alienware 27" data-price="599.99">
-                              <span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 2h3l1 4"/></svg></span>
-                              Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 5 -->
-                <div class="sketch-card product-card">
-                    <div class="product-img">
-                      <svg viewBox="0 0 120 100" aria-hidden="true">
-                        <rect x="20" y="15" width="80" height="50" rx="3" stroke="rgba(255,255,255,0.15)" fill="none" stroke-width="1.5" stroke-dasharray="5 3"/>
-                        <circle cx="40" cy="35" r="10" stroke="rgba(0,210,255,0.2)" fill="none" stroke-width="1"/>
-                        <circle cx="40" cy="35" r="3" stroke="rgba(0,210,255,0.15)" fill="none" stroke-width="0.8"/>
-                        <rect x="55" y="28" width="35" height="4" rx="1" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="0.8"/>
-                        <rect x="55" y="36" width="25" height="4" rx="1" stroke="rgba(255,255,255,0.08)" fill="none" stroke-width="0.8"/>
-                        <rect x="55" y="44" width="30" height="4" rx="1" stroke="rgba(255,255,255,0.08)" fill="none" stroke-width="0.8"/>
-                        <rect x="30" y="70" width="60" height="12" rx="2" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="1" stroke-dasharray="4 2"/>
-                      </svg>
-                    </div>
-                    <div class="product-card-body">
-                        <h4>RTX 4070 Ti Super</h4>
-                        <p class="desc">16GB GDDR6X</p>
-                        <div class="product-card-bottom">
-                            <span class="card-price">$799.99</span>
-                            <button class="btn btn-primary" data-add-cart data-name="RTX 4070 Ti Super" data-price="799.99">
-                              <span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 2h3l1 4"/></svg></span>
-                              Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 6 -->
-                <div class="sketch-card-alt product-card">
-                    <div class="product-img">
-                      <svg viewBox="0 0 120 100" aria-hidden="true">
-                        <path d="M35 25 Q60 8 85 25" stroke="rgba(255,255,255,0.15)" fill="none" stroke-width="1.5" stroke-dasharray="5 3"/>
-                        <ellipse cx="60" cy="45" rx="22" ry="14" stroke="rgba(0,210,255,0.2)" fill="none" stroke-width="1"/>
-                        <line x1="38" y1="45" x2="38" y2="70" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
-                        <line x1="82" y1="45" x2="82" y2="70" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
-                        <ellipse cx="60" cy="70" rx="22" ry="6" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="1"/>
-                        <circle cx="50" cy="44" r="2" stroke="rgba(0,210,255,0.2)" fill="none" stroke-width="0.8"/>
-                        <circle cx="70" cy="44" r="2" stroke="rgba(0,210,255,0.2)" fill="none" stroke-width="0.8"/>
-                      </svg>
-                    </div>
-                    <div class="product-card-body">
-                        <h4>Arctis Nova 7</h4>
-                        <p class="desc">Multi-platform Wireless</p>
-                        <div class="product-card-bottom">
-                            <span class="card-price">$179.99</span>
-                            <button class="btn btn-primary" data-add-cart data-name="Arctis Nova 7" data-price="179.99">
-                              <span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 2h3l1 4"/></svg></span>
-                              Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <div class="product-card-body">
+              <h4>ROG Strix G16</h4>
+              <p class="desc">RTX 4060, 16GB RAM</p>
+              <div class="product-card-bottom">
+                <span class="card-price">$1,399.99</span>
+                <button
+                  class="btn btn-primary"
+                  data-add-cart
+                  data-name="ROG Strix G16"
+                  data-price="1399.99"
+                >
+                  <span class="icon icon-sm"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M6 6h15l-1.5 9h-12z" />
+                      <circle cx="9" cy="20" r="1.5" />
+                      <circle cx="18" cy="20" r="1.5" />
+                      <path d="M2 2h3l1 4" /></svg
+                  ></span>
+                  Add
+                </button>
+              </div>
             </div>
-        </main>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="sketch-card-alt product-card">
+            <span
+              class="hand-note"
+              style="
+                position: absolute;
+                top: -15px;
+                right: -15px;
+                font-size: 1.3rem;
+                z-index: 10;
+                color: var(--accent);
+              "
+              >Baru!</span
+            >
+            <div class="product-img">
+              <svg viewBox="0 0 120 100" aria-hidden="true">
+                <ellipse
+                  cx="60"
+                  cy="50"
+                  rx="25"
+                  ry="38"
+                  stroke="rgba(255,255,255,0.15)"
+                  fill="none"
+                  stroke-width="1.5"
+                  stroke-dasharray="5 3"
+                />
+                <circle
+                  cx="60"
+                  cy="35"
+                  r="4"
+                  stroke="rgba(0,210,255,0.25)"
+                  fill="none"
+                  stroke-width="1"
+                />
+                <ellipse
+                  cx="60"
+                  cy="60"
+                  rx="7"
+                  ry="4"
+                  stroke="rgba(255,255,255,0.12)"
+                  fill="none"
+                  stroke-width="1"
+                />
+                <line
+                  x1="60"
+                  y1="15"
+                  x2="60"
+                  y2="25"
+                  stroke="rgba(255,255,255,0.1)"
+                  stroke-width="1"
+                  stroke-dasharray="2 2"
+                />
+              </svg>
+            </div>
+            <div class="product-card-body">
+              <h4>G Pro X Superlight</h4>
+              <p class="desc">Ultra-lightweight Wireless</p>
+              <div class="product-card-bottom">
+                <span class="card-price">$159.99</span>
+                <button
+                  class="btn btn-primary"
+                  data-add-cart
+                  data-name="G Pro X Superlight"
+                  data-price="159.99"
+                >
+                  <span class="icon icon-sm"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M6 6h15l-1.5 9h-12z" />
+                      <circle cx="9" cy="20" r="1.5" />
+                      <circle cx="18" cy="20" r="1.5" />
+                      <path d="M2 2h3l1 4" /></svg
+                  ></span>
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="sketch-card product-card">
+            <div class="product-img">
+              <svg viewBox="0 0 120 100" aria-hidden="true">
+                <rect
+                  x="10"
+                  y="25"
+                  width="100"
+                  height="38"
+                  rx="4"
+                  stroke="rgba(255,255,255,0.15)"
+                  fill="none"
+                  stroke-width="1.5"
+                  stroke-dasharray="5 3"
+                />
+                <g stroke="rgba(0,210,255,0.15)" fill="none" stroke-width="0.8">
+                  <rect x="16" y="30" width="7" height="7" rx="1" />
+                  <rect x="26" y="30" width="7" height="7" rx="1" />
+                  <rect x="36" y="30" width="7" height="7" rx="1" />
+                  <rect x="46" y="30" width="7" height="7" rx="1" />
+                  <rect x="56" y="30" width="7" height="7" rx="1" />
+                  <rect x="66" y="30" width="7" height="7" rx="1" />
+                  <rect x="76" y="30" width="7" height="7" rx="1" />
+                  <rect x="86" y="30" width="7" height="7" rx="1" />
+                  <rect x="96" y="30" width="7" height="7" rx="1" />
+                  <rect x="20" y="42" width="7" height="7" rx="1" />
+                  <rect x="30" y="42" width="7" height="7" rx="1" />
+                  <rect x="40" y="42" width="7" height="7" rx="1" />
+                  <rect x="50" y="42" width="7" height="7" rx="1" />
+                  <rect x="60" y="42" width="7" height="7" rx="1" />
+                  <rect x="70" y="42" width="7" height="7" rx="1" />
+                  <rect x="80" y="42" width="7" height="7" rx="1" />
+                  <rect x="90" y="42" width="7" height="7" rx="1" />
+                  <rect x="30" y="54" width="50" height="6" rx="1" />
+                </g>
+              </svg>
+            </div>
+            <div class="product-card-body">
+              <h4>Huntsman V3 Pro</h4>
+              <p class="desc">Analog Optical Switches</p>
+              <div class="product-card-bottom">
+                <span class="card-price">$249.99</span>
+                <button
+                  class="btn btn-primary"
+                  data-add-cart
+                  data-name="Huntsman V3 Pro"
+                  data-price="249.99"
+                >
+                  <span class="icon icon-sm"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M6 6h15l-1.5 9h-12z" />
+                      <circle cx="9" cy="20" r="1.5" />
+                      <circle cx="18" cy="20" r="1.5" />
+                      <path d="M2 2h3l1 4" /></svg
+                  ></span>
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="sketch-card-alt product-card">
+            <div class="product-img">
+              <svg viewBox="0 0 120 100" aria-hidden="true">
+                <rect
+                  x="10"
+                  y="15"
+                  width="100"
+                  height="60"
+                  rx="3"
+                  stroke="rgba(255,255,255,0.15)"
+                  fill="none"
+                  stroke-width="1.5"
+                  stroke-dasharray="5 3"
+                />
+                <rect
+                  x="16"
+                  y="20"
+                  width="88"
+                  height="50"
+                  rx="2"
+                  stroke="rgba(0,210,255,0.2)"
+                  fill="rgba(0,210,255,0.02)"
+                  stroke-width="1"
+                />
+                <rect
+                  x="50"
+                  y="78"
+                  width="20"
+                  height="8"
+                  rx="1"
+                  stroke="rgba(255,255,255,0.1)"
+                  fill="none"
+                  stroke-width="1"
+                />
+                <rect
+                  x="40"
+                  y="86"
+                  width="40"
+                  height="4"
+                  rx="1"
+                  stroke="rgba(255,255,255,0.08)"
+                  fill="none"
+                  stroke-width="1"
+                />
+              </svg>
+            </div>
+            <div class="product-card-body">
+              <h4>Alienware 27</h4>
+              <p class="desc">280Hz, 1ms IPS</p>
+              <div class="product-card-bottom">
+                <span class="card-price">$599.99</span>
+                <button
+                  class="btn btn-primary"
+                  data-add-cart
+                  data-name="Alienware 27"
+                  data-price="599.99"
+                >
+                  <span class="icon icon-sm"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M6 6h15l-1.5 9h-12z" />
+                      <circle cx="9" cy="20" r="1.5" />
+                      <circle cx="18" cy="20" r="1.5" />
+                      <path d="M2 2h3l1 4" /></svg
+                  ></span>
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 5 -->
+          <div class="sketch-card product-card">
+            <div class="product-img">
+              <svg viewBox="0 0 120 100" aria-hidden="true">
+                <rect
+                  x="20"
+                  y="15"
+                  width="80"
+                  height="50"
+                  rx="3"
+                  stroke="rgba(255,255,255,0.15)"
+                  fill="none"
+                  stroke-width="1.5"
+                  stroke-dasharray="5 3"
+                />
+                <circle
+                  cx="40"
+                  cy="35"
+                  r="10"
+                  stroke="rgba(0,210,255,0.2)"
+                  fill="none"
+                  stroke-width="1"
+                />
+                <circle
+                  cx="40"
+                  cy="35"
+                  r="3"
+                  stroke="rgba(0,210,255,0.15)"
+                  fill="none"
+                  stroke-width="0.8"
+                />
+                <rect
+                  x="55"
+                  y="28"
+                  width="35"
+                  height="4"
+                  rx="1"
+                  stroke="rgba(255,255,255,0.1)"
+                  fill="none"
+                  stroke-width="0.8"
+                />
+                <rect
+                  x="55"
+                  y="36"
+                  width="25"
+                  height="4"
+                  rx="1"
+                  stroke="rgba(255,255,255,0.08)"
+                  fill="none"
+                  stroke-width="0.8"
+                />
+                <rect
+                  x="55"
+                  y="44"
+                  width="30"
+                  height="4"
+                  rx="1"
+                  stroke="rgba(255,255,255,0.08)"
+                  fill="none"
+                  stroke-width="0.8"
+                />
+                <rect
+                  x="30"
+                  y="70"
+                  width="60"
+                  height="12"
+                  rx="2"
+                  stroke="rgba(255,255,255,0.1)"
+                  fill="none"
+                  stroke-width="1"
+                  stroke-dasharray="4 2"
+                />
+              </svg>
+            </div>
+            <div class="product-card-body">
+              <h4>RTX 4070 Ti Super</h4>
+              <p class="desc">16GB GDDR6X</p>
+              <div class="product-card-bottom">
+                <span class="card-price">$799.99</span>
+                <button
+                  class="btn btn-primary"
+                  data-add-cart
+                  data-name="RTX 4070 Ti Super"
+                  data-price="799.99"
+                >
+                  <span class="icon icon-sm"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M6 6h15l-1.5 9h-12z" />
+                      <circle cx="9" cy="20" r="1.5" />
+                      <circle cx="18" cy="20" r="1.5" />
+                      <path d="M2 2h3l1 4" /></svg
+                  ></span>
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 6 -->
+          <div class="sketch-card-alt product-card">
+            <div class="product-img">
+              <svg viewBox="0 0 120 100" aria-hidden="true">
+                <path
+                  d="M35 25 Q60 8 85 25"
+                  stroke="rgba(255,255,255,0.15)"
+                  fill="none"
+                  stroke-width="1.5"
+                  stroke-dasharray="5 3"
+                />
+                <ellipse
+                  cx="60"
+                  cy="45"
+                  rx="22"
+                  ry="14"
+                  stroke="rgba(0,210,255,0.2)"
+                  fill="none"
+                  stroke-width="1"
+                />
+                <line
+                  x1="38"
+                  y1="45"
+                  x2="38"
+                  y2="70"
+                  stroke="rgba(255,255,255,0.12)"
+                  stroke-width="1.5"
+                />
+                <line
+                  x1="82"
+                  y1="45"
+                  x2="82"
+                  y2="70"
+                  stroke="rgba(255,255,255,0.12)"
+                  stroke-width="1.5"
+                />
+                <ellipse
+                  cx="60"
+                  cy="70"
+                  rx="22"
+                  ry="6"
+                  stroke="rgba(255,255,255,0.1)"
+                  fill="none"
+                  stroke-width="1"
+                />
+                <circle
+                  cx="50"
+                  cy="44"
+                  r="2"
+                  stroke="rgba(0,210,255,0.2)"
+                  fill="none"
+                  stroke-width="0.8"
+                />
+                <circle
+                  cx="70"
+                  cy="44"
+                  r="2"
+                  stroke="rgba(0,210,255,0.2)"
+                  fill="none"
+                  stroke-width="0.8"
+                />
+              </svg>
+            </div>
+            <div class="product-card-body">
+              <h4>Arctis Nova 7</h4>
+              <p class="desc">Multi-platform Wireless</p>
+              <div class="product-card-bottom">
+                <span class="card-price">$179.99</span>
+                <button
+                  class="btn btn-primary"
+                  data-add-cart
+                  data-name="Arctis Nova 7"
+                  data-price="179.99"
+                >
+                  <span class="icon icon-sm"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M6 6h15l-1.5 9h-12z" />
+                      <circle cx="9" cy="20" r="1.5" />
+                      <circle cx="18" cy="20" r="1.5" />
+                      <path d="M2 2h3l1 4" /></svg
+                  ></span>
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
+
+    <!-- Filter Drawer / Bottom Sheet -->
+    <div
+      id="filterOverlay"
+      class="filter-overlay"
+      tabindex="-1"
+      aria-hidden="true"
+    ></div>
+    <aside
+      id="filterDrawer"
+      class="filters tape-corner filter-drawer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="filterTitle"
+    >
+      <div class="filter-drawer-header">
+        <h3 id="filterTitle" style="margin-bottom: 0; font-size: 1rem">
+          <span class="icon"
+            ><svg viewBox="0 0 24 24">
+              <line x1="4" y1="6" x2="20" y2="6" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="18" x2="20" y2="18" />
+              <circle cx="8" cy="6" r="2" />
+              <circle cx="16" cy="12" r="2" />
+              <circle cx="10" cy="18" r="2" /></svg
+          ></span>
+          FILTERS
+        </h3>
+        <div style="display: flex; gap: 8px; align-items: center">
+          <button
+            id="clearFiltersBtn"
+            class="btn btn-outline"
+            aria-label="Clear all filters"
+          >
+            Clear
+          </button>
+          <button
+            id="closeFilterBtn"
+            class="close-filter-btn"
+            aria-label="Close filters"
+          >
+            <svg viewBox="0 0 24 24" style="width: 24px; height: 24px">
+              <line
+                x1="18"
+                y1="6"
+                x2="6"
+                y2="18"
+                stroke-width="2"
+                stroke="currentColor"
+              />
+              <line
+                x1="6"
+                y1="6"
+                x2="18"
+                y2="18"
+                stroke-width="2"
+                stroke="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="filter-drawer-content">
+        <div class="filter-group">
+          <h4>
+            <span class="icon icon-sm"
+              ><svg viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" /></svg
+            ></span>
+            Category
+          </h4>
+          <label class="filter-option"
+            ><input type="checkbox" checked /> Laptops</label
+          >
+          <label class="filter-option"
+            ><input type="checkbox" checked /> Peripherals</label
+          >
+          <label class="filter-option"
+            ><input type="checkbox" checked /> Components</label
+          >
+          <label class="filter-option"
+            ><input type="checkbox" /> Accessories</label
+          >
+        </div>
+
+        <div class="filter-group">
+          <h4>
+            <span class="icon icon-sm"
+              ><svg viewBox="0 0 24 24">
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" /></svg
+            ></span>
+            Price Range
+          </h4>
+          <input
+            type="range"
+            class="price-range"
+            min="0"
+            max="5000"
+            value="5000"
+          />
+          <div class="price-labels">
+            <span>$0</span>
+            <span class="price-label-max">$5,000+</span>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>
+            <span class="icon icon-sm"
+              ><svg viewBox="0 0 24 24">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                /></svg
+            ></span>
+            Brand
+          </h4>
+          <label class="filter-option"><input type="checkbox" /> Razer</label>
+          <label class="filter-option"
+            ><input type="checkbox" /> SteelSeries</label
+          >
+          <label class="filter-option"
+            ><input type="checkbox" /> Logitech G</label
+          >
+          <label class="filter-option"
+            ><input type="checkbox" /> ASUS ROG</label
+          >
+        </div>
+      </div>
+
+      <div class="filter-drawer-footer">
+        <button
+          id="applyFiltersBtn"
+          class="btn btn-primary filter-apply"
+          style="width: 100%; padding: 12px; font-size: 0.85rem"
+        >
+          <span class="icon icon-sm"
+            ><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg
+          ></span>
+          Apply Filters
+        </button>
+      </div>
+    </aside>
 
     <footer>
       <div class="footer-grid container">
         <div>
-          <div class="logo" style="margin-bottom:12px;"><span class="text-gradient">NEX</span>GEAR</div>
-          <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:16px;">Toko gaming dengan desain buatan tangan yang unik dan orisinal.</p>
+          <div class="logo" style="margin-bottom: 12px">
+            <span class="text-gradient">NEX</span>GEAR
+          </div>
+          <p
+            style="
+              color: var(--text-muted);
+              font-size: 0.9rem;
+              margin-bottom: 16px;
+            "
+          >
+            Toko gaming dengan desain buatan tangan yang unik dan orisinal.
+          </p>
           <div class="footer-social">
-            <a href="#" aria-label="Twitter"><span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 7.5v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></span></a>
-            <a href="#" aria-label="Instagram"><span class="icon icon-sm"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></span></a>
-            <a href="#" aria-label="YouTube"><span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 001.94-2A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></span></a>
+            <a href="#" aria-label="Twitter"
+              ><span class="icon icon-sm"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 7.5v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                  /></svg></span
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><span class="icon icon-sm"
+                ><svg viewBox="0 0 24 24">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="5" />
+                  <circle cx="17.5" cy="6.5" r="1.5" /></svg></span
+            ></a>
+            <a href="#" aria-label="YouTube"
+              ><span class="icon icon-sm"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 001.94-2A29 29 0 0023 12a29 29 0 00-.46-5.58z"
+                  />
+                  <polygon
+                    points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"
+                  /></svg></span
+            ></a>
           </div>
         </div>
         <div>
@@ -276,10 +810,40 @@
         </div>
         <div>
           <h4>Newsletter</h4>
-          <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:12px;">Update produk dan promo terbaru.</p>
-          <form class="footer-form" onsubmit="event.preventDefault();showToast('Berhasil mendaftar newsletter!');">
-            <input type="email" placeholder="Email kamu" aria-label="Email" class="form-input" style="border:var(--sketch-border);border-radius:var(--sketch-radius);padding:10px 14px;">
-            <button class="btn btn-primary" type="submit" style="padding:10px 20px;font-size:0.7rem;">Daftar</button>
+          <p
+            style="
+              color: var(--text-muted);
+              font-size: 0.9rem;
+              margin-bottom: 12px;
+            "
+          >
+            Update produk dan promo terbaru.
+          </p>
+          <form
+            class="footer-form"
+            onsubmit="
+              event.preventDefault();
+              showToast('Berhasil mendaftar newsletter!');
+            "
+          >
+            <input
+              type="email"
+              placeholder="Email kamu"
+              aria-label="Email"
+              class="form-input"
+              style="
+                border: var(--sketch-border);
+                border-radius: var(--sketch-radius);
+                padding: 10px 14px;
+              "
+            />
+            <button
+              class="btn btn-primary"
+              type="submit"
+              style="padding: 10px 20px; font-size: 0.7rem"
+            >
+              Daftar
+            </button>
           </form>
         </div>
       </div>
@@ -289,5 +853,5 @@
     </footer>
 
     <script src="scripts/main.js"></script>
-</body>
+  </body>
 </html>
