@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Katalog produk gaming NEXGEAR — laptop, mouse, keyboard, monitor, GPU, dan headset terbaik."
+      content="Katalog produk gaming NEXGEAR - laptop, mouse, keyboard, monitor, GPU, dan headset terbaik."
     />
     <title>Catalog | NEXGEAR</title>
     <link rel="stylesheet" href="styles/main.css" />
@@ -99,70 +99,78 @@
       </div>
     </nav>
 
-    <div class="catalog-container container reveal">
-      <main class="catalog-main full-width">
-        <div class="catalog-header">
-          <div class="header-left">
-            <h2 class="text-gradient">Products</h2>
-            <button
-              id="openFilterBtn"
-              class="btn btn-outline filter-btn"
-              aria-haspopup="dialog"
-              aria-controls="filterDrawer"
-            >
-              <span class="icon icon-sm"
-                ><svg viewBox="0 0 24 24">
-                  <line x1="4" y1="6" x2="20" y2="6" />
-                  <line x1="4" y1="12" x2="20" y2="12" />
-                  <line x1="4" y1="18" x2="20" y2="18" />
-                  <circle cx="8" cy="6" r="2" />
-                  <circle cx="16" cy="12" r="2" />
-                  <circle cx="10" cy="18" r="2" /></svg>
-              </span>
-              Filter
-              <span id="filterBadge" class="filter-badge" aria-hidden="true"></span>
-            </button>
-            
-            <div class="sort-dropdown">
-              <select id="sortSelect" class="sketch-input" style="padding: 8px 12px; width: auto; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; cursor: pointer;">
-                <option value="newest">Terbaru</option>
-                <option value="price-asc">Termurah</option>
-                <option value="price-desc">Termahal</option>
-              </select>
+    <div class="catalog-page">
+      <div class="catalog-container container reveal">
+        <main class="catalog-main full-width">
+          <div class="catalog-header">
+            <div class="header-left">
+              <p class="catalog-kicker">NEXGEAR Catalog</p>
+              <h1 class="catalog-title text-gradient">Products</h1>
+              <p class="catalog-subtitle">Cari gear gaming pilihan dan bandingkan produk dengan cepat.</p>
+            </div>
+            <div class="catalog-trust-row" aria-label="Catalog highlights">
+              <span>Ready stock</span>
+              <span>Garansi resmi</span>
+              <span>Secure checkout</span>
             </div>
           </div>
-          
-          <div class="header-right">
-            <div class="search-wrapper">
-              <span class="icon icon-sm"
-                ><svg viewBox="0 0 24 24">
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
-              </span>
-              <input type="text" id="searchInput" class="search-bar sketch-input" placeholder="Cari gear..." />
-            </div>
-          </div>
-        </div>
 
-        <div class="category-pills">
-          <button class="tag-chip active" data-category="all">Semua</button>
-          <button class="tag-chip" data-category="laptops">Laptops</button>
-          <button class="tag-chip" data-category="peripherals">Peripherals</button>
-          <button class="tag-chip" data-category="components">Components</button>
-          <button class="tag-chip" data-category="audio">Audio</button>
-                      <circle cx="9" cy="20" r="1.5" />
-                      <circle cx="18" cy="20" r="1.5" />
-                      <path d="M2 2h3l1 4" /></svg
-                  ></span>
-                  Add
-                </button>
+          <div class="catalog-toolbar" aria-label="Catalog search and filter tools">
+            <div class="catalog-search search-wrapper">
+              <span class="icon icon-sm catalog-search-icon">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </span>
+              <input type="text" id="searchInput" class="search-bar catalog-control catalog-search-input" placeholder="Cari gear..." aria-label="Cari produk" />
+            </div>
+
+            <div class="catalog-toolbar-actions">
+              <button
+                id="openFilterBtn"
+                class="btn btn-outline filter-btn catalog-filter-trigger"
+                aria-haspopup="dialog"
+                aria-controls="filterDrawer"
+              >
+                <span class="icon icon-sm">
+                  <svg viewBox="0 0 24 24">
+                    <line x1="4" y1="6" x2="20" y2="6" />
+                    <line x1="4" y1="12" x2="20" y2="12" />
+                    <line x1="4" y1="18" x2="20" y2="18" />
+                    <circle cx="8" cy="6" r="2" />
+                    <circle cx="16" cy="12" r="2" />
+                    <circle cx="10" cy="18" r="2" />
+                  </svg>
+                </span>
+                Filter
+                <span id="filterBadge" class="filter-badge" aria-hidden="true"></span>
+              </button>
+
+              <div class="catalog-sort sort-dropdown">
+                <label for="sortSelect">Urutkan</label>
+                <select id="sortSelect" class="catalog-control">
+                  <option value="newest">Terbaru</option>
+                  <option value="price-asc">Termurah</option>
+                  <option value="price-desc">Termahal</option>
+                </select>
               </div>
             </div>
           </div>
 
+          <div class="category-pills" aria-label="Kategori produk">
+            <button class="tag-chip active" data-category="all" type="button" aria-label="Lihat semua kategori">Semua</button>
+            <button class="tag-chip" data-category="laptops" type="button" aria-label="Kategori laptops">Laptops</button>
+            <button class="tag-chip" data-category="peripherals" type="button" aria-label="Kategori peripherals">Peripherals</button>
+            <button class="tag-chip" data-category="components" type="button" aria-label="Kategori components">Components</button>
+            <button class="tag-chip" data-category="audio" type="button" aria-label="Kategori audio">Audio</button>
+          </div>
+
+          <div class="product-grid catalog-product-grid">
           <!-- Product 3 -->
-          <div class="sketch-card product-card">
-            <div class="product-img">
+          <div class="product-card catalog-product-card">
+            <div class="product-card-media product-img">
+              <span class="product-card-badge">Ready Stock</span>
               <svg viewBox="0 0 120 100" aria-hidden="true">
                 <rect
                   x="10"
@@ -173,7 +181,6 @@
                   stroke="rgba(255,255,255,0.15)"
                   fill="none"
                   stroke-width="1.5"
-                  stroke-dasharray="5 3"
                 />
                 <g stroke="rgba(0,210,255,0.15)" fill="none" stroke-width="0.8">
                   <rect x="16" y="30" width="7" height="7" rx="1" />
@@ -200,30 +207,36 @@
             <div class="product-card-body">
               <h4>Huntsman V3 Pro</h4>
               <p class="desc">Analog Optical Switches</p>
-              <div class="product-card-bottom">
-                <span class="card-price">$249.99</span>
+              <div class="product-card-meta">
+                <span>Gaming Gear</span>
+                <span>Official Warranty</span>
+              </div>
+              <div class="product-card-bottom product-card-footer">
+                <span class="card-price product-card-price">$249.99</span>
                 <button
-                  class="btn btn-primary"
+                  class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="Huntsman V3 Pro"
                   data-price="249.99"
+                  aria-label="Tambah Huntsman V3 Pro ke keranjang"
                 >
-                  <span class="icon icon-sm"
+                  <span class="icon icon-sm add-cart-icon"
                     ><svg viewBox="0 0 24 24">
                       <path d="M6 6h15l-1.5 9h-12z" />
                       <circle cx="9" cy="20" r="1.5" />
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add
+                  Add to Cart
                 </button>
               </div>
             </div>
           </div>
 
           <!-- Product 4 -->
-          <div class="sketch-card-alt product-card">
-            <div class="product-img">
+          <div class="product-card catalog-product-card">
+            <div class="product-card-media product-img">
+              <span class="product-card-badge">Official Warranty</span>
               <svg viewBox="0 0 120 100" aria-hidden="true">
                 <rect
                   x="10"
@@ -234,7 +247,6 @@
                   stroke="rgba(255,255,255,0.15)"
                   fill="none"
                   stroke-width="1.5"
-                  stroke-dasharray="5 3"
                 />
                 <rect
                   x="16"
@@ -271,30 +283,36 @@
             <div class="product-card-body">
               <h4>Alienware 27</h4>
               <p class="desc">280Hz, 1ms IPS</p>
-              <div class="product-card-bottom">
-                <span class="card-price">$599.99</span>
+              <div class="product-card-meta">
+                <span>Gaming Gear</span>
+                <span>Fast Delivery</span>
+              </div>
+              <div class="product-card-bottom product-card-footer">
+                <span class="card-price product-card-price">$599.99</span>
                 <button
-                  class="btn btn-primary"
+                  class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="Alienware 27"
                   data-price="599.99"
+                  aria-label="Tambah Alienware 27 ke keranjang"
                 >
-                  <span class="icon icon-sm"
+                  <span class="icon icon-sm add-cart-icon"
                     ><svg viewBox="0 0 24 24">
                       <path d="M6 6h15l-1.5 9h-12z" />
                       <circle cx="9" cy="20" r="1.5" />
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add
+                  Add to Cart
                 </button>
               </div>
             </div>
           </div>
 
           <!-- Product 5 -->
-          <div class="sketch-card product-card">
-            <div class="product-img">
+          <div class="product-card catalog-product-card">
+            <div class="product-card-media product-img">
+              <span class="product-card-badge">Ready Stock</span>
               <svg viewBox="0 0 120 100" aria-hidden="true">
                 <rect
                   x="20"
@@ -305,7 +323,6 @@
                   stroke="rgba(255,255,255,0.15)"
                   fill="none"
                   stroke-width="1.5"
-                  stroke-dasharray="5 3"
                 />
                 <circle
                   cx="40"
@@ -362,44 +379,48 @@
                   stroke="rgba(255,255,255,0.1)"
                   fill="none"
                   stroke-width="1"
-                  stroke-dasharray="4 2"
                 />
               </svg>
             </div>
             <div class="product-card-body">
               <h4>RTX 4070 Ti Super</h4>
               <p class="desc">16GB GDDR6X</p>
-              <div class="product-card-bottom">
-                <span class="card-price">$799.99</span>
+              <div class="product-card-meta">
+                <span>Gaming Gear</span>
+                <span>Official Warranty</span>
+              </div>
+              <div class="product-card-bottom product-card-footer">
+                <span class="card-price product-card-price">$799.99</span>
                 <button
-                  class="btn btn-primary"
+                  class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="RTX 4070 Ti Super"
                   data-price="799.99"
+                  aria-label="Tambah RTX 4070 Ti Super ke keranjang"
                 >
-                  <span class="icon icon-sm"
+                  <span class="icon icon-sm add-cart-icon"
                     ><svg viewBox="0 0 24 24">
                       <path d="M6 6h15l-1.5 9h-12z" />
                       <circle cx="9" cy="20" r="1.5" />
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add
+                  Add to Cart
                 </button>
               </div>
             </div>
           </div>
 
           <!-- Product 6 -->
-          <div class="sketch-card-alt product-card">
-            <div class="product-img">
+          <div class="product-card catalog-product-card">
+            <div class="product-card-media product-img">
+              <span class="product-card-badge">Fast Delivery</span>
               <svg viewBox="0 0 120 100" aria-hidden="true">
                 <path
                   d="M35 25 Q60 8 85 25"
                   stroke="rgba(255,255,255,0.15)"
                   fill="none"
                   stroke-width="1.5"
-                  stroke-dasharray="5 3"
                 />
                 <ellipse
                   cx="60"
@@ -456,22 +477,27 @@
             <div class="product-card-body">
               <h4>Arctis Nova 7</h4>
               <p class="desc">Multi-platform Wireless</p>
-              <div class="product-card-bottom">
-                <span class="card-price">$179.99</span>
+              <div class="product-card-meta">
+                <span>Gaming Gear</span>
+                <span>Official Warranty</span>
+              </div>
+              <div class="product-card-bottom product-card-footer">
+                <span class="card-price product-card-price">$179.99</span>
                 <button
-                  class="btn btn-primary"
+                  class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="Arctis Nova 7"
                   data-price="179.99"
+                  aria-label="Tambah Arctis Nova 7 ke keranjang"
                 >
-                  <span class="icon icon-sm"
+                  <span class="icon icon-sm add-cart-icon"
                     ><svg viewBox="0 0 24 24">
                       <path d="M6 6h15l-1.5 9h-12z" />
                       <circle cx="9" cy="20" r="1.5" />
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add
+                  Add to Cart
                 </button>
               </div>
             </div>
@@ -480,6 +506,7 @@
       </main>
     </div>
 
+    </div>
     <!-- Filter Drawer / Bottom Sheet -->
     <div
       id="filterOverlay"
@@ -489,13 +516,13 @@
     ></div>
     <aside
       id="filterDrawer"
-      class="filters tape-corner filter-drawer"
+      class="filters filter-drawer"
       role="dialog"
       aria-modal="true"
       aria-labelledby="filterTitle"
     >
       <div class="filter-drawer-header">
-        <h3 id="filterTitle" style="margin-bottom: 0; font-size: 1rem">
+        <h3 id="filterTitle">
           <span class="icon"
             ><svg viewBox="0 0 24 24">
               <line x1="4" y1="6" x2="20" y2="6" />
@@ -507,7 +534,7 @@
           ></span>
           FILTERS
         </h3>
-        <div style="display: flex; gap: 8px; align-items: center">
+        <div class="filter-drawer-actions">
           <button
             id="clearFiltersBtn"
             class="btn btn-outline"
@@ -520,7 +547,7 @@
             class="close-filter-btn"
             aria-label="Close filters"
           >
-            <svg viewBox="0 0 24 24" style="width: 24px; height: 24px">
+            <svg viewBox="0 0 24 24">
               <line
                 x1="18"
                 y1="6"
@@ -619,7 +646,6 @@
         <button
           id="applyFiltersBtn"
           class="btn btn-primary filter-apply"
-          style="width: 100%; padding: 12px; font-size: 0.85rem"
         >
           <span class="icon icon-sm"
             ><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg
@@ -642,7 +668,7 @@
               margin-bottom: 16px;
             "
           >
-            Toko gaming dengan desain buatan tangan yang unik dan orisinal.
+            Toko gaming premium untuk gear performa tinggi.
           </p>
           <div class="footer-social">
             <a href="#" aria-label="Twitter"
@@ -714,8 +740,8 @@
               aria-label="Email"
               class="form-input"
               style="
-                border: var(--sketch-border);
-                border-radius: var(--sketch-radius);
+                border: var(--border-default);
+                border-radius: var(--radius-sm);
                 padding: 10px 14px;
               "
             />
