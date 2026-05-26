@@ -15,88 +15,186 @@
     </div>
   </nav>
 
-  <main class="checkout-wrapper">
-    <div class="checkout-form-section">
-      <div class="checkout-panel">
-        <h3>
-          <span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
-          Informasi Pengiriman
-        </h3>
-        <form id="checkout-form">
-          <div class="form-row">
-            <div class="form-group">
-              <input type="text" class="sketch-input" placeholder="Nama Depan" required>
-            </div>
-            <div class="form-group">
-              <input type="text" class="sketch-input" placeholder="Nama Belakang" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <input type="email" class="sketch-input" placeholder="Email" required>
-          </div>
-          <div class="form-group">
-            <input type="tel" class="sketch-input" placeholder="Nomor Telepon" required>
-          </div>
-          <div class="form-group">
-            <input type="text" class="sketch-input" placeholder="Alamat Lengkap" required>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <input type="text" class="sketch-input" placeholder="Kota" required>
-            </div>
-            <div class="form-group">
-              <input type="text" class="sketch-input" placeholder="Kode Pos" required>
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <div class="checkout-panel sketch-card-alt">
-        <h3>
-          <span class="icon icon-sm"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
-          Metode Pembayaran
-        </h3>
-        <div class="form-group">
-          <label class="checkbox-label" style="display: flex; align-items: center; gap: 10px; padding: 15px; border: 1px dashed rgba(255,255,255,0.1); margin-bottom: 10px;">
-            <input type="radio" name="payment" checked> Kartu Kredit / Debit
-          </label>
-          <label class="checkbox-label" style="display: flex; align-items: center; gap: 10px; padding: 15px; border: 1px dashed rgba(255,255,255,0.1); margin-bottom: 10px;">
-            <input type="radio" name="payment"> Transfer Bank (Virtual Account)
-          </label>
-          <label class="checkbox-label" style="display: flex; align-items: center; gap: 10px; padding: 15px; border: 1px dashed rgba(255,255,255,0.1);">
-            <input type="radio" name="payment"> GoPay / OVO
-          </label>
+    <main class="checkout-wrapper container">
+    <div class="checkout-progress-container">
+      <div class="checkout-progress">
+        <div class="progress-step completed" aria-label="Step 1 complete: Cart">
+          <div class="step-circle"><span class="icon icon-sm"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
+          <span class="step-label">Cart</span>
+        </div>
+        <div class="progress-line completed"></div>
+        <div class="progress-step active" aria-current="step" aria-label="Current step: Details">
+          <div class="step-circle">2</div>
+          <span class="step-label">Details</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step" aria-label="Step 3: Payment">
+          <div class="step-circle">3</div>
+          <span class="step-label">Payment</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step" aria-label="Step 4: Complete">
+          <div class="step-circle">4</div>
+          <span class="step-label">Complete</span>
         </div>
       </div>
     </div>
 
-    <aside class="order-summary-wrapper">
-      <div class="order-summary">
-        <div class="receipt-edge"></div>
-        <h3>Struk Belanja</h3>
-        
-        <div class="summary-items" id="checkout-items">
-          <!-- Injected via JS -->
-        </div>
+    <div class="checkout-grid">
+      <div class="checkout-form-column">
+        <form id="checkout-form">
 
-        <div class="summary-totals">
-          <div class="summary-row">
-            <span>Subtotal</span>
-            <span id="checkout-subtotal">$0.00</span>
+          <!-- Contact Info -->
+          <div class="checkout-section-card">
+            <div class="checkout-section-header">
+              <span class="icon icon-md text-primary"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+              <h3>Informasi Kontak</h3>
+            </div>
+            <div class="checkout-form-row">
+              <div class="checkout-form-group">
+                <label for="first-name">Nama Depan</label>
+                <input type="text" id="first-name" name="firstName" class="checkout-input" placeholder="Masukkan nama depan" autocomplete="given-name" required>
+              </div>
+              <div class="checkout-form-group">
+                <label for="last-name">Nama Belakang</label>
+                <input type="text" id="last-name" name="lastName" class="checkout-input" placeholder="Masukkan nama belakang" autocomplete="family-name" required>
+              </div>
+            </div>
+            <div class="checkout-form-row">
+              <div class="checkout-form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="checkout-input" placeholder="contoh@email.com" autocomplete="email" required>
+              </div>
+              <div class="checkout-form-group">
+                <label for="phone">Nomor Telepon</label>
+                <input type="tel" id="phone" name="phone" class="checkout-input" placeholder="+62 8xx xxxx xxxx" autocomplete="tel" required>
+              </div>
+            </div>
           </div>
-          <div class="summary-row">
-            <span>Ongkos Kirim</span>
-            <span style="color: var(--success);">Gratis</span>
-          </div>
-          <div class="summary-row total">
-            <span>Total</span>
-            <span id="checkout-total">$0.00</span>
-          </div>
-        </div>
 
-        <button type="submit" form="checkout-form" class="btn btn-accent" style="width: 100%; justify-content: center;">Bayar Sekarang</button>
+          <!-- Shipping Address -->
+          <div class="checkout-section-card">
+            <div class="checkout-section-header">
+              <span class="icon icon-md text-primary"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg></span>
+              <h3>Alamat Pengiriman</h3>
+            </div>
+            <div class="checkout-form-group">
+              <label for="shipping-address">Alamat Lengkap</label>
+              <input type="text" id="shipping-address" name="shippingAddress" class="checkout-input" placeholder="Nama jalan, gedung, no. rumah" autocomplete="street-address" required>
+            </div>
+            <div class="checkout-form-row">
+              <div class="checkout-form-group">
+                <label for="city">Kota</label>
+                <input type="text" id="city" name="city" class="checkout-input" placeholder="Kota" autocomplete="address-level2" required>
+              </div>
+              <div class="checkout-form-group">
+                <label for="postal-code">Kode Pos</label>
+                <input type="text" id="postal-code" name="postalCode" class="checkout-input" placeholder="Kode Pos" autocomplete="postal-code" inputmode="numeric" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Method -->
+          <div class="checkout-section-card">
+            <div class="checkout-section-header">
+              <span class="icon icon-md text-primary"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
+              <h3>Metode Pembayaran</h3>
+            </div>
+            <fieldset class="payment-methods-grid" aria-describedby="payment-method-note">
+              <legend class="sr-only">Pilih metode pembayaran</legend>
+              <p id="payment-method-note" class="payment-method-note">Pilih metode pembayaran yang paling nyaman untuk pesanan Anda.</p>
+              <label class="payment-method-card" for="payment-cc">
+                <input type="radio" id="payment-cc" name="payment" value="cc" class="payment-radio" checked>
+                <div class="payment-card-content">
+                  <div class="payment-card-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                  </div>
+                  <span class="payment-card-copy">
+                    <span class="payment-card-title">Kartu Kredit / Debit</span>
+                    <span class="payment-card-description">Aman terenkripsi untuk transaksi kartu.</span>
+                  </span>
+                </div>
+              </label>
+              <label class="payment-method-card" for="payment-va">
+                <input type="radio" id="payment-va" name="payment" value="va" class="payment-radio">
+                <div class="payment-card-content">
+                  <div class="payment-card-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+                  </div>
+                  <span class="payment-card-copy">
+                    <span class="payment-card-title">Transfer Bank (VA)</span>
+                    <span class="payment-card-description">Virtual account otomatis diverifikasi.</span>
+                  </span>
+                </div>
+              </label>
+              <label class="payment-method-card" for="payment-ewallet">
+                <input type="radio" id="payment-ewallet" name="payment" value="ewallet" class="payment-radio">
+                <div class="payment-card-content">
+                  <div class="payment-card-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <span class="payment-card-copy">
+                    <span class="payment-card-title">GoPay / OVO / Dana</span>
+                    <span class="payment-card-description">E-wallet diproses instan.</span>
+                  </span>
+                </div>
+              </label>
+            </fieldset>
+          </div>
+
+        </form>
       </div>
-    </aside>
+
+      <aside class="order-summary-wrapper">
+        <div class="checkout-summary-glass">
+          <div class="summary-header">
+            <h3>Ringkasan Pesanan</h3>
+            <span class="summary-secure-badge">Secure Checkout</span>
+          </div>
+
+          <div class="summary-items" id="checkout-items">
+            <!-- Injected via JS -->
+          </div>
+
+          <div class="summary-totals">
+            <div class="summary-row">
+              <span class="text-muted">Subtotal</span>
+              <span id="checkout-subtotal" class="font-gaming">.00</span>
+            </div>
+            <div class="summary-row">
+              <span class="text-muted">Ongkos Kirim</span>
+              <span class="text-success">Gratis</span>
+            </div>
+            <div class="summary-row total">
+              <span>Total Bersih</span>
+              <span id="checkout-total" class="font-gaming text-primary">.00</span>
+            </div>
+          </div>
+          <div class="checkout-trust-list">
+            <div class="checkout-trust-item">
+              <span class="icon"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+              SSL Secured
+            </div>
+            <div class="checkout-trust-item">
+              <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+              Encrypted Payment
+            </div>
+            <div class="checkout-trust-item">
+              <span class="icon"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+              Warranty Support
+            </div>
+            <div class="checkout-trust-item">
+              <span class="icon"><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-2"/></svg></span>
+              Easy Return
+            </div>
+          </div>
+          <button type="submit" form="checkout-form" class="checkout-submit-btn btn-primary">
+            <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            Bayar Sekarang
+          </button>
+        </div>
+      </aside>
+    </div>
   </main>
 
   <script src="scripts/main.js"></script>
