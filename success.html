@@ -3,75 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pesanan Berhasil - NEXGEAR</title>
+  <title>Pesanan Berhasil | NEXGEAR</title>
   <link rel="stylesheet" href="styles/main.css">
-  <style>
-    .success-container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .success-card {
-      max-width: 500px;
-      padding: 50px 30px;
-    }
-    .success-icon {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 30px;
-      color: var(--success);
-    }
-    .success-title {
-      font-size: 2.5rem;
-      color: var(--primary);
-      margin-bottom: 10px;
-      transform: rotate(-2deg);
-    }
-    .success-desc {
-      color: var(--text-muted);
-      margin-bottom: 40px;
-    }
-    .order-number {
-      font-family: "Orbitron", sans-serif;
-      font-size: 1.2rem;
-      padding: 10px 20px;
-      border: 1px dashed rgba(255,255,255,0.2);
-      display: inline-block;
-      margin-bottom: 30px;
-      background: rgba(255,255,255,0.02);
-    }
-  </style>
+  <link rel="stylesheet" href="styles/success.css">
 </head>
 <body>
-  <div class="success-container">
-    <div class="sketch-card success-card">
-      <div class="success-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-          <polyline points="22 4 12 14.01 9 11.01"/>
-          <!-- Confetti scribbles -->
-          <line x1="2" y1="2" x2="4" y2="4" stroke="var(--primary)"/>
-          <line x1="22" y1="22" x2="20" y2="20" stroke="var(--accent)"/>
-          <circle cx="21" cy="6" r="1" fill="var(--warning)" stroke="none"/>
-          <circle cx="5" cy="18" r="1" fill="var(--secondary)" stroke="none"/>
-        </svg>
-      </div>
-      <h1 class="font-hand success-title">Pesanan Berhasil!</h1>
-      <p class="success-desc">Terima kasih telah berbelanja di NEXGEAR. Gear kamu sedang disiapkan dan akan segera dikirim.</p>
-      
-      <div class="order-number">
-        ID: #NEX-<span id="rand-id">82910</span>
-      </div>
+  <main class="success-page">
+    <section class="success-shell">
+      <article class="success-card">
+        <div class="success-confirmation-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M8 12.2l2.6 2.6L16.5 9"/>
+          </svg>
+        </div>
 
-      <div style="display: flex; gap: 15px; justify-content: center;">
-        <a href="catalog.html" class="btn btn-outline">Lanjut Belanja</a>
-        <a href="profile.html" class="btn btn-primary">Lihat Pesanan</a>
-      </div>
-    </div>
-  </div>
+        <p class="success-kicker">Order Confirmed</p>
+        <h1 class="success-title">Pesanan Berhasil</h1>
+        <p class="success-copy">Terima kasih. Pesanan kamu berhasil dibuat dan keranjang telah dikosongkan.</p>
+
+        <div class="success-order-box">
+          <span>Nomor Konfirmasi</span>
+          <strong class="success-order-id">#NEX-<span id="rand-id">82910</span></strong>
+        </div>
+
+        <div class="success-next-steps" aria-label="Langkah berikutnya">
+          <div class="success-step">
+            <span class="success-step-icon" aria-hidden="true">01</span>
+            <h2 class="success-step-title">Pesanan dikonfirmasi</h2>
+            <p class="success-step-copy">Nomor konfirmasi sudah dibuat untuk transaksi ini.</p>
+          </div>
+          <div class="success-step">
+            <span class="success-step-icon" aria-hidden="true">02</span>
+            <h2 class="success-step-title">Gear disiapkan</h2>
+            <p class="success-step-copy">Tim NEXGEAR akan menyiapkan item yang kamu pilih.</p>
+          </div>
+          <div class="success-step">
+            <span class="success-step-icon" aria-hidden="true">03</span>
+            <h2 class="success-step-title">Info pengiriman</h2>
+            <p class="success-step-copy">Detail pengiriman akan dikirim melalui kontak checkout.</p>
+          </div>
+        </div>
+
+        <div class="success-actions">
+          <a href="catalog.html" class="btn btn-primary success-primary-cta" aria-label="Belanja lagi di katalog NEXGEAR">Belanja Lagi</a>
+          <a href="index.html" class="btn btn-outline success-secondary-cta" aria-label="Kembali ke halaman home NEXGEAR">Kembali ke Home</a>
+        </div>
+
+        <p class="success-support-note">
+          Butuh bantuan? <a href="contact.html" class="success-support-link" aria-label="Hubungi support NEXGEAR melalui halaman kontak">Hubungi support NEXGEAR</a>.
+        </p>
+      </article>
+    </section>
+  </main>
 
   <script src="scripts/main.js"></script>
   <script>
