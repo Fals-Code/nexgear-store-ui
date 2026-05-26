@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -99,84 +99,47 @@
     </nav>
 
     <main>
-      <div class="page-header">
-        <h1>Hubungi <span class="text-gradient">Kami</span></h1>
-        <div class="subtitle">kami senang mendengar dari kamu~</div>
-        <div class="deco-line"></div>
-      </div>
-
-      <!-- ═══ Contact Layout ═══ -->
-      <section class="contact-container container reveal">
-        <div class="contact-form-card card card-accent">
-          <h3>Kirim Pesan</h3>
-          <form id="contact-form">
-            <div class="contact-form-group">
-              <label for="name">Nama Lengkap</label>
-              <input
-                type="text"
-                id="name"
-                class="form-input"
-                placeholder="John Doe"
-                required
-              />
-            </div>
-            <div class="contact-form-group">
-              <label for="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                class="form-input"
-                placeholder="hello@example.com"
-                required
-              />
-            </div>
-            <div class="contact-form-group">
-              <label for="subject">Subjek</label>
-              <input
-                type="text"
-                id="subject"
-                class="form-input"
-                placeholder="Tanya tentang produk"
-                required
-              />
-            </div>
-            <div class="contact-form-group">
-              <label for="message">Pesan</label>
-              <textarea
-                id="message"
-                class="form-textarea"
-                placeholder="Tulis pesanmu di sini..."
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary submit-btn">
-              <span class="icon icon-sm"
-                ><svg viewBox="0 0 24 24">
-                  <line x1="22" y1="2" x2="11" y2="13" />
-                  <polygon points="22 2 15 22 11 13 2 9 22 2" /></svg
-              ></span>
-              Kirim Pesan
-            </button>
-          </form>
+            <section class="contact-hero">
+        <div class="contact-hero-badge">Support Aktif 24/7</div>
+        <h1 class="contact-hero-title">Hubungi <span class="text-gradient">Kami</span></h1>
+        <p class="contact-hero-sub">Tim support kami siap membantu dan akan merespons dalam waktu kurang dari 2 jam.</p>
+        <div class="contact-stats">
+          <div class="contact-stat-item">
+            <span class="stat-num">2 Jam</span>
+            <span class="stat-label">Response Time</span>
+          </div>
+          <div class="contact-stat-divider"></div>
+          <div class="contact-stat-item">
+            <span class="stat-num">99%</span>
+            <span class="stat-label">Terpuaskan</span>
+          </div>
+          <div class="contact-stat-divider"></div>
+          <div class="contact-stat-item">
+            <span class="stat-num">5â˜…</span>
+            <span class="stat-label">Rating Support</span>
+          </div>
         </div>
+      </section>
 
-        <div class="contact-info-list">
-          <div class="info-card card card-alt">
-            <div class="info-icon">
+            <!-- â•â•â• Contact Layout â•â•â• -->
+      <section class="contact-main container reveal">
+        <div class="contact-info-panel">
+          <div class="info-card-v2 card">
+            <div class="info-card-v2--icon">
               <span class="icon icon-md"
                 ><svg viewBox="0 0 24 24">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" /></svg
               ></span>
             </div>
-            <div class="info-content">
-              <h4>Alamat</h4>
-              <p>Jl. Gaming Boulevard No. 42,<br />Jakarta Selatan</p>
+            <div class="info-card-v2--content">
+              <span class="info-card-v2--label">Alamat HQ</span>
+              <span class="info-card-v2--value">Jl. Gaming Boulevard No. 42,<br />Jakarta Selatan, 12190</span>
             </div>
           </div>
 
-          <div class="info-card card">
-            <div class="info-icon">
+          <div class="info-card-v2 card">
+            <div class="info-card-v2--icon">
               <span class="icon icon-md"
                 ><svg viewBox="0 0 24 24">
                   <path
@@ -185,14 +148,15 @@
                   <polyline points="22,6 12,13 2,6" /></svg
               ></span>
             </div>
-            <div class="info-content">
-              <h4>Email</h4>
-              <p>hello@nexgear.id<br />support@nexgear.id</p>
+            <div class="info-card-v2--content">
+              <span class="info-card-v2--label">Email Support</span>
+              <a href="mailto:support@nexgear.id" class="info-card-v2--value text-primary">support@nexgear.id</a>
+              <a href="mailto:hello@nexgear.id" class="info-card-v2--value text-secondary">hello@nexgear.id</a>
             </div>
           </div>
 
-          <div class="info-card card card-alt">
-            <div class="info-icon">
+          <div class="info-card-v2 card">
+            <div class="info-card-v2--icon">
               <span class="icon icon-md"
                 ><svg viewBox="0 0 24 24">
                   <path
@@ -200,214 +164,151 @@
                   /></svg
               ></span>
             </div>
-            <div class="info-content">
-              <h4>Telepon</h4>
-              <p>+62 812 3456 7890<br />+62 21 9876 5432</p>
+            <div class="info-card-v2--content">
+              <span class="info-card-v2--label">Telepon</span>
+              <a href="tel:+6281234567890" class="info-card-v2--value text-primary">+62 812 3456 7890</a>
+              <a href="tel:+622198765432" class="info-card-v2--value text-secondary">+62 21 9876 5432</a>
             </div>
           </div>
 
-          <div class="info-card card card-accent">
-            <div class="info-icon">
+          <div class="info-card-v2 card card-accent">
+            <div class="info-card-v2--icon">
               <span class="icon icon-md"
                 ><svg viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="10" />
                   <polyline points="12 6 12 12 16 14" /></svg
               ></span>
             </div>
-            <div class="info-content">
-              <h4>Jam Operasional</h4>
-              <p>
-                Senin-Jumat: 09:00 - 18:00<br />Sabtu: 10:00 - 15:00<br />Minggu:
-                Tutup
-              </p>
+            <div class="info-card-v2--content">
+              <span class="info-card-v2--label">Jam Operasional</span>
+              <span class="info-card-v2--value">Senin-Jumat: 09:00 - 18:00<br />Sabtu: 10:00 - 15:00<br /><span class="text-error">Minggu: Tutup</span></span>
             </div>
+          </div>
+        </div>
+
+        <div class="contact-form-panel">
+          <div class="contact-form-v2 glass-card">
+            <div class="contact-form-v2__header">
+              <h3>Kirim Pesan</h3>
+              <p class="text-muted" style="margin-bottom:0;">Isi form di bawah ini dan kami akan membalas ke email Anda.</p>
+            </div>
+            <form id="contact-form">
+              <div class="contact-form-v2__row">
+                <div class="contact-form-v2__group">
+                  <label for="name" class="contact-form-v2__label">Nama Lengkap</label>
+                  <input
+                    type="text"
+                    id="name"
+                    class="form-input contact-form-v2__input"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+                <div class="contact-form-v2__group">
+                  <label for="email" class="contact-form-v2__label">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    class="form-input contact-form-v2__input"
+                    placeholder="hello@example.com"
+                    required
+                  />
+                </div>
+              </div>
+              
+              <div class="contact-form-v2__group">
+                <label for="topic" class="contact-form-v2__label">Topik Pertanyaan</label>
+                <select id="topic" class="form-input contact-form-v2__select" required>
+                  <option value="" disabled selected>Pilih topik...</option>
+                  <option value="order">Status Pesanan</option>
+                  <option value="product">Pertanyaan Produk</option>
+                  <option value="payment">Pembayaran</option>
+                  <option value="return">Retur & Garansi</option>
+                  <option value="other">Lainnya</option>
+                </select>
+              </div>
+
+              <div class="contact-form-v2__group">
+                <label for="message" class="contact-form-v2__label">Pesan</label>
+                <textarea
+                  id="message"
+                  class="form-textarea contact-form-v2__textarea"
+                  placeholder="Ceritakan detail pertanyaan atau masalah Anda..."
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary contact-form-v2__submit">
+                <span class="icon icon-sm"
+                  ><svg viewBox="0 0 24 24">
+                    <line x1="22" y1="2" x2="11" y2="13" />
+                    <polygon points="22 2 15 22 11 13 2 9 22 2" /></svg
+                ></span>
+                Kirim Pesan
+              </button>
+            </form>
           </div>
         </div>
       </section>
 
-      <!-- ═══ Map Section ═══ -->
+            <!-- â•â•â• Map Section â•â•â• -->
       <section class="map-section container reveal">
-        <div class="map-card card">
+        <div class="map-card">
           <svg
             viewBox="0 0 800 400"
             preserveAspectRatio="xMidYMid slice"
             aria-hidden="true"
           >
+            <!-- Detailed grid background -->
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+            </pattern>
+            <rect width="800" height="400" fill="url(#grid)" />
+            
             <!-- Street lines -->
-            <path
-              d="M-50,200 L850,200"
-              stroke="rgba(255,255,255,0.08)"
-              fill="none"
-              stroke-width="12"
-            />
-            <path
-              d="M400,-50 L400,450"
-              stroke="rgba(255,255,255,0.08)"
-              fill="none"
-              stroke-width="12"
-            />
-            <path
-              d="M200,-50 L200,450"
-              stroke="rgba(255,255,255,0.05)"
-              fill="none"
-              stroke-width="8"
-            />
-            <path
-              d="M600,-50 L600,450"
-              stroke="rgba(255,255,255,0.05)"
-              fill="none"
-              stroke-width="8"
-            />
-            <path
-              d="M-50,100 L850,100"
-              stroke="rgba(255,255,255,0.05)"
-              fill="none"
-              stroke-width="8"
-            />
-            <path
-              d="M-50,300 L850,300"
-              stroke="rgba(255,255,255,0.05)"
-              fill="none"
-              stroke-width="8"
-            />
+            <path d="M-50,200 L850,200" stroke="rgba(255,255,255,0.08)" fill="none" stroke-width="12" />
+            <path d="M400,-50 L400,450" stroke="rgba(255,255,255,0.08)" fill="none" stroke-width="12" />
+            <path d="M200,-50 L200,450" stroke="rgba(255,255,255,0.04)" fill="none" stroke-width="8" />
+            <path d="M600,-50 L600,450" stroke="rgba(255,255,255,0.04)" fill="none" stroke-width="8" />
+            <path d="M-50,100 L850,100" stroke="rgba(255,255,255,0.04)" fill="none" stroke-width="8" />
+            <path d="M-50,300 L850,300" stroke="rgba(255,255,255,0.04)" fill="none" stroke-width="8" />
 
-            <!-- Dashed lines in middle of streets -->
-            <path
-              d="M-50,200 L850,200"
-              stroke="rgba(255,255,255,0.2)"
-              fill="none"
-              stroke-width="2"
-              stroke-dasharray="10 10"
-            />
-            <path
-              d="M400,-50 L400,450"
-              stroke="rgba(255,255,255,0.2)"
-              fill="none"
-              stroke-width="2"
-              stroke-dasharray="10 10"
-            />
+            <!-- Cyberpunk accents -->
+            <path d="M-50,200 L400,200 L400,450" stroke="rgba(0,210,255,0.15)" fill="none" stroke-width="2" />
+            <circle cx="400" cy="200" r="4" fill="var(--color-primary)" class="contact-map__glow-point" />
+            
+            <path d="M400,200 L850,200" stroke="rgba(255,61,127,0.15)" fill="none" stroke-width="2" />
+            <circle cx="600" cy="200" r="3" fill="var(--color-accent)" opacity="0.6" />
 
-            <!-- Buildings -->
-            <rect
-              x="220"
-              y="120"
-              width="160"
-              height="60"
-              rx="4"
-              stroke="rgba(255,255,255,0.15)"
-              fill="rgba(255,255,255,0.02)"
-              stroke-width="2"
-              stroke-dasharray="5 3"
-            />
-            <rect
-              x="420"
-              y="120"
-              width="160"
-              height="60"
-              rx="4"
-              stroke="rgba(255,255,255,0.15)"
-              fill="rgba(255,255,255,0.02)"
-              stroke-width="2"
-              stroke-dasharray="5 3"
-            />
-            <rect
-              x="220"
-              y="220"
-              width="160"
-              height="60"
-              rx="4"
-              stroke="rgba(255,255,255,0.15)"
-              fill="rgba(255,255,255,0.02)"
-              stroke-width="2"
-              stroke-dasharray="5 3"
-            />
-            <rect
-              x="420"
-              y="220"
-              width="160"
-              height="60"
-              rx="4"
-              stroke="rgba(255,255,255,0.15)"
-              fill="rgba(255,255,255,0.02)"
-              stroke-width="2"
-              stroke-dasharray="5 3"
-            />
-
-            <!-- Trees/Parks -->
-            <circle
-              cx="280"
-              cy="80"
-              r="15"
-              stroke="rgba(0,255,135,0.15)"
-              fill="none"
-              stroke-width="2"
-              stroke-dasharray="4 2"
-            />
-            <circle
-              cx="310"
-              cy="70"
-              r="12"
-              stroke="rgba(0,255,135,0.15)"
-              fill="none"
-              stroke-width="2"
-              stroke-dasharray="4 2"
-            />
-            <circle
-              cx="480"
-              cy="340"
-              r="18"
-              stroke="rgba(0,255,135,0.15)"
-              fill="none"
-              stroke-width="2"
-              stroke-dasharray="4 2"
-            />
-
-            <!-- Compass -->
-            <circle
-              cx="70"
-              cy="70"
-              r="20"
-              stroke="rgba(255,255,255,0.15)"
-              fill="none"
-              stroke-width="2"
-            />
-            <path
-              d="M70 40 L75 65 L70 70 L65 65 Z"
-              fill="rgba(255,255,255,0.2)"
-            />
-            <path
-              d="M70 100 L75 75 L70 70 L65 75 Z"
-              fill="rgba(255,255,255,0.1)"
-            />
-            <text
-              x="70"
-              y="32"
-              text-anchor="middle"
-              font-family="Inter"
-              font-size="10"
-              fill="rgba(255,255,255,0.3)"
-            >
-              N
-            </text>
+            <!-- Buildings / Blocks -->
+            <rect x="220" y="120" width="160" height="60" rx="4" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+            <rect x="420" y="120" width="160" height="60" rx="4" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+            <rect x="220" y="220" width="160" height="60" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(0,210,255,0.1)" stroke-width="1" />
+            <rect x="420" y="220" width="160" height="60" rx="4" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
           </svg>
           <div class="map-overlay">
-            <div class="hand-note">
-              <span class="icon icon-sm" style="color: var(--primary)"
-                ><svg viewBox="0 0 24 24">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" /></svg
-              ></span>
-              Lokasi Kami
+            <div class="contact-map__info">
+              <div class="contact-map__info-badge">NEXGEAR HQ</div>
+              <p>Jl. Gaming Boulevard No. 42<br>Jakarta Selatan, 12190<br><span style="font-size:0.85rem; color:var(--color-primary); margin-top:8px; display:inline-block;">Senin - Sabtu | 09:00 - 18:00</span></p>
+              <a href="https://maps.google.com" target="_blank" class="contact-map__cta">
+                Buka di Google Maps
+                <span class="icon icon-sm"
+                  ><svg viewBox="0 0 24 24">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline></svg
+                ></span>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ═══ FAQ Section ═══ -->
+      <!-- â•â•â• FAQ Section â•â•â• -->
       <section class="faq-section reveal">
         <h2>Pertanyaan <span class="text-gradient">Umum</span></h2>
         <div class="faq-list">
-          <div class="faq-item card">
+          <!-- FAQ ITEM 1 -->
+          <div class="faq-item">
             <div class="faq-header">
               <h4>Bagaimana cara melakukan pemesanan?</h4>
               <span class="icon icon-sm faq-icon"
@@ -425,7 +326,8 @@
             </div>
           </div>
 
-          <div class="faq-item card card-alt">
+          <!-- FAQ ITEM 2 -->
+          <div class="faq-item">
             <div class="faq-header">
               <h4>Berapa lama waktu pengiriman?</h4>
               <span class="icon icon-sm faq-icon"
@@ -443,7 +345,8 @@
             </div>
           </div>
 
-          <div class="faq-item card">
+          <!-- FAQ ITEM 3 -->
+          <div class="faq-item">
             <div class="faq-header">
               <h4>Apakah bisa COD (Cash on Delivery)?</h4>
               <span class="icon icon-sm faq-icon"
@@ -460,7 +363,8 @@
             </div>
           </div>
 
-          <div class="faq-item card card-alt card-accent">
+          <!-- FAQ ITEM 4 -->
+          <div class="faq-item">
             <div class="faq-header">
               <h4>Bagaimana kebijakan pengembalian barang?</h4>
               <span class="icon icon-sm faq-icon"
@@ -476,6 +380,32 @@
                 atau telepon untuk proses lebih lanjut.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- â•â•â• Support CTA Section â•â•â• -->
+      <section class="support-cta reveal">
+        <div class="support-cta-container">
+          <p class="support-cta__label">Masih Butuh Bantuan?</p>
+          <h2 class="support-cta__title">Tim Kami Siap Membantu</h2>
+          <div class="support-cta__actions">
+            <a href="https://wa.me/6281234567890" class="btn btn-primary support-cta__btn">
+              <span class="icon icon-sm"
+                ><svg viewBox="0 0 24 24">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                /></svg
+              ></span>
+              Chat WhatsApp
+            </a>
+            <a href="mailto:support@nexgear.id" class="btn btn-outline support-cta__btn">
+              <span class="icon icon-sm"
+                ><svg viewBox="0 0 24 24">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" /></svg
+              ></span>
+              Email Support
+            </a>
           </div>
         </div>
       </section>
@@ -523,8 +453,8 @@
               placeholder="Email kamu"
               class="form-input"
               style="
-                border: var(--sketch-border);
-                border-radius: var(--sketch-radius);
+                border: var(--border-default);
+                border-radius: var(--radius-md);
                 padding: 10px 14px;
               "
             /><button
@@ -577,3 +507,5 @@
     </script>
   </body>
 </html>
+
+
