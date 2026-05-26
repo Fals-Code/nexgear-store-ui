@@ -7,11 +7,11 @@
 }
 
 .cart-hero {
-  padding: clamp(64px, 7vw, 88px) 5% var(--spacing-md);
+  padding: clamp(36px, 5vw, 64px) 5% var(--spacing-sm);
 }
 
 .cart-kicker {
-  margin: 0 0 var(--spacing-sm);
+  margin: 0 0 6px;
   color: var(--color-primary);
   font-family: var(--font-gaming);
   font-size: var(--font-size-ui-xs);
@@ -21,18 +21,18 @@
 }
 
 .cart-title {
-  max-width: 760px;
-  margin-bottom: var(--spacing-sm);
-  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  max-width: 720px;
+  margin-bottom: var(--spacing-xs);
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
   line-height: 1.1;
 }
 
 .cart-subtitle {
-  max-width: 620px;
+  max-width: 640px;
   margin: 0;
   color: var(--color-text-secondary);
-  font-size: var(--font-size-body-md);
-  line-height: 1.65;
+  font-size: var(--font-size-ui-md);
+  line-height: 1.55;
 }
 
 .cart-layout {
@@ -40,7 +40,7 @@
   grid-template-columns: minmax(0, 1fr) 340px;
   gap: var(--spacing-xl);
   align-items: start;
-  padding: var(--spacing-xl) 5% 80px;
+  padding: var(--spacing-md) 5% 80px;
 }
 
 /* Cart items */
@@ -482,12 +482,12 @@
 
 @media (max-width: 720px) {
   .cart-hero {
-    padding: 84px var(--spacing-md) var(--spacing-sm);
+    padding: 72px var(--spacing-md) var(--spacing-xs);
   }
 
   .cart-layout {
     gap: var(--spacing-lg);
-    padding: var(--spacing-lg) var(--spacing-md) 56px;
+    padding: var(--spacing-md) var(--spacing-md) 56px;
   }
 
   .cart-summary-panel,
