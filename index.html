@@ -3,10 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="NEXGEAR - Toko gaming gear premium untuk laptop, peripheral, komponen, dan audio gear pilihan." />
+    <meta
+      name="description"
+      content="NEXGEAR - Toko gaming gear premium untuk laptop, peripheral, komponen, dan audio gear pilihan."
+    />
     <title>NEXGEAR | Premium Gaming Gear Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/landing.css" />
+    <style>
+      body {
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+      body.loaded {
+        opacity: 1;
+      }
+    </style>
+    <noscript
+      ><style>
+        body {
+          opacity: 1;
+        }
+      </style></noscript
+    >
   </head>
   <body>
     <nav>
@@ -41,10 +66,11 @@
           <a href="articles.html"
             ><span class="icon icon-sm"
               ><svg viewBox="0 0 24 24">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-              </svg></span
-            >
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path
+                  d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                /></svg
+            ></span>
             Journal</a
           >
         </li>
@@ -93,12 +119,15 @@
     </nav>
 
     <main>
+      <div class="ambient-glow" aria-hidden="true"></div>
       <header class="landing-hero">
         <div class="hero-shell">
           <div class="hero-frame">
             <div class="hero-content">
-              <p class="hero-eyebrow">NEXGEAR GAMING STORE</p>
-              <h1 class="hero-title">Upgrade Setup Gaming Kamu</h1>
+              <h1 class="hero-title">
+                Upgrade Setup<br />
+                <em class="hero-title-accent">Gaming</em> Kamu
+              </h1>
               <p class="hero-copy">
                 Temukan gear gaming pilihan untuk performa, produktivitas, dan
                 pengalaman bermain yang lebih maksimal.
@@ -111,39 +140,79 @@
                   Lihat Gear Unggulan
                 </a>
               </div>
+              <div class="hero-trusted">
+                <span>Tersedia di</span>
+                <div class="hero-trusted-logos">
+                  <span>Tokopedia</span>
+                  <span>Shopee</span>
+                  <span>Lazada</span>
+                  <span>Blibli</span>
+                </div>
+              </div>
+              <span class="hero-badge hero-badge--rtx">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M13 2L4 14h7l-1 8 9-12h-7z" />
+                </svg>
+                RTX Ready
+              </span>
+              <span class="hero-badge hero-badge--verified">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="9" width="18" height="8" rx="4" />
+                  <path d="M8 13h3M9.5 11.5v3M16 12h.01M18 14h.01" />
+                </svg>
+                Gamer Verified
+              </span>
+              <span class="hero-badge hero-badge--build">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-3-3z"
+                  />
+                </svg>
+                Pro Build
+              </span>
             </div>
-
           </div>
         </div>
       </header>
-      <section class="trust-strip container reveal" aria-label="Keunggulan NEXGEAR">
+      <section
+        class="trust-strip container reveal"
+        aria-label="Keunggulan NEXGEAR"
+      >
         <div class="trust-strip__inner">
           <article class="trust-item">
             <span class="trust-icon" aria-hidden="true">01</span>
             <div>
               <h2 class="trust-title">Ready Stock</h2>
-              <p class="trust-copy">Gear pilihan tersedia untuk setup yang siap upgrade.</p>
+              <p class="trust-copy">
+                Gear pilihan tersedia untuk setup yang siap upgrade.
+              </p>
             </div>
           </article>
           <article class="trust-item">
             <span class="trust-icon" aria-hidden="true">02</span>
             <div>
               <h2 class="trust-title">Garansi Resmi</h2>
-              <p class="trust-copy">Produk kurasi dengan dukungan garansi brand resmi.</p>
+              <p class="trust-copy">
+                Produk kurasi dengan dukungan garansi brand resmi.
+              </p>
             </div>
           </article>
           <article class="trust-item">
             <span class="trust-icon" aria-hidden="true">03</span>
             <div>
               <h2 class="trust-title">Secure Checkout</h2>
-              <p class="trust-copy">Alur checkout dibuat jelas, aman, dan mudah dipahami.</p>
+              <p class="trust-copy">
+                Alur checkout dibuat jelas, aman, dan mudah dipahami.
+              </p>
             </div>
           </article>
           <article class="trust-item">
             <span class="trust-icon" aria-hidden="true">04</span>
             <div>
               <h2 class="trust-title">Fast Delivery</h2>
-              <p class="trust-copy">Pengiriman cepat untuk kebutuhan gaming dan produktivitas.</p>
+              <p class="trust-copy">
+                Pengiriman cepat untuk kebutuhan gaming dan produktivitas.
+              </p>
             </div>
           </article>
         </div>
@@ -153,8 +222,13 @@
         <div class="section-header">
           <p class="section-step">01 Pilih Kategori</p>
           <p class="section-kicker">Shop by Category</p>
-          <h2 class="section-title">Pilih Gear Sesuai Setup Kamu</h2>
-          <p class="section-copy">Mulai dari laptop performa tinggi hingga audio gear yang menjaga fokus saat bermain.</p>
+          <h2 class="section-title">
+            Pilih <em class="heading-accent">Gear</em> Sesuai Setup Kamu
+          </h2>
+          <p class="section-copy">
+            Mulai dari laptop performa tinggi hingga audio gear yang menjaga
+            fokus saat bermain.
+          </p>
         </div>
         <div class="category-grid reveal-children">
           <article class="category-card">
@@ -164,11 +238,26 @@
                 alt="Gaming laptop category"
                 class="category-card__image"
               />
+              <div class="category-card__fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="4" y="5" width="16" height="10" rx="2" />
+                  <path d="M2 18h20" />
+                  <path d="M8 15h8l1 3H7z" />
+                </svg>
+              </div>
+              <span class="category-num">01</span>
             </div>
             <div class="category-card__body">
               <h3 class="category-card__title">Laptops</h3>
-              <p class="category-card__copy">Mesin gaming dan produktivitas dengan performa siap tempur.</p>
-              <a href="catalog.html" class="category-card__link" aria-label="Jelajahi catalog laptop">Jelajahi Catalog</a>
+              <p class="category-card__copy">
+                Mesin gaming dan produktivitas dengan performa siap tempur.
+              </p>
+              <a
+                href="catalog.html"
+                class="category-card__link"
+                aria-label="Jelajahi catalog laptop"
+                >Jelajahi Catalog</a
+              >
             </div>
           </article>
           <article class="category-card">
@@ -178,11 +267,27 @@
                 alt="Gaming peripherals category"
                 class="category-card__image"
               />
+              <div class="category-card__fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="6" width="18" height="7" rx="2" />
+                  <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01" />
+                  <path d="M8 17h8" />
+                  <path d="M12 13v4" />
+                </svg>
+              </div>
+              <span class="category-num">02</span>
             </div>
             <div class="category-card__body">
               <h3 class="category-card__title">Peripherals</h3>
-              <p class="category-card__copy">Mouse, keyboard, dan kontrol presisi untuk gameplay kompetitif.</p>
-              <a href="catalog.html" class="category-card__link" aria-label="Jelajahi catalog peripheral">Jelajahi Catalog</a>
+              <p class="category-card__copy">
+                Mouse, keyboard, dan kontrol presisi untuk gameplay kompetitif.
+              </p>
+              <a
+                href="catalog.html"
+                class="category-card__link"
+                aria-label="Jelajahi catalog peripheral"
+                >Jelajahi Catalog</a
+              >
             </div>
           </article>
           <article class="category-card">
@@ -192,11 +297,28 @@
                 alt="Gaming PC components category"
                 class="category-card__image"
               />
+              <div class="category-card__fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="7" y="7" width="10" height="10" rx="2" />
+                  <rect x="10" y="10" width="4" height="4" rx="1" />
+                  <path
+                    d="M4 9h3M4 15h3M17 9h3M17 15h3M9 4v3M15 4v3M9 17v3M15 17v3"
+                  />
+                </svg>
+              </div>
+              <span class="category-num">03</span>
             </div>
             <div class="category-card__body">
               <h3 class="category-card__title">Components</h3>
-              <p class="category-card__copy">Komponen pilihan untuk build yang stabil, cepat, dan scalable.</p>
-              <a href="catalog.html" class="category-card__link" aria-label="Jelajahi catalog komponen">Jelajahi Catalog</a>
+              <p class="category-card__copy">
+                Komponen pilihan untuk build yang stabil, cepat, dan scalable.
+              </p>
+              <a
+                href="catalog.html"
+                class="category-card__link"
+                aria-label="Jelajahi catalog komponen"
+                >Jelajahi Catalog</a
+              >
             </div>
           </article>
           <article class="category-card">
@@ -206,11 +328,27 @@
                 alt="Gaming audio gear category"
                 class="category-card__image"
               />
+              <div class="category-card__fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 13a8 8 0 0 1 16 0" />
+                  <rect x="3" y="13" width="4" height="7" rx="2" />
+                  <rect x="17" y="13" width="4" height="7" rx="2" />
+                  <path d="M17 20c0 1-2 2-5 2" />
+                </svg>
+              </div>
+              <span class="category-num">04</span>
             </div>
             <div class="category-card__body">
               <h3 class="category-card__title">Audio</h3>
-              <p class="category-card__copy">Headset dan audio gear untuk komunikasi jernih dan imersi penuh.</p>
-              <a href="catalog.html" class="category-card__link" aria-label="Jelajahi catalog audio">Jelajahi Catalog</a>
+              <p class="category-card__copy">
+                Headset dan audio gear untuk komunikasi jernih dan imersi penuh.
+              </p>
+              <a
+                href="catalog.html"
+                class="category-card__link"
+                aria-label="Jelajahi catalog audio"
+                >Jelajahi Catalog</a
+              >
             </div>
           </article>
         </div>
@@ -222,9 +360,14 @@
             <div>
               <p class="section-step">02 Lihat Gear Unggulan</p>
               <p class="section-kicker">Featured Gear</p>
-              <h2 class="section-title">Gear Unggulan Minggu Ini</h2>
+              <h2 class="section-title">
+                Gear <em class="heading-accent">Unggulan</em> Minggu Ini
+              </h2>
             </div>
-            <p class="section-copy">Pilihan produk populer untuk upgrade setup gaming tanpa membuat browsing terasa rumit.</p>
+            <p class="section-copy">
+              Pilihan produk populer untuk upgrade setup gaming tanpa membuat
+              browsing terasa rumit.
+            </p>
           </div>
           <div class="featured-showcase reveal-children">
             <article class="featured-spotlight-card">
@@ -239,12 +382,17 @@
                 <p class="section-kicker">Spotlight Gear</p>
                 <h3 class="featured-card-title">HUNTSMAN V3 PRO</h3>
                 <p class="featured-card-spec">
-                  Analog optical switch, rapid trigger, dan build tournament-ready
-                  untuk kontrol yang lebih presisi.
+                  Analog optical switch, rapid trigger, dan build
+                  tournament-ready untuk kontrol yang lebih presisi.
                 </p>
                 <div class="featured-card-footer">
                   <span class="featured-card-price">$249</span>
-                  <a href="product.html" class="featured-card-action" aria-label="Lihat detail HUNTSMAN V3 PRO">Lihat Detail</a>
+                  <a
+                    href="product.html"
+                    class="featured-card-action"
+                    aria-label="Lihat detail HUNTSMAN V3 PRO"
+                    >Lihat Detail</a
+                  >
                 </div>
               </div>
             </article>
@@ -263,7 +411,12 @@
                   <p class="featured-card-spec">QHD fast refresh display.</p>
                   <div class="featured-card-footer">
                     <span class="featured-card-price">$599</span>
-                    <a href="product.html" class="featured-card-action" aria-label="Lihat detail ALIENWARE 27">Lihat Detail</a>
+                    <a
+                      href="product.html"
+                      class="featured-card-action"
+                      aria-label="Lihat detail ALIENWARE 27"
+                      >Lihat Detail</a
+                    >
                   </div>
                 </div>
               </article>
@@ -280,7 +433,12 @@
                   <p class="featured-card-spec">High frame-rate gaming GPU.</p>
                   <div class="featured-card-footer">
                     <span class="featured-card-price">$799</span>
-                    <a href="product.html" class="featured-card-action" aria-label="Lihat detail RTX 4070 TI SUPER">Lihat Detail</a>
+                    <a
+                      href="product.html"
+                      class="featured-card-action"
+                      aria-label="Lihat detail RTX 4070 TI SUPER"
+                      >Lihat Detail</a
+                    >
                   </div>
                 </div>
               </article>
@@ -297,11 +455,18 @@
                   <p class="featured-card-spec">Wireless audio ringan.</p>
                   <div class="featured-card-footer">
                     <span class="featured-card-price">$179</span>
-                    <a href="product.html" class="featured-card-action" aria-label="Lihat detail ARCTIS NOVA 7">Lihat Detail</a>
+                    <a
+                      href="product.html"
+                      class="featured-card-action"
+                      aria-label="Lihat detail ARCTIS NOVA 7"
+                      >Lihat Detail</a
+                    >
                   </div>
                 </div>
               </article>
-              <a href="catalog.html" class="featured-all-link">Lihat Semua Produk</a>
+              <a href="catalog.html" class="featured-all-link"
+                >Lihat Semua Produk</a
+              >
             </div>
           </div>
         </div>
@@ -311,29 +476,41 @@
           <div class="why-statement why-content">
             <p class="section-step">03 Kenapa NEXGEAR</p>
             <p class="section-kicker">Why NEXGEAR</p>
-            <h2 class="section-title">Performa Terukur untuk Setup yang Lebih Siap</h2>
+            <h2 class="section-title">
+              Performa Terukur untuk Setup yang Lebih Siap
+            </h2>
             <p class="section-copy">
               NEXGEAR membantu kamu memilih perangkat yang tepat tanpa membuat
               proses upgrade terasa rumit.
             </p>
             <a href="about.html" class="why-story-link">Tentang NEXGEAR</a>
           </div>
-          <div class="why-stats-grid reveal-children">
-            <article class="stat-card">
-              <span class="stat-card__value">24+</span>
-              <h3 class="stat-card__title">Gear Terkurasi</h3>
-              <p class="stat-card__copy">Pilihan produk untuk gaming, streaming, dan produktivitas.</p>
-            </article>
-            <article class="stat-card">
-              <span class="stat-card__value">4</span>
-              <h3 class="stat-card__title">Kategori Utama</h3>
-              <p class="stat-card__copy">Laptop, peripheral, komponen, dan audio gear.</p>
-            </article>
-            <article class="stat-card stat-card--accent">
-              <span class="stat-card__value">Fast</span>
-              <h3 class="stat-card__title">Checkout Flow</h3>
-              <p class="stat-card__copy">Alur katalog, keranjang, dan checkout dibuat ringkas.</p>
-            </article>
+          <div class="stats-bento reveal-children">
+            <div class="stats-bento-card">
+              <span class="stats-num" data-target="500" data-suffix="+">0</span>
+              <span class="stats-label">Produk Tersedia</span>
+              <p>Dari laptop hingga audio gear, semua tersedia.</p>
+            </div>
+            <div class="stats-bento-card stats-bento-highlight">
+              <span
+                class="stats-num stats-highlight-num"
+                data-target="10"
+                data-suffix="K+"
+                >0</span
+              >
+              <span class="stats-label">Pelanggan Aktif</span>
+              <p>Gamer Indonesia percayakan setup mereka ke NEXGEAR.</p>
+            </div>
+            <div class="stats-bento-card">
+              <span class="stats-num" data-target="4.8" data-suffix="">0</span>
+              <span class="stats-label">Rating Kepuasan</span>
+              <p>Ulasan nyata dari pembeli terverifikasi.</p>
+            </div>
+            <div class="stats-bento-card">
+              <span class="stats-num" data-target="24" data-suffix="/7">0</span>
+              <span class="stats-label">Support Aktif</span>
+              <p>Tim kami siap membantu kapanpun kamu butuh.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -343,13 +520,19 @@
           <div class="landing-cta__content">
             <p class="section-step">04 Mulai Belanja</p>
             <p class="section-kicker">Ready to Upgrade</p>
-            <h2 class="landing-cta__title">Siap Upgrade Setup Kamu?</h2>
+            <h2 class="landing-cta__title">
+              Siap Upgrade<br />
+              Setup Kamu <em class="heading-accent">Sekarang?</em>
+            </h2>
             <p class="landing-cta__copy">
-              Temukan gear pilihan dan mulai bangun setup gaming yang lebih powerful.
+              Temukan gear pilihan dan mulai bangun setup gaming yang lebih
+              powerful.
             </p>
             <div class="landing-cta__actions">
               <a href="catalog.html" class="btn btn-primary">Mulai Belanja</a>
-              <a href="contact.html" class="btn btn-secondary">Hubungi Support</a>
+              <a href="contact.html" class="btn btn-secondary"
+                >Hubungi Support</a
+              >
             </div>
           </div>
           <div class="landing-cta__media">
@@ -375,11 +558,21 @@
           <div class="journal-grid reveal-children">
             <article class="journal-card">
               <h3 class="journal-card__title">Tips memilih gear gaming</h3>
-              <a href="articles.html" class="journal-card__link" aria-label="Baca journal tips memilih gear gaming">Baca Journal</a>
+              <a
+                href="articles.html"
+                class="journal-card__link"
+                aria-label="Baca journal tips memilih gear gaming"
+                >Baca Journal</a
+              >
             </article>
             <article class="journal-card">
               <h3 class="journal-card__title">Upgrade setup produktivitas</h3>
-              <a href="articles.html" class="journal-card__link" aria-label="Baca journal cara upgrade setup produktivitas">Baca Journal</a>
+              <a
+                href="articles.html"
+                class="journal-card__link"
+                aria-label="Baca journal cara upgrade setup produktivitas"
+                >Baca Journal</a
+              >
             </article>
           </div>
         </div>
@@ -390,10 +583,13 @@
               <p class="section-kicker">Support</p>
               <h2 class="support-card__title">Butuh bantuan pilih gear?</h2>
               <p class="support-card__copy">
-                Tim NEXGEAR siap bantu arahkan pilihan sesuai kebutuhan setup kamu.
+                Tim NEXGEAR siap bantu arahkan pilihan sesuai kebutuhan setup
+                kamu.
               </p>
             </div>
-            <a href="contact.html" class="support-card__link">Contact Support</a>
+            <a href="contact.html" class="support-card__link"
+              >Contact Support</a
+            >
           </div>
         </aside>
       </section>
@@ -406,7 +602,8 @@
             <span class="text-gradient">NEX</span>GEAR
           </div>
           <p class="footer-brand-copy">
-            Toko gaming gear premium untuk setup yang lebih cepat, rapi, dan siap upgrade.
+            Toko gaming gear premium untuk setup yang lebih cepat, rapi, dan
+            siap upgrade.
           </p>
           <div class="footer-social">
             <a href="#" aria-label="Twitter"
@@ -456,9 +653,7 @@
         </div>
         <div>
           <h4>Newsletter</h4>
-          <p class="footer-newsletter-copy">
-            Update produk dan promo terbaru.
-          </p>
+          <p class="footer-newsletter-copy">Update produk dan promo terbaru.</p>
           <form
             class="footer-form"
             onsubmit="

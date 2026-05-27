@@ -152,17 +152,71 @@
     const els = document.querySelectorAll(".reveal");
     if (!els.length) return;
 
-    const check = () => {
-      const trigger = window.innerHeight * 0.85;
-      els.forEach((el) => {
-        if (el.getBoundingClientRect().top < trigger) {
-          el.classList.add("active");
-        }
-      });
-    };
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((el) => el.classList.add("active"));
+      return;
+    }
 
-    window.addEventListener("scroll", check, { passive: true });
-    check();
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("active");
+          obs.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12 },
+    );
+
+    els.forEach((el) => observer.observe(el));
+  }
+
+  /* ── Stat Count-Up ── */
+  function initCountUp() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const nums = document.querySelectorAll(".stats-num[data-target]");
+    if (!nums.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+      nums.forEach((el) => {
+        const target = parseFloat(el.dataset.target);
+        const suffix = el.dataset.suffix || "";
+        el.textContent = `${target}${suffix}`;
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const el = entry.target;
+          const target = parseFloat(el.dataset.target);
+          const suffix = el.dataset.suffix || "";
+          const duration = 1200;
+          const start = performance.now();
+          const isDecimal = target % 1 !== 0;
+
+          function update(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = eased * target;
+            el.textContent = `${isDecimal ? current.toFixed(1) : Math.floor(current)}${suffix}`;
+
+            if (progress < 1) requestAnimationFrame(update);
+          }
+
+          requestAnimationFrame(update);
+          observer.unobserve(el);
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    nums.forEach((el) => observer.observe(el));
   }
 
   /* ── Hero Parallax ── */
@@ -195,6 +249,57 @@
     const range = document.querySelector(".price-range");
     if (!cards.length) return;
 
+    const productCards = document.querySelectorAll(".product-card");
+
+    function removeNoResults() {
+      const empty = document.getElementById("no-results");
+      if (empty) empty.remove();
+    }
+
+    function renderNoResults() {
+      if (!productCards.length) return;
+
+      const hasResults = Array.from(productCards).some(
+        (card) => card.style.display !== "none",
+      );
+
+      if (hasResults) {
+        removeNoResults();
+        return;
+      }
+
+      if (document.getElementById("no-results")) return;
+
+      const empty = document.createElement("div");
+      empty.id = "no-results";
+      empty.style.cssText =
+        "grid-column:1/-1;text-align:center;padding:32px;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(255,255,255,.025);color:var(--color-text-muted);";
+
+      const text = document.createElement("p");
+      text.textContent = "Tidak ada produk yang cocok.";
+      text.style.margin = "0 0 16px";
+
+      const reset = document.createElement("button");
+      reset.type = "button";
+      reset.className = "btn btn-primary";
+      reset.textContent = "Reset Filter";
+      reset.addEventListener("click", () => {
+        if (bar) bar.value = "";
+        if (range) {
+          range.value = range.max || 5000;
+          const label = document.querySelector(".price-label-max");
+          if (label) {
+            label.textContent = `$${parseInt(range.value).toLocaleString()}+`;
+          }
+        }
+        filterProducts();
+      });
+
+      empty.appendChild(text);
+      empty.appendChild(reset);
+      productCards[0].parentElement.appendChild(empty);
+    }
+
     function filterProducts() {
       const term = bar ? bar.value.toLowerCase() : "";
       const maxPrice = range ? parseInt(range.value) : Infinity;
@@ -219,10 +324,13 @@
 
         card.style.display = matchSearch && matchPrice ? "" : "none";
       });
+
+      renderNoResults();
     }
 
     if (bar) bar.addEventListener("input", filterProducts);
     if (range) range.addEventListener("input", filterProducts);
+    filterProducts();
   }
 
   /* ── Add-to-Cart Buttons ── */
@@ -512,10 +620,33 @@
   }
 
   /* ── INIT ── */
+  function initHeroEntrance() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const items = document.querySelectorAll(
+      ".hero-eyebrow, .hero-title, .hero-trusted, .hero-actions",
+    );
+
+    items.forEach((el, i) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(20px)";
+      el.style.transition = `opacity 0.7s ease ${i * 0.12}s, transform 0.7s ease ${i * 0.12}s`;
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+        });
+      });
+    });
+  }
+
   function init() {
+    document.body.classList.add("loaded");
     initNavbar();
     initMobileMenu();
     initReveal();
+    initCountUp();
     initParallax();
     initPriceFilter();
     initSearch();
@@ -526,6 +657,7 @@
     Cart.updateBadge();
     initMiniCart();
     Auth.updateUI();
+    initHeroEntrance();
   }
 
   if (document.readyState === "loading") {

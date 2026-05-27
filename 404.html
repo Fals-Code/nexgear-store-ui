@@ -37,6 +37,11 @@
       transform: rotate(-2deg);
     }
   </style>
+  <style>
+    body { opacity: 0; transition: opacity 0.25s ease; }
+    body.loaded { opacity: 1; }
+  </style>
+  <noscript><style>body { opacity: 1; }</style></noscript>
 </head>
 <body>
   <div class="error-container">

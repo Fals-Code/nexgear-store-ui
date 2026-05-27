@@ -6,10 +6,15 @@
   <title>NEXGEAR - Checkout</title>
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/checkout.css">
+  <style>
+    body { opacity: 0; transition: opacity 0.25s ease; }
+    body.loaded { opacity: 1; }
+  </style>
+  <noscript><style>body { opacity: 1; }</style></noscript>
 </head>
 <body>
   <!-- Minimal Nav for Checkout -->
-  <nav class="scrolled">
+  <nav class="scrolled minimal">
     <div class="nav-container container" style="display: flex; justify-content: center;">
       <a href="index.html" class="logo font-gaming">NEXGEAR</a>
     </div>
