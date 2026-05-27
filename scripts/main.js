@@ -407,12 +407,19 @@
     const bar = document.querySelector(".search-bar");
     const cards = document.querySelectorAll(".product-card, .related-card");
     const range = document.querySelector(".price-range");
+    const sortSelect = document.getElementById("sortSelect");
+    const countLabel = document.getElementById("catalogCount");
     const categoryButtons = document.querySelectorAll(
       ".category-pills .tag-chip",
     );
     if (!cards.length) return;
 
     const productCards = document.querySelectorAll(".product-card");
+    const productGrid = document.querySelector(".catalog-product-grid");
+    const productCardList = Array.from(productCards);
+    productCardList.forEach((card, index) => {
+      card.dataset.originalOrder = String(index);
+    });
     const setupPresets = {
       gaming: { category: "all", search: "", maxPrice: null },
       productivity: { category: "peripherals", search: "", maxPrice: null },
@@ -424,6 +431,55 @@
     const categoryParam = params.get("category");
     const preset = setupPresets[setup] || null;
     let activeCategory = categoryParam || preset?.category || "all";
+
+    function getCheckedFilters(type) {
+      return Array.from(
+        document.querySelectorAll(
+          `.filter-option input[data-filter-type='${type}']:checked`,
+        ),
+      ).map((input) => input.value.toLowerCase());
+    }
+
+    function getCardPrice(card) {
+      const priceEl = card.querySelector(
+        ".price, .product-price, .product-card-price, .card-price, .related-bottom .price",
+      );
+      if (!priceEl) return 0;
+      return parseFloat(priceEl.textContent.replace(/[^0-9.]/g, "")) || 0;
+    }
+
+    function getSearchText(card) {
+      return [
+        card.querySelector("h3, h4")?.textContent,
+        card.querySelector(".desc")?.textContent,
+        card.querySelector(".product-card-meta")?.textContent,
+        card.querySelector(".quick-spec-row")?.textContent,
+        card.querySelector(".product-card-badge")?.textContent,
+        card.dataset.category,
+        card.dataset.brand,
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+    }
+
+    function sortProducts() {
+      if (!productGrid || !sortSelect) return;
+
+      const sortedCards = [...productCardList].sort((a, b) => {
+        if (sortSelect.value === "price-asc") {
+          return getCardPrice(a) - getCardPrice(b);
+        }
+
+        if (sortSelect.value === "price-desc") {
+          return getCardPrice(b) - getCardPrice(a);
+        }
+
+        return Number(a.dataset.originalOrder) - Number(b.dataset.originalOrder);
+      });
+
+      sortedCards.forEach((card) => productGrid.appendChild(card));
+    }
 
     function removeNoResults() {
       const empty = document.getElementById("no-results");
@@ -447,11 +503,12 @@
       const empty = document.createElement("div");
       empty.id = "no-results";
       empty.style.cssText =
-        "grid-column:1/-1;text-align:center;padding:32px;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(255,255,255,.025);color:var(--color-text-muted);";
+        "grid-column:1/-1;text-align:center;padding:40px 24px;border:1px solid rgba(0,210,255,.16);border-radius:16px;background:linear-gradient(135deg,rgba(0,210,255,.08),rgba(255,61,127,.04));color:var(--color-text-muted);";
 
       const text = document.createElement("p");
-      text.textContent = "Tidak ada produk yang cocok.";
-      text.style.margin = "0 0 16px";
+      text.innerHTML =
+        '<strong style="display:block;color:var(--color-text-primary);font-size:1.05rem;margin-bottom:6px;">Gear tidak ditemukan</strong><span>Coba ubah kategori, turunkan filter harga, atau reset pencarian.</span>';
+      text.style.margin = "0 0 18px";
 
       const reset = document.createElement("button");
       reset.type = "button";
@@ -467,9 +524,16 @@
           }
         }
         activeCategory = "all";
-        categoryButtons.forEach((button) => {
-          button.classList.toggle("active", button.dataset.category === "all");
-        });
+      categoryButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.category === "all");
+      });
+        document
+          .querySelectorAll(".filter-option input[type='checkbox']")
+          .forEach((checkbox) => {
+            checkbox.checked = false;
+            checkbox.dispatchEvent(new Event("change", { bubbles: true }));
+          });
+        if (sortSelect) sortSelect.value = "newest";
         filterProducts();
       });
 
@@ -481,32 +545,36 @@
     function filterProducts() {
       const term = bar ? bar.value.toLowerCase() : "";
       const maxPrice = range ? parseInt(range.value) : Infinity;
+      const selectedCategories = getCheckedFilters("category");
+      const selectedBrands = getCheckedFilters("brand");
+      let visibleCount = 0;
 
       cards.forEach((card) => {
-        // Precise search: only check title/headers
-        const titleEl = card.querySelector("h3, h4");
-        const text = titleEl ? titleEl.textContent.toLowerCase() : "";
-
-        // Precise price: parse from element
-        const priceEl = card.querySelector(
-          ".price, .product-price, .related-bottom .price",
-        );
-        let price = 0;
-        if (priceEl) {
-          price = parseFloat(priceEl.textContent.replace(/[^0-9.]/g, ""));
-        }
+        const text = getSearchText(card);
+        const price = getCardPrice(card);
 
         const matchSearch = text.includes(term);
         const category = card.dataset.category || "all";
+        const brand = (card.dataset.brand || "").toLowerCase();
         const matchCategory =
-          activeCategory === "all" || category === activeCategory;
+          selectedCategories.length > 0
+            ? selectedCategories.includes(category)
+            : activeCategory === "all" || category === activeCategory;
+        const matchBrand =
+          selectedBrands.length === 0 || selectedBrands.includes(brand);
         // If price is 0, we assume it's valid to avoid hiding things without a price tag
         const matchPrice = price === 0 || price <= maxPrice;
+        const isVisible =
+          matchSearch && matchCategory && matchBrand && matchPrice;
 
-        card.style.display =
-          matchSearch && matchCategory && matchPrice ? "" : "none";
+        card.style.display = isVisible ? "" : "none";
+        if (card.classList.contains("product-card") && isVisible) visibleCount++;
       });
 
+      if (countLabel) {
+        countLabel.textContent = `${visibleCount} produk ditemukan`;
+      }
+      sortProducts();
       renderNoResults();
     }
 
@@ -532,12 +600,20 @@
 
     categoryButtons.forEach((button) => {
       button.addEventListener("click", () => {
+        document
+          .querySelectorAll(".filter-option input[data-filter-type='category']")
+          .forEach((checkbox) => {
+            checkbox.checked = false;
+            checkbox.dispatchEvent(new Event("change", { bubbles: true }));
+          });
         setActiveCategory(button.dataset.category || "all");
       });
     });
 
     if (bar) bar.addEventListener("input", filterProducts);
     if (range) range.addEventListener("input", filterProducts);
+    if (sortSelect) sortSelect.addEventListener("change", filterProducts);
+    document.addEventListener("nexgear:filters-change", filterProducts);
     setActiveCategory(activeCategory);
   }
 
@@ -549,6 +625,84 @@
         const name = btn.dataset.name || "Product";
         const price = parseFloat(btn.dataset.price) || 0;
         Cart.add({ name, price });
+      });
+    });
+  }
+
+  function initCatalogEnhancements() {
+    const cards = Array.from(document.querySelectorAll(".catalog-product-card"));
+    if (!cards.length) return;
+
+    const quickSpecs = {
+      "ROG Strix G16": ["RTX", "165Hz", "16GB"],
+      "Huntsman V3 Pro": ["Analog", "RGB", "Wired"],
+      "Alienware 27": ["280Hz", "1ms", "IPS"],
+      "RTX 4070 Ti Super": ["16GB", "DLSS", "RTX"],
+      "Arctis Nova 7": ["Wireless", "Clear Mic", "Multi-platform"],
+      "G Pro X Superlight 2": ["Wireless", "Ultra light", "Esports"],
+      "Corsair K70 Max RGB": ["Magnetic", "RGB", "Wired"],
+      "MSI Raider GE78 HX": ["QHD", "RTX", "DDR5"],
+      "Samsung Odyssey G7": ["Curved", "QHD", "Smooth"],
+      "Ryzen 7 7800X3D": ["AM5", "3D Cache", "Gaming"],
+      "Vengeance RGB 32GB": ["32GB", "DDR5", "RGB"],
+      "HyperX Cloud III Wireless": ["Wireless", "Boom Mic", "Comfort"],
+      "Elgato Wave:3": ["USB", "Cardioid", "Streaming"],
+    };
+
+    cards.forEach((card) => {
+      const name = card.querySelector("h4")?.textContent.trim() || "";
+      const specs = quickSpecs[name] || [card.dataset.brand || "NEXGEAR", card.dataset.category || "Gear"];
+      const meta = card.querySelector(".product-card-meta");
+
+      if (meta && !card.querySelector(".quick-spec-row")) {
+        const row = document.createElement("div");
+        row.className = "quick-spec-row";
+        row.innerHTML = specs.map((spec) => `<span>${spec}</span>`).join("");
+        meta.insertAdjacentElement("afterend", row);
+      }
+
+    });
+  }
+
+  function initCatalogCardLinks() {
+    const cards = document.querySelectorAll(".catalog-product-card");
+    if (!cards.length) return;
+
+    function slugify(value) {
+      return value
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+    }
+
+    function getProductUrl(card) {
+      const name = card.querySelector("h4")?.textContent.trim() || "product";
+      return `product.html?product=${encodeURIComponent(slugify(name))}`;
+    }
+
+    function shouldIgnoreRedirect(target) {
+      return Boolean(
+        target.closest("button, a, input, select, textarea, label"),
+      );
+    }
+
+    cards.forEach((card) => {
+      card.setAttribute("role", "link");
+      card.setAttribute("tabindex", "0");
+      card.setAttribute(
+        "aria-label",
+        `Lihat detail ${card.querySelector("h4")?.textContent.trim() || "produk"}`,
+      );
+
+      card.addEventListener("click", (event) => {
+        if (shouldIgnoreRedirect(event.target)) return;
+        window.location.href = getProductUrl(card);
+      });
+
+      card.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        window.location.href = getProductUrl(card);
       });
     });
   }
@@ -641,6 +795,7 @@
             filter.element.dispatchEvent(
               new Event("change", { bubbles: true }),
             );
+            document.dispatchEvent(new CustomEvent("nexgear:filters-change"));
           }
         });
 
@@ -701,6 +856,7 @@
         if (label) label.textContent = "$5,000+";
       }
       updateBadge();
+      document.dispatchEvent(new CustomEvent("nexgear:filters-change"));
     }
 
     function applyFilters() {
@@ -709,6 +865,7 @@
       if (range) {
         range.dispatchEvent(new Event("input", { bubbles: true }));
       }
+      document.dispatchEvent(new CustomEvent("nexgear:filters-change"));
       closeFilter();
     }
 
@@ -887,8 +1044,10 @@
     initGearFinder();
     initSetupBuilder();
     initTrustModal();
+    initCatalogEnhancements();
     initSearch();
     initAddToCart();
+    initCatalogCardLinks();
     setActiveNav();
     initSketchRotations();
     initFilterDrawer();

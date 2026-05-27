@@ -109,15 +109,30 @@
         <main class="catalog-main full-width">
           <div class="catalog-header">
             <div class="header-left">
+              <div class="breadcrumb" style="margin-bottom: var(--spacing-sm);">
+                <a href="index.html">Home</a> <span class="sep">/</span>
+                <span>Catalog</span>
+              </div>
               <p class="catalog-kicker">NEXGEAR Catalog</p>
-              <h1 class="catalog-title text-gradient">Products</h1>
-              <p class="catalog-subtitle">Cari gear gaming pilihan dan bandingkan produk dengan cepat.</p>
+              <h1 class="catalog-title text-gradient">Gear That Feels Right</h1>
+              <p class="catalog-subtitle">Bukan cuma soal angka spek. Pilih gear yang cocok dengan cara kamu main, kerja, dan upgrade setup.</p>
+              <p id="catalogCount" class="catalog-count" aria-live="polite"></p>
             </div>
             <div class="catalog-trust-row" aria-label="Catalog highlights">
               <span>Ready stock</span>
               <span>Garansi resmi</span>
               <span>Secure checkout</span>
             </div>
+          </div>
+
+          <div class="catalog-editorial-strip" aria-label="NEXGEAR catalog story">
+            <div>
+              <span class="catalog-editorial-eyebrow">Curated Loadout</span>
+              <p>
+                Dari keyboard yang responsif sampai monitor dengan gerak halus, setiap item di sini dipilih untuk bikin setup terasa lebih presisi.
+              </p>
+            </div>
+            <a href="#catalogProductGrid" class="catalog-editorial-link">Explore gear</a>
           </div>
 
           <div class="catalog-toolbar" aria-label="Catalog search and filter tools">
@@ -171,12 +186,13 @@
             <button class="tag-chip" data-category="audio" type="button" aria-label="Kategori audio">Audio</button>
           </div>
 
-          <div class="product-grid catalog-product-grid">
+          <div class="product-grid catalog-product-grid" id="catalogProductGrid">
           <!-- Product 1 -->
-          <div class="product-card catalog-product-card" data-category="laptops">
+          <div class="product-card catalog-product-card" data-category="laptops" data-brand="ASUS ROG">
             <div class="product-card-media product-img">
               <span class="product-card-badge">Featured</span>
-              <svg viewBox="0 0 120 100" aria-hidden="true">
+              <img class="product-photo" src="lib/product-rog-strix-g16.webp" alt="ROG Strix G16 gaming laptop" loading="lazy" />
+              <svg class="product-fallback" viewBox="0 0 120 100" aria-hidden="true">
                 <rect
                   x="18"
                   y="18"
@@ -242,10 +258,11 @@
           </div>
 
           <!-- Product 3 -->
-          <div class="product-card catalog-product-card" data-category="peripherals">
+          <div class="product-card catalog-product-card" data-category="peripherals" data-brand="Razer">
             <div class="product-card-media product-img">
               <span class="product-card-badge">Ready Stock</span>
-              <svg viewBox="0 0 120 100" aria-hidden="true">
+              <img class="product-photo" src="lib/product-huntsman-v3-pro.webp" alt="Huntsman V3 Pro gaming keyboard" loading="lazy" />
+              <svg class="product-fallback" viewBox="0 0 120 100" aria-hidden="true">
                 <rect
                   x="10"
                   y="25"
@@ -308,10 +325,11 @@
           </div>
 
           <!-- Product 4 -->
-          <div class="product-card catalog-product-card" data-category="peripherals">
+          <div class="product-card catalog-product-card" data-category="peripherals" data-brand="Alienware">
             <div class="product-card-media product-img">
               <span class="product-card-badge">Official Warranty</span>
-              <svg viewBox="0 0 120 100" aria-hidden="true">
+              <img class="product-photo" src="lib/product-alienware-27.webp" alt="Alienware 27 gaming monitor" loading="lazy" />
+              <svg class="product-fallback" viewBox="0 0 120 100" aria-hidden="true">
                 <rect
                   x="10"
                   y="15"
@@ -384,10 +402,11 @@
           </div>
 
           <!-- Product 5 -->
-          <div class="product-card catalog-product-card" data-category="components">
+          <div class="product-card catalog-product-card" data-category="components" data-brand="NVIDIA">
             <div class="product-card-media product-img">
               <span class="product-card-badge">Ready Stock</span>
-              <svg viewBox="0 0 120 100" aria-hidden="true">
+              <img class="product-photo" src="lib/product-rtx-4070-ti-super.webp" alt="RTX 4070 Ti Super graphics card" loading="lazy" />
+              <svg class="product-fallback" viewBox="0 0 120 100" aria-hidden="true">
                 <rect
                   x="20"
                   y="15"
@@ -486,10 +505,11 @@
           </div>
 
           <!-- Product 6 -->
-          <div class="product-card catalog-product-card" data-category="audio">
+          <div class="product-card catalog-product-card" data-category="audio" data-brand="SteelSeries">
             <div class="product-card-media product-img">
               <span class="product-card-badge">Fast Delivery</span>
-              <svg viewBox="0 0 120 100" aria-hidden="true">
+              <img class="product-photo" src="lib/product-arctis-nova-7.webp" alt="Arctis Nova 7 wireless headset" loading="lazy" />
+              <svg class="product-fallback" viewBox="0 0 120 100" aria-hidden="true">
                 <path
                   d="M35 25 Q60 8 85 25"
                   stroke="rgba(255,255,255,0.15)"
@@ -563,6 +583,286 @@
                   data-name="Arctis Nova 7"
                   data-price="179.99"
                   aria-label="Tambah Arctis Nova 7 ke keranjang"
+                >
+                  <span class="icon icon-sm add-cart-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M6 6h15l-1.5 9h-12z" />
+                      <circle cx="9" cy="20" r="1.5" />
+                      <circle cx="18" cy="20" r="1.5" />
+                      <path d="M2 2h3l1 4" /></svg
+                  ></span>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 7 -->
+          <div class="product-card catalog-product-card" data-category="peripherals" data-brand="Logitech G">
+            <div class="product-card-media product-img">
+              <span class="product-card-badge">Esports Pick</span>
+              <img class="product-photo" src="lib/product-logitech-g-pro-x-superlight-2.webp" alt="Logitech G Pro X Superlight 2 gaming mouse" loading="lazy" />
+            </div>
+            <div class="product-card-body">
+              <h4>G Pro X Superlight 2</h4>
+              <p class="desc">Wireless gaming mouse, ultra light</p>
+              <div class="product-card-meta">
+                <span>Gaming Mouse</span>
+                <span>Fast Delivery</span>
+              </div>
+              <div class="product-card-bottom product-card-footer">
+                <span class="card-price product-card-price">$159.99</span>
+                <button
+                  class="btn btn-primary product-card-cta"
+                  data-add-cart
+                  data-name="G Pro X Superlight 2"
+                  data-price="159.99"
+                  aria-label="Tambah G Pro X Superlight 2 ke keranjang"
+                >
+                  <span class="icon icon-sm add-cart-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M6 6h15l-1.5 9h-12z" />
+                      <circle cx="9" cy="20" r="1.5" />
+                      <circle cx="18" cy="20" r="1.5" />
+                      <path d="M2 2h3l1 4" /></svg
+                  ></span>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 8 -->
+          <div class="product-card catalog-product-card" data-category="peripherals" data-brand="Corsair">
+            <div class="product-card-media product-img">
+              <span class="product-card-badge">New Arrival</span>
+              <img class="product-photo" src="lib/product-corsair-k70-max-rgb.webp" alt="Corsair K70 Max RGB gaming keyboard" loading="lazy" />
+            </div>
+            <div class="product-card-body">
+              <h4>Corsair K70 Max RGB</h4>
+              <p class="desc">Magnetic switches, premium frame</p>
+              <div class="product-card-meta">
+                <span>Gaming Keyboard</span>
+                <span>Official Warranty</span>
+              </div>
+              <div class="product-card-bottom product-card-footer">
+                <span class="card-price product-card-price">$229.99</span>
+                <button
+                  class="btn btn-primary product-card-cta"
+                  data-add-cart
+                  data-name="Corsair K70 Max RGB"
+                  data-price="229.99"
+                  aria-label="Tambah Corsair K70 Max RGB ke keranjang"
+                >
+                  <span class="icon icon-sm add-cart-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M6 6h15l-1.5 9h-12z" />
+                      <circle cx="9" cy="20" r="1.5" />
+                      <circle cx="18" cy="20" r="1.5" />
+                      <path d="M2 2h3l1 4" /></svg
+                  ></span>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 9 -->
+          <div class="product-card catalog-product-card" data-category="laptops" data-brand="MSI">
+            <div class="product-card-media product-img">
+              <span class="product-card-badge">Performance</span>
+              <img class="product-photo" src="lib/product-msi-raider-ge78-hx.webp" alt="MSI Raider GE78 HX gaming laptop" loading="lazy" />
+            </div>
+            <div class="product-card-body">
+              <h4>MSI Raider GE78 HX</h4>
+              <p class="desc">RTX laptop, high refresh QHD panel</p>
+              <div class="product-card-meta">
+                <span>Gaming Laptop</span>
+                <span>Ready Stock</span>
+              </div>
+              <div class="product-card-bottom product-card-footer">
+                <span class="card-price product-card-price">$2,499.99</span>
+                <button
+                  class="btn btn-primary product-card-cta"
+                  data-add-cart
+                  data-name="MSI Raider GE78 HX"
+                  data-price="2499.99"
+                  aria-label="Tambah MSI Raider GE78 HX ke keranjang"
+                >
+                  <span class="icon icon-sm add-cart-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M6 6h15l-1.5 9h-12z" />
+                      <circle cx="9" cy="20" r="1.5" />
+                      <circle cx="18" cy="20" r="1.5" />
+                      <path d="M2 2h3l1 4" /></svg
+                  ></span>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 10 -->
+          <div class="product-card catalog-product-card" data-category="peripherals" data-brand="Samsung">
+            <div class="product-card-media product-img">
+              <span class="product-card-badge">Creator Ready</span>
+              <img class="product-photo" src="lib/product-samsung-odyssey-g7.webp" alt="Samsung Odyssey G7 gaming monitor" loading="lazy" />
+            </div>
+            <div class="product-card-body">
+              <h4>Samsung Odyssey G7</h4>
+              <p class="desc">Curved QHD display, smooth motion</p>
+              <div class="product-card-meta">
+                <span>Gaming Monitor</span>
+                <span>Official Warranty</span>
+              </div>
+              <div class="product-card-bottom product-card-footer">
+                <span class="card-price product-card-price">$699.99</span>
+                <button
+                  class="btn btn-primary product-card-cta"
+                  data-add-cart
+                  data-name="Samsung Odyssey G7"
+                  data-price="699.99"
+                  aria-label="Tambah Samsung Odyssey G7 ke keranjang"
+                >
+                  <span class="icon icon-sm add-cart-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M6 6h15l-1.5 9h-12z" />
+                      <circle cx="9" cy="20" r="1.5" />
+                      <circle cx="18" cy="20" r="1.5" />
+                      <path d="M2 2h3l1 4" /></svg
+                  ></span>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 11 -->
+          <div class="product-card catalog-product-card" data-category="components" data-brand="AMD">
+            <div class="product-card-media product-img">
+              <span class="product-card-badge">Best Value</span>
+              <img class="product-photo" src="lib/product-ryzen-7-7800x3d.webp" alt="AMD Ryzen 7 7800X3D processor" loading="lazy" />
+            </div>
+            <div class="product-card-body">
+              <h4>Ryzen 7 7800X3D</h4>
+              <p class="desc">Gaming CPU, 3D V-Cache performance</p>
+              <div class="product-card-meta">
+                <span>Processor</span>
+                <span>Ready Stock</span>
+              </div>
+              <div class="product-card-bottom product-card-footer">
+                <span class="card-price product-card-price">$399.99</span>
+                <button
+                  class="btn btn-primary product-card-cta"
+                  data-add-cart
+                  data-name="Ryzen 7 7800X3D"
+                  data-price="399.99"
+                  aria-label="Tambah Ryzen 7 7800X3D ke keranjang"
+                >
+                  <span class="icon icon-sm add-cart-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M6 6h15l-1.5 9h-12z" />
+                      <circle cx="9" cy="20" r="1.5" />
+                      <circle cx="18" cy="20" r="1.5" />
+                      <path d="M2 2h3l1 4" /></svg
+                  ></span>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 12 -->
+          <div class="product-card catalog-product-card" data-category="components" data-brand="Corsair">
+            <div class="product-card-media product-img">
+              <span class="product-card-badge">Upgrade Kit</span>
+              <img class="product-photo" src="lib/product-corsair-vengeance-rgb-32gb.webp" alt="Corsair Vengeance RGB DDR5 memory kit" loading="lazy" />
+            </div>
+            <div class="product-card-body">
+              <h4>Vengeance RGB 32GB</h4>
+              <p class="desc">DDR5 memory kit for fast builds</p>
+              <div class="product-card-meta">
+                <span>Memory</span>
+                <span>Official Warranty</span>
+              </div>
+              <div class="product-card-bottom product-card-footer">
+                <span class="card-price product-card-price">$129.99</span>
+                <button
+                  class="btn btn-primary product-card-cta"
+                  data-add-cart
+                  data-name="Vengeance RGB 32GB"
+                  data-price="129.99"
+                  aria-label="Tambah Vengeance RGB 32GB ke keranjang"
+                >
+                  <span class="icon icon-sm add-cart-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M6 6h15l-1.5 9h-12z" />
+                      <circle cx="9" cy="20" r="1.5" />
+                      <circle cx="18" cy="20" r="1.5" />
+                      <path d="M2 2h3l1 4" /></svg
+                  ></span>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 13 -->
+          <div class="product-card catalog-product-card" data-category="audio" data-brand="HyperX">
+            <div class="product-card-media product-img">
+              <span class="product-card-badge">Wireless</span>
+              <img class="product-photo" src="lib/product-hyperx-cloud-iii-wireless.webp" alt="HyperX Cloud III Wireless gaming headset" loading="lazy" />
+            </div>
+            <div class="product-card-body">
+              <h4>HyperX Cloud III Wireless</h4>
+              <p class="desc">Long battery headset, clear mic</p>
+              <div class="product-card-meta">
+                <span>Gaming Headset</span>
+                <span>Fast Delivery</span>
+              </div>
+              <div class="product-card-bottom product-card-footer">
+                <span class="card-price product-card-price">$169.99</span>
+                <button
+                  class="btn btn-primary product-card-cta"
+                  data-add-cart
+                  data-name="HyperX Cloud III Wireless"
+                  data-price="169.99"
+                  aria-label="Tambah HyperX Cloud III Wireless ke keranjang"
+                >
+                  <span class="icon icon-sm add-cart-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <path d="M6 6h15l-1.5 9h-12z" />
+                      <circle cx="9" cy="20" r="1.5" />
+                      <circle cx="18" cy="20" r="1.5" />
+                      <path d="M2 2h3l1 4" /></svg
+                  ></span>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 14 -->
+          <div class="product-card catalog-product-card" data-category="audio" data-brand="Elgato">
+            <div class="product-card-media product-img">
+              <span class="product-card-badge">Streaming</span>
+              <img class="product-photo" src="lib/product-elgato-wave-3.webp" alt="Elgato Wave 3 streaming microphone" loading="lazy" />
+            </div>
+            <div class="product-card-body">
+              <h4>Elgato Wave:3</h4>
+              <p class="desc">USB microphone for stream setup</p>
+              <div class="product-card-meta">
+                <span>Streaming Audio</span>
+                <span>Official Warranty</span>
+              </div>
+              <div class="product-card-bottom product-card-footer">
+                <span class="card-price product-card-price">$149.99</span>
+                <button
+                  class="btn btn-primary product-card-cta"
+                  data-add-cart
+                  data-name="Elgato Wave:3"
+                  data-price="149.99"
+                  aria-label="Tambah Elgato Wave:3 ke keranjang"
                 >
                   <span class="icon icon-sm add-cart-icon"
                     ><svg viewBox="0 0 24 24">
@@ -658,16 +958,16 @@
             Category
           </h4>
           <label class="filter-option"
-            ><input type="checkbox" checked /> Laptops</label
+            ><input type="checkbox" data-filter-type="category" value="laptops" /> Laptops</label
           >
           <label class="filter-option"
-            ><input type="checkbox" checked /> Peripherals</label
+            ><input type="checkbox" data-filter-type="category" value="peripherals" /> Peripherals</label
           >
           <label class="filter-option"
-            ><input type="checkbox" checked /> Components</label
+            ><input type="checkbox" data-filter-type="category" value="components" /> Components</label
           >
           <label class="filter-option"
-            ><input type="checkbox" /> Accessories</label
+            ><input type="checkbox" data-filter-type="category" value="audio" /> Audio</label
           >
         </div>
 
@@ -703,15 +1003,39 @@
             ></span>
             Brand
           </h4>
-          <label class="filter-option"><input type="checkbox" /> Razer</label>
+          <label class="filter-option"><input type="checkbox" data-filter-type="brand" value="Razer" /> Razer</label>
           <label class="filter-option"
-            ><input type="checkbox" /> SteelSeries</label
+            ><input type="checkbox" data-filter-type="brand" value="SteelSeries" /> SteelSeries</label
           >
           <label class="filter-option"
-            ><input type="checkbox" /> Logitech G</label
+            ><input type="checkbox" data-filter-type="brand" value="Alienware" /> Alienware</label
           >
           <label class="filter-option"
-            ><input type="checkbox" /> ASUS ROG</label
+            ><input type="checkbox" data-filter-type="brand" value="ASUS ROG" /> ASUS ROG</label
+          >
+          <label class="filter-option"
+            ><input type="checkbox" data-filter-type="brand" value="NVIDIA" /> NVIDIA</label
+          >
+          <label class="filter-option"
+            ><input type="checkbox" data-filter-type="brand" value="Logitech G" /> Logitech G</label
+          >
+          <label class="filter-option"
+            ><input type="checkbox" data-filter-type="brand" value="Corsair" /> Corsair</label
+          >
+          <label class="filter-option"
+            ><input type="checkbox" data-filter-type="brand" value="MSI" /> MSI</label
+          >
+          <label class="filter-option"
+            ><input type="checkbox" data-filter-type="brand" value="Samsung" /> Samsung</label
+          >
+          <label class="filter-option"
+            ><input type="checkbox" data-filter-type="brand" value="AMD" /> AMD</label
+          >
+          <label class="filter-option"
+            ><input type="checkbox" data-filter-type="brand" value="HyperX" /> HyperX</label
+          >
+          <label class="filter-option"
+            ><input type="checkbox" data-filter-type="brand" value="Elgato" /> Elgato</label
           >
         </div>
       </div>
@@ -787,7 +1111,7 @@
             <li><a href="catalog.html">Laptops</a></li>
             <li><a href="catalog.html">Peripherals</a></li>
             <li><a href="catalog.html">Components</a></li>
-            <li><a href="catalog.html">Accessories</a></li>
+            <li><a href="catalog.html">Audio</a></li>
           </ul>
         </div>
         <div>

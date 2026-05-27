@@ -42,6 +42,7 @@
       <div class="product-gallery-panel">
         <div class="product-main-media">
           <span class="product-status-badge">Best Seller</span>
+          <img id="productMainImage" class="product-main-photo" src="lib/product-rog-strix-g16.webp" alt="ROG Strix G16 product preview" loading="eager">
           <svg viewBox="0 0 420 320" aria-label="ROG Strix G16 product preview" role="img">
             <rect x="58" y="48" width="304" height="174" rx="14" fill="#070a14" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
             <rect x="76" y="66" width="268" height="138" rx="8" fill="rgba(0,210,255,0.06)" stroke="rgba(0,210,255,0.22)" stroke-width="1.5"/>
@@ -301,6 +302,18 @@
             <p>Keyboard mechanical premium</p>
             <div class="related-bottom">
               <span class="price related-product-price">$199</span>
+            </div>
+          </div>
+        </article>
+        <article class="related-card related-product-card">
+          <div class="related-img related-product-media">
+            <svg viewBox="0 0 120 80"><rect x="10" y="18" width="100" height="35" rx="4" stroke="currentColor" fill="none" stroke-width="1.5"/><g fill="currentColor"><rect x="18" y="24" width="8" height="6" rx="1"/><rect x="30" y="24" width="8" height="6" rx="1"/><rect x="42" y="24" width="8" height="6" rx="1"/><rect x="54" y="24" width="8" height="6" rx="1"/><rect x="66" y="24" width="8" height="6" rx="1"/><rect x="78" y="24" width="8" height="6" rx="1"/><rect x="34" y="39" width="52" height="5" rx="1"/></g></svg>
+          </div>
+          <div class="related-body related-product-body">
+            <h4>Apex Pro TKL</h4>
+            <p>Keyboard mechanical premium</p>
+            <div class="related-bottom">
+              <span class="price related-product-price">$199</span>
               <a href="product.html" class="btn btn-outline related-product-action" aria-label="Lihat detail Apex Pro TKL">Lihat Detail</a>
             </div>
           </div>
@@ -322,6 +335,18 @@
     </section>
   </main>
 
+  <div class="mobile-sticky-cta">
+    <div class="sticky-cta-content">
+      <div class="sticky-cta-info">
+        <span class="sticky-cta-price" id="sticky-cta-price">$1,399.99</span>
+        <span class="sticky-cta-title" id="sticky-cta-title">ROG Strix G16</span>
+      </div>
+      <button class="btn btn-primary" id="sticky-add-to-cart-btn" data-name="ROG Strix G16" data-price="1399.99">
+        Add to Cart
+      </button>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-grid container">
       <div>
@@ -337,6 +362,473 @@
 
   <script src="scripts/main.js"></script>
   <script>
+    const productCatalog = {
+      "rog-strix-g16": {
+        name: "ROG Strix G16",
+        brand: "ASUS ROG",
+        category: "Gaming Laptop",
+        badge: "Featured",
+        price: 1899.99,
+        image: "lib/product-rog-strix-g16.webp",
+        description: "RTX gaming laptop dengan layar cepat, performa stabil, dan build premium untuk gaming kompetitif maupun produksi konten.",
+        benefits: ["Fast display", "RTX-powered gaming", "Official Warranty"],
+        specs: [
+          ["Kategori", "Gaming Laptop"],
+          ["Brand", "ASUS ROG"],
+          ["Processor", "Intel Core i7-13650HX"],
+          ["GPU", "NVIDIA GeForce RTX 4060 8GB"],
+          ["RAM", "16GB DDR5"],
+          ["Storage", "1TB NVMe SSD"],
+          ["Display", "16 inch FHD+ 165Hz"],
+          ["Cooling", "ROG Intelligent Cooling"],
+          ["Keyboard", "RGB gaming keyboard"],
+          ["Connectivity", "Wi-Fi 6E, Bluetooth 5.2, USB-C, HDMI"],
+          ["Garansi", "Official warranty"]
+        ]
+      },
+      "huntsman-v3-pro": {
+        name: "Huntsman V3 Pro",
+        brand: "Razer",
+        category: "Gaming Keyboard",
+        badge: "Ready Stock",
+        price: 249.99,
+        image: "lib/product-huntsman-v3-pro.webp",
+        description: "Keyboard gaming dengan analog optical switches untuk input cepat, kontrol presisi, dan rasa mengetik yang responsif.",
+        benefits: ["Analog switches", "Tournament ready", "Official Warranty"],
+        specs: [
+          ["Kategori", "Keyboard"],
+          ["Brand", "Razer"],
+          ["Switch", "Analog optical switches"],
+          ["Layout", "Full-size gaming layout"],
+          ["Koneksi", "USB wired"],
+          ["Polling Rate", "Up to 1000Hz"],
+          ["Lighting", "RGB per-key lighting"],
+          ["Wrist Rest", "Magnetic wrist rest"],
+          ["Fitur", "Rapid trigger, adjustable actuation"],
+          ["Kompatibilitas", "Windows PC"],
+          ["Garansi", "Official warranty"]
+        ]
+      },
+      "alienware-27": {
+        name: "Alienware 27",
+        brand: "Alienware",
+        category: "Gaming Monitor",
+        badge: "Official Warranty",
+        price: 599.99,
+        image: "lib/product-alienware-27.webp",
+        description: "Monitor gaming 27 inci dengan refresh rate tinggi, panel responsif, dan visual tajam untuk game kompetitif.",
+        benefits: ["280Hz panel", "1ms response", "Fast Delivery"],
+        specs: [
+          ["Kategori", "Monitor"],
+          ["Brand", "Alienware"],
+          ["Ukuran", "27 inch"],
+          ["Panel", "IPS"],
+          ["Refresh Rate", "280Hz"],
+          ["Response Time", "1ms"],
+          ["Resolusi", "QHD class gaming display"],
+          ["Adaptive Sync", "Gaming adaptive sync support"],
+          ["Port", "HDMI, DisplayPort"],
+          ["Stand", "Height and tilt adjustable"],
+          ["Garansi", "Official warranty"]
+        ]
+      },
+      "rtx-4070-ti-super": {
+        name: "RTX 4070 Ti Super",
+        brand: "NVIDIA",
+        category: "Graphics Card",
+        badge: "Ready Stock",
+        price: 799.99,
+        image: "lib/product-rtx-4070-ti-super.webp",
+        description: "GPU 16GB GDDR6X untuk gaming resolusi tinggi, rendering, streaming, dan workflow kreatif yang berat.",
+        benefits: ["16GB GDDR6X", "Creator ready", "Ready Stock"],
+        specs: [
+          ["Kategori", "Graphics Card"],
+          ["Brand", "NVIDIA"],
+          ["GPU Class", "RTX 4070 Ti Super"],
+          ["Memory", "16GB GDDR6X"],
+          ["Ray Tracing", "RTX ray tracing support"],
+          ["Upscaling", "DLSS support"],
+          ["Use Case", "Gaming, rendering, streaming"],
+          ["Recommended PSU", "700W or higher"],
+          ["Output", "HDMI, DisplayPort"],
+          ["Garansi", "Official warranty"]
+        ]
+      },
+      "arctis-nova-7": {
+        name: "Arctis Nova 7",
+        brand: "SteelSeries",
+        category: "Gaming Headset",
+        badge: "Fast Delivery",
+        price: 179.99,
+        image: "lib/product-arctis-nova-7.webp",
+        description: "Wireless headset multi-platform dengan audio jernih, mikrofon jelas, dan kenyamanan untuk sesi panjang.",
+        benefits: ["Wireless audio", "Multi-platform", "Clear mic"],
+        specs: [
+          ["Kategori", "Headset"],
+          ["Brand", "SteelSeries"],
+          ["Koneksi", "Wireless"],
+          ["Platform", "PC, PlayStation, Switch, mobile"],
+          ["Driver", "High fidelity gaming drivers"],
+          ["Microphone", "Retractable noise-cancelling mic"],
+          ["Battery", "Long battery life"],
+          ["Controls", "On-ear volume and chat controls"],
+          ["Use Case", "Gaming, voice chat, music"],
+          ["Garansi", "Official warranty"]
+        ]
+      },
+      "g-pro-x-superlight-2": {
+        name: "G Pro X Superlight 2",
+        brand: "Logitech G",
+        category: "Gaming Mouse",
+        badge: "Esports Pick",
+        price: 159.99,
+        image: "lib/product-logitech-g-pro-x-superlight-2.webp",
+        description: "Mouse wireless ultra ringan untuk pemain kompetitif yang butuh tracking cepat dan kontrol stabil.",
+        benefits: ["Ultra light", "Wireless", "Esports grade"],
+        specs: [
+          ["Kategori", "Mouse"],
+          ["Brand", "Logitech G"],
+          ["Koneksi", "Wireless"],
+          ["Sensor", "High precision gaming sensor"],
+          ["Weight", "Ultra-light design"],
+          ["Buttons", "Programmable side buttons"],
+          ["Battery", "Rechargeable battery"],
+          ["Feet", "Low-friction skates"],
+          ["Use Case", "Competitive gaming"],
+          ["Garansi", "Official warranty"]
+        ]
+      },
+      "corsair-k70-max-rgb": {
+        name: "Corsair K70 Max RGB",
+        brand: "Corsair",
+        category: "Gaming Keyboard",
+        badge: "New Arrival",
+        price: 229.99,
+        image: "lib/product-corsair-k70-max-rgb.webp",
+        description: "Keyboard premium dengan magnetic switches, frame kokoh, dan RGB untuk setup gaming yang terasa serius.",
+        benefits: ["Magnetic switches", "RGB lighting", "Premium frame"],
+        specs: [
+          ["Kategori", "Keyboard"],
+          ["Brand", "Corsair"],
+          ["Switch", "Magnetic mechanical switches"],
+          ["Layout", "Full-size layout"],
+          ["Lighting", "RGB lighting"],
+          ["Frame", "Aluminum top plate"],
+          ["Koneksi", "USB wired"],
+          ["Fitur", "Adjustable actuation"],
+          ["Media Control", "Dedicated media controls"],
+          ["Garansi", "Official warranty"]
+        ]
+      },
+      "msi-raider-ge78-hx": {
+        name: "MSI Raider GE78 HX",
+        brand: "MSI",
+        category: "Gaming Laptop",
+        badge: "Performance",
+        price: 2499.99,
+        image: "lib/product-msi-raider-ge78-hx.webp",
+        description: "Laptop performa tinggi dengan panel QHD refresh tinggi untuk game AAA, editing, dan multitasking berat.",
+        benefits: ["QHD display", "High performance", "Ready Stock"],
+        specs: [
+          ["Kategori", "Gaming Laptop"],
+          ["Brand", "MSI"],
+          ["Processor", "Intel HX-series performance CPU"],
+          ["GPU", "RTX laptop graphics"],
+          ["Display", "QHD high refresh panel"],
+          ["RAM", "DDR5 memory"],
+          ["Storage", "NVMe SSD"],
+          ["Cooling", "Advanced gaming cooling"],
+          ["Keyboard", "RGB gaming keyboard"],
+          ["Use Case", "Gaming and creation"],
+          ["Garansi", "Official warranty"]
+        ]
+      },
+      "samsung-odyssey-g7": {
+        name: "Samsung Odyssey G7",
+        brand: "Samsung",
+        category: "Gaming Monitor",
+        badge: "Creator Ready",
+        price: 699.99,
+        image: "lib/product-samsung-odyssey-g7.webp",
+        description: "Monitor curved QHD dengan gerakan halus untuk gaming, editing, dan setup produktivitas visual.",
+        benefits: ["Curved QHD", "Smooth motion", "Official Warranty"],
+        specs: [
+          ["Kategori", "Monitor"],
+          ["Brand", "Samsung"],
+          ["Panel", "Curved QHD"],
+          ["Ukuran", "27 inch class"],
+          ["Refresh Rate", "High refresh gaming display"],
+          ["Response", "Low response time"],
+          ["Adaptive Sync", "Gaming sync support"],
+          ["Port", "HDMI, DisplayPort"],
+          ["Stand", "Adjustable stand"],
+          ["Use Case", "Gaming and productivity"],
+          ["Garansi", "Official warranty"]
+        ]
+      },
+      "ryzen-7-7800x3d": {
+        name: "Ryzen 7 7800X3D",
+        brand: "AMD",
+        category: "Processor",
+        badge: "Best Value",
+        price: 399.99,
+        image: "lib/product-ryzen-7-7800x3d.webp",
+        description: "Processor gaming dengan 3D V-Cache untuk frame rate tinggi dan efisiensi kuat di build desktop.",
+        benefits: ["3D V-Cache", "Gaming CPU", "Ready Stock"],
+        specs: [
+          ["Kategori", "Processor"],
+          ["Brand", "AMD"],
+          ["Series", "Ryzen 7"],
+          ["Technology", "3D V-Cache"],
+          ["Socket", "AM5"],
+          ["Core Class", "8-core gaming CPU"],
+          ["Memory Support", "DDR5 platform"],
+          ["Use Case", "Gaming PC build"],
+          ["Cooling", "Requires compatible CPU cooler"],
+          ["Garansi", "Official warranty"]
+        ]
+      },
+      "vengeance-rgb-32gb": {
+        name: "Vengeance RGB 32GB",
+        brand: "Corsair",
+        category: "Memory",
+        badge: "Upgrade Kit",
+        price: 129.99,
+        image: "lib/product-corsair-vengeance-rgb-32gb.webp",
+        description: "Kit RAM DDR5 32GB dengan RGB untuk upgrade PC gaming yang cepat, stabil, dan terlihat rapi.",
+        benefits: ["32GB DDR5", "RGB lighting", "Official Warranty"],
+        specs: [
+          ["Kategori", "Memory"],
+          ["Brand", "Corsair"],
+          ["Capacity", "32GB"],
+          ["Type", "DDR5"],
+          ["Kit", "Dual-channel kit"],
+          ["Lighting", "RGB lighting"],
+          ["Profile", "Performance memory profile support"],
+          ["Compatibility", "DDR5 desktop platform"],
+          ["Use Case", "Gaming and content creation"],
+          ["Garansi", "Official warranty"]
+        ]
+      },
+      "hyperx-cloud-iii-wireless": {
+        name: "HyperX Cloud III Wireless",
+        brand: "HyperX",
+        category: "Gaming Headset",
+        badge: "Wireless",
+        price: 169.99,
+        image: "lib/product-hyperx-cloud-iii-wireless.webp",
+        description: "Headset wireless dengan baterai panjang, suara nyaman, dan mic jelas untuk gaming harian.",
+        benefits: ["Wireless", "Long battery", "Clear mic"],
+        specs: [
+          ["Kategori", "Headset"],
+          ["Brand", "HyperX"],
+          ["Koneksi", "Wireless"],
+          ["Driver", "Gaming audio drivers"],
+          ["Microphone", "Detachable boom mic"],
+          ["Battery", "Long battery life"],
+          ["Comfort", "Memory foam ear cushions"],
+          ["Platform", "PC and console"],
+          ["Use Case", "Gaming voice chat"],
+          ["Garansi", "Official warranty"]
+        ]
+      },
+      "elgato-wave-3": {
+        name: "Elgato Wave:3",
+        brand: "Elgato",
+        category: "Streaming Audio",
+        badge: "Streaming",
+        price: 149.99,
+        image: "lib/product-elgato-wave-3.webp",
+        description: "USB microphone untuk streaming dan voice recording dengan setup praktis dan suara yang bersih.",
+        benefits: ["USB microphone", "Streaming ready", "Clean voice"],
+        specs: [
+          ["Kategori", "Microphone"],
+          ["Brand", "Elgato"],
+          ["Koneksi", "USB"],
+          ["Capsule", "Condenser microphone"],
+          ["Pattern", "Cardioid pickup pattern"],
+          ["Controls", "On-device gain control"],
+          ["Monitoring", "Headphone monitoring support"],
+          ["Software", "Wave Link support"],
+          ["Use Case", "Streaming and recording"],
+          ["Garansi", "Official warranty"]
+        ]
+      }
+    };
+
+    function renderSelectedProduct() {
+      const params = new URLSearchParams(window.location.search);
+      const selectedKey = params.get("product") || "rog-strix-g16";
+      const selected = productCatalog[selectedKey] || productCatalog["rog-strix-g16"];
+      const title = document.querySelector(".product-info-panel h1");
+      const kicker = document.querySelector(".product-kicker");
+      const price = document.querySelector(".product-price");
+      const desc = document.querySelector(".product-desc");
+      const breadcrumbCurrent = document.querySelector(".breadcrumb span:last-child");
+      const badge = document.querySelector(".product-status-badge");
+      const image = document.getElementById("productMainImage");
+      const addButton = document.getElementById("add-to-cart-btn");
+      const benefits = document.querySelector(".product-benefits");
+      const quickSpecs = document.querySelector(".specs-mini");
+      const variantLabel = document.querySelector(".color-options label");
+      const thumbList = document.querySelector(".product-thumb-list");
+      const descTitle = document.querySelector("#tab-desc h3");
+      const descGrid = document.querySelector(".product-description-grid");
+      const specsTable = document.querySelector(".specs-table-modern");
+      const reviewsSummary = document.querySelector(".reviews-summary");
+      const reviewsSection = document.querySelector("#tab-reviews");
+      const relatedGrid = document.querySelector(".related-grid");
+
+      document.title = `${selected.name} | NEXGEAR`;
+      document.querySelector("meta[name='description']")?.setAttribute("content", `${selected.name} - ${selected.description}`);
+      if (title) title.textContent = selected.name;
+      if (kicker) kicker.textContent = `${selected.category} / ${selected.brand}`;
+      if (price) price.textContent = `$${selected.price.toLocaleString("en-US", { minimumFractionDigits: 2 })}`;
+      if (desc) desc.textContent = selected.description;
+      if (breadcrumbCurrent) breadcrumbCurrent.textContent = selected.name;
+      if (badge) badge.textContent = selected.badge;
+      if (image) {
+        image.src = selected.image;
+        image.alt = `${selected.name} product preview`;
+      }
+      if (addButton) {
+        addButton.dataset.name = selected.name;
+        addButton.dataset.price = selected.price;
+      }
+      if (benefits) {
+        benefits.innerHTML = selected.benefits.map((item) => `<span>${item}</span>`).join("");
+      }
+      if (quickSpecs) {
+        quickSpecs.innerHTML = selected.specs.slice(0, 4).map(([label, value]) => `
+          <div class="spec-item">
+            <span class="icon icon-sm">
+              <svg viewBox="0 0 24 24">
+                <rect x="4" y="4" width="16" height="16" rx="3"/>
+                <path d="M8 12h8"/>
+                <path d="M12 8v8"/>
+              </svg>
+            </span>
+            <strong>${label}: ${value}</strong>
+          </div>
+        `).join("");
+      }
+      if (variantLabel) {
+        variantLabel.textContent = selected.category.includes("Laptop") ? "Warna" : "Varian";
+      }
+      if (thumbList) {
+        thumbList.hidden = true;
+      }
+      if (descTitle) descTitle.textContent = `Tentang ${selected.name}`;
+      if (descGrid) {
+        descGrid.innerHTML = [
+          `${selected.name} dipilih untuk pengguna yang membutuhkan ${selected.category.toLowerCase()} dengan kualitas terpercaya dari ${selected.brand}.`,
+          selected.description,
+          "Produk ini cocok untuk upgrade setup gaming, streaming, produktivitas harian, atau build PC yang lebih rapi dan responsif."
+        ].map((text) => `<p>${text}</p>`).join("");
+      }
+      if (specsTable) {
+        specsTable.innerHTML = selected.specs.map(([label, value]) => `<tr><td>${label}</td><td>${value}</td></tr>`).join("");
+      }
+      renderProductReviews(selected, reviewsSummary, reviewsSection);
+      renderRelatedProducts(selectedKey, selected, relatedGrid);
+    }
+
+    function renderProductReviews(product, summary, section) {
+      if (summary) {
+        summary.innerHTML = `
+          <div>
+            <p class="product-section-kicker">Customer signal</p>
+            <h3>4.2/5 dari 128 ulasan</h3>
+          </div>
+          <p>Pembeli paling sering menyorot ${product.category.toLowerCase()}, kualitas ${product.brand}, dan value produk ini untuk setup gaming mereka.</p>
+        `;
+      }
+
+      if (!section) return;
+      section.querySelectorAll(".review-card").forEach((card) => card.remove());
+
+      const reviews = [
+        {
+          name: "Ahmad R.",
+          initials: "AR",
+          date: "12 Mei 2026",
+          body: `${product.name} terasa solid. ${product.benefits[0]} jadi nilai yang paling kerasa saat dipakai harian.`
+        },
+        {
+          name: "Dina S.",
+          initials: "DS",
+          date: "8 Mei 2026",
+          body: `Produk dari ${product.brand} ini sesuai ekspektasi. Packaging aman, performa stabil, dan cocok untuk setup gaming.`
+        },
+        {
+          name: "Bimo K.",
+          initials: "BK",
+          date: "1 Mei 2026",
+          body: `Worth it untuk kategori ${product.category.toLowerCase()}. Deskripsi produk jelas dan barangnya datang sesuai estimasi.`
+        }
+      ];
+
+      reviews.forEach((review, index) => {
+        const card = document.createElement("div");
+        card.className = "review-card review-item";
+        card.innerHTML = `
+          <div class="review-header">
+            <div class="review-avatar">${review.initials}</div>
+            <div class="review-meta">
+              <strong>${review.name}</strong>
+              <span class="review-date">${review.date}</span>
+              <span class="verified-badge">Verified Buyer</span>
+            </div>
+            <div class="review-stars" aria-label="${index === 1 ? "4" : "5"} dari 5">
+              ${renderStars(index === 1 ? 4 : 5)}
+            </div>
+          </div>
+          <p class="review-body">${review.body}</p>
+        `;
+        section.appendChild(card);
+      });
+    }
+
+    function renderStars(count) {
+      return Array.from({ length: 5 }, (_, index) => {
+        const filled = index < count;
+        return `<span class="icon icon-sm ${filled ? "star-filled" : "star-empty"}"><svg viewBox="0 0 24 24" ${filled ? 'fill="currentColor" stroke="none"' : ""}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>`;
+      }).join("");
+    }
+
+    function renderRelatedProducts(selectedKey, selected, grid) {
+      if (!grid) return;
+
+      const related = Object.entries(productCatalog)
+        .filter(([key]) => key !== selectedKey)
+        .sort(([, a], [, b]) => {
+          const aScore = a.category === selected.category ? 0 : 1;
+          const bScore = b.category === selected.category ? 0 : 1;
+          return aScore - bScore;
+        })
+        .slice(0, 3);
+
+      grid.innerHTML = related.map(([key, item]) => `
+        <article class="related-card related-product-card">
+          <a class="related-product-link" href="product.html?product=${encodeURIComponent(key)}" aria-label="Lihat detail ${item.name}">
+            <div class="related-img related-product-media">
+              <img class="related-product-photo" src="${item.image}" alt="${item.name}" loading="lazy">
+            </div>
+            <div class="related-body related-product-body">
+              <h4>${item.name}</h4>
+              <p>${item.category} dari ${item.brand}</p>
+              <div class="related-bottom">
+                <span class="price related-product-price">$${item.price.toLocaleString("en-US", { minimumFractionDigits: 2 })}</span>
+                <span class="btn btn-outline related-product-action">Lihat Detail</span>
+              </div>
+            </div>
+          </a>
+        </article>
+      `).join("");
+    }
+
+    renderSelectedProduct();
+
     // Tab switching
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {

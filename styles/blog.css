@@ -238,3 +238,143 @@
   font-size: 0.85rem;
   color: var(--text-muted);
 }
+
+/* Premium journal visual pass */
+body:has(.blog-header),
+body:has(.article-detail-header) {
+  background:
+    radial-gradient(circle at 16% 8%, rgba(0, 212, 255, 0.11), transparent 30%),
+    radial-gradient(circle at 82% 12%, rgba(255, 62, 162, 0.07), transparent 28%),
+    linear-gradient(180deg, #0a0f18 0%, #070a10 58%, #080b10 100%);
+}
+
+.blog-header {
+  max-width: 900px;
+  margin-inline: auto;
+  padding: 18px 0 8px;
+}
+
+.blog-header h1,
+.article-detail-header h1 {
+  letter-spacing: 0;
+  text-shadow: 0 0 30px rgba(0, 212, 255, 0.14);
+}
+
+.blog-header p {
+  transform: none;
+  color: rgba(224, 228, 240, 0.7);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.7;
+}
+
+.blog-header .sketch-input {
+  min-height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(6, 10, 17, 0.72);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.blog-header .sketch-input:hover,
+.blog-header .sketch-input:focus {
+  border-color: rgba(0, 212, 255, 0.34);
+  background: rgba(9, 14, 23, 0.92);
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.08);
+}
+
+.tag-chip {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(224, 228, 240, 0.68);
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.tag-chip:hover {
+  transform: translateY(-1px);
+  border-color: rgba(0, 212, 255, 0.3);
+  background: rgba(0, 212, 255, 0.08);
+}
+
+.featured-article .sketch-card,
+.article-grid .sketch-card-alt,
+.author-box,
+.comment,
+.comments-section #guest-comment-msg {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025)),
+    rgba(15, 19, 30, 0.88);
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.24);
+  transform: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.featured-article .sketch-card:hover,
+.article-grid .sketch-card-alt:hover,
+.comment:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 212, 255, 0.24);
+  background:
+    linear-gradient(135deg, rgba(0, 212, 255, 0.055), rgba(255, 255, 255, 0.025)),
+    rgba(17, 22, 34, 0.94);
+  box-shadow: 0 22px 62px rgba(0, 0, 0, 0.32);
+}
+
+.featured-image,
+.inline-sketch {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(0, 212, 255, 0.16), transparent 50%),
+    rgba(7, 10, 17, 0.72);
+  transform: none;
+}
+
+.article-meta {
+  color: rgba(224, 228, 240, 0.56);
+  letter-spacing: 0.04em;
+}
+
+.article-excerpt,
+.article-content,
+.author-info p,
+.comment-date {
+  color: rgba(224, 228, 240, 0.72);
+}
+
+.article-content blockquote {
+  border-left: 3px solid rgba(255, 62, 162, 0.58);
+  background: rgba(255, 62, 162, 0.055);
+  border-radius: 12px;
+}
+
+.author-avatar {
+  border: 1px solid rgba(0, 212, 255, 0.32);
+  background: rgba(0, 212, 255, 0.08);
+}
+
+.comment-form textarea {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(6, 10, 17, 0.72);
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.comment-form textarea:hover,
+.comment-form textarea:focus {
+  border-color: rgba(0, 212, 255, 0.34);
+  background: rgba(9, 14, 23, 0.92);
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tag-chip,
+  .blog-header .sketch-input,
+  .featured-article .sketch-card,
+  .article-grid .sketch-card-alt,
+  .comment,
+  .comment-form textarea {
+    transition: none;
+  }
+}

@@ -243,3 +243,105 @@
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .team-grid, .values-grid { grid-template-columns: 1fr; }
 }
+
+/* Premium about visual pass */
+body:has(.about-hero) {
+  background:
+    radial-gradient(circle at 18% 10%, rgba(0, 212, 255, 0.12), transparent 30%),
+    radial-gradient(circle at 78% 18%, rgba(255, 62, 162, 0.07), transparent 28%),
+    linear-gradient(180deg, #0a0f18 0%, #070a10 60%, #080b10 100%);
+}
+
+.about-hero {
+  padding-top: 118px;
+  gap: clamp(28px, 5vw, 56px);
+}
+
+.about-illustration {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(0, 212, 255, 0.16), transparent 52%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02)),
+    rgba(15, 19, 30, 0.9);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+}
+
+.about-story h2,
+.timeline-section h2,
+.team-section h2,
+.values-section h2 {
+  letter-spacing: 0;
+  text-shadow: 0 0 28px rgba(0, 212, 255, 0.12);
+}
+
+.about-story p {
+  color: rgba(224, 228, 240, 0.72);
+}
+
+.stat-card,
+.timeline-item,
+.team-card,
+.value-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025)),
+    rgba(15, 19, 30, 0.88);
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.24);
+  transform: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.stat-card:hover,
+.timeline-item:hover,
+.team-card:hover,
+.value-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 212, 255, 0.24);
+  background:
+    linear-gradient(135deg, rgba(0, 212, 255, 0.055), rgba(255, 255, 255, 0.025)),
+    rgba(17, 22, 34, 0.94);
+  box-shadow: 0 22px 62px rgba(0, 0, 0, 0.32);
+}
+
+.stat-card .stat-number {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.stat-card .stat-label,
+.timeline-item p,
+.team-card p,
+.value-card p {
+  color: rgba(224, 228, 240, 0.68);
+}
+
+.timeline::before {
+  border-left: 1px solid rgba(0, 212, 255, 0.22);
+}
+
+.timeline-item::before {
+  border: 1px solid rgba(0, 212, 255, 0.42);
+  background: #071019;
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.08);
+}
+
+.team-avatar {
+  border: 1px solid rgba(0, 212, 255, 0.32);
+  background: rgba(0, 212, 255, 0.08);
+}
+
+@media (max-width: 900px) {
+  .about-hero {
+    padding-top: 108px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-card,
+  .timeline-item,
+  .team-card,
+  .value-card {
+    transition: none;
+  }
+}

@@ -237,3 +237,98 @@
     transition: none;
   }
 }
+
+/* Premium success visual pass */
+.success-page {
+  background:
+    radial-gradient(circle at 50% 8%, rgba(0, 255, 135, 0.12), transparent 28%),
+    radial-gradient(circle at 16% 20%, rgba(0, 212, 255, 0.1), transparent 30%),
+    radial-gradient(circle at 86% 16%, rgba(255, 62, 162, 0.065), transparent 28%),
+    linear-gradient(180deg, #0a0f18 0%, #070a10 60%, #080b10 100%);
+}
+
+.success-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.06), transparent 42%),
+    rgba(15, 19, 30, 0.92);
+  box-shadow: 0 26px 76px rgba(0, 0, 0, 0.38), 0 0 46px rgba(0, 255, 135, 0.07);
+}
+
+.success-confirmation-icon {
+  border: 1px solid rgba(0, 255, 135, 0.28);
+  background: rgba(0, 255, 135, 0.09);
+  box-shadow: 0 0 0 8px rgba(0, 255, 135, 0.035), 0 0 34px rgba(0, 255, 135, 0.16);
+}
+
+.success-title {
+  letter-spacing: 0;
+  text-shadow: 0 0 30px rgba(0, 255, 135, 0.12);
+}
+
+.success-copy {
+  color: rgba(224, 228, 240, 0.72);
+}
+
+.success-order-box,
+.success-step {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.success-step {
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.success-step:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 212, 255, 0.24);
+  background: rgba(0, 212, 255, 0.055);
+}
+
+.success-step-icon {
+  border: 1px solid rgba(0, 212, 255, 0.24);
+  background: rgba(0, 212, 255, 0.08);
+}
+
+.success-primary-cta,
+.success-secondary-cta {
+  border-radius: 12px;
+  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.success-primary-cta {
+  border: 1px solid rgba(0, 212, 255, 0.44);
+  background: linear-gradient(135deg, var(--color-primary), #34e6ff);
+  color: #041019;
+  box-shadow: 0 12px 34px rgba(0, 212, 255, 0.2);
+}
+
+.success-secondary-cta {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.success-primary-cta:hover,
+.success-secondary-cta:hover {
+  transform: translateY(-1px);
+}
+
+.success-primary-cta:hover {
+  filter: saturate(1.05);
+  box-shadow: 0 16px 42px rgba(0, 212, 255, 0.28);
+}
+
+.success-secondary-cta:hover {
+  border-color: rgba(0, 212, 255, 0.28);
+  background: rgba(0, 212, 255, 0.07);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .success-step,
+  .success-primary-cta,
+  .success-secondary-cta {
+    transition: none;
+  }
+}
