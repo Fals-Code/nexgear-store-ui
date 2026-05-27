@@ -165,7 +165,7 @@
           obs.unobserve(entry.target);
         });
       },
-      { threshold: 0.12 },
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
     );
 
     els.forEach((el) => observer.observe(el));
@@ -243,13 +243,55 @@
   }
 
   /* ── Search & Filter Logic (catalog) ── */
+  function initGearFinder() {
+    const options = document.querySelectorAll(".gear-finder__option");
+    const cta = document.getElementById("gearFinderCta");
+    if (!options.length || !cta) return;
+
+    const ctaLabels = {
+      gaming: "Cari Gear Gaming",
+      productivity: "Cari Gear Produktivitas",
+      streaming: "Cari Gear Streaming",
+      budget: "Cari Budget Setup",
+    };
+
+    options.forEach((option) => {
+      option.addEventListener("click", () => {
+        const setup = option.dataset.setup || "gaming";
+
+        options.forEach((item) => {
+          const isActive = item === option;
+          item.classList.toggle("active", isActive);
+          item.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
+
+        cta.href = `catalog.html?setup=${encodeURIComponent(setup)}`;
+        cta.textContent = ctaLabels[setup] || "Jelajahi Catalog";
+      });
+    });
+  }
+
   function initSearch() {
     const bar = document.querySelector(".search-bar");
     const cards = document.querySelectorAll(".product-card, .related-card");
     const range = document.querySelector(".price-range");
+    const categoryButtons = document.querySelectorAll(
+      ".category-pills .tag-chip",
+    );
     if (!cards.length) return;
 
     const productCards = document.querySelectorAll(".product-card");
+    const setupPresets = {
+      gaming: { category: "all", search: "", maxPrice: null },
+      productivity: { category: "peripherals", search: "", maxPrice: null },
+      streaming: { category: "audio", search: "", maxPrice: null },
+      budget: { category: "all", search: "", maxPrice: 250 },
+    };
+    const params = new URLSearchParams(window.location.search);
+    const setup = params.get("setup");
+    const categoryParam = params.get("category");
+    const preset = setupPresets[setup] || null;
+    let activeCategory = categoryParam || preset?.category || "all";
 
     function removeNoResults() {
       const empty = document.getElementById("no-results");
@@ -292,6 +334,10 @@
             label.textContent = `$${parseInt(range.value).toLocaleString()}+`;
           }
         }
+        activeCategory = "all";
+        categoryButtons.forEach((button) => {
+          button.classList.toggle("active", button.dataset.category === "all");
+        });
         filterProducts();
       });
 
@@ -319,18 +365,48 @@
         }
 
         const matchSearch = text.includes(term);
+        const category = card.dataset.category || "all";
+        const matchCategory =
+          activeCategory === "all" || category === activeCategory;
         // If price is 0, we assume it's valid to avoid hiding things without a price tag
         const matchPrice = price === 0 || price <= maxPrice;
 
-        card.style.display = matchSearch && matchPrice ? "" : "none";
+        card.style.display =
+          matchSearch && matchCategory && matchPrice ? "" : "none";
       });
 
       renderNoResults();
     }
 
+    function setActiveCategory(category) {
+      activeCategory = category || "all";
+      categoryButtons.forEach((button) => {
+        button.classList.toggle(
+          "active",
+          button.dataset.category === activeCategory,
+        );
+      });
+      filterProducts();
+    }
+
+    if (preset) {
+      if (bar && preset.search) bar.value = preset.search;
+      if (range && preset.maxPrice) {
+        range.value = preset.maxPrice;
+        const label = document.querySelector(".price-label-max");
+        if (label) label.textContent = `$${preset.maxPrice.toLocaleString()}+`;
+      }
+    }
+
+    categoryButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setActiveCategory(button.dataset.category || "all");
+      });
+    });
+
     if (bar) bar.addEventListener("input", filterProducts);
     if (range) range.addEventListener("input", filterProducts);
-    filterProducts();
+    setActiveCategory(activeCategory);
   }
 
   /* ── Add-to-Cart Buttons ── */
@@ -624,7 +700,7 @@
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const items = document.querySelectorAll(
-      ".hero-eyebrow, .hero-title, .hero-trusted, .hero-actions",
+      ".hero-eyebrow, .hero-title, .gear-finder, .hero-trusted, .hero-actions",
     );
 
     items.forEach((el, i) => {
@@ -649,6 +725,7 @@
     initCountUp();
     initParallax();
     initPriceFilter();
+    initGearFinder();
     initSearch();
     initAddToCart();
     setActiveNav();

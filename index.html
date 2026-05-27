@@ -119,7 +119,8 @@
     </nav>
 
     <main>
-      <div class="ambient-glow" aria-hidden="true"></div>
+      <div class="bg-scanline" aria-hidden="true"></div>
+      <div class="bg-grain" aria-hidden="true"></div>
       <header class="landing-hero">
         <div class="hero-shell">
           <div class="hero-frame">
@@ -132,9 +133,50 @@
                 Temukan gear gaming pilihan untuk performa, produktivitas, dan
                 pengalaman bermain yang lebih maksimal.
               </p>
+              <div class="gear-finder" aria-label="Quick gear finder">
+                <p class="gear-finder__label">Saya butuh gear untuk</p>
+                <div class="gear-finder__options">
+                  <button
+                    type="button"
+                    class="gear-finder__option active"
+                    data-setup="gaming"
+                    aria-pressed="true"
+                  >
+                    Gaming
+                  </button>
+                  <button
+                    type="button"
+                    class="gear-finder__option"
+                    data-setup="productivity"
+                    aria-pressed="false"
+                  >
+                    Productivity
+                  </button>
+                  <button
+                    type="button"
+                    class="gear-finder__option"
+                    data-setup="streaming"
+                    aria-pressed="false"
+                  >
+                    Streaming
+                  </button>
+                  <button
+                    type="button"
+                    class="gear-finder__option"
+                    data-setup="budget"
+                    aria-pressed="false"
+                  >
+                    Budget Setup
+                  </button>
+                </div>
+              </div>
               <div class="hero-actions">
-                <a href="catalog.html" class="btn btn-primary hero-primary-cta">
-                  Jelajahi Catalog
+                <a
+                  href="catalog.html?setup=gaming"
+                  class="btn btn-primary hero-primary-cta"
+                  id="gearFinderCta"
+                >
+                  Cari Gear Gaming
                 </a>
                 <a href="#products" class="btn btn-outline hero-secondary-cta">
                   Lihat Gear Unggulan
@@ -170,6 +212,20 @@
                 </svg>
                 Pro Build
               </span>
+            </div>
+            <div class="hero-flow-lines" aria-hidden="true">
+              <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="flowGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#00d2ff" stop-opacity="0" />
+                    <stop offset="40%" stop-color="#00d2ff" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#2563eb" stop-opacity="0.3" />
+                  </linearGradient>
+                </defs>
+                <path class="flow-line flow-line--1" d="M-100 300 C200 150, 500 450, 800 200 S1100 350, 1400 250" />
+                <path class="flow-line flow-line--2" d="M-100 400 C150 250, 400 500, 700 280 S1000 420, 1400 320" />
+                <path class="flow-line flow-line--3" d="M-100 180 C250 80, 600 380, 900 160 S1200 300, 1400 200" />
+              </svg>
             </div>
           </div>
         </div>
@@ -593,6 +649,15 @@
           </div>
         </aside>
       </section>
+      <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+        <filter id="noise">
+          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+          <feColorMatrix type="saturate" values="0" />
+          <feBlend in="SourceGraphic" mode="overlay" result="blend" />
+          <feComposite in="blend" in2="SourceGraphic" operator="in" />
+        </filter>
+      </svg>
+      <div class="pre-footer-fade" aria-hidden="true"></div>
     </main>
 
     <footer id="footer">
@@ -675,6 +740,16 @@
       </div>
       <div class="footer-bottom container">
         <p>&copy; 2026 NEXGEAR. Semua hak cipta dilindungi.</p>
+        <p
+          style="
+            font-family: var(--font-gaming);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.2);
+          "
+        >
+          BUILT WITH PASSION
+        </p>
       </div>
     </footer>
 
