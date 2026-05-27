@@ -203,13 +203,13 @@ nav {
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: var(--neu-bg);
-  border-bottom: none;
+  background: rgba(20, 23, 30, 0.86);
+  border-bottom: var(--border-subtle);
   box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.35),
-    0 1px 0 rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+    0 14px 34px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   transition:
     height 0.2s ease,
     box-shadow 0.2s ease;
@@ -217,11 +217,10 @@ nav {
 
 nav.scrolled {
   height: 58px;
-  background: rgba(15, 18, 30, 0.95);
+  background: rgba(13, 15, 20, 0.94);
   box-shadow:
-    0 6px 24px rgba(0, 0, 0, 0.5),
-    0 1px 0 rgba(255, 255, 255, 0.06),
-    0 0 0 1px rgba(0, 210, 255, 0.04);
+    0 16px 36px rgba(0, 0, 0, 0.32),
+    inset 0 -1px 0 rgba(0, 210, 255, 0.08);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -255,11 +254,10 @@ nav.scrolled {
   align-items: center;
   gap: 6px;
   padding: 9px 20px;
-  border-radius: 12px;
-  background: var(--neu-bg, #1a1f2e);
-  box-shadow:
-    4px 4px 10px rgba(0, 0, 0, 0.4),
-    -4px -4px 10px rgba(255, 255, 255, 0.05);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  box-shadow: none;
   color: var(--color-text-muted);
   font-family: var(--font-body);
   font-size: 0.82rem;
@@ -269,7 +267,8 @@ nav.scrolled {
   white-space: nowrap;
   position: relative;
   transition:
-    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
     color 0.2s ease;
 }
 
@@ -279,17 +278,16 @@ nav.scrolled {
 
 .nav-links a:hover {
   color: var(--color-primary);
-  box-shadow:
-    6px 6px 14px rgba(0, 0, 0, 0.45),
-    -6px -6px 14px rgba(255, 255, 255, 0.06);
+  border-color: rgba(0, 210, 255, 0.16);
+  background: var(--color-primary-bg);
 }
 
 .nav-links a.active {
   color: var(--color-primary);
   font-weight: 600;
-  box-shadow:
-    inset 3px 3px 7px rgba(0, 0, 0, 0.4),
-    inset -3px -3px 7px rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 210, 255, 0.22);
+  background: rgba(0, 210, 255, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(0, 210, 255, 0.06);
 }
 
 .nav-links a:focus-visible {
@@ -317,35 +315,34 @@ nav.minimal .nav-links {
 
 .nav-actions .btn-outline {
   padding: 8px 18px;
-  border: none;
-  border-radius: var(--neu-radius);
-  background: var(--neu-bg);
-  box-shadow: var(--neu-raised);
+  border: 1px solid rgba(0, 210, 255, 0.2);
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-bg);
+  box-shadow: none;
   color: var(--color-primary);
   font-size: 0.75rem;
   transition:
-    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
     color 0.2s ease;
 }
 
 .nav-actions .btn-outline:hover {
-  box-shadow:
-    6px 6px 14px var(--neu-shadow-dark),
-    -6px -6px 14px var(--neu-shadow-light);
+  border-color: rgba(0, 210, 255, 0.34);
+  background: var(--color-primary-bg-hover);
 }
 
 .nav-actions .btn-outline:active {
-  box-shadow: var(--neu-inset);
   color: var(--color-primary-light);
 }
 
 .cart-btn {
   width: 42px;
   height: 42px;
-  border: none;
-  border-radius: var(--neu-radius);
-  background: var(--neu-bg);
-  box-shadow: var(--neu-raised);
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+  background: var(--bg-glass);
+  box-shadow: none;
   color: var(--color-text-muted);
   position: relative;
   display: flex;
@@ -353,19 +350,19 @@ nav.minimal .nav-links {
   justify-content: center;
   cursor: pointer;
   transition:
-    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
     color 0.2s ease;
 }
 
 .cart-btn:hover {
   color: var(--color-primary);
-  box-shadow:
-    6px 6px 14px var(--neu-shadow-dark),
-    -6px -6px 14px var(--neu-shadow-light);
+  border-color: rgba(0, 210, 255, 0.24);
+  background: var(--color-primary-bg);
 }
 
 .cart-btn:active {
-  box-shadow: var(--neu-inset);
+  background: var(--color-active-overlay);
 }
 
 .cart-btn.cart-empty::after {
@@ -425,9 +422,10 @@ nav.minimal .nav-links {
   display: none;
   width: 42px;
   height: 42px;
-  border-radius: var(--neu-radius);
-  background: var(--neu-bg);
-  box-shadow: var(--neu-raised);
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+  background: var(--bg-glass);
+  box-shadow: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -439,7 +437,7 @@ nav.minimal .nav-links {
 }
 
 .hamburger:active {
-  box-shadow: var(--neu-inset);
+  background: var(--color-active-overlay);
 }
 
 .hamburger span {
@@ -789,11 +787,10 @@ textarea.form-input:focus {
     flex-direction: column;
     gap: 8px;
     padding: 16px;
-    border-radius: 18px;
-    background: var(--neu-bg);
-    box-shadow:
-      8px 8px 20px var(--neu-shadow-dark),
-      -8px -8px 20px var(--neu-shadow-light);
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+    background: rgba(20, 23, 30, 0.98);
+    box-shadow: var(--shadow-lg);
     z-index: 999;
   }
 
@@ -876,7 +873,7 @@ textarea.form-input:focus {
   width: 100%;
   max-width: 360px;
   height: 100vh;
-  background: var(--color-bg-bg-surface);
+  background: var(--color-bg-surface);
   border-left: var(--border-default);
   z-index: 2001;
   transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -898,7 +895,7 @@ textarea.form-input:focus {
 }
 
 .mini-cart-header h3 {
-  font-family: var(--font-heading);
+  font-family: var(--font-gaming);
   font-size: 1.25rem;
   color: var(--color-primary);
   text-transform: none;

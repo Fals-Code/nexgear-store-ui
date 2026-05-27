@@ -254,7 +254,7 @@
       gaming: "Cari Gear Gaming",
       productivity: "Cari Gear Produktivitas",
       streaming: "Cari Gear Streaming",
-      budget: "Cari Budget Setup",
+      budget: "Cari Setup Hemat",
     };
 
     options.forEach((option) => {
@@ -290,7 +290,7 @@
         href: "catalog.html?setup=gaming",
       },
       creator: {
-        name: "Creator Desk",
+        name: "Meja Kreator",
         copy:
           "Display tajam, GPU kuat, dan headset jernih untuk edit, stream, dan meeting harian.",
         items: ["Alienware 27", "RTX 4070 Ti Super", "Arctis Nova 7"],
@@ -369,7 +369,6 @@
     function closeModal() {
       modal.classList.remove("open");
       modal.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
       requestAnimationFrame(() => {
         document.querySelectorAll(".reveal:not(.active)").forEach((element) => {
           const rect = element.getBoundingClientRect();
@@ -389,7 +388,6 @@
         link.textContent = data.label;
         modal.classList.add("open");
         modal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
         closeBtn.focus();
       });
     });
@@ -878,27 +876,6 @@
     window.updateCartEmptyGuidance();
   }
 
-  function initHeroEntrance() {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const items = document.querySelectorAll(
-      ".hero-eyebrow, .hero-title, .gear-finder, .hero-trusted, .hero-actions",
-    );
-
-    items.forEach((el, i) => {
-      el.style.opacity = "0";
-      el.style.transform = "translateY(20px)";
-      el.style.transition = `opacity 0.7s ease ${i * 0.12}s, transform 0.7s ease ${i * 0.12}s`;
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          el.style.opacity = "1";
-          el.style.transform = "translateY(0)";
-        });
-      });
-    });
-  }
-
   function init() {
     document.body.classList.add("loaded");
     initNavbar();
@@ -920,7 +897,6 @@
     initCartEmptyGuidance();
     Cart.updateBadge();
     Auth.updateUI();
-    initHeroEntrance();
   }
 
   if (document.readyState === "loading") {
