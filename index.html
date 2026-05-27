@@ -235,7 +235,7 @@
         aria-label="Keunggulan NEXGEAR"
       >
         <div class="trust-strip__inner">
-          <article class="trust-item">
+          <button class="trust-item trust-action" type="button" data-trust="stock">
             <span class="trust-icon" aria-hidden="true">01</span>
             <div>
               <h2 class="trust-title">Ready Stock</h2>
@@ -243,8 +243,8 @@
                 Gear pilihan tersedia untuk setup yang siap upgrade.
               </p>
             </div>
-          </article>
-          <article class="trust-item">
+          </button>
+          <button class="trust-item trust-action" type="button" data-trust="warranty">
             <span class="trust-icon" aria-hidden="true">02</span>
             <div>
               <h2 class="trust-title">Garansi Resmi</h2>
@@ -252,8 +252,8 @@
                 Produk kurasi dengan dukungan garansi brand resmi.
               </p>
             </div>
-          </article>
-          <article class="trust-item">
+          </button>
+          <button class="trust-item trust-action" type="button" data-trust="checkout">
             <span class="trust-icon" aria-hidden="true">03</span>
             <div>
               <h2 class="trust-title">Secure Checkout</h2>
@@ -261,8 +261,8 @@
                 Alur checkout dibuat jelas, aman, dan mudah dipahami.
               </p>
             </div>
-          </article>
-          <article class="trust-item">
+          </button>
+          <button class="trust-item trust-action" type="button" data-trust="delivery">
             <span class="trust-icon" aria-hidden="true">04</span>
             <div>
               <h2 class="trust-title">Fast Delivery</h2>
@@ -270,9 +270,35 @@
                 Pengiriman cepat untuk kebutuhan gaming dan produktivitas.
               </p>
             </div>
-          </article>
+          </button>
         </div>
       </section>
+      <div
+        class="trust-modal"
+        id="trustModal"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="trustModalTitle"
+      >
+        <div class="trust-modal__panel">
+          <button class="trust-modal__close" type="button" aria-label="Tutup detail">
+            <span class="icon icon-sm"
+              ><svg viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" /></svg
+            ></span>
+          </button>
+          <p class="section-kicker">NEXGEAR Assurance</p>
+          <h2 id="trustModalTitle">Ready Stock</h2>
+          <p id="trustModalCopy">
+            Produk utama siap diproses dari katalog pilihan NEXGEAR.
+          </p>
+          <a id="trustModalLink" href="catalog.html" class="trust-modal__link"
+            >Lanjutkan</a
+          >
+        </div>
+      </div>
 
       <section class="featured-categories container reveal">
         <div class="section-header">
@@ -410,6 +436,75 @@
         </div>
       </section>
 
+      <section class="setup-builder container reveal" aria-labelledby="setupBuilderTitle">
+        <div class="section-header section-header--split">
+          <div>
+            <p class="section-step">02 Build Your Setup</p>
+            <p class="section-kicker">Setup Flow</p>
+            <h2 class="section-title" id="setupBuilderTitle">
+              Rakit Setup dari Kebutuhan Utama
+            </h2>
+          </div>
+          <p class="section-copy">
+            Pilih fokus setup, lalu lihat kombinasi gear yang paling masuk akal
+            sebelum masuk katalog.
+          </p>
+        </div>
+        <div class="setup-builder__grid">
+          <div class="setup-builder__steps" aria-label="Pilih tipe setup">
+            <button
+              class="setup-step active"
+              type="button"
+              data-build="competitive"
+              aria-pressed="true"
+            >
+              <span>01</span>
+              <strong>Competitive</strong>
+              <small>Input cepat dan FPS stabil</small>
+            </button>
+            <button
+              class="setup-step"
+              type="button"
+              data-build="creator"
+              aria-pressed="false"
+            >
+              <span>02</span>
+              <strong>Creator Desk</strong>
+              <small>Display, audio, dan multitasking</small>
+            </button>
+            <button
+              class="setup-step"
+              type="button"
+              data-build="balanced"
+              aria-pressed="false"
+            >
+              <span>03</span>
+              <strong>Balanced Starter</strong>
+              <small>Upgrade rapi tanpa overbudget</small>
+            </button>
+          </div>
+          <div class="setup-builder__recommendation" aria-live="polite">
+            <p class="section-kicker" id="setupBuilderKicker">Recommended Stack</p>
+            <h3 id="setupBuilderName">Competitive Core</h3>
+            <p id="setupBuilderCopy">
+              Keyboard rapid trigger, monitor refresh tinggi, dan audio ringan
+              untuk main kompetitif.
+            </p>
+            <div class="setup-builder__items" id="setupBuilderItems">
+              <span>Huntsman V3 Pro</span>
+              <span>Alienware 27</span>
+              <span>Arctis Nova 7</span>
+            </div>
+            <a
+              href="catalog.html?setup=gaming"
+              class="btn btn-primary setup-builder__cta"
+              id="setupBuilderCta"
+              >Lihat Rekomendasi</a
+            >
+          </div>
+        </div>
+      </section>
+
       <section id="products" class="featured-products container reveal">
         <div class="featured-frame">
           <div class="section-header section-header--split">
@@ -441,6 +536,11 @@
                   Analog optical switch, rapid trigger, dan build
                   tournament-ready untuk kontrol yang lebih presisi.
                 </p>
+                <div class="featured-card-quick-specs">
+                  <span>Rapid Trigger</span>
+                  <span>Analog Optical</span>
+                  <span>Wrist-rest Ready</span>
+                </div>
                 <div class="featured-card-footer">
                   <span class="featured-card-price">$249</span>
                   <a
@@ -465,6 +565,11 @@
                 <div class="featured-card-body">
                   <h3 class="featured-card-title">ALIENWARE 27</h3>
                   <p class="featured-card-spec">QHD fast refresh display.</p>
+                  <div class="featured-card-quick-specs">
+                    <span>280Hz</span>
+                    <span>1ms IPS</span>
+                    <span>QHD</span>
+                  </div>
                   <div class="featured-card-footer">
                     <span class="featured-card-price">$599</span>
                     <a
@@ -487,6 +592,11 @@
                 <div class="featured-card-body">
                   <h3 class="featured-card-title">RTX 4070 TI SUPER</h3>
                   <p class="featured-card-spec">High frame-rate gaming GPU.</p>
+                  <div class="featured-card-quick-specs">
+                    <span>16GB GDDR6X</span>
+                    <span>Ray Tracing</span>
+                    <span>DLSS Ready</span>
+                  </div>
                   <div class="featured-card-footer">
                     <span class="featured-card-price">$799</span>
                     <a
@@ -509,6 +619,11 @@
                 <div class="featured-card-body">
                   <h3 class="featured-card-title">ARCTIS NOVA 7</h3>
                   <p class="featured-card-spec">Wireless audio ringan.</p>
+                  <div class="featured-card-quick-specs">
+                    <span>Wireless</span>
+                    <span>Multi-platform</span>
+                    <span>Clear Mic</span>
+                  </div>
                   <div class="featured-card-footer">
                     <span class="featured-card-price">$179</span>
                     <a
@@ -527,6 +642,89 @@
           </div>
         </div>
       </section>
+
+      <section class="setup-bundles container reveal" aria-labelledby="setupBundlesTitle">
+        <div class="section-header">
+          <p class="section-step">03 Setup Populer</p>
+          <p class="section-kicker">Popular This Week</p>
+          <h2 class="section-title" id="setupBundlesTitle">
+            Bundle Setup yang Sering Dipilih
+          </h2>
+          <p class="section-copy">
+            Kombinasi gear siap pakai untuk tipe setup yang paling sering
+            dibangun pelanggan NEXGEAR.
+          </p>
+        </div>
+        <div class="setup-bundle-grid reveal-children">
+          <article class="setup-bundle-card">
+            <span class="setup-bundle-card__tag">FPS Competitive</span>
+            <h3>Fast Aim Kit</h3>
+            <p>Keyboard rapid trigger, monitor cepat, dan headset wireless.</p>
+            <ul>
+              <li>Huntsman V3 Pro</li>
+              <li>Alienware 27</li>
+              <li>Arctis Nova 7</li>
+            </ul>
+            <div class="setup-bundle-card__footer">
+              <strong>$1,027</strong>
+              <button
+                class="btn btn-primary setup-bundle-add"
+                type="button"
+                data-add-cart
+                data-name="Fast Aim Kit"
+                data-price="1027"
+              >
+                Tambah Bundle
+              </button>
+            </div>
+          </article>
+          <article class="setup-bundle-card">
+            <span class="setup-bundle-card__tag">Creator Desk</span>
+            <h3>Creator Control Kit</h3>
+            <p>Display tajam, audio bersih, dan GPU untuk render harian.</p>
+            <ul>
+              <li>Alienware 27</li>
+              <li>RTX 4070 Ti Super</li>
+              <li>Arctis Nova 7</li>
+            </ul>
+            <div class="setup-bundle-card__footer">
+              <strong>$1,577</strong>
+              <button
+                class="btn btn-primary setup-bundle-add"
+                type="button"
+                data-add-cart
+                data-name="Creator Control Kit"
+                data-price="1577"
+              >
+                Tambah Bundle
+              </button>
+            </div>
+          </article>
+          <article class="setup-bundle-card">
+            <span class="setup-bundle-card__tag">Budget RGB</span>
+            <h3>Starter Upgrade Kit</h3>
+            <p>Mulai dari input dan audio dulu sebelum upgrade komponen besar.</p>
+            <ul>
+              <li>Huntsman V3 Pro</li>
+              <li>Arctis Nova 7</li>
+              <li>Support setup guidance</li>
+            </ul>
+            <div class="setup-bundle-card__footer">
+              <strong>$428</strong>
+              <button
+                class="btn btn-primary setup-bundle-add"
+                type="button"
+                data-add-cart
+                data-name="Starter Upgrade Kit"
+                data-price="428"
+              >
+                Tambah Bundle
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section class="why-nexgear container reveal">
         <div class="why-frame">
           <div class="why-statement why-content">

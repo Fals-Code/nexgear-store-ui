@@ -65,6 +65,8 @@
         badge.textContent = c > 0 ? c : "";
         badge.dataset.count = c;
       });
+      if (window.updateCartEmptyGuidance) window.updateCartEmptyGuidance();
+      if (window.updateStickyCartPreview) window.updateStickyCartPreview();
     },
   };
 
@@ -165,7 +167,7 @@
           obs.unobserve(entry.target);
         });
       },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.08, rootMargin: "0px 0px 120px 0px" },
     );
 
     els.forEach((el) => observer.observe(el));
@@ -268,6 +270,138 @@
         cta.href = `catalog.html?setup=${encodeURIComponent(setup)}`;
         cta.textContent = ctaLabels[setup] || "Jelajahi Catalog";
       });
+    });
+  }
+
+  function initSetupBuilder() {
+    const steps = document.querySelectorAll(".setup-step");
+    const name = document.getElementById("setupBuilderName");
+    const copy = document.getElementById("setupBuilderCopy");
+    const items = document.getElementById("setupBuilderItems");
+    const cta = document.getElementById("setupBuilderCta");
+    if (!steps.length || !name || !copy || !items || !cta) return;
+
+    const builds = {
+      competitive: {
+        name: "Competitive Core",
+        copy:
+          "Keyboard rapid trigger, monitor refresh tinggi, dan audio ringan untuk main kompetitif.",
+        items: ["Huntsman V3 Pro", "Alienware 27", "Arctis Nova 7"],
+        href: "catalog.html?setup=gaming",
+      },
+      creator: {
+        name: "Creator Desk",
+        copy:
+          "Display tajam, GPU kuat, dan headset jernih untuk edit, stream, dan meeting harian.",
+        items: ["Alienware 27", "RTX 4070 Ti Super", "Arctis Nova 7"],
+        href: "catalog.html?setup=streaming",
+      },
+      balanced: {
+        name: "Balanced Starter",
+        copy:
+          "Mulai dari peripheral dan audio yang terasa langsung tanpa menaikkan budget terlalu jauh.",
+        items: ["Huntsman V3 Pro", "Arctis Nova 7", "Setup Support"],
+        href: "catalog.html?setup=budget",
+      },
+    };
+
+    function render(buildKey) {
+      const build = builds[buildKey] || builds.competitive;
+      name.textContent = build.name;
+      copy.textContent = build.copy;
+      items.innerHTML = build.items.map((item) => `<span>${item}</span>`).join("");
+      cta.href = build.href;
+
+      steps.forEach((step) => {
+        const isActive = step.dataset.build === buildKey;
+        step.classList.toggle("active", isActive);
+        step.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+    }
+
+    steps.forEach((step) => {
+      step.addEventListener("click", () => render(step.dataset.build));
+    });
+  }
+
+  function initTrustModal() {
+    const modal = document.getElementById("trustModal");
+    const title = document.getElementById("trustModalTitle");
+    const copy = document.getElementById("trustModalCopy");
+    const link = document.getElementById("trustModalLink");
+    const closeBtn = modal?.querySelector(".trust-modal__close");
+    const triggers = document.querySelectorAll(".trust-action");
+    if (!modal || !title || !copy || !link || !closeBtn || !triggers.length) {
+      return;
+    }
+
+    const content = {
+      stock: {
+        title: "Ready Stock",
+        copy:
+          "Produk pilihan diprioritaskan dari stok siap proses agar checkout tidak berakhir di estimasi yang abu-abu.",
+        href: "catalog.html",
+        label: "Lihat Catalog",
+      },
+      warranty: {
+        title: "Garansi Resmi",
+        copy:
+          "Gear kurasi NEXGEAR diarahkan ke produk bergaransi resmi dengan dukungan brand dan invoice pembelian.",
+        href: "about.html",
+        label: "Baca Detail",
+      },
+      checkout: {
+        title: "Secure Checkout",
+        copy:
+          "Alur checkout dibuat ringkas dengan ringkasan pesanan, validasi data, dan pembayaran yang jelas.",
+        href: "cart.html",
+        label: "Cek Keranjang",
+      },
+      delivery: {
+        title: "Fast Delivery",
+        copy:
+          "Pesanan diproses cepat untuk kebutuhan setup mendadak, upgrade kompetitif, atau workflow harian.",
+        href: "contact.html",
+        label: "Hubungi Support",
+      },
+    };
+
+    function closeModal() {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      requestAnimationFrame(() => {
+        document.querySelectorAll(".reveal:not(.active)").forEach((element) => {
+          const rect = element.getBoundingClientRect();
+          const isVisible =
+            rect.top < window.innerHeight * 0.95 && rect.bottom > 0;
+          if (isVisible) element.classList.add("active");
+        });
+      });
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const data = content[trigger.dataset.trust] || content.stock;
+        title.textContent = data.title;
+        copy.textContent = data.copy;
+        link.href = data.href;
+        link.textContent = data.label;
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        closeBtn.focus();
+      });
+    });
+
+    closeBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("open")) {
+        closeModal();
+      }
     });
   }
 
@@ -696,6 +830,54 @@
   }
 
   /* ── INIT ── */
+  function initStickyCartPreview() {
+    if (document.querySelector(".sticky-cart-preview")) return;
+
+    const preview = document.createElement("div");
+    preview.className = "sticky-cart-preview";
+    preview.innerHTML = `
+      <div>
+        <p class="sticky-cart-preview__label">Keranjang aktif</p>
+        <strong class="sticky-cart-preview__total" id="stickyCartTotal">$0.00</strong>
+      </div>
+      <div class="sticky-cart-preview__actions">
+        <button class="btn btn-outline sticky-cart-preview__button" type="button" id="stickyCartOpen">Review</button>
+        <a class="btn btn-primary sticky-cart-preview__button" href="checkout.html">Checkout</a>
+      </div>
+    `;
+    document.body.appendChild(preview);
+
+    const total = document.getElementById("stickyCartTotal");
+    const openBtn = document.getElementById("stickyCartOpen");
+
+    window.updateStickyCartPreview = () => {
+      const count = Cart.count;
+      preview.classList.toggle("show", count > 0);
+      if (total) total.textContent = `${count} item - $${Cart.total.toFixed(2)}`;
+    };
+
+    openBtn?.addEventListener("click", () => {
+      if (window.openMiniCart) window.openMiniCart();
+    });
+
+    window.updateStickyCartPreview();
+  }
+
+  function initCartEmptyGuidance() {
+    window.updateCartEmptyGuidance = () => {
+      document.querySelectorAll(".cart-btn").forEach((button) => {
+        const isEmpty = Cart.count === 0;
+        button.classList.toggle("cart-empty", isEmpty);
+        button.setAttribute(
+          "aria-label",
+          isEmpty ? "Keranjang kosong, pilih gear dulu" : "Buka keranjang",
+        );
+      });
+    };
+
+    window.updateCartEmptyGuidance();
+  }
+
   function initHeroEntrance() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -726,13 +908,17 @@
     initParallax();
     initPriceFilter();
     initGearFinder();
+    initSetupBuilder();
+    initTrustModal();
     initSearch();
     initAddToCart();
     setActiveNav();
     initSketchRotations();
     initFilterDrawer();
-    Cart.updateBadge();
     initMiniCart();
+    initStickyCartPreview();
+    initCartEmptyGuidance();
+    Cart.updateBadge();
     Auth.updateUI();
     initHeroEntrance();
   }
