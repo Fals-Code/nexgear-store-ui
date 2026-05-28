@@ -502,13 +502,11 @@
 
       const empty = document.createElement("div");
       empty.id = "no-results";
-      empty.style.cssText =
-        "grid-column:1/-1;text-align:center;padding:40px 24px;border:1px solid rgba(0,210,255,.16);border-radius:16px;background:linear-gradient(135deg,rgba(0,210,255,.08),rgba(255,61,127,.04));color:var(--color-text-muted);";
+      empty.className = "catalog-empty-state";
 
       const text = document.createElement("p");
       text.innerHTML =
-        '<strong style="display:block;color:var(--color-text-primary);font-size:1.05rem;margin-bottom:6px;">Gear tidak ditemukan</strong><span>Coba ubah kategori, turunkan filter harga, atau reset pencarian.</span>';
-      text.style.margin = "0 0 18px";
+        "<strong>Gear tidak ditemukan</strong><span>Coba ubah kategori, turunkan filter harga, atau reset pencarian.</span>";
 
       const reset = document.createElement("button");
       reset.type = "button";
@@ -741,6 +739,7 @@
     const drawer = document.getElementById("filterDrawer");
     const badge = document.getElementById("filterBadge");
     const activeFiltersList = document.getElementById("activeFiltersList");
+    const heroFilterTriggers = document.querySelectorAll("[data-open-filter]");
 
     if (!openBtn || !drawer) return;
 
@@ -870,6 +869,9 @@
     }
 
     openBtn.addEventListener("click", openFilter);
+    heroFilterTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", openFilter);
+    });
     if (closeBtn) closeBtn.addEventListener("click", closeFilter);
     if (clearBtn) clearBtn.addEventListener("click", clearFilters);
     if (applyBtn) applyBtn.addEventListener("click", applyFilters);

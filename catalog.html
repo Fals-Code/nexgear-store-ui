@@ -108,15 +108,37 @@
       <div class="catalog-container container reveal">
         <main class="catalog-main full-width">
           <div class="catalog-header">
-            <div class="header-left">
-              <div class="breadcrumb" style="margin-bottom: var(--spacing-sm);">
+            <div class="catalog-hero-copy header-left">
+              <div class="breadcrumb catalog-breadcrumb">
                 <a href="index.html">Home</a> <span class="sep">/</span>
                 <span>Catalog</span>
               </div>
-              <p class="catalog-kicker">NEXGEAR Catalog</p>
-              <h1 class="catalog-title text-gradient">Gear That Feels Right</h1>
-              <p class="catalog-subtitle">Bukan cuma soal angka spek. Pilih gear yang cocok dengan cara kamu main, kerja, dan upgrade setup.</p>
-              <p id="catalogCount" class="catalog-count" aria-live="polite"></p>
+              <p class="catalog-kicker">Curated performance gear</p>
+              <h1 class="catalog-title text-gradient">The Performance Edit</h1>
+              <p class="catalog-subtitle">
+                Chosen for speed, feel, and the rituals of a better setup.
+                Browse precise gaming hardware staged for control, speed, and a cleaner setup.
+              </p>
+              <div class="catalog-hero-actions" aria-label="Catalog primary actions">
+                <a href="#catalogProductGrid" class="btn btn-primary">Explore Gear</a>
+                <button class="btn btn-outline catalog-hero-refine" type="button" data-open-filter>
+                Refine Setup
+                </button>
+              </div>
+            </div>
+            <div class="catalog-hero-visual" aria-label="Featured catalog gear">
+              <div class="catalog-hero-device">
+                <span class="catalog-hero-badge">BEST SELLER</span>
+                <img
+                  src="lib/product-rog-strix-g16.webp"
+                  alt="ROG Strix G16 featured gaming laptop"
+                />
+              </div>
+              <div class="catalog-hero-specs" aria-label="Featured gear highlights">
+                <span>RTX-class performance</span>
+                <span>Fast refresh displays</span>
+                <span>Official warranty</span>
+              </div>
             </div>
             <div class="catalog-trust-row" aria-label="Catalog highlights">
               <span>Ready stock</span>
@@ -127,12 +149,12 @@
 
           <div class="catalog-editorial-strip" aria-label="NEXGEAR catalog story">
             <div>
-              <span class="catalog-editorial-eyebrow">Curated Loadout</span>
+              <span class="catalog-editorial-eyebrow">The Selection</span>
               <p>
-                Dari keyboard yang responsif sampai monitor dengan gerak halus, setiap item di sini dipilih untuk bikin setup terasa lebih presisi.
+                Every piece is weighted by feel, latency, display clarity, and setup fit before it earns a place in the edit.
               </p>
             </div>
-            <a href="#catalogProductGrid" class="catalog-editorial-link">Explore gear</a>
+            <a href="#catalogProductGrid" class="catalog-editorial-link">Explore the edit</a>
           </div>
 
           <div class="catalog-toolbar" aria-label="Catalog search and filter tools">
@@ -143,15 +165,17 @@
                   <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
               </span>
-              <input type="text" id="searchInput" class="search-bar catalog-control catalog-search-input" placeholder="Cari gear..." aria-label="Cari produk" />
+              <input type="text" id="searchInput" class="search-bar catalog-control catalog-search-input" placeholder="Search keyboard, monitor, headset..." aria-label="Cari produk" />
             </div>
 
             <div class="catalog-toolbar-actions">
+              <p id="catalogCount" class="catalog-count" aria-live="polite"></p>
               <button
                 id="openFilterBtn"
                 class="btn btn-outline filter-btn catalog-filter-trigger"
                 aria-haspopup="dialog"
                 aria-controls="filterDrawer"
+                aria-expanded="false"
               >
                 <span class="icon icon-sm">
                   <svg viewBox="0 0 24 24">
@@ -163,34 +187,44 @@
                     <circle cx="10" cy="18" r="2" />
                   </svg>
                 </span>
-                Filter
+                Refine
                 <span id="filterBadge" class="filter-badge" aria-hidden="true"></span>
               </button>
 
               <div class="catalog-sort sort-dropdown">
-                <label for="sortSelect">Urutkan</label>
+                <label for="sortSelect">Order</label>
                 <select id="sortSelect" class="catalog-control">
-                  <option value="newest">Terbaru</option>
-                  <option value="price-asc">Termurah</option>
-                  <option value="price-desc">Termahal</option>
+                  <option value="newest">Newest arrivals</option>
+                  <option value="price-asc">Lowest price</option>
+                  <option value="price-desc">Highest price</option>
                 </select>
               </div>
             </div>
           </div>
 
           <div class="category-pills" aria-label="Kategori produk">
-            <button class="tag-chip active" data-category="all" type="button" aria-label="Lihat semua kategori">Semua</button>
-            <button class="tag-chip" data-category="laptops" type="button" aria-label="Kategori laptops">Laptops</button>
-            <button class="tag-chip" data-category="peripherals" type="button" aria-label="Kategori peripherals">Peripherals</button>
-            <button class="tag-chip" data-category="components" type="button" aria-label="Kategori components">Components</button>
-            <button class="tag-chip" data-category="audio" type="button" aria-label="Kategori audio">Audio</button>
+            <button class="tag-chip active" data-category="all" type="button" aria-label="Lihat semua kategori">
+              <span>All</span><small>Curated gear</small>
+            </button>
+            <button class="tag-chip" data-category="laptops" type="button" aria-label="Kategori machines">
+              <span>Machines</span><small>Gaming laptops</small>
+            </button>
+            <button class="tag-chip" data-category="peripherals" type="button" aria-label="Kategori control">
+              <span>Control</span><small>Mouse, keys, display</small>
+            </button>
+            <button class="tag-chip" data-category="components" type="button" aria-label="Kategori build">
+              <span>Build</span><small>GPU, CPU, memory</small>
+            </button>
+            <button class="tag-chip" data-category="audio" type="button" aria-label="Kategori sound">
+              <span>Sound</span><small>Headset and studio</small>
+            </button>
           </div>
 
           <div class="product-grid catalog-product-grid" id="catalogProductGrid">
           <!-- Product 1 -->
-          <div class="product-card catalog-product-card" data-category="laptops" data-brand="ASUS ROG">
+          <div class="product-card catalog-product-card catalog-feature-card" data-category="laptops" data-brand="ASUS ROG">
             <div class="product-card-media product-img">
-              <span class="product-card-badge">Featured</span>
+              <span class="product-card-badge">BEST SELLER</span>
               <img class="product-photo" src="lib/product-rog-strix-g16.webp" alt="ROG Strix G16 gaming laptop" loading="lazy" />
               <svg class="product-fallback" viewBox="0 0 120 100" aria-hidden="true">
                 <rect
@@ -229,6 +263,7 @@
               </svg>
             </div>
             <div class="product-card-body">
+              <p class="product-card-brand">ASUS ROG</p>
               <h4>ROG Strix G16</h4>
               <p class="desc">RTX gaming laptop, fast display</p>
               <div class="product-card-meta">
@@ -251,7 +286,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Cart
+                  Add to Setup
                 </button>
               </div>
             </div>
@@ -260,7 +295,7 @@
           <!-- Product 3 -->
           <div class="product-card catalog-product-card" data-category="peripherals" data-brand="Razer">
             <div class="product-card-media product-img">
-              <span class="product-card-badge">Ready Stock</span>
+              <span class="product-card-badge">NEW</span>
               <img class="product-photo" src="lib/product-huntsman-v3-pro.webp" alt="Huntsman V3 Pro gaming keyboard" loading="lazy" />
               <svg class="product-fallback" viewBox="0 0 120 100" aria-hidden="true">
                 <rect
@@ -296,6 +331,7 @@
               </svg>
             </div>
             <div class="product-card-body">
+              <p class="product-card-brand">Razer</p>
               <h4>Huntsman V3 Pro</h4>
               <p class="desc">Analog Optical Switches</p>
               <div class="product-card-meta">
@@ -318,16 +354,16 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Cart
+                  Add to Setup
                 </button>
               </div>
             </div>
           </div>
 
           <!-- Product 4 -->
-          <div class="product-card catalog-product-card" data-category="peripherals" data-brand="Alienware">
+          <div class="product-card catalog-product-card catalog-highlight-card" data-category="peripherals" data-brand="Alienware">
             <div class="product-card-media product-img">
-              <span class="product-card-badge">Official Warranty</span>
+              <span class="product-card-badge">BEST SELLER</span>
               <img class="product-photo" src="lib/product-alienware-27.webp" alt="Alienware 27 gaming monitor" loading="lazy" />
               <svg class="product-fallback" viewBox="0 0 120 100" aria-hidden="true">
                 <rect
@@ -373,6 +409,7 @@
               </svg>
             </div>
             <div class="product-card-body">
+              <p class="product-card-brand">Alienware</p>
               <h4>Alienware 27</h4>
               <p class="desc">280Hz, 1ms IPS</p>
               <div class="product-card-meta">
@@ -395,7 +432,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Cart
+                  Add to Setup
                 </button>
               </div>
             </div>
@@ -404,7 +441,7 @@
           <!-- Product 5 -->
           <div class="product-card catalog-product-card" data-category="components" data-brand="NVIDIA">
             <div class="product-card-media product-img">
-              <span class="product-card-badge">Ready Stock</span>
+              <span class="product-card-badge">LIMITED</span>
               <img class="product-photo" src="lib/product-rtx-4070-ti-super.webp" alt="RTX 4070 Ti Super graphics card" loading="lazy" />
               <svg class="product-fallback" viewBox="0 0 120 100" aria-hidden="true">
                 <rect
@@ -476,6 +513,7 @@
               </svg>
             </div>
             <div class="product-card-body">
+              <p class="product-card-brand">NVIDIA</p>
               <h4>RTX 4070 Ti Super</h4>
               <p class="desc">16GB GDDR6X</p>
               <div class="product-card-meta">
@@ -498,7 +536,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Cart
+                  Add to Setup
                 </button>
               </div>
             </div>
@@ -507,7 +545,7 @@
           <!-- Product 6 -->
           <div class="product-card catalog-product-card" data-category="audio" data-brand="SteelSeries">
             <div class="product-card-media product-img">
-              <span class="product-card-badge">Fast Delivery</span>
+              <span class="product-card-badge">HOT DEAL</span>
               <img class="product-photo" src="lib/product-arctis-nova-7.webp" alt="Arctis Nova 7 wireless headset" loading="lazy" />
               <svg class="product-fallback" viewBox="0 0 120 100" aria-hidden="true">
                 <path
@@ -569,6 +607,7 @@
               </svg>
             </div>
             <div class="product-card-body">
+              <p class="product-card-brand">SteelSeries</p>
               <h4>Arctis Nova 7</h4>
               <p class="desc">Multi-platform Wireless</p>
               <div class="product-card-meta">
@@ -591,7 +630,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Cart
+                  Add to Setup
                 </button>
               </div>
             </div>
@@ -600,10 +639,11 @@
           <!-- Product 7 -->
           <div class="product-card catalog-product-card" data-category="peripherals" data-brand="Logitech G">
             <div class="product-card-media product-img">
-              <span class="product-card-badge">Esports Pick</span>
+              <span class="product-card-badge">BEST SELLER</span>
               <img class="product-photo" src="lib/product-logitech-g-pro-x-superlight-2.webp" alt="Logitech G Pro X Superlight 2 gaming mouse" loading="lazy" />
             </div>
             <div class="product-card-body">
+              <p class="product-card-brand">Logitech G</p>
               <h4>G Pro X Superlight 2</h4>
               <p class="desc">Wireless gaming mouse, ultra light</p>
               <div class="product-card-meta">
@@ -626,7 +666,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Cart
+                  Add to Setup
                 </button>
               </div>
             </div>
@@ -635,10 +675,11 @@
           <!-- Product 8 -->
           <div class="product-card catalog-product-card" data-category="peripherals" data-brand="Corsair">
             <div class="product-card-media product-img">
-              <span class="product-card-badge">New Arrival</span>
+              <span class="product-card-badge">NEW</span>
               <img class="product-photo" src="lib/product-corsair-k70-max-rgb.webp" alt="Corsair K70 Max RGB gaming keyboard" loading="lazy" />
             </div>
             <div class="product-card-body">
+              <p class="product-card-brand">Corsair</p>
               <h4>Corsair K70 Max RGB</h4>
               <p class="desc">Magnetic switches, premium frame</p>
               <div class="product-card-meta">
@@ -661,7 +702,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Cart
+                  Add to Setup
                 </button>
               </div>
             </div>
@@ -670,10 +711,11 @@
           <!-- Product 9 -->
           <div class="product-card catalog-product-card" data-category="laptops" data-brand="MSI">
             <div class="product-card-media product-img">
-              <span class="product-card-badge">Performance</span>
+              <span class="product-card-badge">LIMITED</span>
               <img class="product-photo" src="lib/product-msi-raider-ge78-hx.webp" alt="MSI Raider GE78 HX gaming laptop" loading="lazy" />
             </div>
             <div class="product-card-body">
+              <p class="product-card-brand">MSI</p>
               <h4>MSI Raider GE78 HX</h4>
               <p class="desc">RTX laptop, high refresh QHD panel</p>
               <div class="product-card-meta">
@@ -696,7 +738,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Cart
+                  Add to Setup
                 </button>
               </div>
             </div>
@@ -705,10 +747,11 @@
           <!-- Product 10 -->
           <div class="product-card catalog-product-card" data-category="peripherals" data-brand="Samsung">
             <div class="product-card-media product-img">
-              <span class="product-card-badge">Creator Ready</span>
+              <span class="product-card-badge">NEW</span>
               <img class="product-photo" src="lib/product-samsung-odyssey-g7.webp" alt="Samsung Odyssey G7 gaming monitor" loading="lazy" />
             </div>
             <div class="product-card-body">
+              <p class="product-card-brand">Samsung</p>
               <h4>Samsung Odyssey G7</h4>
               <p class="desc">Curved QHD display, smooth motion</p>
               <div class="product-card-meta">
@@ -731,7 +774,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Cart
+                  Add to Setup
                 </button>
               </div>
             </div>
@@ -740,10 +783,11 @@
           <!-- Product 11 -->
           <div class="product-card catalog-product-card" data-category="components" data-brand="AMD">
             <div class="product-card-media product-img">
-              <span class="product-card-badge">Best Value</span>
+              <span class="product-card-badge">HOT DEAL</span>
               <img class="product-photo" src="lib/product-ryzen-7-7800x3d.webp" alt="AMD Ryzen 7 7800X3D processor" loading="lazy" />
             </div>
             <div class="product-card-body">
+              <p class="product-card-brand">AMD</p>
               <h4>Ryzen 7 7800X3D</h4>
               <p class="desc">Gaming CPU, 3D V-Cache performance</p>
               <div class="product-card-meta">
@@ -766,7 +810,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Cart
+                  Add to Setup
                 </button>
               </div>
             </div>
@@ -775,10 +819,11 @@
           <!-- Product 12 -->
           <div class="product-card catalog-product-card" data-category="components" data-brand="Corsair">
             <div class="product-card-media product-img">
-              <span class="product-card-badge">Upgrade Kit</span>
+              <span class="product-card-badge">HOT DEAL</span>
               <img class="product-photo" src="lib/product-corsair-vengeance-rgb-32gb.webp" alt="Corsair Vengeance RGB DDR5 memory kit" loading="lazy" />
             </div>
             <div class="product-card-body">
+              <p class="product-card-brand">Corsair</p>
               <h4>Vengeance RGB 32GB</h4>
               <p class="desc">DDR5 memory kit for fast builds</p>
               <div class="product-card-meta">
@@ -801,7 +846,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Cart
+                  Add to Setup
                 </button>
               </div>
             </div>
@@ -810,10 +855,11 @@
           <!-- Product 13 -->
           <div class="product-card catalog-product-card" data-category="audio" data-brand="HyperX">
             <div class="product-card-media product-img">
-              <span class="product-card-badge">Wireless</span>
+              <span class="product-card-badge">NEW</span>
               <img class="product-photo" src="lib/product-hyperx-cloud-iii-wireless.webp" alt="HyperX Cloud III Wireless gaming headset" loading="lazy" />
             </div>
             <div class="product-card-body">
+              <p class="product-card-brand">HyperX</p>
               <h4>HyperX Cloud III Wireless</h4>
               <p class="desc">Long battery headset, clear mic</p>
               <div class="product-card-meta">
@@ -836,7 +882,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Cart
+                  Add to Setup
                 </button>
               </div>
             </div>
@@ -845,10 +891,11 @@
           <!-- Product 14 -->
           <div class="product-card catalog-product-card" data-category="audio" data-brand="Elgato">
             <div class="product-card-media product-img">
-              <span class="product-card-badge">Streaming</span>
+              <span class="product-card-badge">LIMITED</span>
               <img class="product-photo" src="lib/product-elgato-wave-3.webp" alt="Elgato Wave 3 streaming microphone" loading="lazy" />
             </div>
             <div class="product-card-body">
+              <p class="product-card-brand">Elgato</p>
               <h4>Elgato Wave:3</h4>
               <p class="desc">USB microphone for stream setup</p>
               <div class="product-card-meta">
@@ -871,7 +918,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Cart
+                  Add to Setup
                 </button>
               </div>
             </div>
@@ -906,7 +953,7 @@
               <circle cx="16" cy="12" r="2" />
               <circle cx="10" cy="18" r="2" /></svg
           ></span>
-          FILTERS
+          REFINE
         </h3>
         <div class="filter-drawer-actions">
           <button
@@ -955,19 +1002,19 @@
                 <rect x="3" y="14" width="7" height="7" rx="1" />
                 <rect x="14" y="14" width="7" height="7" rx="1" /></svg
             ></span>
-            Category
+            Edit
           </h4>
           <label class="filter-option"
-            ><input type="checkbox" data-filter-type="category" value="laptops" /> Laptops</label
+            ><input type="checkbox" data-filter-type="category" value="laptops" /> Machines</label
           >
           <label class="filter-option"
-            ><input type="checkbox" data-filter-type="category" value="peripherals" /> Peripherals</label
+            ><input type="checkbox" data-filter-type="category" value="peripherals" /> Control</label
           >
           <label class="filter-option"
-            ><input type="checkbox" data-filter-type="category" value="components" /> Components</label
+            ><input type="checkbox" data-filter-type="category" value="components" /> Build</label
           >
           <label class="filter-option"
-            ><input type="checkbox" data-filter-type="category" value="audio" /> Audio</label
+            ><input type="checkbox" data-filter-type="category" value="audio" /> Sound</label
           >
         </div>
 
@@ -978,7 +1025,7 @@
                 <line x1="12" y1="1" x2="12" y2="23" />
                 <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" /></svg
             ></span>
-            Price Range
+            Price
           </h4>
           <input
             type="range"
@@ -1048,7 +1095,7 @@
           <span class="icon icon-sm"
             ><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg
           ></span>
-          Apply Filters
+          Apply Refinement
         </button>
       </div>
     </aside>
@@ -1106,12 +1153,12 @@
           </ul>
         </div>
         <div>
-          <h4>Kategori</h4>
+          <h4>Edit</h4>
           <ul>
-            <li><a href="catalog.html">Laptops</a></li>
-            <li><a href="catalog.html">Peripherals</a></li>
-            <li><a href="catalog.html">Components</a></li>
-            <li><a href="catalog.html">Audio</a></li>
+            <li><a href="catalog.html">Machines</a></li>
+            <li><a href="catalog.html">Control</a></li>
+            <li><a href="catalog.html">Build</a></li>
+            <li><a href="catalog.html">Sound</a></li>
           </ul>
         </div>
         <div>

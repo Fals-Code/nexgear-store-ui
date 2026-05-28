@@ -8,9 +8,9 @@
   <style>
     body {
       background:
-        radial-gradient(circle at 20% 12%, rgba(0, 212, 255, 0.12), transparent 30%),
-        radial-gradient(circle at 80% 18%, rgba(255, 62, 162, 0.08), transparent 28%),
-        linear-gradient(180deg, #0a0f18 0%, #070a10 60%, #080b10 100%);
+        linear-gradient(180deg, rgba(92, 59, 34, 0.2) 0%, transparent 36%),
+        radial-gradient(circle at 50% 0%, rgba(227, 173, 87, 0.15), transparent 38%),
+        linear-gradient(180deg, var(--color-bg-richest) 0%, var(--color-bg-deepest) 56%, #050403 100%);
     }
 
     .error-container {
@@ -19,67 +19,78 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px;
+      padding: clamp(96px, 12vw, 170px) 20px;
       text-align: center;
     }
+
     .error-svg {
-      width: 250px;
-      height: 250px;
-      margin-bottom: 30px;
+      width: min(560px, 78vw);
+      height: 1px;
+      margin-bottom: clamp(28px, 5vw, 54px);
       display: grid;
       place-items: center;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px;
-      background:
-        radial-gradient(circle at 50% 35%, rgba(0, 212, 255, 0.14), transparent 52%),
-        rgba(15, 19, 30, 0.86);
-      box-shadow: 0 24px 70px rgba(0,0,0,0.34);
+      border: 0;
+      border-top: 1px solid rgba(255, 247, 235, 0.18);
+      background: transparent;
+      box-shadow: none;
     }
 
     .error-svg svg {
-      width: 76%;
-      height: 76%;
+      display: none;
     }
 
     .error-code {
-      font-family: "Orbitron", sans-serif;
-      font-size: 6rem;
+      margin: 0 0 clamp(18px, 3vw, 28px);
+      color: var(--color-primary);
+      font-family: var(--font-display), Georgia, serif;
+      font-size: clamp(7rem, 28vw, 20rem);
       font-weight: 900;
-      color: var(--primary);
-      line-height: 1;
-      margin-bottom: 10px;
-      text-shadow: 0 0 30px rgba(0, 212, 255, 0.18);
+      line-height: 0.78;
+      letter-spacing: 0;
+      text-shadow: none;
     }
 
     .error-text {
-      max-width: 520px;
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: rgba(224, 228, 240, 0.72);
-      margin-bottom: 40px;
+      max-width: 620px;
+      margin: 0 0 clamp(34px, 5vw, 54px);
+      color: rgba(255, 247, 235, 0.74);
+      font-size: clamp(1.18rem, 2vw, 1.45rem);
+      line-height: 1.72;
     }
 
     .error-container .btn {
-      min-height: 48px;
-      border-radius: 12px;
-      box-shadow: 0 12px 34px rgba(0, 212, 255, 0.2);
-      transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+      min-height: 58px;
+      padding-inline: 30px;
+      border: 1px solid var(--color-primary);
+      border-radius: 999px;
+      background: var(--color-primary);
+      color: var(--color-bg-richest);
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.32);
+      transition:
+        transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+        background 180ms ease,
+        box-shadow 180ms ease;
     }
 
     .error-container .btn:hover {
-      transform: translateY(-1px);
-      filter: saturate(1.05);
-      box-shadow: 0 16px 42px rgba(0, 212, 255, 0.28);
+      transform: translateY(-2px);
+      background: var(--color-primary-light);
+      filter: none;
+      box-shadow: 0 24px 56px rgba(0, 0, 0, 0.4);
     }
 
     @media (max-width: 520px) {
       .error-svg {
-        width: 210px;
-        height: 210px;
+        width: 100%;
       }
 
       .error-code {
-        font-size: 4.5rem;
+        font-size: clamp(6.4rem, 32vw, 9rem);
       }
     }
   </style>
@@ -114,9 +125,9 @@
     </div>
     
     <h1 class="error-code">404</h1>
-    <p class="error-text">Ups! Kabelnya putus... Halaman tidak ditemukan.</p>
+    <p class="error-text">Halaman ini tampaknya sudah meninggalkan rak. Mari kembali ke tempat barang-barang bagus masih tersusun rapi.</p>
     
-    <a href="index.html" class="btn btn-primary">Kembali ke Base</a>
+    <a href="catalog.html" class="btn btn-primary">Kembali ke Store</a>
   </div>
 
   <script src="scripts/main.js"></script>

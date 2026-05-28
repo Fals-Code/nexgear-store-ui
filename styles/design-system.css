@@ -1,77 +1,78 @@
 /* ═══════════════════════════════════════════════════════════════════
-   NEXGEAR DESIGN SYSTEM 2.0
-   Professional Gaming E-Commerce
+   NEXGEAR DESIGN SYSTEM 3.0
+   Premium Dark Editorial Product Brand
    Foundation: Color, Typography, Spacing, Shadows, Transitions
    ═══════════════════════════════════════════════════════════════════ */
 
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800;900&display=swap");
 
 :root {
   /* ──────────────────────────────────────────────────────────────
      1. COLOR PALETTE — Brand & Semantic
      ────────────────────────────────────────────────────────────── */
 
-  /* Primary: Cyan (Neon Gaming Standard) */
-  --color-primary: #00d2ff;
-  --color-primary-dark: #0099cc;
-  --color-primary-light: #33e0ff;
-  --color-primary-bg: rgba(0, 210, 255, 0.08);
-  --color-primary-bg-hover: rgba(0, 210, 255, 0.12);
+  /* Primary: polished saffron gold */
+  --color-primary: #e3ad57;
+  --color-primary-dark: #a66f28;
+  --color-primary-light: #ffd284;
+  --color-primary-bg: rgba(227, 173, 87, 0.1);
+  --color-primary-bg-hover: rgba(227, 173, 87, 0.16);
 
-  /* Accent: Magenta (Warnings, Secondary CTA) */
-  --color-accent: #ff3d7f;
-  --color-accent-dark: #cc0052;
-  --color-accent-light: #ff6b99;
-  --color-accent-bg: rgba(255, 61, 127, 0.08);
+  /* Accent: fresh culinary green */
+  --color-accent: #7fc9ad;
+  --color-accent-dark: #3e8b71;
+  --color-accent-light: #b1ead5;
+  --color-accent-bg: rgba(127, 201, 173, 0.12);
   --primary: var(--color-primary);
   --accent: var(--color-accent);
 
   /* Semantic: Success, Warning, Error */
-  --color-success: #00ff87;
-  --color-success-dark: #00cc6b;
-  --color-success-bg: rgba(0, 255, 135, 0.08);
+  --color-success: #8ed9a2;
+  --color-success-dark: #4f9b64;
+  --color-success-bg: rgba(142, 217, 162, 0.1);
   --success: var(--color-success);
 
-  --color-warning: #ffb347;
-  --color-warning-dark: #ff9900;
-  --color-warning-bg: rgba(255, 179, 71, 0.08);
+  --color-warning: #f2bd68;
+  --color-warning-dark: #b47b2f;
+  --color-warning-bg: rgba(242, 189, 104, 0.12);
 
-  --color-error: #ff3d6b;
-  --color-error-dark: #cc0052;
-  --color-error-bg: rgba(255, 61, 107, 0.08);
+  --color-error: #e46f5f;
+  --color-error-dark: #9f382e;
+  --color-error-bg: rgba(228, 111, 95, 0.12);
 
   /* ──────────────────────────────────────────────────────────────
      2. NEUTRAL COLORS — Dark Mode Greys
      ────────────────────────────────────────────────────────────── */
 
   /* Backgrounds (Darkest to Lightest) */
-  --color-bg-deepest: #0a0c10;
-  --color-bg-deep: #0d0f14;
-  --color-bg-surface: #14171e;
-  --color-bg-card: #1a1e28;
-  --color-bg-input: #11131a;
-  --color-bg-overlay: rgba(0, 0, 0, 0.5);
+  --color-bg-richest: #080604;
+  --color-bg-deepest: #0b0907;
+  --color-bg-deep: #100d0a;
+  --color-bg-surface: #18130f;
+  --color-bg-card: #211a14;
+  --color-bg-input: #14100d;
+  --color-bg-overlay: rgba(8, 6, 4, 0.72);
   --bg-deep: var(--color-bg-deep);
   --bg-card: var(--color-bg-card);
 
   /* Text (Lightest to Darkest) */
-  --color-text-primary: #f0f0f4;
-  --color-text-secondary: #c8ccda;
-  --color-text-muted: #8d93a1;
-  --color-text-disabled: #5a606b;
+  --color-text-primary: #fff7eb;
+  --color-text-secondary: #d9c9b5;
+  --color-text-muted: #a9957d;
+  --color-text-disabled: #6b5c4d;
   --text-main: var(--color-text-primary);
   --text-muted: var(--color-text-muted);
 
   /* Borders & Dividers */
-  --color-border-strong: rgba(255, 255, 255, 0.12);
-  --color-border-default: rgba(255, 255, 255, 0.08);
-  --color-border-subtle: rgba(255, 255, 255, 0.04);
+  --color-border-strong: rgba(255, 247, 235, 0.18);
+  --color-border-default: rgba(255, 247, 235, 0.11);
+  --color-border-subtle: rgba(255, 247, 235, 0.06);
 
   /* Interactive States */
-  --color-focus: rgba(0, 210, 255, 0.4);
+  --color-focus: rgba(227, 173, 87, 0.42);
   --focus-ring: 2px solid var(--color-primary);
-  --color-hover-overlay: rgba(255, 255, 255, 0.06);
-  --color-active-overlay: rgba(255, 255, 255, 0.12);
+  --color-hover-overlay: rgba(255, 247, 235, 0.07);
+  --color-active-overlay: rgba(255, 247, 235, 0.14);
 
   /* ──────────────────────────────────────────────────────────────
      3. BACKGROUNDS & GRADIENTS
@@ -79,47 +80,49 @@
 
   --bg-gradient-hero: linear-gradient(
     135deg,
-    rgba(0, 210, 255, 0.05) 0%,
-    rgba(20, 23, 30, 1) 50%,
-    rgba(157, 80, 187, 0.03) 100%
+    rgba(227, 173, 87, 0.1) 0%,
+    var(--color-bg-deep) 48%,
+    rgba(127, 201, 173, 0.06) 100%
   );
 
   --bg-gradient-card-hover: linear-gradient(
     180deg,
-    rgba(0, 210, 255, 0.06) 0%,
-    rgba(255, 255, 255, 0.01) 100%
+    rgba(227, 173, 87, 0.09) 0%,
+    rgba(255, 247, 235, 0.025) 100%
   );
 
-  --bg-glass: rgba(255, 255, 255, 0.04);
+  --bg-glass: rgba(255, 247, 235, 0.045);
 
   /* ──────────────────────────────────────────────────────────────
      4. TYPOGRAPHY
      ────────────────────────────────────────────────────────────── */
 
   /* Font Families */
-  --font-gaming: "Orbitron", sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-heading: var(--font-display);
+  --font-gaming: var(--font-display);
   --font-body: "Inter", sans-serif;
   --font-hand: "Caveat", cursive;
 
   /* Font Sizes — Headings (Responsive Clamp) */
-  --font-size-h1: clamp(2.2rem, 4.5vw, 4.2rem);
-  --font-size-h2: clamp(1.8rem, 3vw, 2.4rem);
-  --font-size-h3: clamp(1.4rem, 2.2vw, 1.8rem);
-  --font-size-h4: 1.2rem;
-  --font-size-h5: 1rem;
+  --font-size-h1: clamp(3.2rem, 7.5vw, 7.5rem);
+  --font-size-h2: clamp(2.35rem, 5vw, 4.8rem);
+  --font-size-h3: clamp(1.65rem, 3vw, 2.45rem);
+  --font-size-h4: 1.35rem;
+  --font-size-h5: 1.1rem;
 
   /* Font Sizes — Body Text */
-  --font-size-body-lg: 1rem;
-  --font-size-body-md: 0.95rem;
-  --font-size-body: 0.95rem;
-  --font-size-body-sm: 0.9rem;
+  --font-size-body-lg: 1.15rem;
+  --font-size-body-md: 1.05rem;
+  --font-size-body: 1rem;
+  --font-size-body-sm: 0.94rem;
 
   /* Font Sizes — UI Text */
-  --font-size-ui-lg: 0.95rem;
-  --font-size-ui-md: 0.9rem;
-  --font-size-ui: 0.85rem;
-  --font-size-ui-sm: 0.75rem;
-  --font-size-ui-xs: 0.7rem;
+  --font-size-ui-lg: 1rem;
+  --font-size-ui-md: 0.94rem;
+  --font-size-ui: 0.9rem;
+  --font-size-ui-sm: 0.78rem;
+  --font-size-ui-xs: 0.72rem;
 
   /* Font Weights */
   --font-weight-light: 300;
@@ -127,21 +130,22 @@
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  --font-weight-display: 800;
   --font-weight-black: 900;
 
   /* Line Heights */
-  --line-height-tight: 1.2;
+  --line-height-tight: 1.02;
   --line-height-heading: var(--line-height-tight);
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.7;
   --line-height-comfortable: 1.8;
 
   /* Letter Spacing */
-  --letter-spacing-tight: -0.01em;
+  --letter-spacing-tight: 0em;
   --letter-spacing-normal: 0em;
-  --letter-spacing-gaming: 0.05em;
-  --letter-spacing-ui: 0.08em;
-  --letter-spacing-wide: 0.15em;
+  --letter-spacing-gaming: 0em;
+  --letter-spacing-ui: 0.06em;
+  --letter-spacing-wide: 0.12em;
 
   /* ──────────────────────────────────────────────────────────────
      5. SPACING — 8px Grid System
@@ -157,6 +161,13 @@
   --spacing-4xl: 64px;
   --spacing-5xl: 80px;
   --spacing-6xl: 120px;
+
+  /* Editorial Section Rhythm */
+  --editorial-section-padding-sm: 96px;
+  --editorial-section-padding-md: 120px;
+  --editorial-section-padding-lg: 160px;
+  --editorial-section-padding-xl: 180px;
+  --editorial-section-gap: 72px;
 
   /* Container Sizing */
   --container-max: 1200px;
@@ -181,7 +192,6 @@
   --border-default: 1px solid var(--color-border-default);
   --border-strong: 1px solid var(--color-border-strong);
   --border-subtle: 1px solid var(--color-border-subtle);
-  --border-focus: 2px solid var(--color-primary);
   --sketch-border: var(--border-default);
 
   /* ──────────────────────────────────────────────────────────────
@@ -194,7 +204,7 @@
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.35);
   --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.45);
   --shadow-glow:
-    0 0 12px rgba(0, 210, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.25);
+    0 0 0 1px rgba(227, 173, 87, 0.18), 0 16px 40px rgba(0, 0, 0, 0.36);
   --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 
   /* ──────────────────────────────────────────────────────────────
@@ -306,11 +316,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-gaming);
-  text-transform: uppercase;
+  font-family: var(--font-heading);
+  text-transform: none;
   letter-spacing: var(--letter-spacing-gaming);
   line-height: var(--line-height-tight);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-display);
 }
 
 h1 {
@@ -454,12 +464,12 @@ ol {
 }
 
 .section-padding {
-  padding: var(--spacing-5xl) var(--container-padding);
+  padding: var(--editorial-section-padding-lg) var(--container-padding);
 }
 
 @media (max-width: 768px) {
   .section-padding {
-    padding: var(--spacing-4xl) var(--container-padding-mobile);
+    padding: var(--editorial-section-padding-sm) var(--container-padding-mobile);
   }
 }
 
@@ -535,7 +545,7 @@ select.form-input:focus-visible {
   outline: var(--focus-outline);
   outline-offset: var(--focus-outline-offset);
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(0, 210, 255, 0.16);
+  box-shadow: 0 0 0 4px rgba(227, 173, 87, 0.18);
 }
 
 .form-textarea,
@@ -560,7 +570,7 @@ textarea.form-textarea:focus-visible {
   outline: var(--focus-outline);
   outline-offset: var(--focus-outline-offset);
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(0, 210, 255, 0.16);
+  box-shadow: 0 0 0 4px rgba(227, 173, 87, 0.18);
 }
 
 .badge-note {
@@ -571,7 +581,7 @@ textarea.form-textarea:focus-visible {
   border-radius: var(--radius-full);
   background: var(--color-primary-bg);
   color: var(--color-primary);
-  border: 1px solid rgba(0, 210, 255, 0.18);
+  border: 1px solid rgba(227, 173, 87, 0.22);
   font-size: var(--font-size-ui-sm);
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--letter-spacing-ui);
