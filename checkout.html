@@ -164,7 +164,7 @@
           <div class="summary-totals">
             <div class="summary-row">
               <span class="text-muted">Subtotal</span>
-              <span id="checkout-subtotal" class="font-gaming">.00</span>
+              <span id="checkout-subtotal" class="font-gaming">Rp0</span>
             </div>
             <div class="summary-row">
               <span class="text-muted">Ongkos Kirim</span>
@@ -172,7 +172,7 @@
             </div>
             <div class="summary-row total">
               <span>Total Bersih</span>
-              <span id="checkout-total" class="font-gaming text-primary">.00</span>
+              <span id="checkout-total" class="font-gaming text-primary">Rp0</span>
             </div>
           </div>
           <div class="checkout-trust-list">
@@ -223,11 +223,11 @@
         container.innerHTML = items.map(i => `
           <div class="summary-item">
             <span class="summary-item-name">${i.qty}x ${i.name}</span>
-            <span>$${(i.price * i.qty).toFixed(2)}</span>
+            <span>${window.formatRupiah(i.price * i.qty)}</span>
           </div>
         `).join("");
-        subtotalEl.textContent = `$${window.NexCart.total.toFixed(2)}`;
-        totalEl.textContent = `$${window.NexCart.total.toFixed(2)}`;
+        subtotalEl.textContent = window.formatRupiah(window.NexCart.total);
+        totalEl.textContent = window.formatRupiah(window.NexCart.total);
       }
 
       document.getElementById("checkout-form").addEventListener("submit", (e) => {

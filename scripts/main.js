@@ -1,12 +1,22 @@
 /**
- * NEXGEAR Main Script — Handmade Edition
- * No ESM exports — classic script loading
+ * NEXGEAR Main Script â€” Handmade Edition
+ * No ESM exports â€” classic script loading
  */
 
 (function () {
   "use strict";
 
-  /* ── Simple Cart State (localStorage) ── */
+  function formatRupiah(value) {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      maximumFractionDigits: 0,
+    }).format(Number(value) || 0);
+  }
+
+  window.formatRupiah = formatRupiah;
+
+  /* â”€â”€ Simple Cart State (localStorage) â”€â”€ */
   const Cart = {
     KEY: "nexgear_cart",
     get items() {
@@ -73,7 +83,7 @@
   // Expose Cart globally for page-specific scripts
   window.NexCart = Cart;
 
-  /* ── Simple Auth State (localStorage) ── */
+  /* â”€â”€ Simple Auth State (localStorage) â”€â”€ */
   const Auth = {
     KEY: "nexgear_auth",
     get isLoggedIn() {
@@ -104,7 +114,7 @@
   };
   window.NexAuth = Auth;
 
-  /* ── Toast Notification ── */
+  /* â”€â”€ Toast Notification â”€â”€ */
   function showToast(msg) {
     const toast = document.createElement("div");
     toast.className = "toast-notification";
@@ -118,7 +128,7 @@
   }
   window.showToast = showToast;
 
-  /* ── Sticky Navbar ── */
+  /* â”€â”€ Sticky Navbar â”€â”€ */
   function initNavbar() {
     const nav = document.querySelector("nav");
     if (!nav) return;
@@ -128,7 +138,7 @@
     });
   }
 
-  /* ── Mobile Menu ── */
+  /* â”€â”€ Mobile Menu â”€â”€ */
   function initMobileMenu() {
     const nav = document.querySelector("nav");
     const navLinks = document.querySelector(".nav-links");
@@ -149,7 +159,7 @@
     });
   }
 
-  /* ── Scroll Reveal ── */
+  /* â”€â”€ Scroll Reveal â”€â”€ */
   function initReveal() {
     const els = document.querySelectorAll(".reveal");
     if (!els.length) return;
@@ -173,7 +183,7 @@
     els.forEach((el) => observer.observe(el));
   }
 
-  /* ── Stat Count-Up ── */
+  /* â”€â”€ Stat Count-Up â”€â”€ */
   function initCountUp() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -221,7 +231,7 @@
     nums.forEach((el) => observer.observe(el));
   }
 
-  /* ── Hero Parallax ── */
+  /* â”€â”€ Hero Parallax â”€â”€ */
   function initParallax() {
     const heroH1 = document.querySelector(".hero h1");
     if (!heroH1) return;
@@ -233,18 +243,18 @@
     });
   }
 
-  /* ── Price Filter (catalog) ── */
+  /* â”€â”€ Price Filter (catalog) â”€â”€ */
   function initPriceFilter() {
     const range = document.querySelector(".price-range");
     const label = document.querySelector(".price-label-max");
     if (!range || !label) return;
 
     range.addEventListener("input", () => {
-      label.textContent = `$${parseInt(range.value).toLocaleString()}+`;
+      label.textContent = `${formatRupiah(parseInt(range.value))}+`;
     });
   }
 
-  /* ── Search & Filter Logic (catalog) ── */
+  /* â”€â”€ Search & Filter Logic (catalog) â”€â”€ */
   function initGearFinder() {
     const options = document.querySelectorAll(".gear-finder__option");
     const cta = document.getElementById("gearFinderCta");
@@ -424,7 +434,7 @@
       gaming: { category: "all", search: "", maxPrice: null },
       productivity: { category: "peripherals", search: "", maxPrice: null },
       streaming: { category: "audio", search: "", maxPrice: null },
-      budget: { category: "all", search: "", maxPrice: 250 },
+      budget: { category: "all", search: "", maxPrice: 5000000 },
     };
     const params = new URLSearchParams(window.location.search);
     const setup = params.get("setup");
@@ -441,11 +451,16 @@
     }
 
     function getCardPrice(card) {
+      const cartButton = card.querySelector("[data-price]");
+      if (cartButton?.dataset.price) {
+        return parseInt(cartButton.dataset.price, 10) || 0;
+      }
+
       const priceEl = card.querySelector(
         ".price, .product-price, .product-card-price, .card-price, .related-bottom .price",
       );
       if (!priceEl) return 0;
-      return parseFloat(priceEl.textContent.replace(/[^0-9.]/g, "")) || 0;
+      return parseInt(priceEl.textContent.replace(/[^\d]/g, ""), 10) || 0;
     }
 
     function getSearchText(card) {
@@ -515,10 +530,10 @@
       reset.addEventListener("click", () => {
         if (bar) bar.value = "";
         if (range) {
-          range.value = range.max || 5000;
+          range.value = range.max || 50000000;
           const label = document.querySelector(".price-label-max");
           if (label) {
-            label.textContent = `$${parseInt(range.value).toLocaleString()}+`;
+            label.textContent = `${formatRupiah(parseInt(range.value))}+`;
           }
         }
         activeCategory = "all";
@@ -592,7 +607,7 @@
       if (range && preset.maxPrice) {
         range.value = preset.maxPrice;
         const label = document.querySelector(".price-label-max");
-        if (label) label.textContent = `$${preset.maxPrice.toLocaleString()}+`;
+        if (label) label.textContent = `${formatRupiah(preset.maxPrice)}+`;
       }
     }
 
@@ -615,7 +630,7 @@
     setActiveCategory(activeCategory);
   }
 
-  /* ── Add-to-Cart Buttons ── */
+  /* â”€â”€ Add-to-Cart Buttons â”€â”€ */
   function initAddToCart() {
     document.querySelectorAll("[data-add-cart]").forEach((btn) => {
       btn.addEventListener("click", (e) => {
@@ -705,7 +720,7 @@
     });
   }
 
-  /* ── Set Active Nav Link ── */
+  /* â”€â”€ Set Active Nav Link â”€â”€ */
   function setActiveNav() {
     const path = window.location.pathname.split("/").pop() || "index.html";
     document.querySelectorAll(".nav-links a").forEach((link) => {
@@ -716,7 +731,7 @@
     });
   }
 
-  /* ── Random slight rotations for sketch cards ── */
+  /* â”€â”€ Random slight rotations for sketch cards â”€â”€ */
   function initSketchRotations() {
     document
       .querySelectorAll(".sketch-card, .sketch-card-alt")
@@ -729,7 +744,7 @@
       });
   }
 
-  /* ── Filter Drawer (catalog) ── */
+  /* â”€â”€ Filter Drawer (catalog) â”€â”€ */
   function initFilterDrawer() {
     const openBtn = document.getElementById("openFilterBtn");
     const closeBtn = document.getElementById("closeFilterBtn");
@@ -749,7 +764,7 @@
         ".filter-option input[type='checkbox']:checked",
       );
       const range = drawer.querySelector(".price-range");
-      const maxPrice = range ? parseInt(range.value) : 5000;
+      const maxPrice = range ? parseInt(range.value) : 50000000;
 
       const filters = [];
 
@@ -760,9 +775,9 @@
       });
 
       // Add price filter if not at max
-      if (maxPrice < 5000) {
+      if (maxPrice < 50000000) {
         filters.push({
-          name: `Price: $0-$${maxPrice.toLocaleString()}`,
+          name: `Harga: Rp0-${formatRupiah(maxPrice)}`,
           isPriceFilter: true,
         });
       }
@@ -785,9 +800,9 @@
         removeBtn.addEventListener("click", (e) => {
           e.stopPropagation();
           if (filter.isPriceFilter) {
-            range.value = 5000;
+            range.value = 50000000;
             const label = drawer.querySelector(".price-label-max");
-            if (label) label.textContent = "$5,000+";
+            if (label) label.textContent = `${formatRupiah(50000000)}+`;
             range.dispatchEvent(new Event("input", { bubbles: true }));
           } else if (filter.element) {
             filter.element.checked = false;
@@ -812,8 +827,8 @@
         ".filter-option input[type='checkbox']:checked",
       );
       const range = drawer.querySelector(".price-range");
-      const maxPrice = range ? parseInt(range.value) : 5000;
-      const hasPrice = maxPrice < 5000;
+      const maxPrice = range ? parseInt(range.value) : 50000000;
+      const hasPrice = maxPrice < 50000000;
       const count = checkboxes.length + (hasPrice ? 1 : 0);
 
       if (count > 0) {
@@ -850,9 +865,9 @@
         .forEach((cb) => (cb.checked = false));
       const range = drawer.querySelector(".price-range");
       if (range) {
-        range.value = 5000;
+        range.value = 50000000;
         const label = drawer.querySelector(".price-label-max");
-        if (label) label.textContent = "$5,000+";
+        if (label) label.textContent = `${formatRupiah(50000000)}+`;
       }
       updateBadge();
       document.dispatchEvent(new CustomEvent("nexgear:filters-change"));
@@ -901,7 +916,7 @@
     updateBadge();
   }
 
-  /* ── Mini-Cart Injection & Logic ── */
+  /* â”€â”€ Mini-Cart Injection & Logic â”€â”€ */
   function initMiniCart() {
     const cartHTML = `
       <div class="mini-cart-overlay" id="miniCartOverlay"></div>
@@ -916,7 +931,7 @@
         <div class="mini-cart-footer">
           <div class="mini-cart-total">
             <span>Total:</span>
-            <span id="miniCartTotal">$0.00</span>
+            <span id="miniCartTotal">Rp0</span>
           </div>
           <a href="checkout.html" class="btn btn-primary" style="width: 100%; justify-content: center;">Checkout</a>
         </div>
@@ -947,8 +962,8 @@
       const items = Cart.items;
       if (items.length === 0) {
         itemsContainer.innerHTML =
-          '<div class="mini-cart-empty">Kosong melompong~</div>';
-        totalEl.textContent = "$0.00";
+          '<div class="mini-cart-empty">Keranjang masih kosong.</div>';
+        totalEl.textContent = formatRupiah(0);
         return;
       }
 
@@ -958,7 +973,7 @@
         <div class="mini-cart-item">
           <div class="mini-cart-item-info">
             <h4>${item.name}</h4>
-            <div class="mini-cart-item-price">$${item.price.toFixed(2)} x ${item.qty}</div>
+            <div class="mini-cart-item-price">${formatRupiah(item.price)} x ${item.qty}</div>
           </div>
           <button class="btn btn-outline" style="padding: 4px; border-color: var(--accent); color: var(--accent);" onclick="window.NexCart.remove('${item.name}');">
             <span class="icon icon-sm" style="width: 14px; height: 14px;"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
@@ -967,7 +982,7 @@
       `,
         )
         .join("");
-      totalEl.textContent = `$${Cart.total.toFixed(2)}`;
+      totalEl.textContent = formatRupiah(Cart.total);
     }
 
     window.openMiniCart = openCart;
@@ -986,7 +1001,7 @@
     });
   }
 
-  /* ── INIT ── */
+  /* â”€â”€ INIT â”€â”€ */
   function initStickyCartPreview() {
     if (document.querySelector(".sticky-cart-preview")) return;
 
@@ -995,7 +1010,7 @@
     preview.innerHTML = `
       <div>
         <p class="sticky-cart-preview__label">Keranjang aktif</p>
-        <strong class="sticky-cart-preview__total" id="stickyCartTotal">$0.00</strong>
+        <strong class="sticky-cart-preview__total" id="stickyCartTotal">Rp0</strong>
       </div>
       <div class="sticky-cart-preview__actions">
         <button class="btn btn-outline sticky-cart-preview__button" type="button" id="stickyCartOpen">Review</button>
@@ -1010,7 +1025,7 @@
     window.updateStickyCartPreview = () => {
       const count = Cart.count;
       preview.classList.toggle("show", count > 0);
-      if (total) total.textContent = `${count} item - $${Cart.total.toFixed(2)}`;
+      if (total) total.textContent = `${count} item - ${formatRupiah(Cart.total)}`;
     };
 
     openBtn?.addEventListener("click", () => {

@@ -4,7 +4,7 @@
    Foundation: Color, Typography, Spacing, Shadows, Transitions
    ═══════════════════════════════════════════════════════════════════ */
 
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&family=Orbitron:wght@600;700;800;900&display=swap");
 
 :root {
   /* ──────────────────────────────────────────────────────────────
@@ -264,6 +264,106 @@
     --duration-slow: 0.01ms;
     --duration-slower: 0.01ms;
   }
+}
+
+/* NEXGEAR premium gaming token override */
+:root {
+  --color-primary: #00c8ff;
+  --color-primary-dark: #008fd1;
+  --color-primary-light: #7ce7ff;
+  --color-primary-bg: rgba(0, 200, 255, 0.1);
+  --color-primary-bg-hover: rgba(0, 200, 255, 0.16);
+
+  --color-accent: #8b5cf6;
+  --color-accent-dark: #6d3fe0;
+  --color-accent-light: #c4b5fd;
+  --color-accent-bg: rgba(139, 92, 246, 0.12);
+  --primary: var(--color-primary);
+  --accent: var(--color-accent);
+
+  --color-success: #34d399;
+  --color-success-dark: #059669;
+  --color-success-bg: rgba(52, 211, 153, 0.11);
+  --success: var(--color-success);
+
+  --color-warning: #facc15;
+  --color-warning-dark: #ca8a04;
+  --color-warning-bg: rgba(250, 204, 21, 0.12);
+
+  --color-error: #ff4d7d;
+  --color-error-dark: #be123c;
+  --color-error-bg: rgba(255, 77, 125, 0.12);
+
+  --color-bg-richest: #05070d;
+  --color-bg-deepest: #070a12;
+  --color-bg-deep: #090d18;
+  --color-bg-surface: #0f1624;
+  --color-bg-card: #121a2a;
+  --color-bg-input: #0b111d;
+  --color-bg-overlay: rgba(5, 7, 13, 0.78);
+  --bg-deep: var(--color-bg-deep);
+  --bg-card: var(--color-bg-card);
+
+  --color-text-primary: #f4f8ff;
+  --color-text-secondary: #c6d1e4;
+  --color-text-muted: #8794aa;
+  --color-text-disabled: #566173;
+  --text-main: var(--color-text-primary);
+  --text-muted: var(--color-text-muted);
+
+  --color-border-strong: rgba(198, 209, 228, 0.2);
+  --color-border-default: rgba(198, 209, 228, 0.12);
+  --color-border-subtle: rgba(198, 209, 228, 0.07);
+
+  --color-focus: rgba(0, 200, 255, 0.42);
+  --focus-ring: 2px solid var(--color-primary);
+  --focus-outline: 2px solid var(--color-primary);
+  --color-hover-overlay: rgba(255, 255, 255, 0.06);
+  --color-active-overlay: rgba(0, 200, 255, 0.12);
+
+  --bg-gradient-hero: linear-gradient(
+    135deg,
+    rgba(0, 200, 255, 0.1) 0%,
+    var(--color-bg-deep) 50%,
+    rgba(139, 92, 246, 0.08) 100%
+  );
+  --bg-gradient-card-hover: linear-gradient(
+    180deg,
+    rgba(0, 200, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.025) 100%
+  );
+  --bg-glass: rgba(244, 248, 255, 0.045);
+
+  --font-display: "Orbitron", "Inter", sans-serif;
+  --font-heading: "Orbitron", "Inter", sans-serif;
+  --font-gaming: "Orbitron", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", Consolas, monospace;
+  --font-hand: "Inter", sans-serif;
+
+  --font-size-h1: clamp(3rem, 6.8vw, 6.8rem);
+  --font-size-h2: clamp(2rem, 4.2vw, 4.2rem);
+  --font-size-h3: clamp(1.45rem, 2.5vw, 2.2rem);
+
+  --shadow-glow:
+    0 0 0 1px rgba(0, 200, 255, 0.18), 0 18px 44px rgba(0, 0, 0, 0.34);
+
+  --color-surface-base: var(--color-bg-deepest);
+  --color-surface-raised: var(--color-bg-card);
+  --color-surface-overlay: var(--color-bg-surface);
+  --color-surface-border: var(--color-border-default);
+  --color-accent-primary: var(--color-primary);
+  --color-accent-secondary: var(--color-accent);
+  --color-accent-glow: rgba(0, 200, 255, 0.14);
+  --color-badge-hot: var(--color-error);
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
 }
 
 /* ═══════════════════════════════════════════════════════════════════

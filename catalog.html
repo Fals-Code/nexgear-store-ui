@@ -10,72 +10,26 @@
     <title>Catalog | NEXGEAR</title>
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/catalog.css" />
-  <style>
-    body { opacity: 0; transition: opacity 0.25s ease; }
-    body.loaded { opacity: 1; }
-  </style>
-  <noscript><style>body { opacity: 1; }</style></noscript>
+    <style>
+      body {
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+      body.loaded {
+        opacity: 1;
+      }
+    </style>
+    <noscript><style>body { opacity: 1; }</style></noscript>
   </head>
   <body>
     <nav>
-      <a href="index.html" class="logo"
-        ><span class="text-gradient">NEX</span>GEAR</a
-      >
+      <a href="index.html" class="logo"><span class="text-gradient">NEX</span>GEAR</a>
       <ul class="nav-links">
-        <li>
-          <a href="index.html"
-            ><span class="icon icon-sm"
-              ><svg viewBox="0 0 24 24">
-                <path
-                  d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"
-                />
-                <polyline points="9 21 9 14 15 14 15 21" /></svg
-            ></span>
-            Home</a
-          >
-        </li>
-        <li>
-          <a href="catalog.html"
-            ><span class="icon icon-sm"
-              ><svg viewBox="0 0 24 24">
-                <rect x="2" y="3" width="20" height="18" rx="2" />
-                <line x1="2" y1="9" x2="22" y2="9" />
-                <line x1="8" y1="9" x2="8" y2="21" /></svg
-            ></span>
-            Catalog</a
-          >
-        </li>
-        <li>
-          <a href="articles.html"
-            ><span class="icon icon-sm"
-              ><svg viewBox="0 0 24 24">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-              </svg></span
-            >
-            Journal</a
-          >
-        </li>
-        <li>
-          <a href="about.html"
-            ><span class="icon icon-sm"
-              ><svg viewBox="0 0 24 24">
-                <circle cx="12" cy="8" r="4" />
-                <path d="M4 20c0-4 4-7 8-7s8 3 8 7" /></svg
-            ></span>
-            About</a
-          >
-        </li>
-        <li>
-          <a href="contact.html"
-            ><span class="icon icon-sm"
-              ><svg viewBox="0 0 24 24">
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-                <polyline points="22 4 12 13 2 4" /></svg
-            ></span>
-            Contact</a
-          >
-        </li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="catalog.html">Catalog</a></li>
+        <li><a href="catalog.html?setup=budget">Deals/Promo</a></li>
+        <li><a href="articles.html">Journal</a></li>
+        <li><a href="contact.html">Support</a></li>
       </ul>
       <div class="nav-actions">
         <a href="cart.html" class="cart-btn">
@@ -88,11 +42,7 @@
           ></span>
           <span class="cart-badge"></span>
         </a>
-        <a
-          href="login.html"
-          class="btn btn-outline"
-          style="padding: 8px 18px; font-size: 0.75rem"
-        >
+        <a href="login.html" class="btn btn-outline nav-login-link">
           <span class="icon icon-sm"
             ><svg viewBox="0 0 24 24">
               <circle cx="12" cy="8" r="4" />
@@ -113,16 +63,16 @@
                 <a href="index.html">Home</a> <span class="sep">/</span>
                 <span>Catalog</span>
               </div>
-              <p class="catalog-kicker">Curated performance gear</p>
-              <h1 class="catalog-title text-gradient">The Performance Edit</h1>
+              <p class="catalog-kicker">NEXGEAR Catalog</p>
+              <h1 class="catalog-title text-gradient">Gaming Gear Terpilih</h1>
               <p class="catalog-subtitle">
-                Chosen for speed, feel, and the rituals of a better setup.
-                Browse precise gaming hardware staged for control, speed, and a cleaner setup.
+                Pilih laptop, monitor, peripheral, komponen, dan audio gear
+                dengan stok jelas, garansi resmi, dan harga Rupiah.
               </p>
               <div class="catalog-hero-actions" aria-label="Catalog primary actions">
-                <a href="#catalogProductGrid" class="btn btn-primary">Explore Gear</a>
+                <a href="#catalogProductGrid" class="btn btn-primary">Lihat Produk</a>
                 <button class="btn btn-outline catalog-hero-refine" type="button" data-open-filter>
-                Refine Setup
+                  Filter Gear
                 </button>
               </div>
             </div>
@@ -135,9 +85,9 @@
                 />
               </div>
               <div class="catalog-hero-specs" aria-label="Featured gear highlights">
-                <span>RTX-class performance</span>
-                <span>Fast refresh displays</span>
-                <span>Official warranty</span>
+                <span>Performa siap main</span>
+                <span>Refresh rate tinggi</span>
+                <span>Garansi resmi</span>
               </div>
             </div>
             <div class="catalog-trust-row" aria-label="Catalog highlights">
@@ -165,7 +115,7 @@
                   <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
               </span>
-              <input type="text" id="searchInput" class="search-bar catalog-control catalog-search-input" placeholder="Search keyboard, monitor, headset..." aria-label="Cari produk" />
+              <input type="text" id="searchInput" class="search-bar catalog-control catalog-search-input" placeholder="Cari keyboard, monitor, headset..." aria-label="Cari produk" />
             </div>
 
             <div class="catalog-toolbar-actions">
@@ -187,16 +137,16 @@
                     <circle cx="10" cy="18" r="2" />
                   </svg>
                 </span>
-                Refine
+                Filter
                 <span id="filterBadge" class="filter-badge" aria-hidden="true"></span>
               </button>
 
               <div class="catalog-sort sort-dropdown">
-                <label for="sortSelect">Order</label>
+                <label for="sortSelect">Urutkan</label>
                 <select id="sortSelect" class="catalog-control">
-                  <option value="newest">Newest arrivals</option>
-                  <option value="price-asc">Lowest price</option>
-                  <option value="price-desc">Highest price</option>
+                  <option value="newest">Terbaru</option>
+                  <option value="price-asc">Harga terendah</option>
+                  <option value="price-desc">Harga tertinggi</option>
                 </select>
               </div>
             </div>
@@ -204,19 +154,19 @@
 
           <div class="category-pills" aria-label="Kategori produk">
             <button class="tag-chip active" data-category="all" type="button" aria-label="Lihat semua kategori">
-              <span>All</span><small>Curated gear</small>
+              <span>Semua</span><small>Semua gear</small>
             </button>
-            <button class="tag-chip" data-category="laptops" type="button" aria-label="Kategori machines">
-              <span>Machines</span><small>Gaming laptops</small>
+            <button class="tag-chip" data-category="laptops" type="button" aria-label="Kategori laptop">
+              <span>Laptop</span><small>Gaming laptop</small>
             </button>
-            <button class="tag-chip" data-category="peripherals" type="button" aria-label="Kategori control">
-              <span>Control</span><small>Mouse, keys, display</small>
+            <button class="tag-chip" data-category="peripherals" type="button" aria-label="Kategori peripheral">
+              <span>Peripheral</span><small>Mouse, keys, monitor</small>
             </button>
-            <button class="tag-chip" data-category="components" type="button" aria-label="Kategori build">
-              <span>Build</span><small>GPU, CPU, memory</small>
+            <button class="tag-chip" data-category="components" type="button" aria-label="Kategori komponen">
+              <span>Komponen</span><small>GPU, CPU, memory</small>
             </button>
-            <button class="tag-chip" data-category="audio" type="button" aria-label="Kategori sound">
-              <span>Sound</span><small>Headset and studio</small>
+            <button class="tag-chip" data-category="audio" type="button" aria-label="Kategori audio">
+              <span>Audio</span><small>Headset dan studio</small>
             </button>
           </div>
 
@@ -271,12 +221,12 @@
                 <span>Official Warranty</span>
               </div>
               <div class="product-card-bottom product-card-footer">
-                <span class="card-price product-card-price">$1,899.99</span>
+                <span class="card-price product-card-price">Rp24.999.000</span>
                 <button
                   class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="ROG Strix G16"
-                  data-price="1899.99"
+                  data-price="24999000"
                   aria-label="Tambah ROG Strix G16 ke keranjang"
                 >
                   <span class="icon icon-sm add-cart-icon"
@@ -286,7 +236,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Setup
+                  Tambah ke Cart
                 </button>
               </div>
             </div>
@@ -339,12 +289,12 @@
                 <span>Official Warranty</span>
               </div>
               <div class="product-card-bottom product-card-footer">
-                <span class="card-price product-card-price">$249.99</span>
+                <span class="card-price product-card-price">Rp3.999.000</span>
                 <button
                   class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="Huntsman V3 Pro"
-                  data-price="249.99"
+                  data-price="3999000"
                   aria-label="Tambah Huntsman V3 Pro ke keranjang"
                 >
                   <span class="icon icon-sm add-cart-icon"
@@ -354,7 +304,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Setup
+                  Tambah ke Cart
                 </button>
               </div>
             </div>
@@ -417,12 +367,12 @@
                 <span>Fast Delivery</span>
               </div>
               <div class="product-card-bottom product-card-footer">
-                <span class="card-price product-card-price">$599.99</span>
+                <span class="card-price product-card-price">Rp8.999.000</span>
                 <button
                   class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="Alienware 27"
-                  data-price="599.99"
+                  data-price="8999000"
                   aria-label="Tambah Alienware 27 ke keranjang"
                 >
                   <span class="icon icon-sm add-cart-icon"
@@ -432,7 +382,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Setup
+                  Tambah ke Cart
                 </button>
               </div>
             </div>
@@ -521,12 +471,12 @@
                 <span>Official Warranty</span>
               </div>
               <div class="product-card-bottom product-card-footer">
-                <span class="card-price product-card-price">$799.99</span>
+                <span class="card-price product-card-price">Rp13.499.000</span>
                 <button
                   class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="RTX 4070 Ti Super"
-                  data-price="799.99"
+                  data-price="13499000"
                   aria-label="Tambah RTX 4070 Ti Super ke keranjang"
                 >
                   <span class="icon icon-sm add-cart-icon"
@@ -536,7 +486,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Setup
+                  Tambah ke Cart
                 </button>
               </div>
             </div>
@@ -615,12 +565,12 @@
                 <span>Official Warranty</span>
               </div>
               <div class="product-card-bottom product-card-footer">
-                <span class="card-price product-card-price">$179.99</span>
+                <span class="card-price product-card-price">Rp2.799.000</span>
                 <button
                   class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="Arctis Nova 7"
-                  data-price="179.99"
+                  data-price="2799000"
                   aria-label="Tambah Arctis Nova 7 ke keranjang"
                 >
                   <span class="icon icon-sm add-cart-icon"
@@ -630,7 +580,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Setup
+                  Tambah ke Cart
                 </button>
               </div>
             </div>
@@ -651,12 +601,12 @@
                 <span>Fast Delivery</span>
               </div>
               <div class="product-card-bottom product-card-footer">
-                <span class="card-price product-card-price">$159.99</span>
+                <span class="card-price product-card-price">Rp2.499.000</span>
                 <button
                   class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="G Pro X Superlight 2"
-                  data-price="159.99"
+                  data-price="2499000"
                   aria-label="Tambah G Pro X Superlight 2 ke keranjang"
                 >
                   <span class="icon icon-sm add-cart-icon"
@@ -666,7 +616,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Setup
+                  Tambah ke Cart
                 </button>
               </div>
             </div>
@@ -687,12 +637,12 @@
                 <span>Official Warranty</span>
               </div>
               <div class="product-card-bottom product-card-footer">
-                <span class="card-price product-card-price">$229.99</span>
+                <span class="card-price product-card-price">Rp3.699.000</span>
                 <button
                   class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="Corsair K70 Max RGB"
-                  data-price="229.99"
+                  data-price="3699000"
                   aria-label="Tambah Corsair K70 Max RGB ke keranjang"
                 >
                   <span class="icon icon-sm add-cart-icon"
@@ -702,7 +652,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Setup
+                  Tambah ke Cart
                 </button>
               </div>
             </div>
@@ -723,12 +673,12 @@
                 <span>Ready Stock</span>
               </div>
               <div class="product-card-bottom product-card-footer">
-                <span class="card-price product-card-price">$2,499.99</span>
+                <span class="card-price product-card-price">Rp39.999.000</span>
                 <button
                   class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="MSI Raider GE78 HX"
-                  data-price="2499.99"
+                  data-price="39999000"
                   aria-label="Tambah MSI Raider GE78 HX ke keranjang"
                 >
                   <span class="icon icon-sm add-cart-icon"
@@ -738,7 +688,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Setup
+                  Tambah ke Cart
                 </button>
               </div>
             </div>
@@ -759,12 +709,12 @@
                 <span>Official Warranty</span>
               </div>
               <div class="product-card-bottom product-card-footer">
-                <span class="card-price product-card-price">$699.99</span>
+                <span class="card-price product-card-price">Rp10.999.000</span>
                 <button
                   class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="Samsung Odyssey G7"
-                  data-price="699.99"
+                  data-price="10999000"
                   aria-label="Tambah Samsung Odyssey G7 ke keranjang"
                 >
                   <span class="icon icon-sm add-cart-icon"
@@ -774,7 +724,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Setup
+                  Tambah ke Cart
                 </button>
               </div>
             </div>
@@ -795,12 +745,12 @@
                 <span>Ready Stock</span>
               </div>
               <div class="product-card-bottom product-card-footer">
-                <span class="card-price product-card-price">$399.99</span>
+                <span class="card-price product-card-price">Rp6.499.000</span>
                 <button
                   class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="Ryzen 7 7800X3D"
-                  data-price="399.99"
+                  data-price="6499000"
                   aria-label="Tambah Ryzen 7 7800X3D ke keranjang"
                 >
                   <span class="icon icon-sm add-cart-icon"
@@ -810,7 +760,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Setup
+                  Tambah ke Cart
                 </button>
               </div>
             </div>
@@ -831,12 +781,12 @@
                 <span>Official Warranty</span>
               </div>
               <div class="product-card-bottom product-card-footer">
-                <span class="card-price product-card-price">$129.99</span>
+                <span class="card-price product-card-price">Rp1.999.000</span>
                 <button
                   class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="Vengeance RGB 32GB"
-                  data-price="129.99"
+                  data-price="1999000"
                   aria-label="Tambah Vengeance RGB 32GB ke keranjang"
                 >
                   <span class="icon icon-sm add-cart-icon"
@@ -846,7 +796,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Setup
+                  Tambah ke Cart
                 </button>
               </div>
             </div>
@@ -867,12 +817,12 @@
                 <span>Fast Delivery</span>
               </div>
               <div class="product-card-bottom product-card-footer">
-                <span class="card-price product-card-price">$169.99</span>
+                <span class="card-price product-card-price">Rp2.699.000</span>
                 <button
                   class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="HyperX Cloud III Wireless"
-                  data-price="169.99"
+                  data-price="2699000"
                   aria-label="Tambah HyperX Cloud III Wireless ke keranjang"
                 >
                   <span class="icon icon-sm add-cart-icon"
@@ -882,7 +832,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Setup
+                  Tambah ke Cart
                 </button>
               </div>
             </div>
@@ -903,12 +853,12 @@
                 <span>Official Warranty</span>
               </div>
               <div class="product-card-bottom product-card-footer">
-                <span class="card-price product-card-price">$149.99</span>
+                <span class="card-price product-card-price">Rp2.399.000</span>
                 <button
                   class="btn btn-primary product-card-cta"
                   data-add-cart
                   data-name="Elgato Wave:3"
-                  data-price="149.99"
+                  data-price="2399000"
                   aria-label="Tambah Elgato Wave:3 ke keranjang"
                 >
                   <span class="icon icon-sm add-cart-icon"
@@ -918,7 +868,7 @@
                       <circle cx="18" cy="20" r="1.5" />
                       <path d="M2 2h3l1 4" /></svg
                   ></span>
-                  Add to Setup
+                  Tambah ke Cart
                 </button>
               </div>
             </div>
@@ -953,7 +903,7 @@
               <circle cx="16" cy="12" r="2" />
               <circle cx="10" cy="18" r="2" /></svg
           ></span>
-          REFINE
+          Filter
         </h3>
         <div class="filter-drawer-actions">
           <button
@@ -961,12 +911,12 @@
             class="btn btn-outline"
             aria-label="Clear all filters"
           >
-            Clear
+            Reset
           </button>
           <button
             id="closeFilterBtn"
             class="close-filter-btn"
-            aria-label="Close filters"
+            aria-label="Tutup filter"
           >
             <svg viewBox="0 0 24 24">
               <line
@@ -1002,19 +952,19 @@
                 <rect x="3" y="14" width="7" height="7" rx="1" />
                 <rect x="14" y="14" width="7" height="7" rx="1" /></svg
             ></span>
-            Edit
+            Kategori
           </h4>
           <label class="filter-option"
-            ><input type="checkbox" data-filter-type="category" value="laptops" /> Machines</label
+            ><input type="checkbox" data-filter-type="category" value="laptops" /> Laptop</label
           >
           <label class="filter-option"
-            ><input type="checkbox" data-filter-type="category" value="peripherals" /> Control</label
+            ><input type="checkbox" data-filter-type="category" value="peripherals" /> Peripheral</label
           >
           <label class="filter-option"
-            ><input type="checkbox" data-filter-type="category" value="components" /> Build</label
+            ><input type="checkbox" data-filter-type="category" value="components" /> Komponen</label
           >
           <label class="filter-option"
-            ><input type="checkbox" data-filter-type="category" value="audio" /> Sound</label
+            ><input type="checkbox" data-filter-type="category" value="audio" /> Audio</label
           >
         </div>
 
@@ -1025,18 +975,18 @@
                 <line x1="12" y1="1" x2="12" y2="23" />
                 <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" /></svg
             ></span>
-            Price
+            Harga
           </h4>
           <input
             type="range"
             class="price-range"
             min="0"
-            max="5000"
-            value="5000"
+            max="50000000"
+            value="50000000"
           />
           <div class="price-labels">
-            <span>$0</span>
-            <span class="price-label-max">$5,000+</span>
+            <span>Rp0</span>
+            <span class="price-label-max">Rp50.000.000+</span>
           </div>
         </div>
 
@@ -1095,7 +1045,7 @@
           <span class="icon icon-sm"
             ><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg
           ></span>
-          Apply Refinement
+          Terapkan Filter
         </button>
       </div>
     </aside>
@@ -1103,34 +1053,28 @@
     <footer>
       <div class="footer-grid container">
         <div>
-          <div class="logo" style="margin-bottom: 12px">
+          <div class="logo footer-logo">
             <span class="text-gradient">NEX</span>GEAR
           </div>
-          <p
-            style="
-              color: var(--text-muted);
-              font-size: 0.9rem;
-              margin-bottom: 16px;
-            "
-          >
+          <p class="footer-copy">
             Toko gaming premium untuk gear performa tinggi.
           </p>
           <div class="footer-social">
-            <a href="#" aria-label="Twitter"
+            <a href="https://x.com" target="_blank" rel="noopener" aria-label="Twitter"
               ><span class="icon icon-sm"
                 ><svg viewBox="0 0 24 24">
                   <path
                     d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 7.5v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
                   /></svg></span
             ></a>
-            <a href="#" aria-label="Instagram"
+            <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"
               ><span class="icon icon-sm"
                 ><svg viewBox="0 0 24 24">
                   <rect x="2" y="2" width="20" height="20" rx="5" />
                   <circle cx="12" cy="12" r="5" />
                   <circle cx="17.5" cy="6.5" r="1.5" /></svg></span
             ></a>
-            <a href="#" aria-label="YouTube"
+            <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"
               ><span class="icon icon-sm"
                 ><svg viewBox="0 0 24 24">
                   <path
@@ -1148,28 +1092,22 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="catalog.html">Catalog</a></li>
             <li><a href="articles.html">Journal</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="catalog.html?setup=budget">Deals/Promo</a></li>
+            <li><a href="contact.html">Support</a></li>
           </ul>
         </div>
         <div>
-          <h4>Edit</h4>
+          <h4>Kategori</h4>
           <ul>
-            <li><a href="catalog.html">Machines</a></li>
-            <li><a href="catalog.html">Control</a></li>
-            <li><a href="catalog.html">Build</a></li>
-            <li><a href="catalog.html">Sound</a></li>
+            <li><a href="catalog.html?category=laptops">Laptops</a></li>
+            <li><a href="catalog.html?category=peripherals">Peripherals</a></li>
+            <li><a href="catalog.html?category=components">Components</a></li>
+            <li><a href="catalog.html?category=audio">Audio</a></li>
           </ul>
         </div>
         <div>
           <h4>Newsletter</h4>
-          <p
-            style="
-              color: var(--text-muted);
-              font-size: 0.9rem;
-              margin-bottom: 12px;
-            "
-          >
+          <p class="footer-copy">
             Update produk dan promo terbaru.
           </p>
           <form
@@ -1184,16 +1122,10 @@
               placeholder="Email kamu"
               aria-label="Email"
               class="form-input"
-              style="
-                border: var(--border-default);
-                border-radius: var(--radius-sm);
-                padding: 10px 14px;
-              "
             />
             <button
               class="btn btn-primary"
               type="submit"
-              style="padding: 10px 20px; font-size: 0.7rem"
             >
               Daftar
             </button>
