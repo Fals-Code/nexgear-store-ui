@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profil Saya | NEXGEAR</title>
+  <title>Blog & Panduan | NEXGEAR</title>
   <link rel="stylesheet" href="styles/global.css">
-  <link rel="stylesheet" href="styles/profile.css">
+  <link rel="stylesheet" href="styles/blog.css">
 </head>
 <body>
     <!-- GLOBAL HEADER -->
@@ -489,150 +489,139 @@
     </header>
 
   <main>
-    <div class="container section-padding profile-layout">
-      
-      <!-- SIDEBAR -->
-      <aside class="profile-sidebar">
-        <div class="user-summary">
-          <div class="user-avatar">
-            <span>JD</span>
+    <!-- BLOG HERO -->
+    <section class="blog-hero">
+      <div class="container text-center">
+        <h1>NEXGEAR <span class="text-accent">Jurnal</span></h1>
+        <p>Wawasan, panduan, dan ulasan mendalam seputar peripheral gaming.</p>
+        
+        <div class="blog-categories">
+          <a href="#" class="active">Semua</a>
+          <a href="#">Buying Guide</a>
+          <a href="#">Setup Tips</a>
+          <a href="#">Hardware</a>
+          <a href="#">Deals</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED ARTICLE -->
+    <section class="section-padding" style="padding-top: 0;">
+      <div class="container">
+        <a href="blog-post.html" class="featured-article">
+          <div class="fa-image">
+            <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Featured Article">
           </div>
-          <div class="user-info">
-            <h3>John Doe</h3>
-            <p>john.doe@example.com</p>
+          <div class="fa-content">
+            <span class="article-cat text-accent">Hardware</span>
+            <h2>Evolusi Switch Mekanikal: Memilih antara Linear, Tactile, dan Clicky di Tahun 2026</h2>
+            <p>Panduan komprehensif kami untuk membantu Anda menemukan switch keyboard yang paling sesuai dengan gaya bermain dan kebutuhan produktivitas Anda.</p>
+            <div class="article-meta">
+              <span>Oleh Tim NEXGEAR</span>
+              <span>•</span>
+              <span>05 Jun 2026</span>
+              <span>•</span>
+              <span>7 Min Baca</span>
+            </div>
           </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ARTICLE GRID -->
+    <section class="section-padding section-alt">
+      <div class="container">
+        <div class="section-header text-center" style="margin-bottom: 50px;">
+          <h2>Artikel Terbaru</h2>
         </div>
         
-        <nav class="profile-nav">
-          <a href="#" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> Dashboard</a>
-          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Pesanan Saya</a>
-          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Wishlist</a>
-          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Alamat Pengiriman</a>
-          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Pengaturan Akun</a>
-          <a href="login.html" class="logout-btn" onclick="alert('Anda telah keluar.');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Keluar</a>
-        </nav>
-      </aside>
-
-      <!-- CONTENT AREA -->
-      <div class="profile-content">
-        <h2>Dashboard</h2>
-        <p class="text-secondary" style="margin-bottom: 30px;">Selamat datang di hub kendali NEXGEAR Anda.</p>
-
-        <!-- QUICK STATS -->
-        <div class="quick-stats">
-          <div class="stat-card">
-            <span class="stat-value">2</span>
-            <span class="stat-label">Pesanan Aktif</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-value">5</span>
-            <span class="stat-label">Barang di Wishlist</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-value text-accent">Tier</span>
-            <span class="stat-label">Pro Member</span>
-          </div>
-        </div>
-
-        <!-- RECENT ORDERS -->
-        <div class="dashboard-section">
-          <div class="section-header-flex">
-            <h3>Pesanan Terakhir</h3>
-            <a href="#" class="text-accent">Lihat Semua</a>
-          </div>
+        <div class="article-grid">
           
-          <div class="order-list">
-            <!-- Order Item -->
-            <div class="order-item">
-              <div class="order-header">
-                <div class="order-meta">
-                  <span class="order-id">NEX-88392019A</span>
-                  <span class="order-date">05 Jun 2026</span>
-                </div>
-                <div class="order-status badge-active">Dalam Pengiriman</div>
-              </div>
-              <div class="order-body">
-                <div class="order-products">
-                  <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Keyboard">
-                  <div class="op-info">
-                    <strong>Vortex VX Pro Mechanical</strong>
-                    <span class="text-secondary">1 x Rp 1.599.000</span>
-                  </div>
-                </div>
-                <div class="order-action">
-                  <a href="track-order.html" class="btn btn-outline btn-sm">Lacak</a>
-                </div>
-              </div>
+          <!-- Article Card 1 -->
+          <article class="article-card">
+            <a href="blog-post.html" class="ac-image">
+              <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Blog 1">
+              <span class="ac-badge">Setup Tips</span>
+            </a>
+            <div class="ac-content">
+              <div class="ac-meta">12 Mei 2026</div>
+              <h3><a href="blog-post.html">Cara Mengatur Cable Management untuk Setup Minimalis</a></h3>
+              <p>Tips praktis menyembunyikan kabel dan menciptakan meja bersih yang meningkatkan fokus bermain.</p>
             </div>
-            
-            <!-- Order Item -->
-            <div class="order-item">
-              <div class="order-header">
-                <div class="order-meta">
-                  <span class="order-id">NEX-77281920B</span>
-                  <span class="order-date">12 Mei 2026</span>
-                </div>
-                <div class="order-status badge-completed">Selesai</div>
-              </div>
-              <div class="order-body">
-                <div class="order-products">
-                  <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Mouse">
-                  <div class="op-info">
-                    <strong>HyperX Pulsefire</strong>
-                    <span class="text-secondary">1 x Rp 899.000</span>
-                  </div>
-                </div>
-                <div class="order-action">
-                  <a href="leave-review.html" class="btn btn-primary btn-sm">Ulas</a>
-                </div>
-              </div>
+          </article>
+
+          <!-- Article Card 2 -->
+          <article class="article-card">
+            <a href="blog-post.html" class="ac-image">
+              <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Blog 2">
+              <span class="ac-badge">Buying Guide</span>
+            </a>
+            <div class="ac-content">
+              <div class="ac-meta">08 Mei 2026</div>
+              <h3><a href="blog-post.html">Mouse Wireless vs Wired: Mana yang Terbaik untuk FPS?</a></h3>
+              <p>Menepis mitos latensi pada mouse nirkabel modern dan kapan sebaiknya Anda tetap menggunakan kabel.</p>
             </div>
-          </div>
+          </article>
+
+          <!-- Article Card 3 -->
+          <article class="article-card">
+            <a href="blog-post.html" class="ac-image">
+              <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Blog 3">
+              <span class="ac-badge">Hardware</span>
+            </a>
+            <div class="ac-content">
+              <div class="ac-meta">29 Apr 2026</div>
+              <h3><a href="blog-post.html">Mengenal Profil Suara Headset Gaming</a></h3>
+              <p>Mengapa respon frekuensi datar (flat) lebih baik untuk langkah musuh dibanding bass yang berlebihan.</p>
+            </div>
+          </article>
+
+          <!-- Article Card 4 -->
+          <article class="article-card">
+            <a href="blog-post.html" class="ac-image">
+              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Blog 4">
+              <span class="ac-badge">Deals</span>
+            </a>
+            <div class="ac-content">
+              <div class="ac-meta">20 Apr 2026</div>
+              <h3><a href="blog-post.html">5 Gear Wajib Beli Saat Promo Mid-Year NEXGEAR</a></h3>
+              <p>Rekomendasi kurasi kami untuk mendapatkan nilai terbaik pada festival belanja tengah tahun ini.</p>
+            </div>
+          </article>
+
+          <!-- Article Card 5 -->
+          <article class="article-card">
+            <a href="blog-post.html" class="ac-image">
+              <img src="https://images.unsplash.com/photo-1621259182978-fbf93132d53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Blog 5">
+              <span class="ac-badge">Hardware</span>
+            </a>
+            <div class="ac-content">
+              <div class="ac-meta">15 Apr 2026</div>
+              <h3><a href="blog-post.html">Apa Itu Polling Rate 8000Hz dan Apakah Anda Membutuhkannya?</a></h3>
+              <p>Menyelami batas teknologi periferal dan keuntungannya bagi pemain e-sports tingkat atas.</p>
+            </div>
+          </article>
+
+          <!-- Article Card 6 -->
+          <article class="article-card">
+            <a href="blog-post.html" class="ac-image">
+              <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Blog 6">
+              <span class="ac-badge">Buying Guide</span>
+            </a>
+            <div class="ac-content">
+              <div class="ac-meta">02 Apr 2026</div>
+              <h3><a href="blog-post.html">Panduan Memilih Mousepad: Speed, Control, atau Hybrid?</a></h3>
+              <p>Permukaan mousepad mempengaruhi bidikan Anda lebih dari yang Anda kira. Ketahui perbedaannya.</p>
+            </div>
+          </article>
+
         </div>
 
-        <!-- ADDRESS & SETTINGS ROW -->
-        <div class="dashboard-grid-2">
-          <!-- Address -->
-          <div class="dashboard-section">
-            <div class="section-header-flex">
-              <h3>Alamat Utama</h3>
-              <a href="#" class="text-accent">Edit</a>
-            </div>
-            <div class="address-card">
-              <strong>John Doe</strong>
-              <p>Jl. Jendral Sudirman Kav. 21, Gedung Cyber Lt. 5</p>
-              <p>Jakarta Selatan, DKI Jakarta 12920</p>
-              <p>0812-3456-7890</p>
-            </div>
-          </div>
-          
-          <!-- Recent Saved -->
-          <div class="dashboard-section">
-            <div class="section-header-flex">
-              <h3>Wishlist Terbaru</h3>
-              <a href="#" class="text-accent">Lihat</a>
-            </div>
-            <div class="wishlist-mini-list">
-              <div class="wishlist-mini-item">
-                <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Headset">
-                <div class="wmi-info">
-                  <strong>Arctis Nova Pro</strong>
-                  <span class="text-accent">Rp 4.299.000</span>
-                </div>
-              </div>
-              <div class="wishlist-mini-item">
-                <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Mousepad">
-                <div class="wmi-info">
-                  <strong>Artisan Zero FX XL</strong>
-                  <span class="text-accent">Rp 1.100.000</span>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="text-center" style="margin-top: 50px;">
+          <button class="btn btn-outline" style="min-width: 200px;">Muat Lebih Banyak</button>
         </div>
-
       </div>
-    </div>
+    </section>
   </main>
 
   <!-- GLOBAL FOOTER -->
@@ -667,8 +656,8 @@
   <!-- Search Drawer Overlay -->
   <div id="search-drawer" class="drawer">
     <div class="drawer-content" style="background:#181824; padding:30px; text-align:center;">
-      <h3>Cari Gear</h3>
-      <input type="text" class="form-input" placeholder="Ketik nama produk..." style="margin:20px 0;">
+      <h3>Cari Artikel</h3>
+      <input type="text" class="form-input" placeholder="Ketik kata kunci..." style="margin:20px 0;">
       <button class="btn btn-primary" onclick="document.getElementById('search-drawer').classList.remove('active')">Tutup</button>
     </div>
   </div>

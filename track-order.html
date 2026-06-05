@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profil Saya | NEXGEAR</title>
+  <title>Lacak Pesanan | NEXGEAR</title>
   <link rel="stylesheet" href="styles/global.css">
-  <link rel="stylesheet" href="styles/profile.css">
+  <link rel="stylesheet" href="styles/track-order.css">
 </head>
 <body>
     <!-- GLOBAL HEADER -->
@@ -489,149 +489,89 @@
     </header>
 
   <main>
-    <div class="container section-padding profile-layout">
-      
-      <!-- SIDEBAR -->
-      <aside class="profile-sidebar">
-        <div class="user-summary">
-          <div class="user-avatar">
-            <span>JD</span>
-          </div>
-          <div class="user-info">
-            <h3>John Doe</h3>
-            <p>john.doe@example.com</p>
-          </div>
-        </div>
+    <div class="container section-padding">
+      <div class="section-header text-center">
+        <h2>Lacak Pesanan</h2>
+        <p class="text-secondary">Masukkan nomor pesanan Anda untuk melihat status terkini.</p>
+      </div>
+
+      <div class="track-form-container">
+        <form class="track-form" onsubmit="event.preventDefault(); document.getElementById('track-result').style.display='block';">
+          <input type="text" class="form-input" placeholder="Contoh: NEX-88392019A" required>
+          <button type="submit" class="btn btn-primary">Lacak</button>
+        </form>
+      </div>
+
+      <!-- TRACKING RESULT (Hidden by default, shown via JS) -->
+      <div id="track-result" class="track-result" style="display: none;">
         
-        <nav class="profile-nav">
-          <a href="#" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> Dashboard</a>
-          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Pesanan Saya</a>
-          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Wishlist</a>
-          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Alamat Pengiriman</a>
-          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Pengaturan Akun</a>
-          <a href="login.html" class="logout-btn" onclick="alert('Anda telah keluar.');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Keluar</a>
-        </nav>
-      </aside>
-
-      <!-- CONTENT AREA -->
-      <div class="profile-content">
-        <h2>Dashboard</h2>
-        <p class="text-secondary" style="margin-bottom: 30px;">Selamat datang di hub kendali NEXGEAR Anda.</p>
-
-        <!-- QUICK STATS -->
-        <div class="quick-stats">
-          <div class="stat-card">
-            <span class="stat-value">2</span>
-            <span class="stat-label">Pesanan Aktif</span>
+        <div class="order-info-card">
+          <div class="order-info-row">
+            <span>Nomor Pesanan</span>
+            <strong>NEX-88392019A</strong>
           </div>
-          <div class="stat-card">
-            <span class="stat-value">5</span>
-            <span class="stat-label">Barang di Wishlist</span>
+          <div class="order-info-row">
+            <span>Kurir</span>
+            <strong>JNE Reguler (RESI: 88392019A123)</strong>
           </div>
-          <div class="stat-card">
-            <span class="stat-value text-accent">Tier</span>
-            <span class="stat-label">Pro Member</span>
+          <div class="order-info-row">
+            <span>Estimasi Tiba</span>
+            <strong class="text-accent">08 Jun 2026</strong>
           </div>
         </div>
 
-        <!-- RECENT ORDERS -->
-        <div class="dashboard-section">
-          <div class="section-header-flex">
-            <h3>Pesanan Terakhir</h3>
-            <a href="#" class="text-accent">Lihat Semua</a>
-          </div>
+        <div class="tracking-timeline">
           
-          <div class="order-list">
-            <!-- Order Item -->
-            <div class="order-item">
-              <div class="order-header">
-                <div class="order-meta">
-                  <span class="order-id">NEX-88392019A</span>
-                  <span class="order-date">05 Jun 2026</span>
-                </div>
-                <div class="order-status badge-active">Dalam Pengiriman</div>
-              </div>
-              <div class="order-body">
-                <div class="order-products">
-                  <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Keyboard">
-                  <div class="op-info">
-                    <strong>Vortex VX Pro Mechanical</strong>
-                    <span class="text-secondary">1 x Rp 1.599.000</span>
-                  </div>
-                </div>
-                <div class="order-action">
-                  <a href="track-order.html" class="btn btn-outline btn-sm">Lacak</a>
-                </div>
-              </div>
+          <div class="timeline-item completed">
+            <div class="timeline-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
-            
-            <!-- Order Item -->
-            <div class="order-item">
-              <div class="order-header">
-                <div class="order-meta">
-                  <span class="order-id">NEX-77281920B</span>
-                  <span class="order-date">12 Mei 2026</span>
-                </div>
-                <div class="order-status badge-completed">Selesai</div>
-              </div>
-              <div class="order-body">
-                <div class="order-products">
-                  <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Mouse">
-                  <div class="op-info">
-                    <strong>HyperX Pulsefire</strong>
-                    <span class="text-secondary">1 x Rp 899.000</span>
-                  </div>
-                </div>
-                <div class="order-action">
-                  <a href="leave-review.html" class="btn btn-primary btn-sm">Ulas</a>
-                </div>
-              </div>
+            <div class="timeline-content">
+              <h4>Pesanan Diterima</h4>
+              <p>Pembayaran telah diverifikasi.</p>
+              <span>05 Jun 2026, 14:30 WIB</span>
             </div>
           </div>
+
+          <div class="timeline-item completed">
+            <div class="timeline-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="timeline-content">
+              <h4>Pesanan Diproses</h4>
+              <p>Barang sedang disiapkan di gudang kami.</p>
+              <span>06 Jun 2026, 09:15 WIB</span>
+            </div>
+          </div>
+
+          <div class="timeline-item active">
+            <div class="timeline-icon">
+              <span class="active-dot"></span>
+            </div>
+            <div class="timeline-content">
+              <h4>Dalam Pengiriman</h4>
+              <p>Pesanan telah diserahkan ke pihak logistik dan sedang dalam perjalanan.</p>
+              <span>06 Jun 2026, 16:40 WIB</span>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content">
+              <h4>Selesai</h4>
+              <p>Pesanan telah diterima oleh pelanggan.</p>
+            </div>
+          </div>
+
         </div>
 
-        <!-- ADDRESS & SETTINGS ROW -->
-        <div class="dashboard-grid-2">
-          <!-- Address -->
-          <div class="dashboard-section">
-            <div class="section-header-flex">
-              <h3>Alamat Utama</h3>
-              <a href="#" class="text-accent">Edit</a>
-            </div>
-            <div class="address-card">
-              <strong>John Doe</strong>
-              <p>Jl. Jendral Sudirman Kav. 21, Gedung Cyber Lt. 5</p>
-              <p>Jakarta Selatan, DKI Jakarta 12920</p>
-              <p>0812-3456-7890</p>
-            </div>
-          </div>
-          
-          <!-- Recent Saved -->
-          <div class="dashboard-section">
-            <div class="section-header-flex">
-              <h3>Wishlist Terbaru</h3>
-              <a href="#" class="text-accent">Lihat</a>
-            </div>
-            <div class="wishlist-mini-list">
-              <div class="wishlist-mini-item">
-                <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Headset">
-                <div class="wmi-info">
-                  <strong>Arctis Nova Pro</strong>
-                  <span class="text-accent">Rp 4.299.000</span>
-                </div>
-              </div>
-              <div class="wishlist-mini-item">
-                <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Mousepad">
-                <div class="wmi-info">
-                  <strong>Artisan Zero FX XL</strong>
-                  <span class="text-accent">Rp 1.100.000</span>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="help-action text-center" style="margin-top: 50px;">
+          <p class="text-secondary" style="margin-bottom: 15px;">Ada masalah dengan pesanan Anda?</p>
+          <a href="contact.html" class="btn btn-outline">Hubungi Dukungan Pelanggan</a>
         </div>
 
       </div>
+
     </div>
   </main>
 
@@ -663,15 +603,6 @@
       <span>&copy; 2026 NEXGEAR. Semua Hak Dilindungi.</span>
     </div>
   </footer>
-
-  <!-- Search Drawer Overlay -->
-  <div id="search-drawer" class="drawer">
-    <div class="drawer-content" style="background:#181824; padding:30px; text-align:center;">
-      <h3>Cari Gear</h3>
-      <input type="text" class="form-input" placeholder="Ketik nama produk..." style="margin:20px 0;">
-      <button class="btn btn-primary" onclick="document.getElementById('search-drawer').classList.remove('active')">Tutup</button>
-    </div>
-  </div>
 
   <script src="scripts/main.js"></script>
 </body>

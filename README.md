@@ -1,36 +1,42 @@
-# NEXGEAR - Gaming & Gadget E-Commerce
+# NEXGEAR - Premium Gaming Gear E-Commerce
 
-Website e-commerce premium yang dirancang khusus untuk memenuhi kebutuhan gamer dan antusias teknologi. Proyek ini dibuat sebagai bagian dari tugas **UAS Mata Kuliah Workshop Desain UI**.
+Sebuah _prototype_ frontend antarmuka pengguna e-commerce kelas premium yang berfokus pada kecepatan, konsistensi desain, dan pengalaman pengguna (_User Experience_). Proyek ini dirancang sebagai pemenuhan **UAS Mata Kuliah Workshop Desain UI**, yang mendemonstrasikan keahlian penyusunan struktur situs web tanpa ketergantungan kerangka kerja (_framework_) eksternal.
 
-## 🎮 Tentang NEXGEAR
-NEXGEAR adalah platform e-commerce fiktif yang berfokus pada pengalaman pengguna yang intuitif, visual yang kuat (*vibrant gaming vibes*), dan performa yang mulus. Target pengguna utama adalah mahasiswa dan profesional muda berusia 20-30an yang mencari perangkat keras gaming dan gadget terbaru.
+## 🎯 Fokus Proyek: Frontend UI/UX
 
-## ✨ Fitur & Desain
-- **Premium Dark Mode**: Estetika gelap yang mendalam untuk kenyamanan visual.
-- **Neon Accent System**: Menggunakan palet warna Neon Cyan dan Electric Purple.
-- **Clean Tech UI**: Antarmuka berbasis kartu solid yang tajam dan modern.
-- **Responsive Layout**: Optimal untuk perangkat mobile, tablet, dan desktop.
-- **Fast Loading**: Dibangun dengan HTML dan Vanilla CSS murni tanpa framework berat.
+NEXGEAR adalah purwarupa antarmuka (_UI Mockup_) yang dioptimalkan untuk menunjukkan kelancaran interaksi di sisi klien. Desain mengadopsi tema "Dark Premium Gaming" dengan ruang kosong yang tertata, tipografi _sans-serif_ berlapis, aksen biru neon (`#00E5FF`), serta form bergaya minimalis. Kami berprinsip pada pendekatan _Desktop-First_ yang tetap lincah merespons transisi ukuran layar.
 
-## 🛠️ Tech Stack
-- **Structure**: HTML5
-- **Styling**: Vanilla CSS3
-- **Typography**: 
-  - `Orbitron` (Google Fonts) - Headings
-  - `Inter` (Google Fonts) - Body Text
-- **Icons/Visuals**: CSS-based graphics and placeholder imagery.
+## 📄 Daftar Halaman (16 Halaman)
 
-## 📂 Struktur Proyek
-- `index.html`: Halaman Utama (Landing Page)
-- `catalog.html`: Katalog Produk dengan Filter
-- `styles/main.css`: Master stylesheet dan Design System
-- `assets/`: (Direktori untuk aset gambar dan media)
+Keseluruhan siklus e-commerce telah didesain secara independen dengan gaya yang terpusat:
+
+1. `index.html` — Beranda (Landing Page)
+2. `catalog.html` — Katalog pencarian produk
+3. `product-detail.html` — Rincian produk lengkap
+4. `cart.html` — Keranjang belanja interaktif
+5. `checkout.html` — Formulir pembayaran 1-Halaman
+6. `success.html` — Konfirmasi pesanan sukses
+7. `track-order.html` — Simulasi pelacakan resi
+8. `about.html` — Kisah dan filosofi merk NEXGEAR
+9. `contact.html` — Form kontak dukungan
+10. `help.html` — Pusat FAQ interaktif
+11. `leave-review.html` — Antarmuka penulisan ulasan
+12. `login.html` — Simulasi masuk akun
+13. `profile.html` — Dasbor manajemen profil
+14. `blog.html` — Daftar artikel dan ulasan produk
+15. `blog-post.html` — Layout baca artikel tunggal
+16. `404.html` — Penanganan _error_ tautan mati
 
 ## 🚀 Cara Menjalankan
-1. Clone atau download folder proyek ini.
-2. Buka file `index.html` menggunakan browser pilihan Anda (Chrome, Edge, Firefox).
-3. Navigasi antar halaman tersedia melalui menu navigasi di bagian atas.
+
+Proyek ini dibangun menggunakan **100% Vanilla HTML, CSS, dan JavaScript**.
+
+1. Unduh atau klon seluruh repositori proyek ini ke dalam sistem Anda.
+2. Tidak diperlukan instalasi _package_ atau peladen (_server_) lokal.
+3. Buka file `index.html` dengan peramban (Chrome/Firefox/Edge) untuk mulai merambah ekosistem NEXGEAR.
+4. Anda dapat menavigasi ke seluruh 15 halaman lainnya secara mulus melalui tautan navigasi dan _footer_.
 
 ---
+
 **Dibuat untuk Tugas UAS Workshop Desain UI**
-*Universitas - Jurusan D4 Teknik Informatika*
+_Universitas Airlangga - Jurusan D4 Teknik Informatika_

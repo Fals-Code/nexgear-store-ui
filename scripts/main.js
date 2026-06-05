@@ -87,10 +87,10 @@
   const Auth = {
     KEY: "nexgear_auth",
     get isLoggedIn() {
-      return localStorage.getItem(this.KEY) === 'true';
+      return localStorage.getItem(this.KEY) === "true";
     },
     login() {
-      localStorage.setItem(this.KEY, 'true');
+      localStorage.setItem(this.KEY, "true");
       this.updateUI();
     },
     logout() {
@@ -98,19 +98,23 @@
       this.updateUI();
     },
     updateUI() {
-      document.querySelectorAll('.nav-actions').forEach(container => {
-        const authBtn = container.querySelector('a[href="login.html"], a[href="profile.html"]');
+      document.querySelectorAll(".nav-actions").forEach((container) => {
+        const authBtn = container.querySelector(
+          'a[href="login.html"], a[href="profile.html"]',
+        );
         if (authBtn) {
           if (this.isLoggedIn) {
             authBtn.href = "profile.html";
-            authBtn.innerHTML = '<span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> Profil';
+            authBtn.innerHTML =
+              '<span class="icon icon-sm"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> Profil';
           } else {
             authBtn.href = "login.html";
-            authBtn.innerHTML = '<span class="icon icon-sm"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg></span> Masuk';
+            authBtn.innerHTML =
+              '<span class="icon icon-sm"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg></span> Masuk';
           }
         }
       });
-    }
+    },
   };
   window.NexAuth = Auth;
 
@@ -128,17 +132,41 @@
   }
   window.showToast = showToast;
 
-  /* â”€â”€ Sticky Navbar â”€â”€ */
+  /* ―― Sticky Navbar ―― */
   function initNavbar() {
-    const nav = document.querySelector("nav");
-    if (!nav) return;
+    const topBar = document.querySelector('.top-bar');
+    const shopBar = document.querySelector('#shop-bar');
+    if (!shopBar) return;
 
-    window.addEventListener("scroll", () => {
-      nav.classList.toggle("scrolled", window.scrollY > 40);
-    });
+    let spacer = document.querySelector('.shop-bar-spacer');
+    if (!spacer) {
+      spacer = document.createElement('div');
+      spacer.className = 'shop-bar-spacer';
+      shopBar.insertAdjacentElement('afterend', spacer);
+    }
+
+    const setShopBarHeight = () => {
+      const height = shopBar.offsetHeight || 70;
+      document.documentElement.style.setProperty('--shop-bar-height', `${height}px`);
+    };
+
+    const onScroll = () => {
+      const threshold = topBar ? topBar.offsetHeight : 72;
+      const shouldStick = window.scrollY > threshold;
+
+      shopBar.classList.toggle('is-sticky', shouldStick);
+      shopBar.classList.toggle('is-fixed', shouldStick);
+      spacer.classList.toggle('is-active', shouldStick);
+    };
+
+    setShopBarHeight();
+    onScroll();
+
+    window.addEventListener('resize', setShopBarHeight, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  /* â”€â”€ Mobile Menu â”€â”€ */
+  /* — Mobile Menu — */
   function initMobileMenu() {
     const nav = document.querySelector("nav");
     const navLinks = document.querySelector(".nav-links");
@@ -245,12 +273,20 @@
 
   /* â”€â”€ Price Filter (catalog) â”€â”€ */
   function initPriceFilter() {
-    const range = document.querySelector(".price-range");
+    const range =
+      document.querySelector("#priceRange") ||
+      document.querySelector(".price-range input[type='range']");
     const label = document.querySelector(".price-label-max");
     if (!range || !label) return;
 
     range.addEventListener("input", () => {
-      label.textContent = `${formatRupiah(parseInt(range.value))}+`;
+      const min = document.querySelector(".price-min");
+      const minValue = min ? parseInt(min.value) : 0;
+      const maxValue = parseInt(range.value);
+      label.textContent =
+        minValue >= 20000000 && maxValue >= 50000000
+          ? `${formatRupiah(minValue)}+`
+          : `${formatRupiah(minValue)}-${formatRupiah(maxValue)}`;
     });
   }
 
@@ -294,22 +330,19 @@
     const builds = {
       competitive: {
         name: "Competitive Core",
-        copy:
-          "Keyboard rapid trigger, monitor refresh tinggi, dan audio ringan untuk main kompetitif.",
+        copy: "Keyboard rapid trigger, monitor refresh tinggi, dan audio ringan untuk main kompetitif.",
         items: ["Huntsman V3 Pro", "Alienware 27", "Arctis Nova 7"],
         href: "catalog.html?setup=gaming",
       },
       creator: {
         name: "Meja Kreator",
-        copy:
-          "Display tajam, GPU kuat, dan headset jernih untuk edit, stream, dan meeting harian.",
+        copy: "Display tajam, GPU kuat, dan headset jernih untuk edit, stream, dan meeting harian.",
         items: ["Alienware 27", "RTX 4070 Ti Super", "Arctis Nova 7"],
         href: "catalog.html?setup=streaming",
       },
       balanced: {
         name: "Balanced Starter",
-        copy:
-          "Mulai dari peripheral dan audio yang terasa langsung tanpa menaikkan budget terlalu jauh.",
+        copy: "Mulai dari peripheral dan audio yang terasa langsung tanpa menaikkan budget terlalu jauh.",
         items: ["Huntsman V3 Pro", "Arctis Nova 7", "Setup Support"],
         href: "catalog.html?setup=budget",
       },
@@ -319,7 +352,9 @@
       const build = builds[buildKey] || builds.competitive;
       name.textContent = build.name;
       copy.textContent = build.copy;
-      items.innerHTML = build.items.map((item) => `<span>${item}</span>`).join("");
+      items.innerHTML = build.items
+        .map((item) => `<span>${item}</span>`)
+        .join("");
       cta.href = build.href;
 
       steps.forEach((step) => {
@@ -348,29 +383,25 @@
     const content = {
       stock: {
         title: "Ready Stock",
-        copy:
-          "Produk pilihan diprioritaskan dari stok siap proses agar checkout tidak berakhir di estimasi yang abu-abu.",
+        copy: "Produk pilihan diprioritaskan dari stok siap proses agar checkout tidak berakhir di estimasi yang abu-abu.",
         href: "catalog.html",
         label: "Lihat Catalog",
       },
       warranty: {
         title: "Garansi Resmi",
-        copy:
-          "Gear kurasi NEXGEAR diarahkan ke produk bergaransi resmi dengan dukungan brand dan invoice pembelian.",
+        copy: "Gear kurasi NEXGEAR diarahkan ke produk bergaransi resmi dengan dukungan brand dan invoice pembelian.",
         href: "about.html",
         label: "Baca Detail",
       },
       checkout: {
         title: "Secure Checkout",
-        copy:
-          "Alur checkout dibuat ringkas dengan ringkasan pesanan, validasi data, dan pembayaran yang jelas.",
+        copy: "Alur checkout dibuat ringkas dengan ringkasan pesanan, validasi data, dan pembayaran yang jelas.",
         href: "cart.html",
         label: "Cek Keranjang",
       },
       delivery: {
         title: "Fast Delivery",
-        copy:
-          "Pesanan diproses cepat untuk kebutuhan setup mendadak, upgrade kompetitif, atau workflow harian.",
+        copy: "Pesanan diproses cepat untuk kebutuhan setup mendadak, upgrade kompetitif, atau workflow harian.",
         href: "contact.html",
         label: "Hubungi Support",
       },
@@ -416,8 +447,12 @@
   function initSearch() {
     const bar = document.querySelector(".search-bar");
     const cards = document.querySelectorAll(".product-card, .related-card");
-    const range = document.querySelector(".price-range");
-    const sortSelect = document.getElementById("sortSelect");
+    const range =
+      document.querySelector("#priceRange") ||
+      document.querySelector(".price-range input[type='range']");
+    const sortSelect =
+      document.getElementById("sortSelect") ||
+      document.getElementById("sort-select");
     const countLabel = document.getElementById("catalogCount");
     const categoryButtons = document.querySelectorAll(
       ".category-pills .tag-chip",
@@ -490,7 +525,9 @@
           return getCardPrice(b) - getCardPrice(a);
         }
 
-        return Number(a.dataset.originalOrder) - Number(b.dataset.originalOrder);
+        return (
+          Number(a.dataset.originalOrder) - Number(b.dataset.originalOrder)
+        );
       });
 
       sortedCards.forEach((card) => productGrid.appendChild(card));
@@ -530,16 +567,18 @@
       reset.addEventListener("click", () => {
         if (bar) bar.value = "";
         if (range) {
+          const min = document.querySelector(".price-min");
+          if (min) min.value = 0;
           range.value = range.max || 50000000;
           const label = document.querySelector(".price-label-max");
           if (label) {
-            label.textContent = `${formatRupiah(parseInt(range.value))}+`;
+            label.textContent = `${formatRupiah(0)}-${formatRupiah(parseInt(range.value))}`;
           }
         }
         activeCategory = "all";
-      categoryButtons.forEach((button) => {
-        button.classList.toggle("active", button.dataset.category === "all");
-      });
+        categoryButtons.forEach((button) => {
+          button.classList.toggle("active", button.dataset.category === "all");
+        });
         document
           .querySelectorAll(".filter-option input[type='checkbox']")
           .forEach((checkbox) => {
@@ -557,9 +596,13 @@
 
     function filterProducts() {
       const term = bar ? bar.value.toLowerCase() : "";
+      const minInput = document.querySelector(".price-min");
+      const minPrice = minInput ? parseInt(minInput.value) : 0;
       const maxPrice = range ? parseInt(range.value) : Infinity;
       const selectedCategories = getCheckedFilters("category");
       const selectedBrands = getCheckedFilters("brand");
+      const selectedAvailability = getCheckedFilters("availability");
+      const selectedSetup = getCheckedFilters("setup");
       let visibleCount = 0;
 
       cards.forEach((card) => {
@@ -575,13 +618,31 @@
             : activeCategory === "all" || category === activeCategory;
         const matchBrand =
           selectedBrands.length === 0 || selectedBrands.includes(brand);
+        const matchAvailability =
+          selectedAvailability.length === 0 ||
+          selectedAvailability.some((value) => text.includes(value));
+        const matchSetup =
+          selectedSetup.length === 0 ||
+          selectedSetup.some((value) =>
+            value
+              .split(/\s+/)
+              .filter(Boolean)
+              .some((keyword) => text.includes(keyword)),
+          );
         // If price is 0, we assume it's valid to avoid hiding things without a price tag
-        const matchPrice = price === 0 || price <= maxPrice;
+        const matchPrice =
+          price === 0 || (price >= minPrice && price <= maxPrice);
         const isVisible =
-          matchSearch && matchCategory && matchBrand && matchPrice;
+          matchSearch &&
+          matchCategory &&
+          matchBrand &&
+          matchAvailability &&
+          matchSetup &&
+          matchPrice;
 
         card.style.display = isVisible ? "" : "none";
-        if (card.classList.contains("product-card") && isVisible) visibleCount++;
+        if (card.classList.contains("product-card") && isVisible)
+          visibleCount++;
       });
 
       if (countLabel) {
@@ -643,7 +704,9 @@
   }
 
   function initCatalogEnhancements() {
-    const cards = Array.from(document.querySelectorAll(".catalog-product-card"));
+    const cards = Array.from(
+      document.querySelectorAll(".catalog-product-card"),
+    );
     if (!cards.length) return;
 
     const quickSpecs = {
@@ -664,7 +727,10 @@
 
     cards.forEach((card) => {
       const name = card.querySelector("h4")?.textContent.trim() || "";
-      const specs = quickSpecs[name] || [card.dataset.brand || "NEXGEAR", card.dataset.category || "Gear"];
+      const specs = quickSpecs[name] || [
+        card.dataset.brand || "NEXGEAR",
+        card.dataset.category || "Gear",
+      ];
       const meta = card.querySelector(".product-card-meta");
 
       if (meta && !card.querySelector(".quick-spec-row")) {
@@ -673,7 +739,6 @@
         row.innerHTML = specs.map((spec) => `<span>${spec}</span>`).join("");
         meta.insertAdjacentElement("afterend", row);
       }
-
     });
   }
 
@@ -758,12 +823,31 @@
 
     if (!openBtn || !drawer) return;
 
+    function syncPricePresetButtons() {
+      const range = drawer.querySelector(".price-range");
+      const min = drawer.querySelector(".price-min");
+      const buttons = drawer.querySelectorAll("[data-price-preset]");
+      if (!range || !buttons.length) return;
+
+      buttons.forEach((button) => {
+        const buttonMin = button.dataset.priceMin || "0";
+        const currentMin = min?.value || "0";
+        const isActive =
+          String(button.dataset.pricePreset) === String(range.value) &&
+          String(buttonMin) === String(currentMin);
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+    }
+
     function renderActiveFilters() {
       // Get all checked filters
       const checkboxes = drawer.querySelectorAll(
         ".filter-option input[type='checkbox']:checked",
       );
       const range = drawer.querySelector(".price-range");
+      const min = drawer.querySelector(".price-min");
+      const minPrice = min ? parseInt(min.value) : 0;
       const maxPrice = range ? parseInt(range.value) : 50000000;
 
       const filters = [];
@@ -775,9 +859,12 @@
       });
 
       // Add price filter if not at max
-      if (maxPrice < 50000000) {
+      if (minPrice > 0 || maxPrice < 50000000) {
         filters.push({
-          name: `Harga: Rp0-${formatRupiah(maxPrice)}`,
+          name:
+            minPrice >= 20000000 && maxPrice >= 50000000
+              ? `Harga: ${formatRupiah(minPrice)}+`
+              : `Harga: ${formatRupiah(minPrice)}-${formatRupiah(maxPrice)}`,
           isPriceFilter: true,
         });
       }
@@ -800,10 +887,15 @@
         removeBtn.addEventListener("click", (e) => {
           e.stopPropagation();
           if (filter.isPriceFilter) {
+            const min = drawer.querySelector(".price-min");
+            if (min) min.value = 0;
             range.value = 50000000;
             const label = drawer.querySelector(".price-label-max");
-            if (label) label.textContent = `${formatRupiah(50000000)}+`;
+            if (label)
+              label.textContent = `${formatRupiah(0)}-${formatRupiah(50000000)}`;
             range.dispatchEvent(new Event("input", { bubbles: true }));
+            syncPricePresetButtons();
+            updateBadge();
           } else if (filter.element) {
             filter.element.checked = false;
             filter.element.dispatchEvent(
@@ -820,6 +912,7 @@
 
       // Show/hide container
       activeFiltersList.style.display = filters.length > 0 ? "flex" : "none";
+      syncPricePresetButtons();
     }
 
     function updateBadge() {
@@ -865,10 +958,14 @@
         .forEach((cb) => (cb.checked = false));
       const range = drawer.querySelector(".price-range");
       if (range) {
+        const min = drawer.querySelector(".price-min");
+        if (min) min.value = 0;
         range.value = 50000000;
         const label = drawer.querySelector(".price-label-max");
-        if (label) label.textContent = `${formatRupiah(50000000)}+`;
+        if (label)
+          label.textContent = `${formatRupiah(0)}-${formatRupiah(50000000)}`;
       }
+      syncPricePresetButtons();
       updateBadge();
       document.dispatchEvent(new CustomEvent("nexgear:filters-change"));
     }
@@ -891,6 +988,29 @@
     if (clearBtn) clearBtn.addEventListener("click", clearFilters);
     if (applyBtn) applyBtn.addEventListener("click", applyFilters);
     overlay.addEventListener("click", closeFilter);
+
+    drawer.querySelectorAll("[data-price-preset]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const range = drawer.querySelector(".price-range");
+        const min = drawer.querySelector(".price-min");
+        if (!range) return;
+
+        if (min) min.value = button.dataset.priceMin || 0;
+        range.value = button.dataset.pricePreset || range.max || 50000000;
+        const label = drawer.querySelector(".price-label-max");
+        if (label) {
+          const minValue = min ? parseInt(min.value) : 0;
+          const maxValue = parseInt(range.value);
+          label.textContent =
+            minValue >= 20000000 && maxValue >= 50000000
+              ? `${formatRupiah(minValue)}+`
+              : `${formatRupiah(minValue)}-${formatRupiah(maxValue)}`;
+        }
+        range.dispatchEvent(new Event("input", { bubbles: true }));
+        syncPricePresetButtons();
+        updateBadge();
+      });
+    });
 
     // Update badge when checkboxes change
     drawer
@@ -1002,6 +1122,18 @@
   }
 
   /* â”€â”€ INIT â”€â”€ */
+  function initMiniCartDropdownRemove() {
+    document.querySelectorAll(".mini-cart-dropdown .mini-cart-remove").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const item = button.closest(".mini-cart-item");
+        if (item) item.remove();
+      });
+    });
+  }
+
   function initStickyCartPreview() {
     if (document.querySelector(".sticky-cart-preview")) return;
 
@@ -1025,7 +1157,8 @@
     window.updateStickyCartPreview = () => {
       const count = Cart.count;
       preview.classList.toggle("show", count > 0);
-      if (total) total.textContent = `${count} item - ${formatRupiah(Cart.total)}`;
+      if (total)
+        total.textContent = `${count} item - ${formatRupiah(Cart.total)}`;
     };
 
     openBtn?.addEventListener("click", () => {
@@ -1033,6 +1166,68 @@
     });
 
     window.updateStickyCartPreview();
+  }
+
+  function initCategoryPanel() {
+    const shell = document.querySelector(".category-dropdown-shell");
+    if (!shell) return;
+
+    const mainItems = shell.querySelectorAll(
+      ".category-main-item[data-panel-target]",
+    );
+    const panels = shell.querySelectorAll(".category-sub-panel[data-panel]");
+    if (!mainItems.length || !panels.length) return;
+
+    function activatePanel(target) {
+      shell.classList.add("has-active-panel");
+      mainItems.forEach((item) => {
+        item.classList.toggle(
+          "is-active",
+          item.dataset.panelTarget === target,
+        );
+      });
+      panels.forEach((panel) => {
+        panel.classList.toggle("is-active", panel.dataset.panel === target);
+      });
+    }
+
+    function deactivateAll() {
+      shell.classList.remove("has-active-panel");
+      mainItems.forEach((item) => item.classList.remove("is-active"));
+      panels.forEach((panel) => panel.classList.remove("is-active"));
+    }
+
+    const subCol = shell.querySelector(".category-dropdown-sub");
+
+    mainItems.forEach((item) => {
+      const target = item.dataset.panelTarget;
+      item.addEventListener("mouseenter", () => activatePanel(target));
+      item.addEventListener("focus", () => activatePanel(target));
+      item.addEventListener("mouseleave", (event) => {
+        const related = event.relatedTarget;
+        if (
+          related &&
+          (item.contains(related) ||
+            subCol?.contains(related) ||
+            related.closest?.(".category-main-item"))
+        ) {
+          return;
+        }
+        deactivateAll();
+      });
+    });
+
+    subCol?.addEventListener("mouseleave", (event) => {
+      const related = event.relatedTarget;
+      if (related?.closest?.(".category-main-item")) return;
+      deactivateAll();
+    });
+
+    const dropdownCat = shell.closest(".dropdown-cat");
+    if (dropdownCat) {
+      const parent = dropdownCat.closest(".nav-item");
+      parent?.addEventListener("mouseleave", deactivateAll);
+    }
   }
 
   function initCartEmptyGuidance() {
@@ -1050,29 +1245,44 @@
     window.updateCartEmptyGuidance();
   }
 
+  function safeInit(fn) {
+    try {
+      if (typeof fn === "function") fn();
+    } catch (e) {
+      console.warn("NEXGEAR JS Warning:", e);
+    }
+  }
+
   function init() {
-    document.body.classList.add("loaded");
-    initNavbar();
-    initMobileMenu();
-    initReveal();
-    initCountUp();
-    initParallax();
-    initPriceFilter();
-    initGearFinder();
-    initSetupBuilder();
-    initTrustModal();
-    initCatalogEnhancements();
-    initSearch();
-    initAddToCart();
-    initCatalogCardLinks();
-    setActiveNav();
-    initSketchRotations();
-    initFilterDrawer();
-    initMiniCart();
-    initStickyCartPreview();
-    initCartEmptyGuidance();
-    Cart.updateBadge();
-    Auth.updateUI();
+    document.body.classList.add("loaded", "js-enabled");
+
+    const modules = [
+      initNavbar,
+      initMobileMenu,
+      initReveal,
+      initCountUp,
+      initParallax,
+      initPriceFilter,
+      initGearFinder,
+      initSetupBuilder,
+      initTrustModal,
+      initCatalogEnhancements,
+      initSearch,
+      initAddToCart,
+      initCatalogCardLinks,
+      setActiveNav,
+      initSketchRotations,
+      initFilterDrawer,
+      initMiniCart,
+      initMiniCartDropdownRemove,
+      initStickyCartPreview,
+      initCategoryPanel,
+      initCartEmptyGuidance,
+    ];
+
+    modules.forEach((module) => safeInit(module));
+    safeInit(() => Cart.updateBadge());
+    safeInit(() => Auth.updateUI());
   }
 
   if (document.readyState === "loading") {

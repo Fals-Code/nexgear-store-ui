@@ -1,103 +1,175 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Daftar ke akun NEXGEAR untuk pengalaman belanja gaming gear yang lebih personal.">
-  <title>Daftar | NEXGEAR</title>
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/login.css">
-  <style>
-    body { opacity: 0; transition: opacity 0.25s ease; }
-    body.loaded { opacity: 1; }
-  </style>
-  <noscript><style>body { opacity: 1; }</style></noscript>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Daftar ke akun NEXGEAR untuk pengalaman belanja gaming gear yang lebih personal."
+    />
+    <title>Daftar | NEXGEAR</title>
+            <style>
+      body {
+        opacity: 0;
+        transition: opacity 0.25s ease;
+        visibility: hidden;
+      }
+      body.loaded {
+        opacity: 1;
+        visibility: visible;
+      }
+      body:not(.loaded) {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      body:not(.loaded) .reveal {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+      }
+    </style>
+    <noscript
+      ><style>
+        body {
+          opacity: 1;
+          visibility: visible;
+        }
+      </style></noscript
+    >
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/login.css">
 </head>
-<body>
-  <main class="auth-page">
-    <div class="auth-shell">
-      <a href="index.html" class="auth-back-link" aria-label="Kembali ke halaman utama"><span aria-hidden="true">&larr;</span> Kembali</a>
-    <div class="auth-container right-panel-active" id="container">
-      <div class="form-container sign-up-container">
-        <form id="register-form" class="auth-form" action="#">
-          <p class="auth-kicker">NEXGEAR ACCOUNT</p>
-          <h1>Create Account</h1>
-          <p>Buat akun untuk pengalaman belanja yang lebih personal.</p>
+  <body>
+    <main class="auth-page">
+      <div class="auth-shell">
+        <a
+          href="index.html"
+          class="auth-back-link"
+          aria-label="Kembali ke halaman utama"
+          ><span aria-hidden="true">&larr;</span> Kembali</a
+        >
+        <div class="auth-container right-panel-active" id="container">
+          <div class="form-container sign-up-container">
+            <form id="register-form" class="auth-form" action="#">
+              <p class="auth-kicker">NEXGEAR ACCOUNT</p>
+              <h1>Create Account</h1>
+              <p>Buat akun untuk pengalaman belanja yang lebih personal.</p>
 
-          <input type="text" id="register-name" name="name" placeholder="Nama" autocomplete="name" required>
-          <input type="email" id="register-email" name="email" placeholder="Email" autocomplete="email" required>
-          <input type="password" id="register-password" name="password" placeholder="Password" autocomplete="new-password" required>
+              <input
+                type="text"
+                id="register-name"
+                name="name"
+                placeholder="Nama"
+                autocomplete="name"
+                required
+              />
+              <input
+                type="email"
+                id="register-email"
+                name="email"
+                placeholder="Email"
+                autocomplete="email"
+                required
+              />
+              <input
+                type="password"
+                id="register-password"
+                name="password"
+                placeholder="Password"
+                autocomplete="new-password"
+                required
+              />
 
-          <button type="submit">Sign Up</button>
-        </form>
-      </div>
-
-      <div class="form-container sign-in-container">
-        <form id="login-form" class="auth-form" action="#">
-          <p class="auth-kicker">NEXGEAR ACCOUNT</p>
-          <h1>Sign In</h1>
-          <p>Masuk dan lanjutkan belanja gear gaming kamu.</p>
-
-          <input type="email" id="login-email" name="email" placeholder="Email" autocomplete="email" required>
-          <input type="password" id="login-password" name="password" placeholder="Password" autocomplete="current-password" required>
-
-          <a href="contact.html" class="forgot-link">Lupa password? Hubungi support</a>
-          <button type="submit">Sign In</button>
-        </form>
-      </div>
-
-      <div class="overlay-container">
-        <div class="overlay">
-          <div class="overlay-panel overlay-left">
-            <p class="overlay-kicker">NEXGEAR</p>
-            <h1>Welcome Back!</h1>
-            <p>Sudah punya akun? Masuk dan lanjutkan belanja gear kamu.</p>
-            <button type="button" class="ghost" id="signIn">Sign In</button>
+              <button type="submit">Sign Up</button>
+            </form>
           </div>
 
-          <div class="overlay-panel overlay-right">
-            <p class="overlay-kicker">NEXGEAR</p>
-            <h1>Hello, Gamer!</h1>
-            <p>Belum punya akun? Daftar dan mulai upgrade setup kamu.</p>
-            <button type="button" class="ghost" id="signUp">Sign Up</button>
+          <div class="form-container sign-in-container">
+            <form id="login-form" class="auth-form" action="#">
+              <p class="auth-kicker">NEXGEAR ACCOUNT</p>
+              <h1>Sign In</h1>
+              <p>Masuk dan lanjutkan belanja gear gaming kamu.</p>
+
+              <input
+                type="email"
+                id="login-email"
+                name="email"
+                placeholder="Email"
+                autocomplete="email"
+                required
+              />
+              <input
+                type="password"
+                id="login-password"
+                name="password"
+                placeholder="Password"
+                autocomplete="current-password"
+                required
+              />
+
+              <a href="contact.html" class="forgot-link"
+                >Lupa password? Hubungi support</a
+              >
+              <button type="submit">Sign In</button>
+            </form>
+          </div>
+
+          <div class="overlay-container">
+            <div class="overlay">
+              <div class="overlay-panel overlay-left">
+                <p class="overlay-kicker">NEXGEAR</p>
+                <h1>Welcome Back!</h1>
+                <p>Sudah punya akun? Masuk dan lanjutkan belanja gear kamu.</p>
+                <button type="button" class="ghost" id="signIn">Sign In</button>
+              </div>
+
+              <div class="overlay-panel overlay-right">
+                <p class="overlay-kicker">NEXGEAR</p>
+                <h1>Hello, Gamer!</h1>
+                <p>Belum punya akun? Daftar dan mulai upgrade setup kamu.</p>
+                <button type="button" class="ghost" id="signUp">Sign Up</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    </div>
-  </main>
+    </main>
 
-  <script src="scripts/main.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const signUpButton = document.getElementById("signUp");
-      const signInButton = document.getElementById("signIn");
-      const container = document.getElementById("container");
+    <script src="scripts/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const signUpButton = document.getElementById("signUp");
+        const signInButton = document.getElementById("signIn");
+        const container = document.getElementById("container");
 
-      if (signUpButton && signInButton && container) {
-        signUpButton.addEventListener("click", () => {
-          container.classList.add("right-panel-active");
-        });
+        if (signUpButton && signInButton && container) {
+          signUpButton.addEventListener("click", () => {
+            container.classList.add("right-panel-active");
+          });
 
-        signInButton.addEventListener("click", () => {
-          container.classList.remove("right-panel-active");
-        });
-      }
+          signInButton.addEventListener("click", () => {
+            container.classList.remove("right-panel-active");
+          });
+        }
 
-      document.getElementById('login-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (window.NexAuth) window.NexAuth.login();
-        showToast('Berhasil masuk! Selamat datang kembali.');
-        setTimeout(() => window.location.href = 'index.html', 1500);
+        document
+          .getElementById("login-form")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (window.NexAuth) window.NexAuth.login();
+            showToast("Berhasil masuk! Selamat datang kembali.");
+            setTimeout(() => (window.location.href = "index.html"), 1500);
+          });
+
+        document
+          .getElementById("register-form")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (window.NexAuth) window.NexAuth.login();
+            showToast("Akun berhasil dibuat! Mengalihkan ke beranda...");
+            setTimeout(() => (window.location.href = "index.html"), 1500);
+          });
       });
-
-      document.getElementById('register-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (window.NexAuth) window.NexAuth.login();
-        showToast('Akun berhasil dibuat! Mengalihkan ke beranda...');
-        setTimeout(() => window.location.href = 'index.html', 1500);
-      });
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>

@@ -3,101 +3,562 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Masuk atau daftar ke akun NEXGEAR untuk pengalaman belanja gaming gear yang lebih personal.">
   <title>Masuk | NEXGEAR</title>
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/login.css">
-  <style>
-    body { opacity: 0; transition: opacity 0.25s ease; }
-    body.loaded { opacity: 1; }
-  </style>
-  <noscript><style>body { opacity: 1; }</style></noscript>
 </head>
 <body>
-  <main class="auth-page">
-    <div class="auth-shell">
-      <a href="index.html" class="auth-back-link" aria-label="Kembali ke halaman utama"><span aria-hidden="true">&larr;</span> Kembali</a>
-    <div class="auth-container" id="container">
-      <div class="form-container sign-up-container">
-        <form id="register-form" class="auth-form" action="#">
-          <p class="auth-kicker">NEXGEAR ACCOUNT</p>
-          <h1>Create Account</h1>
-          <p>Buat akun untuk pengalaman belanja yang lebih personal.</p>
-
-          <input type="text" id="register-name" name="name" placeholder="Nama" autocomplete="name" required>
-          <input type="email" id="register-email" name="email" placeholder="Email" autocomplete="email" required>
-          <input type="password" id="register-password" name="password" placeholder="Password" autocomplete="new-password" required>
-
-          <button type="submit">Sign Up</button>
-        </form>
-      </div>
-
-      <div class="form-container sign-in-container">
-        <form id="login-form" class="auth-form" action="#">
-          <p class="auth-kicker">NEXGEAR ACCOUNT</p>
-          <h1>Sign In</h1>
-          <p>Masuk dan lanjutkan belanja gear gaming kamu.</p>
-
-          <input type="email" id="login-email" name="email" placeholder="Email" autocomplete="email" required>
-          <input type="password" id="login-password" name="password" placeholder="Password" autocomplete="current-password" required>
-
-          <a href="contact.html" class="forgot-link">Lupa password? Hubungi support</a>
-          <button type="submit">Sign In</button>
-        </form>
-      </div>
-
-      <div class="overlay-container">
-        <div class="overlay">
-          <div class="overlay-panel overlay-left">
-            <p class="overlay-kicker">NEXGEAR</p>
-            <h1>Welcome Back!</h1>
-            <p>Sudah punya akun? Masuk dan lanjutkan belanja gear kamu.</p>
-            <button type="button" class="ghost" id="signIn">Sign In</button>
+    <!-- GLOBAL HEADER -->
+            <header id="navbar" class="nex-header">
+      <!-- Top Bar -->
+      <div class="top-bar">
+        <div class="header-container top-bar-container">
+          <div class="header-logo">
+            <a href="index.html"><span class="accent">NEX</span>GEAR</a>
           </div>
-
-          <div class="overlay-panel overlay-right">
-            <p class="overlay-kicker">NEXGEAR</p>
-            <h1>Hello, Gamer!</h1>
-            <p>Belum punya akun? Daftar dan mulai upgrade setup kamu.</p>
-            <button type="button" class="ghost" id="signUp">Sign Up</button>
+          <nav class="top-nav">
+            <ul class="nav-links">
+              <li class="nav-item">
+                <a href="index.html" class="top-nav-link">Home</a>
+              </li>
+              <li class="nav-item has-mega">
+                <a
+                  href="catalog.html"
+                  class="top-nav-link has-dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span>Catalog</span>
+                  <svg
+                    class="dropdown-chevron"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </a>
+                <!-- Mega Menu -->
+                <div class="nav-dropdown mega-menu">
+                  <div class="mega-menu-inner">
+                    <div class="mega-column">
+                      <h3>Shop by Category</h3>
+                      <a href="catalog.html" data-filter="all">All Gear</a>
+                      <a href="catalog.html" data-filter="machines">Machines</a>
+                      <a href="catalog.html" data-filter="control">Control</a>
+                      <a href="catalog.html" data-filter="build">Build</a>
+                      <a href="catalog.html" data-filter="sound">Sound</a>
+                    </div>
+                    <div class="mega-column">
+                      <h3>Popular Gear</h3>
+                      <a href="catalog.html">Gaming Laptop</a>
+                      <a href="catalog.html">Mechanical Keyboard</a>
+                      <a href="catalog.html">Gaming Mouse</a>
+                      <a href="catalog.html">Headset</a>
+                      <a href="catalog.html">Monitor</a>
+                    </div>
+                    <div class="mega-column">
+                      <h3>Support</h3>
+                      <a href="track-order.html">Track Order</a>
+                      <a href="help.html">Warranty</a>
+                      <a href="help.html">Help Center</a>
+                      <a href="contact.html">Contact Support</a>
+                    </div>
+                    <div class="mega-cta-card promo-card">
+                      <img
+                        src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=700&q=80"
+                        alt="Gaming keyboard and setup"
+                        class="promo-card-image"
+                      />
+                      <div class="promo-card-overlay">
+                        <span class="promo-eyebrow">UP TO 70% OFF</span>
+                        <h3>Upgrade Your Setup</h3>
+                        <a href="catalog.html" class="btn btn-primary btn-sm"
+                          >Shop Now</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item has-dropdown">
+                <a
+                  href="about.html"
+                  class="top-nav-link has-dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span>About</span>
+                  <svg
+                    class="dropdown-chevron"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </a>
+                <!-- About Dropdown -->
+                <div class="nav-dropdown dropdown-sm about-dropdown">
+                  <ul>
+                    <li><a href="about.html">Tentang NEXGEAR</a></li>
+                    <li><a href="contact.html">Contact Support</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="track-order.html">Track Order</a></li>
+                    <li><a href="leave-review.html">Leave Review</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a href="blog.html" class="top-nav-link">Blog</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="top-help">
+            <span>Need Help?</span>
+            <strong>+94 423-23-221</strong>
           </div>
         </div>
       </div>
-    </div>
+
+      <!-- Shop Bar -->
+      <div id="shop-bar" class="shop-bar">
+        <div class="header-container shop-bar-container">
+          <div
+            class="shop-categories nav-item"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <button class="hamburger" aria-label="Menu">
+              <span></span><span></span><span></span>
+            </button>
+            <span class="cat-text">CATEGORIES</span>
+            <svg
+              class="dropdown-chevron categories-chevron"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+            <!-- Categories Dropdown -->
+            <div class="nav-dropdown dropdown-cat">
+              <div class="category-dropdown-shell">
+                <!-- Left Column: Main Categories -->
+                <div class="category-dropdown-main">
+                  <a
+                    href="catalog.html"
+                    class="category-main-item"
+                    data-panel-target="all-gear"
+                    >All Gear</a
+                  >
+                  <a
+                    href="catalog.html"
+                    class="category-main-item"
+                    data-panel-target="machines"
+                    >Machines</a
+                  >
+                  <a
+                    href="catalog.html"
+                    class="category-main-item"
+                    data-panel-target="control"
+                    >Control</a
+                  >
+                  <a
+                    href="catalog.html"
+                    class="category-main-item"
+                    data-panel-target="build"
+                    >Build</a
+                  >
+                  <a
+                    href="catalog.html"
+                    class="category-main-item"
+                    data-panel-target="sound"
+                    >Sound</a
+                  >
+                  <a
+                    href="catalog.html"
+                    class="category-main-item"
+                    data-panel-target="accessories"
+                    >Accessories</a
+                  >
+                </div>
+
+                <!-- Right Column: Sub-category Panels -->
+                <div class="category-dropdown-sub">
+                  <div class="category-sub-panel" data-panel="all-gear">
+                    <a href="catalog.html">Featured Gear</a>
+                    <a href="catalog.html">New Arrivals</a>
+                    <a href="catalog.html">Best Sellers</a>
+                    <a href="catalog.html">Limited Deals</a>
+                    <a href="catalog.html">View All Gear</a>
+                  </div>
+
+                  <div class="category-sub-panel" data-panel="machines">
+                    <a href="catalog.html">Gaming Laptop</a>
+                    <a href="catalog.html">Compact Setup</a>
+                    <a href="catalog.html">High Performance</a>
+                    <a href="catalog.html">Creator Setup</a>
+                    <a href="catalog.html">View All Machines</a>
+                  </div>
+
+                  <div class="category-sub-panel" data-panel="control">
+                    <a href="catalog.html">Gaming Mouse</a>
+                    <a href="catalog.html">Mechanical Keyboard</a>
+                    <a href="catalog.html">Mousepad</a>
+                    <a href="catalog.html">Monitor</a>
+                    <a href="catalog.html">View All Control</a>
+                  </div>
+
+                  <div class="category-sub-panel" data-panel="build">
+                    <a href="catalog.html">GPU</a>
+                    <a href="catalog.html">CPU</a>
+                    <a href="catalog.html">RAM</a>
+                    <a href="catalog.html">Storage</a>
+                    <a href="catalog.html">View All Build</a>
+                  </div>
+
+                  <div class="category-sub-panel" data-panel="sound">
+                    <a href="catalog.html">Headset</a>
+                    <a href="catalog.html">Microphone</a>
+                    <a href="catalog.html">Speaker</a>
+                    <a href="catalog.html">Audio Interface</a>
+                    <a href="catalog.html">View All Sound</a>
+                  </div>
+
+                  <div class="category-sub-panel" data-panel="accessories">
+                    <a href="catalog.html">Cable</a>
+                    <a href="catalog.html">Stand</a>
+                    <a href="catalog.html">Desk Mat</a>
+                    <a href="catalog.html">Lighting</a>
+                    <a href="catalog.html">View All Accessories</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="shop-search">
+            <form action="catalog.html" method="GET" class="search-form">
+              <input
+                type="text"
+                name="q"
+                placeholder="Cari gear, keyboard, headset..."
+                aria-label="Search products"
+              />
+              <button type="submit" aria-label="Search">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <div class="shop-actions">
+            <!-- Account -->
+            <div class="nav-item action-wrapper">
+              <a
+                href="login.html"
+                class="action-btn"
+                aria-label="Account"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </a>
+              <div class="nav-dropdown account-dropdown">
+                <a href="login.html" class="dropdown-cta-btn">Masuk / Daftar</a>
+                <ul>
+                  <li>
+                    <a
+                      href="track-order.html"
+                      class="account-dropdown-link dropdown-link"
+                    >
+                      <svg
+                        class="dropdown-icon"
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M3 7h11v9H3z" />
+                        <path d="M14 10h4l3 3v3h-7z" />
+                        <circle cx="7" cy="18" r="2" />
+                        <circle cx="18" cy="18" r="2" />
+                      </svg>
+                      <span>Lacak Pesanan</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="profile.html"
+                      class="account-dropdown-link dropdown-link"
+                    >
+                      <svg
+                        class="dropdown-icon"
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="m21 8-9-5-9 5 9 5 9-5z" />
+                        <path d="M3 8v8l9 5 9-5V8" />
+                        <path d="M12 13v8" />
+                      </svg>
+                      <span>Pesanan Saya</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="profile.html"
+                      class="account-dropdown-link dropdown-link"
+                    >
+                      <svg
+                        class="dropdown-icon"
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M4 21a8 8 0 0 1 16 0" />
+                      </svg>
+                      <span>Profil Saya</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="help.html"
+                      class="account-dropdown-link dropdown-link"
+                    >
+                      <svg
+                        class="dropdown-icon"
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M9.5 9a2.6 2.6 0 0 1 5 1c0 2-2.5 2.2-2.5 4" />
+                        <path d="M12 17h.01" />
+                      </svg>
+                      <span>Bantuan &amp; FAQ</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Wishlist -->
+            <div class="nav-item action-wrapper">
+              <a
+                href="profile.html#wishlist"
+                class="action-btn"
+                aria-label="Wishlist"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  ></path>
+                </svg>
+              </a>
+              <div class="nav-dropdown wishlist-dropdown">
+                <strong>Wishlist</strong>
+                <p>Simpan gear favorit Anda.</p>
+                <a href="profile.html" class="dropdown-link-sm"
+                  >Lihat Wishlist</a
+                >
+              </div>
+            </div>
+            <!-- Cart -->
+            <div class="nav-item action-wrapper">
+              <a
+                href="cart.html"
+                class="action-btn cart-icon-wrapper"
+                id="cart-btn"
+                aria-label="Cart"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="9" cy="21" r="1" />
+                  <circle cx="20" cy="21" r="1" />
+                  <path
+                    d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                  />
+                </svg>
+                <span class="cart-count cart-badge" data-count="2">2</span>
+              </a>
+              <div class="nav-dropdown mini-cart-dropdown">
+                <h4 class="dropdown-cart-title">Keranjang Anda</h4>
+                <div class="mini-cart-items">
+                  <div class="mini-cart-item">
+                    <a href="product-detail.html" class="mini-cart-thumb">
+                      <img
+                        src="lib/product-logitech-g-pro-x-superlight-2.webp"
+                        alt="NEXGEAR PulseMouse X1"
+                      />
+                    </a>
+                    <div class="mini-cart-info">
+                      <a href="product-detail.html" class="mini-cart-name"
+                        >1x NEXGEAR PulseMouse X1</a
+                      >
+                      <strong class="mini-cart-price">Rp 599.000</strong>
+                    </div>
+                    <button
+                      class="mini-cart-remove"
+                      type="button"
+                      aria-label="Hapus NEXGEAR PulseMouse X1 dari keranjang"
+                    >
+                      <svg aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M3 6h18" />
+                        <path d="M8 6V4h8v2" />
+                        <path d="M19 6l-1 14H6L5 6" />
+                        <path d="M10 11v5" />
+                        <path d="M14 11v5" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="mini-cart-item">
+                    <a href="product-detail.html" class="mini-cart-thumb">
+                      <img
+                        src="lib/product-corsair-k70-max-rgb.webp"
+                        alt="NEXGEAR StrikeKeys TKL"
+                      />
+                    </a>
+                    <div class="mini-cart-info">
+                      <a href="product-detail.html" class="mini-cart-name"
+                        >1x NEXGEAR StrikeKeys TKL</a
+                      >
+                      <strong class="mini-cart-price">Rp 1.299.000</strong>
+                    </div>
+                    <button
+                      class="mini-cart-remove"
+                      type="button"
+                      aria-label="Hapus NEXGEAR StrikeKeys TKL dari keranjang"
+                    >
+                      <svg aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M3 6h18" />
+                        <path d="M8 6V4h8v2" />
+                        <path d="M19 6l-1 14H6L5 6" />
+                        <path d="M10 11v5" />
+                        <path d="M14 11v5" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="mini-cart-total">
+                  <span>Total</span>
+                  <strong>Rp 1.898.000</strong>
+                </div>
+                <div class="mini-cart-actions">
+                  <a href="cart.html" class="btn btn-outline btn-sm"
+                    >Lihat Keranjang</a
+                  >
+                  <a href="checkout.html" class="btn btn-primary btn-sm"
+                    >Checkout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <main>
+    <div class="login-wrapper section-padding">
+      <div class="login-card">
+        
+        <div class="login-header text-center">
+          <h2>Selamat Datang Kembali</h2>
+          <p>Masuk untuk melihat pesanan dan mengelola profil Anda.</p>
+        </div>
+
+        <form class="login-form" onsubmit="event.preventDefault(); window.location.href='profile.html';">
+          <div class="form-group">
+            <label>Alamat Email</label>
+            <input type="email" class="form-input" placeholder="contoh@email.com" required>
+          </div>
+          
+          <div class="form-group">
+            <div class="password-label-row">
+              <label>Kata Sandi</label>
+              <a href="#" class="forgot-link text-accent">Lupa Sandi?</a>
+            </div>
+            <input type="password" class="form-input" placeholder="Masukkan kata sandi" required>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-container">
+              Ingat Saya
+              <input type="checkbox">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 login-btn">Masuk</button>
+          
+          <div class="login-footer text-center">
+            <p>Belum punya akun? <a href="login.html" class="text-accent" onclick="alert('Mockup: Navigasi ke Daftar')">Daftar sekarang</a></p>
+          </div>
+        </form>
+
+      </div>
     </div>
   </main>
 
+  <!-- GLOBAL FOOTER -->
+  <footer class="global-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo"><span class="accent">NEX</span>GEAR</a>
+        <p>E-commerce periferal gaming premium yang dikurasi khusus untuk penggemar sejati yang mencari performa tanpa kompromi.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Kategori</h4>
+        <ul>
+          <li><a href="catalog.html?cat=machines">Machines</a></li>
+          <li><a href="catalog.html?cat=control">Control</a></li>
+          <li><a href="catalog.html?cat=build">Build</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Bantuan</h4>
+        <ul>
+          <li><a href="track-order.html">Lacak Pesanan</a></li>
+          <li><a href="help.html">Pengiriman & Garansi</a></li>
+          <li><a href="contact.html">Hubungi Kami</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 NEXGEAR. Semua Hak Dilindungi.</span>
+    </div>
+  </footer>
+
   <script src="scripts/main.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const signUpButton = document.getElementById("signUp");
-      const signInButton = document.getElementById("signIn");
-      const container = document.getElementById("container");
-
-      if (signUpButton && signInButton && container) {
-        signUpButton.addEventListener("click", () => {
-          container.classList.add("right-panel-active");
-        });
-
-        signInButton.addEventListener("click", () => {
-          container.classList.remove("right-panel-active");
-        });
-      }
-
-      document.getElementById('login-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (window.NexAuth) window.NexAuth.login();
-        showToast('Berhasil masuk! Selamat datang kembali.');
-        setTimeout(() => window.location.href = 'index.html', 1500);
-      });
-
-      document.getElementById('register-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (window.NexAuth) window.NexAuth.login();
-        showToast('Akun berhasil dibuat! Mengalihkan ke beranda...');
-        setTimeout(() => window.location.href = 'index.html', 1500);
-      });
-    });
-  </script>
 </body>
 </html>

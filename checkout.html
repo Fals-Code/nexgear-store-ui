@@ -3,238 +3,707 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXGEAR - Checkout</title>
-  <link rel="stylesheet" href="styles/main.css">
+  <title>Checkout | NEXGEAR</title>
+  <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/checkout.css">
-  <style>
-    body { opacity: 0; transition: opacity 0.25s ease; }
-    body.loaded { opacity: 1; }
-  </style>
-  <noscript><style>body { opacity: 1; }</style></noscript>
 </head>
 <body>
-  <!-- Minimal Nav for Checkout -->
-  <nav class="scrolled minimal">
-    <div class="nav-container container" style="display: flex; justify-content: center;">
-      <a href="index.html" class="logo font-gaming">NEXGEAR</a>
-    </div>
-  </nav>
-
-    <main class="checkout-wrapper container">
-    <div class="checkout-progress-container">
-      <div class="checkout-progress">
-        <div class="progress-step completed" aria-label="Step 1 complete: Cart">
-          <div class="step-circle"><span class="icon icon-sm"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
-          <span class="step-label">Cart</span>
-        </div>
-        <div class="progress-line completed"></div>
-        <div class="progress-step active" aria-current="step" aria-label="Current step: Details">
-          <div class="step-circle">2</div>
-          <span class="step-label">Details</span>
-        </div>
-        <div class="progress-line"></div>
-        <div class="progress-step" aria-label="Step 3: Payment">
-          <div class="step-circle">3</div>
-          <span class="step-label">Payment</span>
-        </div>
-        <div class="progress-line"></div>
-        <div class="progress-step" aria-label="Step 4: Complete">
-          <div class="step-circle">4</div>
-          <span class="step-label">Complete</span>
+    <!-- GLOBAL HEADER -->
+            <header id="navbar" class="nex-header">
+      <!-- Top Bar -->
+      <div class="top-bar">
+        <div class="header-container top-bar-container">
+          <div class="header-logo">
+            <a href="index.html"><span class="accent">NEX</span>GEAR</a>
+          </div>
+          <nav class="top-nav">
+            <ul class="nav-links">
+              <li class="nav-item">
+                <a href="index.html" class="top-nav-link">Home</a>
+              </li>
+              <li class="nav-item has-mega">
+                <a
+                  href="catalog.html"
+                  class="top-nav-link has-dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span>Catalog</span>
+                  <svg
+                    class="dropdown-chevron"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </a>
+                <!-- Mega Menu -->
+                <div class="nav-dropdown mega-menu">
+                  <div class="mega-menu-inner">
+                    <div class="mega-column">
+                      <h3>Shop by Category</h3>
+                      <a href="catalog.html" data-filter="all">All Gear</a>
+                      <a href="catalog.html" data-filter="machines">Machines</a>
+                      <a href="catalog.html" data-filter="control">Control</a>
+                      <a href="catalog.html" data-filter="build">Build</a>
+                      <a href="catalog.html" data-filter="sound">Sound</a>
+                    </div>
+                    <div class="mega-column">
+                      <h3>Popular Gear</h3>
+                      <a href="catalog.html">Gaming Laptop</a>
+                      <a href="catalog.html">Mechanical Keyboard</a>
+                      <a href="catalog.html">Gaming Mouse</a>
+                      <a href="catalog.html">Headset</a>
+                      <a href="catalog.html">Monitor</a>
+                    </div>
+                    <div class="mega-column">
+                      <h3>Support</h3>
+                      <a href="track-order.html">Track Order</a>
+                      <a href="help.html">Warranty</a>
+                      <a href="help.html">Help Center</a>
+                      <a href="contact.html">Contact Support</a>
+                    </div>
+                    <div class="mega-cta-card promo-card">
+                      <img
+                        src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=700&q=80"
+                        alt="Gaming keyboard and setup"
+                        class="promo-card-image"
+                      />
+                      <div class="promo-card-overlay">
+                        <span class="promo-eyebrow">UP TO 70% OFF</span>
+                        <h3>Upgrade Your Setup</h3>
+                        <a href="catalog.html" class="btn btn-primary btn-sm"
+                          >Shop Now</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item has-dropdown">
+                <a
+                  href="about.html"
+                  class="top-nav-link has-dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span>About</span>
+                  <svg
+                    class="dropdown-chevron"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </a>
+                <!-- About Dropdown -->
+                <div class="nav-dropdown dropdown-sm about-dropdown">
+                  <ul>
+                    <li><a href="about.html">Tentang NEXGEAR</a></li>
+                    <li><a href="contact.html">Contact Support</a></li>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="track-order.html">Track Order</a></li>
+                    <li><a href="leave-review.html">Leave Review</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a href="blog.html" class="top-nav-link">Blog</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="top-help">
+            <span>Need Help?</span>
+            <strong>+94 423-23-221</strong>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="checkout-grid">
-      <div class="checkout-form-column">
-        <form id="checkout-form">
+      <!-- Shop Bar -->
+      <div id="shop-bar" class="shop-bar">
+        <div class="header-container shop-bar-container">
+          <div
+            class="shop-categories nav-item"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <button class="hamburger" aria-label="Menu">
+              <span></span><span></span><span></span>
+            </button>
+            <span class="cat-text">CATEGORIES</span>
+            <svg
+              class="dropdown-chevron categories-chevron"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+            <!-- Categories Dropdown -->
+            <div class="nav-dropdown dropdown-cat">
+              <div class="category-dropdown-shell">
+                <!-- Left Column: Main Categories -->
+                <div class="category-dropdown-main">
+                  <a
+                    href="catalog.html"
+                    class="category-main-item"
+                    data-panel-target="all-gear"
+                    >All Gear</a
+                  >
+                  <a
+                    href="catalog.html"
+                    class="category-main-item"
+                    data-panel-target="machines"
+                    >Machines</a
+                  >
+                  <a
+                    href="catalog.html"
+                    class="category-main-item"
+                    data-panel-target="control"
+                    >Control</a
+                  >
+                  <a
+                    href="catalog.html"
+                    class="category-main-item"
+                    data-panel-target="build"
+                    >Build</a
+                  >
+                  <a
+                    href="catalog.html"
+                    class="category-main-item"
+                    data-panel-target="sound"
+                    >Sound</a
+                  >
+                  <a
+                    href="catalog.html"
+                    class="category-main-item"
+                    data-panel-target="accessories"
+                    >Accessories</a
+                  >
+                </div>
 
-          <!-- Contact Info -->
-          <div class="checkout-section-card">
-            <div class="checkout-section-header">
-              <span class="icon icon-md text-primary"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
-              <h3>Informasi Kontak</h3>
-            </div>
-            <div class="checkout-form-row">
-              <div class="checkout-form-group">
-                <label for="first-name">Nama Depan</label>
-                <input type="text" id="first-name" name="firstName" class="checkout-input" placeholder="Masukkan nama depan" autocomplete="given-name" required>
-              </div>
-              <div class="checkout-form-group">
-                <label for="last-name">Nama Belakang</label>
-                <input type="text" id="last-name" name="lastName" class="checkout-input" placeholder="Masukkan nama belakang" autocomplete="family-name" required>
-              </div>
-            </div>
-            <div class="checkout-form-row">
-              <div class="checkout-form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" class="checkout-input" placeholder="contoh@email.com" autocomplete="email" required>
-              </div>
-              <div class="checkout-form-group">
-                <label for="phone">Nomor Telepon</label>
-                <input type="tel" id="phone" name="phone" class="checkout-input" placeholder="+62 8xx xxxx xxxx" autocomplete="tel" required>
+                <!-- Right Column: Sub-category Panels -->
+                <div class="category-dropdown-sub">
+                  <div class="category-sub-panel" data-panel="all-gear">
+                    <a href="catalog.html">Featured Gear</a>
+                    <a href="catalog.html">New Arrivals</a>
+                    <a href="catalog.html">Best Sellers</a>
+                    <a href="catalog.html">Limited Deals</a>
+                    <a href="catalog.html">View All Gear</a>
+                  </div>
+
+                  <div class="category-sub-panel" data-panel="machines">
+                    <a href="catalog.html">Gaming Laptop</a>
+                    <a href="catalog.html">Compact Setup</a>
+                    <a href="catalog.html">High Performance</a>
+                    <a href="catalog.html">Creator Setup</a>
+                    <a href="catalog.html">View All Machines</a>
+                  </div>
+
+                  <div class="category-sub-panel" data-panel="control">
+                    <a href="catalog.html">Gaming Mouse</a>
+                    <a href="catalog.html">Mechanical Keyboard</a>
+                    <a href="catalog.html">Mousepad</a>
+                    <a href="catalog.html">Monitor</a>
+                    <a href="catalog.html">View All Control</a>
+                  </div>
+
+                  <div class="category-sub-panel" data-panel="build">
+                    <a href="catalog.html">GPU</a>
+                    <a href="catalog.html">CPU</a>
+                    <a href="catalog.html">RAM</a>
+                    <a href="catalog.html">Storage</a>
+                    <a href="catalog.html">View All Build</a>
+                  </div>
+
+                  <div class="category-sub-panel" data-panel="sound">
+                    <a href="catalog.html">Headset</a>
+                    <a href="catalog.html">Microphone</a>
+                    <a href="catalog.html">Speaker</a>
+                    <a href="catalog.html">Audio Interface</a>
+                    <a href="catalog.html">View All Sound</a>
+                  </div>
+
+                  <div class="category-sub-panel" data-panel="accessories">
+                    <a href="catalog.html">Cable</a>
+                    <a href="catalog.html">Stand</a>
+                    <a href="catalog.html">Desk Mat</a>
+                    <a href="catalog.html">Lighting</a>
+                    <a href="catalog.html">View All Accessories</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Shipping Address -->
-          <div class="checkout-section-card">
-            <div class="checkout-section-header">
-              <span class="icon icon-md text-primary"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg></span>
-              <h3>Alamat Pengiriman</h3>
-            </div>
-            <div class="checkout-form-group">
-              <label for="shipping-address">Alamat Lengkap</label>
-              <input type="text" id="shipping-address" name="shippingAddress" class="checkout-input" placeholder="Nama jalan, gedung, no. rumah" autocomplete="street-address" required>
-            </div>
-            <div class="checkout-form-row">
-              <div class="checkout-form-group">
-                <label for="city">Kota</label>
-                <input type="text" id="city" name="city" class="checkout-input" placeholder="Kota" autocomplete="address-level2" required>
+          <div class="shop-search">
+            <form action="catalog.html" method="GET" class="search-form">
+              <input
+                type="text"
+                name="q"
+                placeholder="Cari gear, keyboard, headset..."
+                aria-label="Search products"
+              />
+              <button type="submit" aria-label="Search">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <div class="shop-actions">
+            <!-- Account -->
+            <div class="nav-item action-wrapper">
+              <a
+                href="login.html"
+                class="action-btn"
+                aria-label="Account"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </a>
+              <div class="nav-dropdown account-dropdown">
+                <a href="login.html" class="dropdown-cta-btn">Masuk / Daftar</a>
+                <ul>
+                  <li>
+                    <a
+                      href="track-order.html"
+                      class="account-dropdown-link dropdown-link"
+                    >
+                      <svg
+                        class="dropdown-icon"
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M3 7h11v9H3z" />
+                        <path d="M14 10h4l3 3v3h-7z" />
+                        <circle cx="7" cy="18" r="2" />
+                        <circle cx="18" cy="18" r="2" />
+                      </svg>
+                      <span>Lacak Pesanan</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="profile.html"
+                      class="account-dropdown-link dropdown-link"
+                    >
+                      <svg
+                        class="dropdown-icon"
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="m21 8-9-5-9 5 9 5 9-5z" />
+                        <path d="M3 8v8l9 5 9-5V8" />
+                        <path d="M12 13v8" />
+                      </svg>
+                      <span>Pesanan Saya</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="profile.html"
+                      class="account-dropdown-link dropdown-link"
+                    >
+                      <svg
+                        class="dropdown-icon"
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M4 21a8 8 0 0 1 16 0" />
+                      </svg>
+                      <span>Profil Saya</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="help.html"
+                      class="account-dropdown-link dropdown-link"
+                    >
+                      <svg
+                        class="dropdown-icon"
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M9.5 9a2.6 2.6 0 0 1 5 1c0 2-2.5 2.2-2.5 4" />
+                        <path d="M12 17h.01" />
+                      </svg>
+                      <span>Bantuan &amp; FAQ</span>
+                    </a>
+                  </li>
+                </ul>
               </div>
-              <div class="checkout-form-group">
-                <label for="postal-code">Kode Pos</label>
-                <input type="text" id="postal-code" name="postalCode" class="checkout-input" placeholder="Kode Pos" autocomplete="postal-code" inputmode="numeric" required>
+            </div>
+            <!-- Wishlist -->
+            <div class="nav-item action-wrapper">
+              <a
+                href="profile.html#wishlist"
+                class="action-btn"
+                aria-label="Wishlist"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  ></path>
+                </svg>
+              </a>
+              <div class="nav-dropdown wishlist-dropdown">
+                <strong>Wishlist</strong>
+                <p>Simpan gear favorit Anda.</p>
+                <a href="profile.html" class="dropdown-link-sm"
+                  >Lihat Wishlist</a
+                >
+              </div>
+            </div>
+            <!-- Cart -->
+            <div class="nav-item action-wrapper">
+              <a
+                href="cart.html"
+                class="action-btn cart-icon-wrapper"
+                id="cart-btn"
+                aria-label="Cart"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="9" cy="21" r="1" />
+                  <circle cx="20" cy="21" r="1" />
+                  <path
+                    d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                  />
+                </svg>
+                <span class="cart-count cart-badge" data-count="2">2</span>
+              </a>
+              <div class="nav-dropdown mini-cart-dropdown">
+                <h4 class="dropdown-cart-title">Keranjang Anda</h4>
+                <div class="mini-cart-items">
+                  <div class="mini-cart-item">
+                    <a href="product-detail.html" class="mini-cart-thumb">
+                      <img
+                        src="lib/product-logitech-g-pro-x-superlight-2.webp"
+                        alt="NEXGEAR PulseMouse X1"
+                      />
+                    </a>
+                    <div class="mini-cart-info">
+                      <a href="product-detail.html" class="mini-cart-name"
+                        >1x NEXGEAR PulseMouse X1</a
+                      >
+                      <strong class="mini-cart-price">Rp 599.000</strong>
+                    </div>
+                    <button
+                      class="mini-cart-remove"
+                      type="button"
+                      aria-label="Hapus NEXGEAR PulseMouse X1 dari keranjang"
+                    >
+                      <svg aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M3 6h18" />
+                        <path d="M8 6V4h8v2" />
+                        <path d="M19 6l-1 14H6L5 6" />
+                        <path d="M10 11v5" />
+                        <path d="M14 11v5" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="mini-cart-item">
+                    <a href="product-detail.html" class="mini-cart-thumb">
+                      <img
+                        src="lib/product-corsair-k70-max-rgb.webp"
+                        alt="NEXGEAR StrikeKeys TKL"
+                      />
+                    </a>
+                    <div class="mini-cart-info">
+                      <a href="product-detail.html" class="mini-cart-name"
+                        >1x NEXGEAR StrikeKeys TKL</a
+                      >
+                      <strong class="mini-cart-price">Rp 1.299.000</strong>
+                    </div>
+                    <button
+                      class="mini-cart-remove"
+                      type="button"
+                      aria-label="Hapus NEXGEAR StrikeKeys TKL dari keranjang"
+                    >
+                      <svg aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M3 6h18" />
+                        <path d="M8 6V4h8v2" />
+                        <path d="M19 6l-1 14H6L5 6" />
+                        <path d="M10 11v5" />
+                        <path d="M14 11v5" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="mini-cart-total">
+                  <span>Total</span>
+                  <strong>Rp 1.898.000</strong>
+                </div>
+                <div class="mini-cart-actions">
+                  <a href="cart.html" class="btn btn-outline btn-sm"
+                    >Lihat Keranjang</a
+                  >
+                  <a href="checkout.html" class="btn btn-primary btn-sm"
+                    >Checkout</a
+                  >
+                </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </header>
 
-          <!-- Payment Method -->
-          <div class="checkout-section-card">
-            <div class="checkout-section-header">
-              <span class="icon icon-md text-primary"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
-              <h3>Metode Pembayaran</h3>
-            </div>
-            <fieldset class="payment-methods-grid" aria-describedby="payment-method-note">
-              <legend class="sr-only">Pilih metode pembayaran</legend>
-              <p id="payment-method-note" class="payment-method-note">Pilih metode pembayaran yang paling nyaman untuk pesanan Anda.</p>
-              <label class="payment-method-card" for="payment-cc">
-                <input type="radio" id="payment-cc" name="payment" value="cc" class="payment-radio" checked>
-                <div class="payment-card-content">
-                  <div class="payment-card-icon">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                  </div>
-                  <span class="payment-card-copy">
-                    <span class="payment-card-title">Kartu Kredit / Debit</span>
-                    <span class="payment-card-description">Aman terenkripsi untuk transaksi kartu.</span>
-                  </span>
-                </div>
-              </label>
-              <label class="payment-method-card" for="payment-va">
-                <input type="radio" id="payment-va" name="payment" value="va" class="payment-radio">
-                <div class="payment-card-content">
-                  <div class="payment-card-icon">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-                  </div>
-                  <span class="payment-card-copy">
-                    <span class="payment-card-title">Transfer Bank (VA)</span>
-                    <span class="payment-card-description">Virtual account otomatis diverifikasi.</span>
-                  </span>
-                </div>
-              </label>
-              <label class="payment-method-card" for="payment-ewallet">
-                <input type="radio" id="payment-ewallet" name="payment" value="ewallet" class="payment-radio">
-                <div class="payment-card-content">
-                  <div class="payment-card-icon">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                  </div>
-                  <span class="payment-card-copy">
-                    <span class="payment-card-title">GoPay / OVO / Dana</span>
-                    <span class="payment-card-description">E-wallet diproses instan.</span>
-                  </span>
-                </div>
-              </label>
-            </fieldset>
-          </div>
-
-        </form>
+  <main>
+    <div class="container section-padding">
+      <div class="section-header">
+        <h2>Checkout</h2>
       </div>
 
-      <aside class="order-summary-wrapper">
-        <div class="checkout-summary-glass">
-          <div class="summary-header">
-            <h3>Ringkasan Pesanan</h3>
-            <span class="summary-secure-badge">Secure Checkout</span>
+      <div class="checkout-layout">
+        <!-- CHECKOUT FORM -->
+        <div class="checkout-form-area">
+          
+          <!-- STEP 1: Data Pelanggan -->
+          <div class="checkout-step">
+            <h3>1. Data Pemesan</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Nama Lengkap</label>
+                <input type="text" class="form-input" placeholder="Masukkan nama lengkap" required>
+              </div>
+              <div class="form-group">
+                <label>Nomor Telepon</label>
+                <input type="tel" class="form-input" placeholder="08xx xxxx xxxx" required>
+              </div>
+              <div class="form-group full-width">
+                <label>Email</label>
+                <input type="email" class="form-input" placeholder="email@contoh.com" required>
+              </div>
+            </div>
           </div>
 
-          <div class="summary-items" id="checkout-items">
-            <!-- Injected via JS -->
+          <!-- STEP 2: Alamat Pengiriman -->
+          <div class="checkout-step">
+            <h3>2. Alamat Pengiriman</h3>
+            <div class="form-grid">
+              <div class="form-group full-width">
+                <label>Alamat Lengkap</label>
+                <textarea class="form-input" rows="3" placeholder="Nama jalan, gedung, no. rumah..." required></textarea>
+              </div>
+              <div class="form-group">
+                <label>Provinsi</label>
+                <select class="form-input" required>
+                  <option value="">Pilih Provinsi</option>
+                  <option value="DKI Jakarta">DKI Jakarta</option>
+                  <option value="Jawa Barat">Jawa Barat</option>
+                  <option value="Banten">Banten</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Kota / Kabupaten</label>
+                <select class="form-input" required>
+                  <option value="">Pilih Kota</option>
+                  <option value="Jakarta Selatan">Jakarta Selatan</option>
+                  <option value="Jakarta Pusat">Jakarta Pusat</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Kecamatan</label>
+                <input type="text" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label>Kode Pos</label>
+                <input type="text" class="form-input" required>
+              </div>
+            </div>
           </div>
 
-          <div class="summary-totals">
-            <div class="summary-row">
-              <span class="text-muted">Subtotal</span>
-              <span id="checkout-subtotal" class="font-gaming">Rp0</span>
-            </div>
-            <div class="summary-row">
-              <span class="text-muted">Ongkos Kirim</span>
-              <span class="text-success">Gratis</span>
-            </div>
-            <div class="summary-row total">
-              <span>Total Bersih</span>
-              <span id="checkout-total" class="font-gaming text-primary">Rp0</span>
+          <!-- STEP 3: Metode Pengiriman -->
+          <div class="checkout-step">
+            <h3>3. Metode Pengiriman</h3>
+            <div class="shipping-options">
+              <label class="radio-card">
+                <input type="radio" name="shipping" checked>
+                <div class="radio-card-content">
+                  <div class="radio-card-header">
+                    <strong>Reguler (2-3 Hari)</strong>
+                    <span>Rp20.000</span>
+                  </div>
+                  <p>Pengiriman standar dengan asuransi dasar.</p>
+                </div>
+              </label>
+              
+              <label class="radio-card">
+                <input type="radio" name="shipping">
+                <div class="radio-card-content">
+                  <div class="radio-card-header">
+                    <strong>Next Day (1 Hari)</strong>
+                    <span>Rp45.000</span>
+                  </div>
+                  <p>Prioritas pengiriman, sampai esok hari.</p>
+                </div>
+              </label>
+
+              <label class="radio-card">
+                <input type="radio" name="shipping">
+                <div class="radio-card-content">
+                  <div class="radio-card-header">
+                    <strong>Same Day (Gojek/Grab)</strong>
+                    <span>Rp75.000</span>
+                  </div>
+                  <p>Khusus wilayah Jadetabek, dikirim di hari yang sama.</p>
+                </div>
+              </label>
             </div>
           </div>
-          <div class="checkout-trust-list">
-            <div class="checkout-trust-item">
-              <span class="icon"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
-              SSL Secured
-            </div>
-            <div class="checkout-trust-item">
-              <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-              Encrypted Payment
-            </div>
-            <div class="checkout-trust-item">
-              <span class="icon"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-              Warranty Support
-            </div>
-            <div class="checkout-trust-item">
-              <span class="icon"><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-2"/></svg></span>
-              Easy Return
+
+          <!-- STEP 4: Pembayaran -->
+          <div class="checkout-step">
+            <h3>4. Metode Pembayaran</h3>
+            <div class="payment-options">
+              <label class="radio-card">
+                <input type="radio" name="payment" checked>
+                <div class="radio-card-content">
+                  <strong>Virtual Account BCA</strong>
+                </div>
+              </label>
+              
+              <label class="radio-card">
+                <input type="radio" name="payment">
+                <div class="radio-card-content">
+                  <strong>Kartu Kredit / Debit</strong>
+                </div>
+              </label>
+
+              <label class="radio-card">
+                <input type="radio" name="payment">
+                <div class="radio-card-content">
+                  <strong>GoPay / QRIS</strong>
+                </div>
+              </label>
             </div>
           </div>
-          <button type="submit" form="checkout-form" class="checkout-submit-btn btn-primary">
-            <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-            Bayar Sekarang
-          </button>
+
         </div>
-      </aside>
+
+        <!-- ORDER SUMMARY -->
+        <aside class="checkout-summary">
+          <h3>Ringkasan Pesanan</h3>
+          
+          <div class="summary-items">
+            <div class="s-item">
+              <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Keyboard">
+              <div class="s-item-info">
+                <h4>Vortex VX Pro Mechanical</h4>
+                <span>1 x Rp1.850.000</span>
+              </div>
+            </div>
+            <div class="s-item">
+              <img src="https://images.unsplash.com/photo-1615663245857-ac93bb5c9023?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Mouse">
+              <div class="s-item-info">
+                <h4>Logitech G Pro X Superlight</h4>
+                <span>1 x Rp2.150.000</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>Rp4.000.000</span>
+          </div>
+          <div class="summary-row">
+            <span>Ongkos Kirim</span>
+            <span>Rp20.000</span>
+          </div>
+          <div class="summary-row">
+            <span>Asuransi</span>
+            <span>Rp15.000</span>
+          </div>
+
+          <div class="summary-divider"></div>
+          
+          <div class="summary-row total">
+            <span>Total Bayar</span>
+            <span class="text-accent">Rp4.035.000</span>
+          </div>
+          
+          <a href="success.html" class="btn btn-primary w-100" style="margin-top: 25px;">Buat Pesanan</a>
+          <p class="secure-text">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Pembayaran Aman dengan Enkripsi SSL
+          </p>
+        </aside>
+
+      </div>
     </div>
   </main>
 
-  <script src="scripts/main.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const items = window.NexCart.items;
-      const container = document.getElementById("checkout-items");
-      const subtotalEl = document.getElementById("checkout-subtotal");
-      const totalEl = document.getElementById("checkout-total");
-      
-      if(items.length === 0) {
-        alert("Keranjang belanja Anda masih kosong! Silakan pilih produk terlebih dahulu.");
-        window.location.href = "catalog.html";
-        return;
-      }
-      if (!window.NexAuth || !window.NexAuth.isLoggedIn) {
-        alert("Silakan login terlebih dahulu untuk melanjutkan pembayaran.");
-        window.location.href = "login.html";
-        return;
-      } else {
-        container.innerHTML = items.map(i => `
-          <div class="summary-item">
-            <span class="summary-item-name">${i.qty}x ${i.name}</span>
-            <span>${window.formatRupiah(i.price * i.qty)}</span>
-          </div>
-        `).join("");
-        subtotalEl.textContent = window.formatRupiah(window.NexCart.total);
-        totalEl.textContent = window.formatRupiah(window.NexCart.total);
-      }
+  <!-- GLOBAL FOOTER -->
+  <footer class="global-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo"><span class="accent">NEX</span>GEAR</a>
+        <p>E-commerce periferal gaming premium yang dikurasi khusus untuk penggemar sejati yang mencari performa tanpa kompromi.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Kategori</h4>
+        <ul>
+          <li><a href="catalog.html?cat=machines">Machines</a></li>
+          <li><a href="catalog.html?cat=control">Control</a></li>
+          <li><a href="catalog.html?cat=build">Build</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Bantuan</h4>
+        <ul>
+          <li><a href="track-order.html">Lacak Pesanan</a></li>
+          <li><a href="help.html">Pengiriman & Garansi</a></li>
+          <li><a href="contact.html">Hubungi Kami</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 NEXGEAR. Semua Hak Dilindungi.</span>
+    </div>
+  </footer>
 
-      document.getElementById("checkout-form").addEventListener("submit", (e) => {
-        e.preventDefault();
-        window.location.href = "success.html";
-      });
-    });
-  </script>
+  <script src="scripts/main.js"></script>
 </body>
 </html>

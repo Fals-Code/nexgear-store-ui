@@ -1,0 +1,211 @@
+/* track-order.css - Refined styles for track-order.html */
+
+.track-form-container {
+  max-width: 600px;
+  margin: 0 auto 50px;
+  background: var(--color-bg-surface);
+  padding: 35px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.track-form {
+  display: flex;
+  gap: 16px;
+}
+
+.track-form .form-input {
+  flex-grow: 1;
+}
+
+.track-form .btn {
+  min-width: 130px;
+}
+
+.track-result {
+  max-width: 800px;
+  margin: 0 auto;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.order-info-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.order-info-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-info-row span {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.order-info-row strong {
+  font-family: var(--font-body);
+  color: #fff;
+  font-size: 1.15rem;
+}
+
+.text-accent {
+  color: var(--color-primary) !important;
+}
+
+/* TIMELINE */
+.tracking-timeline {
+  position: relative;
+  padding-left: 56px;
+}
+
+.tracking-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 27px;
+  height: 100%;
+  width: 2px;
+  background: var(--color-border-subtle);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 45px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: -56px;
+  width: 54px;
+  height: 54px;
+  background: var(--color-bg-deep);
+  border: 2px solid var(--color-border-default);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-item.completed .timeline-icon {
+  background: rgba(0, 255, 136, 0.1);
+  border-color: #00ff88;
+  color: #00ff88;
+}
+
+.timeline-item.completed .timeline-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.timeline-item.active .timeline-icon {
+  border-color: var(--color-primary);
+  background: var(--color-primary-bg);
+}
+
+.active-dot {
+  width: 14px;
+  height: 14px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--color-primary);
+}
+
+.timeline-content {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.timeline-item.active .timeline-content {
+  border-color: var(--color-border-highlight);
+  box-shadow: 0 4px 15px rgba(0, 229, 255, 0.05);
+}
+
+/* Timeline Arrow */
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: -8px;
+  width: 16px;
+  height: 16px;
+  background: var(--color-bg-surface);
+  border-left: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+  transform: rotate(45deg);
+  transition: all 0.3s ease;
+}
+
+.timeline-item.active .timeline-content::before {
+  border-color: var(--color-border-highlight);
+}
+
+.timeline-content h4 {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.timeline-item.active .timeline-content h4 {
+  color: var(--color-primary);
+}
+
+.timeline-content p {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.timeline-content span {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.text-center {
+  text-align: center;
+}
+
+@media (max-width: 576px) {
+  .track-form {
+    flex-direction: column;
+  }
+  .tracking-timeline {
+    padding-left: 44px;
+  }
+  .tracking-timeline::before {
+    left: 21px;
+  }
+  .timeline-icon {
+    left: -44px;
+    width: 44px;
+    height: 44px;
+  }
+}
