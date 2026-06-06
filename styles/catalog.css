@@ -272,3 +272,20 @@
 @media (max-width: 576px) {
   .catalog-grid { grid-template-columns: 1fr; }
 }
+
+/* Fix catalog footer gap */
+.page-catalog .site-main > .catalog-container,
+.page-catalog main > .catalog-container,
+.page-catalog .site-main > :last-child,
+.page-catalog main > :last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: clamp(16px, 2vw, 28px) !important;
+  min-height: auto !important;
+}
+
+.page-catalog .catalog-layout,
+.page-catalog .catalog-grid,
+.page-catalog .pagination {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}

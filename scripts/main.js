@@ -132,36 +132,39 @@
 
   /* ―― Sticky Navbar ―― */
   function initNavbar() {
-    const topBar = document.querySelector('.top-bar');
-    const shopBar = document.querySelector('#shop-bar');
+    const topBar = document.querySelector(".top-bar");
+    const shopBar = document.querySelector("#shop-bar");
     if (!shopBar) return;
 
-    let spacer = document.querySelector('.shop-bar-spacer');
+    let spacer = document.querySelector(".shop-bar-spacer");
     if (!spacer) {
-      spacer = document.createElement('div');
-      spacer.className = 'shop-bar-spacer';
-      shopBar.insertAdjacentElement('afterend', spacer);
+      spacer = document.createElement("div");
+      spacer.className = "shop-bar-spacer";
+      shopBar.insertAdjacentElement("afterend", spacer);
     }
 
     const setShopBarHeight = () => {
       const height = shopBar.offsetHeight || 70;
-      document.documentElement.style.setProperty('--shop-bar-height', `${height}px`);
+      document.documentElement.style.setProperty(
+        "--shop-bar-height",
+        `${height}px`,
+      );
     };
 
     const onScroll = () => {
       const threshold = topBar ? topBar.offsetHeight : 72;
       const shouldStick = window.scrollY > threshold;
 
-      shopBar.classList.toggle('is-sticky', shouldStick);
-      shopBar.classList.toggle('is-fixed', shouldStick);
-      spacer.classList.toggle('is-active', shouldStick);
+      shopBar.classList.toggle("is-sticky", shouldStick);
+      shopBar.classList.toggle("is-fixed", shouldStick);
+      spacer.classList.toggle("is-active", shouldStick);
     };
 
     setShopBarHeight();
     onScroll();
 
-    window.addEventListener('resize', setShopBarHeight, { passive: true });
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener("resize", setShopBarHeight, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
   }
 
   /* — Mobile Menu — */
@@ -986,15 +989,17 @@
 
   /* INIT */
   function initMiniCartDropdownRemove() {
-    document.querySelectorAll(".mini-cart-dropdown .mini-cart-remove").forEach((button) => {
-      button.addEventListener("click", (event) => {
-        event.preventDefault();
-        event.stopPropagation();
+    document
+      .querySelectorAll(".mini-cart-dropdown .mini-cart-remove")
+      .forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
 
-        const item = button.closest(".mini-cart-item");
-        if (item) item.remove();
+          const item = button.closest(".mini-cart-item");
+          if (item) item.remove();
+        });
       });
-    });
   }
 
   function initCategoryPanel() {
@@ -1010,10 +1015,7 @@
     function activatePanel(target) {
       shell.classList.add("has-active-panel");
       mainItems.forEach((item) => {
-        item.classList.toggle(
-          "is-active",
-          item.dataset.panelTarget === target,
-        );
+        item.classList.toggle("is-active", item.dataset.panelTarget === target);
       });
       panels.forEach((panel) => {
         panel.classList.toggle("is-active", panel.dataset.panel === target);
@@ -1095,22 +1097,38 @@
 
   function syncFooterRevealSpace() {
     const footer = document.querySelector(".site-footer");
-    const main = document.querySelector(".site-main") || document.querySelector("main");
-
-    if (!footer || !main) return;
+    if (!footer) return;
 
     const setFooterSpace = () => {
-      const revealSpace = Math.min(Math.max(window.innerHeight * 0.56, 500), 640);
+      const footerHeight = footer.offsetHeight || 0;
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      const revealSpace = Math.round(
+        Math.min(Math.max(footerHeight * 0.62, viewportHeight * 0.34), 380),
+      );
 
       document.documentElement.style.setProperty(
         "--footer-reveal-space",
-        `${Math.round(revealSpace)}px`,
+        `${revealSpace}px`,
       );
     };
 
     setFooterSpace();
     window.addEventListener("resize", setFooterSpace, { passive: true });
     window.addEventListener("load", setFooterSpace, { once: true });
+
+    // Use ResizeObserver if available to watch for footer height changes
+    if ("ResizeObserver" in window) {
+      const observer = new ResizeObserver(setFooterSpace);
+      observer.observe(footer);
+    }
+
+    // Also listen for image load events on all footer images
+    footer.querySelectorAll("img").forEach((img) => {
+      if (!img.complete) {
+        img.addEventListener("load", setFooterSpace, { once: true });
+        img.addEventListener("error", setFooterSpace, { once: true });
+      }
+    });
   }
 
   function initPromoWindowReveal() {
@@ -1174,6 +1192,44 @@
     });
   }
 
+  function initFooterGalleryAutoScroll() {
+    const track = document.querySelector(".footer-gallery-track");
+    if (!track) return;
+
+    let paused = false;
+    let frameId = null;
+
+    const tick = () => {
+      if (!paused && track.scrollWidth > track.clientWidth) {
+        track.scrollLeft += 0.22;
+
+        if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 2) {
+          track.scrollLeft = 0;
+        }
+      }
+
+      frameId = requestAnimationFrame(tick);
+    };
+
+    track.addEventListener("mouseenter", () => {
+      paused = true;
+    });
+
+    track.addEventListener("mouseleave", () => {
+      paused = false;
+    });
+
+    track.addEventListener("focusin", () => {
+      paused = true;
+    });
+
+    track.addEventListener("focusout", () => {
+      paused = false;
+    });
+
+    tick();
+  }
+
   function safeInit(fn) {
     try {
       if (typeof fn === "function") fn();
@@ -1205,7 +1261,6 @@
       initCategoryPanel,
       initCartEmptyGuidance,
       syncFooterRevealSpace,
-      initFooterReveal,
       initPromoWindowReveal,
       initShowcaseFilters,
     ];
@@ -1220,4 +1275,5 @@
   } else {
     init();
   }
+
 })();

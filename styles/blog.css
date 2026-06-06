@@ -394,3 +394,18 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Fix article footer gap */
+.page-blog-post .site-main > .post-layout,
+.page-blog-post main > .post-layout,
+.page-blog-post .site-main > article:last-child,
+.page-blog-post main > article:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: clamp(16px, 2vw, 28px) !important;
+  min-height: auto !important;
+}
+
+.page-blog-post .related-posts {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}

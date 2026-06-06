@@ -176,3 +176,18 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Fix about footer gap */
+.page-about .site-main > section:last-child,
+.page-about main > section:last-child,
+.page-about .section-padding.section-alt.text-center:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: clamp(16px, 2vw, 28px) !important;
+  min-height: auto !important;
+}
+
+.page-about .site-main > section:last-child .container,
+.page-about main > section:last-child .container {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
