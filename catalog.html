@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/catalog.css">
 </head>
-<body class="page-catalog">
+<body class="page-catalog" data-footer-reveal="compact">
     <!-- GLOBAL HEADER -->
             <header id="navbar" class="nex-header">
       <!-- Top Bar -->
@@ -489,209 +489,307 @@
     </header>
 
   <main class="site-main">
-    <div class="container catalog-container section-padding">
-      
-      <!-- TOOLBAR -->
-      <div class="catalog-toolbar">
-        <div class="breadcrumb">
-          <a href="index.html">Beranda</a> <span class="sep">/</span> <span>Katalog</span>
-        </div>
-        <div class="toolbar-actions">
-          <span class="product-count">Menampilkan 12 produk</span>
-          <select class="form-input sort-select">
-            <option>Urutkan: Relevansi</option>
-            <option>Urutkan: Harga Terendah</option>
-            <option>Urutkan: Harga Tertinggi</option>
-            <option>Urutkan: Terbaru</option>
-          </select>
-          <div class="view-toggles">
-            <button class="view-btn active" aria-label="Grid View">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+    <section class="catalog-hero" aria-labelledby="catalogTitle">
+      <div class="catalog-hero-bg"></div>
+      <div class="catalog-hero-overlay"></div>
+      <div class="container catalog-hero-content">
+        <nav class="catalog-breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <span>Catalog</span>
+        </nav>
+        <h1 id="catalogTitle">Katalog Gear</h1>
+        <p>Pilih gear gaming yang sesuai dengan setup dan cara main Anda.</p>
+      </div>
+    </section>
+
+    <div class="catalog-controls">
+      <section class="catalog-toolbar" aria-label="Catalog controls">
+        <div class="container catalog-toolbar-inner">
+          <div class="catalog-toolbar-left">
+            <span id="catalogCount" class="product-count">12 produk ditemukan</span>
+            <label class="catalog-sort">
+              <span>Sort</span>
+              <select id="sortSelect" class="sort-select" aria-label="Urutkan produk">
+                <option value="newest">Popular</option>
+                <option value="price-asc">Harga Terendah</option>
+                <option value="price-desc">Harga Tertinggi</option>
+                <option value="newest">Terbaru</option>
+              </select>
+            </label>
+          </div>
+          <div class="catalog-toolbar-right">
+            <button class="catalog-filter-btn" type="button" aria-expanded="false" aria-controls="catalog-filter-bar">
+              <span>Filters</span>
+              <span id="filterBadge" class="filter-badge" aria-hidden="true"></span>
             </button>
-            <button class="view-btn" aria-label="List View">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-            </button>
+            <div class="view-toggles" aria-label="View mode">
+              <button class="view-btn is-active" type="button" aria-label="Grid view">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              </button>
+              <button class="view-btn" type="button" aria-label="List view">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="6" x2="21" y2="6"/><line x1="7" y1="12" x2="21" y2="12"/><line x1="7" y1="18" x2="21" y2="18"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="catalog-layout">
-        <!-- SIDEBAR -->
-        <aside class="catalog-sidebar">
-          <div class="filter-group">
-            <h3>Kategori</h3>
-            <ul class="filter-list">
-              <li>
-                <label class="checkbox-container">Semua Produk
-                  <input type="radio" name="cat" checked>
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-              <li>
-                <label class="checkbox-container">Machines
-                  <input type="radio" name="cat">
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-              <li>
-                <label class="checkbox-container">Control
-                  <input type="radio" name="cat">
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-              <li>
-                <label class="checkbox-container">Build
-                  <input type="radio" name="cat">
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-              <li>
-                <label class="checkbox-container">Sound
-                  <input type="radio" name="cat">
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-            </ul>
-          </div>
-
-          <div class="filter-group">
-            <h3>Harga</h3>
-            <div class="price-inputs">
-              <input type="number" class="form-input" placeholder="Min Rp">
-              <span class="sep">-</span>
-              <input type="number" class="form-input" placeholder="Max Rp">
-            </div>
-            <button class="btn btn-outline w-100" style="margin-top: 15px;">Terapkan</button>
-          </div>
-
-          <div class="filter-group">
-            <h3>Merek</h3>
-            <ul class="filter-list">
-              <li>
-                <label class="checkbox-container">Logitech G
-                  <input type="checkbox">
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-              <li>
-                <label class="checkbox-container">Razer
-                  <input type="checkbox">
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-              <li>
-                <label class="checkbox-container">SteelSeries
-                  <input type="checkbox">
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-              <li>
-                <label class="checkbox-container">ASUS ROG
-                  <input type="checkbox">
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-            </ul>
-          </div>
-        </aside>
-
-        <!-- PRODUCT GRID -->
-        <div class="catalog-grid">
-          <!-- Item 1 -->
-          <div class="product-card">
-            <div class="product-badge">New Arrival</div>
-            <a href="product-detail.html" class="product-image">
-              <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Keyboard">
-            </a>
-            <div class="product-info">
-              <span class="product-cat">Control</span>
-              <a href="product-detail.html"><h3 class="product-title">Vortex VX Pro Mechanical</h3></a>
-              <div class="product-price">Rp1.850.000</div>
-              <a href="product-detail.html" class="btn btn-primary w-100">Lihat Produk</a>
-            </div>
-          </div>
-          
-          <!-- Item 2 -->
-          <div class="product-card">
-            <a href="product-detail.html" class="product-image">
-              <img src="https://images.unsplash.com/photo-1588508065123-287b28e01397?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Headset">
-            </a>
-            <div class="product-info">
-              <span class="product-cat">Sound</span>
-              <a href="product-detail.html"><h3 class="product-title">Astro A50 Wireless Gen 4</h3></a>
-              <div class="product-price">Rp4.999.000</div>
-              <a href="product-detail.html" class="btn btn-primary w-100">Lihat Produk</a>
-            </div>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="product-card">
-            <div class="product-badge badge-sale">Diskon 15%</div>
-            <a href="product-detail.html" class="product-image">
-              <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Laptop">
-            </a>
-            <div class="product-info">
-              <span class="product-cat">Machines</span>
-              <a href="product-detail.html"><h3 class="product-title">Zephyrus G14 RTX 4060</h3></a>
-              <div class="product-price">
-                <span class="price-old">Rp28.500.000</span>
-                <span>Rp24.225.000</span>
-              </div>
-              <a href="product-detail.html" class="btn btn-primary w-100">Lihat Produk</a>
-            </div>
-          </div>
-
-          <!-- Item 4 -->
-          <div class="product-card">
-            <a href="product-detail.html" class="product-image">
-              <img src="https://images.unsplash.com/photo-1615663245857-ac93bb5c9023?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mouse">
-            </a>
-            <div class="product-info">
-              <span class="product-cat">Control</span>
-              <a href="product-detail.html"><h3 class="product-title">Logitech G Pro X Superlight</h3></a>
-              <div class="product-price">Rp2.150.000</div>
-              <a href="product-detail.html" class="btn btn-primary w-100">Lihat Produk</a>
-            </div>
-          </div>
-
-          <!-- Item 5 -->
-          <div class="product-card">
-            <a href="product-detail.html" class="product-image">
-              <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="GPU">
-            </a>
-            <div class="product-info">
-              <span class="product-cat">Build</span>
-              <a href="product-detail.html"><h3 class="product-title">NVIDIA RTX 4080 Super</h3></a>
-              <div class="product-price">Rp19.500.000</div>
-              <a href="product-detail.html" class="btn btn-primary w-100">Lihat Produk</a>
-            </div>
-          </div>
-
-          <!-- Item 6 -->
-          <div class="product-card">
-            <a href="product-detail.html" class="product-image">
-              <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Monitor">
-            </a>
-            <div class="product-info">
-              <span class="product-cat">Control</span>
-              <a href="product-detail.html"><h3 class="product-title">LG UltraGear 27" 1440p 165Hz</h3></a>
-              <div class="product-price">Rp6.200.000</div>
-              <a href="product-detail.html" class="btn btn-primary w-100">Lihat Produk</a>
-            </div>
-          </div>
-
+      <section class="catalog-filter-bar" id="catalog-filter-bar" hidden>
+        <div class="catalog-filter-dropdown">
+          <button class="catalog-filter-dropdown-btn" type="button">
+            <span>Categories</span>
+            <span aria-hidden="true">v</span>
+          </button>
         </div>
-      </div>
-      
-      <!-- Pagination -->
-      <div class="pagination">
-        <button class="btn btn-outline" disabled>Prev</button>
-        <button class="btn btn-primary">1</button>
-        <button class="btn btn-outline">2</button>
-        <button class="btn btn-outline">Next</button>
-      </div>
-
+        <div class="catalog-filter-dropdown">
+          <button class="catalog-filter-dropdown-btn" type="button">
+            <span>Brand</span>
+            <span aria-hidden="true">v</span>
+          </button>
+        </div>
+        <div class="catalog-filter-dropdown">
+          <button class="catalog-filter-dropdown-btn" type="button">
+            <span>Price</span>
+            <span aria-hidden="true">v</span>
+          </button>
+        </div>
+        <div class="catalog-filter-dropdown">
+          <button class="catalog-filter-dropdown-btn" type="button">
+            <span>Status</span>
+            <span aria-hidden="true">v</span>
+          </button>
+        </div>
+      </section>
     </div>
+
+    <section class="container catalog-container">
+      <div id="activeFiltersList" class="active-filters-list" aria-live="polite"></div>
+
+      <div class="catalog-product-grid catalog-grid">
+        <article class="creator-product-card catalog-product-card" data-category="control" data-brand="nexgear" data-setup="keyboard esports wired" data-stock="ready" data-price="1850000">
+          <div class="creator-product-media">
+            <div class="product-badges"><span class="product-badge is-new">New</span></div>
+            <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=80" alt="Vortex VX Pro Mechanical Keyboard">
+            <div class="product-card-actions" aria-label="Product quick actions">
+              <button class="product-action-btn is-wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M3 3l7 7M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7M16 21h5v-5M21 21l-7-7"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+          </div>
+          <div class="creator-product-info">
+            <span class="product-category product-card-meta">Control</span>
+            <a href="product-detail.html" class="product-title creator-product-title">Vortex VX Pro Mechanical</a>
+            <div class="creator-product-rating" aria-label="Rating 4.8 dari 5"><span>4.8</span><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            <div class="product-price creator-product-price-row"><strong class="creator-product-price product-price-current">Rp1.850.000</strong></div>
+            <button class="product-cart-btn product-cta" type="button" data-add-cart data-name="Vortex VX Pro Mechanical" data-price="1850000">Tambah</button>
+          </div>
+        </article>
+        <article class="creator-product-card catalog-product-card" data-category="sound" data-brand="astro" data-setup="headset wireless audio" data-stock="ready" data-price="4999000">
+          <div class="creator-product-media">
+            <div class="product-badges"><span class="product-badge is-sale">Hot</span></div>
+            <img src="https://images.unsplash.com/photo-1588508065123-287b28e01397?auto=format&fit=crop&w=700&q=80" alt="Astro A50 Wireless Gen 4 Headset">
+            <div class="product-card-actions" aria-label="Product quick actions">
+              <button class="product-action-btn is-wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M3 3l7 7M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7M16 21h5v-5M21 21l-7-7"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+          </div>
+          <div class="creator-product-info">
+            <span class="product-category product-card-meta">Sound</span>
+            <a href="product-detail.html" class="product-title creator-product-title">Astro A50 Wireless Gen 4</a>
+            <div class="creator-product-rating" aria-label="Rating 4.7 dari 5"><span>4.7</span><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            <div class="product-price creator-product-price-row"><strong class="creator-product-price product-price-current">Rp4.999.000</strong></div>
+            <button class="product-cart-btn product-cta" type="button" data-add-cart data-name="Astro A50 Wireless Gen 4" data-price="4999000">Tambah</button>
+          </div>
+        </article>
+        <article class="creator-product-card catalog-product-card" data-category="machines" data-brand="asus" data-setup="laptop portable rtx promo" data-stock="ready" data-price="24225000">
+          <div class="creator-product-media">
+            <div class="product-badges"><span class="product-badge is-sale">-15%</span></div>
+            <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=700&q=80" alt="Zephyrus G14 RTX 4060 Laptop">
+            <div class="product-card-actions" aria-label="Product quick actions">
+              <button class="product-action-btn is-wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M3 3l7 7M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7M16 21h5v-5M21 21l-7-7"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+          </div>
+          <div class="creator-product-info">
+            <span class="product-category product-card-meta">Machines</span>
+            <a href="product-detail.html" class="product-title creator-product-title">Zephyrus G14 RTX 4060</a>
+            <div class="creator-product-rating" aria-label="Rating 4.9 dari 5"><span>4.9</span><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            <div class="product-price creator-product-price-row"><strong class="creator-product-price product-price-current">Rp24.225.000</strong><span class="creator-product-old-price product-price-old">Rp28.500.000</span></div>
+            <button class="product-cart-btn product-cta" type="button" data-add-cart data-name="Zephyrus G14 RTX 4060" data-price="24225000">Tambah</button>
+          </div>
+        </article>
+        <article class="creator-product-card catalog-product-card" data-category="control" data-brand="logitech" data-setup="mouse wireless esports" data-stock="ready" data-price="2150000">
+          <div class="creator-product-media">
+            <div class="product-badges"><span class="product-badge is-pick">Editor Pick</span></div>
+            <img src="https://images.unsplash.com/photo-1615663245857-ac93bb5c9023?auto=format&fit=crop&w=700&q=80" alt="Logitech G Pro X Superlight Mouse">
+            <div class="product-card-actions" aria-label="Product quick actions">
+              <button class="product-action-btn is-wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M3 3l7 7M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7M16 21h5v-5M21 21l-7-7"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+          </div>
+          <div class="creator-product-info">
+            <span class="product-category product-card-meta">Control</span>
+            <a href="product-detail.html" class="product-title creator-product-title">Logitech G Pro X Superlight</a>
+            <div class="creator-product-rating" aria-label="Rating 4.8 dari 5"><span>4.8</span><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            <div class="product-price creator-product-price-row"><strong class="creator-product-price product-price-current">Rp2.150.000</strong></div>
+            <button class="product-cart-btn product-cta" type="button" data-add-cart data-name="Logitech G Pro X Superlight" data-price="2150000">Tambah</button>
+          </div>
+        </article>
+        <article class="creator-product-card catalog-product-card" data-category="build" data-brand="nvidia" data-setup="gpu build performance" data-stock="ready" data-price="19500000">
+          <div class="creator-product-media">
+            <div class="product-badges"><span class="product-badge is-sale">Hot</span></div>
+            <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=700&q=80" alt="NVIDIA RTX 4080 Super GPU">
+            <div class="product-card-actions" aria-label="Product quick actions">
+              <button class="product-action-btn is-wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M3 3l7 7M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7M16 21h5v-5M21 21l-7-7"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+          </div>
+          <div class="creator-product-info">
+            <span class="product-category product-card-meta">Build</span>
+            <a href="product-detail.html" class="product-title creator-product-title">NVIDIA RTX 4080 Super</a>
+            <div class="creator-product-rating" aria-label="Rating 4.9 dari 5"><span>4.9</span><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            <div class="product-price creator-product-price-row"><strong class="creator-product-price product-price-current">Rp19.500.000</strong></div>
+            <button class="product-cart-btn product-cta" type="button" data-add-cart data-name="NVIDIA RTX 4080 Super" data-price="19500000">Tambah</button>
+          </div>
+        </article>
+        <article class="creator-product-card catalog-product-card" data-category="control" data-brand="lg" data-setup="monitor 1440p 165hz" data-stock="ready" data-price="6200000">
+          <div class="creator-product-media">
+            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=700&q=80" alt="LG UltraGear 27 Monitor">
+            <div class="product-card-actions" aria-label="Product quick actions">
+              <button class="product-action-btn is-wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M3 3l7 7M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7M16 21h5v-5M21 21l-7-7"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+          </div>
+          <div class="creator-product-info">
+            <span class="product-category product-card-meta">Control</span>
+            <a href="product-detail.html" class="product-title creator-product-title">LG UltraGear 27&quot; 1440p</a>
+            <div class="creator-product-rating" aria-label="Rating 4.6 dari 5"><span>4.6</span><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            <div class="product-price creator-product-price-row"><strong class="creator-product-price product-price-current">Rp6.200.000</strong></div>
+            <button class="product-cart-btn product-cta" type="button" data-add-cart data-name="LG UltraGear 27 1440p" data-price="6200000">Tambah</button>
+          </div>
+        </article>
+        <article class="creator-product-card catalog-product-card" data-category="control" data-brand="corsair" data-setup="keyboard magnetic wired" data-stock="ready" data-price="2475000">
+          <div class="creator-product-media">
+            <div class="product-badges"><span class="product-badge is-new">New</span></div>
+            <img src="lib/product-corsair-k70-max-rgb.webp" alt="Corsair K70 Max RGB Keyboard">
+            <div class="product-card-actions" aria-label="Product quick actions">
+              <button class="product-action-btn is-wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M3 3l7 7M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7M16 21h5v-5M21 21l-7-7"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+          </div>
+          <div class="creator-product-info">
+            <span class="product-category product-card-meta">Control</span>
+            <a href="product-detail.html" class="product-title creator-product-title">Corsair K70 Max RGB</a>
+            <div class="creator-product-rating" aria-label="Rating 4.7 dari 5"><span>4.7</span><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            <div class="product-price creator-product-price-row"><strong class="creator-product-price product-price-current">Rp2.475.000</strong></div>
+            <button class="product-cart-btn product-cta" type="button" data-add-cart data-name="Corsair K70 Max RGB" data-price="2475000">Tambah</button>
+          </div>
+        </article>
+        <article class="creator-product-card catalog-product-card" data-category="sound" data-brand="steelseries" data-setup="headset wireless daily" data-stock="ready" data-price="3450000">
+          <div class="creator-product-media">
+            <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=700&q=80" alt="Arctis Nova 7 Wireless Headset">
+            <div class="product-card-actions" aria-label="Product quick actions">
+              <button class="product-action-btn is-wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M3 3l7 7M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7M16 21h5v-5M21 21l-7-7"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+          </div>
+          <div class="creator-product-info">
+            <span class="product-category product-card-meta">Sound</span>
+            <a href="product-detail.html" class="product-title creator-product-title">Arctis Nova 7 Wireless</a>
+            <div class="creator-product-rating" aria-label="Rating 4.6 dari 5"><span>4.6</span><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            <div class="product-price creator-product-price-row"><strong class="creator-product-price product-price-current">Rp3.450.000</strong></div>
+            <button class="product-cart-btn product-cta" type="button" data-add-cart data-name="Arctis Nova 7 Wireless" data-price="3450000">Tambah</button>
+          </div>
+        </article>
+        <article class="creator-product-card catalog-product-card" data-category="build" data-brand="amd" data-setup="cpu build gaming" data-stock="ready" data-price="6850000">
+          <div class="creator-product-media">
+            <div class="product-badges"><span class="product-badge is-pick">Editor Pick</span></div>
+            <img src="https://images.unsplash.com/photo-1555618568-bdf0ce6769a4?auto=format&fit=crop&w=700&q=80" alt="Ryzen 7 7800X3D Processor">
+            <div class="product-card-actions" aria-label="Product quick actions">
+              <button class="product-action-btn is-wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M3 3l7 7M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7M16 21h5v-5M21 21l-7-7"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+          </div>
+          <div class="creator-product-info">
+            <span class="product-category product-card-meta">Build</span>
+            <a href="product-detail.html" class="product-title creator-product-title">Ryzen 7 7800X3D</a>
+            <div class="creator-product-rating" aria-label="Rating 4.8 dari 5"><span>4.8</span><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            <div class="product-price creator-product-price-row"><strong class="creator-product-price product-price-current">Rp6.850.000</strong></div>
+            <button class="product-cart-btn product-cta" type="button" data-add-cart data-name="Ryzen 7 7800X3D" data-price="6850000">Tambah</button>
+          </div>
+        </article>
+        <article class="creator-product-card catalog-product-card" data-category="machines" data-brand="msi" data-setup="laptop qhd rtx promo" data-stock="limited" data-price="37800000">
+          <div class="creator-product-media">
+            <div class="product-badges"><span class="product-badge is-sale">-10%</span></div>
+            <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=700&q=80" alt="MSI Raider GE78 HX Laptop">
+            <div class="product-card-actions" aria-label="Product quick actions">
+              <button class="product-action-btn is-wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M3 3l7 7M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7M16 21h5v-5M21 21l-7-7"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+          </div>
+          <div class="creator-product-info">
+            <span class="product-category product-card-meta">Machines</span>
+            <a href="product-detail.html" class="product-title creator-product-title">MSI Raider GE78 HX</a>
+            <div class="creator-product-rating" aria-label="Rating 4.7 dari 5"><span>4.7</span><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            <div class="product-price creator-product-price-row"><strong class="creator-product-price product-price-current">Rp37.800.000</strong><span class="creator-product-old-price product-price-old">Rp42.000.000</span></div>
+            <button class="product-cart-btn product-cta" type="button" data-add-cart data-name="MSI Raider GE78 HX" data-price="37800000">Tambah</button>
+          </div>
+        </article>
+        <article class="creator-product-card catalog-product-card" data-category="sound" data-brand="elgato" data-setup="microphone streaming audio" data-stock="ready" data-price="2250000">
+          <div class="creator-product-media">
+            <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=700&q=80" alt="Elgato Wave 3 Microphone">
+            <div class="product-card-actions" aria-label="Product quick actions">
+              <button class="product-action-btn is-wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M3 3l7 7M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7M16 21h5v-5M21 21l-7-7"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+          </div>
+          <div class="creator-product-info">
+            <span class="product-category product-card-meta">Sound</span>
+            <a href="product-detail.html" class="product-title creator-product-title">Elgato Wave:3 USB Mic</a>
+            <div class="creator-product-rating" aria-label="Rating 4.5 dari 5"><span>4.5</span><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            <div class="product-price creator-product-price-row"><strong class="creator-product-price product-price-current">Rp2.250.000</strong></div>
+            <button class="product-cart-btn product-cta" type="button" data-add-cart data-name="Elgato Wave 3 USB Mic" data-price="2250000">Tambah</button>
+          </div>
+        </article>
+        <article class="creator-product-card catalog-product-card" data-category="build" data-brand="corsair" data-setup="ram rgb ddr5" data-stock="ready" data-price="2950000">
+          <div class="creator-product-media">
+            <div class="product-badges"><span class="product-badge is-new">New</span></div>
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=80" alt="Vengeance RGB 32GB DDR5 Memory">
+            <div class="product-card-actions" aria-label="Product quick actions">
+              <button class="product-action-btn is-wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M3 3l7 7M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7M16 21h5v-5M21 21l-7-7"/></svg></button>
+              <button class="product-action-btn" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+          </div>
+          <div class="creator-product-info">
+            <span class="product-category product-card-meta">Build</span>
+            <a href="product-detail.html" class="product-title creator-product-title">Vengeance RGB 32GB DDR5</a>
+            <div class="creator-product-rating" aria-label="Rating 4.6 dari 5"><span>4.6</span><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            <div class="product-price creator-product-price-row"><strong class="creator-product-price product-price-current">Rp2.950.000</strong></div>
+            <button class="product-cart-btn product-cta" type="button" data-add-cart data-name="Vengeance RGB 32GB DDR5" data-price="2950000">Tambah</button>
+          </div>
+        </article>
+      </div>
+
+      <nav class="catalog-pagination" aria-label="Catalog pagination">
+        <button type="button" aria-label="Previous page">&lsaquo;</button>
+        <button type="button" class="is-active" aria-current="page">1</button>
+        <button type="button">2</button>
+        <button type="button">3</button>
+        <button type="button" aria-label="Next page">&rsaquo;</button>
+      </nav>
+    </section>
   </main>
             <!-- GLOBAL FOOTER -->
     <footer class="site-footer footer-reveal">
@@ -847,17 +945,28 @@
           <a href="about.html">About</a>
         </nav>
 
-        <div class="footer-payments" aria-label="Metode pembayaran">
-          <span>Metode Pembayaran</span>
-          <div class="footer-payment-list">
-            <span class="payment-badge">VISA</span>
-            <span class="payment-badge">Mastercard</span>
-            <span class="payment-badge">JCB</span>
-            <span class="payment-badge">PayPal</span>
-            <span class="payment-badge">QRIS</span>
-            <span class="payment-badge">e-Money</span>
-            <span class="payment-badge">Bank Transfer</span>
-          </div>
+        <div class="footer-payments" aria-label="Payment methods">
+          <span class="footer-payment-card">
+            <img src="https://www.freepnglogos.com/uploads/visa-inc-png-18.png" alt="Visa" class="footer-payment-logo footer-payment-logo--visa" />
+          </span>
+          <span class="footer-payment-card">
+            <img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-png-transparent-svg-vector-bie-supply-1.png" alt="Mastercard" class="footer-payment-logo footer-payment-logo--mastercard" />
+          </span>
+          <span class="footer-payment-card">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/jcb-card-icon.png" alt="JCB" class="footer-payment-logo footer-payment-logo--jcb" />
+          </span>
+          <span class="footer-payment-card">
+            <img src="https://static.vecteezy.com/system/resources/previews/022/100/701/large_2x/paypal-logo-transparent-free-png.png" alt="PayPal" class="footer-payment-logo footer-payment-logo--paypal" />
+          </span>
+          <span class="footer-payment-card footer-payment-card--wide">
+            <img src="https://1.bp.blogspot.com/-n4swQEQNMCY/YJDCaTjKv9I/AAAAAAAAIZY/1tMkVzcW4WsUnqtB36LWwjgte3dxWZloACLcBGAsYHQ/s1800/QRIS_logo.png" alt="QRIS" class="footer-payment-logo footer-payment-logo--qris" />
+          </span>
+          <span class="footer-payment-card">
+            <img src="https://iconlogovector.com/uploads/images/2024/03/lg-65ffd7052391a-E-MONEY.webp" alt="e-Money" class="footer-payment-logo footer-payment-logo--emoney" />
+          </span>
+          <span class="footer-payment-card footer-payment-card--wide">
+            <img src="https://www.svgrepo.com/show/56921/bank-transfer-logo.svg" alt="Bank Transfer" class="footer-payment-logo footer-payment-logo--bank" />
+          </span>
         </div>
 
         <div class="footer-separator"></div>
@@ -885,3 +994,5 @@
   <script src="scripts/main.js"></script>
 </body>
 </html>
+
+

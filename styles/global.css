@@ -16,7 +16,7 @@
   --color-bg-overlay: rgba(3, 3, 5, 0.9);
 
   /* Footer Reveal */
-  --footer-reveal-space: clamp(260px, 34vh, 360px);
+  --footer-reveal-space: 420px;
 
   /* Typography Colors - Improved Contrast */
   --color-text-primary: #ffffff;
@@ -1799,39 +1799,119 @@ main > section:last-child {
 
 .footer-payments {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 20px;
+  gap: 8px;
+  margin-top: 10px;
 }
 
-.footer-payments > span {
-  color: rgba(226, 232, 240, 0.36);
-  font-size: 10.5px;
-  font-weight: 900;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.footer-payment-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 7px;
-}
-
-.payment-badge {
-  min-height: 22px;
+.footer-payment-card {
+  width: 64px;
+  height: 30px;
   display: inline-flex;
   align-items: center;
-  padding: 0 9px;
-  border: 1px solid rgba(148, 163, 184, 0.11);
+  justify-content: center;
+  padding: 5px 9px;
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.3);
-  color: rgba(226, 232, 240, 0.52);
-  font-size: 10px;
-  font-weight: 900;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  overflow: hidden;
+}
+
+.footer-payment-card--wide {
+  width: 96px;
+}
+
+.footer-payment-logo {
+  display: block;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  opacity: 0.82;
+  filter: none;
+  transform: none !important;
+}
+
+.footer-payment-card:hover .footer-payment-logo {
+  opacity: 1;
+}
+
+/* Brand-specific optical sizing */
+.footer-payment-logo--visa {
+  max-width: 44px;
+  max-height: 18px;
+}
+
+.footer-payment-logo--mastercard {
+  max-width: 38px;
+  max-height: 20px;
+}
+
+.footer-payment-logo--jcb {
+  max-width: 34px;
+  max-height: 21px;
+}
+
+.footer-payment-logo--paypal {
+  max-width: 86px;
+  max-height: 57px;
+}
+
+.footer-payment-logo--qris {
+  max-width: 78px;
+  max-height: 18px;
+}
+
+.footer-payment-logo--emoney {
+  max-width: 86px;
+  max-height: 57px;
+}
+
+.footer-payment-logo--bank {
+  max-width: 64px;
+  max-height: 18px;
+  filter: invert(1) brightness(1.7);
+  opacity: 0.78;
+}
+
+.footer-payment-card:hover .footer-payment-logo--bank {
+  opacity: 1;
+  filter: invert(1) brightness(2);
+}
+
+@media (max-width: 768px) {
+  .footer-payment-card {
+    width: 56px;
+    height: 28px;
+    padding: 5px 8px;
+  }
+
+  .footer-payment-card--wide {
+    width: 84px;
+  }
+
+  .footer-payment-logo--visa {
+    max-width: 40px;
+  }
+
+  .footer-payment-logo--paypal {
+    max-width: 40px;
+  }
+
+  .footer-payment-logo--qris {
+    max-width: 70px;
+  }
+
+  .footer-payment-logo--emoney {
+    max-width: 40px;
+  }
+
+  .footer-payment-logo--bank {
+    max-width: 56px;
+  }
 }
 
 .footer-separator {

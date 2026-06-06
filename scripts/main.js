@@ -458,6 +458,8 @@
         card.querySelector(".product-card-badge")?.textContent,
         card.dataset.category,
         card.dataset.brand,
+        card.dataset.setup,
+        card.dataset.stock,
       ]
         .filter(Boolean)
         .join(" ")
@@ -659,6 +661,7 @@
       document.querySelectorAll(".catalog-product-card"),
     );
     if (!cards.length) return;
+    if (document.body?.classList.contains("page-catalog")) return;
 
     const quickSpecs = {
       "ROG Strix G16": ["RTX", "165Hz", "16GB"],
@@ -677,7 +680,10 @@
     };
 
     cards.forEach((card) => {
-      const name = card.querySelector("h4")?.textContent.trim() || "";
+      const name =
+        card
+          .querySelector(".creator-product-title, .product-title, h4, h3")
+          ?.textContent.trim() || "";
       const specs = quickSpecs[name] || [
         card.dataset.brand || "NEXGEAR",
         card.dataset.category || "Gear",
@@ -705,7 +711,10 @@
     }
 
     function getProductUrl(card) {
-      const name = card.querySelector("h4")?.textContent.trim() || "product";
+      const name =
+        card
+          .querySelector(".creator-product-title, .product-title, h4, h3")
+          ?.textContent.trim() || "product";
       return `product.html?product=${encodeURIComponent(slugify(name))}`;
     }
 
@@ -720,7 +729,11 @@
       card.setAttribute("tabindex", "0");
       card.setAttribute(
         "aria-label",
-        `Lihat detail ${card.querySelector("h4")?.textContent.trim() || "produk"}`,
+        `Lihat detail ${
+          card
+            .querySelector(".creator-product-title, .product-title, h4, h3")
+            ?.textContent.trim() || "produk"
+        }`,
       );
 
       card.addEventListener("click", (event) => {
@@ -987,6 +1000,20 @@
     updateBadge();
   }
 
+  function initCatalogFilterBar() {
+    const button = document.querySelector(".catalog-filter-btn");
+    const bar = document.querySelector("#catalog-filter-bar");
+
+    if (!button || !bar) return;
+
+    button.addEventListener("click", () => {
+      const isHidden = bar.hidden;
+      bar.hidden = !isHidden;
+      button.classList.toggle("is-active", isHidden);
+      button.setAttribute("aria-expanded", String(isHidden));
+    });
+  }
+
   /* INIT */
   function initMiniCartDropdownRemove() {
     document
@@ -1101,10 +1128,16 @@
 
     const setFooterSpace = () => {
       const footerHeight = footer.offsetHeight || 0;
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-      const revealSpace = Math.round(
-        Math.min(Math.max(footerHeight * 0.62, viewportHeight * 0.34), 380),
-      );
+      const viewportHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+      const mode = document.body?.dataset?.footerReveal || "normal";
+
+      const revealSpace =
+        mode === "compact"
+          ? Math.round(
+              Math.min(Math.max(footerHeight * 0.62, viewportHeight * 0.34), 380),
+            )
+          : Math.ceil(footerHeight);
 
       document.documentElement.style.setProperty(
         "--footer-reveal-space",
@@ -1256,6 +1289,7 @@
       initCatalogCardLinks,
       setActiveNav,
       initSketchRotations,
+      initCatalogFilterBar,
       initFilterDrawer,
       initMiniCartDropdownRemove,
       initCategoryPanel,
