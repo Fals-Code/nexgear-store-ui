@@ -44,8 +44,7 @@
         items.push({ ...product, name: finalName, qty: qtyToAdd });
       }
       this.save(items);
-      if (window.openMiniCart) window.openMiniCart();
-      else showToast(`${finalName} ditambahkan ke keranjang!`);
+      showToast(`${finalName} ditambahkan ke keranjang!`);
     },
     remove(name) {
       const items = this.items.filter((i) => i.name !== name);
@@ -76,7 +75,6 @@
         badge.dataset.count = c;
       });
       if (window.updateCartEmptyGuidance) window.updateCartEmptyGuidance();
-      if (window.updateStickyCartPreview) window.updateStickyCartPreview();
     },
   };
 
@@ -316,56 +314,6 @@
         cta.href = `catalog.html?setup=${encodeURIComponent(setup)}`;
         cta.textContent = ctaLabels[setup] || "Jelajahi Catalog";
       });
-    });
-  }
-
-  function initSetupBuilder() {
-    const steps = document.querySelectorAll(".setup-step");
-    const name = document.getElementById("setupBuilderName");
-    const copy = document.getElementById("setupBuilderCopy");
-    const items = document.getElementById("setupBuilderItems");
-    const cta = document.getElementById("setupBuilderCta");
-    if (!steps.length || !name || !copy || !items || !cta) return;
-
-    const builds = {
-      competitive: {
-        name: "Competitive Core",
-        copy: "Keyboard rapid trigger, monitor refresh tinggi, dan audio ringan untuk main kompetitif.",
-        items: ["Huntsman V3 Pro", "Alienware 27", "Arctis Nova 7"],
-        href: "catalog.html?setup=gaming",
-      },
-      creator: {
-        name: "Meja Kreator",
-        copy: "Display tajam, GPU kuat, dan headset jernih untuk edit, stream, dan meeting harian.",
-        items: ["Alienware 27", "RTX 4070 Ti Super", "Arctis Nova 7"],
-        href: "catalog.html?setup=streaming",
-      },
-      balanced: {
-        name: "Balanced Starter",
-        copy: "Mulai dari peripheral dan audio yang terasa langsung tanpa menaikkan budget terlalu jauh.",
-        items: ["Huntsman V3 Pro", "Arctis Nova 7", "Setup Support"],
-        href: "catalog.html?setup=budget",
-      },
-    };
-
-    function render(buildKey) {
-      const build = builds[buildKey] || builds.competitive;
-      name.textContent = build.name;
-      copy.textContent = build.copy;
-      items.innerHTML = build.items
-        .map((item) => `<span>${item}</span>`)
-        .join("");
-      cta.href = build.href;
-
-      steps.forEach((step) => {
-        const isActive = step.dataset.build === buildKey;
-        step.classList.toggle("active", isActive);
-        step.setAttribute("aria-pressed", isActive ? "true" : "false");
-      });
-    }
-
-    steps.forEach((step) => {
-      step.addEventListener("click", () => render(step.dataset.build));
     });
   }
 
@@ -1036,92 +984,7 @@
     updateBadge();
   }
 
-  /* â”€â”€ Mini-Cart Injection & Logic â”€â”€ */
-  function initMiniCart() {
-    const cartHTML = `
-      <div class="mini-cart-overlay" id="miniCartOverlay"></div>
-      <div class="mini-cart-drawer" id="miniCartDrawer">
-        <div class="mini-cart-header">
-          <h3>Keranjangmu</h3>
-          <button class="close-cart-btn" id="closeMiniCart">
-            <span class="icon icon-sm"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
-          </button>
-        </div>
-        <div class="mini-cart-body" id="miniCartItems"></div>
-        <div class="mini-cart-footer">
-          <div class="mini-cart-total">
-            <span>Total:</span>
-            <span id="miniCartTotal">Rp0</span>
-          </div>
-          <a href="checkout.html" class="btn btn-primary" style="width: 100%; justify-content: center;">Checkout</a>
-        </div>
-      </div>
-    `;
-    document.body.insertAdjacentHTML("beforeend", cartHTML);
-
-    const overlay = document.getElementById("miniCartOverlay");
-    const drawer = document.getElementById("miniCartDrawer");
-    const closeBtn = document.getElementById("closeMiniCart");
-    const itemsContainer = document.getElementById("miniCartItems");
-    const totalEl = document.getElementById("miniCartTotal");
-
-    function openCart() {
-      renderMiniCart();
-      overlay.classList.add("active");
-      drawer.classList.add("active");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeCart() {
-      overlay.classList.remove("active");
-      drawer.classList.remove("active");
-      document.body.style.overflow = "";
-    }
-
-    function renderMiniCart() {
-      const items = Cart.items;
-      if (items.length === 0) {
-        itemsContainer.innerHTML =
-          '<div class="mini-cart-empty">Keranjang masih kosong.</div>';
-        totalEl.textContent = formatRupiah(0);
-        return;
-      }
-
-      itemsContainer.innerHTML = items
-        .map(
-          (item) => `
-        <div class="mini-cart-item">
-          <div class="mini-cart-item-info">
-            <h4>${item.name}</h4>
-            <div class="mini-cart-item-price">${formatRupiah(item.price)} x ${item.qty}</div>
-          </div>
-          <button class="btn btn-outline" style="padding: 4px; border-color: var(--accent); color: var(--accent);" onclick="window.NexCart.remove('${item.name}');">
-            <span class="icon icon-sm" style="width: 14px; height: 14px;"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
-          </button>
-        </div>
-      `,
-        )
-        .join("");
-      totalEl.textContent = formatRupiah(Cart.total);
-    }
-
-    window.openMiniCart = openCart;
-    window.renderMiniCartGlobal = renderMiniCart;
-
-    closeBtn.addEventListener("click", closeCart);
-    overlay.addEventListener("click", closeCart);
-
-    document.querySelectorAll(".cart-btn").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        if (!window.location.pathname.endsWith("cart.html")) {
-          e.preventDefault();
-          openCart();
-        }
-      });
-    });
-  }
-
-  /* â”€â”€ INIT â”€â”€ */
+  /* INIT */
   function initMiniCartDropdownRemove() {
     document.querySelectorAll(".mini-cart-dropdown .mini-cart-remove").forEach((button) => {
       button.addEventListener("click", (event) => {
@@ -1132,40 +995,6 @@
         if (item) item.remove();
       });
     });
-  }
-
-  function initStickyCartPreview() {
-    if (document.querySelector(".sticky-cart-preview")) return;
-
-    const preview = document.createElement("div");
-    preview.className = "sticky-cart-preview";
-    preview.innerHTML = `
-      <div>
-        <p class="sticky-cart-preview__label">Keranjang aktif</p>
-        <strong class="sticky-cart-preview__total" id="stickyCartTotal">Rp0</strong>
-      </div>
-      <div class="sticky-cart-preview__actions">
-        <button class="btn btn-outline sticky-cart-preview__button" type="button" id="stickyCartOpen">Review</button>
-        <a class="btn btn-primary sticky-cart-preview__button" href="checkout.html">Checkout</a>
-      </div>
-    `;
-    document.body.appendChild(preview);
-
-    const total = document.getElementById("stickyCartTotal");
-    const openBtn = document.getElementById("stickyCartOpen");
-
-    window.updateStickyCartPreview = () => {
-      const count = Cart.count;
-      preview.classList.toggle("show", count > 0);
-      if (total)
-        total.textContent = `${count} item - ${formatRupiah(Cart.total)}`;
-    };
-
-    openBtn?.addEventListener("click", () => {
-      if (window.openMiniCart) window.openMiniCart();
-    });
-
-    window.updateStickyCartPreview();
   }
 
   function initCategoryPanel() {
@@ -1245,6 +1074,106 @@
     window.updateCartEmptyGuidance();
   }
 
+  function initFooterReveal() {
+    const footer = document.querySelector(".site-footer");
+    if (!footer) return;
+
+    if (!("IntersectionObserver" in window)) {
+      footer.classList.add("is-visible");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        footer.classList.toggle("is-visible", entry.isIntersecting);
+      },
+      { threshold: 0.04 },
+    );
+
+    observer.observe(footer);
+  }
+
+  function syncFooterRevealSpace() {
+    const footer = document.querySelector(".site-footer");
+    const main = document.querySelector(".site-main") || document.querySelector("main");
+
+    if (!footer || !main) return;
+
+    const setFooterSpace = () => {
+      const revealSpace = Math.min(Math.max(window.innerHeight * 0.56, 500), 640);
+
+      document.documentElement.style.setProperty(
+        "--footer-reveal-space",
+        `${Math.round(revealSpace)}px`,
+      );
+    };
+
+    setFooterSpace();
+    window.addEventListener("resize", setFooterSpace, { passive: true });
+    window.addEventListener("load", setFooterSpace, { once: true });
+  }
+
+  function initPromoWindowReveal() {
+    const promoWindow = document.querySelector(".promo-window");
+    if (!promoWindow) return;
+
+    if (!("IntersectionObserver" in window)) {
+      promoWindow.classList.add("is-visible");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        promoWindow.classList.toggle("is-visible", entry.isIntersecting);
+      },
+      { threshold: 0.18 },
+    );
+
+    observer.observe(promoWindow);
+  }
+
+  function initShowcaseFilters() {
+    const section = document.querySelector(".showcase-section");
+    if (!section) return;
+
+    const buttons = section.querySelectorAll("[data-showcase-filter]");
+    const cards = section.querySelectorAll("[data-showcase-card]");
+    if (!buttons.length || !cards.length) return;
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.showcaseFilter || "all";
+
+        buttons.forEach((btn) => {
+          const isActive = btn === button;
+          btn.classList.toggle("is-active", isActive);
+          btn.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+
+        cards.forEach((card) => {
+          const tags = (card.dataset.showcaseCard || "")
+            .split(" ")
+            .filter(Boolean);
+          const shouldShow = filter === "all" || tags.includes(filter);
+
+          window.clearTimeout(card._showcaseFilterTimer);
+
+          if (shouldShow) {
+            card.classList.remove("is-hidden");
+            requestAnimationFrame(() => {
+              card.classList.remove("is-hiding");
+            });
+          } else {
+            card.classList.add("is-hiding");
+            card._showcaseFilterTimer = window.setTimeout(() => {
+              card.classList.add("is-hidden");
+            }, 180);
+          }
+        });
+      });
+    });
+  }
+
   function safeInit(fn) {
     try {
       if (typeof fn === "function") fn();
@@ -1264,7 +1193,6 @@
       initParallax,
       initPriceFilter,
       initGearFinder,
-      initSetupBuilder,
       initTrustModal,
       initCatalogEnhancements,
       initSearch,
@@ -1273,11 +1201,13 @@
       setActiveNav,
       initSketchRotations,
       initFilterDrawer,
-      initMiniCart,
       initMiniCartDropdownRemove,
-      initStickyCartPreview,
       initCategoryPanel,
       initCartEmptyGuidance,
+      syncFooterRevealSpace,
+      initFooterReveal,
+      initPromoWindowReveal,
+      initShowcaseFilters,
     ];
 
     modules.forEach((module) => safeInit(module));
