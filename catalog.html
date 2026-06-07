@@ -1,15 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Katalog | NEXGEAR</title>
-  <link rel="stylesheet" href="styles/global.css">
-  <link rel="stylesheet" href="styles/catalog.css">
-</head>
-<body class="page-catalog" data-footer-reveal="compact">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Katalog | NEXGEAR</title>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/catalog.css" />
+  </head>
+  <body class="page-catalog" data-footer-reveal="compact">
     <!-- GLOBAL HEADER -->
-            <header id="navbar" class="nex-header">
+    <header id="navbar" class="nex-header">
       <!-- Top Bar -->
       <div class="top-bar">
         <div class="header-container top-bar-container">
@@ -488,410 +488,1314 @@
       </div>
     </header>
 
-  <main class="site-main">
-    <section class="catalog-hero" aria-labelledby="catalogTitle">
-      <div class="catalog-hero-bg"></div>
-      <div class="catalog-hero-overlay"></div>
-      <div class="container catalog-hero-content">
-        <nav class="catalog-breadcrumb" aria-label="Breadcrumb">
-          <a href="index.html">Home</a>
-          <span>/</span>
-          <span>Catalog</span>
-        </nav>
-        <h1 id="catalogTitle">Katalog Gear</h1>
-        <p>Pilih gear gaming yang sesuai dengan setup dan cara main Anda.</p>
-      </div>
-    </section>
+    <main class="site-main">
+      <section class="catalog-hero" aria-labelledby="catalogTitle">
+        <div class="catalog-hero-bg"></div>
+        <div class="catalog-hero-overlay"></div>
+        <div class="container catalog-hero-content">
+          <nav class="catalog-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span>/</span>
+            <span>Catalog</span>
+          </nav>
+          <h1 id="catalogTitle">Katalog Gear</h1>
+          <p>Pilih gear gaming yang sesuai dengan setup dan cara main Anda.</p>
+        </div>
+      </section>
 
-    <div class="catalog-controls">
-      <section class="catalog-toolbar" aria-label="Catalog controls">
-        <div class="container catalog-toolbar-inner">
-          <div class="catalog-toolbar-left">
-            <span id="catalogCount" class="product-count">12 produk ditemukan</span>
-            <label class="catalog-sort">
-              <span>Sort</span>
-              <select id="sortSelect" class="sort-select" aria-label="Urutkan produk">
-                <option value="newest">Popular</option>
-                <option value="price-asc">Harga Terendah</option>
-                <option value="price-desc">Harga Tertinggi</option>
-                <option value="newest">Terbaru</option>
-              </select>
-            </label>
+      <div class="catalog-controls">
+        <section class="catalog-toolbar" aria-label="Catalog controls">
+          <div class="container catalog-toolbar-inner">
+            <div class="catalog-toolbar-left">
+              <span id="catalogCount" class="product-count"
+                >12 produk ditemukan</span
+              >
+              <label class="catalog-sort">
+                <span>Sort</span>
+                <select
+                  id="sortSelect"
+                  class="sort-select"
+                  aria-label="Urutkan produk"
+                >
+                  <option value="newest">Popular</option>
+                  <option value="price-asc">Harga Terendah</option>
+                  <option value="price-desc">Harga Tertinggi</option>
+                  <option value="newest">Terbaru</option>
+                </select>
+              </label>
+            </div>
+            <div class="catalog-toolbar-right">
+              <button
+                class="catalog-filter-btn"
+                type="button"
+                aria-expanded="false"
+                aria-controls="catalog-filter-bar"
+              >
+                <span>Filters</span>
+                <span
+                  id="filterBadge"
+                  class="filter-badge"
+                  aria-hidden="true"
+                ></span>
+              </button>
+              <div class="view-toggles" aria-label="View mode">
+                <button
+                  class="view-btn is-active"
+                  type="button"
+                  aria-label="Grid view"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="3" width="7" height="7" />
+                    <rect x="14" y="3" width="7" height="7" />
+                    <rect x="14" y="14" width="7" height="7" />
+                    <rect x="3" y="14" width="7" height="7" />
+                  </svg>
+                </button>
+                <button class="view-btn" type="button" aria-label="List view">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <line x1="7" y1="6" x2="21" y2="6" />
+                    <line x1="7" y1="12" x2="21" y2="12" />
+                    <line x1="7" y1="18" x2="21" y2="18" />
+                    <circle cx="3.5" cy="6" r="1" />
+                    <circle cx="3.5" cy="12" r="1" />
+                    <circle cx="3.5" cy="18" r="1" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="catalog-toolbar-right">
-            <button class="catalog-filter-btn" type="button" aria-expanded="false" aria-controls="catalog-filter-bar">
-              <span>Filters</span>
-              <span id="filterBadge" class="filter-badge" aria-hidden="true"></span>
+        </section>
+
+        <section class="catalog-filter-bar" id="catalog-filter-bar" hidden>
+          <div class="catalog-filter-dropdown">
+            <button class="catalog-filter-dropdown-btn" type="button">
+              <span>Categories</span>
+              <span aria-hidden="true">v</span>
             </button>
-            <div class="view-toggles" aria-label="View mode">
-              <button class="view-btn is-active" type="button" aria-label="Grid view">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-              </button>
-              <button class="view-btn" type="button" aria-label="List view">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="6" x2="21" y2="6"/><line x1="7" y1="12" x2="21" y2="12"/><line x1="7" y1="18" x2="21" y2="18"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>
-              </button>
-            </div>
           </div>
-        </div>
-      </section>
-
-      <section class="catalog-filter-bar" id="catalog-filter-bar" hidden>
-        <div class="catalog-filter-dropdown">
-          <button class="catalog-filter-dropdown-btn" type="button">
-            <span>Categories</span>
-            <span aria-hidden="true">v</span>
-          </button>
-        </div>
-        <div class="catalog-filter-dropdown">
-          <button class="catalog-filter-dropdown-btn" type="button">
-            <span>Brand</span>
-            <span aria-hidden="true">v</span>
-          </button>
-        </div>
-        <div class="catalog-filter-dropdown">
-          <button class="catalog-filter-dropdown-btn" type="button">
-            <span>Price</span>
-            <span aria-hidden="true">v</span>
-          </button>
-        </div>
-        <div class="catalog-filter-dropdown">
-          <button class="catalog-filter-dropdown-btn" type="button">
-            <span>Status</span>
-            <span aria-hidden="true">v</span>
-          </button>
-        </div>
-      </section>
-    </div>
-
-    <section class="container catalog-container">
-      <div id="activeFiltersList" class="active-filters-list" aria-live="polite"></div>
-
-      <div class="catalog-product-grid catalog-grid">
-        <article class="single-product catalog-product-card" data-category="control" data-brand="nexgear" data-setup="keyboard esports wired" data-stock="ready" data-id="vortex-vx-pro-mechanical" data-price="1850000">
-          <div class="part-1">
-            <span class="new">new</span>
-            <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=80" alt="Vortex VX Pro Mechanical Keyboard" loading="lazy">
-            <ul class="catalog-product-actions" aria-label="Product actions">
-              <li><button class="catalog-action-btn catalog-action-btn--cart" type="button" data-add-cart data-name="Vortex VX Pro Mechanical" data-price="1850000" aria-label="Tambah ke keranjang"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--compare" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--quickview" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path></svg></button></li>
-            </ul>
+          <div class="catalog-filter-dropdown">
+            <button class="catalog-filter-dropdown-btn" type="button">
+              <span>Brand</span>
+              <span aria-hidden="true">v</span>
+            </button>
           </div>
-          <div class="part-2">
-            <h3 class="product-title"><a href="product-detail.html?id=vortex-vx-pro-mechanical">Vortex VX Pro Mechanical</a></h3>
-            <div class="product-price-group">
-              <h4 class="product-price">Rp1.850.000</h4>
-            </div>
+          <div class="catalog-filter-dropdown">
+            <button class="catalog-filter-dropdown-btn" type="button">
+              <span>Price</span>
+              <span aria-hidden="true">v</span>
+            </button>
           </div>
-        </article>
-        <article class="single-product catalog-product-card" data-category="sound" data-brand="astro" data-setup="headset wireless audio" data-stock="ready" data-id="astro-a50-wireless-gen-4" data-price="4999000">
-          <div class="part-1">
-            <span class="new">hot</span>
-            <img src="https://images.unsplash.com/photo-1588508065123-287b28e01397?auto=format&fit=crop&w=700&q=80" alt="Astro A50 Wireless Gen 4 Headset" loading="lazy">
-            <ul class="catalog-product-actions" aria-label="Product actions">
-              <li><button class="catalog-action-btn catalog-action-btn--cart" type="button" data-add-cart data-name="Astro A50 Wireless Gen 4" data-price="4999000" aria-label="Tambah ke keranjang"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--compare" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--quickview" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path></svg></button></li>
-            </ul>
+          <div class="catalog-filter-dropdown">
+            <button class="catalog-filter-dropdown-btn" type="button">
+              <span>Status</span>
+              <span aria-hidden="true">v</span>
+            </button>
           </div>
-          <div class="part-2">
-            <h3 class="product-title"><a href="product-detail.html?id=astro-a50-wireless-gen-4">Astro A50 Wireless Gen 4</a></h3>
-            <div class="product-price-group">
-              <h4 class="product-price">Rp4.999.000</h4>
-            </div>
-          </div>
-        </article>
-        <article class="single-product catalog-product-card" data-category="machines" data-brand="asus" data-setup="laptop portable rtx promo" data-stock="ready" data-id="zephyrus-g14-rtx-4060" data-price="24225000">
-          <div class="part-1">
-            <span class="discount">15% off</span>
-            <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=700&q=80" alt="Zephyrus G14 RTX 4060 Laptop" loading="lazy">
-            <ul class="catalog-product-actions" aria-label="Product actions">
-              <li><button class="catalog-action-btn catalog-action-btn--cart" type="button" data-add-cart data-name="Zephyrus G14 RTX 4060" data-price="24225000" aria-label="Tambah ke keranjang"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--compare" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--quickview" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path></svg></button></li>
-            </ul>
-          </div>
-          <div class="part-2 has-discount">
-            <h3 class="product-title"><a href="product-detail.html?id=zephyrus-g14-rtx-4060">Zephyrus G14 RTX 4060</a></h3>
-            <div class="product-price-group">
-              <h4 class="product-old-price">Rp28.500.000</h4>
-              <h4 class="product-price">Rp24.225.000</h4>
-            </div>
-          </div>
-        </article>
-        <article class="single-product catalog-product-card" data-category="control" data-brand="logitech" data-setup="mouse wireless esports" data-stock="ready" data-id="logitech-g-pro-x-superlight" data-price="2150000">
-          <div class="part-1">
-            <span class="new">editor pick</span>
-            <img src="https://images.unsplash.com/photo-1615663245857-ac93bb5c9023?auto=format&fit=crop&w=700&q=80" alt="Logitech G Pro X Superlight Mouse" loading="lazy">
-            <ul class="catalog-product-actions" aria-label="Product actions">
-              <li><button class="catalog-action-btn catalog-action-btn--cart" type="button" data-add-cart data-name="Logitech G Pro X Superlight" data-price="2150000" aria-label="Tambah ke keranjang"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--compare" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--quickview" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path></svg></button></li>
-            </ul>
-          </div>
-          <div class="part-2">
-            <h3 class="product-title"><a href="product-detail.html?id=logitech-g-pro-x-superlight">Logitech G Pro X Superlight</a></h3>
-            <div class="product-price-group">
-              <h4 class="product-price">Rp2.150.000</h4>
-            </div>
-          </div>
-        </article>
-        <article class="single-product catalog-product-card" data-category="build" data-brand="nvidia" data-setup="gpu build performance" data-stock="ready" data-id="nvidia-rtx-4080-super" data-price="19500000">
-          <div class="part-1">
-            <span class="new">hot</span>
-            <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=700&q=80" alt="NVIDIA RTX 4080 Super GPU" loading="lazy">
-            <ul class="catalog-product-actions" aria-label="Product actions">
-              <li><button class="catalog-action-btn catalog-action-btn--cart" type="button" data-add-cart data-name="NVIDIA RTX 4080 Super" data-price="19500000" aria-label="Tambah ke keranjang"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--compare" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--quickview" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path></svg></button></li>
-            </ul>
-          </div>
-          <div class="part-2">
-            <h3 class="product-title"><a href="product-detail.html?id=nvidia-rtx-4080-super">NVIDIA RTX 4080 Super</a></h3>
-            <div class="product-price-group">
-              <h4 class="product-price">Rp19.500.000</h4>
-            </div>
-          </div>
-        </article>
-        <article class="single-product catalog-product-card" data-category="control" data-brand="lg" data-setup="monitor 1440p 165hz" data-stock="ready" data-id="lg-ultragear-27-1440p" data-price="6200000">
-          <div class="part-1">
-            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=700&q=80" alt="LG UltraGear 27 Monitor" loading="lazy">
-            <ul class="catalog-product-actions" aria-label="Product actions">
-              <li><button class="catalog-action-btn catalog-action-btn--cart" type="button" data-add-cart data-name="LG UltraGear 27 1440p" data-price="6200000" aria-label="Tambah ke keranjang"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--compare" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--quickview" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path></svg></button></li>
-            </ul>
-          </div>
-          <div class="part-2">
-            <h3 class="product-title"><a href="product-detail.html?id=lg-ultragear-27-1440p">LG UltraGear 27&quot; 1440p</a></h3>
-            <div class="product-price-group">
-              <h4 class="product-price">Rp6.200.000</h4>
-            </div>
-          </div>
-        </article>
-        <article class="single-product catalog-product-card" data-category="control" data-brand="corsair" data-setup="keyboard magnetic wired" data-stock="ready" data-id="corsair-k70-max-rgb" data-price="2475000">
-          <div class="part-1">
-            <span class="new">new</span>
-            <img src="lib/product-corsair-k70-max-rgb.webp" alt="Corsair K70 Max RGB Keyboard" loading="lazy">
-            <ul class="catalog-product-actions" aria-label="Product actions">
-              <li><button class="catalog-action-btn catalog-action-btn--cart" type="button" data-add-cart data-name="Corsair K70 Max RGB" data-price="2475000" aria-label="Tambah ke keranjang"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--compare" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--quickview" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path></svg></button></li>
-            </ul>
-          </div>
-          <div class="part-2">
-            <h3 class="product-title"><a href="product-detail.html?id=corsair-k70-max-rgb">Corsair K70 Max RGB</a></h3>
-            <div class="product-price-group">
-              <h4 class="product-price">Rp2.475.000</h4>
-            </div>
-          </div>
-        </article>
-        <article class="single-product catalog-product-card" data-category="sound" data-brand="steelseries" data-setup="headset wireless daily" data-stock="ready" data-id="arctis-nova-7-wireless" data-price="3450000">
-          <div class="part-1">
-            <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=700&q=80" alt="Arctis Nova 7 Wireless Headset" loading="lazy">
-            <ul class="catalog-product-actions" aria-label="Product actions">
-              <li><button class="catalog-action-btn catalog-action-btn--cart" type="button" data-add-cart data-name="Arctis Nova 7 Wireless" data-price="3450000" aria-label="Tambah ke keranjang"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--compare" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--quickview" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path></svg></button></li>
-            </ul>
-          </div>
-          <div class="part-2">
-            <h3 class="product-title"><a href="product-detail.html?id=arctis-nova-7-wireless">Arctis Nova 7 Wireless</a></h3>
-            <div class="product-price-group">
-              <h4 class="product-price">Rp3.450.000</h4>
-            </div>
-          </div>
-        </article>
-        <article class="single-product catalog-product-card" data-category="build" data-brand="amd" data-setup="cpu build gaming" data-stock="ready" data-id="ryzen-7-7800x3d" data-price="6850000">
-          <div class="part-1">
-            <span class="new">editor pick</span>
-            <img src="https://images.unsplash.com/photo-1555618568-bdf0ce6769a4?auto=format&fit=crop&w=700&q=80" alt="Ryzen 7 7800X3D Processor" loading="lazy">
-            <ul class="catalog-product-actions" aria-label="Product actions">
-              <li><button class="catalog-action-btn catalog-action-btn--cart" type="button" data-add-cart data-name="Ryzen 7 7800X3D" data-price="6850000" aria-label="Tambah ke keranjang"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--compare" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--quickview" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path></svg></button></li>
-            </ul>
-          </div>
-          <div class="part-2">
-            <h3 class="product-title"><a href="product-detail.html?id=ryzen-7-7800x3d">Ryzen 7 7800X3D</a></h3>
-            <div class="product-price-group">
-              <h4 class="product-price">Rp6.850.000</h4>
-            </div>
-          </div>
-        </article>
-        <article class="single-product catalog-product-card" data-category="machines" data-brand="msi" data-setup="laptop qhd rtx promo" data-stock="limited" data-id="msi-raider-ge78-hx" data-price="37800000">
-          <div class="part-1">
-            <span class="discount">10% off</span>
-            <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=700&q=80" alt="MSI Raider GE78 HX Laptop" loading="lazy">
-            <ul class="catalog-product-actions" aria-label="Product actions">
-              <li><button class="catalog-action-btn catalog-action-btn--cart" type="button" data-add-cart data-name="MSI Raider GE78 HX" data-price="37800000" aria-label="Tambah ke keranjang"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--compare" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--quickview" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path></svg></button></li>
-            </ul>
-          </div>
-          <div class="part-2 has-discount">
-            <h3 class="product-title"><a href="product-detail.html?id=msi-raider-ge78-hx">MSI Raider GE78 HX</a></h3>
-            <div class="product-price-group">
-              <h4 class="product-old-price">Rp42.000.000</h4>
-              <h4 class="product-price">Rp37.800.000</h4>
-            </div>
-          </div>
-        </article>
-        <article class="single-product catalog-product-card" data-category="sound" data-brand="elgato" data-setup="microphone streaming audio" data-stock="ready" data-id="elgato-wave-3-usb-mic" data-price="2250000">
-          <div class="part-1">
-            <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=700&q=80" alt="Elgato Wave 3 Microphone" loading="lazy">
-            <ul class="catalog-product-actions" aria-label="Product actions">
-              <li><button class="catalog-action-btn catalog-action-btn--cart" type="button" data-add-cart data-name="Elgato Wave 3 USB Mic" data-price="2250000" aria-label="Tambah ke keranjang"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--compare" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--quickview" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path></svg></button></li>
-            </ul>
-          </div>
-          <div class="part-2">
-            <h3 class="product-title"><a href="product-detail.html?id=elgato-wave-3-usb-mic">Elgato Wave:3 USB Mic</a></h3>
-            <div class="product-price-group">
-              <h4 class="product-price">Rp2.250.000</h4>
-            </div>
-          </div>
-        </article>
-        <article class="single-product catalog-product-card" data-category="build" data-brand="corsair" data-setup="ram rgb ddr5" data-stock="ready" data-id="vengeance-rgb-32gb-ddr5" data-price="2950000">
-          <div class="part-1">
-            <span class="new">new</span>
-            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=80" alt="Vengeance RGB 32GB DDR5 Memory" loading="lazy">
-            <ul class="catalog-product-actions" aria-label="Product actions">
-              <li><button class="catalog-action-btn catalog-action-btn--cart" type="button" data-add-cart data-name="Vengeance RGB 32GB DDR5" data-price="2950000" aria-label="Tambah ke keranjang"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--wishlist" type="button" aria-label="Tambah ke wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--compare" type="button" aria-label="Bandingkan produk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></li>
-              <li><button class="catalog-action-btn catalog-action-btn--quickview" type="button" aria-label="Lihat cepat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path></svg></button></li>
-            </ul>
-          </div>
-          <div class="part-2">
-            <h3 class="product-title"><a href="product-detail.html?id=vengeance-rgb-32gb-ddr5">Vengeance RGB 32GB DDR5</a></h3>
-            <div class="product-price-group">
-              <h4 class="product-price">Rp2.950.000</h4>
-            </div>
-          </div>
-        </article>
+        </section>
       </div>
 
-      <nav class="catalog-pagination" aria-label="Catalog pagination">
-        <button type="button" aria-label="Previous page">&lsaquo;</button>
-        <button type="button" class="is-active" aria-current="page">1</button>
-        <button type="button">2</button>
-        <button type="button">3</button>
-        <button type="button" aria-label="Next page">&rsaquo;</button>
-      </nav>
-    </section>
-  </main>
-            <!-- GLOBAL FOOTER -->
+      <section class="container catalog-container">
+        <div
+          id="activeFiltersList"
+          class="active-filters-list"
+          aria-live="polite"
+        ></div>
+
+        <div class="catalog-product-grid catalog-grid">
+          <article
+            class="single-product catalog-product-card"
+            data-category="control"
+            data-brand="nexgear"
+            data-setup="keyboard esports wired"
+            data-stock="ready"
+            data-id="vortex-vx-pro-mechanical"
+            data-price="1850000"
+          >
+            <div class="part-1">
+              <span class="new">new</span>
+              <img
+                src="https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=3136"
+                alt="Vortex VX Pro Mechanical Keyboard"
+                loading="lazy"
+              />
+              <ul class="catalog-product-actions" aria-label="Product actions">
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--cart"
+                    type="button"
+                    data-add-cart
+                    data-name="Vortex VX Pro Mechanical"
+                    data-price="1850000"
+                    aria-label="Tambah ke keranjang"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path
+                        d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--wishlist"
+                    type="button"
+                    aria-label="Tambah ke wishlist"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--compare"
+                    type="button"
+                    aria-label="Bandingkan produk"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--quickview"
+                    type="button"
+                    aria-label="Lihat cepat"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="part-2">
+              <h3 class="product-title">
+                <a href="product-detail.html?id=vortex-vx-pro-mechanical"
+                  >Vortex VX Pro Mechanical</a
+                >
+              </h3>
+              <div class="product-price-group">
+                <h4 class="product-price">Rp1.850.000</h4>
+              </div>
+            </div>
+          </article>
+          <article
+            class="single-product catalog-product-card"
+            data-category="sound"
+            data-brand="astro"
+            data-setup="headset wireless audio"
+            data-stock="ready"
+            data-id="astro-a50-wireless-gen-4"
+            data-price="4999000"
+          >
+            <div class="part-1">
+              <span class="new">hot</span>
+              <img
+                src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6349/6349970cv18d.jpg"
+                alt="Astro A50 Wireless Gen 4 Headset"
+                loading="lazy"
+              />
+              <ul class="catalog-product-actions" aria-label="Product actions">
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--cart"
+                    type="button"
+                    data-add-cart
+                    data-name="Astro A50 Wireless Gen 4"
+                    data-price="4999000"
+                    aria-label="Tambah ke keranjang"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path
+                        d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--wishlist"
+                    type="button"
+                    aria-label="Tambah ke wishlist"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--compare"
+                    type="button"
+                    aria-label="Bandingkan produk"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--quickview"
+                    type="button"
+                    aria-label="Lihat cepat"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="part-2">
+              <h3 class="product-title">
+                <a href="product-detail.html?id=astro-a50-wireless-gen-4"
+                  >Astro A50 Wireless Gen 4</a
+                >
+              </h3>
+              <div class="product-price-group">
+                <h4 class="product-price">Rp4.999.000</h4>
+              </div>
+            </div>
+          </article>
+          <article
+            class="single-product catalog-product-card"
+            data-category="machines"
+            data-brand="asus"
+            data-setup="laptop portable rtx promo"
+            data-stock="ready"
+            data-id="zephyrus-g14-rtx-4060"
+            data-price="24225000"
+          >
+            <div class="part-1">
+              <span class="discount">15% off</span>
+              <img
+                src="https://blogger.googleusercontent.com/img/a/AVvXsEitmIJ13sx4gbDUq_2uQq4viAckbutJT9WvyTYWE2oTQ4sPEf25gNXeHLy65_uazzXHthh2HDTTfVtWx0M6vO5g2DCyTQlrh-NXFra-NRvdPxS6kCr9nqhCTCQoQ8DI79xQxK4JEIpveIiqQUy1Yk1dMvcKtrc9wo6qhqGiDsXnjbPNw2mNdK-cMkNf7mQ=s16000"
+                alt="Zephyrus G14 RTX 4060 Laptop"
+                loading="lazy"
+              />
+              <ul class="catalog-product-actions" aria-label="Product actions">
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--cart"
+                    type="button"
+                    data-add-cart
+                    data-name="Zephyrus G14 RTX 4060"
+                    data-price="24225000"
+                    aria-label="Tambah ke keranjang"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path
+                        d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--wishlist"
+                    type="button"
+                    aria-label="Tambah ke wishlist"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--compare"
+                    type="button"
+                    aria-label="Bandingkan produk"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--quickview"
+                    type="button"
+                    aria-label="Lihat cepat"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="part-2 has-discount">
+              <h3 class="product-title">
+                <a href="product-detail.html?id=zephyrus-g14-rtx-4060"
+                  >Zephyrus G14 RTX 4060</a
+                >
+              </h3>
+              <div class="product-price-group">
+                <h4 class="product-old-price">Rp28.500.000</h4>
+                <h4 class="product-price">Rp24.225.000</h4>
+              </div>
+            </div>
+          </article>
+          <article
+            class="single-product catalog-product-card"
+            data-category="control"
+            data-brand="logitech"
+            data-setup="mouse wireless esports"
+            data-stock="ready"
+            data-id="logitech-g-pro-x-superlight"
+            data-price="2150000"
+          >
+            <div class="part-1">
+              <span class="new">editor pick</span>
+              <img
+                src="https://www.cravingtech.com/blog/wp-content/uploads/2021/05/Logitech-G-PRO-X-SUPERLIGHT-Review-5.jpg"
+                alt="Logitech G Pro X Superlight Mouse"
+                loading="lazy"
+              />
+              <ul class="catalog-product-actions" aria-label="Product actions">
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--cart"
+                    type="button"
+                    data-add-cart
+                    data-name="Logitech G Pro X Superlight"
+                    data-price="2150000"
+                    aria-label="Tambah ke keranjang"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path
+                        d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--wishlist"
+                    type="button"
+                    aria-label="Tambah ke wishlist"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--compare"
+                    type="button"
+                    aria-label="Bandingkan produk"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--quickview"
+                    type="button"
+                    aria-label="Lihat cepat"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="part-2">
+              <h3 class="product-title">
+                <a href="product-detail.html?id=logitech-g-pro-x-superlight"
+                  >Logitech G Pro X Superlight</a
+                >
+              </h3>
+              <div class="product-price-group">
+                <h4 class="product-price">Rp2.150.000</h4>
+              </div>
+            </div>
+          </article>
+          <article
+            class="single-product catalog-product-card"
+            data-category="build"
+            data-brand="nvidia"
+            data-setup="gpu build performance"
+            data-stock="ready"
+            data-id="nvidia-rtx-4080-super"
+            data-price="19500000"
+          >
+            <div class="part-1">
+              <span class="new">hot</span>
+              <img
+                src="https://sm.ign.com/ign_es/photo/n/nvidia-gef/nvidia-geforce-rtx-4080-16gb-founders-edition-review_grmx.jpg"
+                alt="NVIDIA RTX 4080 Super GPU"
+                loading="lazy"
+              />
+              <ul class="catalog-product-actions" aria-label="Product actions">
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--cart"
+                    type="button"
+                    data-add-cart
+                    data-name="NVIDIA RTX 4080 Super"
+                    data-price="19500000"
+                    aria-label="Tambah ke keranjang"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path
+                        d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--wishlist"
+                    type="button"
+                    aria-label="Tambah ke wishlist"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--compare"
+                    type="button"
+                    aria-label="Bandingkan produk"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--quickview"
+                    type="button"
+                    aria-label="Lihat cepat"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="part-2">
+              <h3 class="product-title">
+                <a href="product-detail.html?id=nvidia-rtx-4080-super"
+                  >NVIDIA RTX 4080 Super</a
+                >
+              </h3>
+              <div class="product-price-group">
+                <h4 class="product-price">Rp19.500.000</h4>
+              </div>
+            </div>
+          </article>
+          <article
+            class="single-product catalog-product-card"
+            data-category="control"
+            data-brand="lg"
+            data-setup="monitor 1440p 165hz"
+            data-stock="ready"
+            data-id="lg-ultragear-27-1440p"
+            data-price="6200000"
+          >
+            <div class="part-1">
+              <img
+                src="https://www.lg.com/content/dam/channel/wcms/au/it-computing/ultragear-monitor/27gs95qe-feature-content/feature/mobile/ultragear-27gs95qe-01-1-ultragear-oled-m.jpg"
+                alt="LG UltraGear 27 Monitor"
+                loading="lazy"
+              />
+              <ul class="catalog-product-actions" aria-label="Product actions">
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--cart"
+                    type="button"
+                    data-add-cart
+                    data-name="LG UltraGear 27 1440p"
+                    data-price="6200000"
+                    aria-label="Tambah ke keranjang"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path
+                        d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--wishlist"
+                    type="button"
+                    aria-label="Tambah ke wishlist"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--compare"
+                    type="button"
+                    aria-label="Bandingkan produk"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--quickview"
+                    type="button"
+                    aria-label="Lihat cepat"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="part-2">
+              <h3 class="product-title">
+                <a href="product-detail.html?id=lg-ultragear-27-1440p"
+                  >LG UltraGear 27&quot; 1440p</a
+                >
+              </h3>
+              <div class="product-price-group">
+                <h4 class="product-price">Rp6.200.000</h4>
+              </div>
+            </div>
+          </article>
+          <article
+            class="single-product catalog-product-card"
+            data-category="control"
+            data-brand="corsair"
+            data-setup="keyboard magnetic wired"
+            data-stock="ready"
+            data-id="corsair-k70-max-rgb"
+            data-price="2475000"
+          >
+            <div class="part-1">
+              <span class="new">new</span>
+              <img
+                src="https://tse1.mm.bing.net/th/id/OIP.5zmEq0VAyy5igrXbl6ZU4AHaFi?cb=thfc1falcon2&rs=1&pid=ImgDetMain&o=7&rm=3"
+                alt="Corsair K70 Max RGB Keyboard"
+                loading="lazy"
+              />
+              <ul class="catalog-product-actions" aria-label="Product actions">
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--cart"
+                    type="button"
+                    data-add-cart
+                    data-name="Corsair K70 Max RGB"
+                    data-price="2475000"
+                    aria-label="Tambah ke keranjang"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path
+                        d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--wishlist"
+                    type="button"
+                    aria-label="Tambah ke wishlist"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--compare"
+                    type="button"
+                    aria-label="Bandingkan produk"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--quickview"
+                    type="button"
+                    aria-label="Lihat cepat"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="part-2">
+              <h3 class="product-title">
+                <a href="product-detail.html?id=corsair-k70-max-rgb"
+                  >Corsair K70 Max RGB</a
+                >
+              </h3>
+              <div class="product-price-group">
+                <h4 class="product-price">Rp2.475.000</h4>
+              </div>
+            </div>
+          </article>
+          <article
+            class="single-product catalog-product-card"
+            data-category="sound"
+            data-brand="steelseries"
+            data-setup="headset wireless daily"
+            data-stock="ready"
+            data-id="arctis-nova-7-wireless"
+            data-price="3450000"
+          >
+            <div class="part-1">
+              <img
+                src="https://media.steelseriescdn.com/thumbs/filer_public/73/ff/73ff463b-468a-4ffc-93cd-b66cd3436cb7/arctis_nova_7_wl_black_pdp_img_buy_1.png__1920x1080_crop-fit_optimize_subsampling-2.png"
+                alt="Arctis Nova 7 Wireless Headset"
+                loading="lazy"
+              />
+              <ul class="catalog-product-actions" aria-label="Product actions">
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--cart"
+                    type="button"
+                    data-add-cart
+                    data-name="Arctis Nova 7 Wireless"
+                    data-price="3450000"
+                    aria-label="Tambah ke keranjang"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path
+                        d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--wishlist"
+                    type="button"
+                    aria-label="Tambah ke wishlist"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--compare"
+                    type="button"
+                    aria-label="Bandingkan produk"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--quickview"
+                    type="button"
+                    aria-label="Lihat cepat"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="part-2">
+              <h3 class="product-title">
+                <a href="product-detail.html?id=arctis-nova-7-wireless"
+                  >Arctis Nova 7 Wireless</a
+                >
+              </h3>
+              <div class="product-price-group">
+                <h4 class="product-price">Rp3.450.000</h4>
+              </div>
+            </div>
+          </article>
+          <article
+            class="single-product catalog-product-card"
+            data-category="build"
+            data-brand="amd"
+            data-setup="cpu build gaming"
+            data-stock="ready"
+            data-id="ryzen-7-7800x3d"
+            data-price="6850000"
+          >
+            <div class="part-1">
+              <span class="new">editor pick</span>
+              <img
+                src="https://www.pcguide.com/wp-content/uploads/2024/05/7800X3D-featured-image.jpg"
+                alt="Ryzen 7 7800X3D Processor"
+                loading="lazy"
+              />
+              <ul class="catalog-product-actions" aria-label="Product actions">
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--cart"
+                    type="button"
+                    data-add-cart
+                    data-name="Ryzen 7 7800X3D"
+                    data-price="6850000"
+                    aria-label="Tambah ke keranjang"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path
+                        d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--wishlist"
+                    type="button"
+                    aria-label="Tambah ke wishlist"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--compare"
+                    type="button"
+                    aria-label="Bandingkan produk"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--quickview"
+                    type="button"
+                    aria-label="Lihat cepat"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="part-2">
+              <h3 class="product-title">
+                <a href="product-detail.html?id=ryzen-7-7800x3d"
+                  >Ryzen 7 7800X3D</a
+                >
+              </h3>
+              <div class="product-price-group">
+                <h4 class="product-price">Rp6.850.000</h4>
+              </div>
+            </div>
+          </article>
+          <article
+            class="single-product catalog-product-card"
+            data-category="machines"
+            data-brand="msi"
+            data-setup="laptop qhd rtx promo"
+            data-stock="limited"
+            data-id="msi-raider-ge78-hx"
+            data-price="37800000"
+          >
+            <div class="part-1">
+              <span class="discount">10% off</span>
+              <img
+                src="https://storage-asset.msi.com/global/picture/apluscontent/feature/1702973045.jpeg"
+                alt="MSI Raider GE78 HX Laptop"
+                loading="lazy"
+              />
+              <ul class="catalog-product-actions" aria-label="Product actions">
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--cart"
+                    type="button"
+                    data-add-cart
+                    data-name="MSI Raider GE78 HX"
+                    data-price="37800000"
+                    aria-label="Tambah ke keranjang"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path
+                        d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--wishlist"
+                    type="button"
+                    aria-label="Tambah ke wishlist"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--compare"
+                    type="button"
+                    aria-label="Bandingkan produk"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--quickview"
+                    type="button"
+                    aria-label="Lihat cepat"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="part-2 has-discount">
+              <h3 class="product-title">
+                <a href="product-detail.html?id=msi-raider-ge78-hx"
+                  >MSI Raider GE78 HX</a
+                >
+              </h3>
+              <div class="product-price-group">
+                <h4 class="product-old-price">Rp42.000.000</h4>
+                <h4 class="product-price">Rp37.800.000</h4>
+              </div>
+            </div>
+          </article>
+          <article
+            class="single-product catalog-product-card"
+            data-category="sound"
+            data-brand="elgato"
+            data-setup="microphone streaming audio"
+            data-stock="ready"
+            data-id="elgato-wave-3-usb-mic"
+            data-price="2250000"
+          >
+            <div class="part-1">
+              <img
+                src="https://stoneforged.tech/cdn/shop/products/Wave36.jpg?v=1681321908"
+                alt="Elgato Wave 3 Microphone"
+                loading="lazy"
+              />
+              <ul class="catalog-product-actions" aria-label="Product actions">
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--cart"
+                    type="button"
+                    data-add-cart
+                    data-name="Elgato Wave 3 USB Mic"
+                    data-price="2250000"
+                    aria-label="Tambah ke keranjang"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path
+                        d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--wishlist"
+                    type="button"
+                    aria-label="Tambah ke wishlist"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--compare"
+                    type="button"
+                    aria-label="Bandingkan produk"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--quickview"
+                    type="button"
+                    aria-label="Lihat cepat"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="part-2">
+              <h3 class="product-title">
+                <a href="product-detail.html?id=elgato-wave-3-usb-mic"
+                  >Elgato Wave:3 USB Mic</a
+                >
+              </h3>
+              <div class="product-price-group">
+                <h4 class="product-price">Rp2.250.000</h4>
+              </div>
+            </div>
+          </article>
+          <article
+            class="single-product catalog-product-card"
+            data-category="build"
+            data-brand="corsair"
+            data-setup="ram rgb ddr5"
+            data-stock="ready"
+            data-id="vengeance-rgb-32gb-ddr5"
+            data-price="2950000"
+          >
+            <div class="part-1">
+              <span class="new">new</span>
+              <!-- TODO: replace Vengeance RGB 32GB DDR5 image when valid path is provided -->
+              <img
+                src="https://down-id.img.susercontent.com/file/sg-11134201-22120-9ty2zw7ojvkv15"
+                alt="Vengeance RGB 32GB DDR5 Memory"
+                loading="lazy"
+              />
+              <ul class="catalog-product-actions" aria-label="Product actions">
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--cart"
+                    type="button"
+                    data-add-cart
+                    data-name="Vengeance RGB 32GB DDR5"
+                    data-price="2950000"
+                    aria-label="Tambah ke keranjang"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path
+                        d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 6H6"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--wishlist"
+                    type="button"
+                    aria-label="Tambah ke wishlist"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8 8.6 4.6c-1.5-1.4-3.9-1.4-5.4 0-1.6 1.5-1.6 4 0 5.5L12 19l8.8-8.9c1.6-1.5 1.6-4 0-5.5Z"
+                      ></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--compare"
+                    type="button"
+                    aria-label="Bandingkan produk"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="catalog-action-btn catalog-action-btn--quickview"
+                    type="button"
+                    aria-label="Lihat cepat"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 3h6v6M21 3l-7 7M9 21H3v-6M3 21l7-7"></path>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="part-2">
+              <h3 class="product-title">
+                <a href="product-detail.html?id=vengeance-rgb-32gb-ddr5"
+                  >Vengeance RGB 32GB DDR5</a
+                >
+              </h3>
+              <div class="product-price-group">
+                <h4 class="product-price">Rp2.950.000</h4>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <nav class="catalog-pagination" aria-label="Catalog pagination">
+          <button type="button" aria-label="Previous page">&lsaquo;</button>
+          <button type="button" class="is-active" aria-current="page">1</button>
+          <button type="button">2</button>
+          <button type="button">3</button>
+          <button type="button" aria-label="Next page">&rsaquo;</button>
+        </nav>
+      </section>
+    </main>
+    <!-- GLOBAL FOOTER -->
     <footer class="site-footer footer-reveal">
       <section class="footer-gallery" aria-label="NEXGEAR setup gallery">
         <div class="footer-gallery-marquee">
           <div class="footer-gallery-track">
             <!-- Original 8 items -->
             <a href="catalog.html" class="footer-gallery-photo is-setup">
-              <img src="https://preview.redd.it/d4v6o812rh441.jpg?width=1080&crop=smart&auto=webp&s=92cecd457eb4a6a5884ecd44123950cea38c9a45" alt="RGB gaming desk setup with multiple monitors">
+              <img
+                src="https://preview.redd.it/d4v6o812rh441.jpg?width=1080&crop=smart&auto=webp&s=92cecd457eb4a6a5884ecd44123950cea38c9a45"
+                alt="RGB gaming desk setup with multiple monitors"
+              />
               <span class="footer-gallery-fade">
                 <span>Battle Station</span>
               </span>
             </a>
             <a href="catalog.html" class="footer-gallery-photo is-keyboard">
-              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=70" alt="Mechanical keyboard with RGB lighting">
+              <img
+                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=70"
+                alt="Mechanical keyboard with RGB lighting"
+              />
               <span class="footer-gallery-fade">
                 <span>Control Gear</span>
               </span>
             </a>
             <a href="catalog.html" class="footer-gallery-photo">
-              <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=500&q=70" alt="Gaming mouse on dark desk mat">
+              <img
+                src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=500&q=70"
+                alt="Gaming mouse on dark desk mat"
+              />
               <span class="footer-gallery-fade">
                 <span>Precision</span>
               </span>
             </a>
             <a href="catalog.html" class="footer-gallery-photo is-headset">
-              <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=500&q=70" alt="Gaming headset on dark setup">
+              <img
+                src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=500&q=70"
+                alt="Gaming headset on dark setup"
+              />
               <span class="footer-gallery-fade">
                 <span>Audio Gear</span>
               </span>
             </a>
             <a href="catalog.html" class="footer-gallery-photo is-pc">
-              <img src="https://i.pinimg.com/originals/13/79/d1/1379d1415819ac35be6d99ad8e737215.jpg" alt="Gaming PC build with RGB lighting">
+              <img
+                src="https://i.pinimg.com/originals/13/79/d1/1379d1415819ac35be6d99ad8e737215.jpg"
+                alt="Gaming PC build with RGB lighting"
+              />
               <span class="footer-gallery-fade">
                 <span>Custom Build</span>
               </span>
             </a>
             <a href="catalog.html" class="footer-gallery-photo">
-              <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=70" alt="Clean gaming workspace with monitor and keyboard">
+              <img
+                src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=70"
+                alt="Clean gaming workspace with monitor and keyboard"
+              />
               <span class="footer-gallery-fade">
                 <span>Clean Setup</span>
               </span>
             </a>
             <a href="catalog.html" class="footer-gallery-photo">
-              <img src="https://www.pcgamesn.com/wp-content/sites/pcgamesn/2024/02/how-to-install-rgb-lighting.jpg" alt="PC component with RGB lighting">
+              <img
+                src="https://www.pcgamesn.com/wp-content/sites/pcgamesn/2024/02/how-to-install-rgb-lighting.jpg"
+                alt="PC component with RGB lighting"
+              />
               <span class="footer-gallery-fade">
                 <span>Performance</span>
               </span>
             </a>
             <a href="catalog.html" class="footer-gallery-photo is-laptop">
-              <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=500&q=70" alt="Gaming laptop setup with neon lighting">
+              <img
+                src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=500&q=70"
+                alt="Gaming laptop setup with neon lighting"
+              />
               <span class="footer-gallery-fade">
                 <span>Machines</span>
               </span>
             </a>
             <!-- Duplicate 8 items with aria-hidden and tabindex -1 -->
-            <a href="catalog.html" class="footer-gallery-photo is-setup" aria-hidden="true" tabindex="-1">
-              <img src="https://preview.redd.it/d4v6o812rh441.jpg?width=1080&crop=smart&auto=webp&s=92cecd457eb4a6a5884ecd44123950cea38c9a45" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo is-setup"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://preview.redd.it/d4v6o812rh441.jpg?width=1080&crop=smart&auto=webp&s=92cecd457eb4a6a5884ecd44123950cea38c9a45"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Battle Station</span>
               </span>
             </a>
-            <a href="catalog.html" class="footer-gallery-photo is-keyboard" aria-hidden="true" tabindex="-1">
-              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=70" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo is-keyboard"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=70"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Control Gear</span>
               </span>
             </a>
-            <a href="catalog.html" class="footer-gallery-photo" aria-hidden="true" tabindex="-1">
-              <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=500&q=70" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=500&q=70"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Precision</span>
               </span>
             </a>
-            <a href="catalog.html" class="footer-gallery-photo is-headset" aria-hidden="true" tabindex="-1">
-              <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=500&q=70" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo is-headset"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=500&q=70"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Audio Gear</span>
               </span>
             </a>
-            <a href="catalog.html" class="footer-gallery-photo is-pc" aria-hidden="true" tabindex="-1">
-              <img src="https://i.pinimg.com/originals/13/79/d1/1379d1415819ac35be6d99ad8e737215.jpg" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo is-pc"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://i.pinimg.com/originals/13/79/d1/1379d1415819ac35be6d99ad8e737215.jpg"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Custom Build</span>
               </span>
             </a>
-            <a href="catalog.html" class="footer-gallery-photo" aria-hidden="true" tabindex="-1">
-              <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=70" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=70"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Clean Setup</span>
               </span>
             </a>
-            <a href="catalog.html" class="footer-gallery-photo" aria-hidden="true" tabindex="-1">
-              <img src="https://www.pcgamesn.com/wp-content/sites/pcgamesn/2024/02/how-to-install-rgb-lighting.jpg" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://www.pcgamesn.com/wp-content/sites/pcgamesn/2024/02/how-to-install-rgb-lighting.jpg"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Performance</span>
               </span>
             </a>
-            <a href="catalog.html" class="footer-gallery-photo is-laptop" aria-hidden="true" tabindex="-1">
-              <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=500&q=70" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo is-laptop"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=500&q=70"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Machines</span>
               </span>
@@ -902,9 +1806,7 @@
 
       <div class="footer-minimal-inner">
         <div class="footer-minimal-brand">
-          <a href="index.html" class="footer-logo">
-            <span>NEX</span>GEAR
-          </a>
+          <a href="index.html" class="footer-logo"> <span>NEX</span>GEAR </a>
         </div>
 
         <nav class="footer-social" aria-label="Social links">
@@ -930,8 +1832,12 @@
           <a href="#" class="footer-social-link" aria-label="Discord">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M7.5 8.5c3-1.4 6-1.4 9 0"></path>
-              <path d="M7 17c-1.3-.4-2.4-1-3.3-1.8.2-3.4 1.1-6.2 2.7-8.4 1.3-.6 2.4-.9 3.5-1.1l.5 1"></path>
-              <path d="M17 17c1.3-.4 2.4-1 3.3-1.8-.2-3.4-1.1-6.2-2.7-8.4-1.3-.6-2.4-.9-3.5-1.1l-.5 1"></path>
+              <path
+                d="M7 17c-1.3-.4-2.4-1-3.3-1.8.2-3.4 1.1-6.2 2.7-8.4 1.3-.6 2.4-.9 3.5-1.1l.5 1"
+              ></path>
+              <path
+                d="M17 17c1.3-.4 2.4-1 3.3-1.8-.2-3.4-1.1-6.2-2.7-8.4-1.3-.6-2.4-.9-3.5-1.1l-.5 1"
+              ></path>
               <circle cx="9.5" cy="13" r="1"></circle>
               <circle cx="14.5" cy="13" r="1"></circle>
               <path d="M9.5 16c1.6.7 3.4.7 5 0"></path>
@@ -949,25 +1855,53 @@
 
         <div class="footer-payments" aria-label="Payment methods">
           <span class="footer-payment-card">
-            <img src="https://www.freepnglogos.com/uploads/visa-inc-png-18.png" alt="Visa" class="footer-payment-logo footer-payment-logo--visa" />
+            <img
+              src="https://www.freepnglogos.com/uploads/visa-inc-png-18.png"
+              alt="Visa"
+              class="footer-payment-logo footer-payment-logo--visa"
+            />
           </span>
           <span class="footer-payment-card">
-            <img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-png-transparent-svg-vector-bie-supply-1.png" alt="Mastercard" class="footer-payment-logo footer-payment-logo--mastercard" />
+            <img
+              src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-png-transparent-svg-vector-bie-supply-1.png"
+              alt="Mastercard"
+              class="footer-payment-logo footer-payment-logo--mastercard"
+            />
           </span>
           <span class="footer-payment-card">
-            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/jcb-card-icon.png" alt="JCB" class="footer-payment-logo footer-payment-logo--jcb" />
+            <img
+              src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/jcb-card-icon.png"
+              alt="JCB"
+              class="footer-payment-logo footer-payment-logo--jcb"
+            />
           </span>
           <span class="footer-payment-card">
-            <img src="https://static.vecteezy.com/system/resources/previews/022/100/701/large_2x/paypal-logo-transparent-free-png.png" alt="PayPal" class="footer-payment-logo footer-payment-logo--paypal" />
+            <img
+              src="https://static.vecteezy.com/system/resources/previews/022/100/701/large_2x/paypal-logo-transparent-free-png.png"
+              alt="PayPal"
+              class="footer-payment-logo footer-payment-logo--paypal"
+            />
           </span>
           <span class="footer-payment-card footer-payment-card--wide">
-            <img src="https://1.bp.blogspot.com/-n4swQEQNMCY/YJDCaTjKv9I/AAAAAAAAIZY/1tMkVzcW4WsUnqtB36LWwjgte3dxWZloACLcBGAsYHQ/s1800/QRIS_logo.png" alt="QRIS" class="footer-payment-logo footer-payment-logo--qris" />
+            <img
+              src="https://1.bp.blogspot.com/-n4swQEQNMCY/YJDCaTjKv9I/AAAAAAAAIZY/1tMkVzcW4WsUnqtB36LWwjgte3dxWZloACLcBGAsYHQ/s1800/QRIS_logo.png"
+              alt="QRIS"
+              class="footer-payment-logo footer-payment-logo--qris"
+            />
           </span>
           <span class="footer-payment-card">
-            <img src="https://iconlogovector.com/uploads/images/2024/03/lg-65ffd7052391a-E-MONEY.webp" alt="e-Money" class="footer-payment-logo footer-payment-logo--emoney" />
+            <img
+              src="https://iconlogovector.com/uploads/images/2024/03/lg-65ffd7052391a-E-MONEY.webp"
+              alt="e-Money"
+              class="footer-payment-logo footer-payment-logo--emoney"
+            />
           </span>
           <span class="footer-payment-card footer-payment-card--wide">
-            <img src="https://www.svgrepo.com/show/56921/bank-transfer-logo.svg" alt="Bank Transfer" class="footer-payment-logo footer-payment-logo--bank" />
+            <img
+              src="https://www.svgrepo.com/show/56921/bank-transfer-logo.svg"
+              alt="Bank Transfer"
+              class="footer-payment-logo footer-payment-logo--bank"
+            />
           </span>
         </div>
 
@@ -985,16 +1919,29 @@
     </footer>
 
     <!-- Search Drawer Overlay -->
-  <div id="search-drawer" class="drawer">
-    <div class="drawer-content" style="background:#181824; padding:30px; text-align:center;">
-      <h3>Cari Gear</h3>
-      <input type="text" class="form-input" placeholder="Ketik nama produk..." style="margin:20px 0;">
-      <button class="btn btn-primary" onclick="document.getElementById('search-drawer').classList.remove('active')">Tutup</button>
+    <div id="search-drawer" class="drawer">
+      <div
+        class="drawer-content"
+        style="background: #181824; padding: 30px; text-align: center"
+      >
+        <h3>Cari Gear</h3>
+        <input
+          type="text"
+          class="form-input"
+          placeholder="Ketik nama produk..."
+          style="margin: 20px 0"
+        />
+        <button
+          class="btn btn-primary"
+          onclick="
+            document.getElementById('search-drawer').classList.remove('active')
+          "
+        >
+          Tutup
+        </button>
+      </div>
     </div>
-  </div>
 
-  <script src="scripts/main.js"></script>
-</body>
+    <script src="scripts/main.js"></script>
+  </body>
 </html>
-
-

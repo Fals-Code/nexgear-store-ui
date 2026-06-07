@@ -1602,6 +1602,68 @@
   transform: translateY(0);
 }
 
+/* Catalog product image ratio fix */
+.page-catalog .single-product .part-1 {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+}
+
+.page-catalog .single-product .part-1 img {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: inherit !important;
+  display: block !important;
+}
+
+.page-catalog .single-product:hover .part-1 img {
+  transform: scale(1.08) rotate(1.5deg) !important;
+}
+
+/* Force catalog product media to true 1:1 square */
+.page-catalog .single-product .part-1 {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin-bottom: 20px !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+}
+
+.page-catalog .single-product .part-1::before {
+  inset: 0 !important;
+  z-index: 0 !important;
+}
+
+.page-catalog .single-product .part-1 > img {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: inherit !important;
+}
+
+.page-catalog .single-product:hover .part-1 > img {
+  transform: scale(1.08) rotate(1.5deg) !important;
+}
+
 .page-catalog .catalog-product-price-row {
   display: flex !important;
   align-items: baseline !important;
@@ -3700,4 +3762,41 @@
 .page-catalog .catalog-action-btn:focus-visible {
   outline: 2px solid currentColor !important;
   outline-offset: 3px !important;
+}
+
+/* EOF guard: keep catalog product images inside a true square frame */
+.page-catalog .single-product .part-1 {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+}
+
+.page-catalog .single-product .part-1 img,
+.page-catalog .single-product .part-1 > img,
+.page-catalog .catalog-product-media img,
+.page-catalog .product-card img,
+.page-catalog .pc-image img {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: inherit !important;
+}
+
+.page-catalog .single-product:hover .part-1 img,
+.page-catalog .single-product:hover .part-1 > img {
+  transform: scale(1.08) rotate(1.5deg) !important;
 }
