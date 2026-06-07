@@ -32,19 +32,20 @@
     },
     add(product) {
       const items = this.items;
-      const variantStr = product.variant ? ` - ${product.variant}` : "";
-      const finalName = product.name + variantStr;
+      const { silent, ...cartProduct } = product;
+      const variantStr = cartProduct.variant ? ` - ${cartProduct.variant}` : "";
+      const finalName = cartProduct.name + variantStr;
 
       const existing = items.find((i) => i.name === finalName);
-      const qtyToAdd = product.qty || 1;
+      const qtyToAdd = cartProduct.qty || 1;
 
       if (existing) {
         existing.qty += qtyToAdd;
       } else {
-        items.push({ ...product, name: finalName, qty: qtyToAdd });
+        items.push({ ...cartProduct, name: finalName, qty: qtyToAdd });
       }
       this.save(items);
-      showToast(`${finalName} ditambahkan ke keranjang!`);
+      if (!silent) showToast(`${finalName} ditambahkan ke keranjang!`);
     },
     remove(name) {
       const items = this.items.filter((i) => i.name !== name);
@@ -129,6 +130,27 @@
     }, 2500);
   }
   window.showToast = showToast;
+
+  function showNexToast(message) {
+    let toast = document.querySelector(".nex-toast");
+
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.className = "nex-toast";
+      toast.setAttribute("role", "status");
+      toast.setAttribute("aria-live", "polite");
+      document.body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+    toast.classList.add("is-visible");
+
+    clearTimeout(window.__nexToastTimer);
+    window.__nexToastTimer = setTimeout(() => {
+      toast.classList.remove("is-visible");
+    }, 1800);
+  }
+  window.showNexToast = showNexToast;
 
   /* ―― Sticky Navbar ―― */
   function initNavbar() {
@@ -397,7 +419,9 @@
 
   function initSearch() {
     const bar = document.querySelector(".search-bar");
-    const cards = document.querySelectorAll(".product-card, .related-card");
+    const cards = document.querySelectorAll(
+      ".product-card, .catalog-product-card, .related-card",
+    );
     const range =
       document.querySelector("#priceRange") ||
       document.querySelector(".price-range input[type='range']");
@@ -410,7 +434,9 @@
     );
     if (!cards.length) return;
 
-    const productCards = document.querySelectorAll(".product-card");
+    const productCards = document.querySelectorAll(
+      ".product-card, .catalog-product-card",
+    );
     const productGrid = document.querySelector(".catalog-product-grid");
     const productCardList = Array.from(productCards);
     productCardList.forEach((card, index) => {
@@ -443,7 +469,7 @@
       }
 
       const priceEl = card.querySelector(
-        ".price, .product-price, .product-card-price, .card-price, .related-bottom .price",
+        ".price, .product-price, .catalog-product-price, .product-card-price, .card-price, .related-bottom .price",
       );
       if (!priceEl) return 0;
       return parseInt(priceEl.textContent.replace(/[^\d]/g, ""), 10) || 0;
@@ -456,6 +482,7 @@
         card.querySelector(".product-card-meta")?.textContent,
         card.querySelector(".quick-spec-row")?.textContent,
         card.querySelector(".product-card-badge")?.textContent,
+        card.querySelector(".catalog-product-badge")?.textContent,
         card.dataset.category,
         card.dataset.brand,
         card.dataset.setup,
@@ -594,7 +621,11 @@
           matchPrice;
 
         card.style.display = isVisible ? "" : "none";
-        if (card.classList.contains("product-card") && isVisible)
+        if (
+          (card.classList.contains("product-card") ||
+            card.classList.contains("catalog-product-card")) &&
+          isVisible
+        )
           visibleCount++;
       });
 
@@ -651,8 +682,116 @@
         e.preventDefault();
         const name = btn.dataset.name || "Product";
         const price = parseFloat(btn.dataset.price) || 0;
-        Cart.add({ name, price });
+        const silent = btn.classList.contains("catalog-action-btn--cart");
+        Cart.add({ name, price, silent });
       });
+    });
+  }
+
+  function initCatalogActionFeedback() {
+    const catalog = document.querySelector(".page-catalog");
+    if (!catalog) return;
+
+    function readStorageSet(key) {
+      try {
+        const items = JSON.parse(localStorage.getItem(key) || "[]");
+        return new Set(Array.isArray(items) ? items : []);
+      } catch {
+        return new Set();
+      }
+    }
+
+    const compareSet = readStorageSet("nexgear_compare");
+    const wishlistSet = readStorageSet("nexgear_wishlist");
+
+    catalog.querySelectorAll(".single-product").forEach((card) => {
+      const productId = card.dataset.id;
+      if (!productId) return;
+
+      if (wishlistSet.has(productId)) {
+        card
+          .querySelector(".catalog-action-btn--wishlist")
+          ?.classList.add("is-active");
+      }
+
+      if (compareSet.has(productId)) {
+        card
+          .querySelector(".catalog-action-btn--compare")
+          ?.classList.add("is-active");
+      }
+    });
+
+    catalog.addEventListener("click", (event) => {
+      const btn = event.target.closest(".catalog-action-btn");
+      if (!btn) return;
+
+      const card = btn.closest(".catalog-product-card, .single-product");
+      if (!card) return;
+
+      const productId = card.dataset.id || "";
+      const storageId =
+        productId ||
+        card.querySelector(".product-title")?.textContent?.trim() ||
+        "produk";
+      const productTitle =
+        card.querySelector(".product-title")?.textContent?.trim() || "Produk";
+
+      if (btn.classList.contains("catalog-action-btn--cart")) {
+        btn.classList.add("is-success");
+        showNexToast(`${productTitle} ditambahkan ke keranjang`);
+
+        setTimeout(() => {
+          btn.classList.remove("is-success");
+        }, 900);
+
+        return;
+      }
+
+      if (btn.classList.contains("catalog-action-btn--wishlist")) {
+        btn.classList.toggle("is-active");
+
+        if (btn.classList.contains("is-active")) {
+          wishlistSet.add(storageId);
+          showNexToast(`${productTitle} ditambahkan ke wishlist`);
+        } else {
+          wishlistSet.delete(storageId);
+          showNexToast(`${productTitle} dihapus dari wishlist`);
+        }
+
+        localStorage.setItem("nexgear_wishlist", JSON.stringify([...wishlistSet]));
+        return;
+      }
+
+      if (btn.classList.contains("catalog-action-btn--compare")) {
+        const isActive = btn.classList.contains("is-active");
+
+        if (!isActive && compareSet.size >= 4) {
+          showNexToast("Maksimal 4 produk untuk dibandingkan");
+          return;
+        }
+
+        btn.classList.toggle("is-active");
+
+        if (btn.classList.contains("is-active")) {
+          compareSet.add(storageId);
+          showNexToast(`${productTitle} ditambahkan ke perbandingan`);
+        } else {
+          compareSet.delete(storageId);
+          showNexToast(`${productTitle} dihapus dari perbandingan`);
+        }
+
+        localStorage.setItem("nexgear_compare", JSON.stringify([...compareSet]));
+        return;
+      }
+
+      if (btn.classList.contains("catalog-action-btn--quickview")) {
+        btn.classList.add("is-loading");
+        showNexToast("Membuka detail produk...");
+
+        setTimeout(() => {
+          window.location.href = `product-detail.html?id=${encodeURIComponent(productId)}`;
+        }, 250);
+      }
     });
   }
 
@@ -682,7 +821,9 @@
     cards.forEach((card) => {
       const name =
         card
-          .querySelector(".creator-product-title, .product-title, h4, h3")
+          .querySelector(
+            ".catalog-product-title, .creator-product-title, .product-title, h4, h3",
+          )
           ?.textContent.trim() || "";
       const specs = quickSpecs[name] || [
         card.dataset.brand || "NEXGEAR",
@@ -713,7 +854,9 @@
     function getProductUrl(card) {
       const name =
         card
-          .querySelector(".creator-product-title, .product-title, h4, h3")
+          .querySelector(
+            ".catalog-product-title, .creator-product-title, .product-title, h4, h3",
+          )
           ?.textContent.trim() || "product";
       return `product.html?product=${encodeURIComponent(slugify(name))}`;
     }
@@ -731,7 +874,9 @@
         "aria-label",
         `Lihat detail ${
           card
-            .querySelector(".creator-product-title, .product-title, h4, h3")
+            .querySelector(
+              ".catalog-product-title, .creator-product-title, .product-title, h4, h3",
+            )
             ?.textContent.trim() || "produk"
         }`,
       );
@@ -1286,6 +1431,7 @@
       initCatalogEnhancements,
       initSearch,
       initAddToCart,
+      initCatalogActionFeedback,
       initCatalogCardLinks,
       setActiveNav,
       initSketchRotations,
