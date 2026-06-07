@@ -1273,6 +1273,19 @@
     });
   }
 
+  function initLoginReveal() {
+    const loginShell = document.querySelector(".login-shell");
+    if (!loginShell) return;
+
+    window.setTimeout(() => {
+      loginShell.classList.add("is-open");
+    }, 280);
+
+    loginShell.addEventListener("click", () => {
+      loginShell.classList.add("is-open");
+    });
+  }
+
   /* INIT */
   function initMiniCartDropdownRemove() {
     document
@@ -1551,6 +1564,7 @@
       initSketchRotations,
       initCatalogFilterBar,
       initCatalogFilterDropdowns,
+      initLoginReveal,
       initFilterDrawer,
       initMiniCartDropdownRemove,
       initCategoryPanel,

@@ -1,214 +1,394 @@
-/* login.css - Refined styles for login.html */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Rajdhani:wght@300;400;500;600&display=swap");
 
-.login-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - 80px - 300px);
-  padding: 80px 20px;
-  position: relative;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.login-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100vw;
-  height: 100%;
-  background: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.03) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: -1;
+:root {
+  --cyan: #00e5ff;
+  --cyan-dim: rgba(0, 229, 255, 0.12);
+  --cyan-glow: rgba(255, 166, 0, 0.3);
+  --bg: #070a0f;
+  /* panels: slight tonal variation, all dark */
+  --panel-1: rgba(4, 20, 32, 0.92);
+  --panel-2: rgba(2, 12, 22, 0.88);
+  --panel-3: rgba(3, 10, 20, 0.93);
+  --panel-4: rgba(1, 16, 28, 0.89);
+  --text: #dde5f0;
+  /* raised from 0.4 → 0.65 for readability */
+  --text-muted: rgba(154, 175, 196, 0.65);
+  --text-label: #9aafc4;
+  --border: rgba(0, 229, 255, 0.22);
+  --border-idle: rgba(0, 229, 255, 0.14);
+  --form-w: 400px;
 }
 
-.login-card {
-  background: var(--color-bg-surface);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 50px 45px;
+html,
+body {
   width: 100%;
-  max-width: 460px;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-  position: relative;
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  font-family: "Rajdhani", sans-serif;
+  color: var(--text);
+  min-height: 100vh;
   overflow: hidden;
 }
 
-.login-card::before {
+/* ── Scanline overlay ── */
+body::before {
   content: "";
+  position: fixed;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.05) 2px,
+    rgba(0, 0, 0, 0.05) 4px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ── Subtle dot-grid background texture ── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 229, 255, 0.08) 1px,
+    transparent 1px
+  );
+  background-size: 36px 36px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.28;
+}
+
+/* ── Container ── */
+.container {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
-  opacity: 0.5;
+  height: 100%;
+  overflow: hidden;
+  cursor: default;
 }
 
-.login-header {
-  margin-bottom: 35px;
-  text-align: center;
+/* Diamond open on hover */
+.container:hover .top:before,
+.container:hover .top:after,
+.container:hover .bottom:before,
+.container:hover .bottom:after,
+.container:active .top:before,
+.container:active .top:after,
+.container:active .bottom:before,
+.container:active .bottom:after {
+  margin-left: 200px;
+  transform-origin: -200px 50%;
+  transition-delay: 0s;
 }
 
-.login-header h2 {
-  font-size: 2rem;
-  margin-bottom: 12px;
-  color: #fff;
-  letter-spacing: 0.5px;
+/* Form always visible; hover keeps it visible */
+.container:hover .center,
+.container:active .center {
+  opacity: 1;
+  transition-delay: 0.18s;
+  pointer-events: all;
 }
 
-.login-header p {
-  color: var(--color-text-secondary);
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.form-group {
-  margin-bottom: 24px;
-}
-
-.form-group label {
+/* ── Diamond panels — shared ── */
+.top:before,
+.top:after,
+.bottom:before,
+.bottom:after {
+  content: "";
   display: block;
-  font-size: 0.95rem;
-  color: #fff;
-  margin-bottom: 10px;
-  font-weight: 500;
-}
-
-.password-label-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.password-label-row label {
-  margin-bottom: 0;
-}
-
-.forgot-link {
-  font-size: 0.9rem;
-  color: var(--color-primary);
-  transition: opacity 0.2s ease;
-}
-
-.forgot-link:hover {
-  text-decoration: underline;
-  opacity: 0.8;
-}
-
-.login-btn {
-  padding: 16px;
-  font-size: 1.1rem;
-  margin-top: 15px;
-  letter-spacing: 1px;
-}
-
-.login-footer {
-  margin-top: 35px;
-  border-top: 1px solid var(--color-border-subtle);
-  padding-top: 30px;
-  text-align: center;
-}
-
-.login-footer p {
-  color: var(--color-text-secondary);
-  font-size: 0.95rem;
-}
-
-.login-footer a {
-  font-weight: 600;
-  color: #fff;
-  transition: color 0.2s ease;
-}
-
-.login-footer a:hover {
-  color: var(--color-primary);
-  text-decoration: none;
-}
-
-/* Custom Checkbox (Re-used) */
-.checkbox-container {
-  display: flex;
-  align-items: center;
-  position: relative;
-  padding-left: 32px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  color: var(--color-text-secondary);
-  user-select: none;
-  transition: color 0.2s;
-  min-height: 20px;
-}
-
-.checkbox-container:hover {
-  color: #fff;
-}
-
-.checkbox-container input {
   position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-.checkmark {
-  position: absolute;
+  width: 200vmax;
+  height: 200vmax;
   top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  height: 20px;
-  width: 20px;
-  background-color: var(--color-bg-input);
-  border: 1px solid var(--color-border-strong);
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  left: 50%;
+  margin-top: -100vmax;
+  transform-origin: 0 50%;
+  transition: all 0.55s cubic-bezier(0.445, 0.05, 0, 1);
+  z-index: 10;
+  transition-delay: 0.18s;
 }
 
-.checkbox-container:hover input ~ .checkmark {
-  border-color: var(--color-primary);
+/* ── Top panels ── */
+.top:before {
+  transform: rotate(45deg);
+  background: var(--panel-1);
+  border-right: 1px solid rgba(0, 229, 255, 0.12);
 }
 
-.checkbox-container input:checked ~ .checkmark {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
+.top:after {
+  transform: rotate(135deg);
+  background: var(--panel-2);
+  border-right: 1px solid rgba(0, 229, 255, 0.1);
 }
 
-.checkmark:after {
+/* ── Bottom panels ── */
+.bottom:before {
+  transform: rotate(-45deg);
+  background: var(--panel-3);
+  border-right: 1px solid rgba(0, 229, 255, 0.12);
+}
+
+.bottom:after {
+  transform: rotate(-135deg);
+  background: var(--panel-4);
+  border-right: 1px solid rgba(0, 229, 255, 0.1);
+}
+
+/* ── Radial glow at center ── */
+.container::after {
   content: "";
   position: absolute;
-  display: none;
+  width: 560px;
+  height: 560px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 229, 255, 0.055) 0%,
+    transparent 68%
+  );
+  z-index: 5;
+  pointer-events: none;
 }
 
-.checkbox-container input:checked ~ .checkmark:after {
-  display: block;
+/* ── Center form — visible by default ── */
+.center {
+  position: absolute;
+  width: var(--form-w);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 12px;
+  /* start visible so form is immediately accessible */
+  opacity: 1;
+  transition: opacity 0.45s cubic-bezier(0.445, 0.05, 0, 1);
+  transition-delay: 0s;
+  z-index: 50;
+  pointer-events: all;
 }
 
-.checkbox-container input[type="checkbox"] ~ .checkmark:after {
-  left: 6px;
-  top: 2px;
-  width: 4px;
-  height: 10px;
-  border: solid #000;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-
-.text-center {
+/* ── Brand block ── */
+.brand {
   text-align: center;
+  margin-bottom: 38px;
 }
 
-.text-accent {
-  color: var(--color-primary);
+.brand-name {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 900;
+  font-size: 2.05rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  text-shadow:
+    0 0 16px rgba(0, 229, 255, 0.45),
+    0 0 36px rgba(0, 229, 255, 0.15);
+  line-height: 1;
 }
 
-.w-100 {
+.brand-sub {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.42em;
+  /* raised visibility */
+  color: var(--text-label);
+  opacity: 0.75;
+  text-transform: uppercase;
+  margin-top: 7px;
+}
+
+/* ── Form heading ── */
+.form-heading {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  /* raised from muted to label color */
+  color: var(--text-label);
+  opacity: 0.8;
+  margin-bottom: 26px;
+  align-self: flex-start;
+}
+
+/* ── Inputs ── */
+.field {
+  width: 100%;
+  margin-bottom: 22px;
+  position: relative;
+}
+
+.field input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-idle);
+  padding: 11px 0;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  /* full text color, not dimmed */
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.3s ease;
+  caret-color: var(--cyan);
+}
+
+.field input::placeholder {
+  /* raised from 0.4 → 0.58 */
+  color: rgba(154, 175, 196, 0.58);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+}
+
+.field input:focus {
+  border-bottom-color: var(--border);
+}
+
+/* animated underline on focus */
+.field::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--cyan);
+  box-shadow: 0 0 7px var(--cyan-glow);
+  transition: width 0.38s cubic-bezier(0.445, 0.05, 0, 1);
+}
+
+.field:focus-within::after {
   width: 100%;
 }
 
-@media (max-width: 576px) {
-  .login-card {
-    padding: 40px 25px;
+/* ── Submit button — semi-filled base ── */
+.btn-signin {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px 0;
+  /* semi-filled: not fully transparent, not solid */
+  background: rgba(0, 229, 255, 0.07);
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  color: var(--cyan);
+  font-family: "Orbitron", sans-serif;
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition:
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.btn-signin::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--cyan);
+  transform: translateX(-101%);
+  transition: transform 0.38s cubic-bezier(0.445, 0.05, 0, 1);
+  z-index: -1;
+}
+
+.btn-signin:hover {
+  color: var(--bg);
+  background: transparent;
+  box-shadow:
+    0 0 20px var(--cyan-glow),
+    inset 0 0 10px rgba(0, 229, 255, 0.05);
+}
+
+.btn-signin:hover::before {
+  transform: translateX(0);
+}
+
+/* ── Footer micro copy ── */
+.form-footer {
+  margin-top: 22px;
+  text-align: center;
+  font-size: 0.73rem;
+  letter-spacing: 0.07em;
+  /* raised opacity */
+  color: rgba(154, 175, 196, 0.6);
+}
+
+.form-footer a {
+  color: var(--cyan);
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.form-footer a:hover {
+  opacity: 1;
+}
+
+/* ── Hint — minimal, non-dominant ── */
+.hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Rajdhani", sans-serif;
+  /* reduced size */
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(154, 175, 196, 0.35);
+  z-index: 20;
+  white-space: nowrap;
+  transition: opacity 0.4s ease;
+  /* reduced pulse ceiling to 0.45 */
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.container:hover .hint,
+.container:active .hint {
+  opacity: 0;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  :root {
+    --form-w: 88vw;
+  }
+  .brand-name {
+    font-size: 1.5rem;
   }
 }
