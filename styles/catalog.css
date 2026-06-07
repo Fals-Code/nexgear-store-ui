@@ -4313,3 +4313,230 @@
   transform: translateY(-1px) !important;
   box-shadow: 0 12px 28px rgba(0, 229, 255, 0.18) !important;
 }
+
+/* Catalog filter dropdown layering fix */
+.page-catalog .catalog-controls,
+.page-catalog .catalog-toolbar,
+.page-catalog .catalog-filter-shell,
+.page-catalog .catalog-filter-shell-inner,
+.page-catalog .catalog-filter-bar {
+  position: relative !important;
+  z-index: 80 !important;
+  overflow: visible !important;
+}
+
+.page-catalog .catalog-filter-dropdown {
+  position: relative !important;
+  z-index: 90 !important;
+  overflow: visible !important;
+}
+
+.page-catalog .catalog-filter-dropdown:has(.catalog-filter-menu.is-open),
+.page-catalog .catalog-filter-dropdown.is-open {
+  z-index: 120 !important;
+}
+
+.page-catalog .catalog-filter-menu {
+  position: absolute !important;
+  top: calc(100% + 10px) !important;
+  left: 0 !important;
+  z-index: 999 !important;
+  overflow: visible !important;
+}
+
+.page-catalog .catalog-product-grid,
+.page-catalog .catalog-grid,
+.page-catalog .single-product,
+.page-catalog .catalog-product-card {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Catalog filter dropdown premium polish */
+.page-catalog .catalog-filter-dropdown-btn {
+  height: 46px !important;
+  padding: 0 16px 0 18px !important;
+  border-radius: 14px !important;
+  gap: 12px !important;
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(7, 11, 18, 0.92)) !important;
+  border-color: rgba(148, 163, 184, 0.16) !important;
+  color: rgba(248, 250, 252, 0.88) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
+}
+
+.page-catalog .catalog-filter-dropdown-btn .filter-chevron {
+  width: 17px !important;
+  height: 17px !important;
+  flex: 0 0 auto !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 2.1 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 0.78 !important;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease !important;
+}
+
+.page-catalog .catalog-filter-dropdown-btn[aria-expanded="true"] .filter-chevron {
+  transform: rotate(180deg) !important;
+  opacity: 1 !important;
+}
+
+.page-catalog .catalog-filter-menu {
+  top: calc(100% + 8px) !important;
+  width: min(320px, 92vw) !important;
+  padding: 12px !important;
+  border-radius: 14px !important;
+  border-color: rgba(148, 163, 184, 0.15) !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(0, 229, 255, 0.07), transparent 42%),
+    rgba(8, 12, 22, 0.97) !important;
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+}
+
+.page-catalog .catalog-filter-option {
+  min-height: 34px !important;
+  padding: 7px 8px !important;
+  border-radius: 10px !important;
+  gap: 12px !important;
+  color: rgba(226, 232, 240, 0.76) !important;
+  font-size: 13px !important;
+  font-weight: 750 !important;
+}
+
+.page-catalog .catalog-filter-option + .catalog-filter-option {
+  margin-top: 2px !important;
+}
+
+.page-catalog .catalog-filter-option span {
+  gap: 9px !important;
+}
+
+.page-catalog .catalog-filter-option input {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.page-catalog .catalog-filter-option em {
+  min-width: 22px !important;
+  text-align: right !important;
+  color: rgba(148, 163, 184, 0.58) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.04em !important;
+}
+
+.page-catalog .catalog-filter-apply {
+  height: 36px !important;
+  margin-top: 10px !important;
+  border: 1px solid rgba(0, 229, 255, 0.30) !important;
+  border-radius: 10px !important;
+  background: rgba(0, 229, 255, 0.11) !important;
+  color: #00e5ff !important;
+  font-size: 12px !important;
+  letter-spacing: 0.10em !important;
+  box-shadow: none !important;
+}
+
+.page-catalog .catalog-filter-apply:hover,
+.page-catalog .catalog-filter-apply:focus-visible {
+  transform: translateY(-1px) !important;
+  background: rgba(0, 229, 255, 0.16) !important;
+  border-color: rgba(0, 229, 255, 0.48) !important;
+  box-shadow: 0 10px 22px rgba(0, 229, 255, 0.10) !important;
+}
+
+/* Catalog filter dropdown width + apply polish */
+.page-catalog .catalog-filter-dropdown {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.page-catalog .catalog-filter-dropdown-btn {
+  width: 100% !important;
+}
+
+.page-catalog .catalog-filter-menu {
+  left: 0 !important;
+  right: auto !important;
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: none !important;
+  padding: 18px 16px 16px !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(0, 229, 255, 0.18) !important;
+  background:
+    linear-gradient(180deg, rgba(13, 20, 34, 0.98), rgba(7, 11, 18, 0.98)) !important;
+  box-shadow:
+    0 22px 56px rgba(0, 0, 0, 0.48),
+    0 0 0 1px rgba(255, 255, 255, 0.025) inset !important;
+}
+
+.page-catalog .catalog-filter-dropdown:last-child .catalog-filter-menu {
+  left: auto !important;
+  right: 0 !important;
+}
+
+.page-catalog .catalog-filter-option {
+  min-height: 38px !important;
+  padding: 0 4px !important;
+  color: rgba(226, 232, 240, 0.78) !important;
+}
+
+.page-catalog .catalog-filter-option:hover {
+  color: #ffffff !important;
+}
+
+.page-catalog .catalog-filter-option input {
+  width: 17px !important;
+  height: 17px !important;
+  accent-color: #00e5ff !important;
+}
+
+.page-catalog .catalog-filter-option em {
+  color: rgba(148, 163, 184, 0.72) !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+}
+
+.page-catalog .catalog-filter-apply {
+  width: 100% !important;
+  height: 46px !important;
+  margin-top: 18px !important;
+  border: 1px solid rgba(0, 229, 255, 0.68) !important;
+  border-radius: 13px !important;
+  background:
+    linear-gradient(180deg, #22e7ff, #00cfe8) !important;
+  color: #031016 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 13px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  box-shadow:
+    0 14px 30px rgba(0, 229, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.36) !important;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    filter 160ms ease !important;
+}
+
+.page-catalog .catalog-filter-apply:hover {
+  transform: translateY(-1px) !important;
+  filter: brightness(1.06) !important;
+  box-shadow:
+    0 18px 38px rgba(0, 229, 255, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42) !important;
+}
+
+.page-catalog .catalog-filter-apply:active {
+  transform: translateY(0) scale(0.98) !important;
+}
