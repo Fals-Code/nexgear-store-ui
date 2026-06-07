@@ -507,14 +507,11 @@
         <section class="catalog-toolbar" aria-label="Catalog controls">
           <div class="container catalog-toolbar-inner">
             <div class="catalog-toolbar-left">
-              <span id="catalogCount" class="product-count"
-                >12 produk ditemukan</span
-              >
-              <label class="catalog-sort">
-                <span>Sort</span>
+              <label class="catalog-sort catalog-sort-group sort-group catalog-sort-compact">
+                <span class="catalog-sort-label sort-label">Sort by</span>
                 <select
                   id="sortSelect"
-                  class="sort-select"
+                  class="sort-select catalog-sort-select"
                   aria-label="Urutkan produk"
                 >
                   <option value="newest">Popular</option>
@@ -526,7 +523,7 @@
             </div>
             <div class="catalog-toolbar-right">
               <button
-                class="catalog-filter-btn"
+                class="catalog-filter-btn catalog-filter-toggle"
                 type="button"
                 aria-expanded="false"
                 aria-controls="catalog-filter-bar"
@@ -538,58 +535,162 @@
                   aria-hidden="true"
                 ></span>
               </button>
-              <div class="view-toggles" aria-label="View mode">
-                <button
-                  class="view-btn is-active"
-                  type="button"
-                  aria-label="Grid view"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <rect x="3" y="3" width="7" height="7" />
-                    <rect x="14" y="3" width="7" height="7" />
-                    <rect x="14" y="14" width="7" height="7" />
-                    <rect x="3" y="14" width="7" height="7" />
-                  </svg>
-                </button>
-                <button class="view-btn" type="button" aria-label="List view">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <line x1="7" y1="6" x2="21" y2="6" />
-                    <line x1="7" y1="12" x2="21" y2="12" />
-                    <line x1="7" y1="18" x2="21" y2="18" />
-                    <circle cx="3.5" cy="6" r="1" />
-                    <circle cx="3.5" cy="12" r="1" />
-                    <circle cx="3.5" cy="18" r="1" />
-                  </svg>
-                </button>
-              </div>
             </div>
           </div>
         </section>
 
         <section class="catalog-filter-bar" id="catalog-filter-bar" hidden>
           <div class="catalog-filter-dropdown">
-            <button class="catalog-filter-dropdown-btn" type="button">
+            <button
+              class="catalog-filter-dropdown-btn"
+              type="button"
+              aria-expanded="false"
+              aria-controls="filter-categories-menu"
+              data-filter-dropdown-trigger
+            >
               <span>Categories</span>
-              <span aria-hidden="true">v</span>
+              <span aria-hidden="true">⌄</span>
             </button>
+            <div
+              id="filter-categories-menu"
+              class="catalog-filter-menu"
+              data-filter-dropdown-menu
+              hidden
+            >
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="machines" /> Machines</span>
+                <em>02</em>
+              </label>
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="control" /> Control</span>
+                <em>04</em>
+              </label>
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="build" /> Build</span>
+                <em>03</em>
+              </label>
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="sound" /> Sound</span>
+                <em>03</em>
+              </label>
+              <button class="catalog-filter-apply" type="button">Apply</button>
+            </div>
           </div>
           <div class="catalog-filter-dropdown">
-            <button class="catalog-filter-dropdown-btn" type="button">
+            <button
+              class="catalog-filter-dropdown-btn"
+              type="button"
+              aria-expanded="false"
+              aria-controls="filter-brand-menu"
+              data-filter-dropdown-trigger
+            >
               <span>Brand</span>
-              <span aria-hidden="true">v</span>
+              <span aria-hidden="true">⌄</span>
             </button>
+            <div
+              id="filter-brand-menu"
+              class="catalog-filter-menu"
+              data-filter-dropdown-menu
+              hidden
+            >
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="logitech" /> Logitech</span>
+                <em>01</em>
+              </label>
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="razer" /> Razer</span>
+                <em>02</em>
+              </label>
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="steelseries" /> SteelSeries</span>
+                <em>01</em>
+              </label>
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="asus" /> ASUS</span>
+                <em>01</em>
+              </label>
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="corsair" /> Corsair</span>
+                <em>02</em>
+              </label>
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="msi" /> MSI</span>
+                <em>01</em>
+              </label>
+              <button class="catalog-filter-apply" type="button">Apply</button>
+            </div>
           </div>
           <div class="catalog-filter-dropdown">
-            <button class="catalog-filter-dropdown-btn" type="button">
+            <button
+              class="catalog-filter-dropdown-btn"
+              type="button"
+              aria-expanded="false"
+              aria-controls="filter-price-menu"
+              data-filter-dropdown-trigger
+            >
               <span>Price</span>
-              <span aria-hidden="true">v</span>
+              <span aria-hidden="true">⌄</span>
             </button>
+            <div
+              id="filter-price-menu"
+              class="catalog-filter-menu"
+              data-filter-dropdown-menu
+              hidden
+            >
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="0-1000000" /> Rp0 - Rp1.000.000</span>
+                <em>00</em>
+              </label>
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="1000000-3000000" /> Rp1.000.000 - Rp3.000.000</span>
+                <em>05</em>
+              </label>
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="3000000-8000000" /> Rp3.000.000 - Rp8.000.000</span>
+                <em>04</em>
+              </label>
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="8000000-plus" /> Rp8.000.000+</span>
+                <em>03</em>
+              </label>
+              <button class="catalog-filter-apply" type="button">Apply</button>
+            </div>
           </div>
           <div class="catalog-filter-dropdown">
-            <button class="catalog-filter-dropdown-btn" type="button">
+            <button
+              class="catalog-filter-dropdown-btn"
+              type="button"
+              aria-expanded="false"
+              aria-controls="filter-status-menu"
+              data-filter-dropdown-trigger
+            >
               <span>Status</span>
-              <span aria-hidden="true">v</span>
+              <span aria-hidden="true">⌄</span>
             </button>
+            <div
+              id="filter-status-menu"
+              class="catalog-filter-menu"
+              data-filter-dropdown-menu
+              hidden
+            >
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="promo" /> Promo</span>
+                <em>02</em>
+              </label>
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="new" /> New Arrival</span>
+                <em>04</em>
+              </label>
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="ready" /> Ready Stock</span>
+                <em>10</em>
+              </label>
+              <label class="catalog-filter-option">
+                <span><input type="checkbox" value="editor" /> Editor Pick</span>
+                <em>02</em>
+              </label>
+              <button class="catalog-filter-apply" type="button">Apply</button>
+            </div>
           </div>
         </section>
       </div>

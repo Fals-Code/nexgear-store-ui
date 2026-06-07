@@ -1151,11 +1151,125 @@
 
     if (!button || !bar) return;
 
+    let filterBarTimer;
+    let onFilterBarTransitionEnd;
+
     button.addEventListener("click", () => {
-      const isHidden = bar.hidden;
-      bar.hidden = !isHidden;
-      button.classList.toggle("is-active", isHidden);
-      button.setAttribute("aria-expanded", String(isHidden));
+      const willOpen = bar.hidden || !bar.classList.contains("is-open");
+
+      clearTimeout(filterBarTimer);
+      if (onFilterBarTransitionEnd) {
+        bar.removeEventListener("transitionend", onFilterBarTransitionEnd);
+        onFilterBarTransitionEnd = null;
+      }
+
+      if (willOpen) {
+        bar.hidden = false;
+        button.classList.add("is-active");
+        button.setAttribute("aria-expanded", "true");
+        requestAnimationFrame(() => {
+          bar.classList.add("is-open");
+        });
+        return;
+      }
+
+      bar.classList.remove("is-open");
+      bar.querySelectorAll("[data-filter-dropdown-menu]").forEach((menu) => {
+        menu.hidden = true;
+        menu.classList.remove("is-open");
+      });
+      bar.querySelectorAll("[data-filter-dropdown-trigger]").forEach((trigger) => {
+        trigger.setAttribute("aria-expanded", "false");
+        trigger.closest(".catalog-filter-dropdown")?.classList.remove("is-open");
+      });
+      button.classList.remove("is-active");
+      button.setAttribute("aria-expanded", "false");
+
+      onFilterBarTransitionEnd = (event) => {
+        if (event.target !== bar || event.propertyName !== "max-height") return;
+        bar.hidden = true;
+        bar.removeEventListener("transitionend", onFilterBarTransitionEnd);
+        onFilterBarTransitionEnd = null;
+      };
+
+      bar.addEventListener("transitionend", onFilterBarTransitionEnd);
+      filterBarTimer = setTimeout(() => {
+        bar.hidden = true;
+        if (onFilterBarTransitionEnd) {
+          bar.removeEventListener("transitionend", onFilterBarTransitionEnd);
+          onFilterBarTransitionEnd = null;
+        }
+      }, 280);
+    });
+  }
+
+  function initCatalogFilterDropdowns() {
+    const bar = document.querySelector("#catalog-filter-bar");
+    if (!bar) return;
+
+    const triggers = Array.from(
+      bar.querySelectorAll("[data-filter-dropdown-trigger]"),
+    );
+    const menus = Array.from(bar.querySelectorAll("[data-filter-dropdown-menu]"));
+
+    function closeMenu(trigger) {
+      const menuId = trigger.getAttribute("aria-controls");
+      const menu = menuId ? document.getElementById(menuId) : null;
+
+      trigger.setAttribute("aria-expanded", "false");
+      trigger.closest(".catalog-filter-dropdown")?.classList.remove("is-open");
+
+      if (!menu) return;
+      menu.classList.remove("is-open");
+      menu.hidden = true;
+    }
+
+    function closeAll(exceptTrigger) {
+      triggers.forEach((trigger) => {
+        if (trigger !== exceptTrigger) closeMenu(trigger);
+      });
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const menuId = trigger.getAttribute("aria-controls");
+        const menu = menuId ? document.getElementById(menuId) : null;
+        if (!menu) return;
+
+        const willOpen = menu.hidden;
+        closeAll(trigger);
+
+        trigger.setAttribute("aria-expanded", String(willOpen));
+        trigger.closest(".catalog-filter-dropdown")?.classList.toggle("is-open", willOpen);
+        menu.hidden = !willOpen;
+
+        if (willOpen) {
+          requestAnimationFrame(() => {
+            menu.classList.add("is-open");
+          });
+        } else {
+          menu.classList.remove("is-open");
+        }
+      });
+    });
+
+    menus.forEach((menu) => {
+      menu.querySelectorAll(".catalog-filter-apply").forEach((button) => {
+        button.addEventListener("click", () => {
+          const dropdown = button.closest(".catalog-filter-dropdown");
+          const trigger = dropdown?.querySelector("[data-filter-dropdown-trigger]");
+          if (trigger) closeMenu(trigger);
+        });
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (event.target.closest("#catalog-filter-bar")) return;
+      closeAll();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeAll();
     });
   }
 
@@ -1436,6 +1550,7 @@
       setActiveNav,
       initSketchRotations,
       initCatalogFilterBar,
+      initCatalogFilterDropdowns,
       initFilterDrawer,
       initMiniCartDropdownRemove,
       initCategoryPanel,
