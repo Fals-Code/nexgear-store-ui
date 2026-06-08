@@ -1,15 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tentang NEXGEAR | Premium Gaming Gear</title>
-  <link rel="stylesheet" href="styles/global.css">
-  <link rel="stylesheet" href="styles/about.css">
-</head>
-<body class="page-about" data-footer-reveal="compact">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          var mode = sessionStorage.getItem("nexgear-page-transition-mode");
+
+          if (mode === "simple") {
+            document.documentElement.classList.add("pt-preload-simple");
+          }
+
+          if (mode === "open") {
+            document.documentElement.classList.add("pt-preload-open");
+          }
+        } catch (error) {}
+      })();
+    </script>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/about.css" />
+    <link rel="stylesheet" href="styles/transition.css" />
+    <script src="scripts/page-transition.js" defer></script>
+    <title>Tentang NEXGEAR</title>
+  </head>
+  <body class="page-about" data-footer-reveal="compact">
     <!-- GLOBAL HEADER -->
-            <header id="navbar" class="nex-header">
+    <header id="navbar" class="nex-header">
       <!-- Top Bar -->
       <div class="top-bar">
         <div class="header-container top-bar-container">
@@ -488,190 +505,348 @@
       </div>
     </header>
 
-  <main class="site-main">
-    <!-- HERO -->
-    <section class="about-hero">
-      <div class="container text-center">
-        <h1 class="about-title">Merakit <span class="text-accent">Masa Depan</span> Gaming</h1>
-        <p class="about-subtitle">NEXGEAR hadir sebagai kurator periferal kelas dunia untuk Anda yang tidak mengenal kompromi dalam performa.</p>
-      </div>
-    </section>
+    <main class="site-main">
+      <!-- HERO -->
+      <section class="about-hero">
+        <div class="container text-center">
+          <h1 class="about-title">
+            Merakit <span class="text-accent">Masa Depan</span> Gaming
+          </h1>
+          <p class="about-subtitle">
+            NEXGEAR hadir sebagai kurator periferal kelas dunia untuk Anda yang
+            tidak mengenal kompromi dalam performa.
+          </p>
+        </div>
+      </section>
 
-    <!-- BRAND STORY & PHILOSOPHY -->
-    <section class="section-padding">
-      <div class="container">
-        <div class="story-grid">
-          <div class="story-image">
-            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Setup Gaming Premium">
-          </div>
-          <div class="story-content">
-            <h2>Lebih dari Sekadar Toko</h2>
-            <p>Kami memulai NEXGEAR karena frustrasi dengan lanskap e-commerce gaming yang dipenuhi barang palsu, deskripsi produk yang menyesatkan, dan layanan pelanggan yang lambat. Sebagai gamer kompetitif dan tech enthusiast, kami tahu apa yang membedakan gear sejati dari sekadar mainan plastik yang menyala-nyala.</p>
-            <p><strong>Filosofi Kami Sederhana: Curated Excellence.</strong> Kami tidak menjual segala hal. Tim ahli kami menguji secara ketat setiap mouse, keyboard, headset, dan komponen PC sebelum memasukkannya ke dalam katalog kami. Jika kami tidak ingin menggunakannya di setup kami sendiri, produk itu tidak akan masuk ke NEXGEAR.</p>
+      <!-- BRAND STORY & PHILOSOPHY -->
+      <section class="section-padding">
+        <div class="container">
+          <div class="story-grid">
+            <div class="story-image">
+              <img
+                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Setup Gaming Premium"
+              />
+            </div>
+            <div class="story-content">
+              <h2>Lebih dari Sekadar Toko</h2>
+              <p>
+                Kami memulai NEXGEAR karena frustrasi dengan lanskap e-commerce
+                gaming yang dipenuhi barang palsu, deskripsi produk yang
+                menyesatkan, dan layanan pelanggan yang lambat. Sebagai gamer
+                kompetitif dan tech enthusiast, kami tahu apa yang membedakan
+                gear sejati dari sekadar mainan plastik yang menyala-nyala.
+              </p>
+              <p>
+                <strong>Filosofi Kami Sederhana: Curated Excellence.</strong>
+                Kami tidak menjual segala hal. Tim ahli kami menguji secara
+                ketat setiap mouse, keyboard, headset, dan komponen PC sebelum
+                memasukkannya ke dalam katalog kami. Jika kami tidak ingin
+                menggunakannya di setup kami sendiri, produk itu tidak akan
+                masuk ke NEXGEAR.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- STATS -->
-    <section class="stats-section section-padding section-alt">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-item">
-            <h3>50K+</h3>
-            <p>Gamer Dilayani</p>
-          </div>
-          <div class="stat-item">
-            <h3>20+</h3>
-            <p>Mitra Brand Global</p>
-          </div>
-          <div class="stat-item">
-            <h3>100%</h3>
-            <p>Jaminan Original</p>
-          </div>
-          <div class="stat-item">
-            <h3>24/7</h3>
-            <p>Dukungan Teknisi</p>
+      <!-- STATS -->
+      <section class="stats-section section-padding section-alt">
+        <div class="container">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <h3>50K+</h3>
+              <p>Gamer Dilayani</p>
+            </div>
+            <div class="stat-item">
+              <h3>20+</h3>
+              <p>Mitra Brand Global</p>
+            </div>
+            <div class="stat-item">
+              <h3>100%</h3>
+              <p>Jaminan Original</p>
+            </div>
+            <div class="stat-item">
+              <h3>24/7</h3>
+              <p>Dukungan Teknisi</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- WHY NEXGEAR -->
-    <section class="section-padding">
-      <div class="container">
-        <div class="section-header text-center" style="margin-bottom: 50px;">
-          <h2>Mengapa NEXGEAR?</h2>
+      <!-- WHY NEXGEAR -->
+      <section class="section-padding">
+        <div class="container">
+          <div class="section-header text-center" style="margin-bottom: 50px">
+            <h2>Mengapa NEXGEAR?</h2>
+          </div>
+          <div class="why-grid">
+            <div class="why-card">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                />
+              </svg>
+              <h4>Kurasi Ketat</h4>
+              <p>
+                Setiap perangkat dipilih berdasarkan performa teknis (sensor,
+                switch, latensi), bukan sekadar popularitas merek.
+              </p>
+            </div>
+            <div class="why-card">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="1" y="3" width="15" height="13" />
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                <circle cx="5.5" cy="18.5" r="2.5" />
+                <circle cx="18.5" cy="18.5" r="2.5" />
+              </svg>
+              <h4>Logistik Cepat & Aman</h4>
+              <p>
+                Sistem inventaris real-time dengan pengemasan lapis ganda dan
+                perlindungan asuransi penuh untuk setiap pengiriman.
+              </p>
+            </div>
+            <div class="why-card">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+              </svg>
+              <h4>After-Sales Terjamin</h4>
+              <p>
+                Kami membantu klaim garansi Anda langsung ke distributor resmi.
+                Tidak ada proses berbelit, cukup kirim tiket dukungan.
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="why-grid">
-          <div class="why-card">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <h4>Kurasi Ketat</h4>
-            <p>Setiap perangkat dipilih berdasarkan performa teknis (sensor, switch, latensi), bukan sekadar popularitas merek.</p>
-          </div>
-          <div class="why-card">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            <h4>Logistik Cepat & Aman</h4>
-            <p>Sistem inventaris real-time dengan pengemasan lapis ganda dan perlindungan asuransi penuh untuk setiap pengiriman.</p>
-          </div>
-          <div class="why-card">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <h4>After-Sales Terjamin</h4>
-            <p>Kami membantu klaim garansi Anda langsung ke distributor resmi. Tidak ada proses berbelit, cukup kirim tiket dukungan.</p>
-          </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section-padding section-alt text-center">
+        <div class="container">
+          <h2 style="margin-bottom: 20px">Siap Meningkatkan Performa Anda?</h2>
+          <p
+            style="
+              color: var(--color-text-secondary);
+              margin-bottom: 30px;
+              font-size: 1.1rem;
+            "
+          >
+            Eksplorasi jajaran peripheral kelas dunia kami hari ini.
+          </p>
+          <a
+            href="catalog.html"
+            class="btn btn-primary"
+            style="padding: 15px 30px; font-size: 1.1rem"
+            >Lihat Katalog</a
+          >
         </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section-padding section-alt text-center">
-      <div class="container">
-        <h2 style="margin-bottom: 20px;">Siap Meningkatkan Performa Anda?</h2>
-        <p style="color: var(--color-text-secondary); margin-bottom: 30px; font-size: 1.1rem;">Eksplorasi jajaran peripheral kelas dunia kami hari ini.</p>
-        <a href="catalog.html" class="btn btn-primary" style="padding: 15px 30px; font-size: 1.1rem;">Lihat Katalog</a>
-      </div>
-    </section>
-
-  </main>
-            <!-- GLOBAL FOOTER -->
+      </section>
+    </main>
+    <!-- GLOBAL FOOTER -->
     <footer class="site-footer footer-reveal">
       <section class="footer-gallery" aria-label="NEXGEAR setup gallery">
         <div class="footer-gallery-marquee">
           <div class="footer-gallery-track">
             <!-- Original 8 items -->
             <a href="catalog.html" class="footer-gallery-photo is-setup">
-              <img src="https://preview.redd.it/d4v6o812rh441.jpg?width=1080&crop=smart&auto=webp&s=92cecd457eb4a6a5884ecd44123950cea38c9a45" alt="RGB gaming desk setup with multiple monitors">
+              <img
+                src="https://preview.redd.it/d4v6o812rh441.jpg?width=1080&crop=smart&auto=webp&s=92cecd457eb4a6a5884ecd44123950cea38c9a45"
+                alt="RGB gaming desk setup with multiple monitors"
+              />
               <span class="footer-gallery-fade">
                 <span>Battle Station</span>
               </span>
             </a>
             <a href="catalog.html" class="footer-gallery-photo is-keyboard">
-              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=70" alt="Mechanical keyboard with RGB lighting">
+              <img
+                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=70"
+                alt="Mechanical keyboard with RGB lighting"
+              />
               <span class="footer-gallery-fade">
                 <span>Control Gear</span>
               </span>
             </a>
             <a href="catalog.html" class="footer-gallery-photo">
-              <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=500&q=70" alt="Gaming mouse on dark desk mat">
+              <img
+                src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=500&q=70"
+                alt="Gaming mouse on dark desk mat"
+              />
               <span class="footer-gallery-fade">
                 <span>Precision</span>
               </span>
             </a>
             <a href="catalog.html" class="footer-gallery-photo is-headset">
-              <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=500&q=70" alt="Gaming headset on dark setup">
+              <img
+                src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=500&q=70"
+                alt="Gaming headset on dark setup"
+              />
               <span class="footer-gallery-fade">
                 <span>Audio Gear</span>
               </span>
             </a>
             <a href="catalog.html" class="footer-gallery-photo is-pc">
-              <img src="https://i.pinimg.com/originals/13/79/d1/1379d1415819ac35be6d99ad8e737215.jpg" alt="Gaming PC build with RGB lighting">
+              <img
+                src="https://i.pinimg.com/originals/13/79/d1/1379d1415819ac35be6d99ad8e737215.jpg"
+                alt="Gaming PC build with RGB lighting"
+              />
               <span class="footer-gallery-fade">
                 <span>Custom Build</span>
               </span>
             </a>
             <a href="catalog.html" class="footer-gallery-photo">
-              <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=70" alt="Clean gaming workspace with monitor and keyboard">
+              <img
+                src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=70"
+                alt="Clean gaming workspace with monitor and keyboard"
+              />
               <span class="footer-gallery-fade">
                 <span>Clean Setup</span>
               </span>
             </a>
             <a href="catalog.html" class="footer-gallery-photo">
-              <img src="https://www.pcgamesn.com/wp-content/sites/pcgamesn/2024/02/how-to-install-rgb-lighting.jpg" alt="PC component with RGB lighting">
+              <img
+                src="https://www.pcgamesn.com/wp-content/sites/pcgamesn/2024/02/how-to-install-rgb-lighting.jpg"
+                alt="PC component with RGB lighting"
+              />
               <span class="footer-gallery-fade">
                 <span>Performance</span>
               </span>
             </a>
             <a href="catalog.html" class="footer-gallery-photo is-laptop">
-              <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=500&q=70" alt="Gaming laptop setup with neon lighting">
+              <img
+                src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=500&q=70"
+                alt="Gaming laptop setup with neon lighting"
+              />
               <span class="footer-gallery-fade">
                 <span>Machines</span>
               </span>
             </a>
             <!-- Duplicate 8 items with aria-hidden and tabindex -1 -->
-            <a href="catalog.html" class="footer-gallery-photo is-setup" aria-hidden="true" tabindex="-1">
-              <img src="https://preview.redd.it/d4v6o812rh441.jpg?width=1080&crop=smart&auto=webp&s=92cecd457eb4a6a5884ecd44123950cea38c9a45" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo is-setup"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://preview.redd.it/d4v6o812rh441.jpg?width=1080&crop=smart&auto=webp&s=92cecd457eb4a6a5884ecd44123950cea38c9a45"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Battle Station</span>
               </span>
             </a>
-            <a href="catalog.html" class="footer-gallery-photo is-keyboard" aria-hidden="true" tabindex="-1">
-              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=70" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo is-keyboard"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=70"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Control Gear</span>
               </span>
             </a>
-            <a href="catalog.html" class="footer-gallery-photo" aria-hidden="true" tabindex="-1">
-              <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=500&q=70" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=500&q=70"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Precision</span>
               </span>
             </a>
-            <a href="catalog.html" class="footer-gallery-photo is-headset" aria-hidden="true" tabindex="-1">
-              <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=500&q=70" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo is-headset"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=500&q=70"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Audio Gear</span>
               </span>
             </a>
-            <a href="catalog.html" class="footer-gallery-photo is-pc" aria-hidden="true" tabindex="-1">
-              <img src="https://i.pinimg.com/originals/13/79/d1/1379d1415819ac35be6d99ad8e737215.jpg" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo is-pc"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://i.pinimg.com/originals/13/79/d1/1379d1415819ac35be6d99ad8e737215.jpg"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Custom Build</span>
               </span>
             </a>
-            <a href="catalog.html" class="footer-gallery-photo" aria-hidden="true" tabindex="-1">
-              <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=70" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=70"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Clean Setup</span>
               </span>
             </a>
-            <a href="catalog.html" class="footer-gallery-photo" aria-hidden="true" tabindex="-1">
-              <img src="https://www.pcgamesn.com/wp-content/sites/pcgamesn/2024/02/how-to-install-rgb-lighting.jpg" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://www.pcgamesn.com/wp-content/sites/pcgamesn/2024/02/how-to-install-rgb-lighting.jpg"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Performance</span>
               </span>
             </a>
-            <a href="catalog.html" class="footer-gallery-photo is-laptop" aria-hidden="true" tabindex="-1">
-              <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=500&q=70" alt="">
+            <a
+              href="catalog.html"
+              class="footer-gallery-photo is-laptop"
+              aria-hidden="true"
+              tabindex="-1"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=500&q=70"
+                alt=""
+              />
               <span class="footer-gallery-fade">
                 <span>Machines</span>
               </span>
@@ -682,9 +857,7 @@
 
       <div class="footer-minimal-inner">
         <div class="footer-minimal-brand">
-          <a href="index.html" class="footer-logo">
-            <span>NEX</span>GEAR
-          </a>
+          <a href="index.html" class="footer-logo"> <span>NEX</span>GEAR </a>
         </div>
 
         <nav class="footer-social" aria-label="Social links">
@@ -710,8 +883,12 @@
           <a href="#" class="footer-social-link" aria-label="Discord">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M7.5 8.5c3-1.4 6-1.4 9 0"></path>
-              <path d="M7 17c-1.3-.4-2.4-1-3.3-1.8.2-3.4 1.1-6.2 2.7-8.4 1.3-.6 2.4-.9 3.5-1.1l.5 1"></path>
-              <path d="M17 17c1.3-.4 2.4-1 3.3-1.8-.2-3.4-1.1-6.2-2.7-8.4-1.3-.6-2.4-.9-3.5-1.1l-.5 1"></path>
+              <path
+                d="M7 17c-1.3-.4-2.4-1-3.3-1.8.2-3.4 1.1-6.2 2.7-8.4 1.3-.6 2.4-.9 3.5-1.1l.5 1"
+              ></path>
+              <path
+                d="M17 17c1.3-.4 2.4-1 3.3-1.8-.2-3.4-1.1-6.2-2.7-8.4-1.3-.6-2.4-.9-3.5-1.1l-.5 1"
+              ></path>
               <circle cx="9.5" cy="13" r="1"></circle>
               <circle cx="14.5" cy="13" r="1"></circle>
               <path d="M9.5 16c1.6.7 3.4.7 5 0"></path>
@@ -729,25 +906,53 @@
 
         <div class="footer-payments" aria-label="Payment methods">
           <span class="footer-payment-card">
-            <img src="https://www.freepnglogos.com/uploads/visa-inc-png-18.png" alt="Visa" class="footer-payment-logo footer-payment-logo--visa" />
+            <img
+              src="https://www.freepnglogos.com/uploads/visa-inc-png-18.png"
+              alt="Visa"
+              class="footer-payment-logo footer-payment-logo--visa"
+            />
           </span>
           <span class="footer-payment-card">
-            <img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-png-transparent-svg-vector-bie-supply-1.png" alt="Mastercard" class="footer-payment-logo footer-payment-logo--mastercard" />
+            <img
+              src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-png-transparent-svg-vector-bie-supply-1.png"
+              alt="Mastercard"
+              class="footer-payment-logo footer-payment-logo--mastercard"
+            />
           </span>
           <span class="footer-payment-card">
-            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/jcb-card-icon.png" alt="JCB" class="footer-payment-logo footer-payment-logo--jcb" />
+            <img
+              src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/jcb-card-icon.png"
+              alt="JCB"
+              class="footer-payment-logo footer-payment-logo--jcb"
+            />
           </span>
           <span class="footer-payment-card">
-            <img src="https://static.vecteezy.com/system/resources/previews/022/100/701/large_2x/paypal-logo-transparent-free-png.png" alt="PayPal" class="footer-payment-logo footer-payment-logo--paypal" />
+            <img
+              src="https://static.vecteezy.com/system/resources/previews/022/100/701/large_2x/paypal-logo-transparent-free-png.png"
+              alt="PayPal"
+              class="footer-payment-logo footer-payment-logo--paypal"
+            />
           </span>
           <span class="footer-payment-card footer-payment-card--wide">
-            <img src="https://1.bp.blogspot.com/-n4swQEQNMCY/YJDCaTjKv9I/AAAAAAAAIZY/1tMkVzcW4WsUnqtB36LWwjgte3dxWZloACLcBGAsYHQ/s1800/QRIS_logo.png" alt="QRIS" class="footer-payment-logo footer-payment-logo--qris" />
+            <img
+              src="https://1.bp.blogspot.com/-n4swQEQNMCY/YJDCaTjKv9I/AAAAAAAAIZY/1tMkVzcW4WsUnqtB36LWwjgte3dxWZloACLcBGAsYHQ/s1800/QRIS_logo.png"
+              alt="QRIS"
+              class="footer-payment-logo footer-payment-logo--qris"
+            />
           </span>
           <span class="footer-payment-card">
-            <img src="https://iconlogovector.com/uploads/images/2024/03/lg-65ffd7052391a-E-MONEY.webp" alt="e-Money" class="footer-payment-logo footer-payment-logo--emoney" />
+            <img
+              src="https://iconlogovector.com/uploads/images/2024/03/lg-65ffd7052391a-E-MONEY.webp"
+              alt="e-Money"
+              class="footer-payment-logo footer-payment-logo--emoney"
+            />
           </span>
           <span class="footer-payment-card footer-payment-card--wide">
-            <img src="https://www.svgrepo.com/show/56921/bank-transfer-logo.svg" alt="Bank Transfer" class="footer-payment-logo footer-payment-logo--bank" />
+            <img
+              src="https://www.svgrepo.com/show/56921/bank-transfer-logo.svg"
+              alt="Bank Transfer"
+              class="footer-payment-logo footer-payment-logo--bank"
+            />
           </span>
         </div>
 
@@ -765,14 +970,29 @@
     </footer>
 
     <!-- Search Drawer Overlay -->
-  <div id="search-drawer" class="drawer">
-    <div class="drawer-content" style="background:#181824; padding:30px; text-align:center;">
-      <h3>Cari Gear</h3>
-      <input type="text" class="form-input" placeholder="Ketik nama produk..." style="margin:20px 0;">
-      <button class="btn btn-primary" onclick="document.getElementById('search-drawer').classList.remove('active')">Tutup</button>
+    <div id="search-drawer" class="drawer">
+      <div
+        class="drawer-content"
+        style="background: #181824; padding: 30px; text-align: center"
+      >
+        <h3>Cari Gear</h3>
+        <input
+          type="text"
+          class="form-input"
+          placeholder="Ketik nama produk..."
+          style="margin: 20px 0"
+        />
+        <button
+          class="btn btn-primary"
+          onclick="
+            document.getElementById('search-drawer').classList.remove('active')
+          "
+        >
+          Tutup
+        </button>
+      </div>
     </div>
-  </div>
 
-  <script src="scripts/main.js"></script>
-</body>
+    <script src="scripts/main.js"></script>
+  </body>
 </html>

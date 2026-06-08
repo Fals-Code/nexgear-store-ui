@@ -1,0 +1,685 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Rajdhani:wght@300;400;500;600&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #06111f;
+  --cyan: #38e8ff;
+  --cyan-glow: rgba(56, 232, 255, 0.32);
+  --violet: #7c3aed;
+  --rose: #ff4d6d;
+
+  --text: #f1f7ff;
+  --text-muted: rgba(179, 196, 216, 0.68);
+  --text-dim: rgba(179, 196, 216, 0.46);
+
+  --surface: rgba(5, 14, 28, 0.72);
+  --surface-strong: rgba(8, 22, 40, 0.9);
+  --border: rgba(56, 232, 255, 0.34);
+  --border-soft: rgba(148, 180, 205, 0.18);
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: "Rajdhani", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(
+      circle at 50% 34%,
+      rgba(56, 232, 255, 0.1),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 72% 28%,
+      rgba(124, 58, 237, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 25% 76%,
+      rgba(255, 77, 109, 0.06),
+      transparent 26%
+    ),
+    linear-gradient(135deg, #030914 0%, #06111f 46%, #030712 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.04) 2px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: radial-gradient(
+    circle,
+    rgba(56, 232, 255, 0.075) 1px,
+    transparent 1px
+  );
+  background-size: 38px 38px;
+}
+
+.register-page {
+  position: relative;
+  z-index: 5;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+}
+
+.back-btn {
+  position: fixed;
+  top: 28px;
+  left: 32px;
+  z-index: 90;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 15px;
+  border: 1px solid rgba(56, 232, 255, 0.22);
+  border-radius: 999px;
+
+  background: rgba(3, 9, 20, 0.52);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  color: var(--text-muted);
+  text-decoration: none;
+
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.back-btn:hover,
+.back-btn:focus-visible {
+  color: var(--cyan);
+  border-color: rgba(56, 232, 255, 0.5);
+  background: rgba(6, 17, 31, 0.74);
+  transform: translateX(-3px);
+  box-shadow:
+    0 0 20px rgba(56, 232, 255, 0.18),
+    inset 0 0 18px rgba(56, 232, 255, 0.055);
+}
+
+.back-icon {
+  font-size: 1rem;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.register-shell {
+  position: relative;
+  z-index: 10;
+  width: min(92vw, 620px);
+  min-height: 310px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.brand-name {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 900;
+  font-size: 2.05rem;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  text-shadow:
+    0 0 12px rgba(56, 232, 255, 0.55),
+    0 0 30px rgba(56, 232, 255, 0.24),
+    0 0 52px rgba(124, 58, 237, 0.18);
+}
+
+.brand-sub {
+  margin-top: 8px;
+  font-size: 0.72rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.c-checkbox {
+  display: none;
+}
+
+.c-form__progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 3px;
+  width: 0;
+  z-index: 95;
+  background: linear-gradient(90deg, var(--cyan), var(--violet), var(--rose));
+  box-shadow: 0 0 20px rgba(56, 232, 255, 0.36);
+  transition: width 0.35s ease;
+}
+
+.c-formContainer {
+  position: relative;
+  width: 190px;
+  height: 66px;
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+}
+
+.c-welcome {
+  position: absolute;
+  inset: 0;
+  min-width: 360px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+
+  text-align: center;
+}
+
+.c-welcome span {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.55rem;
+  letter-spacing: 0.12em;
+  color: var(--text);
+  text-shadow: 0 0 22px rgba(56, 232, 255, 0.25);
+}
+
+.c-welcome a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 9px 16px;
+  border: 1px solid rgba(56, 232, 255, 0.34);
+  border-radius: 999px;
+
+  color: var(--cyan);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  background: rgba(56, 232, 255, 0.045);
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.c-welcome a:hover,
+.c-welcome a:focus-visible {
+  color: #03131d;
+  background: var(--cyan);
+  box-shadow: 0 0 22px rgba(56, 232, 255, 0.28);
+}
+
+.c-form {
+  position: relative;
+  width: inherit;
+  height: inherit;
+
+  border: 1px solid rgba(56, 232, 255, 0.28);
+  border-radius: 999px;
+
+  background:
+    linear-gradient(135deg, rgba(8, 22, 40, 0.92), rgba(4, 12, 24, 0.92)),
+    rgba(5, 14, 28, 0.72);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.34),
+    inset 0 0 22px rgba(56, 232, 255, 0.035);
+
+  overflow: hidden;
+  transition:
+    width 0.35s ease,
+    opacity 0.25s ease,
+    transform 0.3s ease,
+    border-radius 0.35s ease;
+}
+
+.c-form__toggle {
+  width: inherit;
+  height: inherit;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+
+  color: var(--cyan);
+  cursor: pointer;
+
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  transition:
+    opacity 0.22s ease,
+    visibility 0.22s ease,
+    transform 0.22s ease,
+    color 0.25s ease;
+}
+
+.c-form__toggle:hover {
+  color: #8ff3ff;
+}
+
+.c-form__toggleIcon {
+  display: inline-block;
+  position: relative;
+  width: 15px;
+  height: 17px;
+}
+
+.c-form__toggleIcon::before,
+.c-form__toggleIcon::after {
+  content: "";
+  position: absolute;
+  background-color: currentColor;
+}
+
+.c-form__toggleIcon::before {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.c-form__toggleIcon::after {
+  bottom: 0;
+  width: 100%;
+  height: 7px;
+  border-radius: 7px 7px 0 0;
+}
+
+.c-form__group {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  padding: 12px 15px;
+
+  display: flex;
+  align-items: center;
+
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    visibility 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.c-form__field {
+  position: relative;
+  width: calc(100% - 44px);
+  height: 100%;
+
+  display: flex;
+  align-items: flex-end;
+
+  cursor: text;
+}
+
+.c-form__input {
+  width: 100%;
+  height: 90%;
+
+  border: 0;
+  outline: 0;
+  background: transparent;
+
+  color: var(--text);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+}
+
+.c-form__input:focus {
+  cursor: text;
+}
+
+.c-form__groupLabel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  transition:
+    top 0.22s ease,
+    transform 0.22s ease,
+    color 0.22s ease,
+    font-size 0.22s ease;
+}
+
+.c-form__input:focus ~ .c-form__groupLabel,
+.c-form__input:not(:placeholder-shown) ~ .c-form__groupLabel {
+  top: 0;
+  transform: translateY(0);
+  color: var(--cyan);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.c-form__border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 0;
+  height: 2px;
+
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  box-shadow:
+    0 0 10px rgba(56, 232, 255, 0.38),
+    0 0 18px rgba(124, 58, 237, 0.18);
+
+  transition: width 0.8s 0.18s ease-out;
+}
+
+.c-form__next {
+  position: absolute;
+  right: 15px;
+
+  width: 40px;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  color: rgba(179, 196, 216, 0.3);
+  cursor: pointer;
+  pointer-events: none;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.c-form__nextIcon {
+  position: relative;
+  right: 2px;
+  width: 20px;
+  height: 3px;
+  background-color: currentColor;
+}
+
+.c-form__nextIcon::before,
+.c-form__nextIcon::after {
+  content: "";
+  position: absolute;
+  right: -1.5px;
+  width: 15px;
+  height: 3px;
+  background-color: inherit;
+}
+
+.c-form__nextIcon::before {
+  bottom: -1.5px;
+  transform-origin: top right;
+  transform: rotate(45deg);
+}
+
+.c-form__nextIcon::after {
+  top: -1.5px;
+  transform-origin: bottom right;
+  transform: rotate(-45deg);
+}
+
+.c-form__input:not(:placeholder-shown):invalid ~ .c-form__border {
+  background: var(--rose);
+  box-shadow: 0 0 14px rgba(255, 77, 109, 0.34);
+}
+
+.c-form__input:not(:placeholder-shown):invalid ~ .c-form__groupLabel {
+  color: var(--rose);
+}
+
+.c-form__input:required:valid ~ .c-form__groupLabel {
+  color: var(--cyan);
+}
+
+.c-form__group:has(.c-form__input:required:valid) .c-form__next {
+  pointer-events: auto;
+  color: var(--cyan);
+}
+
+.c-form__group:has(.c-form__input:required:valid) .c-form__next:hover {
+  transform: translateX(3px);
+  color: #8ff3ff;
+}
+
+.login-link {
+  margin-top: 28px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}
+
+.login-link a {
+  color: var(--cyan);
+  text-decoration: none;
+  margin-left: 6px;
+}
+
+.login-link a:hover,
+.login-link a:focus-visible {
+  color: #8ff3ff;
+}
+
+/* Step 1 */
+#start:checked ~ .register-shell .c-form__toggle {
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0.72);
+}
+
+#start:checked ~ .register-shell .c-form {
+  width: 390px;
+  border-radius: 24px;
+}
+
+#start:checked ~ .register-shell .c-form__group:nth-child(1) {
+  visibility: visible;
+  opacity: 1;
+}
+
+#start:checked ~ .register-shell .c-form__group:nth-child(1) .c-form__border {
+  width: 100%;
+}
+
+/* Step 2 */
+#progress2:checked ~ .c-form__progress {
+  width: 33.333vw;
+}
+
+#progress2:checked ~ .register-shell .c-form__group:nth-child(1) {
+  visibility: hidden;
+  opacity: 0;
+}
+
+#progress2:checked
+  ~ .register-shell
+  .c-form__group:nth-child(1)
+  .c-form__border {
+  width: 0;
+}
+
+#progress2:checked ~ .register-shell .c-form__group:nth-child(2) {
+  visibility: visible;
+  opacity: 1;
+}
+
+#progress2:checked
+  ~ .register-shell
+  .c-form__group:nth-child(2)
+  .c-form__border {
+  width: 100%;
+}
+
+/* Step 3 */
+#progress3:checked ~ .c-form__progress {
+  width: 66.666vw;
+}
+
+#progress3:checked ~ .register-shell .c-form__group:nth-child(2) {
+  visibility: hidden;
+  opacity: 0;
+}
+
+#progress3:checked
+  ~ .register-shell
+  .c-form__group:nth-child(2)
+  .c-form__border {
+  width: 0;
+}
+
+#progress3:checked ~ .register-shell .c-form__group:nth-child(3) {
+  visibility: visible;
+  opacity: 1;
+}
+
+#progress3:checked
+  ~ .register-shell
+  .c-form__group:nth-child(3)
+  .c-form__border {
+  width: 100%;
+}
+
+/* Finish */
+#finish:checked ~ .c-form__progress {
+  width: 100vw;
+}
+
+#finish:checked ~ .register-shell .c-form {
+  opacity: 0;
+  transform: translateX(50%) scaleX(0);
+  pointer-events: none;
+}
+
+#finish:checked ~ .register-shell .c-form__group:nth-child(3) {
+  visibility: hidden;
+  opacity: 0;
+}
+
+#finish:checked ~ .register-shell .c-welcome {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Open form width when later steps are checked */
+#progress2:checked ~ .register-shell .c-form,
+#progress3:checked ~ .register-shell .c-form {
+  width: 390px;
+  border-radius: 24px;
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+  .register-page {
+    padding: 24px;
+  }
+
+  .back-btn {
+    top: 18px;
+    left: 18px;
+    padding: 9px 12px;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+  }
+
+  .brand-name {
+    font-size: 1.45rem;
+    letter-spacing: 0.17em;
+  }
+
+  .brand-sub {
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+  }
+
+  #start:checked ~ .register-shell .c-form,
+  #progress2:checked ~ .register-shell .c-form,
+  #progress3:checked ~ .register-shell .c-form {
+    width: min(88vw, 360px);
+  }
+
+  .c-welcome {
+    min-width: 88vw;
+  }
+
+  .c-welcome span {
+    font-size: 1.15rem;
+  }
+
+  .login-link {
+    text-align: center;
+  }
+}

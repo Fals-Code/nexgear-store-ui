@@ -9,22 +9,24 @@
 }
 
 :root {
-  --cyan: #00e5ff;
-  --cyan-dim: rgba(0, 229, 255, 0.12);
-  --cyan-glow: rgba(255, 166, 0, 0.3);
-  --bg: #070a0f;
-  /* panels: slight tonal variation, all dark */
-  --panel-1: rgba(4, 20, 32, 0.92);
-  --panel-2: rgba(2, 12, 22, 0.88);
-  --panel-3: rgba(3, 10, 20, 0.93);
-  --panel-4: rgba(1, 16, 28, 0.89);
-  --text: #dde5f0;
-  /* raised from 0.4 → 0.65 for readability */
-  --text-muted: rgba(154, 175, 196, 0.65);
-  --text-label: #9aafc4;
-  --border: rgba(0, 229, 255, 0.22);
-  --border-idle: rgba(0, 229, 255, 0.14);
-  --form-w: 400px;
+  --bg: #07182b;
+  --cyan: #67efff;
+  --cyan-bright: #b8fbff;
+  --violet: #8b5cf6;
+  --rose: #ff5f7d;
+
+  --text: #f6fbff;
+  --text-muted: rgba(205, 221, 239, 0.78);
+  --text-dim: rgba(205, 221, 239, 0.58);
+
+  --border-idle: rgba(180, 216, 238, 0.28);
+  --border-focus: rgba(103, 239, 255, 0.72);
+
+  --btn-bg-hover: linear-gradient(90deg, #67efff, #b8fbff);
+  --btn-secondary-border: rgba(103, 239, 255, 0.36);
+
+  --form-w: 320px;
+  --register-open-offset: 72vmax;
 }
 
 html,
@@ -34,55 +36,148 @@ body {
 }
 
 body {
-  background: var(--bg);
-  font-family: "Rajdhani", sans-serif;
-  color: var(--text);
   min-height: 100vh;
   overflow: hidden;
+  font-family: "Rajdhani", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(103, 239, 255, 0.14),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 68% 30%,
+      rgba(139, 92, 246, 0.11),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #041020 0%, #08213a 48%, #030914 100%);
 }
 
-/* ── Scanline overlay ── */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
+  z-index: 100;
+  pointer-events: none;
   background-image: repeating-linear-gradient(
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.05) 2px,
-    rgba(0, 0, 0, 0.05) 4px
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
   );
-  pointer-events: none;
-  z-index: 100;
 }
 
-/* ── Subtle dot-grid background texture ── */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.16;
   background-image: radial-gradient(
     circle,
-    rgba(0, 229, 255, 0.08) 1px,
+    rgba(103, 239, 255, 0.07) 1px,
     transparent 1px
   );
-  background-size: 36px 36px;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.28;
+  background-size: 38px 38px;
 }
 
-/* ── Container ── */
+.sr-only,
+.auth-checkbox,
+.reg-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.login-page,
+.container {
+  width: 100%;
+  min-height: 100vh;
+}
+
 .container {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   overflow: hidden;
-  cursor: default;
 }
 
-/* Diamond open on hover */
+/* Register solid background stage */
+.register-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: #07182b;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.48s ease;
+}
+
+#auth-register:checked ~ .register-stage {
+  opacity: 1;
+}
+
+/* Diamond panels */
+.top:before,
+.top:after,
+.bottom:before,
+.bottom:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 200vmax;
+  height: 200vmax;
+  top: 50%;
+  left: 50%;
+  margin-top: -100vmax;
+  transform-origin: 0 50%;
+  z-index: 10;
+  transition:
+    margin-left 0.62s cubic-bezier(0.19, 1, 0.22, 1),
+    transform-origin 0.62s cubic-bezier(0.19, 1, 0.22, 1);
+  transition-delay: 0.1s;
+}
+
+.top:before {
+  transform: rotate(45deg);
+  background: linear-gradient(
+    135deg,
+    rgba(9, 30, 52, 0.94),
+    rgba(5, 18, 34, 0.98)
+  );
+}
+
+.top:after {
+  transform: rotate(135deg);
+  background: linear-gradient(
+    135deg,
+    rgba(4, 13, 25, 0.98),
+    rgba(8, 28, 50, 0.95)
+  );
+}
+
+.bottom:before {
+  transform: rotate(-45deg);
+  background: linear-gradient(
+    135deg,
+    rgba(6, 22, 40, 0.98),
+    rgba(9, 40, 66, 0.92)
+  );
+}
+
+.bottom:after {
+  transform: rotate(-135deg);
+  background: linear-gradient(
+    135deg,
+    rgba(3, 10, 20, 0.98),
+    rgba(9, 26, 47, 0.94)
+  );
+}
+
 .container:hover .top:before,
 .container:hover .top:after,
 .container:hover .bottom:before,
@@ -90,183 +185,164 @@ body::after {
 .container:active .top:before,
 .container:active .top:after,
 .container:active .bottom:before,
-.container:active .bottom:after {
-  margin-left: 200px;
-  transform-origin: -200px 50%;
+.container:active .bottom:after,
+.container:focus-within .top:before,
+.container:focus-within .top:after,
+.container:focus-within .bottom:before,
+.container:focus-within .bottom:after {
+  margin-left: 230px;
+  transform-origin: -230px 50%;
   transition-delay: 0s;
 }
 
-/* Form always visible; hover keeps it visible */
-.container:hover .center,
-.container:active .center {
-  opacity: 1;
-  transition-delay: 0.18s;
-  pointer-events: all;
+/* Open diamond fully in register mode */
+#auth-register:checked ~ .top:before,
+#auth-register:checked ~ .top:after,
+#auth-register:checked ~ .bottom:before,
+#auth-register:checked ~ .bottom:after {
+  margin-left: var(--register-open-offset);
+  transform-origin: calc(var(--register-open-offset) * -1) 50%;
+  transition:
+    margin-left 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform-origin 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0s;
 }
 
-/* ── Diamond panels — shared ── */
-.top:before,
-.top:after,
-.bottom:before,
-.bottom:after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 200vmax;
-  height: 200vmax;
-  top: 50%;
-  left: 50%;
-  margin-top: -100vmax;
-  transform-origin: 0 50%;
-  transition: all 0.55s cubic-bezier(0.445, 0.05, 0, 1);
-  z-index: 10;
-  transition-delay: 0.18s;
-}
-
-/* ── Top panels ── */
-.top:before {
-  transform: rotate(45deg);
-  background: var(--panel-1);
-  border-right: 1px solid rgba(0, 229, 255, 0.12);
-}
-
-.top:after {
-  transform: rotate(135deg);
-  background: var(--panel-2);
-  border-right: 1px solid rgba(0, 229, 255, 0.1);
-}
-
-/* ── Bottom panels ── */
-.bottom:before {
-  transform: rotate(-45deg);
-  background: var(--panel-3);
-  border-right: 1px solid rgba(0, 229, 255, 0.12);
-}
-
-.bottom:after {
-  transform: rotate(-135deg);
-  background: var(--panel-4);
-  border-right: 1px solid rgba(0, 229, 255, 0.1);
-}
-
-/* ── Radial glow at center ── */
-.container::after {
-  content: "";
-  position: absolute;
-  width: 560px;
-  height: 560px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    ellipse at center,
-    rgba(0, 229, 255, 0.055) 0%,
-    transparent 68%
-  );
-  z-index: 5;
-  pointer-events: none;
-}
-
-/* ── Center form — visible by default ── */
+/* Center hidden by default */
 .center {
   position: absolute;
   width: var(--form-w);
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 12px;
-  /* start visible so form is immediately accessible */
-  opacity: 1;
-  transition: opacity 0.45s cubic-bezier(0.445, 0.05, 0, 1);
-  transition-delay: 0s;
   z-index: 50;
-  pointer-events: all;
+  transform: translate(-50%, -50%) scale(0.96);
+  opacity: 0;
+  pointer-events: none;
+  padding: 0;
+  transition:
+    opacity 0.34s ease,
+    transform 0.48s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* ── Brand block ── */
+.container:hover .center,
+.container:active .center,
+.container:focus-within .center {
+  opacity: 1;
+  pointer-events: all;
+  transform: translate(-50%, -50%) scale(1);
+  transition-delay: 0.12s;
+}
+
+#auth-register:checked ~ .center {
+  z-index: 60;
+}
+
+/* Brand */
 .brand {
   text-align: center;
-  margin-bottom: 38px;
+  margin-bottom: 25px;
+  transition:
+    opacity 0.42s ease,
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.42s ease;
 }
 
 .brand-name {
   font-family: "Orbitron", sans-serif;
   font-weight: 900;
-  font-size: 2.05rem;
-  letter-spacing: 0.2em;
+  font-size: 1.62rem;
+  line-height: 1;
+  letter-spacing: 0.18em;
   color: var(--cyan);
   text-shadow:
-    0 0 16px rgba(0, 229, 255, 0.45),
-    0 0 36px rgba(0, 229, 255, 0.15);
-  line-height: 1;
+    0 0 12px rgba(103, 239, 255, 0.65),
+    0 0 26px rgba(103, 239, 255, 0.28);
 }
 
-.brand-sub {
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 400;
-  font-size: 0.7rem;
-  letter-spacing: 0.42em;
-  /* raised visibility */
-  color: var(--text-label);
-  opacity: 0.75;
-  text-transform: uppercase;
-  margin-top: 7px;
-}
-
-/* ── Form heading ── */
-.form-heading {
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 500;
-  font-size: 0.72rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  /* raised from muted to label color */
-  color: var(--text-label);
-  opacity: 0.8;
-  margin-bottom: 26px;
-  align-self: flex-start;
-}
-
-/* ── Inputs ── */
-.field {
-  width: 100%;
-  margin-bottom: 22px;
+.auth-panels {
   position: relative;
+  width: 100%;
+  min-height: 236px;
+  transition: min-height 0.35s ease;
+}
+
+.auth-panel {
+  width: 100%;
+  transition:
+    opacity 0.28s ease,
+    transform 0.42s cubic-bezier(0.19, 1, 0.22, 1),
+    visibility 0.28s ease;
+}
+
+.login-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0) scale(1);
+}
+
+.register-panel {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(18px) scale(0.98);
+}
+
+#auth-register:checked ~ .center .login-panel {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-18px) scale(0.98);
+}
+
+#auth-register:checked ~ .center .register-panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transform: translateX(0) scale(1);
+}
+
+/* Login form */
+.login-form {
+  width: 100%;
+}
+
+.field {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.password-field {
+  margin-bottom: 5px;
 }
 
 .field input {
   width: 100%;
+  padding: 9px 0;
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--border-idle);
-  padding: 11px 0;
-  font-family: "Rajdhani", sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  /* full text color, not dimmed */
-  color: var(--text);
   outline: none;
-  transition: border-color 0.3s ease;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.92rem;
+  letter-spacing: 0.055em;
+  color: var(--text);
   caret-color: var(--cyan);
+  text-shadow: 0 0 10px rgba(103, 239, 255, 0.08);
 }
 
 .field input::placeholder {
-  /* raised from 0.4 → 0.58 */
-  color: rgba(154, 175, 196, 0.58);
-  font-weight: 300;
+  color: var(--text-dim);
+  font-size: 0.86rem;
   letter-spacing: 0.08em;
-  font-size: 0.9rem;
 }
 
 .field input:focus {
-  border-bottom-color: var(--border);
+  border-bottom-color: var(--border-focus);
 }
 
-/* animated underline on focus */
 .field::after {
   content: "";
   position: absolute;
@@ -274,121 +350,637 @@ body::after {
   left: 0;
   width: 0;
   height: 1px;
-  background: var(--cyan);
-  box-shadow: 0 0 7px var(--cyan-glow);
-  transition: width 0.38s cubic-bezier(0.445, 0.05, 0, 1);
+  background: linear-gradient(90deg, var(--cyan), var(--cyan-bright));
+  box-shadow:
+    0 0 10px rgba(103, 239, 255, 0.42),
+    0 0 18px rgba(139, 92, 246, 0.16);
+  transition: width 0.32s ease;
 }
 
 .field:focus-within::after {
   width: 100%;
 }
 
-/* ── Submit button — semi-filled base ── */
-.btn-signin {
-  width: 100%;
-  margin-top: 10px;
-  padding: 14px 0;
-  /* semi-filled: not fully transparent, not solid */
-  background: rgba(0, 229, 255, 0.07);
-  border: 1px solid rgba(0, 229, 255, 0.4);
-  color: var(--cyan);
-  font-family: "Orbitron", sans-serif;
-  font-weight: 600;
-  font-size: 0.68rem;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
+.forgot-link {
+  display: block;
+  width: max-content;
+  margin: 0 0 13px auto;
+  color: rgba(205, 221, 239, 0.7);
+  text-decoration: none;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
   transition:
-    color 0.3s ease,
-    box-shadow 0.3s ease,
-    background 0.3s ease;
+    color 0.2s ease,
+    opacity 0.2s ease,
+    text-shadow 0.2s ease;
 }
 
-.btn-signin::before {
+.forgot-link:hover,
+.forgot-link:focus-visible {
+  color: var(--cyan-bright);
+  opacity: 1;
+  text-shadow: 0 0 10px rgba(103, 239, 255, 0.28);
+}
+
+/* Buttons */
+.btn-auth {
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 0;
+  background: linear-gradient(
+    180deg,
+    rgba(103, 239, 255, 0.095),
+    rgba(103, 239, 255, 0.045)
+  );
+  border: 1px solid rgba(103, 239, 255, 0.44);
+  color: var(--cyan-bright);
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow:
+    inset 0 0 14px rgba(103, 239, 255, 0.055),
+    0 0 12px rgba(103, 239, 255, 0.055);
+  transition:
+    color 0.24s ease,
+    background 0.24s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease,
+    transform 0.24s ease;
+}
+
+.btn-auth::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--cyan);
-  transform: translateX(-101%);
-  transition: transform 0.38s cubic-bezier(0.445, 0.05, 0, 1);
   z-index: -1;
+  background: var(--btn-bg-hover);
+  transform: translateX(-101%);
+  transition: transform 0.34s ease;
 }
 
-.btn-signin:hover {
-  color: var(--bg);
-  background: transparent;
+.btn-auth:hover,
+.btn-auth:focus-visible {
+  color: #03131d;
+  border-color: rgba(184, 251, 255, 0.88);
+  transform: translateY(-1px);
   box-shadow:
-    0 0 20px var(--cyan-glow),
-    inset 0 0 10px rgba(0, 229, 255, 0.05);
+    0 0 20px rgba(103, 239, 255, 0.32),
+    0 0 30px rgba(139, 92, 246, 0.14);
 }
 
-.btn-signin:hover::before {
+.btn-auth:hover::before,
+.btn-auth:focus-visible::before {
   transform: translateX(0);
 }
 
-/* ── Footer micro copy ── */
-.form-footer {
-  margin-top: 22px;
-  text-align: center;
-  font-size: 0.73rem;
-  letter-spacing: 0.07em;
-  /* raised opacity */
-  color: rgba(154, 175, 196, 0.6);
+.btn-secondary {
+  margin-top: 8px;
+  background: linear-gradient(
+    180deg,
+    rgba(139, 92, 246, 0.105),
+    rgba(103, 239, 255, 0.045)
+  );
+  border-color: var(--btn-secondary-border);
+  color: #9ff6ff;
 }
 
-.form-footer a {
-  color: var(--cyan);
+/* Back button */
+.back-center-btn {
+  width: max-content;
+  margin: 12px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: rgba(205, 221, 239, 0.66);
   text-decoration: none;
-  opacity: 0.75;
-  transition: opacity 0.2s;
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  opacity: 0.76;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    text-shadow 0.2s ease;
 }
 
-.form-footer a:hover {
+.back-center-btn:hover,
+.back-center-btn:focus-visible {
+  color: var(--cyan);
+  opacity: 1;
+  transform: translateY(-1px);
+  text-shadow: 0 0 10px rgba(103, 239, 255, 0.24);
+}
+
+/* Register progress background */
+.register-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  width: 0;
+  height: 100vh;
+  background: linear-gradient(
+    90deg,
+    rgba(103, 239, 255, 0.22),
+    rgba(139, 92, 246, 0.18)
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    width 0.46s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.34s ease;
+}
+
+#auth-register:checked ~ .register-progress {
+  width: 0;
+  opacity: 0.12;
+}
+
+#reg-progress2:checked ~ .register-progress {
+  width: 33.333vw;
+  opacity: 0.18;
+}
+
+#reg-progress3:checked ~ .register-progress {
+  width: 66.666vw;
+  opacity: 0.2;
+}
+
+#reg-finish:checked ~ .register-progress {
+  width: 100vw;
+  opacity: 0.28;
+}
+
+/* Register form */
+.register-form {
+  position: relative;
+  width: 320px;
+  height: 58px;
+  margin: 0 auto;
+  border: 1px solid rgba(103, 239, 255, 0.44);
+  background: linear-gradient(
+    180deg,
+    rgba(103, 239, 255, 0.105),
+    rgba(103, 239, 255, 0.045)
+  );
+  box-shadow:
+    inset 0 0 16px rgba(103, 239, 255, 0.055),
+    0 0 22px rgba(103, 239, 255, 0.075);
+  transition:
+    opacity 0.28s ease,
+    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.32s ease;
+}
+
+.register-group {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    visibility 0.22s ease,
+    opacity 0.22s ease;
+}
+
+.register-field {
+  position: relative;
+  width: calc(100% - 38px);
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.register-input {
+  width: 100%;
+  height: 90%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.register-input:focus {
+  cursor: text;
+}
+
+.register-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  transition:
+    top 0.22s ease,
+    transform 0.22s ease,
+    color 0.22s ease,
+    font-size 0.22s ease,
+    letter-spacing 0.22s ease;
+}
+
+.register-input:focus ~ .register-label,
+.register-input:not(:placeholder-shown) ~ .register-label {
+  top: 0;
+  transform: translateY(0);
+  color: var(--cyan-bright);
+  font-size: 0.58rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.register-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--cyan-bright));
+  box-shadow: 0 0 10px rgba(103, 239, 255, 0.38);
+  transition: width 0.72s 0.16s ease-out;
+}
+
+.register-next {
+  position: absolute;
+  right: 14px;
+  width: 34px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: rgba(205, 221, 239, 0.35);
+  cursor: pointer;
+  pointer-events: none;
+  transition:
+    color 0.22s ease,
+    transform 0.22s ease;
+}
+
+.register-next-icon {
+  position: relative;
+  right: 2px;
+  width: 18px;
+  height: 3px;
+  background-color: currentColor;
+}
+
+.register-next-icon::before,
+.register-next-icon::after {
+  content: "";
+  position: absolute;
+  right: -1.5px;
+  width: 13px;
+  height: 3px;
+  background-color: inherit;
+}
+
+.register-next-icon::before {
+  bottom: -1.5px;
+  transform-origin: top right;
+  transform: rotate(45deg);
+}
+
+.register-next-icon::after {
+  top: -1.5px;
+  transform-origin: bottom right;
+  transform: rotate(-45deg);
+}
+
+.register-input:not(:placeholder-shown):invalid ~ .register-label {
+  color: var(--rose);
+}
+
+.register-input:not(:placeholder-shown):invalid ~ .register-border {
+  background: var(--rose);
+  box-shadow: 0 0 12px rgba(255, 95, 125, 0.32);
+}
+
+.register-group:has(.register-input:required:valid) .register-next {
+  pointer-events: auto;
+  color: var(--cyan-bright);
+}
+
+.register-group:has(.register-input:required:valid) .register-next:hover {
+  transform: translateX(3px);
+  color: #ffffff;
+}
+
+/* Register flow */
+#auth-register:checked ~ .center .register-step-1 {
+  visibility: visible;
   opacity: 1;
 }
 
-/* ── Hint — minimal, non-dominant ── */
-.hint {
-  position: absolute;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: "Rajdhani", sans-serif;
-  /* reduced size */
-  font-size: 0.6rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: rgba(154, 175, 196, 0.35);
-  z-index: 20;
-  white-space: nowrap;
-  transition: opacity 0.4s ease;
-  /* reduced pulse ceiling to 0.45 */
-  animation: pulse 3s ease-in-out infinite;
+#auth-register:checked ~ .center .register-step-1 .register-border {
+  width: 100%;
 }
 
-.container:hover .hint,
-.container:active .hint {
+#reg-progress2:checked ~ .center .register-step-1 {
+  visibility: hidden;
   opacity: 0;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 0.45;
+#reg-progress2:checked ~ .center .register-step-1 .register-border {
+  width: 0;
+}
+
+#reg-progress2:checked ~ .center .register-step-2 {
+  visibility: visible;
+  opacity: 1;
+}
+
+#reg-progress2:checked ~ .center .register-step-2 .register-border {
+  width: 100%;
+}
+
+#reg-progress3:checked ~ .center .register-step-2 {
+  visibility: hidden;
+  opacity: 0;
+}
+
+#reg-progress3:checked ~ .center .register-step-2 .register-border {
+  width: 0;
+}
+
+#reg-progress3:checked ~ .center .register-step-3 {
+  visibility: visible;
+  opacity: 1;
+}
+
+#reg-progress3:checked ~ .center .register-step-3 .register-border {
+  width: 100%;
+}
+
+/* Welcome final state */
+.register-welcome {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -44%) scale(0.92);
+  filter: blur(6px);
+  text-align: center;
+  transition:
+    opacity 0.46s ease,
+    visibility 0.46s ease,
+    transform 0.62s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.46s ease;
+}
+
+.register-welcome strong {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.34rem;
+  line-height: 1.15;
+  letter-spacing: 0.09em;
+  color: #e8fcff;
+  text-shadow:
+    0 0 18px rgba(103, 239, 255, 0.42),
+    0 0 34px rgba(103, 239, 255, 0.16);
+}
+
+.register-welcome span {
+  color: rgba(232, 244, 255, 0.86);
+  font-size: 0.88rem;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.register-back {
+  width: max-content;
+  margin: 12px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: rgba(205, 221, 239, 0.66);
+  text-decoration: none;
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  opacity: 0.76;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    text-shadow 0.2s ease;
+}
+
+.register-back:hover,
+.register-back:focus-visible {
+  color: var(--cyan);
+  opacity: 1;
+  transform: translateY(-1px);
+  text-shadow: 0 0 10px rgba(103, 239, 255, 0.24);
+}
+
+/* Saat finish: hilangkan semua, lalu munculkan welcome */
+#reg-finish:checked ~ .center .brand {
+  opacity: 0;
+  transform: translateY(-18px) scale(0.94);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+#reg-finish:checked ~ .center .register-form {
+  opacity: 0;
+  transform: translateY(12px) scale(0.96);
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+#reg-finish:checked ~ .center .register-step-3 {
+  visibility: hidden;
+  opacity: 0;
+}
+
+#reg-finish:checked ~ .center .register-back {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
+}
+
+#reg-finish:checked ~ .center .auth-panels {
+  min-height: 170px;
+}
+
+#reg-finish:checked ~ .center .register-welcome {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transform: translate(-50%, -50%) scale(1);
+  filter: blur(0);
+  transition-delay: 0.18s;
+}
+
+/* Hint */
+.login-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 34px;
+  z-index: 30;
+  transform: translateX(-50%);
+  color: rgba(205, 221, 239, 0.34);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.container:hover .login-hint,
+.container:active .login-hint,
+.container:focus-within .login-hint,
+#auth-register:checked ~ .login-hint,
+#reg-finish:checked ~ .login-hint {
+  opacity: 0;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-/* ── Responsive ── */
+/* Responsive */
 @media (max-width: 480px) {
   :root {
-    --form-w: 88vw;
+    --form-w: 82vw;
+    --register-open-offset: 86vmax;
   }
+
+  .container:hover .top:before,
+  .container:hover .top:after,
+  .container:hover .bottom:before,
+  .container:hover .bottom:after,
+  .container:active .top:before,
+  .container:active .top:after,
+  .container:active .bottom:before,
+  .container:active .bottom:after,
+  .container:focus-within .top:before,
+  .container:focus-within .top:after,
+  .container:focus-within .bottom:before,
+  .container:focus-within .bottom:after {
+    margin-left: 175px;
+    transform-origin: -175px 50%;
+  }
+
+  #auth-register:checked ~ .top:before,
+  #auth-register:checked ~ .top:after,
+  #auth-register:checked ~ .bottom:before,
+  #auth-register:checked ~ .bottom:after {
+    margin-left: var(--register-open-offset);
+    transform-origin: calc(var(--register-open-offset) * -1) 50%;
+  }
+
+  .brand {
+    margin-bottom: 21px;
+  }
+
   .brand-name {
-    font-size: 1.5rem;
+    font-size: 1.38rem;
+    letter-spacing: 0.15em;
+  }
+
+  .field {
+    margin-bottom: 13px;
+  }
+
+  .field input {
+    font-size: 0.86rem;
+    padding: 8px 0;
+  }
+
+  .field input::placeholder {
+    font-size: 0.8rem;
+  }
+
+  .forgot-link {
+    font-size: 0.6rem;
+    margin-bottom: 11px;
+  }
+
+  .btn-auth {
+    min-height: 35px;
+    font-size: 0.52rem;
+    letter-spacing: 0.19em;
+  }
+
+  .btn-secondary {
+    margin-top: 7px;
+  }
+
+  .back-center-btn,
+  .register-back {
+    margin: 10px auto 0;
+    font-size: 0.58rem;
+    padding: 0;
+  }
+
+  .register-form {
+    width: 82vw;
+  }
+
+  .register-label {
+    font-size: 0.82rem;
+  }
+
+  .register-input {
+    font-size: 0.88rem;
+  }
+
+  .register-welcome strong {
+    font-size: 1.08rem;
+    letter-spacing: 0.08em;
+  }
+
+  .register-welcome span {
+    font-size: 0.78rem;
+  }
+
+  .login-hint {
+    bottom: 24px;
+    font-size: 0.52rem;
+    letter-spacing: 0.14em;
   }
 }

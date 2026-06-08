@@ -3,45 +3,215 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NEXGEAR — Sign In</title>
+    <title>NEXGEAR — Access</title>
+
+    <script>
+      (function () {
+        try {
+          if (
+            sessionStorage.getItem("nexgear-page-transition-mode") === "open"
+          ) {
+            document.documentElement.classList.add("pt-preload-open");
+          }
+        } catch (error) {}
+      })();
+    </script>
+
     <link rel="stylesheet" href="styles/login.css" />
+    <link rel="stylesheet" href="styles/transition.css" />
   </head>
+
   <body>
-    <div class="container" id="container">
-      <div class="top"></div>
-      <div class="bottom"></div>
+    <div class="page-transition" aria-hidden="true">
+      <span class="page-transition__brand">NEXGEAR</span>
+    </div>
 
-      <div class="center">
-        <div class="brand">
-          <div class="brand-name">NEXGEAR</div>
-          <div class="brand-sub">Premium Gaming Store</div>
-        </div>
+    <main class="login-page" aria-label="NEXGEAR access page">
+      <div class="container" id="container">
+        <input class="auth-checkbox" type="checkbox" id="auth-register" />
+        <input class="reg-checkbox" type="checkbox" id="reg-progress2" />
+        <input class="reg-checkbox" type="checkbox" id="reg-progress3" />
+        <input class="reg-checkbox" type="checkbox" id="reg-finish" />
 
-        <span class="form-heading">Access Your Account</span>
+        <div class="register-stage" aria-hidden="true"></div>
+        <div class="register-progress" aria-hidden="true"></div>
 
-        <div class="field">
-          <input
-            type="email"
-            placeholder="Email address"
-            autocomplete="email"
-          />
-        </div>
+        <div class="top" aria-hidden="true"></div>
+        <div class="bottom" aria-hidden="true"></div>
 
-        <div class="field">
-          <input
-            type="password"
-            placeholder="Password"
-            autocomplete="current-password"
-          />
-        </div>
+        <section class="center" aria-labelledby="access-title">
+          <h1 id="access-title" class="sr-only">NEXGEAR access page</h1>
 
-        <button class="btn-signin" type="button">Sign In</button>
+          <div class="brand">
+            <div class="brand-name">NEXGEAR</div>
+          </div>
 
-        <p class="form-footer">
-          No account? <a href="#">Create one</a> &nbsp;·&nbsp;
-          <a href="#">Forgot password</a>
+          <div class="auth-panels">
+            <form
+              class="login-form auth-panel login-panel"
+              action="#"
+              method="post"
+              data-transition-href="index.html"
+            >
+              <div class="field">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="Email address"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+
+              <div class="field password-field">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  autocomplete="current-password"
+                  required
+                />
+              </div>
+
+              <a href="#" class="forgot-link" data-no-transition="true">
+                Forgot password?
+              </a>
+
+              <button class="btn-auth" type="submit">Sign In</button>
+
+              <label class="btn-auth btn-secondary" for="auth-register">
+                Create Account
+              </label>
+
+              <a
+                href="index.html"
+                class="back-center-btn"
+                aria-label="Back to home"
+              >
+                <span>Back</span>
+              </a>
+            </form>
+
+            <div class="auth-panel register-panel">
+              <div class="register-welcome">
+                <strong>Welcome aboard!</strong>
+                <span>Your NEXGEAR access is ready.</span>
+              </div>
+
+              <form class="register-form" action="#" method="post">
+                <div class="register-group register-step-1">
+                  <label class="register-field" for="username">
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      class="register-input"
+                      placeholder=" "
+                      pattern="[^\s]+"
+                      autocomplete="username"
+                      required
+                    />
+
+                    <span class="register-label">Create your username.</span>
+                    <b class="register-border" aria-hidden="true"></b>
+                  </label>
+
+                  <label
+                    class="register-next"
+                    for="reg-progress2"
+                    role="button"
+                    aria-label="Next step"
+                  >
+                    <span class="register-next-icon" aria-hidden="true"></span>
+                  </label>
+                </div>
+
+                <div class="register-group register-step-2">
+                  <label class="register-field" for="register-email">
+                    <input
+                      type="email"
+                      id="register-email"
+                      name="register-email"
+                      class="register-input"
+                      placeholder=" "
+                      autocomplete="email"
+                      required
+                    />
+
+                    <span class="register-label">What's your email?</span>
+                    <b class="register-border" aria-hidden="true"></b>
+                  </label>
+
+                  <label
+                    class="register-next"
+                    for="reg-progress3"
+                    role="button"
+                    aria-label="Next step"
+                  >
+                    <span class="register-next-icon" aria-hidden="true"></span>
+                  </label>
+                </div>
+
+                <div class="register-group register-step-3">
+                  <label class="register-field" for="register-password">
+                    <input
+                      type="password"
+                      id="register-password"
+                      name="register-password"
+                      class="register-input"
+                      placeholder=" "
+                      autocomplete="new-password"
+                      minlength="6"
+                      required
+                    />
+
+                    <span class="register-label">Create your password.</span>
+                    <b class="register-border" aria-hidden="true"></b>
+                  </label>
+
+                  <label
+                    class="register-next"
+                    for="reg-finish"
+                    role="button"
+                    aria-label="Finish registration"
+                  >
+                    <span class="register-next-icon" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </form>
+
+              <label class="register-back" for="auth-register">
+                Back to Sign In
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <p class="login-hint" aria-hidden="true">
+          Hover / tap to reveal access
         </p>
       </div>
-    </div>
+    </main>
+
+    <script>
+      (function () {
+        const authRegister = document.getElementById("auth-register");
+        const progress2 = document.getElementById("reg-progress2");
+        const progress3 = document.getElementById("reg-progress3");
+        const finish = document.getElementById("reg-finish");
+
+        function resetRegisterSteps() {
+          progress2.checked = false;
+          progress3.checked = false;
+          finish.checked = false;
+        }
+
+        authRegister.addEventListener("change", resetRegisterSteps);
+      })();
+    </script>
+
+    <script src="scripts/page-transition.js"></script>
   </body>
 </html>
