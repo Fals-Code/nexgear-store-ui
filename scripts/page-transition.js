@@ -1,12 +1,15 @@
 (function () {
+  if (window.__nexgearPageTransitionReady) return;
+  window.__nexgearPageTransitionReady = true;
+
   const STORAGE_KEY = "nexgear-page-transition-mode";
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   const TIMING = {
-    simpleLeave: 420,
-    simpleEnter: 520,
-    diamondLeave: 1280,
-    diamondEnter: 1700,
+    diamondLeave: 760,
+    diamondEnter: 980,
+    catalogInitialLoad: 720,
+    catalogSoftLoad: 420,
   };
 
   const DIAMOND_PANELS = [
@@ -15,6 +18,8 @@
     "page-transition__panel--c",
     "page-transition__panel--d",
   ];
+
+  let catalogLoadingTimer = 0;
 
   function getFileName(url) {
     const path = url.pathname.toLowerCase();
@@ -29,6 +34,13 @@
 
   function isIndexPage(url) {
     return getFileName(url) === "index.html";
+  }
+
+  function isCatalogPage() {
+    return (
+      document.body?.classList.contains("page-catalog") ||
+      getFileName(new URL(window.location.href)) === "catalog.html"
+    );
   }
 
   function isLoginToIndex(targetUrl) {
@@ -84,6 +96,8 @@
   }
 
   function createDiamondLayer() {
+    if (!document.body) return null;
+
     let layer = document.querySelector(".page-transition");
 
     if (!layer) {
@@ -118,27 +132,8 @@
     return layer;
   }
 
-  function createSimpleLayer() {
-    let layer = document.querySelector(".simple-page-transition");
-
-    if (!layer) {
-      layer = document.createElement("div");
-      layer.className = "simple-page-transition";
-      layer.setAttribute("aria-hidden", "true");
-
-      layer.innerHTML = `
-        <span class="simple-page-transition__line"></span>
-        <span class="simple-page-transition__text">NEXGEAR</span>
-      `;
-
-      document.body.prepend(layer);
-    }
-
-    return layer;
-  }
-
   function getMainPanel(layer) {
-    return layer.querySelector(".page-transition__panel--a");
+    return layer?.querySelector(".page-transition__panel--a") || null;
   }
 
   function waitForDiamond(layer, fallbackMs, callback) {
@@ -178,6 +173,8 @@
   }
 
   function clearTransitionClasses() {
+    if (!document.body) return;
+
     document.body.classList.remove(
       "pt-leaving",
       "pt-entering-open",
@@ -197,6 +194,11 @@
 
     const layer = createDiamondLayer();
 
+    if (!layer) {
+      goTo(targetUrl);
+      return;
+    }
+
     clearTransitionClasses();
     saveEnterMode(enterMode);
 
@@ -207,36 +209,18 @@
         waitForDiamond(layer, TIMING.diamondLeave, function () {
           window.setTimeout(function () {
             goTo(targetUrl);
-          }, 120);
+          }, 80);
         });
       });
     });
   }
 
-  function startSimpleLeave(targetUrl) {
-    if (reduceMotion.matches) {
-      goTo(targetUrl);
+  function startLoginEnter() {
+    const layer = createDiamondLayer();
+    if (!layer || !document.body) {
+      clearPreloadClasses();
       return;
     }
-
-    createSimpleLayer();
-
-    clearTransitionClasses();
-    saveEnterMode("simple");
-
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        document.body.classList.add("pt-simple-leaving");
-
-        window.setTimeout(function () {
-          goTo(targetUrl);
-        }, TIMING.simpleLeave);
-      });
-    });
-  }
-
-  function startLoginEnter() {
-    createDiamondLayer();
 
     clearTransitionClasses();
     document.body.classList.add("pt-entering-closed");
@@ -253,7 +237,11 @@
       return;
     }
 
-    createDiamondLayer();
+    const layer = createDiamondLayer();
+    if (!layer || !document.body) {
+      clearPreloadClasses();
+      return;
+    }
 
     clearTransitionClasses();
     document.body.classList.add("pt-entering-open");
@@ -270,36 +258,104 @@
     });
   }
 
-  function startSimpleEnter() {
-    if (reduceMotion.matches) {
-      clearPreloadClasses();
+  function createCatalogWireframe() {
+    const grid = document.querySelector(".catalog-product-grid, .catalog-grid");
+    if (!grid || document.querySelector(".catalog-loading-wireframe")) return;
+
+    const skeleton = document.createElement("div");
+    skeleton.className = "catalog-loading-wireframe";
+    skeleton.hidden = true;
+    skeleton.setAttribute("aria-hidden", "true");
+
+    const cards = Array.from({ length: 8 })
+      .map(
+        function () {
+          return `
+            <article class="catalog-loading-card">
+              <div class="catalog-loading-media"></div>
+              <div class="catalog-loading-line catalog-loading-line--title"></div>
+              <div class="catalog-loading-line catalog-loading-line--short"></div>
+            </article>
+          `;
+        },
+      )
+      .join("");
+
+    skeleton.innerHTML = `
+      <div class="catalog-loading-head">
+        <span>Loading catalog</span>
+        <strong>Menyiapkan gear pilihan...</strong>
+      </div>
+      <div class="catalog-loading-grid">${cards}</div>
+    `;
+
+    grid.insertAdjacentElement("beforebegin", skeleton);
+  }
+
+  function setCatalogLoading(isLoading) {
+    if (!isCatalogPage() || !document.body) return;
+
+    const skeleton = document.querySelector(".catalog-loading-wireframe");
+    const grid = document.querySelector(".catalog-product-grid, .catalog-grid");
+    if (!skeleton || !grid) return;
+
+    document.body.classList.toggle("catalog-data-loading", isLoading);
+    skeleton.hidden = !isLoading;
+    skeleton.setAttribute("aria-hidden", isLoading ? "false" : "true");
+  }
+
+  function showCatalogLoading(duration) {
+    if (!isCatalogPage()) return;
+
+    createCatalogWireframe();
+    setCatalogLoading(true);
+
+    window.clearTimeout(catalogLoadingTimer);
+    catalogLoadingTimer = window.setTimeout(function () {
+      setCatalogLoading(false);
+    }, duration);
+  }
+
+  function initCatalogLoadingWireframe() {
+    if (!isCatalogPage()) return;
+
+    createCatalogWireframe();
+    showCatalogLoading(TIMING.catalogInitialLoad);
+
+    document.addEventListener("change", function (event) {
+      const target = event.target;
+      if (!target) return;
+
+      if (
+        target.matches("#sortSelect") ||
+        target.matches(".catalog-filter-option input")
+      ) {
+        showCatalogLoading(TIMING.catalogSoftLoad);
+      }
+    });
+
+    document.addEventListener("click", function (event) {
+      const button = event.target.closest(
+        ".catalog-filter-apply, .catalog-filter-btn, [data-filter-dropdown-trigger]",
+      );
+
+      if (button) {
+        showCatalogLoading(TIMING.catalogSoftLoad);
+      }
+    });
+  }
+
+  function onReady(callback) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", callback, { once: true });
       return;
     }
 
-    createSimpleLayer();
-
-    clearTransitionClasses();
-    document.body.classList.add("pt-simple-entering");
-    clearPreloadClasses();
-
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        document.body.classList.add("pt-simple-opening");
-
-        window.setTimeout(function () {
-          document.body.classList.remove(
-            "pt-simple-entering",
-            "pt-simple-opening",
-          );
-        }, TIMING.simpleEnter);
-      });
-    });
+    callback();
   }
 
   window.addEventListener("pageshow", function () {
     createDiamondLayer();
-    createSimpleLayer();
-
     clearTransitionClasses();
 
     const mode = takeEnterMode();
@@ -314,11 +370,6 @@
       return;
     }
 
-    if (mode === "simple") {
-      startSimpleEnter();
-      return;
-    }
-
     clearPreloadClasses();
   });
 
@@ -327,21 +378,18 @@
 
     if (shouldSkipLink(link, event)) return;
 
-    event.preventDefault();
-
     const targetUrl = new URL(link.href, window.location.href);
 
     if (isLoginPage(targetUrl)) {
+      event.preventDefault();
       startDiamondLeave(targetUrl, "login");
       return;
     }
 
     if (isLoginToIndex(targetUrl)) {
+      event.preventDefault();
       startDiamondLeave(targetUrl, "open");
-      return;
     }
-
-    startSimpleLeave(targetUrl);
   });
 
   document.addEventListener("submit", function (event) {
@@ -350,20 +398,19 @@
 
     if (!target) return;
 
-    event.preventDefault();
-
     const targetUrl = new URL(target, window.location.href);
 
     if (isLoginPage(targetUrl)) {
+      event.preventDefault();
       startDiamondLeave(targetUrl, "login");
       return;
     }
 
     if (isLoginToIndex(targetUrl)) {
+      event.preventDefault();
       startDiamondLeave(targetUrl, "open");
-      return;
     }
-
-    startSimpleLeave(targetUrl);
   });
+
+  onReady(initCatalogLoadingWireframe);
 })();
