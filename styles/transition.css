@@ -17,6 +17,10 @@
   background: transparent;
 }
 
+.page-transition.page-transition--locked {
+  visibility: visible;
+}
+
 /* Default: diamond benar-benar terbuka / keluar jauh dari layar */
 .page-transition__panel {
   position: absolute;
