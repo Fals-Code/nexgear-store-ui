@@ -6,10 +6,10 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   const TIMING = {
-    diamondLeave: 760,
-    diamondEnter: 980,
-    catalogInitialLoad: 720,
-    catalogSoftLoad: 420,
+    diamondLeave: 1520,
+    diamondEnter: 1960,
+    catalogInitialLoad: 1440,
+    catalogSoftLoad: 840,
   };
 
   const DIAMOND_PANELS = [
