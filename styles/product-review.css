@@ -125,19 +125,22 @@
 
 /* Reference-style buy panel: simple form layout, shorter, easier to scan. */
 .page-product-detail .product-buy-panel {
+  position: relative !important;
+  top: auto !important;
   overflow: hidden;
   padding: clamp(18px, 2.2vw, 26px) !important;
-  border-color: rgba(148, 163, 184, 0.16) !important;
-  background: rgba(7, 11, 18, 0.78) !important;
-  backdrop-filter: blur(16px);
-  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.3) !important;
-  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  border: 0 !important;
+  border-color: transparent !important;
+  background: transparent !important;
+  backdrop-filter: none;
+  box-shadow: none !important;
+  transition: none;
 }
 
 .page-product-detail .product-buy-panel:hover {
-  border-color: rgba(0, 229, 255, 0.24) !important;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.36) !important;
-  transform: translateY(-2px);
+  border-color: transparent !important;
+  box-shadow: none !important;
+  transform: none;
 }
 
 .page-product-detail .product-detail-shell > .product-breadcrumb {
