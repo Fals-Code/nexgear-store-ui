@@ -15,9 +15,10 @@
   const DIAMOND_PANELS = [
     "page-transition__panel--a",
     "page-transition__panel--b",
+    "page-transition__panel--b",
     "page-transition__panel--c",
     "page-transition__panel--d",
-  ];
+  ].filter((value, index, array) => array.indexOf(value) === index);
 
   let catalogLoadingTimer = 0;
 
@@ -255,13 +256,10 @@
 
     lockTransitionLayer(layer);
 
-    // Jaga overlay tetap tertutup sampai frame opening benar-benar dimulai.
-    // Tanpa ini, browser kadang repaint 1 frame dalam keadaan layer sudah tidak visible.
     document.documentElement.classList.add("pt-preload-open");
     clearTransitionClasses();
     document.body.classList.add("pt-entering-open");
 
-    // Force layout supaya state tertutup terekam sebelum kelas opening dipasang.
     void layer.offsetHeight;
 
     requestAnimationFrame(function () {
@@ -364,6 +362,125 @@
     });
   }
 
+  function initProductDetailControls() {
+    if (!document.body?.classList.contains("page-product-detail")) return;
+
+    const styleId = "nexgear-product-detail-controls-css";
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement("style");
+      style.id = styleId;
+      style.textContent = `
+        .page-product-detail .product-main-media::before,
+        .page-product-detail .product-gallery-panel::before,
+        .page-product-detail .product-gallery-panel::after { content: none !important; display: none !important; }
+        .page-product-detail .product-main-media { position: relative; }
+        .page-product-detail .gallery-nav {
+          position: absolute; top: 50%; z-index: 12; width: 46px; height: 46px; display: grid; place-items: center;
+          border: 0; border-radius: 999px; background: rgba(5, 7, 11, 0.58); color: #f8fafc; cursor: pointer;
+          font-size: 2rem; line-height: 1; transform: translateY(-50%); backdrop-filter: blur(10px); transition: background 180ms ease, transform 180ms ease, opacity 180ms ease;
+        }
+        .page-product-detail .gallery-nav:hover { background: rgba(0, 229, 255, 0.72); color: #06101d; transform: translateY(-50%) scale(1.04); }
+        .page-product-detail .gallery-nav--prev { left: 18px; }
+        .page-product-detail .gallery-nav--next { right: 18px; }
+        .page-product-detail .product-thumb-row { grid-template-columns: none !important; display: flex !important; gap: 12px !important; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; }
+        .page-product-detail .product-thumb-row::-webkit-scrollbar { display: none; }
+        .page-product-detail .product-thumb { flex: 0 0 calc((100% - 36px) / 4); min-width: 116px; scroll-snap-align: center; }
+        .page-product-detail .thumb-nav {
+          position: sticky; z-index: 12; flex: 0 0 48px; width: 48px; min-height: 104px; display: grid; place-items: center;
+          border: 0; background: rgba(0, 102, 255, 0.86); color: #ffffff; cursor: pointer; font-size: 1.8rem; line-height: 1;
+        }
+        .page-product-detail .thumb-nav:hover { background: rgba(0, 229, 255, 0.92); color: #06101d; }
+        .page-product-detail .thumb-nav--prev { left: 0; order: -1; }
+        .page-product-detail .thumb-nav--next { right: 0; order: 999; }
+        .page-product-detail .switch-select {
+          width: min(100%, 230px); min-height: 42px; padding: 0 42px 0 14px; border: 1px solid rgba(148, 163, 184, 0.22); border-radius: 8px;
+          background: rgba(255, 255, 255, 0.035); color: rgba(248, 250, 252, 0.92); font: inherit; font-size: 0.84rem; font-weight: 800;
+          appearance: auto; cursor: pointer;
+        }
+        .page-product-detail .switch-select:focus { outline: none; border-color: rgba(0, 229, 255, 0.52); box-shadow: 0 0 0 4px rgba(0, 229, 255, 0.08); }
+        .page-product-detail .switch-select option { color: #06101d; background: #f8fafc; }
+      `;
+      document.head.appendChild(style);
+    }
+
+    const mainMedia = document.querySelector(".product-main-media");
+    const mainImage = document.getElementById("mainImage");
+    const thumbRow = document.querySelector(".product-thumb-row");
+    const thumbs = Array.from(document.querySelectorAll(".product-thumb"));
+
+    if (mainMedia && mainImage && thumbs.length && !mainMedia.querySelector(".gallery-nav")) {
+      let activeIndex = Math.max(0, thumbs.findIndex((thumb) => thumb.classList.contains("is-active")));
+
+      function setImage(index) {
+        activeIndex = (index + thumbs.length) % thumbs.length;
+        const thumb = thumbs[activeIndex];
+        if (!thumb) return;
+
+        thumbs.forEach((item) => item.classList.remove("is-active"));
+        thumb.classList.add("is-active");
+        if (thumb.dataset.image) mainImage.src = thumb.dataset.image;
+        thumb.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
+
+      const prev = document.createElement("button");
+      prev.className = "gallery-nav gallery-nav--prev";
+      prev.type = "button";
+      prev.setAttribute("aria-label", "Gambar sebelumnya");
+      prev.textContent = "‹";
+
+      const next = document.createElement("button");
+      next.className = "gallery-nav gallery-nav--next";
+      next.type = "button";
+      next.setAttribute("aria-label", "Gambar berikutnya");
+      next.textContent = "›";
+
+      prev.addEventListener("click", () => setImage(activeIndex - 1));
+      next.addEventListener("click", () => setImage(activeIndex + 1));
+      mainMedia.append(prev, next);
+
+      thumbs.forEach((thumb, index) => {
+        thumb.addEventListener("click", () => setImage(index));
+      });
+    }
+
+    if (thumbRow && !thumbRow.querySelector(".thumb-nav")) {
+      const prevThumb = document.createElement("button");
+      prevThumb.className = "thumb-nav thumb-nav--prev";
+      prevThumb.type = "button";
+      prevThumb.setAttribute("aria-label", "Geser thumbnail ke kiri");
+      prevThumb.textContent = "‹";
+
+      const nextThumb = document.createElement("button");
+      nextThumb.className = "thumb-nav thumb-nav--next";
+      nextThumb.type = "button";
+      nextThumb.setAttribute("aria-label", "Geser thumbnail ke kanan");
+      nextThumb.textContent = "›";
+
+      prevThumb.addEventListener("click", () => thumbRow.scrollBy({ left: -thumbRow.clientWidth * 0.75, behavior: "smooth" }));
+      nextThumb.addEventListener("click", () => thumbRow.scrollBy({ left: thumbRow.clientWidth * 0.75, behavior: "smooth" }));
+      thumbRow.prepend(prevThumb);
+      thumbRow.append(nextThumb);
+    }
+
+    const switchGroup = document.querySelector(".product-options .option-group:nth-child(2) .option-btns");
+    if (switchGroup && !switchGroup.querySelector(".switch-select")) {
+      const buttons = Array.from(switchGroup.querySelectorAll(".opt-btn"));
+      const select = document.createElement("select");
+      select.className = "switch-select";
+      select.setAttribute("aria-label", "Pilih switch type");
+
+      buttons.forEach((button) => {
+        const option = document.createElement("option");
+        option.value = button.textContent.trim();
+        option.textContent = button.textContent.trim();
+        option.selected = button.classList.contains("active");
+        select.appendChild(option);
+      });
+
+      switchGroup.replaceChildren(select);
+    }
+  }
+
   function onReady(callback) {
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", callback, { once: true });
@@ -433,4 +550,5 @@
   });
 
   onReady(initCatalogLoadingWireframe);
+  onReady(initProductDetailControls);
 })();
