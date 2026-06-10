@@ -407,6 +407,7 @@
         .page-product-detail .product-title-lg {
           max-width: 520px !important;
           margin-bottom: 12px !important;
+          color: #ffffff !important;
           font-size: clamp(2.15rem, 3vw, 3.15rem) !important;
           line-height: 0.98 !important;
         }
@@ -419,10 +420,18 @@
         .page-product-detail .product-desc {
           max-width: 56ch !important;
           margin-bottom: 26px !important;
-          color: rgba(226, 232, 240, 0.74) !important;
+          color: #ffffff !important;
           font-size: 0.94rem !important;
           line-height: 1.62 !important;
           -webkit-line-clamp: 2 !important;
+        }
+        .page-product-detail .rating strong,
+        .page-product-detail .product-sku,
+        .page-product-detail .description-copy p,
+        .page-product-detail .product-spec-card--inside h2,
+        .page-product-detail .specs-table th,
+        .page-product-detail .specs-table td {
+          color: #ffffff !important;
         }
         .page-product-detail .product-options {
           gap: 16px !important;
@@ -431,9 +440,10 @@
         .page-product-detail .option-group {
           grid-template-columns: minmax(116px, 0.32fr) minmax(0, 1fr) !important;
           gap: 22px !important;
+          border: none !important;
         }
         .page-product-detail .option-group label {
-          color: rgba(248, 250, 252, 0.86) !important;
+          color: #ffffff !important;
           font-size: 0.76rem !important;
           letter-spacing: 0.1em !important;
         }
@@ -449,7 +459,7 @@
           border: 1px solid rgba(148, 163, 184, 0.24);
           border-radius: 10px;
           background: rgba(255, 255, 255, 0.035);
-          color: rgba(248, 250, 252, 0.92);
+          color: #ffffff;
           font: inherit;
           font-size: 0.84rem;
           font-weight: 800;
@@ -459,17 +469,29 @@
         .page-product-detail .switch-select:focus { outline: none; border-color: rgba(0, 229, 255, 0.52); box-shadow: 0 0 0 4px rgba(0, 229, 255, 0.08); }
         .page-product-detail .switch-select option { color: #06101d; background: #f8fafc; }
         .page-product-detail .price-action-card {
-          grid-template-columns: minmax(180px, 0.58fr) minmax(0, 1fr) !important;
+          grid-template-columns: minmax(0, auto) minmax(280px, 1fr) !important;
           gap: 18px !important;
           margin-top: 22px !important;
           padding: 22px 0 18px !important;
+          border: none !important;
+          border-top: none !important;
+          border-bottom: none !important;
+        }
+        .page-product-detail .price-stack {
+          display: flex !important;
+          align-items: baseline !important;
+          flex-wrap: wrap !important;
+          gap: 8px 12px !important;
         }
         .page-product-detail .price-stack strong {
-          font-size: clamp(1.9rem, 2.5vw, 2.35rem) !important;
+          color: #ffffff !important;
+          font-size: clamp(2.05rem, 3vw, 2.65rem) !important;
+          letter-spacing: -0.06em !important;
         }
         .page-product-detail .price-stack em {
-          margin-top: 2px;
-          font-size: 0.86rem !important;
+          margin: 0 !important;
+          color: rgba(255, 255, 255, 0.48) !important;
+          font-size: 0.92rem !important;
         }
         .page-product-detail .product-action-row {
           gap: 12px !important;
@@ -483,16 +505,28 @@
         .page-product-detail .btn-add-cart {
           min-height: 50px !important;
           min-width: 178px;
+          border: none !important;
           border-radius: 10px !important;
+          color: #000000 !important;
+          font-weight: 950 !important;
           letter-spacing: 0.07em !important;
+        }
+        .page-product-detail .btn-add-cart * {
+          color: #000000 !important;
         }
         .page-product-detail .product-secondary-actions {
           margin-top: 16px !important;
           gap: 22px !important;
+          border: none !important;
         }
         .page-product-detail .product-secondary-actions button {
-          color: rgba(226, 232, 240, 0.7) !important;
+          color: #ffffff !important;
           font-size: 0.8rem !important;
+        }
+        .page-product-detail .product-buy-panel,
+        .page-product-detail .product-buy-panel:hover {
+          border: none !important;
+          box-shadow: none !important;
         }
         .page-product-detail .gallery-nav {
           position: absolute;
