@@ -68,6 +68,282 @@
   flex-basis: clamp(150px, 11vw, 185px);
 }
 
+/* Product detail UX polish: tactile, clearer, and still restrained. */
+.page-product-detail .product-main-media {
+  cursor: zoom-in;
+}
+
+.page-product-detail .product-main-media::before {
+  content: "Klik thumbnail untuk ganti view";
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 999px;
+  background: rgba(5, 7, 11, 0.62);
+  color: rgba(226, 232, 240, 0.72);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px);
+  backdrop-filter: blur(12px);
+  transition: opacity 220ms ease, transform 220ms ease, border-color 220ms ease;
+}
+
+.page-product-detail .product-main-media:hover::before {
+  opacity: 1;
+  transform: translateY(0);
+  border-color: rgba(0, 229, 255, 0.36);
+}
+
+.page-product-detail .product-thumb {
+  position: relative;
+  isolation: isolate;
+}
+
+.page-product-detail .product-thumb::after {
+  content: "";
+  position: absolute;
+  inset: auto 14px 10px;
+  z-index: 2;
+  height: 2px;
+  border-radius: 999px;
+  background: #00e5ff;
+  opacity: 0;
+  transform: scaleX(0.35);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.page-product-detail .product-thumb:hover::after,
+.page-product-detail .product-thumb.is-active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.page-product-detail .product-buy-panel {
+  overflow: hidden;
+  backdrop-filter: blur(18px);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.page-product-detail .product-buy-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(0, 229, 255, 0.12), transparent 34%),
+    radial-gradient(circle at 84% 8%, rgba(162, 89, 255, 0.1), transparent 34%);
+  opacity: 0.78;
+}
+
+.page-product-detail .product-buy-panel:hover {
+  border-color: rgba(0, 229, 255, 0.24);
+  box-shadow: 0 30px 82px rgba(0, 0, 0, 0.36), 0 0 0 1px rgba(0, 229, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+.page-product-detail .product-buy-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.page-product-detail .product-quick-specs div,
+.page-product-detail .product-service-list div,
+.page-product-detail .price-action-card,
+.page-product-detail .option-group {
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.page-product-detail .product-quick-specs div:hover,
+.page-product-detail .product-service-list div:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 229, 255, 0.26);
+  background: rgba(0, 229, 255, 0.055);
+}
+
+.page-product-detail .option-group {
+  padding: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.page-product-detail .option-group:hover {
+  border-color: rgba(0, 229, 255, 0.18);
+  background: rgba(0, 229, 255, 0.035);
+}
+
+.page-product-detail .option-group label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.page-product-detail .option-group label::after {
+  content: "Tap untuk pilih";
+  color: rgba(148, 163, 184, 0.72);
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.page-product-detail .color-dot {
+  position: relative;
+}
+
+.page-product-detail .color-dot.is-active::after {
+  content: "✓";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  display: grid;
+  width: 16px;
+  height: 16px;
+  place-items: center;
+  border-radius: 999px;
+  background: #00e5ff;
+  color: #06101d;
+  font-size: 0.68rem;
+  font-weight: 950;
+  transform: translate(-50%, -50%);
+}
+
+.page-product-detail .opt-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-product-detail .opt-btn.active {
+  padding-right: 48px;
+  box-shadow: inset 0 0 0 1px rgba(0, 229, 255, 0.08), 0 12px 28px rgba(0, 229, 255, 0.08);
+}
+
+.page-product-detail .opt-btn.active::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(0, 229, 255, 0.18);
+  color: #00e5ff;
+  font-size: 0.72rem;
+  transform: translateY(-50%);
+}
+
+.page-product-detail .quantity-selector:focus-within,
+.page-product-detail .quantity-selector:hover {
+  border-color: rgba(0, 229, 255, 0.34);
+  box-shadow: 0 0 0 4px rgba(0, 229, 255, 0.06);
+}
+
+.page-product-detail .btn-add-cart {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.page-product-detail .btn-add-cart::after {
+  content: "";
+  position: absolute;
+  inset: -40% auto -40% -40%;
+  z-index: -1;
+  width: 42%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.34), transparent);
+  transform: skewX(-18deg) translateX(-120%);
+  opacity: 0;
+}
+
+.page-product-detail .btn-add-cart:hover::after,
+.page-product-detail .btn-add-cart:focus-visible::after {
+  animation: productCtaSweep 780ms ease both;
+}
+
+@keyframes productCtaSweep {
+  0% {
+    opacity: 0;
+    transform: skewX(-18deg) translateX(-120%);
+  }
+  24% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: skewX(-18deg) translateX(360%);
+  }
+}
+
+.page-product-detail .product-secondary-actions button {
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.035);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.page-product-detail .product-secondary-actions button:hover {
+  border-color: rgba(0, 229, 255, 0.34);
+  background: rgba(0, 229, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.page-product-detail .product-tab-card {
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 24px;
+  background: rgba(7, 11, 18, 0.52);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035), 0 20px 60px rgba(0, 0, 0, 0.18);
+}
+
+.page-product-detail .description-spec-layout {
+  align-items: stretch;
+}
+
+.page-product-detail .product-spec-card--inside,
+.page-product-detail .review-score-card,
+.page-product-detail .review-card {
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.page-product-detail .product-spec-card--inside:hover,
+.page-product-detail .review-score-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 229, 255, 0.24);
+}
+
+.page-product-detail .specs-table tr {
+  transition: background 160ms ease;
+}
+
+.page-product-detail .specs-table tr:hover {
+  background: rgba(0, 229, 255, 0.06);
+}
+
+.page-product-detail .review-card:hover {
+  transform: translateY(-2px);
+}
+
+.page-product-detail .product-related-card {
+  transition: transform 200ms ease, filter 200ms ease;
+}
+
+.page-product-detail .product-related-card:hover {
+  transform: translateY(-4px);
+  filter: saturate(1.05);
+}
+
 .product-info-grid--single {
   grid-template-columns: minmax(0, 1fr) !important;
 }
