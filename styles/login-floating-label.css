@@ -1,0 +1,67 @@
+/* login-floating-label.css - Floating label polish for sign-in form */
+
+.login-panel .field {
+  margin-bottom: 24px;
+  padding-top: 18px;
+}
+
+.login-panel .password-field {
+  margin-bottom: 8px;
+}
+
+.login-panel .field::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  color: rgba(184, 251, 255, 0.78);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0.78;
+  transform: translateY(9px);
+  transition:
+    opacity 180ms ease,
+    color 180ms ease,
+    transform 220ms cubic-bezier(0.19, 1, 0.22, 1),
+    text-shadow 180ms ease;
+}
+
+.login-panel .field:has(#email)::before {
+  content: "Email address";
+}
+
+.login-panel .field:has(#password)::before {
+  content: "Password";
+}
+
+.login-panel .field:focus-within::before,
+.login-panel .field:has(input:not(:placeholder-shown))::before {
+  color: var(--cyan-bright);
+  opacity: 1;
+  transform: translateY(0);
+  text-shadow: 0 0 12px rgba(103, 239, 255, 0.28);
+}
+
+.login-panel .field input {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: none;
+  border-bottom: 1px solid var(--border-idle);
+}
+
+.login-panel .field input::placeholder {
+  color: transparent;
+}
+
+.login-panel .field input:focus::placeholder {
+  color: transparent;
+}
+
+.login-panel .field::after {
+  bottom: 0;
+}
