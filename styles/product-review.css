@@ -30,6 +30,15 @@
   z-index: 4;
 }
 
+/* Hide the extra benefit strip so the footer is immediately visible. */
+.page-product-detail .product-trust-strip {
+  display: none !important;
+}
+
+.product-footer {
+  margin-top: 0 !important;
+}
+
 .product-info-grid--single {
   grid-template-columns: minmax(0, 1fr) !important;
 }
