@@ -117,11 +117,7 @@
           <section class="product-gallery-panel" aria-label="Product gallery">
             <div class="product-main-media">
               <span class="product-media-badge">New Arrival</span>
-              <img
-                id="mainImage"
-                src="https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=1200"
-                alt="Vortex VX Pro Mechanical keyboard main view"
-              />
+              <img id="mainImage" src="https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=1200" alt="Vortex VX Pro Mechanical keyboard main view" />
             </div>
             <div class="product-thumb-row" aria-label="Product thumbnails">
               <button class="product-thumb is-active" type="button" data-image="https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=1200" aria-label="Keyboard front view">
@@ -220,22 +216,40 @@
       </section>
 
       <section class="product-info-section" aria-label="Product details">
-        <div class="container product-info-grid">
+        <div class="container product-info-grid product-info-grid--single">
           <article class="product-tab-card">
             <div class="tab-headers" role="tablist" aria-label="Product information tabs">
               <button class="tab-btn active" type="button" data-tab="description">Description</button>
               <button class="tab-btn" type="button" data-tab="reviews" id="reviews-tab">Reviews</button>
-              <button class="tab-btn" type="button" data-tab="shipping">Shipping</button>
+              <span class="tab-active-pill" aria-hidden="true"></span>
             </div>
 
             <div class="tab-content active" data-tab-panel="description">
-              <h2>Detail Produk</h2>
-              <p>
-                Vortex VX Pro Mechanical memakai plate yang solid, foam internal, dan keycaps PBT untuk rasa ketik yang lebih padat. Layout TKL memberi ruang mouse lebih luas tanpa mengorbankan tombol penting untuk gaming dan produktivitas.
-              </p>
-              <p>
-                Mode koneksi dibuat fleksibel: Type-C untuk latency paling stabil, 2.4GHz untuk setup bersih, dan Bluetooth untuk berpindah device dengan cepat.
-              </p>
+              <div class="description-spec-layout">
+                <div class="description-copy">
+                  <h2>Detail Produk</h2>
+                  <p>
+                    Vortex VX Pro Mechanical memakai plate yang solid, foam internal, dan keycaps PBT untuk rasa ketik yang lebih padat. Layout TKL memberi ruang mouse lebih luas tanpa mengorbankan tombol penting untuk gaming dan produktivitas.
+                  </p>
+                  <p>
+                    Mode koneksi dibuat fleksibel: Type-C untuk latency paling stabil, 2.4GHz untuk setup bersih, dan Bluetooth untuk berpindah device dengan cepat.
+                  </p>
+                </div>
+
+                <aside class="product-spec-card product-spec-card--inside" aria-label="Specifications">
+                  <h2>Specifications</h2>
+                  <table class="specs-table">
+                    <tbody>
+                      <tr><th>Layout</th><td>TKL 87 Keys</td></tr>
+                      <tr><th>Switch</th><td>Hot-swappable 3/5 pin</td></tr>
+                      <tr><th>Keycaps</th><td>PBT Double-shot</td></tr>
+                      <tr><th>Connection</th><td>Type-C, 2.4GHz, Bluetooth</td></tr>
+                      <tr><th>Battery</th><td>4000mAh</td></tr>
+                      <tr><th>Weight</th><td>860g</td></tr>
+                    </tbody>
+                  </table>
+                </aside>
+              </div>
             </div>
 
             <div class="tab-content product-review-tab" id="reviews" data-tab-panel="reviews">
@@ -243,7 +257,7 @@
                 <div>
                   <span class="review-eyebrow">Customer Reviews</span>
                   <h2>Apa kata pembeli?</h2>
-                  <p>Rating, tanggal publish, dan isi review disatukan langsung di tab Reviews agar area ini tetap satu komponen dengan Description dan Shipping.</p>
+                  <p>Review dibuat penuh dari kiri ke kanan agar mudah dipindai, tanpa panel spesifikasi yang mengganggu fokus baca.</p>
                 </div>
                 <div class="review-score-card" aria-label="Average rating 4.8 out of 5">
                   <strong>4.8</strong>
@@ -298,26 +312,7 @@
                 <a class="btn btn-primary review-write-btn" href="leave-review.html">Leave a review</a>
               </div>
             </div>
-
-            <div class="tab-content" data-tab-panel="shipping">
-              <h2>Shipping</h2>
-              <p>Estimasi pengiriman 1–3 hari kerja untuk kota besar. Pesanan diproses di hari yang sama jika checkout sebelum pukul 15.00.</p>
-            </div>
           </article>
-
-          <aside class="product-spec-card" aria-label="Specifications">
-            <h2>Specifications</h2>
-            <table class="specs-table">
-              <tbody>
-                <tr><th>Layout</th><td>TKL 87 Keys</td></tr>
-                <tr><th>Switch</th><td>Hot-swappable 3/5 pin</td></tr>
-                <tr><th>Keycaps</th><td>PBT Double-shot</td></tr>
-                <tr><th>Connection</th><td>Type-C, 2.4GHz, Bluetooth</td></tr>
-                <tr><th>Battery</th><td>4000mAh</td></tr>
-                <tr><th>Weight</th><td>860g</td></tr>
-              </tbody>
-            </table>
-          </aside>
         </div>
       </section>
 
@@ -409,6 +404,22 @@
         <div class="footer-minimal-brand">
           <a href="index.html" class="footer-logo"><span>NEX</span>GEAR</a>
         </div>
+
+        <nav class="footer-social" aria-label="Social links">
+          <a href="#" class="footer-social-link" aria-label="Instagram" data-no-transition="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.2"></circle></svg>
+          </a>
+          <a href="#" class="footer-social-link" aria-label="Tiktok" data-no-transition="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.2a4.2 4.2 0 1 1-4.2-4.2"></path><path d="M14 6.5c1.2 2 2.8 3.1 5 3.3"></path></svg>
+          </a>
+          <a href="#" class="footer-social-link" aria-label="Youtube" data-no-transition="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6.5" width="18" height="11" rx="3"></rect><path d="M10.5 9.5v5l4.5-2.5-4.5-2.5z"></path></svg>
+          </a>
+          <a href="#" class="footer-social-link" aria-label="Discord" data-no-transition="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5c3-1.4 6-1.4 9 0"></path><path d="M7 17c-1.3-.4-2.4-1-3.3-1.8.2-3.4 1.1-6.2 2.7-8.4 1.3-.6 2.4-.9 3.5-1.1l.5 1"></path><path d="M17 17c1.3-.4 2.4-1 3.3-1.8-.2-3.4-1.1-6.2-2.7-8.4-1.3-.6-2.4-.9-3.5-1.1l-.5 1"></path><circle cx="9.5" cy="13" r="1"></circle><circle cx="14.5" cy="13" r="1"></circle><path d="M9.5 16c1.6.7 3.4.7 5 0"></path></svg>
+          </a>
+        </nav>
+
         <nav class="footer-mini-links" aria-label="Footer links">
           <a href="catalog.html">Catalog</a>
           <a href="help.html">Help</a>
@@ -416,10 +427,24 @@
           <a href="blog.html">Blog</a>
           <a href="about.html">About</a>
         </nav>
+
+        <div class="footer-payments" aria-label="Payment methods">
+          <span class="footer-payment-card"><img src="https://www.freepnglogos.com/uploads/visa-inc-png-18.png" alt="Visa" class="footer-payment-logo footer-payment-logo--visa" /></span>
+          <span class="footer-payment-card"><img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-png-transparent-svg-vector-bie-supply-1.png" alt="Mastercard" class="footer-payment-logo footer-payment-logo--mastercard" /></span>
+          <span class="footer-payment-card"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/jcb-card-icon.png" alt="JCB" class="footer-payment-logo footer-payment-logo--jcb" /></span>
+          <span class="footer-payment-card footer-payment-card--wide"><img src="https://1.bp.blogspot.com/-n4swQEQNMCY/YJDCaTjKv9I/AAAAAAAAIZY/1tMkVzcW4WsUnqtB36LWwjgte3dxWZloACLcBGAsYHQ/s1800/QRIS_logo.png" alt="QRIS" class="footer-payment-logo footer-payment-logo--qris" /></span>
+          <span class="footer-payment-card footer-payment-card--wide"><img src="https://www.svgrepo.com/show/56921/bank-transfer-logo.svg" alt="Bank Transfer" class="footer-payment-logo footer-payment-logo--bank" /></span>
+        </div>
+
         <div class="footer-separator"></div>
+
         <div class="footer-minimal-bottom">
           <p>&copy; 2026 NEXGEAR. All rights reserved.</p>
-          <div><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Sitemap</a></div>
+          <div>
+            <a href="#" data-no-transition="true">Privacy</a>
+            <a href="#" data-no-transition="true">Terms</a>
+            <a href="#" data-no-transition="true">Sitemap</a>
+          </div>
         </div>
       </div>
     </footer>
@@ -447,15 +472,37 @@
           });
         });
 
-        document.querySelectorAll(".tab-btn[data-tab]").forEach((button) => {
-          button.addEventListener("click", () => {
-            const target = button.dataset.tab;
-            document.querySelectorAll(".tab-btn[data-tab]").forEach((item) => item.classList.toggle("active", item === button));
-            document.querySelectorAll(".tab-content[data-tab-panel]").forEach((panel) => {
-              panel.classList.toggle("active", panel.dataset.tabPanel === target);
-            });
+        const tabButtons = document.querySelectorAll(".tab-btn[data-tab]");
+        const tabPanels = document.querySelectorAll(".tab-content[data-tab-panel]");
+        const tabPill = document.querySelector(".tab-active-pill");
+
+        function moveTabPill(button) {
+          if (!tabPill || !button) return;
+          tabPill.style.width = `${button.offsetWidth}px`;
+          tabPill.style.transform = `translateX(${button.offsetLeft}px)`;
+        }
+
+        function activateTab(button) {
+          const target = button.dataset.tab;
+          tabButtons.forEach((item) => item.classList.toggle("active", item === button));
+          tabPanels.forEach((panel) => {
+            const isActive = panel.dataset.tabPanel === target;
+            panel.classList.toggle("active", isActive);
+            panel.setAttribute("aria-hidden", isActive ? "false" : "true");
           });
+          moveTabPill(button);
+        }
+
+        tabButtons.forEach((button) => {
+          button.addEventListener("click", () => activateTab(button));
         });
+
+        window.addEventListener("resize", () => {
+          const activeTab = document.querySelector(".tab-btn.active");
+          moveTabPill(activeTab);
+        });
+
+        moveTabPill(document.querySelector(".tab-btn.active"));
 
         function addProductToCart(name, price, qty, button) {
           if (window.NexCart) {
