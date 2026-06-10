@@ -15,6 +15,7 @@
     <title>Vortex VX Pro Mechanical | NEXGEAR</title>
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/product.css" />
+    <link rel="stylesheet" href="styles/product-review.css" />
     <link rel="stylesheet" href="styles/transition.css" />
     <script src="scripts/page-transition.js" defer></script>
   </head>
@@ -223,7 +224,7 @@
           <article class="product-tab-card">
             <div class="tab-headers" role="tablist" aria-label="Product information tabs">
               <button class="tab-btn active" type="button" data-tab="description">Description</button>
-              <button class="tab-btn" type="button" data-tab="reviews" id="reviews">Reviews</button>
+              <button class="tab-btn" type="button" data-tab="reviews" id="reviews-tab">Reviews</button>
               <button class="tab-btn" type="button" data-tab="shipping">Shipping</button>
             </div>
 
@@ -238,8 +239,9 @@
             </div>
 
             <div class="tab-content" data-tab-panel="reviews">
-              <h2>Reviews</h2>
-              <p>124 ulasan dengan rata-rata 4.8/5. Mayoritas pengguna menyukai stabilizer, rasa switch, dan desain yang tetap bersih di meja setup.</p>
+              <h2>Rangkuman Review</h2>
+              <p>Rata-rata pembeli memberi nilai 4.8/5. Poin yang paling sering disebut: stabilizer rapi, suara lebih kalem, koneksi 2.4GHz stabil, dan ukuran TKL terasa pas untuk setup gaming.</p>
+              <p><a class="review-inline-link" href="#reviews">Lihat review pembeli lengkap</a></p>
             </div>
 
             <div class="tab-content" data-tab-panel="shipping">
@@ -261,6 +263,69 @@
               </tbody>
             </table>
           </aside>
+        </div>
+      </section>
+
+      <section class="product-review-section" id="reviews" aria-labelledby="review-title">
+        <div class="container product-review-inner">
+          <div class="review-section-heading">
+            <div>
+              <span class="review-eyebrow">Customer Reviews</span>
+              <h2 id="review-title">Apa kata pembeli?</h2>
+              <p>Layout dibuat mengikuti referensi: rating, judul review, tanggal publikasi, dan dua kolom review yang mudah dipindai.</p>
+            </div>
+            <div class="review-score-card" aria-label="Average rating 4.8 out of 5">
+              <strong>4.8</strong>
+              <span>★★★★★</span>
+              <em>124 ulasan terverifikasi</em>
+            </div>
+          </div>
+
+          <div class="review-grid">
+            <article class="review-card">
+              <div class="review-card-top">
+                <div class="review-rating"><span>★★★★★</span><em>5.0/5.0</em></div>
+                <time datetime="2026-06-10">Published 54 minutes ago</time>
+              </div>
+              <h3>“Stabilizer-nya rapi banget”</h3>
+              <p>Rasa ketiknya solid, tidak kopong, dan suara spacebar jauh lebih kalem dari keyboard lama saya. Untuk kerja dan main, ini pas.</p>
+              <strong class="review-author">Raka • Verified Buyer</strong>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card-top">
+                <div class="review-rating"><span>★★★★<i>★</i></span><em>4.0/5.0</em></div>
+                <time datetime="2026-06-09">Published 1 day ago</time>
+              </div>
+              <h3>“Koneksi 2.4GHz stabil”</h3>
+              <p>Dipakai main FPS beberapa jam tidak kerasa delay. Layout TKL bikin meja lebih lega, terutama kalau mouse sensitivity rendah.</p>
+              <strong class="review-author">Dimas • Verified Buyer</strong>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card-top">
+                <div class="review-rating"><span>★★★★<i>★</i></span><em>4.5/5.0</em></div>
+                <time datetime="2026-06-07">Published 3 days ago</time>
+              </div>
+              <h3>“Keycaps lebih premium”</h3>
+              <p>PBT-nya terasa tebal dan tidak licin. RGB tetap ada, tapi tidak norak. Akhirnya ada keyboard gaming yang tidak kelihatan seperti papan reklame.</p>
+              <strong class="review-author">Naya • Verified Buyer</strong>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card-top">
+                <div class="review-rating"><span>★★★★★</span><em>5.0/5.0</em></div>
+                <time datetime="2026-06-06">Published 4 days ago</time>
+              </div>
+              <h3>“Worth it untuk setup harian”</h3>
+              <p>Build quality terasa kokoh, tombol tidak goyang, dan mode Bluetooth berguna saat pindah dari laptop ke tablet.</p>
+              <strong class="review-author">Aldo • Verified Buyer</strong>
+            </article>
+          </div>
+
+          <div class="review-action-row">
+            <a class="btn btn-primary review-write-btn" href="leave-review.html">Leave a review</a>
+          </div>
         </div>
       </section>
 
