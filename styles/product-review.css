@@ -140,6 +140,22 @@
   transform: translateY(-2px);
 }
 
+.page-product-detail .product-detail-shell > .product-breadcrumb {
+  display: none !important;
+}
+
+.page-product-detail .product-buy-panel::before {
+  content: "HOME  /  CATALOG  /  CONTROL  /  VORTEX VX PRO MECHANICAL";
+  display: block;
+  margin: 0 0 12px;
+  color: rgba(226, 232, 240, 0.74);
+  font-size: 0.72rem;
+  font-weight: 950;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .page-product-detail .product-kicker-row,
 .page-product-detail .product-quick-specs,
 .page-product-detail .product-service-list {
