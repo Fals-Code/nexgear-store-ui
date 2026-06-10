@@ -1,17 +1,116 @@
 /* product-review.css - Reviews inside product detail tabs */
 
-/* Treat specifications as part of the Description tab behavior. */
-.product-info-grid:has(.tab-content:not([data-tab-panel="description"]).active) {
+.product-info-grid--single {
   grid-template-columns: minmax(0, 1fr) !important;
 }
 
-.product-info-grid:has(.tab-content:not([data-tab-panel="description"]).active) .product-spec-card {
+.product-info-grid--single .product-tab-card {
+  width: 100%;
+  max-width: none;
+}
+
+.product-info-grid--single .product-spec-card--inside {
+  display: block;
+}
+
+.tab-headers {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  overflow: visible !important;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tab-headers::-webkit-scrollbar,
+.tab-headers::-webkit-scrollbar-button {
+  width: 0 !important;
+  height: 0 !important;
   display: none !important;
 }
 
-.product-info-grid:has(.tab-content:not([data-tab-panel="description"]).active) .product-tab-card {
-  width: 100%;
-  max-width: none;
+.tab-headers .tab-btn {
+  position: relative;
+  z-index: 2;
+  transition:
+    color 180ms ease,
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.tab-headers .tab-btn:hover,
+.tab-headers .tab-btn:focus-visible {
+  transform: translateY(-1px);
+}
+
+.tab-headers .tab-btn::after {
+  display: none;
+}
+
+.tab-active-pill {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  z-index: 1;
+  height: 2px;
+  width: 0;
+  border-radius: 999px;
+  background: #00e5ff;
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.32);
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tab-content {
+  transform-origin: top left;
+}
+
+.tab-content.active {
+  animation: productTabEnter 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes productTabEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.992);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.description-spec-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.48fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+
+.description-copy {
+  min-width: 0;
+}
+
+.product-spec-card--inside {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-spec-card--inside::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 18% 0%, rgba(0, 229, 255, 0.08), transparent 42%);
+}
+
+.product-spec-card--inside > * {
+  position: relative;
+  z-index: 1;
 }
 
 .product-review-tab {
@@ -196,6 +295,7 @@
 }
 
 @media (max-width: 1180px) {
+  .description-spec-layout,
   .review-section-heading {
     grid-template-columns: 1fr;
   }
@@ -213,6 +313,10 @@
 }
 
 @media (max-width: 640px) {
+  .tab-headers {
+    width: 100%;
+  }
+
   .review-card-top {
     grid-template-columns: 1fr;
     gap: 8px;
