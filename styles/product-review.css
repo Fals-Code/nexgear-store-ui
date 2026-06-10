@@ -34,7 +34,7 @@
 .page-product-detail .product-detail-main {
   position: relative;
   z-index: 2;
-  margin-bottom: clamp(340px, 34vw, 430px) !important;
+  margin-bottom: clamp(390px, 38vw, 490px) !important;
 }
 
 .page-product-detail .related-products {
