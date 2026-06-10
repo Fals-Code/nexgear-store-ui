@@ -1,5 +1,35 @@
 /* product-review.css - Reviews inside product detail tabs */
 
+/* Product media polish: make the main image fit the card border cleanly. */
+.product-main-media {
+  isolation: isolate;
+}
+
+.product-main-media::after {
+  display: none;
+}
+
+.product-main-media img {
+  position: absolute !important;
+  inset: 0;
+  z-index: 1;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  padding: 0 !important;
+  border-radius: inherit;
+  object-fit: cover !important;
+  object-position: center;
+}
+
+.product-main-media:hover img {
+  transform: scale(1.035) !important;
+}
+
+.product-media-badge {
+  z-index: 4;
+}
+
 .product-info-grid--single {
   grid-template-columns: minmax(0, 1fr) !important;
 }
