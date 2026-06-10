@@ -30,6 +30,11 @@
   z-index: 4;
 }
 
+/* Keep the footer close to the last content block, then show it like the homepage footer. */
+.page-product-detail .related-products {
+  padding-bottom: clamp(38px, 5vw, 58px) !important;
+}
+
 /* Hide the extra benefit strip so the footer is immediately visible. */
 .page-product-detail .product-trust-strip {
   display: none !important;
@@ -37,6 +42,46 @@
 
 .product-footer {
   margin-top: 0 !important;
+}
+
+.page-product-detail .product-footer::before {
+  content: "";
+  display: block;
+  height: clamp(132px, 11vw, 184px);
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  background-image:
+    linear-gradient(90deg, rgba(5, 7, 11, 0.22), rgba(5, 7, 11, 0.06), rgba(5, 7, 11, 0.22)),
+    url("https://preview.redd.it/d4v6o812rh441.jpg?width=1080&crop=smart&auto=webp&s=92cecd457eb4a6a5884ecd44123950cea38c9a45"),
+    url("https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=70"),
+    url("https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=500&q=70"),
+    url("https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=500&q=70"),
+    url("https://i.pinimg.com/originals/13/79/d1/1379d1415819ac35be6d99ad8e737215.jpg"),
+    url("https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=70"),
+    url("https://www.pcgamesn.com/wp-content/sites/pcgamesn/2024/02/how-to-install-rgb-lighting.jpg"),
+    url("https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=500&q=70");
+  background-size:
+    100% 100%,
+    12.5% 100%,
+    12.5% 100%,
+    12.5% 100%,
+    12.5% 100%,
+    12.5% 100%,
+    12.5% 100%,
+    12.5% 100%,
+    12.5% 100%;
+  background-position:
+    0 0,
+    0 50%,
+    12.5% 50%,
+    25% 50%,
+    37.5% 50%,
+    50% 50%,
+    62.5% 50%,
+    75% 50%,
+    87.5% 50%;
+  background-repeat: no-repeat;
+  background-color: #05070b;
 }
 
 .product-info-grid--single {
