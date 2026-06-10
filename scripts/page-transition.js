@@ -132,6 +132,14 @@
     return layer;
   }
 
+  function lockTransitionLayer(layer) {
+    if (layer) layer.classList.add("page-transition--locked");
+  }
+
+  function unlockTransitionLayer(layer) {
+    if (layer) layer.classList.remove("page-transition--locked");
+  }
+
   function getMainPanel(layer) {
     return layer?.querySelector(".page-transition__panel--a") || null;
   }
@@ -199,6 +207,7 @@
       return;
     }
 
+    lockTransitionLayer(layer);
     clearTransitionClasses();
     saveEnterMode(enterMode);
 
@@ -222,6 +231,7 @@
       return;
     }
 
+    unlockTransitionLayer(layer);
     clearTransitionClasses();
     document.body.classList.add("pt-entering-closed");
     clearPreloadClasses();
@@ -243,17 +253,26 @@
       return;
     }
 
+    lockTransitionLayer(layer);
+
+    // Jaga overlay tetap tertutup sampai frame opening benar-benar dimulai.
+    // Tanpa ini, browser kadang repaint 1 frame dalam keadaan layer sudah tidak visible.
+    document.documentElement.classList.add("pt-preload-open");
     clearTransitionClasses();
     document.body.classList.add("pt-entering-open");
-    clearPreloadClasses();
+
+    // Force layout supaya state tertutup terekam sebelum kelas opening dipasang.
+    void layer.offsetHeight;
 
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
         document.body.classList.add("pt-opening");
+        clearPreloadClasses();
 
         window.setTimeout(function () {
           document.body.classList.remove("pt-entering-open", "pt-opening");
-        }, TIMING.diamondEnter);
+          unlockTransitionLayer(layer);
+        }, TIMING.diamondEnter + 140);
       });
     });
   }
@@ -355,7 +374,7 @@
   }
 
   window.addEventListener("pageshow", function () {
-    createDiamondLayer();
+    const layer = createDiamondLayer();
     clearTransitionClasses();
 
     const mode = takeEnterMode();
@@ -370,6 +389,7 @@
       return;
     }
 
+    unlockTransitionLayer(layer);
     clearPreloadClasses();
   });
 
