@@ -1,5 +1,19 @@
 /* product-review.css - Reviews inside product detail tabs */
 
+/* Treat specifications as part of the Description tab behavior. */
+.product-info-grid:has(.tab-content:not([data-tab-panel="description"]).active) {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+.product-info-grid:has(.tab-content:not([data-tab-panel="description"]).active) .product-spec-card {
+  display: none !important;
+}
+
+.product-info-grid:has(.tab-content:not([data-tab-panel="description"]).active) .product-tab-card {
+  width: 100%;
+  max-width: none;
+}
+
 .product-review-tab {
   scroll-margin-top: 120px;
 }
