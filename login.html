@@ -9,7 +9,7 @@
       (function () {
         try {
           if (
-            sessionStorage.getItem("nexgear-page-transition-mode") === "open"
+            sessionStorage.getItem("nexgear-page-transition-mode") === "login"
           ) {
             document.documentElement.classList.add("pt-preload-open");
           }
@@ -23,6 +23,10 @@
 
   <body>
     <div class="page-transition" aria-hidden="true">
+      <span class="page-transition__panel page-transition__panel--a"></span>
+      <span class="page-transition__panel page-transition__panel--b"></span>
+      <span class="page-transition__panel page-transition__panel--c"></span>
+      <span class="page-transition__panel page-transition__panel--d"></span>
       <span class="page-transition__brand">NEXGEAR</span>
     </div>
 
