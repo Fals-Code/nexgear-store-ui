@@ -9,6 +9,13 @@
     diamondEnter: 1700,
   };
 
+  const DIAMOND_PANELS = [
+    "page-transition__panel--a",
+    "page-transition__panel--b",
+    "page-transition__panel--c",
+    "page-transition__panel--d",
+  ];
+
   function getFileName(url) {
     const path = url.pathname.toLowerCase();
     const file = path.split("/").pop();
@@ -18,6 +25,14 @@
 
   function isLoginPage(url) {
     return getFileName(url) === "login.html";
+  }
+
+  function isIndexPage(url) {
+    return getFileName(url) === "index.html";
+  }
+
+  function isLoginToIndex(targetUrl) {
+    return isLoginPage(new URL(window.location.href)) && isIndexPage(targetUrl);
   }
 
   function saveEnterMode(mode) {
@@ -75,16 +90,29 @@
       layer = document.createElement("div");
       layer.className = "page-transition";
       layer.setAttribute("aria-hidden", "true");
-
-      layer.innerHTML = `
-        <span class="page-transition__panel page-transition__panel--a"></span>
-        <span class="page-transition__panel page-transition__panel--b"></span>
-        <span class="page-transition__panel page-transition__panel--c"></span>
-        <span class="page-transition__panel page-transition__panel--d"></span>
-        <span class="page-transition__brand">NEXGEAR</span>
-      `;
-
       document.body.prepend(layer);
+    }
+
+    let brand = layer.querySelector(".page-transition__brand");
+
+    DIAMOND_PANELS.forEach(function (panelClass) {
+      if (layer.querySelector("." + panelClass)) return;
+
+      const panel = document.createElement("span");
+      panel.className = "page-transition__panel " + panelClass;
+
+      if (brand) {
+        layer.insertBefore(panel, brand);
+      } else {
+        layer.appendChild(panel);
+      }
+    });
+
+    if (!brand) {
+      brand = document.createElement("span");
+      brand.className = "page-transition__brand";
+      brand.textContent = "NEXGEAR";
+      layer.appendChild(brand);
     }
 
     return layer;
@@ -144,7 +172,24 @@
     window.location.href = url.href;
   }
 
-  function startDiamondLeave(targetUrl) {
+  function clearPreloadClasses() {
+    document.documentElement.classList.remove("pt-preload-open");
+    document.documentElement.classList.remove("pt-preload-simple");
+  }
+
+  function clearTransitionClasses() {
+    document.body.classList.remove(
+      "pt-leaving",
+      "pt-entering-open",
+      "pt-entering-closed",
+      "pt-opening",
+      "pt-simple-leaving",
+      "pt-simple-entering",
+      "pt-simple-opening",
+    );
+  }
+
+  function startDiamondLeave(targetUrl, enterMode) {
     if (reduceMotion.matches) {
       goTo(targetUrl);
       return;
@@ -152,16 +197,8 @@
 
     const layer = createDiamondLayer();
 
-    document.body.classList.remove(
-      "pt-simple-leaving",
-      "pt-simple-entering",
-      "pt-simple-opening",
-      "pt-entering-open",
-      "pt-entering-closed",
-      "pt-opening",
-    );
-
-    saveEnterMode("login");
+    clearTransitionClasses();
+    saveEnterMode(enterMode);
 
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
@@ -184,15 +221,7 @@
 
     createSimpleLayer();
 
-    document.body.classList.remove(
-      "pt-leaving",
-      "pt-entering-open",
-      "pt-entering-closed",
-      "pt-opening",
-      "pt-simple-entering",
-      "pt-simple-opening",
-    );
-
+    clearTransitionClasses();
     saveEnterMode("simple");
 
     requestAnimationFrame(function () {
@@ -209,42 +238,49 @@
   function startLoginEnter() {
     createDiamondLayer();
 
-    document.body.classList.remove(
-      "pt-leaving",
-      "pt-entering-open",
-      "pt-opening",
-      "pt-simple-leaving",
-      "pt-simple-entering",
-      "pt-simple-opening",
-    );
-
-    document.documentElement.classList.remove("pt-preload-open");
-    document.documentElement.classList.remove("pt-preload-simple");
-
+    clearTransitionClasses();
     document.body.classList.add("pt-entering-closed");
+    clearPreloadClasses();
 
     requestAnimationFrame(function () {
       document.body.classList.remove("pt-entering-closed");
     });
   }
 
+  function startDiamondOpenEnter() {
+    if (reduceMotion.matches) {
+      clearPreloadClasses();
+      return;
+    }
+
+    createDiamondLayer();
+
+    clearTransitionClasses();
+    document.body.classList.add("pt-entering-open");
+    clearPreloadClasses();
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        document.body.classList.add("pt-opening");
+
+        window.setTimeout(function () {
+          document.body.classList.remove("pt-entering-open", "pt-opening");
+        }, TIMING.diamondEnter);
+      });
+    });
+  }
+
   function startSimpleEnter() {
-    if (reduceMotion.matches) return;
+    if (reduceMotion.matches) {
+      clearPreloadClasses();
+      return;
+    }
 
     createSimpleLayer();
 
-    document.body.classList.remove(
-      "pt-leaving",
-      "pt-entering-open",
-      "pt-entering-closed",
-      "pt-opening",
-      "pt-simple-leaving",
-    );
-
+    clearTransitionClasses();
     document.body.classList.add("pt-simple-entering");
-
-    document.documentElement.classList.remove("pt-preload-simple");
-    document.documentElement.classList.remove("pt-preload-open");
+    clearPreloadClasses();
 
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
@@ -264,15 +300,7 @@
     createDiamondLayer();
     createSimpleLayer();
 
-    document.body.classList.remove(
-      "pt-leaving",
-      "pt-entering-open",
-      "pt-entering-closed",
-      "pt-opening",
-      "pt-simple-leaving",
-      "pt-simple-entering",
-      "pt-simple-opening",
-    );
+    clearTransitionClasses();
 
     const mode = takeEnterMode();
 
@@ -281,13 +309,17 @@
       return;
     }
 
+    if (mode === "open") {
+      startDiamondOpenEnter();
+      return;
+    }
+
     if (mode === "simple") {
       startSimpleEnter();
       return;
     }
 
-    document.documentElement.classList.remove("pt-preload-open");
-    document.documentElement.classList.remove("pt-preload-simple");
+    clearPreloadClasses();
   });
 
   document.addEventListener("click", function (event) {
@@ -300,7 +332,12 @@
     const targetUrl = new URL(link.href, window.location.href);
 
     if (isLoginPage(targetUrl)) {
-      startDiamondLeave(targetUrl);
+      startDiamondLeave(targetUrl, "login");
+      return;
+    }
+
+    if (isLoginToIndex(targetUrl)) {
+      startDiamondLeave(targetUrl, "open");
       return;
     }
 
@@ -318,7 +355,12 @@
     const targetUrl = new URL(target, window.location.href);
 
     if (isLoginPage(targetUrl)) {
-      startDiamondLeave(targetUrl);
+      startDiamondLeave(targetUrl, "login");
+      return;
+    }
+
+    if (isLoginToIndex(targetUrl)) {
+      startDiamondLeave(targetUrl, "open");
       return;
     }
 
