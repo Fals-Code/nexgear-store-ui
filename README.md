@@ -40,3 +40,5 @@ Proyek ini dibangun menggunakan **100% Vanilla HTML, CSS, dan JavaScript**.
 
 **Dibuat untuk Tugas UAS Workshop Desain UI**
 _Universitas Airlangga - Jurusan D4 Teknik Informatika_
+
+<!-- Deployment refresh after restoring the original product detail page. -->
