@@ -259,12 +259,17 @@
           </div>
 
           <div>
-            <form class="journal-newsletter-form" action="#" method="post">
-              <label class="sr-only" for="journal-email">Alamat email</label>
+            <form
+              class="journal-newsletter-form"
+              action="#"
+              method="post"
+              onsubmit="event.preventDefault(); window.showNexToast?.('Berhasil berlangganan NEXGEAR Dispatch'); this.reset();"
+            >
               <input
                 id="journal-email"
                 type="email"
                 name="email"
+                aria-label="Alamat email"
                 placeholder="nama@email.com"
                 autocomplete="email"
                 required
