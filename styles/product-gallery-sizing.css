@@ -70,3 +70,49 @@
     min-height: 92px !important;
   }
 }
+
+/* Sticky-only boundary fix. No layout, Description, card, or section changes. */
+@media (min-width: 1181px) {
+  html body.page-product-detail .product-gallery-panel {
+    position: relative !important;
+    top: auto !important;
+    align-self: stretch !important;
+    display: block !important;
+    height: auto !important;
+    min-height: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  html body.page-product-detail .product-main-media {
+    position: sticky !important;
+    top: var(--pdp-sticky-top, 112px) !important;
+    z-index: 10 !important;
+    height: clamp(360px, 48vh, 500px) !important;
+    min-height: 360px !important;
+    max-height: 500px !important;
+  }
+
+  html body.page-product-detail .product-thumb-row {
+    position: sticky !important;
+    top: calc(var(--pdp-sticky-top, 112px) + clamp(360px, 48vh, 500px) + 14px) !important;
+    z-index: 11 !important;
+    height: 108px !important;
+    margin-top: 14px !important;
+  }
+
+  html body.page-product-detail .product-thumb,
+  html body.page-product-detail .product-thumb img {
+    height: 108px !important;
+    min-height: 108px !important;
+  }
+}
+
+@media (max-width: 1180px) {
+  html body.page-product-detail .product-gallery-panel,
+  html body.page-product-detail .product-main-media,
+  html body.page-product-detail .product-thumb-row {
+    position: relative !important;
+    top: auto !important;
+  }
+}
