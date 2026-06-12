@@ -1579,10 +1579,26 @@
     safeInit(() => Auth.updateUI());
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
+  function startAfterGlobalComponents() {
+    const componentsReady = window.NexGlobalComponents?.ready;
+
+    if (componentsReady && typeof componentsReady.then === "function") {
+      componentsReady
+        .then(() => init())
+        .catch((error) => {
+          console.warn("NEXGEAR components fallback:", error);
+          init();
+        });
+      return;
+    }
+
     init();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", startAfterGlobalComponents);
+  } else {
+    startAfterGlobalComponents();
   }
 
 })();
