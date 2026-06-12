@@ -88,23 +88,23 @@
     position: sticky !important;
     top: var(--pdp-sticky-top, 112px) !important;
     z-index: 10 !important;
-    height: clamp(360px, 48vh, 500px) !important;
-    min-height: 360px !important;
-    max-height: 500px !important;
+    height: clamp(520px, calc(100vh - var(--pdp-sticky-top, 112px) - 140px), 680px) !important;
+    min-height: 520px !important;
+    max-height: 680px !important;
   }
 
   html body.page-product-detail .product-thumb-row {
     position: sticky !important;
-    top: calc(var(--pdp-sticky-top, 112px) + clamp(360px, 48vh, 500px) + 14px) !important;
+    top: calc(var(--pdp-sticky-top, 112px) + clamp(520px, calc(100vh - var(--pdp-sticky-top, 112px) - 140px), 680px) + 14px) !important;
     z-index: 11 !important;
-    height: 108px !important;
+    height: 120px !important;
     margin-top: 14px !important;
   }
 
   html body.page-product-detail .product-thumb,
   html body.page-product-detail .product-thumb img {
-    height: 108px !important;
-    min-height: 108px !important;
+    height: 120px !important;
+    min-height: 120px !important;
   }
 }
 
