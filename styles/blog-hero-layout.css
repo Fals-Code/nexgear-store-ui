@@ -1,5 +1,10 @@
 /* Hero-only layout correction for blog.html. */
 
+/* Hide the page-transition layer on the article listing page. */
+.page-blog .page-transition {
+  display: none !important;
+}
+
 .page-blog .journal-hero {
   min-height: calc(100svh - var(--navbar-total-height, 142px));
   display: flex;
