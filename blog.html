@@ -3,249 +3,284 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog & Panduan | NEXGEAR</title>
+    <title>Artikel & Panduan | NEXGEAR</title>
+    <meta
+      name="description"
+      content="Artikel, panduan, dan ulasan NEXGEAR seputar gaming gear, setup, hardware, serta keputusan upgrade yang lebih tepat."
+    />
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/blog.css" />
+    <link rel="stylesheet" href="styles/blog-listing.css" />
+    <script src="scripts/page-transition.js"></script>
   </head>
-  <script src="scripts/page-transition.js"></script>
   <body class="page-blog" data-footer-reveal="compact">
     <!-- GLOBAL HEADER COMPONENT -->
     <div id="global-header"></div>
 
     <main class="site-main">
-      <!-- BLOG HERO -->
-      <section class="blog-hero">
-        <div class="container text-center">
-          <h1>NEXGEAR <span class="text-accent">Jurnal</span></h1>
-          <p>
-            Wawasan, panduan, dan ulasan mendalam seputar peripheral gaming.
-          </p>
+      <section class="journal-hero" aria-labelledby="journal-title">
+        <div class="journal-shell">
+          <span class="journal-kicker">NEXGEAR Editorial</span>
+          <h1 id="journal-title" class="journal-title">
+            <span class="journal-title-outline">NEXGEAR</span>
+            <span class="journal-title-solid">Journal<span class="journal-dot">.</span></span>
+          </h1>
 
-          <div class="blog-categories">
-            <a href="#" class="active">Semua</a>
-            <a href="#">Buying Guide</a>
-            <a href="#">Setup Tips</a>
-            <a href="#">Hardware</a>
-            <a href="#">Deals</a>
+          <div class="journal-intro-row">
+            <p class="journal-description">
+              Panduan praktis, analisis hardware, dan inspirasi setup untuk membantu
+              Anda memilih gear yang benar-benar berguna, bukan sekadar memenuhi meja
+              dengan lampu RGB karena manusia memang mudah tergoda oleh benda menyala.
+            </p>
+
+            <nav class="journal-categories" aria-label="Kategori artikel">
+              <a href="#latest" class="is-active">Semua</a>
+              <a href="#latest">Buying Guide</a>
+              <a href="#latest">Setup Tips</a>
+              <a href="#latest">Hardware</a>
+              <a href="#latest">Performance</a>
+            </nav>
           </div>
         </div>
       </section>
 
-      <!-- FEATURED ARTICLE -->
-      <section class="section-padding" style="padding-top: 0">
-        <div class="container">
-          <a href="blog-post.html" class="featured-article">
-            <div class="fa-image">
+      <section class="journal-featured-wrap" aria-label="Artikel pilihan">
+        <div class="journal-shell">
+          <article class="journal-featured">
+            <a href="blog-post.html" class="journal-featured-media" aria-label="Baca artikel Mechanical Keyboard">
               <img
-                src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                alt="Featured Article"
+                src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1400&q=85"
+                alt="Mechanical keyboard premium dengan pencahayaan gelap"
+                loading="eager"
               />
-            </div>
-            <div class="fa-content">
-              <span class="article-cat text-accent">Hardware</span>
-              <h2>
-                Evolusi Switch Mekanikal: Memilih antara Linear, Tactile, dan
-                Clicky di Tahun 2026
-              </h2>
-              <p>
-                Panduan komprehensif kami untuk membantu Anda menemukan switch
-                keyboard yang paling sesuai dengan gaya bermain dan kebutuhan
-                produktivitas Anda.
-              </p>
-              <div class="article-meta">
-                <span>Oleh Tim NEXGEAR</span>
-                <span>•</span>
+            </a>
+
+            <div class="journal-featured-content">
+              <div class="journal-meta">
+                <span class="journal-category">Hardware</span>
                 <span>05 Jun 2026</span>
-                <span>•</span>
-                <span>7 Min Baca</span>
+                <span>7 menit baca</span>
               </div>
+
+              <h2>
+                <a href="blog-post.html">
+                  Mechanical Keyboard: Switch, Layout, dan Feel yang Tepat
+                </a>
+              </h2>
+
+              <p class="journal-excerpt">
+                Memilih keyboard bukan cuma soal suara paling keras. Kenali karakter
+                switch, ukuran layout, stabilizer, serta material keycap sebelum uang
+                Anda berubah menjadi paket yang ternyata tidak nyaman dipakai.
+              </p>
+
+              <a href="blog-post.html" class="journal-read-more">Baca artikel</a>
             </div>
-          </a>
+          </article>
         </div>
       </section>
 
-      <!-- ARTICLE GRID -->
-      <section class="section-padding section-alt">
-        <div class="container">
-          <div class="section-header text-center" style="margin-bottom: 50px">
-            <h2>Artikel Terbaru</h2>
+      <section id="latest" class="journal-feed" aria-labelledby="latest-title">
+        <div class="journal-shell">
+          <h2 id="latest-title" class="journal-section-label">Artikel terbaru</h2>
+
+          <article class="journal-article">
+            <a href="blog-post.html" class="journal-article-media" aria-label="Baca artikel setup meja rapi">
+              <span class="journal-article-index">01</span>
+              <img
+                src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1200&q=85"
+                alt="Setup meja gaming modern dengan monitor dan periferal"
+                loading="lazy"
+              />
+            </a>
+            <div class="journal-article-content">
+              <div class="journal-meta">
+                <span class="journal-category">Setup Tips</span>
+                <span>31 Mei 2026</span>
+                <span>6 menit baca</span>
+              </div>
+              <h2>
+                <a href="blog-post.html">Setup Meja Rapi Tanpa Kabel Berserakan</a>
+              </h2>
+              <p class="journal-excerpt">
+                Atur jalur listrik, data, dan charger sejak awal agar meja tetap bersih,
+                mudah dirawat, dan tidak berubah menjadi habitat kabel misterius.
+              </p>
+              <a href="blog-post.html" class="journal-read-more">Selengkapnya</a>
+            </div>
+          </article>
+
+          <article class="journal-article">
+            <a href="blog-post.html" class="journal-article-media" aria-label="Baca artikel mouse wireless untuk FPS">
+              <span class="journal-article-index">02</span>
+              <img
+                src="https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c?auto=format&fit=crop&w=1200&q=85"
+                alt="Mouse gaming wireless di atas meja gelap"
+                loading="lazy"
+              />
+            </a>
+            <div class="journal-article-content">
+              <div class="journal-meta">
+                <span class="journal-category">Buying Guide</span>
+                <span>24 Mei 2026</span>
+                <span>5 menit baca</span>
+              </div>
+              <h2>
+                <a href="blog-post.html">Mouse Wireless Modern Sudah Cukup Cepat untuk FPS?</a>
+              </h2>
+              <p class="journal-excerpt">
+                Membandingkan latensi, berat, bentuk, sensor, dan ketahanan baterai agar
+                keputusan tidak berhenti pada kalimat klasik: “yang mahal pasti bagus.”
+              </p>
+              <a href="blog-post.html" class="journal-read-more">Selengkapnya</a>
+            </div>
+          </article>
+
+          <article class="journal-article">
+            <a href="blog-post.html" class="journal-article-media" aria-label="Baca artikel headset gaming">
+              <span class="journal-article-index">03</span>
+              <img
+                src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=1200&q=85"
+                alt="Headset gaming hitam dengan earcup besar"
+                loading="lazy"
+              />
+            </a>
+            <div class="journal-article-content">
+              <div class="journal-meta">
+                <span class="journal-category">Audio</span>
+                <span>16 Mei 2026</span>
+                <span>8 menit baca</span>
+              </div>
+              <h2>
+                <a href="blog-post.html">Headset Gaming: Imaging Lebih Penting daripada Bass</a>
+              </h2>
+              <p class="journal-excerpt">
+                Posisi langkah, separasi suara, dan kualitas mikrofon sering lebih penting
+                daripada dentuman bass yang membuat ledakan terdengar seperti kiamat lokal.
+              </p>
+              <a href="blog-post.html" class="journal-read-more">Selengkapnya</a>
+            </div>
+          </article>
+
+          <article class="journal-article">
+            <a href="blog-post.html" class="journal-article-media" aria-label="Baca artikel upgrade laptop gaming">
+              <span class="journal-article-index">04</span>
+              <img
+                src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=1200&q=85"
+                alt="Laptop gaming terbuka dengan tampilan permainan"
+                loading="lazy"
+              />
+            </a>
+            <div class="journal-article-content">
+              <div class="journal-meta">
+                <span class="journal-category">Upgrade</span>
+                <span>08 Mei 2026</span>
+                <span>7 menit baca</span>
+              </div>
+              <h2>
+                <a href="blog-post.html">Upgrade Laptop Gaming: RAM, SSD, atau Ganti Unit?</a>
+              </h2>
+              <p class="journal-excerpt">
+                Kenali bottleneck sebelum membeli komponen. Kadang solusi terbaik adalah
+                menambah RAM, kadang SSD, dan kadang menerima bahwa perangkat lama sudah
+                bekerja terlalu keras demi ambisi manusia.
+              </p>
+              <a href="blog-post.html" class="journal-read-more">Selengkapnya</a>
+            </div>
+          </article>
+
+          <article class="journal-article">
+            <a href="blog-post.html" class="journal-article-media" aria-label="Baca artikel polling rate 8000Hz">
+              <span class="journal-article-index">05</span>
+              <img
+                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=85"
+                alt="Perangkat gaming pada meja dengan pencahayaan neon"
+                loading="lazy"
+              />
+            </a>
+            <div class="journal-article-content">
+              <div class="journal-meta">
+                <span class="journal-category">Performance</span>
+                <span>30 Apr 2026</span>
+                <span>6 menit baca</span>
+              </div>
+              <h2>
+                <a href="blog-post.html">Polling Rate 8000Hz: Penting atau Sekadar Angka?</a>
+              </h2>
+              <p class="journal-excerpt">
+                Angka lebih tinggi belum tentu otomatis terasa lebih cepat. CPU, refresh
+                rate monitor, dan konsistensi frame juga ikut menentukan pengalaman nyata.
+              </p>
+              <a href="blog-post.html" class="journal-read-more">Selengkapnya</a>
+            </div>
+          </article>
+
+          <article class="journal-article">
+            <a href="blog-post.html" class="journal-article-media" aria-label="Baca artikel setup gaming minimalis">
+              <span class="journal-article-index">06</span>
+              <img
+                src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=1200&q=85"
+                alt="Ruang kerja minimalis dengan laptop dan perangkat pendukung"
+                loading="lazy"
+              />
+            </a>
+            <div class="journal-article-content">
+              <div class="journal-meta">
+                <span class="journal-category">Setup Guide</span>
+                <span>21 Apr 2026</span>
+                <span>9 menit baca</span>
+              </div>
+              <h2>
+                <a href="blog-post.html">Merancang Setup Minimalis yang Tetap Bertenaga</a>
+              </h2>
+              <p class="journal-excerpt">
+                Prioritaskan monitor, periferal utama, dan ergonomi. Setup yang matang tidak
+                harus padat, hanya perlu setiap benda memiliki alasan untuk berada di sana.
+              </p>
+              <a href="blog-post.html" class="journal-read-more">Selengkapnya</a>
+            </div>
+          </article>
+
+          <nav class="journal-pagination" aria-label="Navigasi halaman artikel">
+            <span class="is-current" aria-current="page">1</span>
+            <a href="#latest">2</a>
+            <a href="#latest">3</a>
+            <a href="#latest">4</a>
+            <span aria-hidden="true">…</span>
+          </nav>
+        </div>
+      </section>
+
+      <section class="journal-newsletter" aria-labelledby="journal-newsletter-title">
+        <div class="journal-shell journal-newsletter-inner">
+          <div class="journal-newsletter-copy">
+            <span>NEXGEAR Dispatch</span>
+            <h2 id="journal-newsletter-title">Artikel baru, tanpa spam dan drama inbox.</h2>
           </div>
 
-          <div class="article-grid">
-            <!-- Article Card 1 -->
-            <article class="article-card">
-              <a href="blog-post.html" class="ac-image">
-                <img
-                  src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                  alt="Blog 1"
-                />
-                <span class="ac-badge">Setup Tips</span>
-              </a>
-              <div class="ac-content">
-                <div class="ac-meta">12 Mei 2026</div>
-                <h3>
-                  <a href="blog-post.html"
-                    >Cara Mengatur Cable Management untuk Setup Minimalis</a
-                  >
-                </h3>
-                <p>
-                  Tips praktis menyembunyikan kabel dan menciptakan meja bersih
-                  yang meningkatkan fokus bermain.
-                </p>
-              </div>
-            </article>
-
-            <!-- Article Card 2 -->
-            <article class="article-card">
-              <a href="blog-post.html" class="ac-image">
-                <img
-                  src="https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                  alt="Blog 2"
-                />
-                <span class="ac-badge">Buying Guide</span>
-              </a>
-              <div class="ac-content">
-                <div class="ac-meta">08 Mei 2026</div>
-                <h3>
-                  <a href="blog-post.html"
-                    >Mouse Wireless vs Wired: Mana yang Terbaik untuk FPS?</a
-                  >
-                </h3>
-                <p>
-                  Menepis mitos latensi pada mouse nirkabel modern dan kapan
-                  sebaiknya Anda tetap menggunakan kabel.
-                </p>
-              </div>
-            </article>
-
-            <!-- Article Card 3 -->
-            <article class="article-card">
-              <a href="blog-post.html" class="ac-image">
-                <img
-                  src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                  alt="Blog 3"
-                />
-                <span class="ac-badge">Hardware</span>
-              </a>
-              <div class="ac-content">
-                <div class="ac-meta">29 Apr 2026</div>
-                <h3>
-                  <a href="blog-post.html"
-                    >Mengenal Profil Suara Headset Gaming</a
-                  >
-                </h3>
-                <p>
-                  Mengapa respon frekuensi datar (flat) lebih baik untuk langkah
-                  musuh dibanding bass yang berlebihan.
-                </p>
-              </div>
-            </article>
-
-            <!-- Article Card 4 -->
-            <article class="article-card">
-              <a href="blog-post.html" class="ac-image">
-                <img
-                  src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                  alt="Blog 4"
-                />
-                <span class="ac-badge">Deals</span>
-              </a>
-              <div class="ac-content">
-                <div class="ac-meta">20 Apr 2026</div>
-                <h3>
-                  <a href="blog-post.html"
-                    >5 Gear Wajib Beli Saat Promo Mid-Year NEXGEAR</a
-                  >
-                </h3>
-                <p>
-                  Rekomendasi kurasi kami untuk mendapatkan nilai terbaik pada
-                  festival belanja tengah tahun ini.
-                </p>
-              </div>
-            </article>
-
-            <!-- Article Card 5 -->
-            <article class="article-card">
-              <a href="blog-post.html" class="ac-image">
-                <img
-                  src="https://images.unsplash.com/photo-1621259182978-fbf93132d53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                  alt="Blog 5"
-                />
-                <span class="ac-badge">Hardware</span>
-              </a>
-              <div class="ac-content">
-                <div class="ac-meta">15 Apr 2026</div>
-                <h3>
-                  <a href="blog-post.html"
-                    >Apa Itu Polling Rate 8000Hz dan Apakah Anda
-                    Membutuhkannya?</a
-                  >
-                </h3>
-                <p>
-                  Menyelami batas teknologi periferal dan keuntungannya bagi
-                  pemain e-sports tingkat atas.
-                </p>
-              </div>
-            </article>
-
-            <!-- Article Card 6 -->
-            <article class="article-card">
-              <a href="blog-post.html" class="ac-image">
-                <img
-                  src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                  alt="Blog 6"
-                />
-                <span class="ac-badge">Buying Guide</span>
-              </a>
-              <div class="ac-content">
-                <div class="ac-meta">02 Apr 2026</div>
-                <h3>
-                  <a href="blog-post.html"
-                    >Panduan Memilih Mousepad: Speed, Control, atau Hybrid?</a
-                  >
-                </h3>
-                <p>
-                  Permukaan mousepad mempengaruhi bidikan Anda lebih dari yang
-                  Anda kira. Ketahui perbedaannya.
-                </p>
-              </div>
-            </article>
-          </div>
-
-          <div class="text-center" style="margin-top: 50px">
-            <button class="btn btn-outline" style="min-width: 200px">
-              Muat Lebih Banyak
-            </button>
+          <div>
+            <form class="journal-newsletter-form" action="#" method="post">
+              <label class="sr-only" for="journal-email">Alamat email</label>
+              <input
+                id="journal-email"
+                type="email"
+                name="email"
+                placeholder="nama@email.com"
+                autocomplete="email"
+                required
+              />
+              <button type="submit">Berlangganan</button>
+            </form>
+            <p class="journal-newsletter-note">
+              Ringkasan artikel dan panduan pilihan, dikirim seperlunya.
+            </p>
           </div>
         </div>
       </section>
     </main>
+
     <!-- GLOBAL FOOTER COMPONENT -->
     <div id="global-footer"></div>
-
-    <!-- Search Drawer Overlay -->
-    <div id="search-drawer" class="drawer">
-      <div
-        class="drawer-content"
-        style="background: #181824; padding: 30px; text-align: center"
-      >
-        <h3>Cari Artikel</h3>
-        <input
-          type="text"
-          class="form-input"
-          placeholder="Ketik kata kunci..."
-          style="margin: 20px 0"
-        />
-        <button
-          class="btn btn-primary"
-          onclick="
-            document.getElementById('search-drawer').classList.remove('active')
-          "
-        >
-          Tutup
-        </button>
-      </div>
-    </div>
 
     <script src="scripts/global-components.js"></script>
     <script src="scripts/main.js"></script>
