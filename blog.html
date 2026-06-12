@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="styles/blog.css" />
     <link rel="stylesheet" href="styles/blog-listing.css" />
     <link rel="stylesheet" href="styles/blog-background-reveal.css" />
+    <link rel="stylesheet" href="styles/blog-ux.css" />
     <script src="scripts/page-transition.js"></script>
   </head>
   <body class="page-blog" data-footer-reveal="normal">
@@ -34,12 +35,12 @@
               dengan lampu RGB karena manusia memang mudah tergoda oleh benda menyala.
             </p>
 
-            <nav class="journal-categories" aria-label="Kategori artikel">
-              <a href="#latest" class="is-active">Semua</a>
-              <a href="#latest">Buying Guide</a>
-              <a href="#latest">Setup Tips</a>
-              <a href="#latest">Hardware</a>
-              <a href="#latest">Performance</a>
+            <nav class="journal-categories" aria-label="Filter kategori artikel">
+              <button type="button" class="is-active" data-blog-filter="all" aria-pressed="true">Semua</button>
+              <button type="button" data-blog-filter="buying" aria-pressed="false">Buying Guide</button>
+              <button type="button" data-blog-filter="setup" aria-pressed="false">Setup Tips</button>
+              <button type="button" data-blog-filter="hardware" aria-pressed="false">Hardware</button>
+              <button type="button" data-blog-filter="performance" aria-pressed="false">Performance</button>
             </nav>
           </div>
         </div>
@@ -83,9 +84,12 @@
 
       <section id="latest" class="journal-feed" aria-labelledby="latest-title">
         <div class="journal-shell">
-          <h2 id="latest-title" class="journal-section-label">Artikel terbaru</h2>
+          <div class="journal-feed-heading">
+            <h2 id="latest-title" class="journal-section-label">Artikel terbaru</h2>
+            <p id="journal-filter-status" class="journal-filter-status" aria-live="polite">6 artikel</p>
+          </div>
 
-          <article class="journal-article">
+          <article class="journal-article" data-category="setup">
             <a href="blog-post.html" class="journal-article-media" aria-label="Baca artikel setup meja rapi">
               <span class="journal-article-index">01</span>
               <img
@@ -111,7 +115,7 @@
             </div>
           </article>
 
-          <article class="journal-article">
+          <article class="journal-article" data-category="buying performance">
             <a href="blog-post.html" class="journal-article-media" aria-label="Baca artikel mouse wireless untuk FPS">
               <span class="journal-article-index">02</span>
               <img
@@ -137,7 +141,7 @@
             </div>
           </article>
 
-          <article class="journal-article">
+          <article class="journal-article" data-category="buying hardware">
             <a href="blog-post.html" class="journal-article-media" aria-label="Baca artikel headset gaming">
               <span class="journal-article-index">03</span>
               <img
@@ -163,7 +167,7 @@
             </div>
           </article>
 
-          <article class="journal-article">
+          <article class="journal-article" data-category="hardware performance">
             <a href="blog-post.html" class="journal-article-media" aria-label="Baca artikel upgrade laptop gaming">
               <span class="journal-article-index">04</span>
               <img
@@ -190,7 +194,7 @@
             </div>
           </article>
 
-          <article class="journal-article">
+          <article class="journal-article" data-category="performance hardware">
             <a href="blog-post.html" class="journal-article-media" aria-label="Baca artikel polling rate 8000Hz">
               <span class="journal-article-index">05</span>
               <img
@@ -216,7 +220,7 @@
             </div>
           </article>
 
-          <article class="journal-article">
+          <article class="journal-article" data-category="setup buying">
             <a href="blog-post.html" class="journal-article-media" aria-label="Baca artikel setup gaming minimalis">
               <span class="journal-article-index">06</span>
               <img
@@ -260,12 +264,7 @@
           </div>
 
           <div>
-            <form
-              class="journal-newsletter-form"
-              action="#"
-              method="post"
-              onsubmit="event.preventDefault(); window.showNexToast?.('Berhasil berlangganan NEXGEAR Dispatch'); this.reset();"
-            >
+            <form class="journal-newsletter-form" action="#" method="post">
               <input
                 id="journal-email"
                 type="email"
@@ -290,5 +289,6 @@
 
     <script src="scripts/global-components.js"></script>
     <script src="scripts/main.js"></script>
+    <script src="scripts/blog-page.js"></script>
   </body>
 </html>
