@@ -1,7 +1,63 @@
-/* Sticky behavior correction for product detail.
-   The whole gallery block (main photo + thumbnails) sticks only inside
-   the product section. The buy panel always scrolls normally. */
+/* Product-detail sticky correction.
+   The gallery sticks only inside the top product section.
+   The buy panel scrolls normally, thumbnails stay visible, and spacing is compact. */
 
+/* Restore a real section container so sticky has a proper boundary. */
+html body.page-product-detail .product-detail-main {
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: visible !important;
+}
+
+html body.page-product-detail .product-detail-shell {
+  order: 1 !important;
+  display: block !important;
+  width: min(1260px, calc(100% - 48px)) !important;
+  margin: 0 auto !important;
+  padding: 34px 0 76px !important;
+}
+
+html body.page-product-detail .product-breadcrumb {
+  display: flex !important;
+  width: 100% !important;
+  margin: 0 0 24px !important;
+  padding: 0 !important;
+}
+
+html body.page-product-detail .product-hero-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.04fr) minmax(420px, 0.96fr) !important;
+  gap: clamp(44px, 6vw, 86px) !important;
+  align-items: start !important;
+  overflow: visible !important;
+}
+
+/* Keep the content sequence below the top product section. */
+html body.page-product-detail .product-info-section,
+html body.page-product-detail .product-info-grid,
+html body.page-product-detail .product-tab-card {
+  display: contents !important;
+}
+
+html body.page-product-detail .tab-content[data-tab-panel="description"] {
+  order: 2 !important;
+  width: min(1260px, calc(100% - 48px)) !important;
+  margin: 0 auto !important;
+}
+
+html body.page-product-detail .related-products {
+  order: 3 !important;
+  width: min(1260px, calc(100% - 48px)) !important;
+  margin: 0 auto !important;
+}
+
+html body.page-product-detail .tab-content[data-tab-panel="reviews"] {
+  order: 4 !important;
+  width: min(1260px, calc(100% - 48px)) !important;
+  margin: 0 auto !important;
+}
+
+/* Buy panel must never inherit sticky/min-height behavior. */
 html body.page-product-detail .product-buy-panel,
 html body.page-product-detail .product-buy-panel:hover {
   position: relative !important;
@@ -10,19 +66,30 @@ html body.page-product-detail .product-buy-panel:hover {
   bottom: auto !important;
   left: auto !important;
   align-self: start !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  gap: 0 !important;
+  width: 100% !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
 }
 
+/* The whole gallery block sticks, but its parent is now only product-detail-shell. */
 html body.page-product-detail .product-gallery-panel {
   position: sticky !important;
   top: var(--pdp-sticky-top, 112px) !important;
   z-index: 10 !important;
   align-self: start !important;
-  display: grid !important;
-  grid-template-rows: minmax(0, 1fr) auto !important;
-  gap: 16px !important;
+  display: block !important;
   width: 100% !important;
   height: max-content !important;
-  max-height: calc(100vh - var(--pdp-sticky-top, 112px) - 18px) !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
   overflow: visible !important;
 }
 
@@ -31,8 +98,8 @@ html body.page-product-detail .product-main-media {
   top: auto !important;
   z-index: 1 !important;
   width: 100% !important;
-  height: clamp(420px, calc(100vh - var(--pdp-sticky-top, 112px) - 150px), 620px) !important;
-  min-height: 420px !important;
+  height: clamp(350px, calc(100vh - var(--pdp-sticky-top, 112px) - 145px), 560px) !important;
+  min-height: 350px !important;
   aspect-ratio: auto !important;
   overflow: hidden !important;
 }
@@ -48,22 +115,99 @@ html body.page-product-detail .product-main-media img {
   border-radius: inherit !important;
 }
 
+/* Keep all four thumbnails visible directly under the main image. */
 html body.page-product-detail .product-thumb-row {
   position: relative !important;
   z-index: 2 !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  width: 100% !important;
+  margin: 14px 0 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+html body.page-product-detail .product-thumb {
+  display: block !important;
+  min-width: 0 !important;
+  min-height: 86px !important;
+  visibility: visible !important;
+  opacity: 0.65 !important;
+}
+
+html body.page-product-detail .product-thumb:hover,
+html body.page-product-detail .product-thumb.is-active {
+  opacity: 1 !important;
+}
+
+html body.page-product-detail .product-thumb img {
+  display: block !important;
+  width: 100% !important;
+  height: 86px !important;
+  object-fit: cover !important;
+}
+
+/* Remove the accidental vertical gap in the buy panel. */
+html body.page-product-detail .product-title-lg,
+html body.page-product-detail .product-meta-row,
+html body.page-product-detail .price-stack,
+html body.page-product-detail .product-desc,
+html body.page-product-detail .product-quick-specs,
+html body.page-product-detail .product-options,
+html body.page-product-detail .product-action-row,
+html body.page-product-detail .product-secondary-actions,
+html body.page-product-detail .product-service-list {
+  flex-shrink: 0 !important;
+}
+
+html body.page-product-detail .product-meta-row {
+  margin-bottom: 10px !important;
+}
+
+html body.page-product-detail .product-title-lg {
+  margin-bottom: 8px !important;
+}
+
+html body.page-product-detail .price-stack {
+  margin-bottom: 14px !important;
+}
+
+html body.page-product-detail .product-desc {
   margin-top: 0 !important;
+  margin-bottom: 18px !important;
+}
+
+html body.page-product-detail .product-quick-specs {
+  margin-bottom: 18px !important;
 }
 
 @media (max-width: 1180px) {
+  html body.page-product-detail .product-detail-shell,
+  html body.page-product-detail .tab-content[data-tab-panel="description"],
+  html body.page-product-detail .related-products,
+  html body.page-product-detail .tab-content[data-tab-panel="reviews"] {
+    width: min(100% - 32px, 1260px) !important;
+  }
+
+  html body.page-product-detail .product-hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+
   html body.page-product-detail .product-gallery-panel {
     position: relative !important;
     top: auto !important;
-    max-height: none !important;
   }
 
   html body.page-product-detail .product-main-media {
     height: auto !important;
     min-height: 0 !important;
     aspect-ratio: 1 / 1 !important;
+  }
+}
+
+@media (max-width: 620px) {
+  html body.page-product-detail .product-thumb-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
