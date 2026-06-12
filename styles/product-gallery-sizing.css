@@ -1,0 +1,72 @@
+/* Final gallery sizing adjustment.
+   Enlarges the main product photo and four thumbnails as one sticky block,
+   without changing Description or any following section. */
+
+@media (min-width: 1181px) {
+  html body.page-product-detail .product-gallery-panel {
+    display: grid !important;
+    grid-template-rows: minmax(0, 1fr) 108px !important;
+    gap: 14px !important;
+    width: 100% !important;
+    height: min(760px, calc(100vh - var(--pdp-sticky-top, 112px) - 24px)) !important;
+    min-height: 650px !important;
+    max-height: 760px !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body.page-product-detail .product-main-media {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+  }
+
+  html body.page-product-detail .product-main-media img {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+
+  html body.page-product-detail .product-thumb-row {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    width: 100% !important;
+    height: 108px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body.page-product-detail .product-thumb {
+    width: 100% !important;
+    height: 108px !important;
+    min-height: 108px !important;
+  }
+
+  html body.page-product-detail .product-thumb img {
+    width: 100% !important;
+    height: 108px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+}
+
+@media (min-width: 1181px) and (max-height: 820px) {
+  html body.page-product-detail .product-gallery-panel {
+    grid-template-rows: minmax(0, 1fr) 92px !important;
+    height: calc(100vh - var(--pdp-sticky-top, 112px) - 18px) !important;
+    min-height: 540px !important;
+  }
+
+  html body.page-product-detail .product-thumb-row,
+  html body.page-product-detail .product-thumb,
+  html body.page-product-detail .product-thumb img {
+    height: 92px !important;
+    min-height: 92px !important;
+  }
+}
