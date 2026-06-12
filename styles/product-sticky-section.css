@@ -1,0 +1,99 @@
+/* Final sticky boundary for product detail.
+   The gallery can stick only inside the product hero section. */
+
+@media (min-width: 1181px) {
+  html body.page-product-detail .product-detail-main {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: visible !important;
+  }
+
+  html body.page-product-detail .product-detail-shell {
+    display: block !important;
+    width: min(1260px, calc(100% - 48px)) !important;
+    margin: 0 auto !important;
+    padding: 32px 0 72px !important;
+    overflow: visible !important;
+  }
+
+  html body.page-product-detail .product-breadcrumb {
+    display: flex !important;
+    width: 100% !important;
+    margin: 0 0 24px !important;
+    padding: 0 !important;
+  }
+
+  html body.page-product-detail .product-hero-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.04fr) minmax(420px, 0.96fr) !important;
+    gap: clamp(44px, 6vw, 86px) !important;
+    align-items: start !important;
+    overflow: visible !important;
+  }
+
+  html body.page-product-detail .product-gallery-panel {
+    position: sticky !important;
+    top: var(--pdp-sticky-top, 112px) !important;
+    z-index: 10 !important;
+    align-self: start !important;
+  }
+
+  html body.page-product-detail .product-buy-panel,
+  html body.page-product-detail .product-buy-panel:hover {
+    position: relative !important;
+    top: auto !important;
+    align-self: start !important;
+  }
+
+  html body.page-product-detail .product-info-section {
+    display: block !important;
+    position: relative !important;
+    z-index: 20 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    background: #05070b !important;
+  }
+
+  html body.page-product-detail .product-info-grid,
+  html body.page-product-detail .product-tab-card {
+    display: block !important;
+  }
+
+  html body.page-product-detail .product-info-grid {
+    width: min(1260px, calc(100% - 48px)) !important;
+    margin: 0 auto !important;
+  }
+
+  html body.page-product-detail .tab-content[data-tab-panel="description"] {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 64px 0 76px !important;
+    border-top: 1px solid rgba(148, 163, 184, 0.16) !important;
+    background: #05070b !important;
+  }
+
+  html body.page-product-detail .description-spec-layout {
+    display: grid !important;
+    grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr) !important;
+    gap: clamp(36px, 6vw, 80px) !important;
+  }
+
+  html body.page-product-detail .product-spec-card--inside {
+    display: block !important;
+  }
+
+  html body.page-product-detail .related-products,
+  html body.page-product-detail .tab-content[data-tab-panel="reviews"] {
+    position: relative !important;
+    z-index: 20 !important;
+    background: #05070b !important;
+  }
+}
+
+@media (max-width: 1180px) {
+  html body.page-product-detail .product-gallery-panel {
+    position: relative !important;
+    top: auto !important;
+  }
+}
