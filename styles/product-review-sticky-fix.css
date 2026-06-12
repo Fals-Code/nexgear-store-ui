@@ -1,5 +1,6 @@
 /* Sticky behavior correction for product detail.
-   Only the main product image may stick inside the product section. */
+   The whole gallery block (main photo + thumbnails) sticks only inside
+   the product section. The buy panel always scrolls normally. */
 
 html body.page-product-detail .product-buy-panel,
 html body.page-product-detail .product-buy-panel:hover {
@@ -12,21 +13,57 @@ html body.page-product-detail .product-buy-panel:hover {
 }
 
 html body.page-product-detail .product-gallery-panel {
-  position: relative !important;
-  top: auto !important;
-  align-self: stretch !important;
+  position: sticky !important;
+  top: var(--pdp-sticky-top, 112px) !important;
+  z-index: 10 !important;
+  align-self: start !important;
+  display: grid !important;
+  grid-template-rows: minmax(0, 1fr) auto !important;
+  gap: 16px !important;
+  width: 100% !important;
+  height: max-content !important;
+  max-height: calc(100vh - var(--pdp-sticky-top, 112px) - 18px) !important;
   overflow: visible !important;
 }
 
 html body.page-product-detail .product-main-media {
-  position: sticky !important;
-  top: var(--pdp-sticky-top, 112px) !important;
-  z-index: 10 !important;
+  position: relative !important;
+  top: auto !important;
+  z-index: 1 !important;
+  width: 100% !important;
+  height: clamp(420px, calc(100vh - var(--pdp-sticky-top, 112px) - 150px), 620px) !important;
+  min-height: 420px !important;
+  aspect-ratio: auto !important;
+  overflow: hidden !important;
+}
+
+html body.page-product-detail .product-main-media img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: inherit !important;
+}
+
+html body.page-product-detail .product-thumb-row {
+  position: relative !important;
+  z-index: 2 !important;
+  margin-top: 0 !important;
 }
 
 @media (max-width: 1180px) {
-  html body.page-product-detail .product-main-media {
+  html body.page-product-detail .product-gallery-panel {
     position: relative !important;
     top: auto !important;
+    max-height: none !important;
+  }
+
+  html body.page-product-detail .product-main-media {
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 1 / 1 !important;
   }
 }
