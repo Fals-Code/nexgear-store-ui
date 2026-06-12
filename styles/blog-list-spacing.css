@@ -1,0 +1,25 @@
+/* Increase horizontal breathing room only for the article list section. */
+
+.page-blog .journal-feed > .journal-shell {
+  width: calc(100% - clamp(112px, 10vw, 192px)) !important;
+  max-width: 1540px !important;
+  margin-inline: auto !important;
+}
+
+@media (max-width: 1024px) {
+  .page-blog .journal-feed > .journal-shell {
+    width: calc(100% - 64px) !important;
+  }
+}
+
+@media (max-width: 820px) {
+  .page-blog .journal-feed > .journal-shell {
+    width: calc(100% - 32px) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-blog .journal-feed > .journal-shell {
+    width: calc(100% - 20px) !important;
+  }
+}
