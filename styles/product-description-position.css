@@ -1,0 +1,83 @@
+/* Restore Description to its previous position under the buy panel. */
+
+@media (min-width: 1181px) {
+  html body.page-product-detail .product-detail-main {
+    display: grid !important;
+    grid-template-columns:
+      minmax(24px, 1fr)
+      minmax(0, 580px)
+      clamp(44px, 6vw, 86px)
+      minmax(420px, 540px)
+      minmax(24px, 1fr) !important;
+    grid-template-rows: auto auto auto auto auto !important;
+    column-gap: 0 !important;
+    row-gap: 0 !important;
+  }
+
+  html body.page-product-detail .product-detail-shell,
+  html body.page-product-detail .product-hero-grid,
+  html body.page-product-detail .product-info-section,
+  html body.page-product-detail .product-info-grid,
+  html body.page-product-detail .product-tab-card {
+    display: contents !important;
+  }
+
+  html body.page-product-detail .product-breadcrumb {
+    grid-column: 2 / 5 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 32px 0 24px !important;
+  }
+
+  html body.page-product-detail .product-gallery-panel {
+    grid-column: 2 !important;
+    grid-row: 2 / 4 !important;
+    position: sticky !important;
+    top: var(--pdp-sticky-top, 112px) !important;
+    align-self: start !important;
+  }
+
+  html body.page-product-detail .product-buy-panel,
+  html body.page-product-detail .product-buy-panel:hover {
+    grid-column: 4 !important;
+    grid-row: 2 !important;
+    position: relative !important;
+    top: auto !important;
+    align-self: start !important;
+  }
+
+  html body.page-product-detail .tab-content[data-tab-panel="description"] {
+    grid-column: 4 !important;
+    grid-row: 3 !important;
+    order: initial !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 30px 0 72px !important;
+    border-top: 0 !important;
+  }
+
+  html body.page-product-detail .description-spec-layout {
+    display: block !important;
+  }
+
+  html body.page-product-detail .product-spec-card--inside {
+    display: none !important;
+  }
+
+  html body.page-product-detail .related-products {
+    grid-column: 2 / 5 !important;
+    grid-row: 4 !important;
+    order: initial !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  html body.page-product-detail .tab-content[data-tab-panel="reviews"] {
+    grid-column: 2 / 5 !important;
+    grid-row: 5 !important;
+    order: initial !important;
+    width: min(1120px, 100%) !important;
+    margin: 0 auto !important;
+  }
+}
