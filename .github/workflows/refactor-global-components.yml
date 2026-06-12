@@ -1,0 +1,53 @@
+name: Refactor global HTML components
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - tools/refactor_global_components.py
+      - .github/workflows/refactor-global-components.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refactor-global-components
+  cancel-in-progress: true
+
+jobs:
+  migrate:
+    if: ${{ !contains(github.event.head_commit.message || '', '[components-refactor]') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run global component migration
+        run: python3 tools/refactor_global_components.py
+
+      - name: Validate generated components
+        run: |
+          test -s components/header.html
+          test -s components/footer.html
+          grep -q 'id="global-header"' index.html
+          grep -q 'id="global-footer"' index.html
+          grep -q 'scripts/global-components.js' index.html
+          ! grep -q 'id="global-header"' login.html
+
+      - name: Commit migrated pages
+        run: |
+          if git diff --quiet; then
+            echo "No migration changes detected."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add components scripts/main.js *.html
+          git commit -m "[components-refactor] Centralize global header and footer"
+          git push origin HEAD:main
