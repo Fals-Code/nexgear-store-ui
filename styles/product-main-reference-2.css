@@ -1,0 +1,93 @@
+.pdp-ref-description,
+.pdp-ref-related,
+.pdp-ref-reviews {
+  padding-top: clamp(62px, 8vw, 104px);
+  padding-bottom: clamp(62px, 8vw, 104px);
+  border-top: 1px solid rgba(148, 163, 184, 0.11);
+}
+
+.pdp-ref-description {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: clamp(30px, 5vw, 72px);
+}
+
+.pdp-ref-section-label,
+.pdp-ref-heading > span,
+.pdp-ref-review-heading > span {
+  color: #00e5ff;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.pdp-ref-description-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+  gap: clamp(34px, 6vw, 82px);
+}
+
+.pdp-ref-description h2,
+.pdp-ref-heading h2,
+.pdp-ref-review-heading h2 {
+  margin: 0;
+  color: #fff;
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(1.7rem, 3vw, 2.8rem);
+  letter-spacing: -0.04em;
+}
+
+.pdp-ref-description p {
+  margin: 18px 0 0;
+  color: rgba(203, 213, 225, 0.82);
+  line-height: 1.82;
+}
+
+.pdp-ref-description ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pdp-ref-description li {
+  position: relative;
+  padding-left: 18px;
+  color: rgba(203, 213, 225, 0.8);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.pdp-ref-description li::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00e5ff;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
+}
+
+.pdp-ref-heading {
+  margin-bottom: 30px;
+}
+
+.pdp-ref-heading h2 {
+  margin-top: 8px;
+}
+
+.pdp-ref-related-grid.catalog-product-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.pdp-ref-related .catalog-product-card {
+  height: auto;
+  min-width: 0;
+}
