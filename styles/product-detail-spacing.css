@@ -1,0 +1,65 @@
+/* Product-detail-only spacing cleanup for the buy/info panel.
+   Fixes the oversized blank gap without touching gallery, description, related products, or reviews. */
+
+@media (min-width: 769px) {
+  html body.page-product-detail .product-buy-panel,
+  html body.page-product-detail .product-buy-panel:hover {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    align-content: start !important;
+    row-gap: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+  }
+
+  html body.page-product-detail .product-meta-row {
+    margin-bottom: 10px !important;
+  }
+
+  html body.page-product-detail .product-title-lg {
+    margin-bottom: 12px !important;
+  }
+
+  html body.page-product-detail .price-stack {
+    margin: 0 0 18px !important;
+    min-height: 0 !important;
+    height: auto !important;
+    align-items: center !important;
+    row-gap: 6px !important;
+  }
+
+  html body.page-product-detail .price-stack::after {
+    align-self: center !important;
+    margin-left: 2px !important;
+    transform: none !important;
+  }
+
+  html body.page-product-detail .product-desc {
+    margin: 0 0 20px !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+
+  html body.page-product-detail .product-desc::before {
+    margin-bottom: 12px !important;
+  }
+
+  html body.page-product-detail .product-quick-specs {
+    margin: 0 0 20px !important;
+  }
+
+  html body.page-product-detail .product-options {
+    gap: 16px !important;
+    margin: 0 0 20px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  html body.page-product-detail .product-title-lg,
+  html body.page-product-detail .price-stack,
+  html body.page-product-detail .product-desc,
+  html body.page-product-detail .product-quick-specs,
+  html body.page-product-detail .product-options {
+    margin-top: 0 !important;
+  }
+}
