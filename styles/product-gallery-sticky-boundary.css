@@ -1,0 +1,72 @@
+/* Product-detail-only gallery boundary fix.
+   The main photo and thumbnails now stick as one gallery block, so they stop cleanly
+   at the end of the product hero section and never collapse into the next section. */
+
+@media (min-width: 1181px) {
+  html body.page-product-detail .product-gallery-panel {
+    position: sticky !important;
+    top: var(--pdp-sticky-top, 112px) !important;
+    z-index: 10 !important;
+    align-self: start !important;
+    display: grid !important;
+    grid-template-rows: auto auto !important;
+    gap: 12px !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body.page-product-detail .product-main-media {
+    position: relative !important;
+    top: auto !important;
+    z-index: 1 !important;
+    height: clamp(470px, calc(100vh - var(--pdp-sticky-top, 112px) - 250px), 620px) !important;
+    min-height: 470px !important;
+    max-height: 620px !important;
+    margin: 0 !important;
+  }
+
+  html body.page-product-detail .product-thumb-row {
+    position: relative !important;
+    top: auto !important;
+    z-index: 2 !important;
+    height: 104px !important;
+    min-height: 104px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  html body.page-product-detail .product-thumb,
+  html body.page-product-detail .product-thumb img {
+    height: 104px !important;
+    min-height: 104px !important;
+  }
+}
+
+@media (min-width: 1181px) and (max-height: 820px) {
+  html body.page-product-detail .product-main-media {
+    height: clamp(430px, calc(100vh - var(--pdp-sticky-top, 112px) - 220px), 560px) !important;
+    min-height: 430px !important;
+    max-height: 560px !important;
+  }
+
+  html body.page-product-detail .product-thumb-row,
+  html body.page-product-detail .product-thumb,
+  html body.page-product-detail .product-thumb img {
+    height: 92px !important;
+    min-height: 92px !important;
+  }
+}
+
+@media (max-width: 1180px) {
+  html body.page-product-detail .product-gallery-panel,
+  html body.page-product-detail .product-main-media,
+  html body.page-product-detail .product-thumb-row {
+    position: relative !important;
+    top: auto !important;
+  }
+}
