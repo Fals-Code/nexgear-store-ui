@@ -7,8 +7,6 @@
   const images = Array.from(slider.querySelectorAll("[data-about-slide-image]"));
   const texts = Array.from(slider.querySelectorAll("[data-about-slide-text]"));
   const dots = Array.from(slider.querySelectorAll("[data-about-dot]"));
-  const prev = slider.querySelector("[data-about-prev]");
-  const next = slider.querySelector("[data-about-next]");
   const total = Math.min(images.length, texts.length, dots.length);
   if (!total) return;
 
@@ -53,9 +51,8 @@
 
     isAnimating = true;
     const movingNext = direction !== "prev";
-    const currentIndex = index;
-    const currentImage = images[currentIndex];
-    const currentText = texts[currentIndex];
+    const currentImage = images[index];
+    const currentText = texts[index];
     const targetImage = images[target];
     const targetText = texts[target];
     const enterClass = movingNext ? "is-after" : "is-before";
@@ -69,8 +66,8 @@
     targetImage?.classList.add(enterClass);
     targetText?.classList.add(enterClass);
 
-    // Force the browser to register the start position before moving.
-    slider.getBoundingClientRect();
+    // Force initial off-screen state before transition starts. Yes, browser choreography is fragile.
+    void slider.offsetWidth;
 
     currentImage?.classList.remove("is-active");
     currentText?.classList.remove("is-active");
@@ -101,21 +98,33 @@
     timer = window.setInterval(() => showSlide(index + 1, "next"), interval);
   }
 
-  prev?.addEventListener("click", () => {
-    showSlide(index - 1, "prev");
-    startAuto();
-  });
+  slider.addEventListener("click", (event) => {
+    const prevButton = event.target.closest("[data-about-prev]");
+    const nextButton = event.target.closest("[data-about-next]");
+    const dotButton = event.target.closest("[data-about-dot]");
 
-  next?.addEventListener("click", () => {
-    showSlide(index + 1, "next");
-    startAuto();
-  });
-
-  dots.forEach((dot, i) => {
-    dot.addEventListener("click", () => {
-      showSlide(i, i < index ? "prev" : "next");
+    if (prevButton) {
+      event.preventDefault();
+      showSlide(index - 1, "prev");
       startAuto();
-    });
+      return;
+    }
+
+    if (nextButton) {
+      event.preventDefault();
+      showSlide(index + 1, "next");
+      startAuto();
+      return;
+    }
+
+    if (dotButton) {
+      event.preventDefault();
+      const dotIndex = dots.indexOf(dotButton);
+      if (dotIndex >= 0) {
+        showSlide(dotIndex, dotIndex < index ? "prev" : "next");
+        startAuto();
+      }
+    }
   });
 
   slider.addEventListener("mouseenter", stopAuto);
