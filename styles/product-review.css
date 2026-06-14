@@ -17,13 +17,13 @@ html body.page-product-detail .price-action-card {
 html body.page-product-detail .price-stack {
   position: relative !important;
   display: grid !important;
-  grid-template-columns: auto 1fr !important;
+  grid-template-columns: auto auto 1fr !important;
   grid-template-areas:
-    "label label"
-    "old current"
-    "sale sale" !important;
+    "label label label"
+    "old current current"
+    "sale save save" !important;
   align-items: end !important;
-  gap: 8px 14px !important;
+  gap: 8px 10px !important;
   margin-bottom: 18px !important;
 }
 
@@ -52,27 +52,40 @@ html body.page-product-detail .price-stack > strong {
   letter-spacing: -0.055em !important;
 }
 
-html body.page-product-detail .price-stack::after {
-  content: "Sale" !important;
-  grid-area: sale !important;
+html body.page-product-detail .price-stack::after,
+html body.page-product-detail .price-stack::before {
   width: max-content !important;
   min-height: 30px !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 7px !important;
+  justify-content: center !important;
   padding: 0 12px !important;
   margin: 3px 0 0 !important;
-  border: 1px solid rgba(255, 61, 87, 0.34) !important;
   border-radius: 999px !important;
-  background: linear-gradient(180deg, rgba(255, 61, 87, 0.18), rgba(255, 61, 87, 0.08)) !important;
-  color: #ffb1bb !important;
-  box-shadow: 0 12px 28px rgba(255, 61, 87, 0.1) !important;
   font-family: var(--font-body) !important;
   font-size: 0.76rem !important;
   font-weight: 950 !important;
   letter-spacing: 0.08em !important;
   line-height: 1 !important;
   text-transform: uppercase !important;
+}
+
+html body.page-product-detail .price-stack::after {
+  content: "SALE" !important;
+  grid-area: sale !important;
+  border: 1px solid rgba(255, 61, 87, 0.34) !important;
+  background: linear-gradient(180deg, rgba(255, 61, 87, 0.18), rgba(255, 61, 87, 0.08)) !important;
+  color: #ffb1bb !important;
+  box-shadow: 0 12px 28px rgba(255, 61, 87, 0.1) !important;
+}
+
+html body.page-product-detail .price-stack::before {
+  content: "SAVE 14%" !important;
+  grid-area: save !important;
+  border: 1px solid rgba(0, 229, 255, 0.32) !important;
+  background: linear-gradient(180deg, rgba(0, 229, 255, 0.14), rgba(0, 229, 255, 0.045)) !important;
+  color: #00e5ff !important;
+  box-shadow: 0 12px 28px rgba(0, 229, 255, 0.08) !important;
 }
 
 html body.page-product-detail .review-card {
@@ -140,7 +153,8 @@ html body.page-product-detail .related-products {
       "label"
       "old"
       "current"
-      "sale" !important;
+      "sale"
+      "save" !important;
     align-items: start !important;
   }
 
