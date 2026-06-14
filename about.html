@@ -13,14 +13,14 @@
       })();
     </script>
     <link rel="stylesheet" href="styles/global.css" />
-    <link rel="stylesheet" href="styles/about.css?v=about-reference-1" />
-    <link rel="stylesheet" href="styles/about-reference.css?v=about-reference-1" />
+    <link rel="stylesheet" href="styles/about.css?v=about-reference-2" />
+    <link rel="stylesheet" href="styles/about-reference.css?v=about-reference-2" />
     <link rel="stylesheet" href="styles/transition.css" />
     <script src="scripts/page-transition.js" defer></script>
     <title>Tentang NEXGEAR</title>
   </head>
 
-  <body class="page-about" data-footer-reveal="compact">
+  <body class="page-about" data-footer-reveal="wide">
     <div class="page-transition" aria-hidden="true">
       <span class="page-transition__panel page-transition__panel--a"></span>
       <span class="page-transition__panel page-transition__panel--b"></span>
@@ -106,11 +106,16 @@
       </section>
 
       <section class="about-quote" aria-labelledby="about-quote-title">
-        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=2200&q=82" alt="Dark gaming room setup" />
+        <div class="about-quote-slider" aria-hidden="true">
+          <img class="about-quote-slide about-quote-slide--one" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=2200&q=82" alt="" />
+          <img class="about-quote-slide about-quote-slide--two" src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=2200&q=82" alt="" />
+          <img class="about-quote-slide about-quote-slide--three" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2200&q=82" alt="" />
+        </div>
         <div class="about-quote__overlay"></div>
         <div class="container about-quote__content">
           <h2 id="about-quote-title">“Pilihan gear yang baik tidak selalu paling ramai. Yang penting: cocok, jelas, dan tahan dipakai.”</h2>
           <p>NEXGEAR, setup curation note</p>
+          <div class="about-quote-dots" aria-hidden="true"><span></span><span></span><span></span></div>
         </div>
       </section>
     </main>
