@@ -1,0 +1,108 @@
+/* About page correction: keep this as a brand story page, not a landing page. */
+.page-about .about-hero {
+  min-height: 640px !important;
+  padding-bottom: 72px !important;
+}
+
+.page-about .about-hero__grid {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.62fr) !important;
+}
+
+.page-about .about-hero__copy h1 {
+  max-width: 900px !important;
+  font-size: clamp(2.85rem, 6vw, 6.65rem) !important;
+}
+
+.page-about .about-hero__visual {
+  min-height: 430px !important;
+}
+
+.page-about .about-identity-list {
+  max-width: 680px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 30px 0 0;
+}
+
+.page-about .about-identity-list div {
+  padding: 18px 18px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 18px;
+  background: rgba(7, 11, 18, 0.54);
+  backdrop-filter: blur(14px);
+}
+
+.page-about .about-identity-list dt {
+  color: #00e5ff;
+  font-family: var(--font-gaming);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.page-about .about-identity-list dd {
+  margin: 9px 0 0;
+  color: rgba(248, 250, 252, 0.86);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.page-about .about-closing {
+  padding: clamp(66px, 8vw, 110px) 0 clamp(30px, 5vw, 54px);
+}
+
+.page-about .about-closing__inner {
+  max-width: 980px;
+  padding: clamp(34px, 5vw, 64px);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(0, 229, 255, 0.12), transparent 36%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.016)),
+    rgba(11, 17, 26, 0.74);
+}
+
+.page-about .about-closing h2 {
+  max-width: 860px;
+  margin: 18px 0 0;
+  color: #f8fafc;
+  font-size: clamp(2rem, 4.4vw, 4.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.page-about .about-closing p {
+  max-width: 720px;
+  margin: 20px 0 0;
+  color: rgba(226, 232, 240, 0.68);
+  font-size: 1rem;
+  line-height: 1.76;
+}
+
+.page-about .about-cta,
+.page-about .about-cta__actions,
+.page-about .about-hero__actions {
+  display: none !important;
+}
+
+.page-about .ecosystem-card {
+  cursor: default;
+}
+
+@media (max-width: 1180px) {
+  .page-about .about-hero__grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-about .about-identity-list {
+    grid-template-columns: 1fr;
+  }
+
+  .page-about .about-hero__visual {
+    min-height: 330px !important;
+  }
+}
