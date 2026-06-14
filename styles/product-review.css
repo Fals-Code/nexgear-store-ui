@@ -5,6 +5,7 @@
 @import url("product-gallery-sticky-boundary.css");
 @import url("product-media-badge.css");
 @import url("product-related-catalog-match.css");
+@import url("product-related-info-catalog.css");
 
 /* Product detail final polish: review avatars, related media, and footer reveal space. */
 html body.page-product-detail {
