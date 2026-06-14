@@ -3,3 +3,115 @@
 @import url("product-gallery-sizing.css");
 @import url("product-detail-spacing.css");
 @import url("product-gallery-sticky-boundary.css");
+
+/* Product detail final polish: review avatars, related media, and footer reveal space. */
+html body.page-product-detail {
+  --footer-reveal-space: clamp(540px, 54vh, 680px);
+}
+
+html body.page-product-detail .review-card {
+  align-items: start !important;
+}
+
+html body.page-product-detail .review-author {
+  display: grid !important;
+  grid-template-columns: 56px minmax(0, 1fr) !important;
+  grid-template-rows: auto auto !important;
+  align-items: center !important;
+  column-gap: 14px !important;
+  min-width: 0 !important;
+  line-height: 1.15 !important;
+}
+
+html body.page-product-detail .review-author img {
+  grid-row: 1 / span 2 !important;
+  width: 56px !important;
+  height: 56px !important;
+  display: block !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border: 1px solid rgba(0, 229, 255, 0.28) !important;
+  box-shadow:
+    0 0 0 5px rgba(0, 229, 255, 0.055),
+    0 14px 30px rgba(0, 0, 0, 0.22) !important;
+}
+
+html body.page-product-detail .review-author span {
+  display: block !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  color: #f8fafc !important;
+  font-size: 0.95rem !important;
+  font-weight: 900 !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+html body.page-product-detail .review-author small {
+  display: block !important;
+  min-width: 0 !important;
+  color: rgba(148, 163, 184, 0.78) !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+
+html body.page-product-detail .related-product-grid.catalog-card-grid {
+  align-items: start !important;
+}
+
+html body.page-product-detail .single-product.product-related-card .part-1 {
+  background:
+    radial-gradient(circle at 50% 35%, rgba(0, 229, 255, 0.14), transparent 42%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(7, 11, 18, 0.98)) !important;
+}
+
+html body.page-product-detail .single-product.product-related-card .part-1 img {
+  opacity: 0.96 !important;
+  filter: saturate(1.04) contrast(1.02) brightness(0.92) !important;
+}
+
+html body.page-product-detail .single-product.product-related-card:hover .part-1 img,
+html body.page-product-detail .single-product.product-related-card:focus-within .part-1 img {
+  filter: saturate(1.12) contrast(1.04) brightness(1) !important;
+}
+
+html body.page-product-detail .single-product.product-related-card .part-1 ul li a {
+  font-size: 1.05rem !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+}
+
+html body.page-product-detail .single-product.product-related-card .part-1 ul li a[aria-label="Cart"] {
+  font-size: 0.98rem !important;
+}
+
+html body.page-product-detail .single-product.product-related-card .part-1 ul li a:hover,
+html body.page-product-detail .single-product.product-related-card .part-1 ul li a:focus-visible {
+  color: #00e5ff !important;
+  border-color: rgba(0, 229, 255, 0.46) !important;
+  background: rgba(0, 229, 255, 0.13) !important;
+  transform: translateY(-2px) !important;
+}
+
+html body.page-product-detail .related-products {
+  padding-bottom: clamp(120px, 12vw, 180px) !important;
+}
+
+@media (max-width: 680px) {
+  html body.page-product-detail {
+    --footer-reveal-space: 620px;
+  }
+
+  html body.page-product-detail .review-author {
+    grid-template-columns: 52px minmax(0, 1fr) !important;
+  }
+
+  html body.page-product-detail .review-author img {
+    width: 52px !important;
+    height: 52px !important;
+  }
+}
