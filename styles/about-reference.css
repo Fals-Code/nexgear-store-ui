@@ -88,21 +88,6 @@
     linear-gradient(180deg, #09101a 0%, #060a10 100%);
 }
 
-.about-ref-section::after {
-  content: attr(aria-labelledby);
-  position: absolute;
-  right: clamp(24px, 7vw, 104px);
-  top: clamp(26px, 4vw, 52px);
-  color: rgba(148, 163, 184, 0.055);
-  font-family: var(--font-heading);
-  font-size: clamp(3.8rem, 9vw, 9rem);
-  font-weight: 900;
-  letter-spacing: -0.08em;
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-}
-
 .about-ref-row {
   position: relative;
   z-index: 1;
@@ -243,42 +228,37 @@
   height: 100%;
 }
 
+.about-quote-slider {
+  z-index: 1;
+  overflow: hidden;
+}
+
 .about-quote-slide {
   object-fit: cover;
   opacity: 0;
+  z-index: 1;
   filter: saturate(1.04) contrast(1.1) brightness(0.5);
-  transform: translateX(0) scale(1.02);
+  transform: translate3d(100%, 0, 0) scale(1.02);
   transition:
-    opacity 0.68s ease,
-    transform 0.92s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.7s ease,
+    transform 0.82s cubic-bezier(0.16, 1, 0.3, 1),
     filter 0.68s ease;
+  will-change: transform, opacity;
+}
+
+.about-quote-slide.is-before {
+  transform: translate3d(-100%, 0, 0) scale(1.02);
+}
+
+.about-quote-slide.is-after {
+  transform: translate3d(100%, 0, 0) scale(1.02);
 }
 
 .about-quote-slide.is-active {
   z-index: 2;
   opacity: 1;
-  transform: translateX(0) scale(1);
+  transform: translate3d(0, 0, 0) scale(1);
   filter: saturate(1.05) contrast(1.08) brightness(0.58);
-}
-
-.about-quote-slide.is-entering-right {
-  transform: translateX(12%) scale(1.025);
-}
-
-.about-quote-slide.is-entering-left {
-  transform: translateX(-12%) scale(1.025);
-}
-
-.about-quote-slide.is-exiting-left {
-  z-index: 1;
-  opacity: 0;
-  transform: translateX(-12%) scale(1.015);
-}
-
-.about-quote-slide.is-exiting-right {
-  z-index: 1;
-  opacity: 0;
-  transform: translateX(12%) scale(1.015);
 }
 
 .about-quote__overlay {
@@ -306,7 +286,7 @@
   border-radius: 0;
   background: transparent;
   opacity: 0;
-  transform: translateX(0) translateY(18px);
+  transform: translate3d(52px, 18px, 0);
   filter: blur(5px);
   pointer-events: none;
   backdrop-filter: none;
@@ -320,31 +300,19 @@
   position: absolute;
 }
 
+.about-quote-panel.is-before {
+  transform: translate3d(-52px, 12px, 0);
+}
+
+.about-quote-panel.is-after {
+  transform: translate3d(52px, 12px, 0);
+}
+
 .about-quote-panel.is-active {
   opacity: 1;
-  transform: translateX(0) translateY(0);
+  transform: translate3d(0, 0, 0);
   filter: blur(0);
   pointer-events: auto;
-}
-
-.about-quote-panel.is-entering-right {
-  transform: translateX(42px) translateY(12px);
-}
-
-.about-quote-panel.is-entering-left {
-  transform: translateX(-42px) translateY(12px);
-}
-
-.about-quote-panel.is-exiting-left {
-  opacity: 0;
-  transform: translateX(-42px) translateY(0);
-  filter: blur(5px);
-}
-
-.about-quote-panel.is-exiting-right {
-  opacity: 0;
-  transform: translateX(42px) translateY(0);
-  filter: blur(5px);
 }
 
 .about-quote h2 {
