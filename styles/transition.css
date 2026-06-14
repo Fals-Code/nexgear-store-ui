@@ -472,3 +472,58 @@ body.catalog-data-loading .catalog-grid {
     filter: none !important;
   }
 }
+
+/* Catalog action hover fix: fill the button background, keep SVG icon neutral. */
+.page-catalog .catalog-action-btn--cart:hover,
+.page-catalog .catalog-action-btn--cart:focus-visible,
+.page-catalog .single-product .part-1 ul li .catalog-action-btn--cart:hover,
+.page-catalog .single-product .part-1 ul li .catalog-action-btn--cart:focus-visible {
+  background: #00e5ff !important;
+  border-color: #00e5ff !important;
+  color: #06101d !important;
+  box-shadow: 0 14px 30px rgba(0, 229, 255, 0.24) !important;
+  transform: translateY(-2px) !important;
+}
+
+.page-catalog .catalog-action-btn--wishlist:hover,
+.page-catalog .catalog-action-btn--wishlist:focus-visible,
+.page-catalog .single-product .part-1 ul li .catalog-action-btn--wishlist:hover,
+.page-catalog .single-product .part-1 ul li .catalog-action-btn--wishlist:focus-visible {
+  background: #00e5ff !important;
+  border-color: #00e5ff !important;
+  color: #06101d !important;
+  box-shadow: 0 14px 30px rgba(0, 229, 255, 0.24) !important;
+  transform: translateY(-2px) !important;
+}
+
+.page-catalog .catalog-action-btn--compare:hover,
+.page-catalog .catalog-action-btn--compare:focus-visible,
+.page-catalog .single-product .part-1 ul li .catalog-action-btn--compare:hover,
+.page-catalog .single-product .part-1 ul li .catalog-action-btn--compare:focus-visible {
+  background: #00e5ff !important;
+  border-color: #00e5ff !important;
+  color: #06101d !important;
+  box-shadow: 0 14px 30px rgba(0, 229, 255, 0.24) !important;
+  transform: translateY(-2px) !important;
+}
+
+.page-catalog .catalog-action-btn--quickview:hover,
+.page-catalog .catalog-action-btn--quickview:focus-visible,
+.page-catalog .single-product .part-1 ul li .catalog-action-btn--quickview:hover,
+.page-catalog .single-product .part-1 ul li .catalog-action-btn--quickview:focus-visible {
+  background: #00e5ff !important;
+  border-color: #00e5ff !important;
+  color: #06101d !important;
+  box-shadow: 0 14px 30px rgba(0, 229, 255, 0.24) !important;
+  transform: translateY(-2px) !important;
+}
+
+.page-catalog .catalog-action-btn:hover svg,
+.page-catalog .catalog-action-btn:focus-visible svg,
+.page-catalog .single-product .part-1 ul li button:hover svg,
+.page-catalog .single-product .part-1 ul li button:focus-visible svg,
+.page-catalog .single-product .part-1 ul li a:hover svg,
+.page-catalog .single-product .part-1 ul li a:focus-visible svg {
+  color: inherit !important;
+  stroke: currentColor !important;
+}
