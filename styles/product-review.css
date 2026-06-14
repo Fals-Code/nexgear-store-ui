@@ -3,6 +3,7 @@
 @import url("product-gallery-sizing.css");
 @import url("product-detail-spacing.css");
 @import url("product-gallery-sticky-boundary.css");
+@import url("tmp-badge-test.css");
 
 /* Product detail final polish: review avatars, related media, and footer reveal space. */
 html body.page-product-detail {
