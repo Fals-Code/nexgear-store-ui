@@ -1,4 +1,4 @@
-/* Product detail related products: clean copy of catalog single-product card style. */
+/* Product detail related products: screenshot-matched catalog card style. */
 html body.page-product-detail .related-products {
   padding-top: clamp(46px, 5vw, 64px) !important;
   padding-bottom: clamp(42px, 5vw, 64px) !important;
@@ -7,7 +7,7 @@ html body.page-product-detail .related-products {
 html body.page-product-detail .related-product-grid.catalog-card-grid {
   display: grid !important;
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  gap: 28px !important;
+  gap: clamp(28px, 2.6vw, 36px) !important;
   align-items: start !important;
 }
 
@@ -15,7 +15,7 @@ html body.page-product-detail .related-products .single-product.catalog-product-
 html body.page-product-detail .related-products .single-product.product-related-card {
   height: auto !important;
   min-height: 0 !important;
-  margin: 0 0 26px !important;
+  margin: 0 !important;
   overflow: visible !important;
   border: 0 !important;
   border-radius: 0 !important;
@@ -36,137 +36,134 @@ html body.page-product-detail .related-products .single-product.product-related-
 
 html body.page-product-detail .related-products .single-product .part-1 {
   position: relative !important;
-  height: 290px !important;
-  max-height: 290px !important;
-  margin-bottom: 20px !important;
+  height: clamp(300px, 25vw, 402px) !important;
+  max-height: 420px !important;
+  margin-bottom: 24px !important;
   overflow: hidden !important;
-  border-radius: 18px !important;
-  border: 1px solid rgba(148, 163, 184, 0.14) !important;
-  background:
-    radial-gradient(circle at 50% 35%, rgba(0, 229, 255, 0.1), transparent 42%),
-    linear-gradient(180deg, rgba(15, 23, 42, 0.86), rgba(7, 11, 18, 0.98)) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(148, 163, 184, 0.18) !important;
+  background: #0b111a !important;
+  box-shadow: none !important;
 }
 
-html body.page-product-detail .related-products .single-product .part-1::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  z-index: 0 !important;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012)) !important;
-  transition: transform 0.3s ease !important;
-}
-
-html body.page-product-detail .related-products .single-product:hover .part-1::before,
-html body.page-product-detail .related-products .single-product:focus-within .part-1::before {
-  transform: scale(1.2) rotate(5deg) !important;
+html body.page-product-detail .related-products .single-product .part-1::before,
+html body.page-product-detail .related-products .single-product .part-1::after {
+  content: none !important;
+  display: none !important;
 }
 
 html body.page-product-detail .related-products .single-product .part-1 img {
-  position: relative !important;
+  position: absolute !important;
+  inset: 0 !important;
   z-index: 1 !important;
   width: 100% !important;
   height: 100% !important;
   display: block !important;
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: center !important;
-  padding: 28px !important;
-  border-radius: 0 !important;
+  padding: 0 !important;
+  border-radius: inherit !important;
   opacity: 1 !important;
   filter: none !important;
-  transition: transform 0.3s ease !important;
+  transition: transform 0.32s ease, filter 0.32s ease !important;
 }
 
 html body.page-product-detail .related-products .single-product:hover .part-1 img,
 html body.page-product-detail .related-products .single-product:focus-within .part-1 img {
-  transform: scale(1.08) rotate(2deg) !important;
-  filter: none !important;
+  transform: scale(1.055) !important;
+  filter: saturate(1.08) contrast(1.04) brightness(1.02) !important;
 }
 
 html body.page-product-detail .related-products .single-product .part-1 .discount,
 html body.page-product-detail .related-products .single-product .part-1 .new {
   position: absolute !important;
-  top: 15px !important;
-  left: 20px !important;
-  z-index: 3 !important;
-  padding: 4px 9px !important;
+  top: 20px !important;
+  left: 0 !important;
+  z-index: 5 !important;
+  min-height: 24px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0 11px !important;
   border: 0 !important;
   border-radius: 0 !important;
-  background-color: #00e5ff !important;
+  background: #ffffff !important;
   color: #06101d !important;
-  font-size: 0.72rem !important;
+  box-shadow: none !important;
+  font-size: 0.78rem !important;
   line-height: 1 !important;
-  font-weight: 900 !important;
+  font-weight: 950 !important;
   letter-spacing: 0.06em !important;
   text-transform: uppercase !important;
 }
 
 html body.page-product-detail .related-products .single-product .part-1 .discount {
-  background-color: #ff3d57 !important;
+  background: #ff3d57 !important;
   color: #ffffff !important;
 }
 
-html body.page-product-detail .related-products .single-product .part-1 .new {
-  left: 0 !important;
-  background-color: #ffffff !important;
-  color: #06101d !important;
-}
-
-html body.page-product-detail .related-products .single-product .part-1 ul {
+html body.page-product-detail .related-products .single-product .part-1 ul.catalog-product-actions {
   position: absolute !important;
-  left: 20px !important;
-  bottom: -41px !important;
-  z-index: 4 !important;
+  left: 18px !important;
+  right: auto !important;
+  bottom: -54px !important;
+  z-index: 6 !important;
   display: flex !important;
-  gap: 4px !important;
+  align-items: center !important;
+  gap: 8px !important;
   margin: 0 !important;
   padding: 0 !important;
   list-style: none !important;
   opacity: 0 !important;
-  transition: bottom 0.5s ease, opacity 0.5s ease !important;
+  transform: translateY(8px) !important;
+  transition: bottom 0.36s ease, opacity 0.28s ease, transform 0.28s ease !important;
 }
 
-html body.page-product-detail .related-products .single-product:hover .part-1 ul,
-html body.page-product-detail .related-products .single-product:focus-within .part-1 ul {
-  bottom: 30px !important;
+html body.page-product-detail .related-products .single-product:hover .part-1 ul.catalog-product-actions,
+html body.page-product-detail .related-products .single-product:focus-within .part-1 ul.catalog-product-actions {
+  bottom: 20px !important;
   opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
-html body.page-product-detail .related-products .single-product .part-1 ul li {
-  display: inline-block !important;
-  margin-right: 4px !important;
+html body.page-product-detail .related-products .single-product .part-1 ul.catalog-product-actions li {
+  display: inline-flex !important;
+  margin: 0 !important;
 }
 
-html body.page-product-detail .related-products .single-product .part-1 ul li button,
-html body.page-product-detail .related-products .single-product .part-1 ul li a {
-  width: 40px !important;
-  height: 40px !important;
-  min-height: 40px !important;
+html body.page-product-detail .related-products .single-product .part-1 ul.catalog-product-actions li button,
+html body.page-product-detail .related-products .single-product .part-1 ul.catalog-product-actions li a {
+  width: 42px !important;
+  height: 42px !important;
+  min-height: 42px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background-color: #ffffff !important;
-  color: #444444 !important;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.18) !important;
+  border: 1px solid rgba(148, 163, 184, 0.18) !important;
+  border-radius: 14px !important;
+  background: rgba(7, 11, 18, 0.82) !important;
+  color: rgba(248, 250, 252, 0.9) !important;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.26) !important;
+  backdrop-filter: blur(14px) !important;
   cursor: pointer !important;
   text-decoration: none !important;
-  transition: color 0.2s ease, transform 0.2s ease !important;
+  transition: transform 0.18s ease, color 0.18s ease, border-color 0.18s ease, background 0.18s ease !important;
 }
 
-html body.page-product-detail .related-products .single-product .part-1 ul li button:hover,
-html body.page-product-detail .related-products .single-product .part-1 ul li button:focus-visible,
-html body.page-product-detail .related-products .single-product .part-1 ul li a:hover,
-html body.page-product-detail .related-products .single-product .part-1 ul li a:focus-visible {
-  color: #00e5ff !important;
+html body.page-product-detail .related-products .single-product .part-1 ul.catalog-product-actions li button:hover,
+html body.page-product-detail .related-products .single-product .part-1 ul.catalog-product-actions li button:focus-visible,
+html body.page-product-detail .related-products .single-product .part-1 ul.catalog-product-actions li a:hover,
+html body.page-product-detail .related-products .single-product .part-1 ul.catalog-product-actions li a:focus-visible {
+  color: #06101d !important;
+  border-color: rgba(0, 229, 255, 0.5) !important;
+  background: #00e5ff !important;
   transform: translateY(-2px) !important;
   outline: 0 !important;
 }
 
-html body.page-product-detail .related-products .single-product .part-1 ul li svg {
-  width: 18px !important;
-  height: 18px !important;
+html body.page-product-detail .related-products .single-product .part-1 ul.catalog-product-actions li svg {
+  width: 19px !important;
+  height: 19px !important;
   fill: none !important;
   stroke: currentColor !important;
   stroke-width: 2 !important;
@@ -177,8 +174,8 @@ html body.page-product-detail .related-products .single-product .part-1 ul li sv
 html body.page-product-detail .related-products .single-product .part-2 {
   min-height: 0 !important;
   display: block !important;
-  padding: 0 2px !important;
-  text-align: left !important;
+  padding: 0 6px !important;
+  text-align: center !important;
   background: transparent !important;
 }
 
@@ -192,43 +189,52 @@ html body.page-product-detail .related-products .single-product [class*="rating"
 
 html body.page-product-detail .related-products .single-product .part-2 .product-title,
 html body.page-product-detail .related-products .single-product .part-2 .product-title a {
-  min-height: 44px !important;
+  min-height: 54px !important;
   display: -webkit-box !important;
-  margin: 0 0 8px !important;
+  margin: 0 auto 10px !important;
   overflow: hidden !important;
   color: #f8fafc !important;
-  font-size: 1rem !important;
-  line-height: 1.35 !important;
-  font-weight: 800 !important;
-  letter-spacing: 0 !important;
-  text-align: left !important;
+  font-size: clamp(1.04rem, 1.35vw, 1.34rem) !important;
+  line-height: 1.24 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.025em !important;
+  text-align: center !important;
   text-decoration: none !important;
   -webkit-line-clamp: 2 !important;
   -webkit-box-orient: vertical !important;
+}
+
+html body.page-product-detail .related-products .single-product .part-2 .product-price-group {
+  display: flex !important;
+  align-items: baseline !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+  min-height: 30px !important;
 }
 
 html body.page-product-detail .related-products .single-product .part-2 h4 {
   display: inline-block !important;
   min-height: 0 !important;
   margin: 0 !important;
-  font-size: 1rem !important;
-  line-height: 1.2 !important;
+  line-height: 1.1 !important;
 }
 
 html body.page-product-detail .related-products .single-product .part-2 .product-price {
-  display: inline-block !important;
   color: #00e5ff !important;
-  font-weight: 900 !important;
+  font-size: clamp(1rem, 1.4vw, 1.22rem) !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.035em !important;
   white-space: normal !important;
 }
 
 html body.page-product-detail .related-products .single-product .part-2 .product-old-price {
   position: relative !important;
   padding: 0 7px !important;
-  margin-right: 2px !important;
   color: rgba(148, 163, 184, 0.62) !important;
-  opacity: 0.75 !important;
-  font-weight: 700 !important;
+  opacity: 0.8 !important;
+  font-size: clamp(0.88rem, 1.1vw, 1rem) !important;
+  font-weight: 800 !important;
   text-decoration: none !important;
 }
 
@@ -252,5 +258,9 @@ html body.page-product-detail .related-products .single-product .part-2 .product
 @media (max-width: 576px) {
   html body.page-product-detail .related-product-grid.catalog-card-grid {
     grid-template-columns: 1fr !important;
+  }
+
+  html body.page-product-detail .related-products .single-product .part-1 {
+    height: 280px !important;
   }
 }
