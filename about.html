@@ -7,208 +7,231 @@
       (function () {
         try {
           var mode = sessionStorage.getItem("nexgear-page-transition-mode");
-
-          if (mode === "simple") {
-            document.documentElement.classList.add("pt-preload-simple");
-          }
-
-          if (mode === "open") {
-            document.documentElement.classList.add("pt-preload-open");
-          }
+          if (mode === "simple") document.documentElement.classList.add("pt-preload-simple");
+          if (mode === "open") document.documentElement.classList.add("pt-preload-open");
         } catch (error) {}
       })();
     </script>
     <link rel="stylesheet" href="styles/global.css" />
-    <link rel="stylesheet" href="styles/about.css" />
+    <link rel="stylesheet" href="styles/about.css?v=about-redesign-1" />
     <link rel="stylesheet" href="styles/transition.css" />
     <script src="scripts/page-transition.js" defer></script>
     <title>Tentang NEXGEAR</title>
   </head>
+
   <body class="page-about" data-footer-reveal="compact">
-    <!-- GLOBAL HEADER COMPONENT -->
+    <div class="page-transition" aria-hidden="true">
+      <span class="page-transition__panel page-transition__panel--a"></span>
+      <span class="page-transition__panel page-transition__panel--b"></span>
+      <span class="page-transition__panel page-transition__panel--c"></span>
+      <span class="page-transition__panel page-transition__panel--d"></span>
+      <span class="page-transition__brand">NEXGEAR</span>
+    </div>
+
     <div id="global-header"></div>
 
-    <main class="site-main">
-      <!-- HERO -->
-      <section class="about-hero">
-        <div class="container text-center">
-          <h1 class="about-title">
-            Merakit <span class="text-accent">Masa Depan</span> Gaming
-          </h1>
-          <p class="about-subtitle">
-            NEXGEAR hadir sebagai kurator periferal kelas dunia untuk Anda yang
-            tidak mengenal kompromi dalam performa.
-          </p>
-        </div>
-      </section>
-
-      <!-- BRAND STORY & PHILOSOPHY -->
-      <section class="section-padding">
-        <div class="container">
-          <div class="story-grid">
-            <div class="story-image">
-              <img
-                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Setup Gaming Premium"
-              />
+    <main class="site-main about-main">
+      <section class="about-hero" aria-labelledby="about-title">
+        <div class="about-hero__bg" aria-hidden="true"></div>
+        <div class="container about-hero__grid">
+          <div class="about-hero__copy">
+            <span class="about-eyebrow">NEXGEAR STUDIO</span>
+            <h1 id="about-title">Gear gaming, dikurasi untuk pemain yang peka detail.</h1>
+            <p>
+              Kami bukan toko yang menumpuk semua produk lalu berharap kamu tersesat dengan bahagia. NEXGEAR menyaring keyboard, mouse, headset, dan machine gear berdasarkan performa, build quality, kenyamanan, dan kecocokan setup.
+            </p>
+            <div class="about-hero__actions">
+              <a href="catalog.html" class="btn btn-primary">Explore Catalog</a>
+              <a href="index.html#setup-builder" class="btn btn-secondary">Try Setup Builder</a>
             </div>
-            <div class="story-content">
-              <h2>Lebih dari Sekadar Toko</h2>
-              <p>
-                Kami memulai NEXGEAR karena frustrasi dengan lanskap e-commerce
-                gaming yang dipenuhi barang palsu, deskripsi produk yang
-                menyesatkan, dan layanan pelanggan yang lambat. Sebagai gamer
-                kompetitif dan tech enthusiast, kami tahu apa yang membedakan
-                gear sejati dari sekadar mainan plastik yang menyala-nyala.
-              </p>
-              <p>
-                <strong>Filosofi Kami Sederhana: Curated Excellence.</strong>
-                Kami tidak menjual segala hal. Tim ahli kami menguji secara
-                ketat setiap mouse, keyboard, headset, dan komponen PC sebelum
-                memasukkannya ke dalam katalog kami. Jika kami tidak ingin
-                menggunakannya di setup kami sendiri, produk itu tidak akan
-                masuk ke NEXGEAR.
-              </p>
+          </div>
+
+          <div class="about-hero__visual" aria-label="NEXGEAR setup preview">
+            <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=1200&q=82" alt="Premium gaming setup with monitor and RGB lighting" />
+            <div class="about-scan-card about-scan-card--top">
+              <span>Latency Check</span>
+              <strong>1000Hz Ready</strong>
+            </div>
+            <div class="about-scan-card about-scan-card--bottom">
+              <span>Build Standard</span>
+              <strong>Daily + Competitive</strong>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- STATS -->
-      <section class="stats-section section-padding section-alt">
-        <div class="container">
-          <div class="stats-grid">
-            <div class="stat-item">
-              <h3>50K+</h3>
-              <p>Gamer Dilayani</p>
-            </div>
-            <div class="stat-item">
-              <h3>20+</h3>
-              <p>Mitra Brand Global</p>
-            </div>
-            <div class="stat-item">
-              <h3>100%</h3>
-              <p>Jaminan Original</p>
-            </div>
-            <div class="stat-item">
-              <h3>24/7</h3>
-              <p>Dukungan Teknisi</p>
-            </div>
+      <section class="about-trust" aria-label="NEXGEAR trust points">
+        <div class="container about-trust__grid">
+          <article>
+            <span>01</span>
+            <strong>Original Gear Only</strong>
+            <p>Produk dipilih dari brand dan channel yang jelas, bukan asal murah lalu bikin hidup makin rumit.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <strong>Performance Checked</strong>
+            <p>Sensor, switch, latency, material, dan ergonomi jadi pertimbangan sebelum produk tampil di katalog.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <strong>Setup-First Advice</strong>
+            <p>Rekomendasi diarahkan ke kebutuhan setup, bukan sekadar hype yang sedang ramai minggu ini.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <strong>After Checkout Support</strong>
+            <p>Kami tetap hadir setelah transaksi, terutama untuk garansi, klaim, dan bantuan setup.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="about-problem section-padding" aria-labelledby="problem-title">
+        <div class="container about-split">
+          <div class="about-section-heading">
+            <span class="about-eyebrow">THE PROBLEM</span>
+            <h2 id="problem-title">Pasar gear gaming itu bising. Kami menyaringnya.</h2>
+          </div>
+          <div class="about-problem__cards">
+            <article>
+              <h3>Hype bukan performa</h3>
+              <p>Banyak produk terlihat agresif, bercahaya, dan mahal, tapi tidak semua nyaman dipakai harian atau stabil untuk game kompetitif.</p>
+            </article>
+            <article>
+              <h3>Spesifikasi sering menipu</h3>
+              <p>Angka polling rate, DPI, wireless, dan battery life sering terdengar keren sampai dipakai langsung dan ternyata ya begitu saja.</p>
+            </article>
+            <article>
+              <h3>After-sales sering lambat</h3>
+              <p>Gear premium tanpa dukungan yang jelas cuma membuat pembeli jadi teknisi dadakan. Tragis, tapi familiar.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- WHY NEXGEAR -->
-      <section class="section-padding">
-        <div class="container">
-          <div class="section-header text-center" style="margin-bottom: 50px">
-            <h2>Mengapa NEXGEAR?</h2>
+      <section class="about-story section-padding" aria-labelledby="story-title">
+        <div class="container about-story__grid">
+          <div class="about-story__image">
+            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=82" alt="Gaming desk setup with monitor and peripherals" />
           </div>
-          <div class="why-grid">
-            <div class="why-card">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                />
-              </svg>
-              <h4>Kurasi Ketat</h4>
-              <p>
-                Setiap perangkat dipilih berdasarkan performa teknis (sensor,
-                switch, latensi), bukan sekadar popularitas merek.
-              </p>
-            </div>
-            <div class="why-card">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <rect x="1" y="3" width="15" height="13" />
-                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
-                <circle cx="5.5" cy="18.5" r="2.5" />
-                <circle cx="18.5" cy="18.5" r="2.5" />
-              </svg>
-              <h4>Logistik Cepat & Aman</h4>
-              <p>
-                Sistem inventaris real-time dengan pengemasan lapis ganda dan
-                perlindungan asuransi penuh untuk setiap pengiriman.
-              </p>
-            </div>
-            <div class="why-card">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                />
-              </svg>
-              <h4>After-Sales Terjamin</h4>
-              <p>
-                Kami membantu klaim garansi Anda langsung ke distributor resmi.
-                Tidak ada proses berbelit, cukup kirim tiket dukungan.
-              </p>
-            </div>
+          <div class="about-story__copy">
+            <span class="about-eyebrow">OUR STORY</span>
+            <h2 id="story-title">Lebih dari sekadar toko gear.</h2>
+            <p>
+              NEXGEAR lahir dari frustrasi sederhana: terlalu banyak toko gaming menjual produk dengan deskripsi yang lebih dramatis daripada performanya. Kami ingin membuat tempat yang lebih jelas, lebih jujur, dan lebih berguna untuk membangun setup.
+            </p>
+            <p>
+              Filosofi kami adalah <strong>curated excellence</strong>. Kami tidak perlu menjual semuanya. Kami hanya perlu menampilkan gear yang punya alasan kuat untuk masuk ke setup pemain, kreator, dan tech enthusiast.
+            </p>
           </div>
         </div>
       </section>
 
-      <!-- CTA -->
-      <section class="section-padding section-alt text-center">
+      <section class="about-process section-padding" aria-labelledby="process-title">
         <div class="container">
-          <h2 style="margin-bottom: 20px">Siap Meningkatkan Performa Anda?</h2>
-          <p
-            style="
-              color: var(--color-text-secondary);
-              margin-bottom: 30px;
-              font-size: 1.1rem;
-            "
-          >
-            Eksplorasi jajaran peripheral kelas dunia kami hari ini.
-          </p>
-          <a
-            href="catalog.html"
-            class="btn btn-primary"
-            style="padding: 15px 30px; font-size: 1.1rem"
-            >Lihat Katalog</a
-          >
+          <div class="about-section-heading about-section-heading--center">
+            <span class="about-eyebrow">HOW WE CURATE</span>
+            <h2 id="process-title">Cara kami memilih gear.</h2>
+            <p>Kurasi NEXGEAR berangkat dari pengalaman nyata, bukan sekadar membaca kotak produk lalu merasa menjadi ahli.</p>
+          </div>
+
+          <div class="about-process__grid">
+            <article>
+              <span class="process-number">01</span>
+              <h3>Test the Feel</h3>
+              <p>Kami melihat rasa klik, bobot, grip, suara switch, material, dan kenyamanan untuk sesi panjang.</p>
+            </article>
+            <article>
+              <span class="process-number">02</span>
+              <h3>Check the Performance</h3>
+              <p>Polling rate, sensor, latency, wireless stability, dan response diposisikan sebagai faktor utama.</p>
+            </article>
+            <article>
+              <span class="process-number">03</span>
+              <h3>Match the Setup</h3>
+              <p>Gear dipetakan untuk FPS, productivity, streaming, portable gaming, atau clean desk setup.</p>
+            </article>
+            <article>
+              <span class="process-number">04</span>
+              <h3>Support After Checkout</h3>
+              <p>Produk yang baik tetap butuh dukungan garansi, panduan, dan bantuan saat setup tidak berjalan mulus.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-ecosystem section-padding" aria-labelledby="ecosystem-title">
+        <div class="container">
+          <div class="about-section-heading">
+            <span class="about-eyebrow">GEAR ECOSYSTEM</span>
+            <h2 id="ecosystem-title">Satu setup, banyak keputusan kecil yang menentukan.</h2>
+          </div>
+
+          <div class="about-ecosystem__grid">
+            <a href="catalog.html?cat=control" class="ecosystem-card">
+              <span>Control</span>
+              <h3>Mouse, keyboard, dan control surface</h3>
+              <p>Untuk presisi, respons, dan feel yang konsisten.</p>
+            </a>
+            <a href="catalog.html?cat=sound" class="ecosystem-card">
+              <span>Sound</span>
+              <h3>Headset, mic, dan audio gear</h3>
+              <p>Untuk awareness, komunikasi, dan immersion.</p>
+            </a>
+            <a href="catalog.html?cat=machines" class="ecosystem-card">
+              <span>Machine</span>
+              <h3>Laptop, PC, dan performance device</h3>
+              <p>Untuk frame rate, workflow, dan daya tahan.</p>
+            </a>
+            <a href="catalog.html" class="ecosystem-card">
+              <span>Desk Setup</span>
+              <h3>Accessories yang menyatukan setup</h3>
+              <p>Untuk meja yang rapi, nyaman, dan tidak terlihat seperti kapal pecah.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-values section-padding" aria-labelledby="values-title">
+        <div class="container about-values__grid">
+          <div class="about-section-heading">
+            <span class="about-eyebrow">PRINCIPLES</span>
+            <h2 id="values-title">Prinsip yang kami pegang.</h2>
+          </div>
+          <div class="about-values__list">
+            <article>
+              <strong>Curated, not crowded.</strong>
+              <p>Katalog harus membantu memilih, bukan menambah kebingungan.</p>
+            </article>
+            <article>
+              <strong>Performance before hype.</strong>
+              <p>Produk populer tetap harus lulus standar teknis dan kenyamanan.</p>
+            </article>
+            <article>
+              <strong>Original only.</strong>
+              <p>Setup yang serius tidak dimulai dari barang abu-abu yang nasib garansinya seperti mitos.</p>
+            </article>
+            <article>
+              <strong>Setup-first recommendation.</strong>
+              <p>Gear terbaik adalah gear yang cocok dengan cara kamu main dan bekerja.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-cta" aria-labelledby="about-cta-title">
+        <div class="container about-cta__inner">
+          <span class="about-eyebrow">NEXT LOADOUT</span>
+          <h2 id="about-cta-title">Bangun setup berikutnya dengan lebih sadar.</h2>
+          <p>Pilih gear berdasarkan kebutuhan, bukan karena thumbnail produk terlihat seperti pesawat luar angkasa.</p>
+          <div class="about-cta__actions">
+            <a href="catalog.html" class="btn btn-primary">Lihat Katalog</a>
+            <a href="contact.html" class="btn btn-secondary">Konsultasi Setup</a>
+          </div>
         </div>
       </section>
     </main>
-    <!-- GLOBAL FOOTER COMPONENT -->
-    <div id="global-footer"></div>
 
-    <!-- Search Drawer Overlay -->
-    <div id="search-drawer" class="drawer">
-      <div
-        class="drawer-content"
-        style="background: #181824; padding: 30px; text-align: center"
-      >
-        <h3>Cari Gear</h3>
-        <input
-          type="text"
-          class="form-input"
-          placeholder="Ketik nama produk..."
-          style="margin: 20px 0"
-        />
-        <button
-          class="btn btn-primary"
-          onclick="
-            document.getElementById('search-drawer').classList.remove('active')
-          "
-        >
-          Tutup
-        </button>
-      </div>
-    </div>
+    <div id="global-footer"></div>
 
     <script src="scripts/global-components.js"></script>
     <script src="scripts/main.js"></script>
