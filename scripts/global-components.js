@@ -10,6 +10,66 @@
 
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
 
+  function deferLandingHeroVideo() {
+    if (currentPage !== "index.html" && currentPage !== "") return;
+
+    const video = document.querySelector(".hero-video");
+    const source = video?.querySelector("source[src]");
+    if (!video || !source) return;
+
+    const videoSrc = source.getAttribute("src");
+    if (!videoSrc) return;
+
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const saveData = Boolean(connection?.saveData);
+    const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    const smallScreen = window.matchMedia?.("(max-width: 760px)").matches;
+
+    source.dataset.src = videoSrc;
+    source.removeAttribute("src");
+    video.preload = "none";
+    video.removeAttribute("autoplay");
+    video.load();
+    video.dataset.deferLoad = "true";
+
+    if (saveData || reducedMotion || smallScreen) {
+      video.dataset.videoSkipped = "true";
+      return;
+    }
+
+    const loadVideo = () => {
+      if (video.dataset.loaded === "true") return;
+      video.dataset.loaded = "true";
+      source.src = source.dataset.src;
+      video.setAttribute("autoplay", "");
+      video.preload = "metadata";
+      video.load();
+
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {
+          video.dataset.videoPaused = "true";
+        });
+      }
+    };
+
+    const schedule = () => {
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(loadVideo, { timeout: 1800 });
+        return;
+      }
+      window.setTimeout(loadVideo, 1000);
+    };
+
+    if (document.readyState === "complete") {
+      schedule();
+    } else {
+      window.addEventListener("load", schedule, { once: true });
+    }
+  }
+
+  deferLandingHeroVideo();
+
   function resolveComponentUrl(fileName) {
     const scriptUrl = document.currentScript?.src;
     if (scriptUrl) {
