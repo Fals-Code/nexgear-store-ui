@@ -1,0 +1,98 @@
+/* Product detail sale badge polish. Keeps the discount label attached to the price instead of floating awkwardly. */
+html body.page-product-detail .pdp-ref-price-line {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 10px 14px !important;
+  margin: 16px 0 14px !important;
+}
+
+html body.page-product-detail .pdp-ref-price-line del {
+  order: 1 !important;
+  position: relative !important;
+  color: rgba(148, 163, 184, 0.72) !important;
+  font-size: clamp(0.86rem, 1vw, 1rem) !important;
+  font-weight: 850 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+}
+
+html body.page-product-detail .pdp-ref-price-line del::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 52% !important;
+  height: 2px !important;
+  border-radius: 999px !important;
+  background: rgba(148, 163, 184, 0.62) !important;
+  transform: translateY(-50%) !important;
+}
+
+html body.page-product-detail .pdp-ref-price-line strong {
+  order: 2 !important;
+  color: #ff3d57 !important;
+  font-size: clamp(2rem, 3.1vw, 3.08rem) !important;
+  font-weight: 950 !important;
+  line-height: 0.94 !important;
+  letter-spacing: -0.055em !important;
+}
+
+html body.page-product-detail .pdp-ref-sale {
+  order: 3 !important;
+  min-height: 31px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  padding: 0 12px !important;
+  border: 1px solid rgba(255, 61, 87, 0.38) !important;
+  border-radius: 999px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 61, 87, 0.22), rgba(255, 61, 87, 0.1)),
+    rgba(255, 61, 87, 0.08) !important;
+  color: #ff8fa0 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 24px rgba(255, 61, 87, 0.12) !important;
+  font-family: var(--font-body, "DM Sans", sans-serif) !important;
+  font-size: 0.68rem !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.12em !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  transform: translateY(-1px) !important;
+}
+
+html body.page-product-detail .pdp-ref-sale::before {
+  content: "" !important;
+  width: 6px !important;
+  height: 6px !important;
+  display: inline-block !important;
+  border-radius: 999px !important;
+  background: #ff3d57 !important;
+  box-shadow: 0 0 14px rgba(255, 61, 87, 0.72) !important;
+}
+
+html body.page-product-detail .pdp-ref-installment {
+  margin-top: 2px !important;
+}
+
+@media (max-width: 560px) {
+  html body.page-product-detail .pdp-ref-price-line {
+    gap: 9px 11px !important;
+  }
+
+  html body.page-product-detail .pdp-ref-price-line strong {
+    width: 100% !important;
+    order: 1 !important;
+  }
+
+  html body.page-product-detail .pdp-ref-price-line del {
+    order: 2 !important;
+  }
+
+  html body.page-product-detail .pdp-ref-sale {
+    order: 3 !important;
+  }
+}
