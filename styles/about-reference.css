@@ -231,12 +231,14 @@
 .about-quote-slider {
   z-index: 1;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .about-quote-slide {
   object-fit: cover;
   opacity: 0;
   z-index: 1;
+  pointer-events: none;
   filter: saturate(1.04) contrast(1.1) brightness(0.5);
   transform: translate3d(100%, 0, 0) scale(1.02);
   transition:
@@ -265,6 +267,7 @@
   position: absolute;
   inset: 0;
   z-index: 3;
+  pointer-events: none;
   background:
     linear-gradient(90deg, rgba(5, 7, 11, 0.96), rgba(5, 7, 11, 0.72) 56%, rgba(0, 229, 255, 0.08)),
     linear-gradient(180deg, rgba(5, 7, 11, 0.12), rgba(5, 7, 11, 0.7));
@@ -272,11 +275,12 @@
 
 .about-quote__content {
   position: relative;
-  z-index: 4;
+  z-index: 20;
   min-height: 330px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  pointer-events: none;
 }
 
 .about-quote-panel {
@@ -312,7 +316,6 @@
   opacity: 1;
   transform: translate3d(0, 0, 0);
   filter: blur(0);
-  pointer-events: auto;
 }
 
 .about-quote h2 {
@@ -334,10 +337,14 @@
 }
 
 .about-quote-controls {
+  position: relative;
+  z-index: 30;
   display: inline-flex;
   align-items: center;
   gap: 14px;
+  width: fit-content;
   margin-top: 32px;
+  pointer-events: auto;
 }
 
 .about-quote-arrow {
@@ -354,6 +361,7 @@
   line-height: 1;
   cursor: pointer;
   backdrop-filter: blur(12px);
+  pointer-events: auto;
   transition:
     background 0.18s ease,
     color 0.18s ease,
@@ -371,6 +379,7 @@
 .about-quote-dots {
   display: flex;
   gap: 10px;
+  pointer-events: auto;
 }
 
 .about-quote-dots button {
@@ -381,6 +390,7 @@
   border-radius: 999px;
   background: rgba(0, 229, 255, 0.24);
   cursor: pointer;
+  pointer-events: auto;
   transition:
     width 0.2s ease,
     background 0.2s ease;
