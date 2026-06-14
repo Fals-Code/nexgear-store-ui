@@ -1,4 +1,4 @@
-/* about-reference.css - readable NEXGEAR About page */
+/* about-reference.css - cleaner NEXGEAR About page without card-like panels */
 .page-about {
   --footer-reveal-space: 580px;
   background: #05070b;
@@ -9,7 +9,7 @@
   overflow: hidden;
   border-radius: 0 0 28px 28px;
   background:
-    radial-gradient(circle at 82% 8%, rgba(0, 229, 255, 0.1), transparent 28rem),
+    radial-gradient(circle at 82% 8%, rgba(0, 229, 255, 0.09), transparent 28rem),
     linear-gradient(180deg, #070b11 0%, #05070b 100%);
   color: #f8fafc;
   box-shadow: 0 34px 90px rgba(0, 0, 0, 0.72);
@@ -31,16 +31,16 @@
   height: 100%;
   object-fit: cover;
   object-position: center 48%;
-  filter: saturate(1.04) contrast(1.08) brightness(0.52);
+  filter: saturate(1.04) contrast(1.08) brightness(0.5);
 }
 
 .about-hero-ref__overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(5, 7, 11, 0.94) 0%, rgba(5, 7, 11, 0.74) 48%, rgba(5, 7, 11, 0.3) 100%),
-    radial-gradient(circle at 76% 18%, rgba(0, 229, 255, 0.16), transparent 32%),
-    linear-gradient(180deg, rgba(5, 7, 11, 0.08), rgba(5, 7, 11, 0.76));
+    linear-gradient(90deg, rgba(5, 7, 11, 0.95) 0%, rgba(5, 7, 11, 0.76) 48%, rgba(5, 7, 11, 0.32) 100%),
+    radial-gradient(circle at 76% 18%, rgba(0, 229, 255, 0.14), transparent 32%),
+    linear-gradient(180deg, rgba(5, 7, 11, 0.08), rgba(5, 7, 11, 0.78));
 }
 
 .about-hero-ref__content {
@@ -69,21 +69,20 @@
   font-size: clamp(2.4rem, 4.8vw, 4.8rem);
   line-height: 1.08;
   letter-spacing: -0.055em;
-  text-shadow: 0 20px 56px rgba(0, 0, 0, 0.52);
+  text-shadow: 0 20px 56px rgba(0, 0, 0, 0.58);
 }
 
 .about-ref-section {
   position: relative;
-  padding: clamp(74px, 8vw, 110px) 0;
-  border-top: 1px solid rgba(148, 163, 184, 0.08);
+  padding: clamp(76px, 8vw, 112px) 0;
   background:
-    radial-gradient(circle at 80% 18%, rgba(0, 229, 255, 0.055), transparent 28rem),
+    radial-gradient(circle at 82% 16%, rgba(0, 229, 255, 0.05), transparent 30rem),
     linear-gradient(180deg, #080d15 0%, #05070b 100%);
 }
 
 .about-ref-section--alt {
   background:
-    radial-gradient(circle at 16% 16%, rgba(0, 229, 255, 0.05), transparent 26rem),
+    radial-gradient(circle at 16% 18%, rgba(0, 229, 255, 0.045), transparent 28rem),
     linear-gradient(180deg, #09101a 0%, #060a10 100%);
 }
 
@@ -91,70 +90,67 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 400px);
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 390px);
   gap: clamp(42px, 7vw, 104px);
   align-items: center;
 }
 
 .about-ref-row--reverse {
-  grid-template-columns: minmax(280px, 400px) minmax(0, 1fr);
+  grid-template-columns: minmax(280px, 390px) minmax(0, 1fr);
 }
 
 .about-ref-copy {
   max-width: 720px;
-  padding: clamp(28px, 4vw, 44px);
-  border: 1px solid rgba(148, 163, 184, 0.13);
-  border-radius: 24px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
-    rgba(9, 15, 24, 0.72);
-  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.2);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .about-ref-copy h2 {
-  max-width: 650px;
+  max-width: 680px;
   margin: 0;
   color: #ffffff;
-  font-size: clamp(1.85rem, 2.9vw, 3rem);
+  font-size: clamp(1.9rem, 2.95vw, 3.05rem);
   line-height: 1.16;
   letter-spacing: -0.045em;
 }
 
 .about-ref-copy h2::after {
   content: "";
-  width: 54px;
+  width: 52px;
   height: 2px;
   display: block;
   margin-top: 22px;
   border-radius: 999px;
   background: #00e5ff;
-  box-shadow: 0 0 18px rgba(0, 229, 255, 0.24);
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.22);
 }
 
 .about-ref-lead {
-  max-width: 650px;
+  max-width: 670px;
   margin: 22px 0 0;
   color: #e2e8f0;
   font-size: clamp(1.05rem, 1.22vw, 1.18rem);
   font-weight: 600;
-  line-height: 1.78;
+  line-height: 1.82;
 }
 
 .about-ref-copy p:not(.about-ref-lead) {
-  max-width: 650px;
+  max-width: 670px;
   margin: 20px 0 0;
   color: #cbd5e1;
-  font-size: clamp(0.98rem, 1vw, 1.04rem);
-  line-height: 1.84;
+  font-size: clamp(1rem, 1vw, 1.05rem);
+  line-height: 1.88;
 }
 
 .about-ref-list {
-  max-width: 650px;
+  max-width: 670px;
   margin: 22px 0 0;
   padding-left: 1.2rem;
   color: #d8e1ee;
-  font-size: clamp(0.98rem, 1vw, 1.04rem);
-  line-height: 1.92;
+  font-size: clamp(1rem, 1vw, 1.05rem);
+  line-height: 1.96;
 }
 
 .about-ref-list li {
@@ -166,25 +162,22 @@
 }
 
 .about-ref-illustration {
-  min-height: 360px;
+  min-height: 330px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(0, 229, 255, 0.13);
-  border-radius: 28px;
-  background:
-    radial-gradient(circle at 50% 32%, rgba(0, 229, 255, 0.11), transparent 48%),
-    linear-gradient(180deg, rgba(15, 23, 42, 0.7), rgba(7, 11, 18, 0.92));
+  border: 0;
+  background: transparent;
 }
 
 .about-ref-illustration svg {
-  width: min(100%, 330px);
+  width: min(100%, 320px);
   height: auto;
   overflow: visible;
-  filter: drop-shadow(0 22px 44px rgba(0, 0, 0, 0.34));
+  filter: drop-shadow(0 22px 44px rgba(0, 0, 0, 0.36));
 }
 
 .about-ref-illustration .blob {
-  fill: rgba(0, 229, 255, 0.08);
+  fill: rgba(0, 229, 255, 0.07);
   stroke: none;
 }
 
@@ -234,7 +227,7 @@
 .about-quote-slide {
   object-fit: cover;
   opacity: 0;
-  filter: saturate(1.05) contrast(1.1) brightness(0.56);
+  filter: saturate(1.05) contrast(1.1) brightness(0.52);
   transform: scale(1.055) translateX(18px);
   transition:
     opacity 0.72s ease,
@@ -245,15 +238,15 @@
 .about-quote-slide.is-active {
   opacity: 1;
   transform: scale(1) translateX(0);
-  filter: saturate(1.06) contrast(1.08) brightness(0.62);
+  filter: saturate(1.06) contrast(1.08) brightness(0.58);
 }
 
 .about-quote__overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(5, 7, 11, 0.92), rgba(5, 7, 11, 0.66) 56%, rgba(0, 229, 255, 0.08)),
-    linear-gradient(180deg, rgba(5, 7, 11, 0.1), rgba(5, 7, 11, 0.64));
+    linear-gradient(90deg, rgba(5, 7, 11, 0.94), rgba(5, 7, 11, 0.72) 56%, rgba(0, 229, 255, 0.08)),
+    linear-gradient(180deg, rgba(5, 7, 11, 0.12), rgba(5, 7, 11, 0.68));
 }
 
 .about-quote__content {
@@ -266,16 +259,16 @@
 }
 
 .about-quote-panel {
-  max-width: min(820px, 90vw);
-  padding: clamp(26px, 4vw, 44px);
-  border: 1px solid rgba(148, 163, 184, 0.16);
-  border-radius: 26px;
-  background: rgba(5, 7, 11, 0.68);
+  max-width: min(800px, 90vw);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   opacity: 0;
   transform: translateY(22px);
   filter: blur(6px);
   pointer-events: none;
-  backdrop-filter: blur(16px);
+  backdrop-filter: none;
   transition:
     opacity 0.42s ease,
     transform 0.58s cubic-bezier(0.16, 1, 0.3, 1),
@@ -297,15 +290,15 @@
   max-width: 760px;
   margin: 0;
   color: #ffffff;
-  font-size: clamp(1.65rem, 3.2vw, 3.15rem);
+  font-size: clamp(1.8rem, 3.35vw, 3.28rem);
   line-height: 1.18;
   letter-spacing: -0.045em;
-  text-shadow: 0 18px 46px rgba(0, 0, 0, 0.38);
+  text-shadow: 0 18px 46px rgba(0, 0, 0, 0.52);
 }
 
 .about-quote p {
   margin: 20px 0 0;
-  color: #d8e1ee;
+  color: #e2e8f0;
   font-size: 1rem;
   font-weight: 800;
   line-height: 1.6;
@@ -315,7 +308,7 @@
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  margin-top: 24px;
+  margin-top: 30px;
 }
 
 .about-quote-arrow {
@@ -323,9 +316,9 @@
   height: 44px;
   display: inline-grid;
   place-items: center;
-  border: 1px solid rgba(0, 229, 255, 0.3);
+  border: 0;
   border-radius: 999px;
-  background: rgba(5, 7, 11, 0.76);
+  background: rgba(0, 229, 255, 0.14);
   color: #00e5ff;
   font-size: 1.6rem;
   font-weight: 800;
@@ -335,15 +328,13 @@
   transition:
     background 0.18s ease,
     color 0.18s ease,
-    transform 0.18s ease,
-    border-color 0.18s ease;
+    transform 0.18s ease;
 }
 
 .about-quote-arrow:hover,
 .about-quote-arrow:focus-visible {
   background: #00e5ff;
   color: #06101d;
-  border-color: #00e5ff;
   transform: translateY(-2px);
   outline: 0;
 }
@@ -357,10 +348,9 @@
   width: 10px;
   height: 10px;
   padding: 0;
-  border: 1px solid rgba(0, 229, 255, 0.65);
+  border: 0;
   border-radius: 999px;
-  background: rgba(0, 229, 255, 0.12);
-  box-shadow: 0 0 18px rgba(0, 229, 255, 0.16);
+  background: rgba(0, 229, 255, 0.24);
   cursor: pointer;
   transition:
     width 0.2s ease,
