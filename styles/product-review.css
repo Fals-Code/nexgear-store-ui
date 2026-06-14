@@ -5,9 +5,74 @@
 @import url("product-gallery-sticky-boundary.css");
 @import url("product-media-badge.css");
 
-/* Product detail final polish: review avatars, related media, and footer reveal space. */
+/* Product detail final polish: review avatars, price sale pill, and footer reveal space. */
 html body.page-product-detail {
   --footer-reveal-space: clamp(540px, 54vh, 680px);
+}
+
+html body.page-product-detail .price-action-card {
+  overflow: hidden !important;
+}
+
+html body.page-product-detail .price-stack {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: auto 1fr !important;
+  grid-template-areas:
+    "label label"
+    "old current"
+    "sale sale" !important;
+  align-items: end !important;
+  gap: 8px 14px !important;
+  margin-bottom: 18px !important;
+}
+
+html body.page-product-detail .price-stack > span {
+  grid-area: label !important;
+  width: auto !important;
+  margin: 0 !important;
+}
+
+html body.page-product-detail .price-stack > em {
+  grid-area: old !important;
+  margin: 0 !important;
+  color: rgba(148, 163, 184, 0.72) !important;
+  font-size: clamp(0.96rem, 1.2vw, 1.1rem) !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  text-decoration-thickness: 2px !important;
+}
+
+html body.page-product-detail .price-stack > strong {
+  grid-area: current !important;
+  justify-self: start !important;
+  color: #ff3d57 !important;
+  font-size: clamp(2.25rem, 4.35vw, 3.35rem) !important;
+  line-height: 0.92 !important;
+  letter-spacing: -0.055em !important;
+}
+
+html body.page-product-detail .price-stack::after {
+  content: "Sale" !important;
+  grid-area: sale !important;
+  width: max-content !important;
+  min-height: 30px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  padding: 0 12px !important;
+  margin: 3px 0 0 !important;
+  border: 1px solid rgba(255, 61, 87, 0.34) !important;
+  border-radius: 999px !important;
+  background: linear-gradient(180deg, rgba(255, 61, 87, 0.18), rgba(255, 61, 87, 0.08)) !important;
+  color: #ffb1bb !important;
+  box-shadow: 0 12px 28px rgba(255, 61, 87, 0.1) !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.76rem !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.08em !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
 }
 
 html body.page-product-detail .review-card {
@@ -67,6 +132,16 @@ html body.page-product-detail .related-products {
 @media (max-width: 680px) {
   html body.page-product-detail {
     --footer-reveal-space: 620px;
+  }
+
+  html body.page-product-detail .price-stack {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "label"
+      "old"
+      "current"
+      "sale" !important;
+    align-items: start !important;
   }
 
   html body.page-product-detail .review-author {
