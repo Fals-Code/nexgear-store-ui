@@ -70,6 +70,60 @@
 
   deferLandingHeroVideo();
 
+  function initProductPromoCountdown() {
+    if (currentPage !== "product-detail.html") return;
+
+    const priceCard = document.querySelector(".price-action-card");
+    const priceStack = priceCard?.querySelector(".price-stack");
+    if (!priceCard || !priceStack) return;
+
+    const existingCountdown = priceCard.querySelector(".promo-countdown");
+    if (existingCountdown) return;
+
+    const countdown = document.createElement("div");
+    countdown.className = "promo-countdown";
+    countdown.setAttribute("aria-label", "Promo countdown");
+    countdown.innerHTML = '<span class="promo-countdown__label">ENDS IN</span><span class="promo-countdown__time">04h : 21m : 50s</span>';
+    priceStack.insertAdjacentElement("afterend", countdown);
+
+    const timeEl = countdown.querySelector(".promo-countdown__time");
+    const storageKey = "nexgear-vortex-promo-deadline";
+    const promoDurationMs = ((4 * 60 * 60) + (21 * 60) + 50) * 1000;
+    const now = Date.now();
+    const savedDeadline = Number(window.localStorage?.getItem(storageKey));
+    const deadline = savedDeadline && savedDeadline > now
+      ? savedDeadline
+      : now + promoDurationMs;
+
+    try {
+      window.localStorage?.setItem(storageKey, String(deadline));
+    } catch (error) {}
+
+    const pad = (value) => String(value).padStart(2, "0");
+
+    const render = () => {
+      const remaining = Math.max(0, deadline - Date.now());
+      const totalSeconds = Math.floor(remaining / 1000);
+      const hours = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+      timeEl.textContent = `${pad(hours)}h : ${pad(minutes)}m : ${pad(seconds)}s`;
+
+      if (remaining <= 0) {
+        window.clearInterval(timerId);
+      }
+    };
+
+    render();
+    const timerId = window.setInterval(render, 1000);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProductPromoCountdown, { once: true });
+  } else {
+    initProductPromoCountdown();
+  }
+
   function resolveComponentUrl(fileName) {
     const scriptUrl = document.currentScript?.src;
     if (scriptUrl) {
