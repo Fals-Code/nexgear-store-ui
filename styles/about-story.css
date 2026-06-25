@@ -1,0 +1,14 @@
+.page-about .about-hero__small,.page-about .about-hero__small--left{grid-area:media;position:relative;inset:auto;z-index:5;align-self:end;justify-self:start;width:clamp(132px,13vw,190px);margin:0 0 28px -42px}
+.page-about .about-hero__small img{aspect-ratio:1/1.04;filter:grayscale(.74) contrast(1.12) brightness(.72)}
+.page-about .about-hero__copy{grid-area:copy;position:static;z-index:5;width:auto;max-width:620px;padding:22px 0 0;border-top:1px solid rgba(0,229,255,.3);border-left:0}
+.page-about .about-hero__copy>span,.page-about .about-philosophy__text>span,.page-about .about-system>header>span,.page-about .about-closing__copy>span{font-size:.66rem}
+.page-about .about-hero__copy h2{margin:14px 0;font-size:clamp(1.45rem,2.2vw,2.2rem);line-height:1.16}
+.page-about .about-hero__copy p,.page-about .about-hero__caption p,.page-about .about-philosophy__text p,.page-about .about-system__list p,.page-about .about-case__header p,.page-about .about-case__claim p,.page-about .about-case__matrix dd,.page-about .about-closing__copy p{color:var(--copy);font-size:clamp(.92rem,1vw,1rem);line-height:1.75}
+.page-about .about-hero__caption{grid-area:caption;position:static;z-index:5;display:grid;grid-template-columns:34px minmax(0,1fr);gap:14px;width:auto;max-width:580px;padding-top:18px;border-top:1px solid var(--line)}
+.page-about .about-hero__caption span{padding-top:4px;font-size:.66rem}
+.page-about .about-signal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:0 var(--gutter);background:#0b0f15}
+.page-about .about-signal article{display:grid;grid-template-columns:42px minmax(0,1fr);gap:16px;min-height:150px;padding:30px clamp(18px,2.6vw,40px);border-right:1px solid var(--line)}
+.page-about .about-signal article:first-child{padding-left:0}.page-about .about-signal article:last-child{padding-right:0;border-right:0}
+.page-about .about-signal article>span{color:#00e5ff;font-family:var(--font-gaming);font-size:.68rem;font-weight:900}
+.page-about .about-signal strong{display:block;color:var(--strong);font-size:1rem}
+.page-about .about-signal p{max-width:34ch;margin-top:8px;color:#8f99a8;font-size:.88rem;line-height:1.65}
