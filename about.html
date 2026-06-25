@@ -7,7 +7,7 @@
   <title>Tentang NEXGEAR</title>
   <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/about.css?v=7">
-  <link rel="stylesheet" href="styles/about-integration.css?v=2">
+  <link rel="stylesheet" href="styles/about-integration.css?v=3">
 </head>
 <body class="page-about">
   <div id="global-header"></div>
@@ -15,8 +15,8 @@
   <main class="site-main about-main">
     <div class="about-progress" aria-hidden="true"><span></span></div>
 
-    <section class="about-editorial" aria-labelledby="about-title">
-      <header class="about-hero">
+    <article class="about-editorial">
+      <header class="about-hero" aria-labelledby="about-title">
         <span class="about-hero__eyebrow">NEXGEAR / BRAND STORY 001</span>
         <h1 id="about-title">KNOW <span>NEXGEAR</span></h1>
 
@@ -41,8 +41,32 @@
         </div>
       </header>
 
-      <section id="philosophy" class="about-philosophy">
-        <div class="about-philosophy__collage">
+      <section class="about-signal" aria-label="Prinsip kurasi NEXGEAR">
+        <article data-reveal>
+          <span>01</span>
+          <div>
+            <strong>Context first</strong>
+            <p>Kebutuhan pengguna dibaca sebelum spesifikasi produk.</p>
+          </div>
+        </article>
+        <article data-reveal data-delay="60">
+          <span>02</span>
+          <div>
+            <strong>Real-use judgment</strong>
+            <p>Performa dinilai dari pengalaman nyata, bukan angka yang berdiri sendiri.</p>
+          </div>
+        </article>
+        <article data-reveal data-delay="120">
+          <span>03</span>
+          <div>
+            <strong>Long-term value</strong>
+            <p>Compatibility, durability, dan ownership ikut menentukan keputusan.</p>
+          </div>
+        </article>
+      </section>
+
+      <section id="philosophy" class="about-philosophy" aria-labelledby="philosophy-title">
+        <div class="about-philosophy__collage" aria-label="Kolase perangkat gaming">
           <figure class="about-crop about-crop--mouse" data-reveal>
             <img src="https://www.cravingtech.com/blog/wp-content/uploads/2021/05/Logitech-G-PRO-X-SUPERLIGHT-Review-5.jpg" data-fallback="https://images.unsplash.com/photo-1586349906319-48d20e9d17e5?auto=format&fit=crop&w=900&q=86" alt="Detail gaming mouse">
           </figure>
@@ -57,16 +81,16 @@
 
         <div class="about-philosophy__text" data-reveal>
           <span>THE PHILOSOPHY</span>
-          <h2>Produk tidak pernah bekerja sendirian.</h2>
+          <h2 id="philosophy-title">Produk tidak pernah bekerja sendirian.</h2>
           <p>Mouse dipengaruhi grip, sensitivity, dan monitor. Headset dipengaruhi ruang, komunikasi, dan durasi bermain. Laptop dipengaruhi mobilitas, thermal, software, dan workflow.</p>
           <p>Karena itu, rekomendasi NEXGEAR tidak berhenti pada angka. Kami menilai bagaimana sebuah perangkat bekerja di dalam keseluruhan setup dan kebutuhan penggunanya.</p>
         </div>
       </section>
 
-      <section id="system" class="about-system">
+      <section id="system" class="about-system" aria-labelledby="system-title">
         <header data-reveal>
           <span>HOW WE READ GEAR</span>
-          <h2>Lima lapisan yang membuat rekomendasi lebih masuk akal.</h2>
+          <h2 id="system-title">Lima lapisan yang membuat rekomendasi lebih masuk akal.</h2>
         </header>
 
         <div class="about-system__list">
@@ -78,7 +102,7 @@
         </div>
       </section>
 
-      <section class="about-case" aria-labelledby="about-case-title">
+      <section id="example" class="about-case" aria-labelledby="about-case-title">
         <header class="about-case__header" data-reveal>
           <span>ONE REAL EXAMPLE</span>
           <h2 id="about-case-title">Polling rate 8.000 Hz bukan kebutuhan universal.</h2>
@@ -102,7 +126,7 @@
         </div>
       </section>
 
-      <section class="about-scope" aria-labelledby="about-scope-title">
+      <section id="categories" class="about-scope" aria-labelledby="about-scope-title">
         <header data-reveal>
           <span>EXPLORE THE SYSTEM</span>
           <h2 id="about-scope-title">Tiga ruang yang membentuk satu setup.</h2>
@@ -127,19 +151,19 @@
         </div>
       </section>
 
-      <section class="about-closing about-closing--single">
+      <section class="about-closing about-closing--single" aria-labelledby="closing-title">
         <div class="about-closing__copy" data-reveal>
           <span>BUILD WITH INTENT</span>
-          <h2>Pilih gear karena fungsinya, bukan hanya karena trennya.</h2>
+          <h2 id="closing-title">Pilih gear karena fungsinya, bukan hanya karena trennya.</h2>
           <p>Mulai dari kebutuhan, pahami trade-off, lalu bangun setup yang lebih konsisten dengan cara kamu bermain dan bekerja.</p>
-          <a href="catalog.html">Jelajahi Katalog <b>→</b></a>
+          <a href="catalog.html">Jelajahi Katalog <b aria-hidden="true">→</b></a>
         </div>
 
         <figure class="about-closing__image" data-reveal data-delay="100">
           <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=1100&q=86" data-fallback="https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=1100&q=86" alt="Komponen gaming PC">
         </figure>
       </section>
-    </section>
+    </article>
   </main>
 
   <div id="global-footer"></div>
