@@ -1,14 +1,433 @@
-.page-help .site-main,.page-track-order .site-main{padding:28px 0 96px}
-.page-help .help-hero{width:min(100% - 36px,1280px);margin:0 auto;padding:clamp(64px,8vw,96px) 24px 72px;border:1px solid var(--ng-line);border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.025),transparent 65%),#0b111a}
-.page-help .help-hero h1{font-size:clamp(2.8rem,5vw,5rem);letter-spacing:-.045em}
-.page-help .help-search-input{border-radius:12px;background:#101824}
-.page-help .help-categories{gap:14px;margin-top:-42px;margin-bottom:64px}
-.page-help .help-cat-card{border-radius:16px;background:#0b111a;box-shadow:0 18px 42px rgba(0,0,0,.2)}
-.page-help .faq-container,.page-help .help-cta-box{max-width:960px}
-.page-help .accordion-item,.page-help .help-cta-box{border-radius:16px;background:#0b111a}
-.page-track-order .section-padding{width:min(100% - 36px,1280px);margin:0 auto;padding:0}
-.page-track-order .section-header{padding:clamp(42px,6vw,72px);margin-bottom:18px;border:1px solid var(--ng-line);border-radius:24px;background:#0b111a;text-align:left}
-.page-track-order .section-header h2{font-size:clamp(2.8rem,5vw,5rem);letter-spacing:-.045em}
-.page-track-order .track-form-container,.page-track-order .order-info-card,.page-track-order .timeline-content{border-radius:16px;background:#0b111a}
-.page-track-order .track-form-container{max-width:none;margin-bottom:18px;padding:28px}
-.page-track-order .track-result{max-width:none}
+/* Help and tracking share a restrained utility language */
+.page-help .site-main,
+.page-track-order .site-main {
+  padding: 0 0 clamp(76px, 9vw, 124px);
+}
+
+.page-help .help-hero,
+.page-track-order .section-padding {
+  width: min(100% - 40px, 1280px);
+  margin-inline: auto;
+}
+
+.page-help .help-hero {
+  margin-top: 0;
+  padding: clamp(72px, 8vw, 108px) 0 clamp(58px, 7vw, 88px);
+  border: 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 0;
+  background: transparent;
+}
+
+.page-help .help-hero::before {
+  background: radial-gradient(circle at 18% 100%, rgba(0, 229, 255, 0.055), transparent 42%);
+}
+
+.page-help .help-hero .container {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  text-align: left;
+}
+
+.page-help .help-hero h1 {
+  max-width: 11ch;
+  margin: 0 0 28px;
+  font-size: clamp(3rem, 5.5vw, 5.9rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.page-help .help-search-container {
+  max-width: 760px;
+  margin: 0;
+}
+
+.page-help .help-search-input {
+  min-height: 58px;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-radius: 12px;
+  background: #0b111a;
+  box-shadow: none;
+}
+
+.page-help .container.section-padding {
+  width: min(100% - 40px, 1280px);
+  max-width: none;
+  padding: 0;
+}
+
+.page-help .help-categories {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  margin: 0 0 clamp(70px, 8vw, 104px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.page-help .help-cat-card {
+  position: relative;
+  min-height: 210px;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 28px 24px;
+  border: 0;
+  border-right: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: left;
+  transition: background 220ms ease, padding 220ms ease;
+}
+
+.page-help .help-cat-card:last-child {
+  border-right: 0;
+}
+
+.page-help .help-cat-card::before {
+  content: counter(help-category, decimal-leading-zero);
+  counter-increment: help-category;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  color: #00e5ff;
+  font-family: var(--font-gaming);
+  font-size: 0.63rem;
+  letter-spacing: 0.12em;
+}
+
+.page-help .help-categories {
+  counter-reset: help-category;
+}
+
+.page-help .help-cat-card:hover {
+  padding-bottom: 34px;
+  transform: none;
+  background: linear-gradient(180deg, rgba(0, 229, 255, 0.045), transparent);
+  box-shadow: none;
+}
+
+.page-help .help-cat-card svg {
+  width: 28px;
+  height: 28px;
+  margin-bottom: auto;
+  color: rgba(248, 250, 252, 0.78);
+}
+
+.page-help .help-cat-card h4 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+
+.page-help .help-cat-card p {
+  font-size: 0.84rem;
+}
+
+.page-help .faq-container {
+  max-width: 980px;
+  margin: 0 auto clamp(70px, 8vw, 104px);
+}
+
+.page-help .faq-title {
+  margin-bottom: 28px;
+  font-size: clamp(2.25rem, 4vw, 4.1rem);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+  text-align: left;
+}
+
+.page-help .accordion {
+  gap: 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.page-help .accordion-item {
+  border: 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 0;
+  background: transparent;
+}
+
+.page-help .accordion-item.active {
+  border-color: rgba(0, 229, 255, 0.28);
+  background: linear-gradient(90deg, rgba(0, 229, 255, 0.035), transparent 56%);
+}
+
+.page-help .accordion-header {
+  min-height: 78px;
+  padding: 20px 4px;
+  font-size: 1rem;
+}
+
+.page-help .accordion-body {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.page-help .accordion-item.active .accordion-body {
+  padding: 0 4px 24px;
+}
+
+.page-help .help-cta-box {
+  max-width: 980px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px 54px;
+  align-items: end;
+  margin: 0 auto;
+  padding: 44px 0 0;
+  border: 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.page-help .help-cta-box::before {
+  display: none;
+}
+
+.page-help .help-cta-box h3,
+.page-help .help-cta-box p {
+  grid-column: 1;
+}
+
+.page-help .help-cta-box h3 {
+  max-width: 18ch;
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  letter-spacing: -0.04em;
+}
+
+.page-help .help-cta-box p {
+  max-width: 56ch;
+  margin: 10px 0 0;
+}
+
+.page-help .help-cta-box .btn {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  align-self: center;
+  margin-top: 0 !important;
+  border-radius: 10px;
+}
+
+.page-track-order .section-padding {
+  padding: clamp(72px, 8vw, 108px) 0 0;
+}
+
+.page-track-order .section-header {
+  position: relative;
+  margin: 0 0 36px;
+  padding: 0 0 40px;
+  border: 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.page-track-order .section-header::before {
+  content: "ORDER / TRACKING";
+  display: block;
+  margin-bottom: 16px;
+  color: #00e5ff;
+  font-family: var(--font-gaming);
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.page-track-order .section-header h2 {
+  margin: 0;
+  font-size: clamp(3rem, 5.5vw, 5.9rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.page-track-order .section-header p {
+  max-width: 52ch;
+  margin-top: 16px;
+}
+
+.page-track-order .track-form-container {
+  max-width: none;
+  margin: 0 0 42px;
+  padding: 0 0 34px;
+  border: 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-track-order .track-form {
+  max-width: 760px;
+}
+
+.page-track-order .track-form .form-input {
+  min-height: 54px;
+  border-radius: 10px;
+  background: #0b111a;
+}
+
+.page-track-order .track-form .btn {
+  border-radius: 10px;
+}
+
+.page-track-order .track-result {
+  max-width: none;
+}
+
+.page-track-order .order-info-card {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-bottom: 48px;
+  padding: 0;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 14px;
+  background: #0b111a;
+}
+
+.page-track-order .order-info-row {
+  min-width: 0;
+  padding: 24px;
+  border-right: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.page-track-order .order-info-row:last-child {
+  border-right: 0;
+}
+
+.page-track-order .order-info-row strong {
+  overflow-wrap: anywhere;
+  font-size: 1rem;
+}
+
+.page-track-order .tracking-timeline {
+  max-width: 940px;
+  padding-left: 46px;
+}
+
+.page-track-order .tracking-timeline::before {
+  left: 15px;
+  width: 1px;
+}
+
+.page-track-order .timeline-item {
+  margin-bottom: 0;
+}
+
+.page-track-order .timeline-icon {
+  left: -46px;
+  width: 32px;
+  height: 32px;
+  border-width: 1px;
+  background: #05070b;
+}
+
+.page-track-order .timeline-icon svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.page-track-order .active-dot {
+  width: 9px;
+  height: 9px;
+}
+
+.page-track-order .timeline-content {
+  min-height: 120px;
+  padding: 24px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-track-order .timeline-content::before {
+  display: none;
+}
+
+.page-track-order .timeline-content h4 {
+  margin: 0 0 7px;
+}
+
+.page-track-order .help-action {
+  margin-top: 44px !important;
+  padding-top: 34px;
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .page-help .help-categories {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-help .help-cat-card:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .page-help .help-cat-card:last-child {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(148, 163, 184, 0.14);
+  }
+}
+
+@media (max-width: 680px) {
+  .page-help .help-hero,
+  .page-help .container.section-padding,
+  .page-track-order .section-padding {
+    width: min(100% - 28px, 1280px);
+  }
+
+  .page-help .help-hero h1,
+  .page-track-order .section-header h2 {
+    font-size: clamp(3rem, 15vw, 4.7rem);
+  }
+
+  .page-help .help-categories {
+    grid-template-columns: 1fr;
+  }
+
+  .page-help .help-cat-card,
+  .page-help .help-cat-card:nth-child(2n),
+  .page-help .help-cat-card:last-child {
+    min-height: 170px;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+  }
+
+  .page-help .help-cta-box {
+    grid-template-columns: 1fr;
+  }
+
+  .page-help .help-cta-box .btn {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
+
+  .page-track-order .track-form {
+    flex-direction: column;
+  }
+
+  .page-track-order .order-info-card {
+    grid-template-columns: 1fr;
+  }
+
+  .page-track-order .order-info-row,
+  .page-track-order .order-info-row:last-child {
+    border-right: 0;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+  }
+
+  .page-track-order .order-info-row:last-child {
+    border-bottom: 0;
+  }
+}
