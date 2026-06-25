@@ -135,7 +135,7 @@
     document.querySelectorAll(".mini-cart-dropdown").forEach((dropdown) => {
       const itemsContainer = dropdown.querySelector(".mini-cart-items");
       const totalValue = dropdown.querySelector(".mini-cart-total strong");
-      const checkoutLink = dropdown.querySelector('.mini-cart-actions a[href="checkout.html"]');
+      const checkoutLink = dropdown.querySelector(".mini-cart-actions .btn-primary");
 
       if (!itemsContainer || !totalValue) return;
 
@@ -212,13 +212,14 @@
     const originalSave = cart.save;
     cart.save = function saveAndSync(items) {
       const result = originalSave.call(this, items);
+      const syncedItems = readItems();
       render();
       window.dispatchEvent(
         new CustomEvent("nexgear:cart-updated", {
           detail: {
-            items: readItems(),
-            count: getCount(readItems()),
-            total: getTotal(readItems()),
+            items: syncedItems,
+            count: getCount(syncedItems),
+            total: getTotal(syncedItems),
           },
         }),
       );
