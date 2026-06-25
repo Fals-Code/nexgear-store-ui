@@ -1,1 +1,2 @@
 /* About page harmony overrides */
+.page-about .about-editorial{width:min(100% - 36px,1480px);margin:0 auto}
