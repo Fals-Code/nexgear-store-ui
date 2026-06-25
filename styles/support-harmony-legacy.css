@@ -1,0 +1,14 @@
+.page-help .site-main,.page-track-order .site-main{padding:28px 0 96px}
+.page-help .help-hero{width:min(100% - 36px,1280px);margin:0 auto;padding:clamp(64px,8vw,96px) 24px 72px;border:1px solid var(--ng-line);border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.025),transparent 65%),#0b111a}
+.page-help .help-hero h1{font-size:clamp(2.8rem,5vw,5rem);letter-spacing:-.045em}
+.page-help .help-search-input{border-radius:12px;background:#101824}
+.page-help .help-categories{gap:14px;margin-top:-42px;margin-bottom:64px}
+.page-help .help-cat-card{border-radius:16px;background:#0b111a;box-shadow:0 18px 42px rgba(0,0,0,.2)}
+.page-help .faq-container,.page-help .help-cta-box{max-width:960px}
+.page-help .accordion-item,.page-help .help-cta-box{border-radius:16px;background:#0b111a}
+.page-track-order .section-padding{width:min(100% - 36px,1280px);margin:0 auto;padding:0}
+.page-track-order .section-header{padding:clamp(42px,6vw,72px);margin-bottom:18px;border:1px solid var(--ng-line);border-radius:24px;background:#0b111a;text-align:left}
+.page-track-order .section-header h2{font-size:clamp(2.8rem,5vw,5rem);letter-spacing:-.045em}
+.page-track-order .track-form-container,.page-track-order .order-info-card,.page-track-order .timeline-content{border-radius:16px;background:#0b111a}
+.page-track-order .track-form-container{max-width:none;margin-bottom:18px;padding:28px}
+.page-track-order .track-result{max-width:none}
