@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/about.css?v=7">
   <link rel="stylesheet" href="styles/about-integration.css?v=1">
+  <link rel="stylesheet" href="styles/about-final.css?v=1">
 </head>
 <body class="page-about">
   <div id="global-header"></div>
@@ -78,39 +79,65 @@
         </div>
       </section>
 
-      <section id="journey" class="about-journey">
-        <header class="about-journey__heading" data-reveal>
-          <span>FROM NOISE TO CLARITY</span>
-          <h2>OUR JOURNEY</h2>
-          <p>Perjalanan NEXGEAR bukan tentang menambah lebih banyak produk. Tujuannya adalah membuat proses memilih gear terasa lebih jelas.</p>
+      <section class="about-case" aria-labelledby="about-case-title">
+        <header class="about-case__header" data-reveal>
+          <span>ONE REAL EXAMPLE</span>
+          <h2 id="about-case-title">Polling rate 8.000 Hz bukan kebutuhan universal.</h2>
+          <p>Satu fitur dapat terdengar mutlak di iklan, tetapi maknanya berubah ketika dibaca bersama setup dan pengguna.</p>
         </header>
 
-        <div class="about-journey__timeline">
-          <div class="about-journey__image" data-reveal>
-            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=86" data-fallback="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=900&q=86" alt="Gaming setup sebagai bagian dari perjalanan NEXGEAR">
+        <div class="about-case__body">
+          <div class="about-case__claim" data-reveal>
+            <span>CLAIM / CONTROL DEVICE</span>
+            <strong>8K</strong>
+            <p>Mouse mengirimkan pembaruan input hingga 8.000 kali per detik.</p>
+            <b>Verdict: situasional</b>
           </div>
-          <article data-reveal><span>PHASE 01</span><p>Masalahnya ditemukan: pilihan terus bertambah, tetapi alasan memilihnya tetap kabur.</p></article>
-          <article data-reveal data-delay="40"><span>PHASE 02</span><p>Control, Sound, dan Machine dibentuk sebagai tiga lapisan utama sebuah setup.</p></article>
-          <article data-reveal data-delay="80"><span>PHASE 03</span><p>Metode kurasi dikembangkan melalui context, feel, performance, compatibility, dan ownership.</p></article>
-          <article data-reveal data-delay="120"><span>PHASE 04</span><p>NEXGEAR hadir sebagai pengalaman digital untuk eksplorasi, perbandingan, dan keputusan pembelian.</p></article>
-          <article data-reveal data-delay="160"><span>NEXT</span><p>Kurasi berkembang menuju rekomendasi yang lebih personal dan diperkaya feedback komunitas.</p></article>
+
+          <dl class="about-case__matrix">
+            <div data-reveal><dt>Artinya</dt><dd>Pergerakan dapat diperbarui lebih sering daripada polling rate standar.</dd></div>
+            <div data-reveal data-delay="50"><dt>Terasa ketika</dt><dd>Monitor ber-refresh tinggi, CPU memadai, game kompetitif, dan pengguna sensitif terhadap respons.</dd></div>
+            <div data-reveal data-delay="100"><dt>Trade-off</dt><dd>Konsumsi daya dan beban CPU meningkat, sementara perbedaannya tidak selalu terasa untuk semua orang.</dd></div>
+            <div data-reveal data-delay="150"><dt>NEXGEAR verdict</dt><dd>Berguna untuk pengguna tertentu. Bukan alasan otomatis untuk mengganti mouse yang sudah cocok.</dd></div>
+          </dl>
         </div>
       </section>
 
-      <section class="about-closing">
-        <figure class="about-closing__image about-closing__image--left" data-reveal>
-          <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=900&q=86" data-fallback="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=86" alt="Detail perangkat gaming">
-        </figure>
+      <section class="about-scope" aria-labelledby="about-scope-title">
+        <header data-reveal>
+          <span>EXPLORE THE SYSTEM</span>
+          <h2 id="about-scope-title">Tiga ruang yang membentuk satu setup.</h2>
+        </header>
 
-        <div class="about-closing__copy" data-reveal data-delay="80">
+        <div class="about-scope__index">
+          <a href="catalog.html?category=control" data-reveal>
+            <span>01 / CONTROL</span>
+            <div><strong>Input, precision, response</strong><small>Mouse, keyboard, controller, mousepad</small></div>
+            <b>Lihat gear →</b>
+          </a>
+          <a href="catalog.html?category=sound" data-reveal data-delay="60">
+            <span>02 / SOUND</span>
+            <div><strong>Communication, awareness, immersion</strong><small>Headset, microphone, speaker</small></div>
+            <b>Lihat gear →</b>
+          </a>
+          <a href="catalog.html?category=machine" data-reveal data-delay="120">
+            <span>03 / MACHINE</span>
+            <div><strong>Performance, stability, workflow</strong><small>Laptop, monitor, component</small></div>
+            <b>Lihat gear →</b>
+          </a>
+        </div>
+      </section>
+
+      <section class="about-closing about-closing--single">
+        <div class="about-closing__copy" data-reveal>
           <span>BUILD WITH INTENT</span>
           <h2>Pilih gear karena fungsinya, bukan hanya karena trennya.</h2>
           <p>Mulai dari kebutuhan, pahami trade-off, lalu bangun setup yang lebih konsisten dengan cara kamu bermain dan bekerja.</p>
-          <a href="catalog.html">Explore the catalog <b>→</b></a>
+          <a href="catalog.html">Jelajahi Katalog <b>→</b></a>
         </div>
 
-        <figure class="about-closing__image about-closing__image--right" data-reveal data-delay="140">
-          <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=900&q=86" data-fallback="https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=900&q=86" alt="Komponen gaming PC">
+        <figure class="about-closing__image" data-reveal data-delay="100">
+          <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=1100&q=86" data-fallback="https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=1100&q=86" alt="Komponen gaming PC">
         </figure>
       </section>
     </section>
