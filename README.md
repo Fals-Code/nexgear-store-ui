@@ -6,7 +6,7 @@ Sebuah _prototype_ frontend antarmuka pengguna e-commerce kelas premium yang ber
 
 NEXGEAR adalah purwarupa antarmuka (_UI Mockup_) yang dioptimalkan untuk menunjukkan kelancaran interaksi di sisi klien. Desain mengadopsi tema "Dark Premium Gaming" dengan ruang kosong yang tertata, tipografi _sans-serif_ berlapis, aksen biru neon (`#00E5FF`), serta form bergaya minimalis. Kami berprinsip pada pendekatan _Desktop-First_ yang tetap lincah merespons transisi ukuran layar.
 
-## 📄 Daftar Halaman (17 Halaman)
+## 📄 Daftar Halaman (18 Halaman)
 
 Keseluruhan siklus e-commerce telah didesain secara independen dengan gaya yang terpusat:
 
@@ -18,15 +18,16 @@ Keseluruhan siklus e-commerce telah didesain secara independen dengan gaya yang 
 6. `success.html` — Konfirmasi pesanan sukses
 7. `track-order.html` — Simulasi pelacakan resi
 8. `transaction-history.html` — Riwayat transaksi, pencarian, filter status, dan detail pesanan
-9. `about.html` — Kisah dan filosofi merk NEXGEAR
-10. `contact.html` — Form kontak dukungan
-11. `help.html` — Pusat FAQ interaktif
-12. `leave-review.html` — Antarmuka penulisan ulasan
-13. `login.html` — Simulasi masuk dan pendaftaran akun
-14. `profile.html` — Dasbor manajemen profil
-15. `blog.html` — Daftar artikel dan ulasan produk
-16. `blog-post.html` — Layout baca artikel tunggal
-17. `404.html` — Penanganan _error_ tautan mati
+9. `admin-articles.html` — Kelola artikel editorial, draft, jadwal publikasi, dan bulk action
+10. `about.html` — Kisah dan filosofi merk NEXGEAR
+11. `contact.html` — Form kontak dukungan
+12. `help.html` — Pusat FAQ interaktif
+13. `leave-review.html` — Antarmuka penulisan ulasan
+14. `login.html` — Simulasi masuk dan pendaftaran akun
+15. `profile.html` — Dasbor manajemen profil
+16. `blog.html` — Daftar artikel dan ulasan produk
+17. `blog-post.html` — Layout baca artikel tunggal
+18. `404.html` — Penanganan _error_ tautan mati
 
 ## 🚀 Cara Menjalankan
 
@@ -35,11 +36,11 @@ Proyek ini dibangun menggunakan **100% Vanilla HTML, CSS, dan JavaScript**.
 1. Unduh atau klon seluruh repositori proyek ini ke dalam sistem Anda.
 2. Tidak diperlukan instalasi _package_ atau peladen (_server_) lokal.
 3. Buka file `index.html` dengan peramban (Chrome/Firefox/Edge) untuk mulai merambah ekosistem NEXGEAR.
-4. Anda dapat menavigasi ke seluruh 16 halaman lainnya secara mulus melalui tautan navigasi dan _footer_.
+4. Anda dapat menavigasi ke seluruh 17 halaman lainnya secara mulus melalui tautan navigasi dan _footer_.
 
 ---
 
 **Dibuat untuk Tugas UAS Workshop Desain UI**
 _Universitas Airlangga - Jurusan D4 Teknik Informatika_
 
-<!-- Deployment refresh after restoring the original product detail page. -->
+<!-- Admin article page added. -->
