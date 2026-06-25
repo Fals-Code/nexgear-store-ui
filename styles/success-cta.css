@@ -1,0 +1,91 @@
+/* Stronger success-page primary CTA */
+.success-shop-again {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 0 17px 0 19px;
+  border: 1px solid rgba(0, 229, 255, 0.45);
+  border-radius: 13px;
+  background:
+    radial-gradient(circle at 12% 50%, rgba(255, 255, 255, 0.22), transparent 8rem),
+    linear-gradient(105deg, #00e5ff, #40f2ff 58%, #00c8e8);
+  color: #031115;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+  box-shadow:
+    0 12px 30px rgba(0, 229, 255, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+.success-shop-again::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 16%, rgba(255, 255, 255, 0.48) 43%, transparent 70%);
+  transform: translateX(-125%);
+  animation: successCtaShimmer 3.4s ease-in-out infinite;
+}
+
+.success-shop-again::after {
+  content: "→";
+  display: grid;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(3, 17, 21, 0.1);
+  font-size: 1rem;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.success-shop-again:hover {
+  transform: translateY(-2px);
+  filter: saturate(1.08) brightness(1.03);
+  box-shadow:
+    0 17px 38px rgba(0, 229, 255, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.success-shop-again:hover::after {
+  background: rgba(3, 17, 21, 0.17);
+  transform: translateX(4px);
+}
+
+.success-shop-again:active {
+  transform: translateY(0);
+}
+
+.success-shop-again:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+@keyframes successCtaShimmer {
+  0%, 34% { transform: translateX(-125%); }
+  72%, 100% { transform: translateX(125%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .success-shop-again,
+  .success-shop-again::after {
+    transition: none;
+  }
+
+  .success-shop-again::before {
+    animation: none;
+  }
+}
