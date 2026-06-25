@@ -1,147 +1,44 @@
 <!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script>
-      (function () {
-        try {
-          var mode = sessionStorage.getItem("nexgear-page-transition-mode");
-          if (mode === "simple") document.documentElement.classList.add("pt-preload-simple");
-          if (mode === "open") document.documentElement.classList.add("pt-preload-open");
-        } catch (error) {}
-      })();
-    </script>
-    <link rel="stylesheet" href="styles/global.css" />
-    <link rel="stylesheet" href="styles/about.css?v=about-slider-click-fix-1" />
-    <link rel="stylesheet" href="styles/about-reference.css?v=about-slider-click-fix-1" />
-    <link rel="stylesheet" href="styles/transition.css" />
-    <script src="scripts/page-transition.js" defer></script>
-    <title>Tentang NEXGEAR</title>
-  </head>
-
-  <body class="page-about" data-footer-reveal="wide">
-    <div class="page-transition" aria-hidden="true">
-      <span class="page-transition__panel page-transition__panel--a"></span>
-      <span class="page-transition__panel page-transition__panel--b"></span>
-      <span class="page-transition__panel page-transition__panel--c"></span>
-      <span class="page-transition__panel page-transition__panel--d"></span>
-      <span class="page-transition__brand">NEXGEAR</span>
-    </div>
-
-    <div id="global-header"></div>
-
-    <main class="site-main about-main">
-      <section class="about-hero-ref" aria-labelledby="about-title">
-        <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=2200&q=82" alt="Gaming desk setup with monitor and peripherals" />
-        <div class="about-hero-ref__overlay"></div>
-        <div class="container about-hero-ref__content">
-          <span>About NEXGEAR</span>
-          <h1 id="about-title">Curated gaming gear for better setups.</h1>
-        </div>
-      </section>
-
-      <section class="about-ref-section" aria-labelledby="about-clarity-title">
-        <div class="container about-ref-row">
-          <div class="about-ref-copy">
-            <h2 id="about-clarity-title">Kami membantu memilih gear dengan lebih jelas.</h2>
-            <p class="about-ref-lead">NEXGEAR hadir untuk menyaring pilihan peripheral, machine gear, dan setup essentials agar pengguna tidak perlu menebak-nebak sendiri.</p>
-            <p>Setiap produk dilihat dari fungsi, kenyamanan, performa, dan kecocokannya dalam setup harian maupun kompetitif. Kami tidak berusaha menampilkan semuanya, cukup yang punya alasan kuat untuk dipertimbangkan.</p>
-          </div>
-          <div class="about-ref-illustration" aria-hidden="true">
-            <svg viewBox="0 0 260 220" role="img">
-              <path class="blob" d="M42 137c-21-45 4-94 49-111 51-20 117 6 139 55 21 49-8 104-58 119-51 15-109-18-130-63Z" />
-              <rect x="55" y="78" width="145" height="92" rx="16" />
-              <path d="M82 78h94l-14-31H96L82 78Z" />
-              <path class="line" d="M86 101h84M86 124h58M86 147h72" />
-              <circle cx="198" cy="76" r="20" />
-              <path class="line" d="M190 76l6 6 12-15" />
-            </svg>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tentang NEXGEAR dan cara kami mengkurasi gaming gear.">
+  <title>Tentang NEXGEAR</title>
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/about.css?v=3">
+</head>
+<body class="page-about">
+  <div id="global-header"></div>
+  <main class="site-main about-main">
+    <section class="about-hero" aria-labelledby="about-title">
+      <span class="about-hero__word" aria-hidden="true">NEXGEAR</span>
+      <div class="container about-hero__grid">
+        <div class="about-hero__copy" data-about-reveal>
+          <span class="about-kicker"><i></i>BUILT FOR BETTER SETUPS</span>
+          <h1 id="about-title">Gear yang tepat.<br><span>Alasan yang jelas.</span></h1>
+          <p>NEXGEAR membantu gamer memilih peripheral, audio, dan machine gear berdasarkan fungsi nyata, bukan sekadar popularitas.</p>
+          <div class="about-hero__actions">
+            <a href="catalog.html" class="about-primary-cta">Jelajahi Gear <span>→</span></a>
+            <a href="#about-method" class="about-secondary-cta">Cara Kami Mengkurasi</a>
           </div>
         </div>
-      </section>
-
-      <section class="about-ref-section about-ref-section--alt" aria-labelledby="about-standard-title">
-        <div class="container about-ref-row about-ref-row--reverse">
-          <div class="about-ref-illustration about-ref-illustration--trophy" aria-hidden="true">
-            <svg viewBox="0 0 260 220" role="img">
-              <path class="blob" d="M53 119c-16-50 16-92 62-104 57-15 105 20 114 70 10 52-28 105-84 112-47 7-78-34-92-78Z" />
-              <path class="cup" d="M92 54h76v38c0 34-17 56-38 56S92 126 92 92V54Z" />
-              <path class="line" d="M92 72H61c2 38 19 58 45 63M168 72h31c-2 38-19 58-45 63" />
-              <path class="line" d="M130 148v25M99 173h62M87 191h86" />
-              <circle cx="130" cy="92" r="14" />
-            </svg>
-          </div>
-          <div class="about-ref-copy">
-            <h2 id="about-standard-title">Standar kami sederhana: gear harus punya alasan.</h2>
-            <p class="about-ref-lead">Produk tidak cukup hanya populer, mahal, atau punya lampu yang membuat meja seperti wahana pasar malam.</p>
-            <p>Kami memperhatikan feel, latency, build quality, koneksi, garansi, dan konteks pemakaian. Mouse untuk FPS, keyboard untuk kerja panjang, headset untuk komunikasi, atau laptop untuk workflow punya kebutuhan yang berbeda.</p>
-          </div>
+        <div class="about-hero__visual" data-about-reveal data-about-delay="120">
+          <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=1400&q=86" alt="Gaming setup dengan monitor dan peripheral">
+          <div><span>CURATION MODE</span><strong>ACTIVE</strong></div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="about-ref-section" aria-labelledby="about-scope-title">
-        <div class="container about-ref-row">
-          <div class="about-ref-copy">
-            <h2 id="about-scope-title">Ruang kurasi kami dibagi berdasarkan fungsi setup.</h2>
-            <p class="about-ref-lead">Kami melihat gear sebagai bagian dari satu ekosistem, bukan barang yang berdiri sendiri-sendiri di rak katalog.</p>
-            <ul class="about-ref-list">
-              <li>Control gear untuk presisi input dan konsistensi respons.</li>
-              <li>Sound gear untuk komunikasi, awareness, dan immersion.</li>
-              <li>Machine gear untuk performa, thermal stability, dan workflow.</li>
-            </ul>
-          </div>
-          <div class="about-ref-illustration about-ref-illustration--check" aria-hidden="true">
-            <svg viewBox="0 0 260 220" role="img">
-              <path class="blob" d="M50 105c-11-48 29-82 74-94 49-13 94 17 107 66 14 54-13 106-67 122-56 16-102-39-114-94Z" />
-              <rect x="78" y="42" width="112" height="142" rx="18" />
-              <path d="M106 42h56l-8 20h-40l-8-20Z" />
-              <circle cx="104" cy="88" r="10" />
-              <circle cx="104" cy="124" r="10" />
-              <circle cx="104" cy="160" r="10" />
-              <path class="line" d="M99 88l4 4 8-10M124 88h38M124 124h50M124 160h42" />
-            </svg>
-          </div>
-        </div>
-      </section>
-
-      <section class="about-quote" aria-labelledby="about-quote-title" data-about-slider>
-        <div class="about-quote-slider" aria-hidden="true">
-          <img class="about-quote-slide is-active" data-about-slide-image src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=2200&q=82" alt="" />
-          <img class="about-quote-slide" data-about-slide-image src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=2200&q=82" alt="" />
-          <img class="about-quote-slide" data-about-slide-image src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2200&q=82" alt="" />
-        </div>
-        <div class="about-quote__overlay"></div>
-        <div class="container about-quote__content">
-          <div class="about-quote-panel is-active" data-about-slide-text>
-            <h2 id="about-quote-title">“Pilihan gear yang baik tidak selalu paling ramai. Yang penting: cocok, jelas, dan tahan dipakai.”</h2>
-            <p>NEXGEAR, setup curation note</p>
-          </div>
-          <div class="about-quote-panel" data-about-slide-text>
-            <h2>“Setup yang rapi bukan soal membeli semuanya. Ia dimulai dari gear yang benar-benar dibutuhkan.”</h2>
-            <p>Control, sound, machine, and desk setup</p>
-          </div>
-          <div class="about-quote-panel" data-about-slide-text>
-            <h2>“Produk terlihat keren itu mudah. Yang sulit adalah membuatnya tetap nyaman setelah dipakai berjam-jam.”</h2>
-            <p>NEXGEAR performance standard</p>
-          </div>
-          <div class="about-quote-controls" aria-label="About image slider controls">
-            <button class="about-quote-arrow" type="button" data-about-prev aria-label="Slide sebelumnya">‹</button>
-            <div class="about-quote-dots" role="tablist" aria-label="Pilih slide About">
-              <button type="button" class="is-active" data-about-dot aria-label="Slide 1"></button>
-              <button type="button" data-about-dot aria-label="Slide 2"></button>
-              <button type="button" data-about-dot aria-label="Slide 3"></button>
-            </div>
-            <button class="about-quote-arrow" type="button" data-about-next aria-label="Slide berikutnya">›</button>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <div id="global-footer"></div>
-
-    <script src="scripts/about-slider.js?v=about-slider-click-fix-1"></script>
-    <script src="scripts/global-components.js"></script>
-    <script src="scripts/main.js"></script>
-  </body>
+    <section id="about-story" class="about-story"></section>
+    <section id="about-values" class="about-values"></section>
+    <section id="about-method" class="about-method"></section>
+    <section id="about-ecosystem" class="about-ecosystem"></section>
+    <section id="about-cta" class="about-cta"></section>
+  </main>
+  <div id="global-footer"></div>
+  <script src="scripts/global-components.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/about-page.js?v=1"></script>
+</body>
 </html>
