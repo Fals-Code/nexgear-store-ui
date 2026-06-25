@@ -1,0 +1,6 @@
+.page-about .about-main{padding:28px 0 96px}
+.page-about .about-hero{width:min(100%,1280px);margin:0 auto;padding:clamp(42px,5vw,68px);border:1px solid rgba(148,163,184,.14);border-radius:24px;background:#0b111a}
+.page-about .about-hero>h1{font-size:clamp(3.7rem,6.2vw,6.7rem);line-height:.92}
+.page-about .about-hero__main{height:clamp(470px,44vw,620px);border-radius:24px}
+.page-about .about-signal{width:min(100%,1280px);margin:18px auto 0;gap:12px;padding:0;background:transparent}
+.page-about .about-signal article{padding:24px;border:1px solid rgba(148,163,184,.14);border-radius:16px;background:#0b111a}
