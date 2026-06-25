@@ -1,114 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kelola produk, jumlah, dan ringkasan belanja NEXGEAR sebelum melanjutkan ke pembayaran.">
   <title>Keranjang Belanja | NEXGEAR</title>
   <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/cart.css">
+  <link rel="stylesheet" href="styles/cart-dynamic.css?v=1">
 </head>
 <body class="page-cart">
-    <!-- GLOBAL HEADER COMPONENT -->
-    <div id="global-header"></div>
+  <div id="global-header"></div>
 
   <main class="site-main">
     <div class="container section-padding">
-      <div class="section-header">
-        <h2>Keranjang Belanja</h2>
-      </div>
+      <header class="section-header cart-page-heading">
+        <div>
+          <span class="product-cat">NEXGEAR / CHECKOUT FLOW</span>
+          <h1>Keranjang Belanja</h1>
+          <p>Periksa kembali gear, varian, dan jumlah pembelian sebelum melanjutkan ke pembayaran.</p>
+        </div>
+        <button id="cart-clear" class="btn btn-outline cart-clear" type="button" hidden>Kosongkan Keranjang</button>
+      </header>
 
       <div class="cart-layout">
-        <!-- CART ITEMS -->
-        <div class="cart-items">
-          
-          <div class="cart-item">
-            <div class="cart-item-image">
-              <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Keyboard">
-            </div>
-            <div class="cart-item-info">
-              <span class="product-cat">Control</span>
-              <a href="product-detail.html"><h3>Vortex VX Pro Mechanical</h3></a>
-              <p>Linear Red Switch</p>
-              <div class="cart-item-actions">
-                <div class="quantity-selector">
-                  <button class="qty-btn">-</button>
-                  <input type="number" value="1" min="1" max="10" class="qty-input">
-                  <button class="qty-btn">+</button>
-                </div>
-                <button class="btn-remove">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
-                  Hapus
-                </button>
-              </div>
-            </div>
-            <div class="cart-item-price">
-              Rp1.850.000
+        <section aria-labelledby="cart-list-title">
+          <h2 id="cart-list-title" class="sr-only">Daftar produk di keranjang</h2>
+          <div id="cart-items" class="cart-items" aria-live="polite"></div>
+
+          <div id="cart-empty-state" class="cart-empty-state" hidden>
+            <div>
+              <span class="cart-empty-state__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="20" r="1"/><circle cx="19" cy="20" r="1"/><path d="M3 4h2l2.4 10.4a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+              </span>
+              <h2>Keranjang masih kosong</h2>
+              <p>Pilih gear dari katalog terlebih dahulu. Keranjang kosong memang ringan, tetapi tidak banyak membantu sebuah toko.</p>
+              <a href="catalog.html" class="btn btn-primary">Jelajahi Katalog</a>
             </div>
           </div>
+        </section>
 
-          <div class="cart-item">
-            <div class="cart-item-image">
-              <img src="https://images.unsplash.com/photo-1615663245857-ac93bb5c9023?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Mouse">
-            </div>
-            <div class="cart-item-info">
-              <span class="product-cat">Control</span>
-              <a href="product-detail.html"><h3>Logitech G Pro X Superlight</h3></a>
-              <p>Hitam</p>
-              <div class="cart-item-actions">
-                <div class="quantity-selector">
-                  <button class="qty-btn">-</button>
-                  <input type="number" value="1" min="1" max="10" class="qty-input">
-                  <button class="qty-btn">+</button>
-                </div>
-                <button class="btn-remove">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
-                  Hapus
-                </button>
-              </div>
-            </div>
-            <div class="cart-item-price">
-              Rp2.150.000
-            </div>
-          </div>
-
-        </div>
-
-        <!-- CART SUMMARY -->
-        <aside class="cart-summary">
-          <h3>Ringkasan Pesanan</h3>
+        <aside id="cart-summary" class="cart-summary" aria-labelledby="cart-summary-title">
+          <h2 id="cart-summary-title">Ringkasan Pesanan</h2>
           <div class="summary-row">
-            <span>Subtotal (2 Item)</span>
-            <span>Rp4.000.000</span>
+            <span id="cart-subtotal-label">Subtotal (0 Item)</span>
+            <strong id="cart-subtotal">Rp0</strong>
           </div>
           <div class="summary-row">
             <span>Estimasi Ongkir</span>
-            <span>Rp20.000</span>
+            <strong id="cart-shipping">Rp0</strong>
           </div>
           <div class="summary-divider"></div>
           <div class="summary-row total">
             <span>Total Bayar</span>
-            <span class="text-accent">Rp4.020.000</span>
+            <strong id="cart-total" class="text-accent">Rp0</strong>
           </div>
-          <a href="checkout.html" class="btn btn-primary w-100" style="margin-top: 20px;">Lanjut ke Checkout</a>
-          <a href="catalog.html" class="btn btn-outline w-100" style="margin-top: 10px;">Lanjut Belanja</a>
+          <a id="cart-checkout-link" href="checkout.html" class="btn btn-primary w-100 cart-checkout-link" style="margin-top:20px">Lanjut ke Checkout</a>
+          <a href="catalog.html" class="btn btn-outline w-100" style="margin-top:10px">Lanjut Belanja</a>
+          <p class="cart-summary-note">Jumlah dan total kini dihitung langsung dari isi keranjang yang tersimpan pada browser.</p>
         </aside>
       </div>
-
     </div>
   </main>
-            <!-- GLOBAL FOOTER COMPONENT -->
-    <div id="global-footer"></div>
 
-    <!-- Search Drawer Overlay -->
-  <div id="search-drawer" class="drawer">
-    <div class="drawer-content" style="background:#181824; padding:30px; text-align:center;">
-      <h3>Cari Gear</h3>
-      <input type="text" class="form-input" placeholder="Ketik nama produk..." style="margin:20px 0;">
-      <button class="btn btn-primary" onclick="document.getElementById('search-drawer').classList.remove('active')">Tutup</button>
-    </div>
-  </div>
+  <div id="global-footer"></div>
 
   <script src="scripts/global-components.js"></script>
-    <script src="scripts/main.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/cart-page.js?v=1"></script>
 </body>
 </html>
