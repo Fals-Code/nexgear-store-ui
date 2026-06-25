@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Selesaikan pembayaran pesanan NEXGEAR sesuai metode yang dipilih pada checkout.">
+  <title>Payment | NEXGEAR</title>
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/payment.css?v=1">
+</head>
+<body class="page-payment">
+  <div id="global-header"></div>
+
+  <main class="site-main payment-main">
+    <section class="payment-hero" aria-labelledby="payment-page-title">
+      <span class="payment-hero__word" aria-hidden="true">PAYMENT</span>
+      <div class="container payment-hero__inner">
+        <div class="payment-hero__copy">
+          <span class="payment-kicker"><i aria-hidden="true"></i>NEXGEAR PAYMENT PROTOCOL</span>
+          <h1 id="payment-page-title">Secure Your <span>Order.</span></h1>
+          <p>Selesaikan pembayaran sebelum batas waktu agar loadout dapat segera diproses dan manusia gudang tidak menunggu tanpa kepastian.</p>
+        </div>
+
+        <nav class="payment-progress" aria-label="Tahapan checkout">
+          <a href="cart.html" class="payment-progress__item is-complete"><span>01</span><div><strong>Keranjang</strong><small>Gear reviewed</small></div></a>
+          <a href="checkout.html" class="payment-progress__item is-complete"><span>02</span><div><strong>Pengiriman</strong><small>Data tersimpan</small></div></a>
+          <div class="payment-progress__item is-active" aria-current="step"><span>03</span><div><strong>Pembayaran</strong><small>Konfirmasi transaksi</small></div></div>
+          <div class="payment-progress__item"><span>04</span><div><strong>Selesai</strong><small>Order secured</small></div></div>
+        </nav>
+      </div>
+    </section>
+
+    <div class="container payment-content">
+      <section id="payment-empty" class="payment-empty" hidden>
+        <span class="payment-empty__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.7 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.7a2 2 0 0 0-3.4 0Z"/></svg></span>
+        <span class="payment-section-label">NO PENDING ORDER</span>
+        <h2>Pesanan belum ditemukan</h2>
+        <p>Buka checkout terlebih dahulu agar sistem memiliki pesanan yang bisa dibayar. Bahkan halaman payment memerlukan konteks, sebuah kemajuan kecil bagi peradaban.</p>
+        <a href="checkout.html" class="btn btn-primary">Kembali ke Checkout</a>
+      </section>
+
+      <div id="payment-layout" class="payment-layout">
+        <section class="payment-workspace" aria-labelledby="payment-workspace-title">
+          <article class="payment-status-card">
+            <div class="payment-status-card__copy">
+              <span id="payment-status-pill" class="payment-status-pill is-waiting"><i aria-hidden="true"></i>Menunggu Pembayaran</span>
+              <h2 id="payment-workspace-title">Selesaikan transaksi kamu</h2>
+              <p id="payment-status-description">Gunakan instruksi berikut sesuai metode yang dipilih saat checkout.</p>
+            </div>
+            <div class="payment-deadline">
+              <span>BATAS PEMBAYARAN</span>
+              <strong id="payment-countdown">23:59:59</strong>
+              <small id="payment-deadline-label">Hari ini, 23.59 WIB</small>
+            </div>
+          </article>
+
+          <article class="payment-method-card">
+            <header class="payment-method-card__header">
+              <div>
+                <span class="payment-section-label">SELECTED CHANNEL</span>
+                <h2 id="payment-method-title">Metode Pembayaran</h2>
+                <p id="payment-method-subtitle">Instruksi akan menyesuaikan pilihan checkout.</p>
+              </div>
+              <button id="payment-change-method" class="payment-change-method" type="button">Ganti Metode</button>
+            </header>
+
+            <div id="payment-method-content" class="payment-method-content" aria-live="polite"></div>
+          </article>
+
+          <article class="payment-instructions-card">
+            <header>
+              <span class="payment-section-label">PAYMENT GUIDE</span>
+              <h2>Cara Pembayaran</h2>
+              <p id="payment-guide-subtitle">Ikuti langkah berikut agar pembayaran terbaca sistem.</p>
+            </header>
+            <div id="payment-instructions" class="payment-instructions"></div>
+          </article>
+
+          <div class="payment-support-row">
+            <div>
+              <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/></svg></span>
+              <div><strong>Butuh bantuan pembayaran?</strong><small>Tim support tersedia untuk membantu verifikasi.</small></div>
+            </div>
+            <a href="contact.html">Hubungi Support</a>
+          </div>
+        </section>
+
+        <aside class="payment-summary" aria-labelledby="payment-summary-title">
+          <span class="payment-summary__beam" aria-hidden="true"></span>
+          <header class="payment-summary__header">
+            <div>
+              <span class="payment-section-label">ORDER SNAPSHOT</span>
+              <h2 id="payment-summary-title">Ringkasan Pesanan</h2>
+            </div>
+            <span id="payment-order-id" class="payment-order-id">NEX-000000</span>
+          </header>
+
+          <div id="payment-summary-items" class="payment-summary-items"></div>
+
+          <div class="payment-summary__divider"></div>
+
+          <dl class="payment-costs">
+            <div><dt>Subtotal</dt><dd id="payment-subtotal">Rp0</dd></div>
+            <div><dt>Pengiriman <small id="payment-shipping-label">Reguler</small></dt><dd id="payment-shipping">Rp0</dd></div>
+            <div id="payment-insurance-row" hidden><dt>Proteksi</dt><dd id="payment-insurance">Rp0</dd></div>
+            <div id="payment-discount-row" class="is-discount" hidden><dt>Promo NEX10</dt><dd id="payment-discount">−Rp0</dd></div>
+          </dl>
+
+          <div class="payment-summary__divider"></div>
+
+          <div class="payment-total">
+            <div><span>Total Pembayaran</span><small>Nominal harus dibayar tepat</small></div>
+            <strong id="payment-total">Rp0</strong>
+          </div>
+
+          <div class="payment-destination">
+            <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2"/></svg></span>
+            <div><strong id="payment-customer-name">Pelanggan NEXGEAR</strong><p id="payment-address">Alamat pengiriman</p><small id="payment-courier">Reguler</small></div>
+          </div>
+
+          <a href="checkout.html" class="payment-edit-order">Ubah Data Checkout <span aria-hidden="true">→</span></a>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <div id="payment-mobile-bar" class="payment-mobile-bar" aria-label="Aksi pembayaran mobile">
+    <div><span>Total</span><strong id="payment-mobile-total">Rp0</strong></div>
+    <button id="payment-mobile-action" type="button">Saya Sudah Bayar <span aria-hidden="true">→</span></button>
+  </div>
+
+  <div id="payment-method-modal" class="payment-modal" hidden>
+    <div class="payment-modal__backdrop" data-close-payment-modal></div>
+    <section class="payment-modal__card" role="dialog" aria-modal="true" aria-labelledby="payment-modal-title">
+      <header><div><span class="payment-section-label">CHANGE CHANNEL</span><h2 id="payment-modal-title">Ganti Metode Pembayaran</h2></div><button type="button" data-close-payment-modal aria-label="Tutup">×</button></header>
+      <div class="payment-method-picker">
+        <button type="button" data-payment-method="bca-va"><span>BCA</span><div><strong>Virtual Account BCA</strong><small>Verifikasi otomatis</small></div></button>
+        <button type="button" data-payment-method="qris"><span>QR</span><div><strong>GoPay / QRIS</strong><small>Pindai dan bayar</small></div></button>
+        <button type="button" data-payment-method="card"><span>••••</span><div><strong>Kartu Kredit / Debit</strong><small>Visa, Mastercard, JCB</small></div></button>
+      </div>
+    </section>
+  </div>
+
+  <div id="global-footer"></div>
+
+  <script src="scripts/global-components.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/payment-page.js?v=1"></script>
+</body>
+</html>
