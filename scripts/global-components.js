@@ -9,6 +9,40 @@
   ]);
 
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const loaderScriptUrl = document.currentScript?.src || "";
+
+  function resolveAssetUrl(relativePath) {
+    if (loaderScriptUrl) {
+      return new URL(`../${relativePath}`, loaderScriptUrl).href;
+    }
+
+    return relativePath;
+  }
+
+  function ensureStylesheet(relativePath) {
+    const href = resolveAssetUrl(relativePath);
+    if (document.querySelector(`link[href="${href}"]`)) return;
+
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    document.head.appendChild(link);
+  }
+
+  function ensureScript(relativePath) {
+    const src = resolveAssetUrl(relativePath);
+    const existing = Array.from(document.scripts).find((script) => script.src === src);
+    if (existing) return Promise.resolve();
+
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.defer = true;
+      script.addEventListener("load", resolve, { once: true });
+      script.addEventListener("error", reject, { once: true });
+      document.head.appendChild(script);
+    });
+  }
 
   function deferLandingHeroVideo() {
     if (currentPage !== "index.html" && currentPage !== "") return;
@@ -124,17 +158,8 @@
     initProductPromoCountdown();
   }
 
-  function resolveComponentUrl(fileName) {
-    const scriptUrl = document.currentScript?.src;
-    if (scriptUrl) {
-      return new URL(`../components/${fileName}`, scriptUrl).href;
-    }
-
-    return `components/${fileName}`;
-  }
-
   async function fetchComponent(fileName) {
-    const response = await fetch(resolveComponentUrl(fileName), {
+    const response = await fetch(resolveAssetUrl(`components/${fileName}`), {
       cache: "no-cache",
     });
 
@@ -171,6 +196,13 @@
 
     replacePlaceholder("global-header", headerHtml);
     replacePlaceholder("global-footer", footerHtml);
+
+    ensureStylesheet("styles/cart-topbar-sync.css?v=1");
+    try {
+      await ensureScript("scripts/cart-topbar-sync.js?v=1");
+    } catch (error) {
+      console.warn("NEXGEAR cart sync fallback:", error);
+    }
 
     document.documentElement.classList.add("global-components-ready");
     document.dispatchEvent(
