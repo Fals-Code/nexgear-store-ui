@@ -1,206 +1,362 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Selesaikan alamat pengiriman, kurir, dan pembayaran pesanan NEXGEAR dengan aman.">
   <title>Checkout | NEXGEAR</title>
   <link rel="stylesheet" href="styles/global.css">
-  <link rel="stylesheet" href="styles/checkout.css">
+  <link rel="stylesheet" href="styles/checkout.css?v=2">
 </head>
 <body class="page-checkout">
-    <!-- GLOBAL HEADER COMPONENT -->
-    <div id="global-header"></div>
+  <div id="global-header"></div>
 
-  <main class="site-main">
-    <div class="container section-padding">
-      <div class="section-header">
-        <h2>Checkout</h2>
-      </div>
-
-      <div class="checkout-layout">
-        <!-- CHECKOUT FORM -->
-        <div class="checkout-form-area">
-          
-          <!-- STEP 1: Data Pelanggan -->
-          <div class="checkout-step">
-            <h3>1. Data Pemesan</h3>
-            <div class="form-grid">
-              <div class="form-group">
-                <label>Nama Lengkap</label>
-                <input type="text" class="form-input" placeholder="Masukkan nama lengkap" required>
-              </div>
-              <div class="form-group">
-                <label>Nomor Telepon</label>
-                <input type="tel" class="form-input" placeholder="08xx xxxx xxxx" required>
-              </div>
-              <div class="form-group full-width">
-                <label>Email</label>
-                <input type="email" class="form-input" placeholder="email@contoh.com" required>
-              </div>
-            </div>
-          </div>
-
-          <!-- STEP 2: Alamat Pengiriman -->
-          <div class="checkout-step">
-            <h3>2. Alamat Pengiriman</h3>
-            <div class="form-grid">
-              <div class="form-group full-width">
-                <label>Alamat Lengkap</label>
-                <textarea class="form-input" rows="3" placeholder="Nama jalan, gedung, no. rumah..." required></textarea>
-              </div>
-              <div class="form-group">
-                <label>Provinsi</label>
-                <select class="form-input" required>
-                  <option value="">Pilih Provinsi</option>
-                  <option value="DKI Jakarta">DKI Jakarta</option>
-                  <option value="Jawa Barat">Jawa Barat</option>
-                  <option value="Banten">Banten</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Kota / Kabupaten</label>
-                <select class="form-input" required>
-                  <option value="">Pilih Kota</option>
-                  <option value="Jakarta Selatan">Jakarta Selatan</option>
-                  <option value="Jakarta Pusat">Jakarta Pusat</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Kecamatan</label>
-                <input type="text" class="form-input" required>
-              </div>
-              <div class="form-group">
-                <label>Kode Pos</label>
-                <input type="text" class="form-input" required>
-              </div>
-            </div>
-          </div>
-
-          <!-- STEP 3: Metode Pengiriman -->
-          <div class="checkout-step">
-            <h3>3. Metode Pengiriman</h3>
-            <div class="shipping-options">
-              <label class="radio-card">
-                <input type="radio" name="shipping" checked>
-                <div class="radio-card-content">
-                  <div class="radio-card-header">
-                    <strong>Reguler (2-3 Hari)</strong>
-                    <span>Rp20.000</span>
-                  </div>
-                  <p>Pengiriman standar dengan asuransi dasar.</p>
-                </div>
-              </label>
-              
-              <label class="radio-card">
-                <input type="radio" name="shipping">
-                <div class="radio-card-content">
-                  <div class="radio-card-header">
-                    <strong>Next Day (1 Hari)</strong>
-                    <span>Rp45.000</span>
-                  </div>
-                  <p>Prioritas pengiriman, sampai esok hari.</p>
-                </div>
-              </label>
-
-              <label class="radio-card">
-                <input type="radio" name="shipping">
-                <div class="radio-card-content">
-                  <div class="radio-card-header">
-                    <strong>Same Day (Gojek/Grab)</strong>
-                    <span>Rp75.000</span>
-                  </div>
-                  <p>Khusus wilayah Jadetabek, dikirim di hari yang sama.</p>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <!-- STEP 4: Pembayaran -->
-          <div class="checkout-step">
-            <h3>4. Metode Pembayaran</h3>
-            <div class="payment-options">
-              <label class="radio-card">
-                <input type="radio" name="payment" checked>
-                <div class="radio-card-content">
-                  <strong>Virtual Account BCA</strong>
-                </div>
-              </label>
-              
-              <label class="radio-card">
-                <input type="radio" name="payment">
-                <div class="radio-card-content">
-                  <strong>Kartu Kredit / Debit</strong>
-                </div>
-              </label>
-
-              <label class="radio-card">
-                <input type="radio" name="payment">
-                <div class="radio-card-content">
-                  <strong>GoPay / QRIS</strong>
-                </div>
-              </label>
-            </div>
-          </div>
-
+  <main class="site-main checkout-main">
+    <section class="checkout-hero" aria-labelledby="checkout-page-title">
+      <span class="checkout-hero__word" aria-hidden="true">CHECKOUT</span>
+      <div class="container checkout-hero__inner">
+        <div class="checkout-hero__copy">
+          <span class="checkout-kicker"><i aria-hidden="true"></i>SECURE CHECKOUT PROTOCOL</span>
+          <h1 id="checkout-page-title">Finalize Your <span>Loadout.</span></h1>
+          <p>Lengkapi tujuan pengiriman dan metode pembayaran. Sistem akan menghitung ulang pesanan secara otomatis, karena kalkulator manual seharusnya sudah pensiun.</p>
         </div>
 
-        <!-- ORDER SUMMARY -->
-        <aside class="checkout-summary">
-          <h3>Ringkasan Pesanan</h3>
-          
-          <div class="summary-items">
-            <div class="s-item">
-              <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Keyboard">
-              <div class="s-item-info">
-                <h4>Vortex VX Pro Mechanical</h4>
-                <span>1 x Rp1.850.000</span>
+        <nav class="checkout-progress" aria-label="Tahapan checkout">
+          <a href="cart.html" class="checkout-progress__item is-complete">
+            <span>01</span>
+            <div><strong>Keranjang</strong><small>Gear reviewed</small></div>
+          </a>
+          <div class="checkout-progress__item is-active" aria-current="step">
+            <span>02</span>
+            <div><strong>Pengiriman</strong><small>Alamat & kurir</small></div>
+          </div>
+          <div class="checkout-progress__item is-active">
+            <span>03</span>
+            <div><strong>Pembayaran</strong><small>Pilih metode</small></div>
+          </div>
+          <div class="checkout-progress__item">
+            <span>04</span>
+            <div><strong>Selesai</strong><small>Order secured</small></div>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <div class="container checkout-content">
+      <div id="checkout-empty" class="checkout-empty" hidden>
+        <span class="checkout-empty__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="20" r="1"/><circle cx="19" cy="20" r="1"/><path d="M3 4h2l2.4 10.4a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+        </span>
+        <span class="checkout-section-label">NO ORDER DETECTED</span>
+        <h2>Belum ada produk untuk dibayar</h2>
+        <p>Kembali ke katalog atau keranjang untuk menambahkan gear sebelum membuka checkout.</p>
+        <a href="catalog.html" class="btn btn-primary">Jelajahi Katalog</a>
+      </div>
+
+      <div id="checkout-layout" class="checkout-layout checkout-layout--premium">
+        <form id="checkout-form" class="checkout-form-area" novalidate>
+          <section class="checkout-panel" aria-labelledby="contact-title">
+            <header class="checkout-panel__header">
+              <span class="checkout-panel__number">01</span>
+              <div>
+                <span class="checkout-section-label">CONTACT DETAILS</span>
+                <h2 id="contact-title">Data Pemesan</h2>
+                <p>Digunakan untuk konfirmasi pesanan dan pembaruan status.</p>
               </div>
+              <span class="checkout-panel__status">Wajib</span>
+            </header>
+
+            <div class="checkout-form-grid">
+              <label class="checkout-field">
+                <span>Nama Lengkap</span>
+                <div class="checkout-control">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+                  <input id="customer-name" name="customerName" type="text" autocomplete="name" placeholder="Nama sesuai identitas" required minlength="3">
+                </div>
+                <small class="checkout-field__error">Masukkan nama lengkap minimal 3 karakter.</small>
+              </label>
+
+              <label class="checkout-field">
+                <span>Nomor Telepon</span>
+                <div class="checkout-control">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92Z"/></svg>
+                  <input id="customer-phone" name="customerPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xx xxxx xxxx" required pattern="^(\+62|62|0)8[1-9][0-9]{6,11}$">
+                </div>
+                <small class="checkout-field__error">Masukkan nomor Indonesia yang valid.</small>
+              </label>
+
+              <label class="checkout-field checkout-field--wide">
+                <span>Email</span>
+                <div class="checkout-control">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                  <input id="customer-email" name="customerEmail" type="email" autocomplete="email" placeholder="nama@email.com" required>
+                </div>
+                <small class="checkout-field__error">Masukkan alamat email yang valid.</small>
+              </label>
             </div>
-            <div class="s-item">
-              <img src="https://images.unsplash.com/photo-1615663245857-ac93bb5c9023?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Mouse">
-              <div class="s-item-info">
-                <h4>Logitech G Pro X Superlight</h4>
-                <span>1 x Rp2.150.000</span>
+          </section>
+
+          <section class="checkout-panel" aria-labelledby="address-title">
+            <header class="checkout-panel__header">
+              <span class="checkout-panel__number">02</span>
+              <div>
+                <span class="checkout-section-label">DELIVERY DESTINATION</span>
+                <h2 id="address-title">Alamat Pengiriman</h2>
+                <p>Pastikan alamat cukup jelas untuk manusia dan kurir, dua kelompok yang sering diuji oleh nomor rumah.</p>
               </div>
+              <span class="checkout-panel__status">Wajib</span>
+            </header>
+
+            <div class="saved-address-row">
+              <label class="checkout-switch">
+                <input id="use-saved-address" type="checkbox">
+                <span aria-hidden="true"></span>
+                Gunakan alamat utama akun
+              </label>
+              <span>Jl. Jenderal Sudirman, Surabaya</span>
+            </div>
+
+            <div class="checkout-form-grid">
+              <label class="checkout-field checkout-field--wide">
+                <span>Alamat Lengkap</span>
+                <textarea id="address-line" name="addressLine" rows="3" autocomplete="street-address" placeholder="Nama jalan, nomor rumah, gedung, patokan..." required minlength="10"></textarea>
+                <small class="checkout-field__error">Tuliskan alamat lengkap minimal 10 karakter.</small>
+              </label>
+
+              <label class="checkout-field">
+                <span>Provinsi</span>
+                <div class="checkout-select">
+                  <select id="province" name="province" autocomplete="address-level1" required>
+                    <option value="">Pilih provinsi</option>
+                    <option value="Jawa Timur">Jawa Timur</option>
+                    <option value="DKI Jakarta">DKI Jakarta</option>
+                    <option value="Jawa Barat">Jawa Barat</option>
+                    <option value="Banten">Banten</option>
+                    <option value="Jawa Tengah">Jawa Tengah</option>
+                  </select>
+                </div>
+                <small class="checkout-field__error">Pilih provinsi tujuan.</small>
+              </label>
+
+              <label class="checkout-field">
+                <span>Kota / Kabupaten</span>
+                <div class="checkout-select">
+                  <select id="city" name="city" autocomplete="address-level2" required disabled>
+                    <option value="">Pilih kota</option>
+                  </select>
+                </div>
+                <small class="checkout-field__error">Pilih kota tujuan.</small>
+              </label>
+
+              <label class="checkout-field">
+                <span>Kecamatan</span>
+                <div class="checkout-control">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2"/></svg>
+                  <input id="district" name="district" type="text" autocomplete="address-level3" placeholder="Nama kecamatan" required>
+                </div>
+                <small class="checkout-field__error">Masukkan nama kecamatan.</small>
+              </label>
+
+              <label class="checkout-field">
+                <span>Kode Pos</span>
+                <div class="checkout-control">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h5"/></svg>
+                  <input id="postal-code" name="postalCode" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="60115" required pattern="^[0-9]{5}$" maxlength="5">
+                </div>
+                <small class="checkout-field__error">Kode pos harus terdiri dari 5 angka.</small>
+              </label>
+
+              <label class="checkout-field checkout-field--wide">
+                <span>Catatan untuk Kurir <em>Opsional</em></span>
+                <div class="checkout-control">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/></svg>
+                  <input id="courier-note" name="courierNote" type="text" placeholder="Contoh: rumah pagar hitam, titip satpam">
+                </div>
+              </label>
+            </div>
+          </section>
+
+          <section class="checkout-panel" aria-labelledby="shipping-title">
+            <header class="checkout-panel__header">
+              <span class="checkout-panel__number">03</span>
+              <div>
+                <span class="checkout-section-label">DELIVERY MODE</span>
+                <h2 id="shipping-title">Metode Pengiriman</h2>
+                <p>Pilih kecepatan pengiriman sesuai tingkat kesabaran.</p>
+              </div>
+            </header>
+
+            <div class="shipping-options checkout-choice-grid">
+              <label class="checkout-choice">
+                <input type="radio" name="shipping" value="regular" data-label="Reguler" data-fee="20000" checked>
+                <span class="checkout-choice__mark" aria-hidden="true"></span>
+                <span class="checkout-choice__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v10H3z"/><path d="M14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+                </span>
+                <span class="checkout-choice__content">
+                  <strong>Reguler</strong>
+                  <small>2–3 hari kerja</small>
+                  <em>Asuransi dasar</em>
+                </span>
+                <span class="checkout-choice__price" data-shipping-price="regular">Rp20.000</span>
+              </label>
+
+              <label class="checkout-choice">
+                <input type="radio" name="shipping" value="next-day" data-label="Next Day" data-fee="45000">
+                <span class="checkout-choice__mark" aria-hidden="true"></span>
+                <span class="checkout-choice__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/><circle cx="12" cy="12" r="9"/></svg>
+                </span>
+                <span class="checkout-choice__content">
+                  <strong>Next Day</strong>
+                  <small>1 hari kerja</small>
+                  <em>Prioritas gudang</em>
+                </span>
+                <span class="checkout-choice__price" data-shipping-price="next-day">Rp45.000</span>
+              </label>
+
+              <label class="checkout-choice">
+                <input type="radio" name="shipping" value="same-day" data-label="Same Day" data-fee="75000">
+                <span class="checkout-choice__mark" aria-hidden="true"></span>
+                <span class="checkout-choice__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v10l6 3"/><circle cx="12" cy="12" r="9"/></svg>
+                </span>
+                <span class="checkout-choice__content">
+                  <strong>Same Day</strong>
+                  <small>Hari yang sama</small>
+                  <em>Area tertentu</em>
+                </span>
+                <span class="checkout-choice__price" data-shipping-price="same-day">Rp75.000</span>
+              </label>
+            </div>
+          </section>
+
+          <section class="checkout-panel" aria-labelledby="payment-title">
+            <header class="checkout-panel__header">
+              <span class="checkout-panel__number">04</span>
+              <div>
+                <span class="checkout-section-label">PAYMENT CHANNEL</span>
+                <h2 id="payment-title">Metode Pembayaran</h2>
+                <p>Pilih kanal pembayaran. Semua opsi di bawah ini hanya simulasi UI, karena bank juga perlu istirahat.</p>
+              </div>
+            </header>
+
+            <div class="payment-options checkout-choice-grid checkout-choice-grid--payment">
+              <label class="checkout-choice checkout-choice--payment">
+                <input type="radio" name="payment" value="bca-va" data-label="Virtual Account BCA" checked>
+                <span class="checkout-choice__mark" aria-hidden="true"></span>
+                <span class="payment-logo">BCA</span>
+                <span class="checkout-choice__content">
+                  <strong>Virtual Account BCA</strong>
+                  <small>Verifikasi otomatis</small>
+                </span>
+              </label>
+
+              <label class="checkout-choice checkout-choice--payment">
+                <input type="radio" name="payment" value="card" data-label="Kartu Kredit / Debit">
+                <span class="checkout-choice__mark" aria-hidden="true"></span>
+                <span class="payment-logo payment-logo--card">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+                </span>
+                <span class="checkout-choice__content">
+                  <strong>Kartu Kredit / Debit</strong>
+                  <small>Visa, Mastercard, JCB</small>
+                </span>
+              </label>
+
+              <label class="checkout-choice checkout-choice--payment">
+                <input type="radio" name="payment" value="qris" data-label="GoPay / QRIS">
+                <span class="checkout-choice__mark" aria-hidden="true"></span>
+                <span class="payment-logo payment-logo--qris">QR</span>
+                <span class="checkout-choice__content">
+                  <strong>GoPay / QRIS</strong>
+                  <small>Pindai dan bayar instan</small>
+                </span>
+              </label>
+            </div>
+
+            <label class="insurance-toggle">
+              <input id="shipping-insurance" type="checkbox" name="insurance" value="15000">
+              <span class="insurance-toggle__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+              </span>
+              <span><strong>Tambah Proteksi Pengiriman</strong><small>Perlindungan kerusakan dan kehilangan hingga nilai barang.</small></span>
+              <b>+ Rp15.000</b>
+            </label>
+          </section>
+
+          <label class="checkout-consent">
+            <input id="checkout-consent" type="checkbox" required>
+            <span aria-hidden="true"></span>
+            <p>Saya telah memeriksa alamat, produk, dan memahami bahwa transaksi ini merupakan simulasi antarmuka untuk proyek Workshop UI.</p>
+          </label>
+          <p id="checkout-form-error" class="checkout-form-error" role="alert" hidden>Periksa kembali kolom yang ditandai sebelum membuat pesanan.</p>
+        </form>
+
+        <aside class="checkout-summary checkout-summary--premium" aria-labelledby="checkout-summary-title">
+          <span class="checkout-summary__beam" aria-hidden="true"></span>
+          <header class="checkout-summary__header">
+            <div>
+              <span class="checkout-section-label">ORDER REVIEW</span>
+              <h2 id="checkout-summary-title">Ringkasan Pesanan</h2>
+            </div>
+            <span class="checkout-secure-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              Encrypted
+            </span>
+          </header>
+
+          <div id="checkout-summary-items" class="checkout-summary-items" aria-live="polite"></div>
+
+          <div class="checkout-summary__divider"></div>
+
+          <div class="checkout-costs">
+            <div><span id="checkout-subtotal-label">Subtotal</span><strong id="checkout-subtotal">Rp0</strong></div>
+            <div><span>Pengiriman <small id="checkout-shipping-label">Reguler</small></span><strong id="checkout-shipping">Rp0</strong></div>
+            <div id="checkout-discount-row" class="is-discount" hidden><span>Promo NEX10</span><strong id="checkout-discount">−Rp0</strong></div>
+            <div id="checkout-insurance-row" hidden><span>Proteksi Pengiriman</span><strong id="checkout-insurance">Rp15.000</strong></div>
+          </div>
+
+          <div class="checkout-summary__divider"></div>
+
+          <div class="checkout-total">
+            <div><span>Total Pembayaran</span><small>Termasuk pajak yang berlaku</small></div>
+            <strong id="checkout-total">Rp0</strong>
+          </div>
+
+          <button id="checkout-submit" class="btn btn-primary checkout-submit" type="submit" form="checkout-form">
+            <span>Buat Pesanan</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </button>
+          <a href="cart.html" class="checkout-back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            Kembali ke Keranjang
+          </a>
+
+          <div class="checkout-summary__trust">
+            <div>
+              <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+              <p><strong>Pembayaran terlindungi</strong><small>Data checkout disimpan lokal pada browser.</small></p>
+            </div>
+            <div>
+              <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v10H3z"/><path d="M14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>
+              <p><strong>Status dapat dilacak</strong><small>Nomor pesanan dibuat setelah validasi.</small></p>
             </div>
           </div>
-
-          <div class="summary-divider"></div>
-
-          <div class="summary-row">
-            <span>Subtotal</span>
-            <span>Rp4.000.000</span>
-          </div>
-          <div class="summary-row">
-            <span>Ongkos Kirim</span>
-            <span>Rp20.000</span>
-          </div>
-          <div class="summary-row">
-            <span>Asuransi</span>
-            <span>Rp15.000</span>
-          </div>
-
-          <div class="summary-divider"></div>
-          
-          <div class="summary-row total">
-            <span>Total Bayar</span>
-            <span class="text-accent">Rp4.035.000</span>
-          </div>
-          
-          <a href="success.html" class="btn btn-primary w-100" style="margin-top: 25px;">Buat Pesanan</a>
-          <p class="secure-text">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            Pembayaran Aman dengan Enkripsi SSL
-          </p>
         </aside>
-
       </div>
     </div>
   </main>
-            <!-- GLOBAL FOOTER COMPONENT -->
-    <div id="global-footer"></div>
 
-    <script src="scripts/global-components.js"></script>
-    <script src="scripts/main.js"></script>
+  <div id="checkout-mobile-bar" class="checkout-mobile-bar" aria-label="Ringkasan pembayaran mobile">
+    <div><span>Total</span><strong id="checkout-mobile-total">Rp0</strong></div>
+    <button type="submit" form="checkout-form">Buat Pesanan <span aria-hidden="true">→</span></button>
+  </div>
+
+  <div id="global-footer"></div>
+
+  <script src="scripts/global-components.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/checkout-page.js?v=1"></script>
 </body>
 </html>
