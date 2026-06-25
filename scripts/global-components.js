@@ -28,17 +28,6 @@
     });
   };
 
-  const harmonyPages = new Set(["about.html", "contact.html", "help.html", "track-order.html"]);
-  if (harmonyPages.has(page)) ensureStyle("styles/nexgear-harmony.css?v=1");
-  if (page === "about.html") {
-    ensureStyle("styles/about-harmony.css?v=1");
-    ensureStyle("styles/about-harmony-layout.css?v=1");
-    ensureStyle("styles/about-harmony-components.css?v=1");
-    ensureStyle("styles/about-harmony-responsive.css?v=1");
-  }
-  if (page === "contact.html") ensureStyle("styles/support-harmony-contact.css?v=1");
-  if (page === "help.html" || page === "track-order.html") ensureStyle("styles/support-harmony-legacy.css?v=1");
-
   const deferHeroVideo = () => {
     if (page !== "index.html" && page !== "") return;
     const video = document.querySelector(".hero-video");
@@ -75,14 +64,15 @@
     const saved = Number(localStorage.getItem(key));
     const deadline = saved > Date.now() ? saved : Date.now() + 15710000;
     try { localStorage.setItem(key, String(deadline)); } catch (error) {}
+    let timer = 0;
     const render = () => {
       const seconds = Math.max(0, Math.floor((deadline - Date.now()) / 1000));
       const pad = (value) => String(value).padStart(2, "0");
       output.textContent = `${pad(Math.floor(seconds / 3600))}h : ${pad(Math.floor(seconds % 3600 / 60))}m : ${pad(seconds % 60)}s`;
-      if (seconds === 0) clearInterval(timer);
+      if (seconds === 0 && timer) clearInterval(timer);
     };
     render();
-    const timer = setInterval(render, 1000);
+    timer = setInterval(render, 1000);
   };
 
   deferHeroVideo();
