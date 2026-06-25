@@ -1,0 +1,12 @@
+.page-contact .support-page{padding:28px 0 96px}
+.page-contact .support-hero{width:min(100% - 36px,1280px);min-height:520px;margin:0 auto;padding:clamp(42px,5vw,68px);gap:clamp(36px,6vw,82px);border:1px solid var(--ng-line);border-radius:24px;background:#0b111a}
+.page-contact .support-hero h1{font-size:clamp(3.6rem,6vw,6.4rem)}
+.page-contact .support-status{min-height:410px;border-radius:24px;background:#101824}
+.page-contact .support-status__orb{width:170px;margin-bottom:28px}
+.page-contact .support-section{width:min(100% - 36px,1280px);margin:18px auto 0;padding:clamp(44px,6vw,78px);border:1px solid var(--ng-line);border-radius:24px;background:#0b111a}
+.page-contact .support-heading h2,.page-contact .support-heading--compact h2{font-size:clamp(2.25rem,4vw,4.4rem)}
+.page-contact .support-card,.page-contact .support-channel-grid>a,.page-contact .support-summary{border-radius:16px}
+.page-contact .support-channel-grid{gap:12px;border:0}
+.page-contact .support-channel-grid>a{border:1px solid var(--ng-line)}
+.page-contact .support-form input,.page-contact .support-form select,.page-contact .support-form textarea,.page-contact .support-search__field{border-radius:12px}
+.page-contact .support-closing{width:min(100% - 36px,1280px);margin:18px auto 0;padding:clamp(44px,6vw,78px);border:1px solid var(--ng-line);border-radius:24px;background:#0b111a}
