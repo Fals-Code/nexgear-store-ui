@@ -28,6 +28,10 @@
     });
   };
 
+  if (["contact.html", "help.html", "track-order.html"].includes(page)) {
+    ensureStyle("styles/support-accessibility.css?v=1");
+  }
+
   const deferHeroVideo = () => {
     if (page !== "index.html" && page !== "") return;
     const video = document.querySelector(".hero-video");
