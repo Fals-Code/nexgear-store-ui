@@ -7,6 +7,7 @@
   <title>Tentang NEXGEAR</title>
   <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/about.css?v=7">
+  <link rel="stylesheet" href="styles/about-integration.css?v=1">
 </head>
 <body class="page-about">
   <div id="global-header"></div>
@@ -15,25 +16,16 @@
     <div class="about-progress" aria-hidden="true"><span></span></div>
 
     <section class="about-editorial" aria-labelledby="about-title">
-      <div class="about-editorial__bar">
-        <span>NEXGEAR / ABOUT</span>
-        <nav aria-label="Navigasi bagian Tentang">
-          <a href="#philosophy">Philosophy</a>
-          <a href="#system">System</a>
-          <a href="#journey">Journey</a>
-        </nav>
-        <a href="contact.html">Contact us ↗</a>
-      </div>
-
       <header class="about-hero">
+        <span class="about-hero__eyebrow">NEXGEAR / BRAND STORY 001</span>
         <h1 id="about-title">KNOW <span>NEXGEAR</span></h1>
 
         <figure class="about-hero__main" data-reveal>
-          <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=1600&q=88" alt="Gaming setup modern dengan monitor dan peripheral">
+          <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=1600&q=88" data-fallback="https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=1600&q=88" alt="Gaming setup modern dengan monitor dan peripheral">
         </figure>
 
         <figure class="about-hero__small about-hero__small--left" data-reveal data-delay="80">
-          <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=86" alt="Detail keyboard mekanikal">
+          <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=86" data-fallback="https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=700" alt="Detail keyboard mekanikal">
           <figcaption>FIELD / CONTROL</figcaption>
         </figure>
 
@@ -52,13 +44,13 @@
       <section id="philosophy" class="about-philosophy">
         <div class="about-philosophy__collage">
           <figure class="about-crop about-crop--mouse" data-reveal>
-            <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c?auto=format&fit=crop&w=900&q=86" alt="Detail gaming mouse">
+            <img src="https://www.cravingtech.com/blog/wp-content/uploads/2021/05/Logitech-G-PRO-X-SUPERLIGHT-Review-5.jpg" data-fallback="https://images.unsplash.com/photo-1586349906319-48d20e9d17e5?auto=format&fit=crop&w=900&q=86" alt="Detail gaming mouse">
           </figure>
           <figure class="about-crop about-crop--laptop" data-reveal data-delay="80">
-            <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=900&q=86" alt="Laptop gaming modern">
+            <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=900&q=86" data-fallback="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=900&q=86" alt="Laptop gaming modern">
           </figure>
           <figure class="about-crop about-crop--headset" data-reveal data-delay="140">
-            <img src="https://images.unsplash.com/photo-1599669454699-248893623440?auto=format&fit=crop&w=900&q=86" alt="Detail headset gaming">
+            <img src="https://images.unsplash.com/photo-1599669454699-248893623440?auto=format&fit=crop&w=900&q=86" data-fallback="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6349/6349970cv18d.jpg" alt="Detail headset gaming">
           </figure>
           <p class="about-philosophy__statement" data-reveal data-delay="180">A SETUP IS A SYSTEM OF DECISIONS.</p>
         </div>
@@ -78,31 +70,11 @@
         </header>
 
         <div class="about-system__list">
-          <article data-reveal>
-            <span>01</span>
-            <h3>Context</h3>
-            <p>Game, workflow, mobilitas, ruang, durasi penggunaan, dan anggaran.</p>
-          </article>
-          <article data-reveal data-delay="50">
-            <span>02</span>
-            <h3>Feel</h3>
-            <p>Ergonomi, feedback, kontrol, bobot, dan kenyamanan sesi panjang.</p>
-          </article>
-          <article data-reveal data-delay="100">
-            <span>03</span>
-            <h3>Performance</h3>
-            <p>Latency, stabilitas, thermal, response, dan konsistensi penggunaan nyata.</p>
-          </article>
-          <article data-reveal data-delay="150">
-            <span>04</span>
-            <h3>Compatibility</h3>
-            <p>Ukuran, koneksi, software, platform, dan kecocokan dengan perangkat lain.</p>
-          </article>
-          <article data-reveal data-delay="200">
-            <span>05</span>
-            <h3>Ownership</h3>
-            <p>Garansi, maintenance, durability, dukungan, dan nilai setelah masa unboxing.</p>
-          </article>
+          <article data-reveal><span>01</span><h3>Context</h3><p>Game, workflow, mobilitas, ruang, durasi penggunaan, dan anggaran.</p></article>
+          <article data-reveal data-delay="50"><span>02</span><h3>Feel</h3><p>Ergonomi, feedback, kontrol, bobot, dan kenyamanan sesi panjang.</p></article>
+          <article data-reveal data-delay="100"><span>03</span><h3>Performance</h3><p>Latency, stabilitas, thermal, response, dan konsistensi penggunaan nyata.</p></article>
+          <article data-reveal data-delay="150"><span>04</span><h3>Compatibility</h3><p>Ukuran, koneksi, software, platform, dan kecocokan dengan perangkat lain.</p></article>
+          <article data-reveal data-delay="200"><span>05</span><h3>Ownership</h3><p>Garansi, maintenance, durability, dukungan, dan nilai setelah masa unboxing.</p></article>
         </div>
       </section>
 
@@ -115,35 +87,19 @@
 
         <div class="about-journey__timeline">
           <div class="about-journey__image" data-reveal>
-            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=86" alt="Gaming setup sebagai bagian dari perjalanan NEXGEAR">
+            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=86" data-fallback="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=900&q=86" alt="Gaming setup sebagai bagian dari perjalanan NEXGEAR">
           </div>
-
-          <article data-reveal>
-            <span>PHASE 01</span>
-            <p>Masalahnya ditemukan: pilihan terus bertambah, tetapi alasan memilihnya tetap kabur.</p>
-          </article>
-          <article data-reveal data-delay="40">
-            <span>PHASE 02</span>
-            <p>Control, Sound, dan Machine dibentuk sebagai tiga lapisan utama sebuah setup.</p>
-          </article>
-          <article data-reveal data-delay="80">
-            <span>PHASE 03</span>
-            <p>Metode kurasi dikembangkan melalui context, feel, performance, compatibility, dan ownership.</p>
-          </article>
-          <article data-reveal data-delay="120">
-            <span>PHASE 04</span>
-            <p>NEXGEAR hadir sebagai pengalaman digital untuk eksplorasi, perbandingan, dan keputusan pembelian.</p>
-          </article>
-          <article data-reveal data-delay="160">
-            <span>NEXT</span>
-            <p>Kurasi berkembang menuju rekomendasi yang lebih personal dan diperkaya feedback komunitas.</p>
-          </article>
+          <article data-reveal><span>PHASE 01</span><p>Masalahnya ditemukan: pilihan terus bertambah, tetapi alasan memilihnya tetap kabur.</p></article>
+          <article data-reveal data-delay="40"><span>PHASE 02</span><p>Control, Sound, dan Machine dibentuk sebagai tiga lapisan utama sebuah setup.</p></article>
+          <article data-reveal data-delay="80"><span>PHASE 03</span><p>Metode kurasi dikembangkan melalui context, feel, performance, compatibility, dan ownership.</p></article>
+          <article data-reveal data-delay="120"><span>PHASE 04</span><p>NEXGEAR hadir sebagai pengalaman digital untuk eksplorasi, perbandingan, dan keputusan pembelian.</p></article>
+          <article data-reveal data-delay="160"><span>NEXT</span><p>Kurasi berkembang menuju rekomendasi yang lebih personal dan diperkaya feedback komunitas.</p></article>
         </div>
       </section>
 
       <section class="about-closing">
         <figure class="about-closing__image about-closing__image--left" data-reveal>
-          <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=900&q=86" alt="Detail perangkat gaming">
+          <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=900&q=86" data-fallback="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=86" alt="Detail perangkat gaming">
         </figure>
 
         <div class="about-closing__copy" data-reveal data-delay="80">
@@ -154,22 +110,9 @@
         </div>
 
         <figure class="about-closing__image about-closing__image--right" data-reveal data-delay="140">
-          <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=900&q=86" alt="Komponen gaming PC">
+          <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=900&q=86" data-fallback="https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=900&q=86" alt="Komponen gaming PC">
         </figure>
       </section>
-
-      <footer class="about-editorial__footer">
-        <div>
-          <span>NEXGEAR</span>
-          <p>Independent gaming gear curation.</p>
-        </div>
-        <nav aria-label="Tautan lanjutan">
-          <a href="catalog.html">Catalog</a>
-          <a href="blog.html">Journal</a>
-          <a href="contact.html">Contact</a>
-        </nav>
-        <p>Context before specification.</p>
-      </footer>
     </section>
   </main>
 
@@ -177,5 +120,6 @@
   <script src="scripts/global-components.js"></script>
   <script src="scripts/main.js"></script>
   <script src="scripts/about-page.js?v=4"></script>
+  <script src="scripts/about-media.js?v=1"></script>
 </body>
 </html>
