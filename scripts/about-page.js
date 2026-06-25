@@ -1,47 +1,24 @@
-(function () {
-  "use strict";
-
-  const revealItems = Array.from(document.querySelectorAll("[data-about-reveal]"));
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  revealItems.forEach((item) => {
-    const delay = Number(item.dataset.aboutDelay) || 0;
-    item.style.setProperty("--about-delay", `${delay}ms`);
-  });
-
-  if (reduceMotion || !("IntersectionObserver" in window)) {
-    revealItems.forEach((item) => item.classList.add("is-visible"));
-  } else {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.14, rootMargin: "0px 0px -42px" },
-    );
-
-    revealItems.forEach((item) => observer.observe(item));
-  }
-
-  const visual = document.querySelector(".about-opening__visual");
-  if (visual && !reduceMotion) {
-    visual.addEventListener("pointermove", (event) => {
-      const rect = visual.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      visual.style.transform = `perspective(1000px) rotateY(${x * 2.5}deg) rotateX(${y * -2.5}deg)`;
-    });
-
-    visual.addEventListener("pointerleave", () => {
-      visual.style.transform = "";
-    });
-  }
-
-  document.querySelectorAll("[data-about-band]").forEach((band) => {
-    band.addEventListener("pointerenter", () => band.classList.add("is-active"));
-    band.addEventListener("pointerleave", () => band.classList.remove("is-active"));
-  });
-})();
+(function(){"use strict";const main=document.querySelector(".about-main");if(!main)return;const beliefs=[
+["Context is more useful than hype.","Kebutuhan pengguna menentukan apakah sebuah fitur benar-benar berguna."],
+["Specifications need interpretation.","Angka harus diterjemahkan menjadi dampak terhadap pengalaman."],
+["A product must fit the entire setup.","Ukuran, koneksi, ruang, software, dan workflow ikut menentukan."],
+["Long-term comfort matters.","Kenyamanan, dukungan, perawatan, dan daya tahan tetap dihitung."],
+["Every recommendation needs a reason.","Pengguna perlu mengetahui kapan produk cocok dan kapan alternatif lebih masuk akal."]];const evidence=[
+["Context","Game, workflow, mobilitas, anggaran, durasi penggunaan."],
+["Feel","Ergonomi, feedback, kontrol, kenyamanan sesi panjang."],
+["Performance","Latency, stabilitas, respons, thermal, konsistensi."],
+["Compatibility","Ukuran, koneksi, software, platform, ekosistem."],
+["Ownership","Garansi, maintenance, durability, dukungan."]];const refusals=[
+"Kami tidak merekomendasikan produk hanya karena baru.",
+"Kami tidak menganggap angka lebih tinggi selalu lebih baik.",
+"Kami tidak menyembunyikan trade-off yang penting.",
+"Kami tidak menganggap semua gamer membutuhkan hardware premium.",
+"Kami tidak menyebut setiap benda ber-LED sebagai kebutuhan esensial."];
+const scopes=[
+["CONTROL","Input, response, ergonomics","Mouse, keyboard, controller, mousepad","control"],
+["SOUND","Communication, awareness, immersion","Headset, microphone, speaker","sound"],
+["MACHINE","Performance, stability, workflow","Laptop, monitor, component","machine"]];
+const sections=[
+["identity","00","Identity"],["origin","01","Origin"],["belief","02","What we believe"],["method","03","How we curate"],["refuse","04","What we refuse"],["scope","05","Current scope"]];
+main.innerHTML=`<header class="about-record"><div class="container about-record__grid"><div><span>NEXGEAR / BRAND DOSSIER 001</span><h1>Independent gaming gear curation.</h1></div><dl><div><dt>TYPE</dt><dd>Curated commerce</dd></div><div><dt>FOCUS</dt><dd>Gaming hardware</dd></div><div><dt>APPROACH</dt><dd>Context before specification</dd></div><div><dt>STATUS</dt><dd>Digital-first platform</dd></div></dl></div></header><div class="container about-dossier"><nav class="about-chapters" aria-label="Bab halaman Tentang"><span>CONTENTS</span>${sections.map((x,i)=>`<a href="#${x[0]}" class="${i===0?"is-active":""}"><b>${x[1]}</b>${x[2]}</a>`).join("")}</nav><article class="about-document"><section id="identity" class="about-chapter" data-about-section><span>00 / IDENTITY</span><h2>We help people choose gear with context.</h2><p class="lead">NEXGEAR adalah platform kurasi gaming gear yang membantu pengguna memahami hubungan antara produk, kebutuhan, dan keseluruhan setup.</p><p>Kami tidak memulai dari produk dengan angka tertinggi, melainkan dari siapa yang memakainya, untuk aktivitas apa, dan kompromi apa yang masih masuk akal.</p><aside class="about-definition"><b>DEFINITION / 001</b><p><strong>Kurasi</strong> berarti memilih, membandingkan, dan menjelaskan. Bukan sekadar membuat katalog semakin panjang.</p></aside></section><section id="origin" class="about-chapter" data-about-section><span>01 / ORIGIN</span><h2>The problem was never a lack of options. It was a lack of clarity.</h2><div class="about-copy-grid"><p>Spesifikasi mudah ditemukan, sedangkan konteks penggunaan dan kecocokan setup jauh lebih jarang dijelaskan.</p><p>NEXGEAR menghubungkan produk dengan pengguna, ruang, perangkat lain, kebiasaan, dan anggaran.</p></div><figure class="about-field-image"><img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=1500&q=86" alt="Gaming setup dengan monitor dan peripheral"><figcaption><b>FIELD NOTE 01</b><p>A setup is a system, not a collection of impressive objects.</p></figcaption></figure></section><section id="belief" class="about-chapter" data-about-section><span>02 / WHAT WE BELIEVE</span><h2>Five statements that guide every recommendation.</h2><div class="about-manifesto-list">${beliefs.map((x,i)=>`<details ${i===0?"open":""}><summary><b>${String(i+1).padStart(2,"0")}</b><strong>${x[0]}</strong><i>+</i></summary><p>${x[1]}</p></details>`).join("")}</div></section><section id="method" class="about-chapter" data-about-section><span>03 / HOW WE CURATE</span><h2>Evidence before enthusiasm.</h2><p class="lead">Setiap produk dibaca melalui beberapa dimensi yang saling berkaitan.</p><div class="about-evidence-table"><div><b>Dimension</b><b>What we examine</b></div>${evidence.map(x=>`<div><strong>${x[0]}</strong><span>${x[1]}</span></div>`).join("")}</div><aside class="about-case-note"><b>CASE / CONTROL DEVICE</b><h3>High polling rate</h3><p>Berguna ketika sistem, display, game, dan penggunanya dapat memanfaatkan respons tersebut. Pada konteks lain, manfaatnya bisa lebih kecil dari klaim pemasarannya.</p></aside></section><section id="refuse" class="about-chapter" data-about-section><span>04 / WHAT WE REFUSE</span><h2>Boundaries are part of the brand.</h2><div class="about-refusal-list">${refusals.map((x,i)=>`<p><b>${String(i+1).padStart(2,"0")}</b>${x}</p>`).join("")}</div></section><section id="scope" class="about-chapter" data-about-section><span>05 / CURRENT SCOPE</span><h2>Three areas, one connected setup.</h2><div class="about-scope-index">${scopes.map((x,i)=>`<a href="catalog.html?category=${x[3]}"><span>${String(i+1).padStart(2,"0")} / ${x[0]}</span><div><strong>${x[1]}</strong><small>${x[2]}</small></div><b>VIEW INDEX →</b></a>`).join("")}</div></section><footer class="about-document__footer"><p>NEXGEAR exists to make hardware decisions clearer.</p><nav><a href="catalog.html">Explore catalog →</a><a href="blog.html">Read journal →</a><a href="contact.html">Contact team →</a></nav></footer></article><aside class="about-notes"><div><span>DOCUMENT</span><strong>Brand dossier</strong></div><div><span>REVISION</span><strong>05 / 2026</strong></div><div><span>TERMINOLOGY</span><p><b>Setup fit</b> adalah kesesuaian produk dengan perangkat, ruang, kebiasaan, dan tujuan pengguna.</p></div><blockquote>A better setup starts with a clearer reason.</blockquote></aside></div>`;
+const links=[...document.querySelectorAll(".about-chapters a")],targets=[...document.querySelectorAll("[data-about-section]")];if("IntersectionObserver"in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;links.forEach(link=>link.classList.toggle("is-active",link.getAttribute("href")==="#"+entry.target.id))}),{rootMargin:"-20% 0px -65%",threshold:0});targets.forEach(target=>observer.observe(target))}links.forEach(link=>link.addEventListener("click",()=>links.forEach(item=>item.classList.toggle("is-active",item===link))));})();
