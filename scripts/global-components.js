@@ -1,224 +1,124 @@
-(function () {
+(() => {
   "use strict";
 
-  const AUTH_PAGES = new Set([
-    "login.html",
-    "register.html",
-    "registration.html",
-    "signup.html",
-  ]);
+  const authPages = new Set(["login.html", "register.html", "registration.html", "signup.html"]);
+  const page = window.location.pathname.split("/").pop() || "index.html";
+  const scriptUrl = document.currentScript?.src || "";
+  const asset = (path) => scriptUrl ? new URL(`../${path}`, scriptUrl).href : path;
 
-  const currentPage = window.location.pathname.split("/").pop() || "index.html";
-  const loaderScriptUrl = document.currentScript?.src || "";
-
-  function resolveAssetUrl(relativePath) {
-    if (loaderScriptUrl) {
-      return new URL(`../${relativePath}`, loaderScriptUrl).href;
-    }
-
-    return relativePath;
-  }
-
-  function ensureStylesheet(relativePath) {
-    const href = resolveAssetUrl(relativePath);
-    if (document.querySelector(`link[href="${href}"]`)) return;
-
+  const ensureStyle = (path) => {
+    const href = asset(path);
+    if ([...document.styleSheets].some((sheet) => sheet.href === href)) return;
     const link = document.createElement("link");
     link.rel = "stylesheet";
     link.href = href;
-    document.head.appendChild(link);
-  }
+    document.head.append(link);
+  };
 
-  function ensureScript(relativePath) {
-    const src = resolveAssetUrl(relativePath);
-    const existing = Array.from(document.scripts).find((script) => script.src === src);
-    if (existing) return Promise.resolve();
-
+  const ensureScript = (path) => {
+    const src = asset(path);
+    if ([...document.scripts].some((script) => script.src === src)) return Promise.resolve();
     return new Promise((resolve, reject) => {
       const script = document.createElement("script");
       script.src = src;
       script.defer = true;
       script.addEventListener("load", resolve, { once: true });
       script.addEventListener("error", reject, { once: true });
-      document.head.appendChild(script);
+      document.head.append(script);
     });
+  };
+
+  const harmonyPages = new Set(["about.html", "contact.html", "help.html", "track-order.html"]);
+  if (harmonyPages.has(page)) ensureStyle("styles/nexgear-harmony.css?v=1");
+  if (page === "about.html") {
+    ensureStyle("styles/about-harmony.css?v=1");
+    ensureStyle("styles/about-harmony-layout.css?v=1");
+    ensureStyle("styles/about-harmony-components.css?v=1");
+    ensureStyle("styles/about-harmony-responsive.css?v=1");
   }
+  if (page === "contact.html") ensureStyle("styles/support-harmony-contact.css?v=1");
+  if (page === "help.html" || page === "track-order.html") ensureStyle("styles/support-harmony-legacy.css?v=1");
 
-  function deferLandingHeroVideo() {
-    if (currentPage !== "index.html" && currentPage !== "") return;
-
+  const deferHeroVideo = () => {
+    if (page !== "index.html" && page !== "") return;
     const video = document.querySelector(".hero-video");
     const source = video?.querySelector("source[src]");
     if (!video || !source) return;
-
-    const videoSrc = source.getAttribute("src");
-    if (!videoSrc) return;
-
+    const src = source.getAttribute("src");
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    const saveData = Boolean(connection?.saveData);
-    const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    const smallScreen = window.matchMedia?.("(max-width: 760px)").matches;
-
-    source.dataset.src = videoSrc;
+    const skip = connection?.saveData || matchMedia("(prefers-reduced-motion: reduce)").matches || matchMedia("(max-width: 760px)").matches;
     source.removeAttribute("src");
-    video.preload = "none";
     video.removeAttribute("autoplay");
+    video.preload = "none";
     video.load();
-    video.dataset.deferLoad = "true";
-
-    if (saveData || reducedMotion || smallScreen) {
-      video.dataset.videoSkipped = "true";
-      return;
-    }
-
-    const loadVideo = () => {
-      if (video.dataset.loaded === "true") return;
-      video.dataset.loaded = "true";
-      source.src = source.dataset.src;
-      video.setAttribute("autoplay", "");
+    if (skip || !src) return;
+    const load = () => {
+      source.src = src;
       video.preload = "metadata";
       video.load();
-
-      const playPromise = video.play();
-      if (playPromise && typeof playPromise.catch === "function") {
-        playPromise.catch(() => {
-          video.dataset.videoPaused = "true";
-        });
-      }
+      video.play().catch(() => { video.dataset.videoPaused = "true"; });
     };
+    window.addEventListener("load", () => window.setTimeout(load, 700), { once: true });
+  };
 
-    const schedule = () => {
-      if ("requestIdleCallback" in window) {
-        window.requestIdleCallback(loadVideo, { timeout: 1800 });
-        return;
-      }
-      window.setTimeout(loadVideo, 1000);
-    };
-
-    if (document.readyState === "complete") {
-      schedule();
-    } else {
-      window.addEventListener("load", schedule, { once: true });
-    }
-  }
-
-  deferLandingHeroVideo();
-
-  function initProductPromoCountdown() {
-    if (currentPage !== "product-detail.html") return;
-
-    const priceCard = document.querySelector(".price-action-card");
-    const priceStack = priceCard?.querySelector(".price-stack");
-    if (!priceCard || !priceStack) return;
-
-    const existingCountdown = priceCard.querySelector(".promo-countdown");
-    if (existingCountdown) return;
-
-    const countdown = document.createElement("div");
-    countdown.className = "promo-countdown";
-    countdown.setAttribute("aria-label", "Promo countdown");
-    countdown.innerHTML = '<span class="promo-countdown__label">ENDS IN</span><span class="promo-countdown__time">04h : 21m : 50s</span>';
-    priceStack.insertAdjacentElement("afterend", countdown);
-
-    const timeEl = countdown.querySelector(".promo-countdown__time");
-    const storageKey = "nexgear-vortex-promo-deadline";
-    const promoDurationMs = ((4 * 60 * 60) + (21 * 60) + 50) * 1000;
-    const now = Date.now();
-    const savedDeadline = Number(window.localStorage?.getItem(storageKey));
-    const deadline = savedDeadline && savedDeadline > now
-      ? savedDeadline
-      : now + promoDurationMs;
-
-    try {
-      window.localStorage?.setItem(storageKey, String(deadline));
-    } catch (error) {}
-
-    const pad = (value) => String(value).padStart(2, "0");
-
+  const initPromoCountdown = () => {
+    if (page !== "product-detail.html") return;
+    const card = document.querySelector(".price-action-card");
+    const stack = card?.querySelector(".price-stack");
+    if (!card || !stack || card.querySelector(".promo-countdown")) return;
+    const el = document.createElement("div");
+    el.className = "promo-countdown";
+    el.innerHTML = '<span class="promo-countdown__label">ENDS IN</span><span class="promo-countdown__time"></span>';
+    stack.insertAdjacentElement("afterend", el);
+    const output = el.querySelector(".promo-countdown__time");
+    const key = "nexgear-vortex-promo-deadline";
+    const saved = Number(localStorage.getItem(key));
+    const deadline = saved > Date.now() ? saved : Date.now() + 15710000;
+    try { localStorage.setItem(key, String(deadline)); } catch (error) {}
     const render = () => {
-      const remaining = Math.max(0, deadline - Date.now());
-      const totalSeconds = Math.floor(remaining / 1000);
-      const hours = Math.floor(totalSeconds / 3600);
-      const minutes = Math.floor((totalSeconds % 3600) / 60);
-      const seconds = totalSeconds % 60;
-      timeEl.textContent = `${pad(hours)}h : ${pad(minutes)}m : ${pad(seconds)}s`;
-
-      if (remaining <= 0) {
-        window.clearInterval(timerId);
-      }
+      const seconds = Math.max(0, Math.floor((deadline - Date.now()) / 1000));
+      const pad = (value) => String(value).padStart(2, "0");
+      output.textContent = `${pad(Math.floor(seconds / 3600))}h : ${pad(Math.floor(seconds % 3600 / 60))}m : ${pad(seconds % 60)}s`;
+      if (seconds === 0) clearInterval(timer);
     };
-
     render();
-    const timerId = window.setInterval(render, 1000);
-  }
+    const timer = setInterval(render, 1000);
+  };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initProductPromoCountdown, { once: true });
-  } else {
-    initProductPromoCountdown();
-  }
+  deferHeroVideo();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initPromoCountdown, { once: true });
+  else initPromoCountdown();
 
-  async function fetchComponent(fileName) {
-    const response = await fetch(resolveAssetUrl(`components/${fileName}`), {
-      cache: "no-cache",
-    });
-
-    if (!response.ok) {
-      throw new Error(
-        `Gagal memuat ${fileName}: ${response.status} ${response.statusText}`,
-      );
-    }
-
+  const fetchComponent = async (name) => {
+    const response = await fetch(asset(`components/${name}`), { cache: "no-cache" });
+    if (!response.ok) throw new Error(`Gagal memuat ${name}: ${response.status}`);
     return response.text();
-  }
+  };
 
-  function replacePlaceholder(id, html) {
-    const placeholder = document.getElementById(id);
-    if (!placeholder) return;
-
+  const replace = (id, html) => {
+    const target = document.getElementById(id);
+    if (!target) return;
     const template = document.createElement("template");
     template.innerHTML = html.trim();
+    target.replaceWith(template.content.cloneNode(true));
+  };
 
-    if (!template.content.childNodes.length) {
-      throw new Error(`Komponen ${id} tidak memiliki konten.`);
-    }
-
-    placeholder.replaceWith(template.content.cloneNode(true));
-  }
-
-  async function loadGlobalComponents() {
-    if (AUTH_PAGES.has(currentPage)) return;
-
-    const [headerHtml, footerHtml] = await Promise.all([
-      fetchComponent("header.html"),
-      fetchComponent("footer.html"),
-    ]);
-
-    replacePlaceholder("global-header", headerHtml);
-    replacePlaceholder("global-footer", footerHtml);
-
-    ensureStylesheet("styles/cart-topbar-sync.css?v=1");
-    try {
-      await ensureScript("scripts/cart-topbar-sync.js?v=1");
-    } catch (error) {
-      console.warn("NEXGEAR cart sync fallback:", error);
-    }
-
+  const load = async () => {
+    if (authPages.has(page)) return;
+    const [header, footer] = await Promise.all([fetchComponent("header.html"), fetchComponent("footer.html")]);
+    replace("global-header", header);
+    replace("global-footer", footer);
+    ensureStyle("styles/cart-topbar-sync.css?v=1");
+    try { await ensureScript("scripts/cart-topbar-sync.js?v=1"); } catch (error) { console.warn("NEXGEAR cart sync fallback", error); }
     document.documentElement.classList.add("global-components-ready");
-    document.dispatchEvent(
-      new CustomEvent("nexgear:components-ready", {
-        detail: { header: true, footer: true },
-      }),
-    );
-  }
+    document.dispatchEvent(new CustomEvent("nexgear:components-ready", { detail: { header: true, footer: true } }));
+  };
 
-  const ready = AUTH_PAGES.has(currentPage)
-    ? Promise.resolve()
-    : loadGlobalComponents().catch((error) => {
-        console.error("NEXGEAR global components:", error);
-        document.documentElement.classList.add("global-components-error");
-        throw error;
-      });
+  const ready = authPages.has(page) ? Promise.resolve() : load().catch((error) => {
+    console.error("NEXGEAR global components", error);
+    document.documentElement.classList.add("global-components-error");
+    throw error;
+  });
 
   window.NexGlobalComponents = Object.freeze({ ready });
 })();
