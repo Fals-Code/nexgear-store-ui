@@ -1,0 +1,24 @@
+.page-about .about-case{background:#080b10}
+.page-about .about-case__header>span,.page-about .about-scope>header>span{color:#00e5ff;font-family:var(--font-gaming);font-size:.66rem;font-weight:900;letter-spacing:.13em}
+.page-about .about-case__header p{grid-column:2;max-width:66ch;margin:0}
+.page-about .about-case__body{grid-template-columns:minmax(280px,.48fr) minmax(0,1fr);gap:clamp(20px,3vw,42px)}
+.page-about .about-case__claim{min-height:380px;padding:30px}
+.page-about .about-case__claim>span{font-size:.62rem}
+.page-about .about-case__claim p{max-width:34ch}
+.page-about .about-case__claim b{font-size:.66rem}
+.page-about .about-case__matrix{display:grid;grid-template-rows:repeat(4,1fr)}
+.page-about .about-case__matrix>div{grid-template-columns:minmax(130px,.28fr) minmax(0,1fr);min-height:0;padding:20px 0}
+.page-about .about-case__matrix dt{color:var(--strong);font-size:.9rem}
+.page-about .about-scope{background:linear-gradient(180deg,#0d1118,#080b10)}
+.page-about .about-scope__index a{grid-template-columns:minmax(130px,.24fr) minmax(0,1fr) auto;min-height:104px;padding:20px 0}
+.page-about .about-scope__index a>span,.page-about .about-scope__index a>b{font-size:.66rem}
+.page-about .about-scope__index strong{color:var(--strong);font-size:clamp(1.05rem,1.7vw,1.42rem)}
+.page-about .about-scope__index small{margin-top:7px;color:#9aa4b2;font-size:.84rem}
+.page-about .about-closing--single{grid-template-columns:minmax(300px,.82fr) minmax(0,1.18fr);gap:clamp(38px,6vw,96px);align-items:center;min-height:0;padding:var(--space) var(--gutter)}
+.page-about .about-closing--single:before{display:none}
+.page-about .about-closing--single .about-closing__copy{max-width:620px;padding:0;text-align:left}
+.page-about .about-closing--single .about-closing__copy h2{max-width:12ch;margin:16px 0 18px;font-size:clamp(2.45rem,4.5vw,5rem);line-height:1}
+.page-about .about-closing__copy p{max-width:54ch}
+.page-about .about-closing__copy a{min-height:48px;margin-top:28px;padding:0 18px;font-size:.76rem}
+.page-about .about-closing--single .about-closing__image{justify-self:stretch;width:100%;border:1px solid var(--line)}
+.page-about .about-closing--single .about-closing__image img{height:clamp(360px,35vw,480px);filter:grayscale(.78) contrast(1.14) brightness(.68);mask-image:none}
