@@ -1,1 +1,47 @@
-(function(){"use strict";const $=(s,c=document)=>c.querySelector(s);const story=$("#about-story"),values=$("#about-values"),method=$("#about-method"),ecosystem=$("#about-ecosystem"),cta=$("#about-cta");if(!story||!values||!method||!ecosystem||!cta)return;story.innerHTML=`<div class="container about-manifesto__grid"><div class="about-section-index" data-about-reveal><span>01 / WHY NEXGEAR</span><i></i></div><div class="about-manifesto__copy" data-about-reveal data-about-delay="80"><span class="about-eyebrow">THE REASON</span><h2>Terlalu banyak pilihan tidak selalu membuat keputusan lebih mudah.</h2><div class="about-manifesto__columns"><p>Pasar gaming gear penuh dengan spesifikasi, badge, dan klaim performa. Angka tinggi belum tentu berarti pengalaman yang lebih baik.</p><p>Kami mengubah kebisingan itu menjadi pertanyaan yang lebih berguna: cocok untuk siapa, dipakai untuk apa, dan apakah manfaatnya terasa?</p></div></div></div>`;values.innerHTML=`<div class="container"><header class="about-section-heading" data-about-reveal><div><span class="about-eyebrow">OUR PRINCIPLES</span><h2>Empat prinsip yang menjaga kurasi tetap waras.</h2></div><p>Kami tidak mencoba menjual semua benda yang bisa diberi label gaming. Dunia sudah cukup penuh dengan keputusan buruk.</p></header><div class="about-bento"><article class="about-value-card about-value-card--feature" data-about-card data-about-reveal><b>01</b><span>CONTEXT FIRST</span><h3>Produk dinilai dari kebutuhan pengguna, bukan dari hype.</h3><p>Setiap kategori punya prioritas penggunaan yang berbeda.</p></article><article class="about-value-card" data-about-card data-about-reveal data-about-delay="70"><b>02</b><span>MEASURABLE LOGIC</span><h3>Spesifikasi dibaca, lalu diterjemahkan.</h3><p>Latency, thermal, koneksi, dan build harus berarti bagi pengalaman.</p></article><article class="about-value-card" data-about-card data-about-reveal data-about-delay="120"><b>03</b><span>ECOSYSTEM FIT</span><h3>Gear harus bekerja sebagai satu setup.</h3><p>Ukuran, koneksi, ruang meja, dan workflow harus saling cocok.</p></article><article class="about-value-card about-value-card--wide" data-about-card data-about-reveal data-about-delay="170"><b>04</b><span>LONG-TERM VALUE</span><h3>Kenyamanan, dukungan, dan daya tahan tetap dihitung.</h3><p>Garansi, perawatan, dan kenyamanan berjam-jam lebih penting daripada kesan lima menit pertama.</p></article></div></div>`;method.innerHTML=`<div class="container"><header class="about-section-heading" data-about-reveal><div><span class="about-eyebrow">CURATION PIPELINE</span><h2>Dari spesifikasi menuju rekomendasi yang masuk akal.</h2></div><p>Empat tahap sederhana. Tidak ada kabut mistis, hanya pekerjaan yang memang perlu dilakukan.</p></header><div class="about-process"><article data-about-reveal><span>01</span><h3>Scan the field</h3><p>Membaca kategori, posisi produk, fitur pembeda, dan kebutuhan.</p></article><article data-about-reveal data-about-delay="70"><span>02</span><h3>Compare the signal</h3><p>Membandingkan performa, ergonomi, build, dan trade-off.</p></article><article data-about-reveal data-about-delay="140"><span>03</span><h3>Match the setup</h3><p>Menilai kompatibilitas dengan perangkat, ruang, dan workflow.</p></article><article data-about-reveal data-about-delay="210"><span>04</span><h3>Publish the reason</h3><p>Menjelaskan untuk siapa produk layak dipilih dan kapan tidak.</p></article></div></div>`;ecosystem.innerHTML=`<div class="container"><header class="about-section-heading" data-about-reveal><div><span class="about-eyebrow">SETUP ECOSYSTEM</span><h2>Tiga ruang utama, satu pengalaman terhubung.</h2></div><p>Kurasi dibagi berdasarkan fungsi agar setup tidak terasa seperti teka-teki tanpa gambar contoh.</p></header><div class="about-ecosystem-grid"><a href="catalog.html?category=control" class="about-ecosystem-card" data-about-reveal><img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c?auto=format&fit=crop&w=1100&q=84" alt="Gaming mouse"><span></span><div><b>01 / CONTROL</b><h3>Presisi input dan respons konsisten.</h3><p>Mouse, keyboard, mousepad, dan controller.</p><strong>Explore Control →</strong></div></a><a href="catalog.html?category=sound" class="about-ecosystem-card" data-about-reveal data-about-delay="90"><img src="https://images.unsplash.com/photo-1599669454699-248893623440?auto=format&fit=crop&w=1100&q=84" alt="Gaming headset"><span></span><div><b>02 / SOUND</b><h3>Komunikasi, awareness, dan immersion.</h3><p>Headset, microphone, speaker, dan audio gear.</p><strong>Explore Sound →</strong></div></a><a href="catalog.html?category=machine" class="about-ecosystem-card" data-about-reveal data-about-delay="180"><img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=1100&q=84" alt="Gaming laptop"><span></span><div><b>03 / MACHINE</b><h3>Performa, stabilitas, dan workflow.</h3><p>Laptop, komponen, monitor, dan mesin utama.</p><strong>Explore Machine →</strong></div></a></div></div>`;cta.innerHTML=`<div class="container"><div class="about-cta__panel" data-about-reveal><div><span class="about-eyebrow">BUILD WITH INTENT</span><h2>Setup yang lebih baik dimulai dari keputusan yang lebih jelas.</h2><p>Jelajahi katalog berdasarkan fungsi dan pilih gear yang benar-benar punya tempat di setup kamu.</p></div><div class="about-cta__actions"><a href="catalog.html" class="about-primary-cta">Mulai Eksplorasi <span>→</span></a><a href="contact.html" class="about-secondary-cta">Tanya Gear Specialist</a></div></div></div>`;const revealItems=Array.from(document.querySelectorAll("[data-about-reveal]"));revealItems.forEach(item=>{item.style.setProperty("--about-delay",`${Number(item.dataset.aboutDelay)||0}ms`)});if("IntersectionObserver"in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-visible");observer.unobserve(entry.target)}}),{threshold:.13,rootMargin:"0px 0px -40px"});revealItems.forEach(item=>observer.observe(item))}else revealItems.forEach(item=>item.classList.add("is-visible"));document.querySelectorAll("[data-about-card]").forEach(card=>{card.addEventListener("pointermove",event=>{const rect=card.getBoundingClientRect();card.style.setProperty("--mx",`${event.clientX-rect.left}px`);card.style.setProperty("--my",`${event.clientY-rect.top}px`)});card.addEventListener("pointerleave",()=>{card.style.removeProperty("--mx");card.style.removeProperty("--my")})})})();
+(function () {
+  "use strict";
+
+  const revealItems = Array.from(document.querySelectorAll("[data-about-reveal]"));
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  revealItems.forEach((item) => {
+    const delay = Number(item.dataset.aboutDelay) || 0;
+    item.style.setProperty("--about-delay", `${delay}ms`);
+  });
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    revealItems.forEach((item) => item.classList.add("is-visible"));
+  } else {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.14, rootMargin: "0px 0px -42px" },
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+  }
+
+  const visual = document.querySelector(".about-opening__visual");
+  if (visual && !reduceMotion) {
+    visual.addEventListener("pointermove", (event) => {
+      const rect = visual.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      visual.style.transform = `perspective(1000px) rotateY(${x * 2.5}deg) rotateX(${y * -2.5}deg)`;
+    });
+
+    visual.addEventListener("pointerleave", () => {
+      visual.style.transform = "";
+    });
+  }
+
+  document.querySelectorAll("[data-about-band]").forEach((band) => {
+    band.addEventListener("pointerenter", () => band.classList.add("is-active"));
+    band.addEventListener("pointerleave", () => band.classList.remove("is-active"));
+  });
+})();
