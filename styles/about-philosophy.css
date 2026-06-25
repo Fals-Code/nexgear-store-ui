@@ -1,0 +1,23 @@
+.page-about .about-philosophy{display:grid;grid-template-columns:minmax(430px,1.08fr) minmax(0,.92fr);gap:clamp(48px,7vw,110px);align-items:center;min-height:0;padding:var(--space) var(--gutter);background:linear-gradient(180deg,#080b10,#0d1118)}
+.page-about .about-philosophy__collage{min-height:clamp(500px,43vw,620px)}
+.page-about .about-crop img{filter:grayscale(.86) contrast(1.14) brightness(.68)}
+.page-about .about-crop--mouse{top:0;left:0;width:33%;height:42%}
+.page-about .about-crop--laptop{top:auto;bottom:0;left:14%;width:50%;height:56%}
+.page-about .about-crop--headset{top:8%;right:0;width:43%;height:55%}
+.page-about .about-philosophy__statement{top:auto;right:0;bottom:7%;left:auto;width:54%;font-size:clamp(2rem,3.4vw,4rem)}
+.page-about .about-philosophy__text{display:block;padding:0;border-top:0}
+.page-about .about-philosophy__text h2{max-width:12ch;margin:16px 0 24px;font-family:var(--font-heading);font-size:clamp(2.35rem,4vw,4.6rem);font-weight:650;line-height:1.02;letter-spacing:-.055em}
+.page-about .about-philosophy__text p{max-width:58ch;margin:0}
+.page-about .about-philosophy__text p+p{margin-top:18px}
+.page-about .about-system,.page-about .about-case,.page-about .about-scope{padding:var(--space) var(--gutter)}
+.page-about .about-system{background:#0d1118}
+.page-about .about-system>header,.page-about .about-case__header,.page-about .about-scope>header{display:grid;grid-template-columns:minmax(180px,.34fr) minmax(0,1fr);gap:18px clamp(30px,5vw,72px);margin-bottom:42px}
+.page-about .about-system>header h2,.page-about .about-case__header h2,.page-about .about-scope>header h2{max-width:900px;margin:0;font-size:clamp(2.35rem,4.5vw,5rem);line-height:1}
+.page-about .about-system__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;border-top:0}
+.page-about .about-system__list article{display:grid;grid-template-columns:42px minmax(0,1fr);grid-template-rows:auto 1fr;gap:10px 16px;min-height:170px;padding:26px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.025),transparent 60%),rgba(8,11,16,.46);transition:transform .22s ease,border-color .22s ease,background .22s ease}
+.page-about .about-system__list article:nth-child(5){grid-column:1/-1;grid-template-columns:42px minmax(190px,.42fr) minmax(0,1fr);grid-template-rows:auto;min-height:118px;align-items:center}
+.page-about .about-system__list article:hover{padding:26px;transform:translateY(-3px);border-color:rgba(0,229,255,.3);background:linear-gradient(145deg,rgba(0,229,255,.08),transparent 72%),rgba(8,11,16,.72)}
+.page-about .about-system__list article>span{grid-row:1/3;padding-top:5px;font-size:.66rem}
+.page-about .about-system__list article:nth-child(5)>span{grid-row:auto}
+.page-about .about-system__list h3{margin:0;font-size:clamp(1.45rem,2.1vw,2.2rem)}
+.page-about .about-system__list p{margin:0}

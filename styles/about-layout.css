@@ -1,0 +1,10 @@
+.page-about .about-editorial{--gutter:clamp(20px,4.6vw,72px);--space:clamp(72px,8vw,108px);--copy:#bcc6d4;--strong:#e9eef5;--line:rgba(255,255,255,.1)}
+.page-about .about-main{padding:0;background:radial-gradient(circle at 78% 4%,rgba(0,229,255,.08),transparent 30rem),#020306}
+.page-about .about-hero,.page-about .about-signal,.page-about .about-philosophy,.page-about .about-system,.page-about .about-case,.page-about .about-scope,.page-about .about-closing{border-top:1px solid rgba(255,255,255,.06)}
+.page-about .about-hero{display:grid;grid-template-columns:minmax(0,.88fr) minmax(430px,1.12fr);grid-template-areas:"eyebrow media" "title media" "copy media" "caption media";column-gap:clamp(36px,5vw,82px);row-gap:22px;align-items:start;min-height:0;padding:clamp(54px,7vw,96px) var(--gutter) clamp(58px,7vw,92px);overflow:hidden}
+.page-about .about-hero__eyebrow{grid-area:eyebrow;position:relative;z-index:6;display:inline-flex;align-items:center;gap:9px;width:fit-content;margin:0;color:#00e5ff;font-family:var(--font-gaming);font-size:.68rem;font-weight:900;letter-spacing:.15em}
+.page-about .about-hero__eyebrow:before{content:"";width:7px;height:7px;border-radius:50%;background:#00e5ff;box-shadow:0 0 12px rgba(0,229,255,.7)}
+.page-about .about-hero>h1{grid-area:title;position:relative;z-index:5;max-width:760px;margin:0;font-size:clamp(4rem,7vw,8.1rem);line-height:.88;letter-spacing:-.075em;white-space:normal}
+.page-about .about-hero>h1 span{display:block;margin-top:.04em}
+.page-about .about-hero__main{grid-area:media;position:relative;inset:auto;z-index:2;align-self:stretch;width:100%;height:clamp(560px,49vw,700px);margin:0;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#101722}
+.page-about .about-hero__main img{filter:grayscale(.86) contrast(1.12) brightness(.64);mask-image:none}
