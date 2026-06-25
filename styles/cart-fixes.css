@@ -1,0 +1,48 @@
+/* Cart fixes: sticky order summary and removed assurance spacing. */
+.cart-main {
+  overflow: visible;
+  overflow-x: clip;
+}
+
+.cart-content,
+.cart-layout--premium,
+.cart-workspace {
+  overflow: visible;
+}
+
+.cart-summary--premium {
+  position: sticky !important;
+  top: calc(var(--shop-bar-height, 72px) + 18px) !important;
+  align-self: start;
+  max-height: calc(100vh - var(--shop-bar-height, 72px) - 36px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.cart-summary--premium::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cart-summary--premium::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.035);
+  border-radius: 999px;
+}
+
+.cart-summary--premium::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.26);
+  border-radius: 999px;
+}
+
+.cart-summary--premium::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.42);
+}
+
+@media (max-width: 991px) {
+  .cart-summary--premium {
+    position: static !important;
+    max-height: none;
+    overflow: visible;
+  }
+}
