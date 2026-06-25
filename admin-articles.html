@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Halaman admin NEXGEAR untuk mengelola artikel, draft, jadwal publikasi, kategori, dan performa editorial."
+    />
+    <title>Kelola Artikel | NEXGEAR Admin</title>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/admin-layout.css?v=1" />
+    <link rel="stylesheet" href="styles/admin-articles.css?v=1" />
+  </head>
+  <body class="page-admin page-admin-articles">
+    <div class="admin-shell">
+      <aside class="admin-sidebar" aria-label="Navigasi admin">
+        <a class="admin-brand" href="index.html" aria-label="Kembali ke NEXGEAR storefront">
+          <span class="admin-brand-mark">NX</span>
+          <span>
+            <strong>NEXGEAR</strong>
+            <small>CONTROL</small>
+          </span>
+        </a>
+
+        <nav class="admin-nav" aria-label="Menu utama admin">
+          <a href="#" class="admin-nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Dashboard
+          </a>
+          <a href="admin-articles.html" class="admin-nav-link is-active" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h11l3 3v13.5a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 19.5Z"/><path d="M16 3v4h4"/><path d="M8 11h8"/><path d="M8 15h6"/></svg>
+            Kelola Artikel
+          </a>
+          <a href="#" class="admin-nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+            Kelola Produk
+          </a>
+          <a href="#" class="admin-nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Kelola Pengguna
+          </a>
+          <a href="#" class="admin-nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h2"/><path d="M11 15h5"/></svg>
+            Kelola Transaksi
+          </a>
+        </nav>
+
+        <div class="admin-sidebar-footer">
+          <a href="blog.html" class="admin-nav-link admin-nav-link--muted">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="m10 14 11-11"/></svg>
+            Preview Journal
+          </a>
+          <a href="login.html" class="admin-nav-link admin-nav-link--danger">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Keluar
+          </a>
+        </div>
+      </aside>
+
+      <div class="admin-main">
+        <header class="admin-topbar">
+          <button class="admin-menu-toggle" type="button" aria-label="Buka menu admin" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+
+          <div class="admin-breadcrumb" aria-label="Breadcrumb">
+            <span>NEXGEAR</span>
+            <i aria-hidden="true">/</i>
+            <span>EDITORIAL</span>
+            <i aria-hidden="true">/</i>
+            <strong>ARTIKEL</strong>
+          </div>
+
+          <div class="admin-topbar-actions">
+            <label class="admin-global-search" for="admin-global-search-input">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <input id="admin-global-search-input" type="search" placeholder="Cari cepat..." autocomplete="off" />
+            </label>
+            <button type="button" class="admin-icon-button" aria-label="Notifikasi">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 7-3 7h18s-3 0-3-7"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="admin-dot" aria-hidden="true"></span>
+            </button>
+            <div class="admin-user-chip" aria-label="Admin aktif">
+              <span>AD</span>
+              <div>
+                <strong>Admin NEXGEAR</strong>
+                <small>Editorial Manager</small>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="admin-content" aria-labelledby="admin-title">
+          <section class="admin-hero admin-reveal">
+            <span class="admin-hero-bg" aria-hidden="true">EDITORIAL</span>
+            <div>
+              <span class="admin-eyebrow">NEXGEAR / CONTENT OPS</span>
+              <h1 id="admin-title">Kelola Artikel</h1>
+              <p>Kelola publikasi, draft, jadwal, kategori, dan performa NEXGEAR Journal dalam satu ruang kontrol.</p>
+            </div>
+            <div class="admin-hero-actions">
+              <a class="btn btn-outline" href="blog.html">Preview Journal</a>
+              <button class="btn btn-primary" type="button" data-open-editor="new">+ Artikel Baru</button>
+            </div>
+          </section>
+
+          <section class="admin-stat-grid admin-reveal" aria-label="Ringkasan artikel">
+            <article class="admin-stat-card">
+              <span class="admin-stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5V5a2 2 0 0 1 2-2h11l3 3v13.5a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 19.5Z"/><path d="M16 3v4h4"/></svg></span>
+              <div><strong>24</strong><span>Total Artikel</span><small>+3 bulan ini</small></div>
+            </article>
+            <article class="admin-stat-card admin-stat-card--accent">
+              <span class="admin-stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <div><strong>18</strong><span>Terbit</span><small>75% live</small></div>
+            </article>
+            <article class="admin-stat-card">
+              <span class="admin-stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>
+              <div><strong>4</strong><span>Draft</span><small>Perlu review</small></div>
+            </article>
+            <article class="admin-stat-card">
+              <span class="admin-stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+              <div><strong>2</strong><span>Terjadwal</span><small>Minggu ini</small></div>
+            </article>
+          </section>
+
+          <section class="article-panel admin-reveal" aria-label="Daftar artikel">
+            <header class="article-toolbar">
+              <div class="article-toolbar-main">
+                <label class="article-search" for="article-search-input">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                  <input id="article-search-input" type="search" placeholder="Cari judul, kategori, atau penulis" autocomplete="off" />
+                </label>
+                <label class="article-select-wrap">
+                  <span class="sr-only">Filter status artikel</span>
+                  <select id="article-status-filter" aria-label="Filter status artikel">
+                    <option value="all">Semua Status</option>
+                    <option value="published">Terbit</option>
+                    <option value="draft">Draft</option>
+                    <option value="scheduled">Terjadwal</option>
+                    <option value="review">Perlu Review</option>
+                    <option value="archived">Diarsipkan</option>
+                  </select>
+                </label>
+                <label class="article-select-wrap">
+                  <span class="sr-only">Filter kategori artikel</span>
+                  <select id="article-category-filter" aria-label="Filter kategori artikel">
+                    <option value="all">Semua Kategori</option>
+                    <option value="Hardware">Hardware</option>
+                    <option value="Setup Tips">Setup Tips</option>
+                    <option value="Buying Guide">Buying Guide</option>
+                    <option value="Audio">Audio</option>
+                    <option value="Performance">Performance</option>
+                    <option value="Upgrade">Upgrade</option>
+                  </select>
+                </label>
+                <label class="article-select-wrap">
+                  <span class="sr-only">Urutkan artikel</span>
+                  <select id="article-sort" aria-label="Urutkan artikel">
+                    <option value="updated">Update Terbaru</option>
+                    <option value="views">Views Tertinggi</option>
+                    <option value="title">Judul A-Z</option>
+                  </select>
+                </label>
+              </div>
+              <div class="article-view-toggle" aria-label="Ubah tampilan daftar">
+                <button type="button" class="is-active" data-view="table" aria-pressed="true">Table</button>
+                <button type="button" data-view="grid" aria-pressed="false">Grid</button>
+              </div>
+            </header>
+
+            <div class="article-table-wrap" id="article-table-wrap">
+              <table class="article-table">
+                <thead>
+                  <tr>
+                    <th><input type="checkbox" id="select-all-articles" aria-label="Pilih semua artikel" /></th>
+                    <th>Artikel</th>
+                    <th>Kategori</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                    <th>Views</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="article-list">
+                  <tr class="article-row" data-status="published" data-category="Hardware" data-title="mechanical keyboard switch layout feel yang tepat" data-author="NEXGEAR Lab" data-views="12840" data-updated="2026-06-05">
+                    <td><input type="checkbox" class="article-check" aria-label="Pilih artikel Mechanical Keyboard" /></td>
+                    <td>
+                      <div class="article-title-cell">
+                        <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=180&q=85" alt="Mechanical keyboard premium" />
+                        <div>
+                          <h2>Mechanical Keyboard: Switch, Layout, dan Feel yang Tepat</h2>
+                          <p>/mechanical-keyboard-switch-layout · 7 menit baca</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="article-category-pill">Hardware</span></td>
+                    <td><span class="status-pill status-published"><i></i>Terbit</span></td>
+                    <td><time datetime="2026-06-05">05 Jun 2026</time></td>
+                    <td>12.840</td>
+                    <td><button class="row-action" type="button" data-row-menu aria-label="Aksi artikel Mechanical Keyboard">•••</button></td>
+                  </tr>
+                  <tr class="article-row" data-status="draft" data-category="Setup Tips" data-title="setup meja rapi tanpa kabel berserakan" data-author="NEXGEAR Studio" data-views="0" data-updated="2026-06-02">
+                    <td><input type="checkbox" class="article-check" aria-label="Pilih artikel Setup Meja" /></td>
+                    <td>
+                      <div class="article-title-cell">
+                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=180&q=85" alt="Setup meja gaming modern" />
+                        <div>
+                          <h2>Setup Meja Rapi Tanpa Kabel Berserakan</h2>
+                          <p>/setup-meja-rapi · 6 menit baca</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="article-category-pill">Setup Tips</span></td>
+                    <td><span class="status-pill status-draft"><i></i>Draft</span></td>
+                    <td><time datetime="2026-06-02">02 Jun 2026</time></td>
+                    <td>0</td>
+                    <td><button class="row-action" type="button" data-row-menu aria-label="Aksi artikel Setup Meja">•••</button></td>
+                  </tr>
+                  <tr class="article-row" data-status="scheduled" data-category="Buying Guide" data-title="mouse wireless modern sudah cukup cepat untuk fps" data-author="NEXGEAR Lab" data-views="6240" data-updated="2026-05-24">
+                    <td><input type="checkbox" class="article-check" aria-label="Pilih artikel Mouse Wireless" /></td>
+                    <td>
+                      <div class="article-title-cell">
+                        <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c?auto=format&fit=crop&w=180&q=85" alt="Mouse gaming wireless" />
+                        <div>
+                          <h2>Mouse Wireless Modern Sudah Cukup Cepat untuk FPS?</h2>
+                          <p>/mouse-wireless-fps · 5 menit baca</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="article-category-pill">Buying Guide</span></td>
+                    <td><span class="status-pill status-scheduled"><i></i>Terjadwal</span></td>
+                    <td><time datetime="2026-05-24">24 Mei 2026</time></td>
+                    <td>6.240</td>
+                    <td><button class="row-action" type="button" data-row-menu aria-label="Aksi artikel Mouse Wireless">•••</button></td>
+                  </tr>
+                  <tr class="article-row" data-status="review" data-category="Audio" data-title="headset gaming imaging lebih penting daripada bass" data-author="Audio Desk" data-views="3188" data-updated="2026-05-16">
+                    <td><input type="checkbox" class="article-check" aria-label="Pilih artikel Headset Gaming" /></td>
+                    <td>
+                      <div class="article-title-cell">
+                        <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=180&q=85" alt="Headset gaming hitam" />
+                        <div>
+                          <h2>Headset Gaming: Imaging Lebih Penting daripada Bass</h2>
+                          <p>/headset-gaming-imaging · 8 menit baca</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="article-category-pill">Audio</span></td>
+                    <td><span class="status-pill status-review"><i></i>Review</span></td>
+                    <td><time datetime="2026-05-16">16 Mei 2026</time></td>
+                    <td>3.188</td>
+                    <td><button class="row-action" type="button" data-row-menu aria-label="Aksi artikel Headset Gaming">•••</button></td>
+                  </tr>
+                  <tr class="article-row" data-status="published" data-category="Upgrade" data-title="upgrade laptop gaming ram ssd atau ganti unit" data-author="NEXGEAR Lab" data-views="8054" data-updated="2026-05-08">
+                    <td><input type="checkbox" class="article-check" aria-label="Pilih artikel Upgrade Laptop" /></td>
+                    <td>
+                      <div class="article-title-cell">
+                        <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=180&q=85" alt="Laptop gaming" />
+                        <div>
+                          <h2>Upgrade Laptop Gaming: RAM, SSD, atau Ganti Unit?</h2>
+                          <p>/upgrade-laptop-gaming · 7 menit baca</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="article-category-pill">Upgrade</span></td>
+                    <td><span class="status-pill status-published"><i></i>Terbit</span></td>
+                    <td><time datetime="2026-05-08">08 Mei 2026</time></td>
+                    <td>8.054</td>
+                    <td><button class="row-action" type="button" data-row-menu aria-label="Aksi artikel Upgrade Laptop">•••</button></td>
+                  </tr>
+                  <tr class="article-row" data-status="published" data-category="Performance" data-title="polling rate 8000hz penting atau sekadar angka" data-author="Performance Desk" data-views="5120" data-updated="2026-04-30">
+                    <td><input type="checkbox" class="article-check" aria-label="Pilih artikel Polling Rate" /></td>
+                    <td>
+                      <div class="article-title-cell">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=180&q=85" alt="Perangkat gaming dengan pencahayaan neon" />
+                        <div>
+                          <h2>Polling Rate 8000Hz: Penting atau Sekadar Angka?</h2>
+                          <p>/polling-rate-8000hz · 6 menit baca</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="article-category-pill">Performance</span></td>
+                    <td><span class="status-pill status-published"><i></i>Terbit</span></td>
+                    <td><time datetime="2026-04-30">30 Apr 2026</time></td>
+                    <td>5.120</td>
+                    <td><button class="row-action" type="button" data-row-menu aria-label="Aksi artikel Polling Rate">•••</button></td>
+                  </tr>
+                  <tr class="article-row" data-status="archived" data-category="Setup Tips" data-title="merancang setup minimalis yang tetap bertenaga" data-author="NEXGEAR Studio" data-views="2982" data-updated="2026-04-21">
+                    <td><input type="checkbox" class="article-check" aria-label="Pilih artikel Setup Minimalis" /></td>
+                    <td>
+                      <div class="article-title-cell">
+                        <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=180&q=85" alt="Setup gaming minimalis" />
+                        <div>
+                          <h2>Merancang Setup Minimalis yang Tetap Bertenaga</h2>
+                          <p>/setup-minimalis · 9 menit baca</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="article-category-pill">Setup Tips</span></td>
+                    <td><span class="status-pill status-archived"><i></i>Arsip</span></td>
+                    <td><time datetime="2026-04-21">21 Apr 2026</time></td>
+                    <td>2.982</td>
+                    <td><button class="row-action" type="button" data-row-menu aria-label="Aksi artikel Setup Minimalis">•••</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="article-grid-view" id="article-grid-view" hidden aria-label="Grid artikel"></div>
+
+            <div class="article-empty" id="article-empty" hidden>
+              <span aria-hidden="true">⌁</span>
+              <h2>Tidak ada artikel yang cocok</h2>
+              <p>Ubah filter atau buat artikel baru. Karena tentu saja filter terlalu spesifik adalah tradisi dashboard modern.</p>
+              <button class="btn btn-outline" type="button" id="article-reset-filter">Reset Filter</button>
+            </div>
+
+            <footer class="article-panel-footer">
+              <p><strong id="article-visible-count">7</strong> artikel ditampilkan</p>
+              <nav class="article-pagination" aria-label="Pagination artikel">
+                <button type="button" aria-current="page">1</button>
+                <button type="button">2</button>
+                <button type="button">3</button>
+                <span>…</span>
+              </nav>
+            </footer>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="row-menu" id="article-row-menu" hidden>
+      <button type="button" data-menu-action="view">Lihat Artikel</button>
+      <button type="button" data-menu-action="edit">Edit</button>
+      <button type="button" data-menu-action="duplicate">Duplikasi</button>
+      <button type="button" data-menu-action="schedule">Jadwalkan</button>
+      <button type="button" data-menu-action="archive">Arsipkan</button>
+      <button type="button" class="danger" data-menu-action="delete">Hapus</button>
+    </div>
+
+    <div class="bulk-action" id="bulk-action" hidden>
+      <strong><span id="bulk-count">0</span> artikel dipilih</strong>
+      <button type="button" data-bulk-action="publish">Terbitkan</button>
+      <button type="button" data-bulk-action="archive">Arsipkan</button>
+      <button type="button" class="danger" data-bulk-action="delete">Hapus</button>
+      <button type="button" class="bulk-close" id="bulk-close" aria-label="Tutup bulk action">×</button>
+    </div>
+
+    <aside class="editor-drawer" id="editor-drawer" aria-hidden="true" aria-labelledby="editor-title">
+      <div class="editor-drawer__overlay" data-close-editor></div>
+      <form class="editor-drawer__panel">
+        <header>
+          <div>
+            <span>QUICK EDIT</span>
+            <h2 id="editor-title">Edit Artikel</h2>
+          </div>
+          <button type="button" data-close-editor aria-label="Tutup editor">×</button>
+        </header>
+        <label>
+          Judul Artikel
+          <input type="text" id="editor-title-input" value="Mechanical Keyboard: Switch, Layout, dan Feel yang Tepat" />
+        </label>
+        <label>
+          Slug
+          <input type="text" id="editor-slug-input" value="/mechanical-keyboard-switch-layout" />
+        </label>
+        <div class="editor-grid">
+          <label>
+            Kategori
+            <select id="editor-category-input">
+              <option>Hardware</option>
+              <option>Setup Tips</option>
+              <option>Buying Guide</option>
+              <option>Audio</option>
+              <option>Performance</option>
+              <option>Upgrade</option>
+            </select>
+          </label>
+          <label>
+            Status
+            <select id="editor-status-input">
+              <option>Terbit</option>
+              <option>Draft</option>
+              <option>Terjadwal</option>
+              <option>Review</option>
+            </select>
+          </label>
+        </div>
+        <label>
+          Excerpt
+          <textarea id="editor-excerpt-input" rows="5">Memilih keyboard bukan cuma soal suara paling keras. Kenali karakter switch, ukuran layout, stabilizer, serta material keycap.</textarea>
+        </label>
+        <label>
+          Featured Image URL
+          <input type="url" id="editor-image-input" value="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1200&q=85" />
+        </label>
+        <footer>
+          <button type="button" class="btn btn-outline" data-save-draft>Simpan Draft</button>
+          <button type="submit" class="btn btn-primary">Update Artikel</button>
+        </footer>
+      </form>
+    </aside>
+
+    <div class="confirm-modal" id="delete-modal" hidden role="dialog" aria-modal="true" aria-labelledby="delete-title">
+      <div class="confirm-modal__card">
+        <span class="confirm-icon" aria-hidden="true">!</span>
+        <h2 id="delete-title">Hapus artikel?</h2>
+        <p id="delete-message">Artikel ini akan dihapus dari daftar editorial.</p>
+        <div>
+          <button type="button" class="btn btn-outline" id="delete-cancel">Batal</button>
+          <button type="button" class="btn btn-danger" id="delete-confirm">Hapus Artikel</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-toast" id="admin-toast" role="status" aria-live="polite" hidden>Perubahan disimpan.</div>
+
+    <script src="scripts/admin-articles.js?v=1"></script>
+  </body>
+</html>
