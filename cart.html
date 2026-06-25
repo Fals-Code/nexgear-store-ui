@@ -3,29 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kelola produk, jumlah, dan ringkasan belanja NEXGEAR sebelum melanjutkan ke pembayaran.">
+  <meta name="description" content="Kelola produk, jumlah, promo, dan ringkasan belanja NEXGEAR sebelum melanjutkan ke pembayaran.">
   <title>Keranjang Belanja | NEXGEAR</title>
   <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/cart.css">
-  <link rel="stylesheet" href="styles/cart-dynamic.css?v=1">
+  <link rel="stylesheet" href="styles/cart-dynamic.css?v=2">
 </head>
 <body class="page-cart">
   <div id="global-header"></div>
 
-  <main class="site-main">
-    <div class="container section-padding">
-      <header class="section-header cart-page-heading">
-        <div>
-          <span class="product-cat">NEXGEAR / CHECKOUT FLOW</span>
-          <h1>Keranjang Belanja</h1>
-          <p>Periksa kembali gear, varian, dan jumlah pembelian sebelum melanjutkan ke pembayaran.</p>
+  <main class="site-main cart-main">
+    <section class="cart-hero" aria-labelledby="cart-page-title">
+      <span class="cart-hero__word" aria-hidden="true">CART</span>
+      <div class="container cart-hero__inner">
+        <div class="cart-hero__copy">
+          <span class="cart-kicker"><i aria-hidden="true"></i>NEXGEAR CHECKOUT PROTOCOL</span>
+          <h1 id="cart-page-title">Review Your <span>Loadout.</span></h1>
+          <p>Periksa gear, varian, jumlah, dan total pembelian sebelum pesanan masuk ke tahap pengiriman.</p>
         </div>
-        <button id="cart-clear" class="btn btn-outline cart-clear" type="button" hidden>Kosongkan Keranjang</button>
-      </header>
 
-      <div class="cart-layout">
-        <section aria-labelledby="cart-list-title">
-          <h2 id="cart-list-title" class="sr-only">Daftar produk di keranjang</h2>
+        <nav class="checkout-steps" aria-label="Tahapan checkout">
+          <div class="checkout-step is-active" aria-current="step">
+            <span>01</span>
+            <div><strong>Keranjang</strong><small>Review gear</small></div>
+          </div>
+          <div class="checkout-step">
+            <span>02</span>
+            <div><strong>Pengiriman</strong><small>Alamat & kurir</small></div>
+          </div>
+          <div class="checkout-step">
+            <span>03</span>
+            <div><strong>Pembayaran</strong><small>Metode bayar</small></div>
+          </div>
+          <div class="checkout-step">
+            <span>04</span>
+            <div><strong>Selesai</strong><small>Order secured</small></div>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <div class="container cart-content">
+      <div class="cart-layout cart-layout--premium">
+        <section class="cart-workspace" aria-labelledby="cart-list-title">
+          <header class="cart-list-header">
+            <div>
+              <span class="cart-section-label">YOUR GEAR</span>
+              <h2 id="cart-list-title">Keranjang Kamu <span id="cart-live-count">0 item</span></h2>
+            </div>
+            <button id="cart-clear" class="cart-clear" type="button" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              Kosongkan
+            </button>
+          </header>
+
           <div id="cart-items" class="cart-items" aria-live="polite"></div>
 
           <div id="cart-empty-state" class="cart-empty-state" hidden>
@@ -33,40 +64,139 @@
               <span class="cart-empty-state__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="20" r="1"/><circle cx="19" cy="20" r="1"/><path d="M3 4h2l2.4 10.4a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"/></svg>
               </span>
+              <span class="cart-section-label">NO GEAR DETECTED</span>
               <h2>Keranjang masih kosong</h2>
-              <p>Pilih gear dari katalog terlebih dahulu. Keranjang kosong memang ringan, tetapi tidak banyak membantu sebuah toko.</p>
+              <p>Pilih gear dari katalog untuk mulai membangun setup. Keranjang kosong memang sangat ringan, tetapi performanya juga nihil.</p>
               <a href="catalog.html" class="btn btn-primary">Jelajahi Katalog</a>
             </div>
           </div>
+
+          <div class="cart-assurance" aria-label="Keuntungan belanja di NEXGEAR">
+            <article>
+              <span class="cart-assurance__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+              </span>
+              <div><strong>Pembayaran Aman</strong><small>Enkripsi dan verifikasi transaksi</small></div>
+            </article>
+            <article>
+              <span class="cart-assurance__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v10H3z"/><path d="M14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+              </span>
+              <div><strong>Pengiriman Terlacak</strong><small>Status paket diperbarui berkala</small></div>
+            </article>
+            <article>
+              <span class="cart-assurance__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+              </span>
+              <div><strong>Garansi Resmi</strong><small>Produk terverifikasi dan bergaransi</small></div>
+            </article>
+          </div>
         </section>
 
-        <aside id="cart-summary" class="cart-summary" aria-labelledby="cart-summary-title">
-          <h2 id="cart-summary-title">Ringkasan Pesanan</h2>
-          <div class="summary-row">
-            <span id="cart-subtotal-label">Subtotal (0 Item)</span>
-            <strong id="cart-subtotal">Rp0</strong>
+        <aside id="cart-summary" class="cart-summary cart-summary--premium" aria-labelledby="cart-summary-title">
+          <span class="summary-beam" aria-hidden="true"></span>
+          <header class="cart-summary__header">
+            <div>
+              <span class="cart-section-label">ORDER SUMMARY</span>
+              <h2 id="cart-summary-title">Ringkasan Pesanan</h2>
+            </div>
+            <span class="summary-secure-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              Secure
+            </span>
+          </header>
+
+          <div class="shipping-progress" id="shipping-progress-panel">
+            <div class="shipping-progress__top">
+              <span id="shipping-progress-message">Tambahkan gear untuk membuka gratis ongkir</span>
+              <strong id="shipping-progress-value">0%</strong>
+            </div>
+            <div class="shipping-progress__track" aria-hidden="true"><i id="shipping-progress-bar"></i></div>
+            <small>Gratis ongkir untuk subtotal minimal Rp3.000.000</small>
           </div>
-          <div class="summary-row">
-            <span>Estimasi Ongkir</span>
-            <strong id="cart-shipping">Rp0</strong>
+
+          <div class="summary-breakdown">
+            <div class="summary-row">
+              <span id="cart-subtotal-label">Subtotal (0 Item)</span>
+              <strong id="cart-subtotal">Rp0</strong>
+            </div>
+            <div class="summary-row">
+              <span>Estimasi Ongkir</span>
+              <strong id="cart-shipping">Rp0</strong>
+            </div>
+            <div id="cart-discount-row" class="summary-row summary-row--discount" hidden>
+              <span>Promo NEX10</span>
+              <strong id="cart-discount">−Rp0</strong>
+            </div>
           </div>
-          <div class="summary-divider"></div>
-          <div class="summary-row total">
-            <span>Total Bayar</span>
+
+          <form id="cart-promo-form" class="promo-form" novalidate>
+            <label for="cart-promo-input">Kode Promo</label>
+            <div class="promo-form__control">
+              <input id="cart-promo-input" type="text" inputmode="text" autocomplete="off" placeholder="Coba NEX10" maxlength="16">
+              <button type="submit">Gunakan</button>
+            </div>
+            <p id="cart-promo-status" class="promo-status" aria-live="polite">Diskon 10% maksimal Rp250.000.</p>
+          </form>
+
+          <div class="summary-total">
+            <span>Total Pembayaran</span>
             <strong id="cart-total" class="text-accent">Rp0</strong>
+            <small>Termasuk pajak yang berlaku</small>
           </div>
-          <a id="cart-checkout-link" href="checkout.html" class="btn btn-primary w-100 cart-checkout-link" style="margin-top:20px">Lanjut ke Checkout</a>
-          <a href="catalog.html" class="btn btn-outline w-100" style="margin-top:10px">Lanjut Belanja</a>
-          <p class="cart-summary-note">Jumlah dan total kini dihitung langsung dari isi keranjang yang tersimpan pada browser.</p>
+
+          <a id="cart-checkout-link" href="checkout.html" class="btn btn-primary cart-checkout-link cart-checkout-link--shimmer">
+            <span>Lanjut ke Checkout</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+          <a href="catalog.html" class="continue-shopping-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            Lanjut Belanja
+          </a>
+
+          <div class="summary-help">
+            <span>Butuh bantuan memilih gear?</span>
+            <a href="contact.html">Hubungi Gear Specialist</a>
+          </div>
         </aside>
       </div>
+
+      <section id="cart-recommendations" class="cart-recommendations" aria-labelledby="recommendation-title">
+        <header class="recommendation-heading">
+          <div>
+            <span class="cart-section-label">COMPLETE THE SETUP</span>
+            <h2 id="recommendation-title">Tambahan yang Cocok</h2>
+          </div>
+          <a href="catalog.html">Lihat seluruh katalog <span aria-hidden="true">→</span></a>
+        </header>
+
+        <div class="recommendation-grid">
+          <article class="recommendation-card">
+            <div class="recommendation-card__image"><img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c?auto=format&fit=crop&w=600&q=82" alt="HyperX Pulsefire Haste" loading="lazy"><span>CONTROL</span></div>
+            <div class="recommendation-card__body"><div><h3>HyperX Pulsefire Haste</h3><p>Ultra-light gaming mouse</p></div><strong>Rp899.000</strong><button type="button" data-cart-recommendation data-name="HyperX Pulsefire Haste" data-price="899000">+ Tambah</button></div>
+          </article>
+          <article class="recommendation-card">
+            <div class="recommendation-card__image"><img src="https://images.unsplash.com/photo-1599669454699-248893623440?auto=format&fit=crop&w=600&q=82" alt="Arctis Nova Pro Wireless" loading="lazy"><span>SOUND</span></div>
+            <div class="recommendation-card__body"><div><h3>Arctis Nova Pro Wireless</h3><p>Premium spatial audio</p></div><strong>Rp4.299.000</strong><button type="button" data-cart-recommendation data-name="Arctis Nova Pro Wireless" data-price="4299000">+ Tambah</button></div>
+          </article>
+          <article class="recommendation-card">
+            <div class="recommendation-card__image"><img src="https://images.unsplash.com/photo-1629429408209-1f912961dbd8?auto=format&fit=crop&w=600&q=82" alt="Artisan Zero FX XL" loading="lazy"><span>CONTROL</span></div>
+            <div class="recommendation-card__body"><div><h3>Artisan Zero FX XL</h3><p>Esports control surface</p></div><strong>Rp1.100.000</strong><button type="button" data-cart-recommendation data-name="Artisan Zero FX XL" data-price="1100000">+ Tambah</button></div>
+          </article>
+        </div>
+      </section>
     </div>
   </main>
+
+  <div id="cart-mobile-bar" class="cart-mobile-bar" aria-label="Ringkasan checkout mobile">
+    <div><span>Total</span><strong id="cart-mobile-total">Rp0</strong></div>
+    <a id="cart-mobile-checkout" href="checkout.html">Checkout <span aria-hidden="true">→</span></a>
+  </div>
 
   <div id="global-footer"></div>
 
   <script src="scripts/global-components.js"></script>
   <script src="scripts/main.js"></script>
-  <script src="scripts/cart-page.js?v=1"></script>
+  <script src="scripts/cart-page.js?v=2"></script>
 </body>
 </html>
