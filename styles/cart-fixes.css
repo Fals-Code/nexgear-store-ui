@@ -1,4 +1,4 @@
-/* Cart fixes: sticky order summary and removed assurance spacing. */
+/* Cart fixes: sticky order summary without internal scrolling. */
 .cart-main {
   overflow: visible;
   overflow-x: clip;
@@ -12,31 +12,155 @@
 
 .cart-summary--premium {
   position: sticky !important;
-  top: calc(var(--shop-bar-height, 72px) + 18px) !important;
+  top: calc(var(--shop-bar-height, 72px) + 14px) !important;
   align-self: start;
-  max-height: calc(100vh - var(--shop-bar-height, 72px) - 36px);
-  overflow-x: hidden;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-gutter: stable;
+  max-height: none;
+  overflow: visible;
+  padding: 20px;
 }
 
-.cart-summary--premium::-webkit-scrollbar {
-  width: 8px;
+.cart-summary__header {
+  margin-bottom: 14px;
 }
 
-.cart-summary--premium::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.035);
-  border-radius: 999px;
+.cart-summary__header h2 {
+  margin-top: 4px;
+  font-size: 1.05rem;
 }
 
-.cart-summary--premium::-webkit-scrollbar-thumb {
-  background: rgba(0, 229, 255, 0.26);
-  border-radius: 999px;
+.summary-secure-badge {
+  min-height: 27px;
+  padding: 0 8px;
+  font-size: 0.6rem;
 }
 
-.cart-summary--premium::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 229, 255, 0.42);
+.shipping-progress {
+  margin-bottom: 14px;
+  padding: 11px 12px;
+}
+
+.shipping-progress__top {
+  font-size: 0.68rem;
+}
+
+.shipping-progress__track {
+  height: 6px;
+  margin: 8px 0 6px;
+}
+
+.shipping-progress small {
+  font-size: 0.58rem;
+}
+
+.summary-breakdown {
+  gap: 10px;
+  padding-bottom: 14px;
+}
+
+.summary-breakdown .summary-row {
+  font-size: 0.76rem;
+}
+
+.promo-form {
+  padding: 14px 0;
+}
+
+.promo-form > label {
+  margin-bottom: 6px;
+  font-size: 0.64rem;
+}
+
+.promo-form__control input {
+  min-height: 39px;
+  font-size: 0.73rem;
+}
+
+.promo-form__control button {
+  min-width: 80px;
+  font-size: 0.66rem;
+}
+
+.promo-status {
+  min-height: 14px;
+  margin-top: 6px;
+  font-size: 0.58rem;
+}
+
+.summary-total {
+  gap: 4px 12px;
+  padding: 15px 0;
+}
+
+.summary-total > span {
+  font-size: 0.74rem;
+}
+
+.summary-total strong {
+  font-size: clamp(1.12rem, 1.6vw, 1.42rem);
+  white-space: nowrap;
+}
+
+.summary-total small {
+  font-size: 0.57rem;
+}
+
+.cart-checkout-link--shimmer {
+  min-height: 46px;
+}
+
+.continue-shopping-link {
+  min-height: 34px;
+  margin-top: 4px;
+  font-size: 0.7rem;
+}
+
+.summary-help {
+  margin-top: 11px;
+  padding-top: 11px;
+  font-size: 0.58rem;
+}
+
+@media (min-width: 992px) and (max-height: 860px) {
+  .cart-summary--premium {
+    top: calc(var(--shop-bar-height, 72px) + 8px) !important;
+    padding: 17px 18px;
+  }
+
+  .cart-summary__header {
+    margin-bottom: 11px;
+  }
+
+  .shipping-progress {
+    margin-bottom: 11px;
+    padding: 9px 10px;
+  }
+
+  .shipping-progress small,
+  .promo-status,
+  .summary-help {
+    display: none;
+  }
+
+  .summary-breakdown {
+    gap: 8px;
+    padding-bottom: 11px;
+  }
+
+  .promo-form {
+    padding: 11px 0;
+  }
+
+  .summary-total {
+    padding: 12px 0;
+  }
+
+  .cart-checkout-link--shimmer {
+    min-height: 43px;
+  }
+
+  .continue-shopping-link {
+    min-height: 31px;
+  }
 }
 
 @media (max-width: 991px) {
@@ -44,5 +168,6 @@
     position: static !important;
     max-height: none;
     overflow: visible;
+    padding: 20px;
   }
 }
