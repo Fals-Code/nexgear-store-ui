@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/contact.css?v=2">
   <link rel="stylesheet" href="styles/contact-responsive.css?v=1">
 </head>
-<body class="page-contact">
+<body class="page-contact" data-footer-reveal="compact">
   <div id="global-header"></div>
 
   <main class="site-main support-page">
@@ -17,7 +17,7 @@
       <div class="support-hero__copy">
         <span class="support-eyebrow"><i aria-hidden="true"></i>NEXGEAR / SUPPORT CENTER</span>
         <h1 id="support-title">Butuh bantuan? <span>Mari selesaikan.</span></h1>
-        <p>Temukan panduan, lacak permintaan, atau hubungi tim support berdasarkan masalah yang sedang kamu hadapi.</p>
+        <p>Temukan panduan, periksa status pesanan, atau kirim detail kendala langsung ke tim support.</p>
 
         <form class="support-search" role="search" data-support-search>
           <label class="sr-only" for="support-query">Cari bantuan</label>
@@ -49,13 +49,13 @@
     <section class="support-section support-actions" aria-labelledby="quick-title">
       <header class="support-heading">
         <span>QUICK SUPPORT</span>
-        <h2 id="quick-title">Mulai dari masalah yang paling relevan.</h2>
-        <p>Pilih jalur bantuan agar kamu tidak perlu berkelana melewati menu yang jumlahnya mulai menyerupai birokrasi kecil.</p>
+        <h2 id="quick-title">Mulai dari kebutuhan yang paling dekat.</h2>
+        <p>Pilih topik agar permintaan langsung masuk ke alur penanganan yang tepat.</p>
       </header>
 
       <div class="support-bento">
         <a class="support-card support-card--wide" href="track-order.html" data-searchable="lacak pesanan status pengiriman order">
-          <span>01 / ORDER</span><b aria-hidden="true">↗</b><h3>Lacak Pesanan</h3><p>Periksa pembayaran, packing, dan perjalanan pengiriman.</p><small>Proses instan</small>
+          <span>01 / ORDER</span><b aria-hidden="true">↗</b><h3>Lacak Pesanan</h3><p>Periksa pembayaran, proses packing, dan perjalanan pengiriman.</p><small>Proses instan</small>
         </a>
         <a class="support-card" href="help.html#garansi" data-searchable="retur refund pengembalian produk">
           <span>02 / RETURN</span><b aria-hidden="true">↗</b><h3>Retur & Refund</h3><p>Periksa kelayakan dan proses pengembalian.</p><small>Estimasi 2–5 hari</small>
@@ -71,19 +71,19 @@
     </section>
 
     <section class="support-section support-channels" aria-labelledby="channel-title">
-      <header class="support-heading support-heading--compact"><span>CHOOSE A CHANNEL</span><h2 id="channel-title">Pilih cara paling efisien untuk mendapat jawaban.</h2></header>
+      <header class="support-heading support-heading--compact"><span>CHOOSE A CHANNEL</span><h2 id="channel-title">Gunakan kanal yang sesuai dengan tingkat urgensi.</h2></header>
       <div class="support-channel-grid">
-        <a href="#support-form"><small><i aria-hidden="true"></i>Online</small><strong>Support Ticket</strong><p>Untuk kendala dengan nomor pesanan, produk, atau lampiran.</p><b>Respons &lt; 24 jam →</b></a>
-        <a href="mailto:support@nexgear.id"><small>Asynchronous</small><strong>Email Support</strong><p>Untuk pertanyaan umum, kerja sama, dan komunikasi nonmendesak.</p><b>support@nexgear.id →</b></a>
-        <a href="tel:+622155558888"><small>09.00–18.00 WIB</small><strong>Hotline</strong><p>Untuk perubahan pesanan yang waktunya sensitif.</p><b>021-5555-8888 →</b></a>
+        <a href="#support-form"><small><i aria-hidden="true"></i>Online</small><strong>Support Ticket</strong><p>Untuk kendala dengan nomor pesanan, detail produk, atau lampiran.</p><b>Respons &lt; 24 jam →</b></a>
+        <a href="mailto:support@nexgear.id"><small>Tidak mendesak</small><strong>Email Support</strong><p>Untuk pertanyaan umum, kerja sama, dan komunikasi lanjutan.</p><b>support@nexgear.id →</b></a>
+        <a href="tel:+622155558888"><small>09.00–18.00 WIB</small><strong>Hotline</strong><p>Untuk perubahan pesanan yang memerlukan respons langsung.</p><b>021-5555-8888 →</b></a>
       </div>
     </section>
 
     <section id="support-form" class="support-section support-contact" aria-labelledby="form-title">
       <header class="support-heading">
         <span>CREATE A TICKET</span>
-        <h2 id="form-title">Ceritakan masalahmu dengan konteks yang cukup.</h2>
-        <p>Form ini menyimpan tiket demo di browser. Strukturnya siap disambungkan ke backend tanpa membongkar ulang UI.</p>
+        <h2 id="form-title">Berikan detail yang membantu proses diagnosis.</h2>
+        <p>Tiket demo disimpan secara lokal di browser dan siap dihubungkan ke endpoint support.</p>
       </header>
 
       <div class="support-contact__layout">
@@ -111,14 +111,14 @@
             <div><dt>Prioritas</dt><dd>Normal</dd></div>
             <div><dt>Estimasi respons</dt><dd>&lt; 24 jam</dd></div>
           </dl>
-          <p class="support-summary__note">Semakin lengkap konteks yang diberikan, semakin sedikit ritual tanya-jawab yang sebenarnya bisa dihindari.</p>
+          <p class="support-summary__note">Sertakan gejala, perangkat, dan langkah yang sudah dicoba agar tim dapat menilai masalah sejak respons pertama.</p>
           <div class="support-summary__success" hidden data-ticket-success><span>TICKET CREATED</span><strong data-ticket-id>NXG-000000</strong><p>Simpan nomor ini untuk referensi permintaanmu.</p></div>
         </aside>
       </div>
     </section>
 
     <section class="support-section support-faq" aria-labelledby="faq-title">
-      <header class="support-heading support-heading--compact"><span>FREQUENTLY ASKED</span><h2 id="faq-title">Jawaban cepat sebelum membuat tiket.</h2></header>
+      <header class="support-heading support-heading--compact"><span>FREQUENTLY ASKED</span><h2 id="faq-title">Periksa jawaban singkat sebelum membuat tiket.</h2></header>
       <div class="support-faq__layout">
         <nav class="support-faq__filters" aria-label="Filter FAQ"><button type="button" data-faq-filter="all" data-state="active">Semua</button><button type="button" data-faq-filter="order">Pesanan</button><button type="button" data-faq-filter="payment">Pembayaran</button><button type="button" data-faq-filter="warranty">Garansi</button><button type="button" data-faq-filter="technical">Teknis</button></nav>
         <div class="support-faq__list">
@@ -130,7 +130,7 @@
       </div>
     </section>
 
-    <section class="support-closing" aria-labelledby="closing-title"><div><span>STILL STUCK?</span><h2 id="closing-title">Tim NEXGEAR membaca masalahmu, bukan sekadar mengirim template balasan.</h2></div><div><a href="#support-form">Buat Tiket →</a><a href="help.html">Buka Help Center</a></div><ul><li><i></i>Respons manusia</li><li><i></i>Riwayat tiket tersimpan</li><li><i></i>Lampiran tervalidasi</li></ul></section>
+    <section class="support-closing" aria-labelledby="closing-title"><div><span>NEED MORE HELP?</span><h2 id="closing-title">Lanjutkan dengan tiket jika panduan belum menyelesaikan masalah.</h2></div><div><a href="#support-form">Buat Tiket →</a><a href="help.html">Buka Help Center</a></div><ul><li><i></i>Respons manusia</li><li><i></i>Riwayat tiket tersimpan</li><li><i></i>Lampiran tervalidasi</li></ul></section>
   </main>
 
   <div id="global-footer"></div>
