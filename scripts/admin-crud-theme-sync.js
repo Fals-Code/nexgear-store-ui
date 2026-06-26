@@ -25,6 +25,12 @@
     if (root.style.colorScheme !== next) root.style.colorScheme = next;
   };
 
+  const refreshWorkspaceStylesheet = () => {
+    const link = document.querySelector('link[href*="styles/admin-v2.css"]');
+    if (!link || link.href.includes("v=9")) return;
+    link.href = "styles/admin-v2.css?v=9";
+  };
+
   const applyMobileArticleView = () => {
     if (page !== "articles" || !window.matchMedia("(max-width: 720px)").matches) return;
     const gridButton = document.querySelector(".article-view-toggle [data-view='grid']");
@@ -73,6 +79,7 @@
 
   const restoreAdminTheme = () => applyTheme(body.dataset.adminTheme || readTheme());
   const loadAdminEnhancements = () => {
+    refreshWorkspaceStylesheet();
     loadArticlePersistence();
     loadEntityActions();
     loadFullscreenWorkspace();
@@ -80,6 +87,7 @@
   };
 
   applyTheme(readTheme());
+  refreshWorkspaceStylesheet();
   window.setTimeout(applyMobileArticleView, 80);
   loadAdminEnhancements();
 
@@ -113,6 +121,7 @@
 
   window.NexAdminCrudThemeSync = Object.freeze({
     applyTheme,
+    refreshWorkspaceStylesheet,
     loadEntityActions,
     loadFullscreenWorkspace,
     loadWorkspaceRegression,
