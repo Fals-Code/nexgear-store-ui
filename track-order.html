@@ -17,7 +17,7 @@
         <div class="tracking-search__copy">
           <span class="tracking-eyebrow">ORDER / TRACKING</span>
           <h1 id="tracking-title">Track your gear.</h1>
-          <p>Pantau pembayaran, proses gudang, dan perjalanan paket dalam satu tampilan yang benar-benar berguna.</p>
+          <p>Pantau pembayaran, proses gudang, dan perjalanan paket dalam satu tampilan terpusat.</p>
           <div class="tracking-trust" aria-label="Keunggulan pelacakan">
             <span><i aria-hidden="true"></i>Status terpusat</span>
             <span><i aria-hidden="true"></i>Update perjalanan</span>
@@ -31,7 +31,8 @@
             <small>Tersedia di email konfirmasi dan Pesanan Saya.</small>
           </div>
 
-          <label class="tracking-input" for="track-order-number">
+          <label class="sr-only" for="track-order-number">Nomor pesanan</label>
+          <div class="tracking-input">
             <span class="tracking-input__prefix" aria-hidden="true">NX</span>
             <input
               id="track-order-number"
@@ -45,7 +46,7 @@
               aria-describedby="track-form-help track-form-status"
             >
             <button type="submit" class="btn btn-primary">Lacak Pesanan</button>
-          </label>
+          </div>
 
           <p id="track-form-help" class="tracking-search__hint">Format contoh: NEX-88392019A</p>
           <p id="track-form-status" class="tracking-search__status" data-track-form-status aria-live="polite"></p>
@@ -71,7 +72,7 @@
       <div class="tracking-state__visual" aria-hidden="true">?</div>
       <span>ORDER NOT FOUND</span>
       <h2 id="track-empty-title">Pesanan tidak ditemukan.</h2>
-      <p>Nomor <strong data-track-missing-number></strong> tidak tersedia pada data prototype. Periksa kembali atau buka riwayat transaksi.</p>
+      <p>Nomor <strong data-track-missing-number></strong> tidak tersedia pada data pesanan. Periksa kembali atau buka riwayat transaksi.</p>
       <div class="tracking-state__actions">
         <button type="button" class="btn btn-outline" data-track-change>Periksa Nomor</button>
         <a href="transaction-history.html" class="btn btn-primary">Buka Pesanan Saya</a>
@@ -82,7 +83,7 @@
       <div class="tracking-state__visual tracking-state__visual--danger" aria-hidden="true">!</div>
       <span>TRACKING INTERRUPTED</span>
       <h2 id="track-error-title">Status belum dapat dimuat.</h2>
-      <p>Periksa format nomor pesanan lalu coba kembali. Internet, seperti manusia, terkadang memutuskan untuk tidak kooperatif.</p>
+      <p>Periksa format nomor pesanan dan koneksi Anda, lalu coba kembali.</p>
       <button type="button" class="btn btn-primary" data-track-retry>Coba Lagi</button>
     </section>
 
@@ -115,7 +116,7 @@
             <span>DELIVERY ROUTE</span>
             <h2 id="tracking-route-title">Perjalanan paket</h2>
           </div>
-          <span class="tracking-route__status">Live route</span>
+          <span class="tracking-route__status" data-track-route-status>Live route</span>
         </header>
         <div class="tracking-route__rail" aria-hidden="true"><i></i><i></i><i></i></div>
         <div class="tracking-route__points">
