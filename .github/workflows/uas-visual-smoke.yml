@@ -47,6 +47,11 @@ jobs:
           BASE_URL: http://127.0.0.1:5500
         run: node tools/visual_smoke.mjs
 
+      - name: Run admin CRUD feedback smoke test
+        env:
+          BASE_URL: http://127.0.0.1:5500
+        run: node tools/admin_feedback_smoke.mjs
+
       - name: Upload screenshots and report
         if: always()
         uses: actions/upload-artifact@v4
