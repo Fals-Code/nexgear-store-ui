@@ -88,7 +88,10 @@
   };
 
   const initMediaResilience = () => {
-    document.querySelectorAll("img").forEach(applyImageDefaults);
+    document.querySelectorAll("img").forEach((image) => {
+      applyImageDefaults(image);
+      if (image.complete && image.naturalWidth === 0) replaceBrokenImage(image);
+    });
 
     document.addEventListener(
       "error",
@@ -102,8 +105,14 @@
       records.forEach((record) => {
         record.addedNodes.forEach((node) => {
           if (!(node instanceof Element)) return;
-          if (node.matches("img")) applyImageDefaults(node);
-          node.querySelectorAll?.("img").forEach(applyImageDefaults);
+          if (node.matches("img")) {
+            applyImageDefaults(node);
+            if (node.complete && node.naturalWidth === 0) replaceBrokenImage(node);
+          }
+          node.querySelectorAll?.("img").forEach((image) => {
+            applyImageDefaults(image);
+            if (image.complete && image.naturalWidth === 0) replaceBrokenImage(image);
+          });
         });
       });
     });

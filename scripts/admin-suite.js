@@ -1,5 +1,22 @@
 (function () {
   "use strict";
+  const ensureQualityLayer = () => {
+    if (!document.querySelector('link[data-quality-hardening]')) {
+      const qualityCss = document.createElement("link");
+      qualityCss.rel = "stylesheet";
+      qualityCss.href = "styles/quality-hardening.css?v=1";
+      qualityCss.dataset.qualityHardening = "true";
+      document.head.appendChild(qualityCss);
+    }
+
+    if (!window.NexA11y && !document.querySelector('script[data-quality-hardening]')) {
+      const qualityScript = document.createElement("script");
+      qualityScript.src = "scripts/quality-hardening.js?v=1";
+      qualityScript.dataset.qualityHardening = "true";
+      document.head.appendChild(qualityScript);
+    }
+  };
+  ensureQualityLayer();
   const modalCss = document.createElement("link");
   modalCss.rel = "stylesheet";
   modalCss.href = "styles/admin-suite-modal.css?v=1";

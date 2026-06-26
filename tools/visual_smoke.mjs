@@ -238,7 +238,7 @@ const runCheckoutFlow = async (browser) => {
     await page.locator("#city").selectOption("Surabaya");
     await page.locator("#district").fill("Mulyorejo");
     await page.locator("#postal-code").fill("60115");
-    await page.locator("#checkout-consent").check();
+    await page.locator(".checkout-consent").click();
 
     await Promise.all([
       page.waitForURL(/payment\.html\?order=/, { timeout: 10000 }),
