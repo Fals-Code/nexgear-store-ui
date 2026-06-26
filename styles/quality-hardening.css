@@ -90,6 +90,15 @@ body[data-modal-open="true"] {
   overflow: hidden;
 }
 
+/* Loading is a replacement state, not a translucent duplicate of the catalog. */
+body.catalog-data-loading :is(.catalog-product-grid, .catalog-grid) {
+  visibility: hidden !important;
+  max-height: 0 !important;
+  margin-block: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
 .quality-payment-complete {
   display: grid;
   gap: 18px;
