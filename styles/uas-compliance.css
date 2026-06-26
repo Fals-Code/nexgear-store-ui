@@ -1,0 +1,338 @@
+.page-uas-compliance {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(0, 229, 255, 0.16), transparent 32rem),
+    radial-gradient(circle at 85% 10%, rgba(99, 102, 241, 0.14), transparent 30rem),
+    #05070b;
+}
+
+.uas-main {
+  overflow: hidden;
+}
+
+.uas-hero,
+.uas-section {
+  position: relative;
+  padding: clamp(4.5rem, 8vw, 8rem) 0;
+}
+
+.uas-hero::before,
+.uas-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+}
+
+.uas-hero-grid,
+.uas-flow-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.uas-eyebrow {
+  margin: 0 0 1rem;
+  color: var(--color-primary);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.uas-hero h1,
+.uas-section-heading h2 {
+  margin: 0;
+  max-width: 860px;
+  font-size: clamp(2.7rem, 8vw, 7.2rem);
+  line-height: 0.92;
+  letter-spacing: -0.065em;
+  text-transform: uppercase;
+}
+
+.uas-section-heading h2 {
+  font-size: clamp(2.1rem, 5vw, 4.8rem);
+}
+
+.uas-hero-copy p:not(.uas-eyebrow),
+.uas-section-heading p:not(.uas-eyebrow),
+.uas-score-card p,
+.uas-rubric-card p,
+.uas-page-card em {
+  color: var(--color-text-secondary);
+}
+
+.uas-hero-copy p:not(.uas-eyebrow) {
+  max-width: 720px;
+  margin: 1.5rem 0 0;
+  font-size: clamp(1rem, 1.7vw, 1.24rem);
+}
+
+.uas-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.uas-score-card,
+.uas-rubric-card,
+.uas-page-card,
+.uas-flow-list {
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.78), rgba(3, 7, 18, 0.72));
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(18px);
+}
+
+.uas-score-card {
+  position: relative;
+  min-height: 430px;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+.uas-score-card::after {
+  content: "UAS";
+  position: absolute;
+  right: -0.25em;
+  bottom: -0.28em;
+  color: rgba(255, 255, 255, 0.035);
+  font-family: var(--font-heading);
+  font-size: clamp(8rem, 20vw, 14rem);
+  font-weight: 900;
+  line-height: 0.8;
+}
+
+.uas-score-label {
+  display: inline-flex;
+  margin-bottom: 1.25rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(0, 229, 255, 0.1);
+  color: var(--color-primary);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.uas-score-value {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(5.4rem, 13vw, 9rem);
+  line-height: 0.85;
+  letter-spacing: -0.08em;
+}
+
+.uas-score-bars {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 2rem;
+}
+
+.uas-score-bars span {
+  display: block;
+  width: var(--bar);
+  min-width: 5rem;
+  height: 0.75rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-primary), rgba(255, 255, 255, 0.45));
+  transform-origin: left;
+  animation: uasBar 900ms ease both;
+}
+
+.uas-section-heading {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.uas-section-heading p:not(.uas-eyebrow) {
+  margin-top: 1rem;
+  max-width: 720px;
+}
+
+.uas-rubric-grid,
+.uas-page-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.uas-rubric-card {
+  min-height: 230px;
+  padding: 1.35rem;
+  border-radius: 26px;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.uas-rubric-card:hover,
+.uas-page-card:hover,
+.uas-page-card:focus-visible {
+  transform: translateY(-6px);
+  border-color: rgba(0, 229, 255, 0.46);
+  background: linear-gradient(145deg, rgba(8, 47, 73, 0.82), rgba(3, 7, 18, 0.76));
+}
+
+.uas-rubric-card span,
+.uas-page-card span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.25rem;
+  min-height: 3.25rem;
+  margin-bottom: 1.25rem;
+  border-radius: 18px;
+  background: rgba(0, 229, 255, 0.1);
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-weight: 900;
+}
+
+.uas-rubric-card h3,
+.uas-page-card strong {
+  display: block;
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+}
+
+.uas-page-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.uas-page-card {
+  min-height: 190px;
+  padding: 1.15rem;
+  border-radius: 24px;
+  color: inherit;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.uas-page-card em {
+  display: block;
+  font-style: normal;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.uas-page-card-featured {
+  grid-column: span 2;
+  background:
+    linear-gradient(145deg, rgba(0, 229, 255, 0.2), rgba(15, 23, 42, 0.72)),
+    rgba(15, 23, 42, 0.75);
+}
+
+.uas-flow-heading {
+  margin-bottom: 0;
+}
+
+.uas-flow-list {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1rem;
+  border-radius: 28px;
+  list-style: none;
+}
+
+.uas-flow-list li {
+  display: grid;
+  grid-template-columns: minmax(6rem, 0.45fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.uas-flow-list span {
+  color: var(--color-primary);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.uas-flow-list strong {
+  font-size: clamp(0.98rem, 1.6vw, 1.2rem);
+}
+
+@keyframes uasBar {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1080px) {
+  .uas-hero-grid,
+  .uas-flow-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .uas-rubric-grid,
+  .uas-page-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .uas-hero,
+  .uas-section {
+    padding: 4rem 0;
+  }
+
+  .uas-hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .uas-rubric-grid,
+  .uas-page-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .uas-page-card-featured {
+    grid-column: auto;
+  }
+
+  .uas-score-card {
+    min-height: 340px;
+  }
+
+  .uas-flow-list li {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uas-score-bars span,
+  .uas-rubric-card,
+  .uas-page-card {
+    animation: none;
+    transition: none;
+  }
+}
