@@ -31,7 +31,7 @@ window.NEXGEAR_ADMIN_DATA = {
       stock: 24,
       status: "active",
       updated: "2026-06-22",
-      image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c9c?auto=format&fit=crop&w=320&q=85",
+      image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c?auto=format&fit=crop&w=320&q=85",
     },
     {
       id: "NX-MN-021",
