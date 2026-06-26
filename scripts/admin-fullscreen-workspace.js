@@ -114,14 +114,21 @@
     const close = $("[data-close-drawer], [data-close-editor]", header);
     close?.classList.add("workspace-header-close");
 
-    if ($(".workspace-header-controls", header)) return;
+    let controls = $(".workspace-header-controls", header);
+    if (!controls) {
+      controls = document.createElement("div");
+      controls.className = "workspace-header-controls";
+      controls.setAttribute("role", "group");
+      controls.setAttribute("aria-label", "Kontrol tampilan form");
+      header.append(controls);
+    }
 
-    const controls = document.createElement("div");
-    controls.className = "workspace-header-controls";
-    controls.setAttribute("role", "group");
-    controls.setAttribute("aria-label", "Kontrol tampilan form");
+    const insertBeforeClose = (button) => {
+      const reference = close?.parentElement === controls ? close : null;
+      controls.insertBefore(button, reference);
+    };
 
-    if (hasNavigation()) {
+    if (hasNavigation() && !$("[data-workspace-nav-toggle]", controls)) {
       const navButton = createHeaderButton({
         attribute: "data-workspace-nav-toggle",
         icon: "☷",
@@ -129,10 +136,10 @@
         ariaLabel: "Ringkas navigasi form",
       });
       navButton.addEventListener("click", () => setNavigation(drawer.dataset.nav === "compact" ? "expanded" : "compact"));
-      controls.append(navButton);
+      insertBeforeClose(navButton);
     }
 
-    if (hasSummary()) {
+    if (hasSummary() && !$("[data-workspace-summary-toggle]", controls)) {
       const summaryButton = createHeaderButton({
         attribute: "data-workspace-summary-toggle",
         icon: "◫",
@@ -140,11 +147,10 @@
         ariaLabel: "Sembunyikan panel ringkasan",
       });
       summaryButton.addEventListener("click", () => setSummary(drawer.dataset.summary === "collapsed" ? "visible" : "collapsed"));
-      controls.append(summaryButton);
+      insertBeforeClose(summaryButton);
     }
 
-    if (close) controls.append(close);
-    header.append(controls);
+    if (close && close.parentElement !== controls) controls.append(close);
   };
 
   const syncModeLabel = () => {
@@ -189,16 +195,22 @@
     emit("workspace-dirty", { dirty });
   };
 
-  const activate = () => {
+  const refreshWorkspaceStructure = (announceChange = false) => {
     if (!drawer) return;
-    body.classList.add("admin-workspace-fullscreen", "admin-workspace-active");
-    drawer.dataset.workspaceDisplay = "full";
     enhanceHeader();
     syncModeLabel();
     bindFormLifecycle();
     const layout = defaultLayout();
     setSummary(layout.summary, false);
     setNavigation(layout.nav, false);
+    if (announceChange && active) emit("workspace-structurechange");
+  };
+
+  const activate = () => {
+    if (!drawer) return;
+    body.classList.add("admin-workspace-fullscreen", "admin-workspace-active");
+    drawer.dataset.workspaceDisplay = "full";
+    refreshWorkspaceStructure();
 
     if (!active) {
       active = true;
@@ -222,6 +234,21 @@
 
   const syncDrawer = () => (isOpen() ? activate() : deactivate());
 
+  const observeWorkspaceContent = () => {
+    if (!drawer) return;
+    const contentRoot = page === "articles"
+      ? $(".editor-drawer__panel", drawer)
+      : $("#suite-form-fields", drawer);
+    if (!contentRoot) return;
+
+    new MutationObserver(() => {
+      window.requestAnimationFrame(() => {
+        if (!isOpen()) return;
+        refreshWorkspaceStructure(true);
+      });
+    }).observe(contentRoot, { childList: true, subtree: false });
+  };
+
   const observeDrawer = () => {
     drawer = $(page === "articles" ? "#editor-drawer" : "#suite-drawer");
     if (!drawer) return;
@@ -235,6 +262,7 @@
       attributeFilter: ["class", "aria-hidden", "data-form-mode", "data-dirty"],
     });
 
+    observeWorkspaceContent();
     syncDrawer();
   };
 
