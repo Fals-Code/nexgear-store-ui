@@ -47,6 +47,9 @@
   const loadCheckoutContinuityAssets = () => {
     if (!["cart.html", "checkout.html", "payment.html", "success.html", "transaction-history.html"].includes(page)) return;
     ensureStyle("styles/persona-checkout-flow.css?v=1");
+    if (page === "transaction-history.html") {
+      ensureScript("scripts/transaction-history.js?v=2", "transactionHistoryHydration");
+    }
     ensureScript("scripts/persona-checkout-flow.js?v=1", "personaCheckoutFlow");
     ensureScript("scripts/persona-checkout-regression.js?v=1", "personaCheckoutRegression");
   };
