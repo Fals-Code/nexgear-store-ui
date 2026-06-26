@@ -66,7 +66,7 @@
   const loadFullscreenWorkspace = () => loadScript({
     globalName: "NexAdminFullscreenWorkspace",
     selector: 'script[data-admin-fullscreen-workspace]',
-    src: "scripts/admin-fullscreen-workspace.js?v=5",
+    src: "scripts/admin-fullscreen-workspace.js?v=6",
     dataName: "adminFullscreenWorkspace",
   });
 
