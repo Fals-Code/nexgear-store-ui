@@ -1,1 +1,113 @@
-window.NEXGEAR_ADMIN_RENDER=(function(){const statusStyles={active:'pill-green',draft:'pill-gray',low:'pill-yellow',out:'pill-red',archived:'pill-purple',verified:'pill-cyan',inactive:'pill-gray',blocked:'pill-red',customer:'pill-cyan',admin:'pill-purple',editor:'pill-yellow',support:'pill-green',waiting:'pill-yellow',paid:'pill-cyan',processing:'pill-purple',shipping:'pill-cyan',completed:'pill-green',cancelled:'pill-red',refund:'pill-orange'};const labels={active:'Aktif',draft:'Draft',low:'Stok Menipis',out:'Habis',archived:'Arsip',verified:'Verifikasi',inactive:'Tidak Aktif',blocked:'Diblokir',customer:'Customer',admin:'Admin',editor:'Editor',support:'Support',waiting:'Menunggu',paid:'Dibayar',processing:'Diproses',shipping:'Dikirim',completed:'Selesai',cancelled:'Dibatalkan',refund:'Refund'};const money=v=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(v);const date=v=>new Intl.DateTimeFormat('id-ID',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(v+'T12:00:00'));const initials=n=>n.split(' ').map(x=>x[0]).slice(0,2).join('').toUpperCase();const pill=(key,text)=>`<span class="suite-pill ${statusStyles[key]||'pill-gray'}"><i></i>${text||labels[key]||key}</span>`;function row(page,item){if(page==='products')return `<tr class="suite-row" data-id="${item.id}"><td><input class="suite-check" type="checkbox" aria-label="Pilih ${item.name}"></td><td><div class="entity-cell"><img src="${item.image}" alt="${item.name}"><div><strong>${item.name}</strong><small>${item.id}</small></div></div></td><td>${item.category}</td><td>${item.brand}</td><td>${money(item.price)}</td><td>${item.stock}</td><td>${pill(item.status)}</td><td>${date(item.updated)}</td><td><button class="suite-action" data-menu aria-label="Aksi ${item.name}">•••</button></td></tr>`;if(page==='users')return `<tr class="suite-row" data-id="${item.id}"><td><input class="suite-check" type="checkbox" aria-label="Pilih ${item.name}"></td><td><div class="entity-cell"><span class="entity-avatar">${initials(item.name)}</span><div><strong>${item.name}</strong><small>${item.email} · ${item.id}</small></div></div></td><td>${pill(item.role)}</td><td>${pill(item.status)}</td><td>${item.orders}</td><td>${money(item.spent)}</td><td>${item.last}</td><td>${date(item.joined)}</td><td><button class="suite-action" data-menu aria-label="Aksi ${item.name}">•••</button></td></tr>`;return `<tr class="suite-row" data-id="${item.id}"><td><input class="suite-check" type="checkbox" aria-label="Pilih ${item.id}"></td><td><strong style="color:#fff">${item.id}</strong></td><td><div class="entity-cell" style="min-width:220px"><span class="entity-avatar">${initials(item.customer)}</span><div><strong>${item.customer}</strong><small>${item.email}</small></div></div></td><td>${date(item.date)}</td><td>${item.items} produk</td><td><small>${item.payment}</small><br>${pill(item.paymentStatus)}</td><td>${money(item.total)}</td><td>${pill(item.status)}</td><td><button class="suite-action" data-menu aria-label="Aksi ${item.id}">•••</button></td></tr>`}function card(page,item){if(page==='products')return `<article class="suite-card" data-id="${item.id}"><img src="${item.image}" alt="${item.name}"><div class="suite-card-body"><div class="suite-card-meta">${pill(item.status)}<span>${item.stock} stok</span></div><h3>${item.name}</h3><p>${item.id} · ${item.category} · ${item.brand}</p><div class="suite-card-footer"><strong>${money(item.price)}</strong><button class="suite-action" data-menu>•••</button></div></div></article>`;if(page==='users')return `<article class="suite-card" data-id="${item.id}"><div class="suite-card-body"><div class="suite-card-meta"><span class="entity-avatar">${initials(item.name)}</span>${pill(item.status)}</div><h3>${item.name}</h3><p>${item.email}</p><div class="suite-card-footer"><span>${item.orders} pesanan · ${money(item.spent)}</span><button class="suite-action" data-menu>•••</button></div></div></article>`;return `<article class="suite-card" data-id="${item.id}"><div class="suite-card-body"><div class="suite-card-meta">${pill(item.status)}<span>${date(item.date)}</span></div><h3>${item.id}</h3><p>${item.customer} · ${item.items} produk · ${item.payment}</p><div class="suite-card-footer"><strong>${money(item.total)}</strong><button class="suite-action" data-menu>•••</button></div></div></article>`}function form(page,obj){if(page==='products')return `<div class="suite-form-grid"><label>Nama Produk<input name="name" value="${obj?.name||''}" required></label><label>SKU<input name="id" value="${obj?.id||`NX-${Date.now().toString().slice(-6)}`}" required></label><label>Kategori<select name="category"><option>Control</option><option>Sound</option><option>Machines</option><option>Build</option></select></label><label>Brand<input name="brand" value="${obj?.brand||'NEXGEAR'}"></label><label>Harga<input name="price" type="number" value="${obj?.price||0}"></label><label>Stok<input name="stock" type="number" value="${obj?.stock||0}"></label></div><label>Status<select name="status">${['active','draft','low','out','archived'].map(x=>`<option value="${x}" ${obj?.status===x?'selected':''}>${labels[x]}</option>`).join('')}</select></label><label>URL Gambar<input name="image" value="${obj?.image||window.NEXGEAR_ADMIN_DATA.products[0].image}"></label>`;if(page==='users')return `<div class="suite-form-grid"><label>Nama<input name="name" value="${obj?.name||''}" required></label><label>Email<input name="email" type="email" value="${obj?.email||''}" required></label><label>Role<select name="role">${['customer','admin','editor','support'].map(x=>`<option value="${x}" ${obj?.role===x?'selected':''}>${labels[x]}</option>`).join('')}</select></label><label>Status<select name="status">${['active','verified','inactive','blocked'].map(x=>`<option value="${x}" ${obj?.status===x?'selected':''}>${labels[x]}</option>`).join('')}</select></label></div><div class="suite-detail-list"><div class="suite-detail-item"><span>Total Pesanan</span><strong>${obj?.orders||0}</strong></div><div class="suite-detail-item"><span>Total Belanja</span><strong>${money(obj?.spent||0)}</strong></div><div class="suite-detail-item"><span>Terakhir Aktif</span><strong>${obj?.last||'Belum aktif'}</strong></div></div>`;return `<div class="suite-detail-list"><div class="suite-detail-item"><span>Nomor Pesanan</span><strong>${obj?.id||'Pesanan Baru'}</strong></div><div class="suite-detail-item"><span>Pelanggan</span><strong>${obj?.customer||'-'}</strong><p>${obj?.email||''}</p></div><div class="suite-detail-item"><span>Pembayaran</span><strong>${obj?.payment||'-'} · ${labels[obj?.paymentStatus]||'-'}</strong></div><div class="suite-detail-item"><span>Pengiriman</span><strong>${obj?.courier||'-'} · ${obj?.resi||'-'}</strong></div><div class="suite-detail-item"><span>Total</span><strong>${money(obj?.total||0)}</strong></div></div><label>Status Pesanan<select name="status">${['waiting','paid','processing','shipping','completed','cancelled','refund'].map(x=>`<option value="${x}" ${obj?.status===x?'selected':''}>${labels[x]}</option>`).join('')}</select></label><div class="timeline"><div class="timeline-item done"><span class="timeline-dot"></span><div><strong>Pesanan Dibuat</strong><small>Data transaksi diterima</small></div></div><div class="timeline-item ${['paid','processing','shipping','completed'].includes(obj?.status)?'done':'active'}"><span class="timeline-dot"></span><div><strong>Pembayaran Diverifikasi</strong><small>${labels[obj?.paymentStatus]||'Menunggu'}</small></div></div><div class="timeline-item ${obj?.status==='processing'?'active':['shipping','completed'].includes(obj?.status)?'done':''}"><span class="timeline-dot"></span><div><strong>Pesanan Diproses</strong><small>Gudang dan quality check</small></div></div><div class="timeline-item ${obj?.status==='shipping'?'active':obj?.status==='completed'?'done':''}"><span class="timeline-dot"></span><div><strong>Dalam Pengiriman</strong><small>${obj?.courier||'Kurir belum dipilih'}</small></div></div></div>`}return{labels,money,date,pill,row,card,form}})();
+window.NEXGEAR_ADMIN_RENDER = (() => {
+  "use strict";
+
+  const statusStyles = {
+    active: "pill-green",
+    draft: "pill-gray",
+    low: "pill-yellow",
+    out: "pill-red",
+    archived: "pill-purple",
+    invited: "pill-cyan",
+    verified: "pill-cyan",
+    inactive: "pill-gray",
+    blocked: "pill-red",
+    customer: "pill-cyan",
+    admin: "pill-purple",
+    editor: "pill-yellow",
+    support: "pill-green",
+    waiting: "pill-yellow",
+    paid: "pill-cyan",
+    processing: "pill-purple",
+    shipping: "pill-cyan",
+    completed: "pill-green",
+    cancelled: "pill-red",
+    refund: "pill-orange",
+  };
+
+  const labels = {
+    active: "Aktif",
+    draft: "Draft",
+    low: "Stok Menipis",
+    out: "Habis",
+    archived: "Arsip",
+    invited: "Diundang",
+    verified: "Verifikasi",
+    inactive: "Tidak Aktif",
+    blocked: "Diblokir",
+    customer: "Customer",
+    admin: "Admin",
+    editor: "Editor",
+    support: "Support",
+    waiting: "Menunggu",
+    paid: "Dibayar",
+    processing: "Diproses",
+    shipping: "Dikirim",
+    completed: "Selesai",
+    cancelled: "Dibatalkan",
+    refund: "Refund",
+  };
+
+  const escapeHtml = (value) => String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+  const money = (value) => new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0,
+  }).format(Number(value) || 0);
+
+  const date = (value) => new Intl.DateTimeFormat("id-ID", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(new Date(`${value}T12:00:00`));
+
+  const initials = (name) => String(name || "NX")
+    .split(" ")
+    .map((part) => part[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+
+  const pill = (key, text) => `<span class="suite-pill ${statusStyles[key] || "pill-gray"}"><i></i>${escapeHtml(text || labels[key] || key)}</span>`;
+
+  function row(page, item) {
+    if (page === "products") {
+      return `<tr class="suite-row" data-id="${escapeHtml(item.id)}"><td><input class="suite-check" type="checkbox" aria-label="Pilih ${escapeHtml(item.name)}"></td><td><div class="entity-cell"><img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.altText || item.name)}"><div><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(item.id)}</small></div></div></td><td>${escapeHtml(item.category)}</td><td>${escapeHtml(item.brand)}</td><td>${money(item.salePrice > 0 ? item.salePrice : item.price)}</td><td>${escapeHtml(item.stock)}</td><td>${pill(item.status)}</td><td>${date(item.updated)}</td><td><button class="suite-action" type="button" data-menu aria-label="Aksi ${escapeHtml(item.name)}">•••</button></td></tr>`;
+    }
+
+    if (page === "users") {
+      return `<tr class="suite-row" data-id="${escapeHtml(item.id)}"><td><input class="suite-check" type="checkbox" aria-label="Pilih ${escapeHtml(item.name)}"></td><td><div class="entity-cell"><span class="entity-avatar">${initials(item.name)}</span><div><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(item.email)} · ${escapeHtml(item.id)}</small></div></div></td><td>${pill(item.role)}</td><td>${pill(item.status)}</td><td>${escapeHtml(item.orders)}</td><td>${money(item.spent)}</td><td>${escapeHtml(item.last)}</td><td>${date(item.joined)}</td><td><button class="suite-action" type="button" data-menu aria-label="Aksi ${escapeHtml(item.name)}">•••</button></td></tr>`;
+    }
+
+    return `<tr class="suite-row" data-id="${escapeHtml(item.id)}"><td><input class="suite-check" type="checkbox" aria-label="Pilih ${escapeHtml(item.id)}"></td><td><strong>${escapeHtml(item.id)}</strong></td><td><div class="entity-cell" style="min-width:220px"><span class="entity-avatar">${initials(item.customer)}</span><div><strong>${escapeHtml(item.customer)}</strong><small>${escapeHtml(item.email)}</small></div></div></td><td>${date(item.date)}</td><td>${escapeHtml(item.items)} produk</td><td><small>${escapeHtml(item.payment)}</small><br>${pill(item.paymentStatus)}</td><td>${money(item.total)}</td><td>${pill(item.status)}</td><td><button class="suite-action" type="button" data-menu aria-label="Aksi ${escapeHtml(item.id)}">•••</button></td></tr>`;
+  }
+
+  function card(page, item) {
+    if (page === "products") {
+      return `<article class="suite-card" data-id="${escapeHtml(item.id)}"><img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.altText || item.name)}"><div class="suite-card-body"><div class="suite-card-meta">${pill(item.status)}<span>${escapeHtml(item.stock)} stok</span></div><h3>${escapeHtml(item.name)}</h3><p>${escapeHtml(item.id)} · ${escapeHtml(item.category)} · ${escapeHtml(item.brand)}</p><div class="suite-card-footer"><strong>${money(item.salePrice > 0 ? item.salePrice : item.price)}</strong><button class="suite-action" type="button" data-menu aria-label="Aksi ${escapeHtml(item.name)}">•••</button></div></div></article>`;
+    }
+
+    if (page === "users") {
+      return `<article class="suite-card" data-id="${escapeHtml(item.id)}"><div class="suite-card-body"><div class="suite-card-meta"><span class="entity-avatar">${initials(item.name)}</span>${pill(item.status)}</div><h3>${escapeHtml(item.name)}</h3><p>${escapeHtml(item.email)}</p><div class="suite-card-footer"><span>${escapeHtml(item.orders)} pesanan · ${money(item.spent)}</span><button class="suite-action" type="button" data-menu aria-label="Aksi ${escapeHtml(item.name)}">•••</button></div></div></article>`;
+    }
+
+    return `<article class="suite-card" data-id="${escapeHtml(item.id)}"><div class="suite-card-body"><div class="suite-card-meta">${pill(item.status)}<span>${date(item.date)}</span></div><h3>${escapeHtml(item.id)}</h3><p>${escapeHtml(item.customer)} · ${escapeHtml(item.items)} produk · ${escapeHtml(item.payment)}</p><div class="suite-card-footer"><strong>${money(item.total)}</strong><button class="suite-action" type="button" data-menu aria-label="Aksi ${escapeHtml(item.id)}">•••</button></div></div></article>`;
+  }
+
+  function fallbackForm(page, object) {
+    if (page === "products") {
+      return `<div class="suite-form-grid"><label>Nama Produk<input name="name" value="${escapeHtml(object?.name || "")}" required></label><label>SKU<input name="id" value="${escapeHtml(object?.id || `NX-${Date.now().toString().slice(-6)}`)}" required></label><label>Kategori<select name="category"><option>Control</option><option>Sound</option><option>Machines</option><option>Build</option></select></label><label>Brand<input name="brand" value="${escapeHtml(object?.brand || "NEXGEAR")}"></label><label>Harga<input name="price" type="number" min="0" value="${escapeHtml(object?.price || 0)}"></label><label>Stok<input name="stock" type="number" min="0" value="${escapeHtml(object?.stock || 0)}"></label></div><label>Status<select name="status">${["active", "draft", "low", "out", "archived"].map((key) => `<option value="${key}" ${object?.status === key ? "selected" : ""}>${labels[key]}</option>`).join("")}</select></label><label>URL Gambar<input name="image" value="${escapeHtml(object?.image || window.NEXGEAR_ADMIN_DATA.products[0].image)}"></label>`;
+    }
+    if (page === "users") {
+      return `<div class="suite-form-grid"><label>Nama<input name="name" value="${escapeHtml(object?.name || "")}" required></label><label>Email<input name="email" type="email" value="${escapeHtml(object?.email || "")}" required></label><label>Role<select name="role">${["customer", "admin", "editor", "support"].map((key) => `<option value="${key}" ${object?.role === key ? "selected" : ""}>${labels[key]}</option>`).join("")}</select></label><label>Status<select name="status">${["invited", "active", "verified", "inactive", "blocked"].map((key) => `<option value="${key}" ${object?.status === key ? "selected" : ""}>${labels[key]}</option>`).join("")}</select></label></div>`;
+    }
+    return `<label>Status Pesanan<select name="status">${["waiting", "paid", "processing", "shipping", "completed", "cancelled", "refund"].map((key) => `<option value="${key}" ${object?.status === key ? "selected" : ""}>${labels[key]}</option>`).join("")}</select></label>`;
+  }
+
+  return { labels, money, date, pill, row, card, form: fallbackForm };
+})();
