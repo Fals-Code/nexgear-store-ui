@@ -51,7 +51,7 @@
   const loadFullscreenWorkspace = () => {
     if (window.NexAdminFullscreenWorkspace || document.querySelector('script[data-admin-fullscreen-workspace]')) return;
     const script = document.createElement("script");
-    script.src = "scripts/admin-fullscreen-workspace.js?v=2";
+    script.src = "scripts/admin-fullscreen-workspace.js?v=3";
     script.dataset.adminFullscreenWorkspace = "true";
     document.body.append(script);
   };
