@@ -59,11 +59,11 @@
     const maxTop = Math.max(viewportGap, viewportHeight - menuRect.height - viewportGap);
     const top = clamp(rawTop, viewportGap, maxTop);
 
-    menu.style.top = `${Math.round(top)}px`;
-    menu.style.left = `${Math.round(left)}px`;
-    menu.style.right = "auto";
-    menu.style.bottom = "auto";
-    menu.style.visibility = "visible";
+    menu.style.setProperty("top", `${Math.round(top)}px`, "important");
+    menu.style.setProperty("left", `${Math.round(left)}px`, "important");
+    menu.style.setProperty("right", "auto", "important");
+    menu.style.setProperty("bottom", "auto", "important");
+    menu.style.setProperty("visibility", "visible");
     menu.dataset.placement = openAbove ? "top" : "bottom";
     menu.dataset.state = "open";
     menu.setAttribute("role", "menu");
@@ -77,7 +77,7 @@
 
   const requestPosition = () => {
     window.cancelAnimationFrame(rafId);
-    rafId = window.requestAnimationFrame(() => window.requestAnimationFrame(position));
+    rafId = window.requestAnimationFrame(position);
   };
 
   document.addEventListener("pointerdown", (event) => {
@@ -92,6 +92,7 @@
     if (trigger) {
       activeTrigger = trigger;
       trigger.setAttribute("aria-haspopup", "menu");
+      position();
       requestPosition();
       return;
     }
@@ -112,6 +113,7 @@
         event.preventDefault();
         trigger.click();
       }
+      position();
       requestPosition();
       return;
     }
@@ -144,6 +146,7 @@
       clearPosition();
       return;
     }
+    position();
     requestPosition();
   }).observe(menu, { attributes: true, attributeFilter: ["hidden"] });
 
