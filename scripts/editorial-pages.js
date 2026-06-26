@@ -24,6 +24,7 @@
       this.initHelpQueries();
       this.initTicketReadiness();
       this.openHelpHash();
+      window.addEventListener("hashchange", () => this.openHelpHash());
     }
 
     initReveal() {
@@ -88,7 +89,7 @@
       if (!trigger) return;
 
       window.requestAnimationFrame(() => {
-        trigger.click();
+        if (trigger.getAttribute("aria-expanded") !== "true") trigger.click();
         target.scrollIntoView({
           behavior: reduceMotion ? "auto" : "smooth",
           block: "center",
@@ -125,7 +126,7 @@
 
       this.form.addEventListener("input", calculate);
       this.form.addEventListener("change", calculate);
-      this.root.addEventListener("nexgear:support-ticket-created", () => {
+      document.addEventListener("nexgear:support-ticket-created", () => {
         this.renderReadiness(100, "Tiket siap dan berhasil dibuat.");
       });
       calculate();
