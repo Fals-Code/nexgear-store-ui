@@ -38,7 +38,8 @@
       else items.push({ ...cartProduct, name: finalName, qty: quantity });
 
       this.save(items);
-      if (!silent) window.NexToast?.show(`${finalName} ditambahkan ke keranjang!`);
+      if (!silent)
+        window.NexToast?.show(`${finalName} ditambahkan ke keranjang!`);
     },
 
     remove(name) {
@@ -61,7 +62,8 @@
 
     get total() {
       return this.items.reduce(
-        (sum, item) => sum + (Number(item.price) || 0) * (Number(item.qty) || 1),
+        (sum, item) =>
+          sum + (Number(item.price) || 0) * (Number(item.qty) || 1),
         0,
       );
     },
