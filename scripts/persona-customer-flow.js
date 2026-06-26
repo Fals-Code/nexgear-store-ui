@@ -44,6 +44,13 @@
     window.setTimeout(normalizeFastPathLinks, 80);
   };
 
+  const loadCheckoutContinuityAssets = () => {
+    if (!["cart.html", "checkout.html", "payment.html", "success.html", "transaction-history.html"].includes(page)) return;
+    ensureStyle("styles/persona-checkout-flow.css?v=1");
+    ensureScript("scripts/persona-checkout-flow.js?v=1", "personaCheckoutFlow");
+    ensureScript("scripts/persona-checkout-regression.js?v=1", "personaCheckoutRegression");
+  };
+
   const readUser = () => {
     try {
       const authenticated = localStorage.getItem(AUTH_KEY) === "true";
@@ -126,6 +133,7 @@
   });
 
   loadProductDecisionAssets();
+  loadCheckoutContinuityAssets();
 
   if (document.documentElement.classList.contains("global-components-ready")) {
     updateCustomerNavigation();
@@ -136,6 +144,7 @@
     refresh: updateCustomerNavigation,
     logout,
     loadProductDecisionAssets,
+    loadCheckoutContinuityAssets,
     normalizeFastPathLinks,
   });
 })();
