@@ -3,8 +3,9 @@
 
   const scriptUrl = document.currentScript?.src || "";
   const asset = (path) => (scriptUrl ? new URL(`../${path}`, scriptUrl).href : path);
-  const imageFallback = asset("assets/image-fallback.svg");
   const page = window.location.pathname.split("/").pop() || "index.html";
+  const imageFallback = asset("assets/image-fallback.svg");
+  const experienceScript = asset("scripts/experience-system.js?v=1");
 
   const onReady = (callback) => {
     if (document.readyState === "loading") {
@@ -12,6 +13,20 @@
       return;
     }
     callback();
+  };
+
+  const ensureExperienceLayer = () => {
+    if (window.NexExperience || document.querySelector('script[data-nx-experience]')) return;
+    const script = document.createElement("script");
+    script.src = experienceScript;
+    script.async = false;
+    script.dataset.nxExperience = "true";
+    script.addEventListener(
+      "error",
+      () => console.warn("NEXGEAR experience system gagal dimuat."),
+      { once: true },
+    );
+    document.head.append(script);
   };
 
   const ensureLiveRegion = () => {
@@ -51,7 +66,6 @@
       skipLink.textContent = "Lewati ke konten utama";
       document.body.prepend(skipLink);
     }
-
     skipLink.href = `#${main.id}`;
     skipLink.addEventListener("click", () => {
       window.setTimeout(() => main.focus({ preventScroll: true }), 0);
@@ -60,39 +74,32 @@
 
   const applyImageDefaults = (image) => {
     if (!(image instanceof HTMLImageElement)) return;
-
     image.decoding = "async";
-    if (
-      !image.hasAttribute("loading") &&
-      !image.closest("header, .hero, [data-priority-media]")
-    ) {
+    if (!image.hasAttribute("loading") && !image.closest("header, .hero, [data-priority-media]")) {
       image.loading = "lazy";
     }
-
-    if (!image.hasAttribute("width") && image.naturalWidth) {
-      image.width = image.naturalWidth;
-    }
-    if (!image.hasAttribute("height") && image.naturalHeight) {
-      image.height = image.naturalHeight;
-    }
+    if (!image.hasAttribute("width") && image.naturalWidth) image.width = image.naturalWidth;
+    if (!image.hasAttribute("height") && image.naturalHeight) image.height = image.naturalHeight;
   };
 
   const replaceBrokenImage = (image) => {
     if (!(image instanceof HTMLImageElement)) return;
-    if (image.dataset.imageFallback === "true") return;
-    if (image.src === imageFallback) return;
-
+    if (image.dataset.imageFallback === "true" || image.src === imageFallback) return;
     image.dataset.imageFallback = "true";
     image.src = imageFallback;
     if (!image.alt.trim()) image.alt = "Media NEXGEAR tidak tersedia";
   };
 
-  const initMediaResilience = () => {
-    document.querySelectorAll("img").forEach((image) => {
+  const inspectImages = (root = document) => {
+    const images = root instanceof HTMLImageElement ? [root] : root.querySelectorAll?.("img") || [];
+    images.forEach((image) => {
       applyImageDefaults(image);
       if (image.complete && image.naturalWidth === 0) replaceBrokenImage(image);
     });
+  };
 
+  const initMediaResilience = () => {
+    inspectImages();
     document.addEventListener(
       "error",
       (event) => {
@@ -101,23 +108,13 @@
       true,
     );
 
-    const observer = new MutationObserver((records) => {
+    new MutationObserver((records) => {
       records.forEach((record) => {
         record.addedNodes.forEach((node) => {
-          if (!(node instanceof Element)) return;
-          if (node.matches("img")) {
-            applyImageDefaults(node);
-            if (node.complete && node.naturalWidth === 0) replaceBrokenImage(node);
-          }
-          node.querySelectorAll?.("img").forEach((image) => {
-            applyImageDefaults(image);
-            if (image.complete && image.naturalWidth === 0) replaceBrokenImage(image);
-          });
+          if (node instanceof Element) inspectImages(node);
         });
       });
-    });
-
-    observer.observe(document.documentElement, { childList: true, subtree: true });
+    }).observe(document.documentElement, { childList: true, subtree: true });
   };
 
   const initFormFeedback = () => {
@@ -145,17 +142,15 @@
   };
 
   const syncCurrentNavigation = () => {
-    const current = page === "" ? "index.html" : page;
-    document.querySelectorAll("header nav a[href]").forEach((link) => {
+    document.querySelectorAll("header nav a[href], .admin-sidebar a[href]").forEach((link) => {
       const target = new URL(link.href, window.location.href).pathname.split("/").pop() || "index.html";
-      if (target === current) link.setAttribute("aria-current", "page");
+      if (target === page) link.setAttribute("aria-current", "page");
       else if (link.getAttribute("aria-current") === "page") link.removeAttribute("aria-current");
     });
   };
 
   const initCatalogReadiness = () => {
     if (page !== "catalog.html") return;
-
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let releaseTimer = 0;
     let firstLoad = true;
@@ -164,10 +159,9 @@
       window.clearTimeout(releaseTimer);
       document.body.classList.remove("catalog-data-loading");
       const skeleton = document.querySelector(".catalog-loading-wireframe");
-      if (skeleton) {
-        skeleton.hidden = true;
-        skeleton.setAttribute("aria-hidden", "true");
-      }
+      if (!skeleton) return;
+      skeleton.hidden = true;
+      skeleton.setAttribute("aria-hidden", "true");
     };
 
     const scheduleRelease = () => {
@@ -176,22 +170,16 @@
         release();
         return;
       }
-
       window.clearTimeout(releaseTimer);
       releaseTimer = window.setTimeout(release, firstLoad ? 720 : 360);
       firstLoad = false;
     };
 
-    const observer = new MutationObserver(scheduleRelease);
-    observer.observe(document.body, {
+    new MutationObserver(scheduleRelease).observe(document.body, {
       attributes: true,
       attributeFilter: ["class"],
     });
-
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(scheduleRelease);
-    });
-
+    window.requestAnimationFrame(() => window.requestAnimationFrame(scheduleRelease));
     reducedMotion.addEventListener?.("change", () => {
       if (reducedMotion.matches) release();
     });
@@ -238,13 +226,12 @@
       const isOpen = !modal.hidden;
       modal.setAttribute("aria-hidden", String(!isOpen));
       document.body.dataset.modalOpen = String(isOpen);
-
       if (isOpen) {
-        const selectedMethod = modal.querySelector("[data-payment-method].is-active");
-        const closeButton = modal.querySelector("[data-close-payment-modal]");
-        window.setTimeout(() => (selectedMethod || closeButton || getFocusable()[0])?.focus(), 0);
+        const selected = modal.querySelector("[data-payment-method].is-active");
+        const close = modal.querySelector("[data-close-payment-modal]");
+        window.setTimeout(() => (selected || close || getFocusable()[0])?.focus(), 0);
       } else if (returnFocus instanceof HTMLElement) {
-        window.setTimeout(() => returnFocus?.focus(), 0);
+        window.setTimeout(() => returnFocus.focus(), 0);
       }
     };
 
@@ -274,7 +261,6 @@
             event.preventDefault();
             return;
           }
-
           const first = focusable[0];
           const last = focusable[focusable.length - 1];
           if (event.shiftKey && document.activeElement === first) {
@@ -292,11 +278,11 @@
     const renderPaidState = () => {
       const order = loadOrder();
       if (!order || order.paymentStatus !== "paid") return;
-
       const target = `success.html?order=${encodeURIComponent(order.id)}`;
+
       if (statusPill) {
         statusPill.className = "payment-status-pill is-success";
-        statusPill.innerHTML = "<i aria-hidden=\"true\"></i>Pembayaran Berhasil";
+        statusPill.innerHTML = '<i aria-hidden="true"></i>Pembayaran Berhasil';
       }
       if (title) title.textContent = "Pembayaran berhasil";
       if (description) description.textContent = "Pesanan telah dikonfirmasi dan siap dilihat pada halaman ringkasan.";
@@ -332,13 +318,11 @@
       true,
     );
 
-    const statusObserverTarget = document.querySelector(".payment-status-card");
-    if (statusObserverTarget) {
-      const observer = new MutationObserver(() => {
-        const message = [title?.textContent, description?.textContent].filter(Boolean).join(". ");
-        announce(message);
-      });
-      observer.observe(statusObserverTarget, { childList: true, subtree: true, characterData: true });
+    const statusCard = document.querySelector(".payment-status-card");
+    if (statusCard) {
+      new MutationObserver(() => {
+        announce([title?.textContent, description?.textContent].filter(Boolean).join(". "));
+      }).observe(statusCard, { childList: true, subtree: true, characterData: true });
     }
 
     window.requestAnimationFrame(() => window.requestAnimationFrame(renderPaidState));
@@ -353,10 +337,10 @@
     initCatalogReadiness();
     initPaymentRecovery();
     syncCurrentNavigation();
-
     document.addEventListener("nexgear:components-ready", syncCurrentNavigation);
   };
 
   window.NexA11y = Object.freeze({ announce });
+  ensureExperienceLayer();
   onReady(init);
 })();
