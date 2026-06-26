@@ -32,10 +32,19 @@
     gridButton.click();
   };
 
+  const loadArticlePersistence = () => {
+    if (page !== "articles" || window.NexArticleWorkspacePersistence || document.querySelector('script[data-article-workspace-persistence]')) return;
+    const script = document.createElement("script");
+    script.src = "scripts/admin-article-workspace-persistence.js?v=1";
+    script.dataset.articleWorkspacePersistence = "true";
+    document.body.append(script);
+  };
+
   const restoreAdminTheme = () => applyTheme(body.dataset.adminTheme || readTheme());
 
   applyTheme(readTheme());
   window.setTimeout(applyMobileArticleView, 80);
+  loadArticlePersistence();
 
   new MutationObserver(() => {
     const current = body.dataset.adminTheme;
@@ -47,8 +56,15 @@
     if (root.dataset.theme !== expected) applyTheme(expected);
   }).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
 
+  document.addEventListener("input", (event) => {
+    if (event.target.matches('input[name="id"], input[name="email"]')) {
+      event.target.setCustomValidity("");
+    }
+  });
+
   document.addEventListener("DOMContentLoaded", () => {
     restoreAdminTheme();
+    loadArticlePersistence();
     window.setTimeout(applyMobileArticleView, 120);
   }, { once: true });
 
