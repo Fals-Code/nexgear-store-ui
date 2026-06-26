@@ -5,6 +5,7 @@
   const experienceCss = scriptUrl
     ? new URL("../styles/experience-system.css?v=1", scriptUrl).href
     : "styles/experience-system.css?v=1";
+
   if (!document.querySelector('link[data-nx-experience-style]')) {
     const link = document.createElement("link");
     link.rel = "stylesheet";
@@ -63,6 +64,7 @@
       region.setAttribute("aria-live", "polite");
       document.body.append(region);
     }
+
     region.textContent = "";
     window.setTimeout(() => {
       region.textContent = String(message);
@@ -76,7 +78,10 @@
     } catch (error) {
       console.warn("NEXGEAR theme storage fallback", error);
     }
-    return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+
+    return window.matchMedia("(prefers-color-scheme: light)").matches
+      ? "light"
+      : "dark";
   };
 
   const applyTheme = (theme, { persist = false, announceChange = false } = {}) => {
@@ -100,69 +105,13 @@
       }
     }
 
-    document.querySelectorAll("[data-nx-theme-toggle]").forEach((button) => {
-      const light = next === "light";
-      button.setAttribute("aria-pressed", String(light));
-      button.setAttribute("aria-label", light ? "Aktifkan tema gelap" : "Aktifkan tema terang");
-      button.setAttribute("title", light ? "Tema gelap" : "Tema terang");
-      button.dataset.state = light ? "light" : "dark";
-      const label = button.querySelector("[data-nx-theme-label]");
-      if (label) label.textContent = light ? "Gelap" : "Terang";
-    });
-
     document.dispatchEvent(
       new CustomEvent("nexgear:themechange", { detail: { theme: next } }),
     );
-    if (announceChange) announce(`Tema ${next === "light" ? "terang" : "gelap"} aktif.`);
-  };
 
-  const themeIcon = `
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path class="nx-theme-icon__sun" d="M12 3.5V1.8M12 22.2v-1.7M20.5 12h1.7M1.8 12h1.7M18 6l1.2-1.2M4.8 19.2 6 18M18 18l1.2 1.2M4.8 4.8 6 6" />
-      <circle class="nx-theme-icon__sun" cx="12" cy="12" r="4.2" />
-      <path class="nx-theme-icon__moon" d="M20.2 15.5A8.5 8.5 0 0 1 8.5 3.8a8.5 8.5 0 1 0 11.7 11.7Z" />
-    </svg>`;
-
-  const mapIcon = `
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="m3.5 6.5 5-2.2 7 2.2 5-2.2v13.2l-5 2.2-7-2.2-5 2.2Z" />
-      <path d="M8.5 4.3v13.2M15.5 6.5v13.2" />
-    </svg>`;
-
-  const createUtilityDock = () => {
-    if (document.querySelector("[data-nx-utility-dock]")) return;
-
-    const dock = document.createElement("div");
-    dock.className = "nx-utility-dock";
-    dock.dataset.nxUtilityDock = "true";
-    dock.setAttribute("role", "group");
-    dock.setAttribute("aria-label", "Kontrol tampilan dan navigasi proyek");
-    dock.innerHTML = `
-      <button class="nx-utility-button" type="button" data-nx-theme-toggle>
-        ${themeIcon}
-        <span class="nx-utility-button__label" data-nx-theme-label>Tema</span>
-      </button>
-      <button class="nx-utility-button" type="button" data-nx-map-toggle aria-expanded="false" aria-controls="nx-page-map">
-        ${mapIcon}
-        <span class="nx-utility-button__label">Halaman</span>
-        <span class="nx-utility-button__badge" aria-hidden="true">13</span>
-      </button>`;
-    document.body.append(dock);
-
-    dock.querySelector("[data-nx-theme-toggle]")?.addEventListener("click", () => {
-      const current = document.documentElement.dataset.theme || "dark";
-      applyTheme(current === "dark" ? "light" : "dark", {
-        persist: true,
-        announceChange: true,
-      });
-    });
-
-    dock.querySelector("[data-nx-map-toggle]")?.addEventListener("click", (event) => {
-      state.returnFocus = event.currentTarget;
-      setPageMap(true);
-    });
-
-    applyTheme(document.documentElement.dataset.theme || readTheme());
+    if (announceChange) {
+      announce(`Tema ${next === "light" ? "terang" : "gelap"} aktif.`);
+    }
   };
 
   const pageMapMarkup = () => {
@@ -217,6 +166,7 @@
 
   const createPageMap = () => {
     if (document.getElementById("nx-page-map")) return;
+
     const modal = document.createElement("div");
     modal.id = "nx-page-map";
     modal.className = "nx-page-map";
@@ -236,6 +186,7 @@
   const focusableInMap = () => {
     const modal = document.getElementById("nx-page-map");
     if (!modal || modal.hidden) return [];
+
     return Array.from(
       modal.querySelectorAll(
         'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
@@ -246,13 +197,11 @@
   const setPageMap = (open) => {
     createPageMap();
     const modal = document.getElementById("nx-page-map");
-    const toggle = document.querySelector("[data-nx-map-toggle]");
     if (!modal) return;
 
     state.mapOpen = Boolean(open);
     modal.hidden = !state.mapOpen;
     document.body.dataset.nxOverlayOpen = String(state.mapOpen);
-    toggle?.setAttribute("aria-expanded", String(state.mapOpen));
 
     if (state.mapOpen) {
       state.returnFocus ||= document.activeElement;
@@ -281,11 +230,13 @@
       }
 
       if (!state.mapOpen) return;
+
       if (event.key === "Escape") {
         event.preventDefault();
         setPageMap(false);
         return;
       }
+
       if (event.key !== "Tab") return;
 
       const focusable = focusableInMap();
@@ -293,8 +244,10 @@
         event.preventDefault();
         return;
       }
+
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
+
       if (event.shiftKey && document.activeElement === first) {
         event.preventDefault();
         last.focus();
@@ -307,6 +260,7 @@
 
   const initScrollProgress = () => {
     if (document.querySelector("[data-nx-scroll-progress]")) return;
+
     const bar = document.createElement("div");
     bar.className = "nx-scroll-progress";
     bar.dataset.nxScrollProgress = "true";
@@ -356,7 +310,10 @@
   ].join(",");
 
   const enhanceCard = (card) => {
-    if (!(card instanceof HTMLElement) || card.dataset.nxMagicCard === "true") return;
+    if (!(card instanceof HTMLElement) || card.dataset.nxMagicCard === "true") {
+      return;
+    }
+
     card.dataset.nxMagicCard = "true";
     card.classList.add("nx-magic-card");
 
@@ -365,11 +322,13 @@
     let frame = 0;
     let x = -400;
     let y = -400;
+
     const paint = () => {
       frame = 0;
       card.style.setProperty("--nx-pointer-x", `${x}px`);
       card.style.setProperty("--nx-pointer-y", `${y}px`);
     };
+
     card.addEventListener(
       "pointermove",
       (event) => {
@@ -380,6 +339,7 @@
       },
       { passive: true },
     );
+
     card.addEventListener("pointerleave", () => {
       x = -400;
       y = -400;
@@ -394,6 +354,7 @@
 
   const initMagicCards = () => {
     scanCards();
+
     const observer = new MutationObserver((records) => {
       records.forEach((record) => {
         record.addedNodes.forEach((node) => {
@@ -401,12 +362,12 @@
         });
       });
     });
+
     observer.observe(document.body, { childList: true, subtree: true });
   };
 
   const init = () => {
     applyTheme(readTheme());
-    createUtilityDock();
     createPageMap();
     initKeyboard();
     initScrollProgress();
@@ -416,5 +377,8 @@
 
   applyTheme(readTheme());
   onReady(init);
-  window.NexExperience = Object.freeze({ applyTheme, openPageMap: () => setPageMap(true) });
+  window.NexExperience = Object.freeze({
+    applyTheme,
+    openPageMap: () => setPageMap(true),
+  });
 })();
