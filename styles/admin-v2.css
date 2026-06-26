@@ -9,17 +9,24 @@
 @import url("admin-entity-actions.css?v=2");
 @import url("admin-form-workspaces-fixes.css?v=3");
 
-/* Workspace header owns its own layout so legacy drawer selectors cannot leak into controls. */
+/* Compatibility boundary: modern workspaces own their header and footer layout. */
+.page-admin.admin-workspace-fullscreen .suite-drawer-header,
+.page-admin.admin-workspace-fullscreen .editor-drawer__panel > header {
+  overflow: hidden;
+}
+
 .page-admin.admin-workspace-fullscreen .suite-drawer-header > .workspace-header-title,
 .page-admin.admin-workspace-fullscreen .editor-drawer__panel > header > .workspace-header-title {
   display: grid;
   min-width: 0;
+  max-width: 100%;
   flex: 1 1 auto;
   grid-template-columns: minmax(0, auto) auto;
   align-items: center;
   justify-content: start;
   column-gap: 12px;
   row-gap: 6px;
+  overflow: hidden;
 }
 
 .page-admin.admin-workspace-fullscreen .workspace-header-title > span:not(.form-mode-badge) {
@@ -36,6 +43,7 @@
 
 .page-admin.admin-workspace-fullscreen .workspace-header-title > h2 {
   min-width: 0;
+  max-width: 100%;
   grid-column: 1;
   grid-row: 2;
   margin: 0;
@@ -63,13 +71,15 @@
 .page-admin.admin-workspace-fullscreen .workspace-header-controls {
   display: flex;
   min-width: max-content;
+  max-width: 100%;
   flex: 0 0 auto;
   align-items: center;
   justify-content: flex-end;
+  flex-wrap: nowrap;
   gap: 8px;
 }
 
-.page-admin.admin-workspace-fullscreen .workspace-header-button {
+.page-admin.admin-workspace-fullscreen .workspace-header-controls > .workspace-header-button {
   display: inline-flex;
   width: auto;
   min-width: 42px;
@@ -84,7 +94,7 @@
   white-space: nowrap;
 }
 
-.page-admin.admin-workspace-fullscreen .workspace-header-button > span {
+.page-admin.admin-workspace-fullscreen .workspace-header-controls > .workspace-header-button > span {
   display: inline;
   margin: 0;
   color: inherit;
@@ -97,11 +107,11 @@
   white-space: nowrap;
 }
 
-.page-admin.admin-workspace-fullscreen .workspace-header-button > i {
+.page-admin.admin-workspace-fullscreen .workspace-header-controls > .workspace-header-button > i {
   flex: 0 0 18px;
 }
 
-.page-admin.admin-workspace-fullscreen .workspace-header-close {
+.page-admin.admin-workspace-fullscreen .workspace-header-controls > .workspace-header-close {
   width: 42px;
   min-width: 42px;
   height: 42px;
@@ -111,13 +121,24 @@
   line-height: 1;
 }
 
+/* Legacy article footer rules must not stretch modern sticky actions. */
+.page-admin.admin-workspace-fullscreen .editor-drawer .form-sticky-actions,
+.page-admin.admin-workspace-fullscreen .suite-form .form-sticky-actions {
+  margin-top: 0;
+}
+
+.page-admin.admin-workspace-fullscreen .editor-drawer .form-sticky-actions .btn,
+.page-admin.admin-workspace-fullscreen .suite-form .form-sticky-actions .btn {
+  flex: 0 0 auto;
+}
+
 @media (max-width: 1360px) {
-  .page-admin.admin-workspace-fullscreen .workspace-header-button {
+  .page-admin.admin-workspace-fullscreen .workspace-header-controls > .workspace-header-button {
     width: 42px;
     padding: 0;
   }
 
-  .page-admin.admin-workspace-fullscreen .workspace-header-button > span {
+  .page-admin.admin-workspace-fullscreen .workspace-header-controls > .workspace-header-button > span {
     display: none;
   }
 }
@@ -138,5 +159,10 @@
 
   .page-admin.admin-workspace-fullscreen .workspace-header-controls {
     min-width: auto;
+  }
+
+  .page-admin.admin-workspace-fullscreen .editor-drawer .form-sticky-actions .btn,
+  .page-admin.admin-workspace-fullscreen .suite-form .form-sticky-actions .btn {
+    flex: initial;
   }
 }
