@@ -31,8 +31,8 @@
   };
 
   const isOpen = () => drawer?.classList.contains("is-open") || drawer?.getAttribute("aria-hidden") === "false";
-  const hasSummary = () => Boolean($?.call(null, ".form-workspace__aside", drawer));
-  const hasNavigation = () => Boolean($?.call(null, ".form-workspace__nav", drawer));
+  const hasSummary = () => Boolean($(".form-workspace__aside", drawer));
+  const hasNavigation = () => Boolean($(".form-workspace__nav", drawer));
 
   const setButtonLabel = (button, text) => {
     const label = $("span", button);
@@ -46,11 +46,11 @@
     const button = $("[data-workspace-summary-toggle]", drawer);
     if (button) {
       const collapsed = next === "collapsed";
-      const text = collapsed ? "Tampilkan ringkasan" : "Sembunyikan ringkasan";
+      const actionLabel = collapsed ? "Tampilkan panel ringkasan" : "Sembunyikan panel ringkasan";
       button.setAttribute("aria-pressed", String(collapsed));
-      button.setAttribute("aria-label", text);
-      button.title = text;
-      setButtonLabel(button, text);
+      button.setAttribute("aria-label", actionLabel);
+      button.title = actionLabel;
+      setButtonLabel(button, "Ringkasan");
     }
     if (persist) writePreference({ ...readPreference(), summary: next });
   };
@@ -62,11 +62,11 @@
     const button = $("[data-workspace-nav-toggle]", drawer);
     if (button) {
       const compact = next === "compact";
-      const text = compact ? "Perluas navigasi" : "Ringkas navigasi";
+      const actionLabel = compact ? "Perluas navigasi form" : "Ringkas navigasi form";
       button.setAttribute("aria-pressed", String(compact));
-      button.setAttribute("aria-label", text);
-      button.title = text;
-      setButtonLabel(button, text);
+      button.setAttribute("aria-label", actionLabel);
+      button.title = actionLabel;
+      setButtonLabel(button, "Navigasi");
     }
     if (persist) writePreference({ ...readPreference(), nav: next });
   };
@@ -80,11 +80,13 @@
     };
   };
 
-  const createHeaderButton = ({ attribute, icon, label }) => {
+  const createHeaderButton = ({ attribute, icon, label, ariaLabel }) => {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "workspace-header-button";
     button.setAttribute(attribute, "true");
+    button.setAttribute("aria-label", ariaLabel);
+    button.title = ariaLabel;
     button.innerHTML = `<i aria-hidden="true">${icon}</i><span>${label}</span>`;
     return button;
   };
@@ -92,17 +94,27 @@
   const enhanceHeader = () => {
     if (!drawer) return;
     const header = $(".suite-drawer-header, .editor-drawer__panel > header", drawer);
-    if (!header || $(".workspace-header-controls", header)) return;
+    if (!header) return;
+
+    const title = header.firstElementChild;
+    if (title instanceof HTMLElement) title.classList.add("workspace-header-title");
 
     const close = $("[data-close-drawer], [data-close-editor]", header);
+    close?.classList.add("workspace-header-close");
+
+    if ($(".workspace-header-controls", header)) return;
+
     const controls = document.createElement("div");
     controls.className = "workspace-header-controls";
+    controls.setAttribute("role", "group");
+    controls.setAttribute("aria-label", "Kontrol tampilan form");
 
     if (hasNavigation()) {
       const navButton = createHeaderButton({
         attribute: "data-workspace-nav-toggle",
         icon: "☷",
-        label: "Ringkas navigasi",
+        label: "Navigasi",
+        ariaLabel: "Ringkas navigasi form",
       });
       navButton.addEventListener("click", () => setNavigation(drawer.dataset.nav === "compact" ? "expanded" : "compact"));
       controls.append(navButton);
@@ -112,7 +124,8 @@
       const summaryButton = createHeaderButton({
         attribute: "data-workspace-summary-toggle",
         icon: "◫",
-        label: "Sembunyikan ringkasan",
+        label: "Ringkasan",
+        ariaLabel: "Sembunyikan panel ringkasan",
       });
       summaryButton.addEventListener("click", () => setSummary(drawer.dataset.summary === "collapsed" ? "visible" : "collapsed"));
       controls.append(summaryButton);
@@ -128,7 +141,7 @@
     const header = $(".suite-drawer-header, .editor-drawer__panel > header", drawer);
     if (!workspace || !header) return;
     const mode = workspace.dataset.formMode || drawer.dataset.formMode || "edit";
-    const text = mode === "create" ? "Create workspace" : "Full edit workspace";
+    const text = mode === "create" || mode === "new" ? "Create mode" : "Edit mode";
     drawer.dataset.workspaceMode = mode;
     const badge = $(".form-mode-badge", header);
     if (badge && badge.textContent !== text) badge.textContent = text;
