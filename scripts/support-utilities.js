@@ -7,8 +7,10 @@
       this.items = [...root.querySelectorAll(".accordion-item")];
       this.search = root.querySelector("[data-help-search]");
       this.status = root.querySelector("[data-help-search-status]");
+      this.empty = root.querySelector("[data-help-empty]");
       this.bindAccordion();
       this.bindSearch();
+      this.bindKeyboardShortcut();
     }
 
     bindAccordion() {
@@ -47,12 +49,31 @@
         this.items.forEach((item) => {
           const matched = !query || item.textContent.toLocaleLowerCase("id-ID").includes(query);
           item.hidden = !matched;
+          if (!matched && item.classList.contains("active")) this.closeAll();
           if (matched) visible += 1;
         });
 
         if (this.status) {
-          this.status.textContent = query ? `${visible} jawaban ditemukan.` : "";
+          this.status.textContent = query
+            ? visible > 0
+              ? `${visible} jawaban ditemukan.`
+              : "Tidak ada jawaban yang cocok."
+            : "";
         }
+
+        if (this.empty) this.empty.hidden = !query || visible > 0;
+        this.root.dataset.helpSearchState = query ? (visible ? "results" : "empty") : "idle";
+      });
+    }
+
+    bindKeyboardShortcut() {
+      if (!this.search) return;
+      document.addEventListener("keydown", (event) => {
+        const tag = document.activeElement?.tagName;
+        const isTyping = tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT";
+        if (event.key !== "/" || isTyping) return;
+        event.preventDefault();
+        this.search.focus();
       });
     }
   }
