@@ -28,11 +28,20 @@
     document.body.append(script);
   };
 
+  const normalizeFastPathLinks = () => {
+    document
+      .querySelectorAll('a[href="catalog.html?setup=streaming"]')
+      .forEach((link) => {
+        link.href = "catalog.html?category=sound";
+      });
+  };
+
   const loadProductDecisionAssets = () => {
     if (!["catalog.html", "product-detail.html"].includes(page)) return;
     ensureStyle("styles/persona-product-decision.css?v=1");
     ensureScript("scripts/persona-product-decision.js?v=1", "personaProductDecision");
     ensureScript("scripts/persona-product-regression.js?v=1", "personaProductRegression");
+    window.setTimeout(normalizeFastPathLinks, 80);
   };
 
   const readUser = () => {
@@ -107,7 +116,10 @@
     logout();
   });
 
-  document.addEventListener("nexgear:components-ready", updateCustomerNavigation);
+  document.addEventListener("nexgear:components-ready", () => {
+    updateCustomerNavigation();
+    normalizeFastPathLinks();
+  });
   window.addEventListener("nexgear:auth-change", updateCustomerNavigation);
   window.addEventListener("storage", (event) => {
     if ([AUTH_KEY, USER_KEY].includes(event.key)) updateCustomerNavigation();
@@ -117,11 +129,13 @@
 
   if (document.documentElement.classList.contains("global-components-ready")) {
     updateCustomerNavigation();
+    normalizeFastPathLinks();
   }
 
   window.NexPersonaCustomerFlow = Object.freeze({
     refresh: updateCustomerNavigation,
     logout,
     loadProductDecisionAssets,
+    normalizeFastPathLinks,
   });
 })();
