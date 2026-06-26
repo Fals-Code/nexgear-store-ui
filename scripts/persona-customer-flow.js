@@ -18,19 +18,21 @@
     document.head.append(link);
   };
 
-  const ensureScript = (path) => {
+  const ensureScript = (path, dataName) => {
     const src = asset(path);
     if ([...document.scripts].some((script) => script.src === src)) return;
     const script = document.createElement("script");
     script.src = src;
-    script.dataset.personaProductDecision = "true";
+    script.async = false;
+    script.dataset[dataName] = "true";
     document.body.append(script);
   };
 
   const loadProductDecisionAssets = () => {
     if (!["catalog.html", "product-detail.html"].includes(page)) return;
     ensureStyle("styles/persona-product-decision.css?v=1");
-    ensureScript("scripts/persona-product-decision.js?v=1");
+    ensureScript("scripts/persona-product-decision.js?v=1", "personaProductDecision");
+    ensureScript("scripts/persona-product-regression.js?v=1", "personaProductRegression");
   };
 
   const readUser = () => {
