@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/admin-layout.css?v=1">
   <link rel="stylesheet" href="styles/admin-articles.css?v=1">
-  <link rel="stylesheet" href="styles/admin-v2.css?v=5">
+  <link rel="stylesheet" href="styles/admin-v2.css?v=6">
 </head>
 <body class="page-admin page-admin-articles" data-admin-page="articles" data-view="table">
   <div class="admin-shell">
@@ -99,7 +99,7 @@
   <aside class="editor-drawer" id="editor-drawer" aria-hidden="true">
     <div class="editor-drawer__overlay" data-close-editor></div>
     <form class="editor-drawer__panel">
-      <header><div><span>QUICK EDIT</span><h2 id="editor-title">Edit Artikel</h2></div><button type="button" data-close-editor aria-label="Tutup editor">×</button></header>
+      <header><div><span>EDITORIAL WORKSPACE</span><h2 id="editor-title">Edit Artikel</h2></div><button type="button" data-close-editor aria-label="Tutup editor">×</button></header>
       <label>Judul Artikel<input id="editor-title-input" type="text" required></label>
       <label>Slug<input id="editor-slug-input" type="text"></label>
       <div class="editor-grid"><label>Kategori<select id="editor-category-input"><option>Hardware</option><option>Setup Tips</option><option>Buying Guide</option><option>Audio</option><option>Performance</option><option>Upgrade</option></select></label><label>Status<select id="editor-status-input"><option>Terbit</option><option>Draft</option><option>Terjadwal</option><option>Review</option><option>Arsip</option></select></label></div>
@@ -111,9 +111,10 @@
 
   <div class="confirm-modal" id="delete-modal" hidden><div class="confirm-modal__card"><span class="confirm-icon">!</span><h2>Hapus artikel?</h2><p id="delete-message">Artikel akan dihapus.</p><div><button class="btn btn-outline" id="delete-cancel">Batal</button><button class="btn btn-danger" id="delete-confirm">Hapus Artikel</button></div></div></div>
   <div class="admin-toast" id="admin-toast" hidden></div>
-  <script src="scripts/admin-articles.js?v=1"></script>
+  <script src="scripts/admin-articles.js?v=2"></script>
   <script src="scripts/admin-action-menu.js?v=2"></script>
   <script src="scripts/admin-crud-modern.js?v=1"></script>
+  <script src="scripts/admin-form-workspaces.js?v=1"></script>
   <script src="scripts/admin-crud-theme-sync.js?v=1"></script>
   <script src="scripts/admin-control-center.js?v=2"></script>
 </body>
