@@ -130,6 +130,8 @@
     const drawer = $(drawerSelector);
     if (!drawer || !drawer.classList.contains("is-open")) return null;
     results.clear();
+    const theme = body.dataset.adminTheme || document.documentElement.dataset.theme || "dark";
+    record("theme:resolved", theme === "light" || theme === "dark", `Tema aktif: ${theme}.`);
     checkHeader(drawer);
     checkInputs(drawer);
     checkFooter(drawer);
@@ -153,9 +155,15 @@
     });
   }
 
+  new MutationObserver(schedule).observe(body, {
+    attributes: true,
+    attributeFilter: ["data-admin-theme"],
+  });
+
   window.addEventListener("resize", schedule, { passive: true });
   window.addEventListener("nexgear:workspace-opened", schedule);
   window.addEventListener("nexgear:workspace-layoutchange", schedule);
+  window.addEventListener("nexgear:themechange", schedule);
 
   window.NexAdminWorkspaceRegression = Object.freeze({ run, schedule });
 })();
