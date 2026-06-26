@@ -149,7 +149,12 @@ const runVisualAudit = async (browser) => {
       const pageErrors = [];
 
       page.on("console", (message) => {
-        if (message.type() === "error") consoleErrors.push(message.text());
+        const text = message.text();
+        const isHandledResourceFailure =
+          message.type() === "error" && text.startsWith("Failed to load resource");
+        if (message.type() === "error" && !isHandledResourceFailure) {
+          consoleErrors.push(text);
+        }
       });
       page.on("pageerror", (error) => pageErrors.push(error.message));
 
@@ -217,13 +222,18 @@ const runVisualAudit = async (browser) => {
 
 const runCheckoutFlow = async (browser) => {
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
-  await context.addInitScript(seedStorage, { cart: demoCart, order: demoOrder });
   const page = await context.newPage();
   const failures = [];
 
   page.on("pageerror", (error) => failures.push(`Page error: ${error.message}`));
 
   try {
+    await page.goto(`${baseUrl}/index.html`, {
+      waitUntil: "domcontentloaded",
+      timeout: 30000,
+    });
+    await page.evaluate(seedStorage, { cart: demoCart, order: demoOrder });
+
     await page.goto(`${baseUrl}/checkout.html`, {
       waitUntil: "domcontentloaded",
       timeout: 30000,

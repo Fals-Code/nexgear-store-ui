@@ -162,6 +162,12 @@ body[data-modal-open="true"] {
     transition-delay: 0ms !important;
   }
 
+  .js-enabled .reveal,
+  .js-enabled .admin-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   video[autoplay] {
     visibility: hidden;
   }
