@@ -56,6 +56,12 @@
     if (root.dataset.theme !== expected) applyTheme(expected);
   }).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
 
+  document.addEventListener("input", (event) => {
+    if (event.target.matches('input[name="id"], input[name="email"]')) {
+      event.target.setCustomValidity("");
+    }
+  });
+
   document.addEventListener("DOMContentLoaded", () => {
     restoreAdminTheme();
     loadArticlePersistence();
