@@ -1,4 +1,4 @@
-/* Full-screen workspace layer loaded after the shared form system. */
+/* Full-screen admin form workspace. Loaded after the shared workspace system. */
 .page-admin {
   --workspace-header-height: 84px;
   --workspace-footer-height: 76px;
@@ -7,6 +7,10 @@
   --workspace-summary-width: clamp(310px, 22vw, 360px);
   --workspace-content-max: 1040px;
   --workspace-gutter: clamp(22px, 3vw, 42px);
+}
+
+body.page-admin.admin-workspace-active {
+  overflow: hidden;
 }
 
 .page-admin .form-workspace {
@@ -37,8 +41,9 @@
 .page-admin.admin-workspace-fullscreen[data-admin-page="transactions"] .suite-drawer-panel {
   inset: 0;
   display: flex;
-  width: 100vw;
+  width: auto;
   max-width: none;
+  height: 100vh;
   height: 100dvh;
   max-height: none;
   flex-direction: column;
@@ -74,7 +79,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 18px;
+  margin: 0;
   padding: 14px var(--workspace-gutter);
+  border: 0;
   border-bottom: 1px solid var(--form-line);
   background:
     linear-gradient(90deg, rgba(0, 229, 255, .045), transparent 46%),
@@ -85,7 +92,7 @@
 
 .page-admin.admin-workspace-fullscreen .suite-drawer-header h2,
 .page-admin.admin-workspace-fullscreen .editor-drawer__panel > header h2 {
-  margin-top: 5px;
+  margin: 5px 0 0;
   font-size: clamp(1.35rem, 2.2vw, 2rem);
   letter-spacing: -.025em;
 }
@@ -140,6 +147,8 @@
   height: 42px;
   flex: 0 0 auto;
   place-items: center;
+  margin: 0;
+  padding: 0;
   border: 1px solid var(--form-line);
   border-radius: 12px;
   background: color-mix(in srgb, var(--admin-panel-soft) 82%, transparent);
@@ -163,36 +172,32 @@
   flex: 1;
 }
 
-.page-admin.admin-workspace-fullscreen .form-workspace,
-.page-admin.admin-workspace-fullscreen .form-workspace--compact {
-  grid-template-columns: var(--workspace-nav-width) minmax(0, 1fr) var(--workspace-summary-width);
+.page-admin.admin-workspace-fullscreen .form-workspace {
   width: 100%;
   height: 100%;
   min-height: 0;
   flex: 1;
+  grid-template-columns: var(--workspace-nav-width) minmax(0, 1fr) var(--workspace-summary-width);
   background: transparent;
 }
 
-.page-admin.admin-workspace-fullscreen .form-workspace--compact,
-.page-admin.admin-workspace-fullscreen .form-workspace:not(:has(.form-workspace__aside)) {
+.page-admin.admin-workspace-fullscreen .form-workspace--compact {
   grid-template-columns: var(--workspace-nav-width) minmax(0, 1fr);
 }
 
-.page-admin.admin-workspace-fullscreen [data-nav="compact"] .form-workspace,
-.page-admin.admin-workspace-fullscreen [data-nav="compact"] .form-workspace--compact {
+.page-admin.admin-workspace-fullscreen [data-nav="compact"] .form-workspace {
   grid-template-columns: var(--workspace-nav-compact) minmax(0, 1fr) var(--workspace-summary-width);
 }
 
-.page-admin.admin-workspace-fullscreen [data-nav="compact"] .form-workspace--compact,
-.page-admin.admin-workspace-fullscreen [data-nav="compact"] .form-workspace:not(:has(.form-workspace__aside)) {
+.page-admin.admin-workspace-fullscreen [data-nav="compact"] .form-workspace--compact {
   grid-template-columns: var(--workspace-nav-compact) minmax(0, 1fr);
 }
 
-.page-admin.admin-workspace-fullscreen [data-summary="collapsed"] .form-workspace {
+.page-admin.admin-workspace-fullscreen [data-summary="collapsed"] .form-workspace:not(.form-workspace--compact) {
   grid-template-columns: var(--workspace-nav-width) minmax(0, 1fr);
 }
 
-.page-admin.admin-workspace-fullscreen [data-summary="collapsed"][data-nav="compact"] .form-workspace {
+.page-admin.admin-workspace-fullscreen [data-summary="collapsed"][data-nav="compact"] .form-workspace:not(.form-workspace--compact) {
   grid-template-columns: var(--workspace-nav-compact) minmax(0, 1fr);
 }
 
@@ -256,8 +261,13 @@
   margin-bottom: 0;
 }
 
-.page-admin.admin-workspace-fullscreen .form-section__header {
-  margin-bottom: 22px;
+.page-admin.admin-workspace-fullscreen .editor-drawer .form-section__header,
+.page-admin.admin-workspace-fullscreen .suite-form .form-section__header {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 22px;
+  padding: 0;
+  border: 0;
 }
 
 .page-admin.admin-workspace-fullscreen .form-section__header p {
@@ -269,22 +279,67 @@
   gap: 18px;
 }
 
-.page-admin.admin-workspace-fullscreen .form-field input,
-.page-admin.admin-workspace-fullscreen .form-field select,
-.page-admin.admin-workspace-fullscreen .form-field textarea,
-.page-admin.admin-workspace-fullscreen .form-workspace input,
-.page-admin.admin-workspace-fullscreen .form-workspace select,
-.page-admin.admin-workspace-fullscreen .form-workspace textarea {
+/* Neutralize legacy drawer label rules inside the modern workspace. */
+.page-admin.admin-workspace-fullscreen .suite-form .form-field,
+.page-admin.admin-workspace-fullscreen .editor-drawer .form-field {
+  display: grid;
+  flex-direction: initial;
+  gap: 7px;
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.page-admin.admin-workspace-fullscreen .suite-form .form-toggle,
+.page-admin.admin-workspace-fullscreen .editor-drawer .form-toggle {
+  display: flex;
+  flex-direction: row;
+  min-height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+  padding: 11px 13px;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.page-admin.admin-workspace-fullscreen .form-field > input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+.page-admin.admin-workspace-fullscreen .form-field > select,
+.page-admin.admin-workspace-fullscreen .form-field > textarea,
+.page-admin.admin-workspace-fullscreen .form-input-group input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]) {
   min-height: 52px;
   padding-inline: 15px;
   border-radius: 13px;
   font-size: .84rem;
 }
 
-.page-admin.admin-workspace-fullscreen .form-field textarea,
-.page-admin.admin-workspace-fullscreen .form-workspace textarea {
+.page-admin.admin-workspace-fullscreen .form-field > textarea {
   min-height: 150px;
   padding-block: 14px;
+}
+
+.page-admin.admin-workspace-fullscreen .form-toggle > input[type="checkbox"] {
+  width: 42px;
+  height: 24px;
+  min-height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+}
+
+.page-admin.admin-workspace-fullscreen .permission-matrix input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  padding: 0;
+  border-radius: 4px;
 }
 
 .page-admin.admin-workspace-fullscreen .form-workspace__aside {
@@ -325,8 +380,9 @@
   padding-inline: 18px;
 }
 
-.page-admin.admin-workspace-fullscreen.admin-workspace-active .admin-shell {
-  filter: none;
+/* Must stay above the 2050 fullscreen workspace and the 2200 entity action dialog. */
+.page-admin .unsaved-dialog {
+  z-index: 2300;
 }
 
 @media (max-width: 1360px) {
@@ -412,8 +468,7 @@
   .page-admin.admin-workspace-fullscreen .form-workspace,
   .page-admin.admin-workspace-fullscreen .form-workspace--compact,
   .page-admin.admin-workspace-fullscreen [data-nav="compact"] .form-workspace,
-  .page-admin.admin-workspace-fullscreen [data-summary="collapsed"] .form-workspace,
-  .page-admin.admin-workspace-fullscreen [data-summary="collapsed"][data-nav="compact"] .form-workspace {
+  .page-admin.admin-workspace-fullscreen [data-summary="collapsed"] .form-workspace {
     grid-template-columns: 1fr;
     grid-template-rows: auto minmax(0, 1fr);
   }
@@ -461,6 +516,12 @@
     border-radius: 16px;
   }
 
+  .page-admin.admin-workspace-fullscreen .editor-drawer .form-section__header,
+  .page-admin.admin-workspace-fullscreen .suite-form .form-section__header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .page-admin.admin-workspace-fullscreen .form-grid,
   .page-admin.admin-workspace-fullscreen .form-grid--3 {
     grid-template-columns: 1fr;
@@ -491,7 +552,8 @@
     justify-content: center;
   }
 
-  .page-admin.admin-workspace-fullscreen .form-sticky-actions__buttons .btn:nth-last-child(n + 3) {
+  .page-admin.admin-workspace-fullscreen [data-workspace-preview],
+  .page-admin.admin-workspace-fullscreen [data-workspace-draft] {
     display: none;
   }
 }
@@ -504,10 +566,6 @@
   .page-admin.admin-workspace-fullscreen .suite-drawer-header span,
   .page-admin.admin-workspace-fullscreen .editor-drawer__panel > header span {
     font-size: .54rem;
-  }
-
-  .page-admin.admin-workspace-fullscreen .form-section__header {
-    gap: 10px;
   }
 }
 
