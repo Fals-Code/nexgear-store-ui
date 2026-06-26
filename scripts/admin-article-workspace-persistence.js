@@ -51,8 +51,7 @@
     if (!row) return;
 
     Object.entries(payload.values).forEach(([name, value]) => {
-      const key = name.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
-      row.dataset[key] = String(value);
+      row.dataset[name] = String(value);
     });
 
     const store = readStore();
