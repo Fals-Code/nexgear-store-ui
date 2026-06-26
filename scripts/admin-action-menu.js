@@ -1,6 +1,15 @@
 (() => {
   "use strict";
 
+  const ensureFeedback = () => {
+    if (window.NexAdminFeedback || document.querySelector('script[src^="scripts/admin-action-feedback.js"]')) return;
+    const script = document.createElement("script");
+    script.src = "scripts/admin-action-feedback.js?v=1";
+    script.dataset.adminActionFeedback = "true";
+    document.body.append(script);
+  };
+
+  ensureFeedback();
   if (window.NexAdminActionMenu) return;
 
   const menu = document.querySelector("#suite-menu, #article-row-menu");
