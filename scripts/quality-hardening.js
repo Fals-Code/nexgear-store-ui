@@ -153,6 +153,50 @@
     });
   };
 
+  const initCatalogReadiness = () => {
+    if (page !== "catalog.html") return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let releaseTimer = 0;
+    let firstLoad = true;
+
+    const release = () => {
+      window.clearTimeout(releaseTimer);
+      document.body.classList.remove("catalog-data-loading");
+      const skeleton = document.querySelector(".catalog-loading-wireframe");
+      if (skeleton) {
+        skeleton.hidden = true;
+        skeleton.setAttribute("aria-hidden", "true");
+      }
+    };
+
+    const scheduleRelease = () => {
+      if (!document.body.classList.contains("catalog-data-loading")) return;
+      if (reducedMotion.matches) {
+        release();
+        return;
+      }
+
+      window.clearTimeout(releaseTimer);
+      releaseTimer = window.setTimeout(release, firstLoad ? 720 : 360);
+      firstLoad = false;
+    };
+
+    const observer = new MutationObserver(scheduleRelease);
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(scheduleRelease);
+    });
+
+    reducedMotion.addEventListener?.("change", () => {
+      if (reducedMotion.matches) release();
+    });
+  };
+
   const readJson = (key, fallback) => {
     try {
       return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback));
@@ -306,6 +350,7 @@
     initLandmarks();
     initMediaResilience();
     initFormFeedback();
+    initCatalogReadiness();
     initPaymentRecovery();
     syncCurrentNavigation();
 
