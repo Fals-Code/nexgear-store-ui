@@ -1,0 +1,18 @@
+/* Structural safeguards loaded after the workspace system. */
+.page-admin .form-workspace {
+  position: relative;
+}
+
+.page-admin .suite-form #suite-form-fields > .form-workspace {
+  height: 100%;
+}
+
+.page-admin .editor-drawer__panel > .form-workspace {
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  .page-admin .suite-form #suite-form-fields > .form-workspace {
+    min-height: 100%;
+  }
+}
