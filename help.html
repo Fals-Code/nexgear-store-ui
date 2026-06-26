@@ -6,135 +6,175 @@
   <meta name="description" content="Pusat bantuan NEXGEAR untuk pesanan, pengiriman, garansi, pembayaran, dan akun.">
   <title>Pusat Bantuan | NEXGEAR</title>
   <link rel="stylesheet" href="styles/global.css">
-  <link rel="stylesheet" href="styles/help.css">
+  <link rel="stylesheet" href="styles/help.css?v=2">
+  <link rel="stylesheet" href="styles/editorial-pages-upgrade.css?v=1">
 </head>
-<body class="page-help" data-footer-reveal="compact">
+<body class="page-help">
   <div id="global-header"></div>
 
   <main class="site-main">
     <section class="help-hero" aria-labelledby="help-title">
-      <div class="container">
-        <span class="help-kicker"><i aria-hidden="true"></i>NEXGEAR / HELP CENTER</span>
-        <h1 id="help-title">Temukan jawaban sebelum membuat tiket.</h1>
-        <p class="help-intro">Mulai dari topik utama atau cari kendala yang sedang kamu hadapi.</p>
+      <div class="container help-hero__grid">
+        <div class="help-hero__copy" data-page-reveal>
+          <span class="help-kicker"><i aria-hidden="true"></i>NEXGEAR / HELP CENTER</span>
+          <h1 id="help-title">Temukan jawaban sebelum membuat tiket.</h1>
+          <p class="help-intro">Mulai dari topik utama atau cari kendala yang sedang kamu hadapi.</p>
 
-        <div class="help-search-container" role="search">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <label class="sr-only" for="help-search">Cari topik bantuan</label>
-          <input id="help-search" type="search" class="help-search-input" placeholder="Cari status pengiriman, garansi, pembayaran..." autocomplete="off" data-help-search>
+          <div class="help-search-container" role="search">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <label class="sr-only" for="help-search">Cari topik bantuan</label>
+            <input id="help-search" type="search" class="help-search-input" placeholder="Cari status pengiriman, garansi, pembayaran..." autocomplete="off" data-help-search>
+            <span class="help-search-shortcut" aria-hidden="true">Tekan /</span>
+          </div>
+          <div class="help-query-chips" aria-label="Pencarian populer">
+            <button type="button" data-help-query="lacak pesanan">Lacak pesanan</button>
+            <button type="button" data-help-query="garansi">Garansi</button>
+            <button type="button" data-help-query="saldo terpotong">Saldo terpotong</button>
+          </div>
+          <p class="help-search-status" aria-live="polite" data-help-search-status></p>
         </div>
-        <p class="help-search-status" aria-live="polite" data-help-search-status></p>
+
+        <aside class="help-hero__pulse ui-glow-card" aria-label="Ringkasan layanan bantuan" data-page-reveal data-delay="120">
+          <span>SUPPORT PULSE</span>
+          <h2>Jawaban cepat untuk kendala paling umum.</h2>
+          <p>Gunakan panduan mandiri terlebih dahulu. Buat tiket hanya ketika masalah membutuhkan pemeriksaan khusus.</p>
+          <dl>
+            <div><dt>Topik aktif</dt><dd>5 kategori</dd></div>
+            <div><dt>Respons tiket</dt><dd>&lt; 24 jam</dd></div>
+          </dl>
+        </aside>
       </div>
     </section>
 
     <div class="container section-padding">
       <nav class="help-categories" aria-label="Kategori bantuan">
-        <a href="#faq-orders" class="help-cat-card">
+        <a href="#faq-orders" class="help-cat-card ui-glow-card" data-index="01" data-page-reveal>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8M8 17h6"></path></svg>
           <h2>Pesanan</h2>
           <p>Lacak, ubah, atau batalkan pesanan.</p>
         </a>
 
-        <a href="#faq-shipping" class="help-cat-card">
+        <a href="#faq-shipping" class="help-cat-card ui-glow-card" data-index="02" data-page-reveal data-delay="50">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h11v9H3z"></path><path d="M14 10h4l3 3v3h-7z"></path><circle cx="7" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>
           <h2>Pengiriman</h2>
           <p>Kurir, ongkir, dan estimasi tiba.</p>
         </a>
 
-        <a href="#faq-warranty" class="help-cat-card">
+        <a href="#faq-warranty" class="help-cat-card ui-glow-card" data-index="03" data-page-reveal data-delay="100">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6z"></path><path d="m9 12 2 2 4-5"></path></svg>
           <h2>Garansi</h2>
           <p>Klaim, retur, dan bukti pembelian.</p>
         </a>
 
-        <a href="#faq-payment" class="help-cat-card">
+        <a href="#faq-payment" class="help-cat-card ui-glow-card" data-index="04" data-page-reveal data-delay="150">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg>
           <h2>Pembayaran</h2>
           <p>Metode bayar dan status transaksi.</p>
         </a>
 
-        <a href="#faq-account" class="help-cat-card">
+        <a href="#faq-account" class="help-cat-card ui-glow-card" data-index="05" data-page-reveal data-delay="200">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
           <h2>Akun</h2>
           <p>Profil, keamanan, dan akses akun.</p>
         </a>
       </nav>
 
-      <section class="faq-container" aria-labelledby="faq-title">
-        <div class="faq-heading">
-          <span>COMMON QUESTIONS</span>
-          <h2 id="faq-title" class="faq-title">Pertanyaan yang paling sering muncul.</h2>
+      <div class="help-workspace">
+        <aside class="help-guide ui-glow-card" data-page-reveal>
+          <span>RESOLUTION PATH</span>
+          <h2>Selesaikan masalah tanpa bolak-balik.</h2>
+          <p>Urutan informasi yang tepat mempercepat pencarian jawaban dan mengurangi tiket yang harus ditanya ulang.</p>
+          <ol>
+            <li>Cari kata kunci yang paling spesifik.</li>
+            <li>Baca langkah dan syarat yang relevan.</li>
+            <li>Siapkan nomor pesanan atau bukti bila perlu.</li>
+          </ol>
+          <a href="contact.html">Masih buntu? Buat tiket →</a>
+        </aside>
+
+        <section class="faq-container" aria-labelledby="faq-title" data-page-reveal data-delay="80">
+          <div class="faq-heading">
+            <span>COMMON QUESTIONS</span>
+            <h2 id="faq-title" class="faq-title">Pertanyaan yang paling sering muncul.</h2>
+          </div>
+
+          <div class="accordion" data-accordion-group>
+            <article id="faq-orders" class="accordion-item">
+              <h3>
+                <button class="accordion-header" type="button" aria-expanded="false" aria-controls="answer-orders" data-accordion-trigger>
+                  <span>Bagaimana cara melacak pesanan?</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+                </button>
+              </h3>
+              <div id="answer-orders" class="accordion-body" hidden>
+                <p>Masukkan nomor pesanan di halaman <a href="track-order.html" class="text-accent">Lacak Pesanan</a>. Pengguna yang sudah masuk juga dapat melihat status melalui Riwayat Pesanan.</p>
+              </div>
+            </article>
+
+            <article id="faq-shipping" class="accordion-item">
+              <h3>
+                <button class="accordion-header" type="button" aria-expanded="false" aria-controls="answer-shipping" data-accordion-trigger>
+                  <span>Kapan nomor resi tersedia?</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+                </button>
+              </h3>
+              <div id="answer-shipping" class="accordion-body" hidden>
+                <p>Nomor resi muncul setelah pesanan diserahkan kepada kurir. Pembaruan pertama biasanya membutuhkan waktu beberapa jam setelah proses pickup.</p>
+              </div>
+            </article>
+
+            <article id="faq-warranty" class="accordion-item">
+              <h3>
+                <button class="accordion-header" type="button" aria-expanded="false" aria-controls="answer-warranty" data-accordion-trigger>
+                  <span>Apa yang diperlukan untuk klaim garansi?</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+                </button>
+              </h3>
+              <div id="answer-warranty" class="accordion-body" hidden>
+                <p>Siapkan invoice, nomor seri, dan dokumentasi kendala. Tim support akan memeriksa cakupan garansi sebelum mengarahkan proses ke distributor atau service center.</p>
+              </div>
+            </article>
+
+            <article id="faq-payment" class="accordion-item">
+              <h3>
+                <button class="accordion-header" type="button" aria-expanded="false" aria-controls="answer-payment" data-accordion-trigger>
+                  <span>Pembayaran gagal tetapi saldo terpotong. Apa langkah berikutnya?</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+                </button>
+              </h3>
+              <div id="answer-payment" class="accordion-body" hidden>
+                <p>Tunggu rekonsiliasi maksimal 1×24 jam. Buat tiket dengan bukti pembayaran dan nomor pesanan bila status belum berubah.</p>
+              </div>
+            </article>
+
+            <article id="faq-account" class="accordion-item">
+              <h3>
+                <button class="accordion-header" type="button" aria-expanded="false" aria-controls="answer-account" data-accordion-trigger>
+                  <span>Bagaimana cara mengubah email akun?</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+                </button>
+              </h3>
+              <div id="answer-account" class="accordion-body" hidden>
+                <p>Buka Pengaturan Akun, pilih Informasi Kontak, lalu lakukan verifikasi pada alamat email baru.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="help-empty" hidden data-help-empty>
+            <strong>Jawaban belum ditemukan.</strong>
+            <span>Coba kata yang lebih singkat atau buat support ticket dengan detail kendala.</span>
+          </div>
+        </section>
+      </div>
+
+      <section class="help-cta-box ui-glow-card" aria-labelledby="help-contact-title" data-page-reveal>
+        <div>
+          <h2 id="help-contact-title">Masalah belum selesai?</h2>
+          <p>Kirim detail perangkat, nomor pesanan, dan langkah yang sudah dicoba agar tim support dapat menilai kendala sejak respons pertama.</p>
         </div>
-
-        <div class="accordion" data-accordion-group>
-          <article id="faq-orders" class="accordion-item">
-            <h3>
-              <button class="accordion-header" type="button" aria-expanded="false" aria-controls="answer-orders" data-accordion-trigger>
-                <span>Bagaimana cara melacak pesanan?</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-              </button>
-            </h3>
-            <div id="answer-orders" class="accordion-body" hidden>
-              <p>Masukkan nomor pesanan di halaman <a href="track-order.html" class="text-accent">Lacak Pesanan</a>. Pengguna yang sudah masuk juga dapat melihat status melalui Riwayat Pesanan.</p>
-            </div>
-          </article>
-
-          <article id="faq-shipping" class="accordion-item">
-            <h3>
-              <button class="accordion-header" type="button" aria-expanded="false" aria-controls="answer-shipping" data-accordion-trigger>
-                <span>Kapan nomor resi tersedia?</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-              </button>
-            </h3>
-            <div id="answer-shipping" class="accordion-body" hidden>
-              <p>Nomor resi muncul setelah pesanan diserahkan kepada kurir. Pembaruan pertama biasanya membutuhkan waktu beberapa jam setelah proses pickup.</p>
-            </div>
-          </article>
-
-          <article id="faq-warranty" class="accordion-item">
-            <h3>
-              <button class="accordion-header" type="button" aria-expanded="false" aria-controls="answer-warranty" data-accordion-trigger>
-                <span>Apa yang diperlukan untuk klaim garansi?</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-              </button>
-            </h3>
-            <div id="answer-warranty" class="accordion-body" hidden>
-              <p>Siapkan invoice, nomor seri, dan dokumentasi kendala. Tim support akan memeriksa cakupan garansi sebelum mengarahkan proses ke distributor atau service center.</p>
-            </div>
-          </article>
-
-          <article id="faq-payment" class="accordion-item">
-            <h3>
-              <button class="accordion-header" type="button" aria-expanded="false" aria-controls="answer-payment" data-accordion-trigger>
-                <span>Pembayaran gagal tetapi saldo terpotong. Apa langkah berikutnya?</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-              </button>
-            </h3>
-            <div id="answer-payment" class="accordion-body" hidden>
-              <p>Tunggu rekonsiliasi maksimal 1×24 jam. Buat tiket dengan bukti pembayaran dan nomor pesanan bila status belum berubah.</p>
-            </div>
-          </article>
-
-          <article id="faq-account" class="accordion-item">
-            <h3>
-              <button class="accordion-header" type="button" aria-expanded="false" aria-controls="answer-account" data-accordion-trigger>
-                <span>Bagaimana cara mengubah email akun?</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-              </button>
-            </h3>
-            <div id="answer-account" class="accordion-body" hidden>
-              <p>Buka Pengaturan Akun, pilih Informasi Kontak, lalu lakukan verifikasi pada alamat email baru.</p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="help-cta-box" aria-labelledby="help-contact-title">
-        <h2 id="help-contact-title">Masalah belum selesai?</h2>
-        <p>Kirim detail perangkat, nomor pesanan, dan langkah yang sudah dicoba agar tim support dapat menilai kendala sejak respons pertama.</p>
         <a href="contact.html" class="btn btn-primary">Buat Support Ticket</a>
       </section>
     </div>
@@ -143,6 +183,7 @@
   <div id="global-footer"></div>
   <script src="scripts/global-components.js"></script>
   <script src="scripts/main.js"></script>
-  <script src="scripts/support-utilities.js"></script>
+  <script src="scripts/editorial-pages.js?v=1"></script>
+  <script src="scripts/support-utilities.js?v=2"></script>
 </body>
 </html>
