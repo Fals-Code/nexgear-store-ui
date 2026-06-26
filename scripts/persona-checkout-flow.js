@@ -90,6 +90,17 @@
     }));
   };
 
+  const persistOrder = (order) => {
+    if (!order?.id) return;
+    write(KEYS.pending, order);
+    const orders = parse(KEYS.orders, []);
+    const normalized = Array.isArray(orders) ? orders : [];
+    const index = normalized.findIndex((item) => item.id === order.id);
+    if (index >= 0) normalized[index] = order;
+    else normalized.unshift(order);
+    write(KEYS.orders, normalized);
+  };
+
   class CheckoutEnhancer {
     constructor() {
       this.form = $("#checkout-form");
@@ -213,9 +224,7 @@
         const insurance = $("#shipping-insurance");
         if (insurance) insurance.checked = preferences.insurance;
       }
-      if (shipping || payment) {
-        this.form.dispatchEvent(new Event("change", { bubbles: true }));
-      }
+      if (shipping || payment) this.form.dispatchEvent(new Event("change", { bubbles: true }));
     }
 
     savedAddress() {
@@ -227,11 +236,9 @@
       const summary = row?.querySelector(":scope > span");
       const saved = this.savedAddress();
       if (!summary) return;
-      if (!saved) {
-        summary.textContent = "Belum ada alamat tersimpan";
-        return;
-      }
-      summary.textContent = [saved.addressLine, saved.city].filter(Boolean).join(", ");
+      summary.textContent = saved
+        ? [saved.addressLine, saved.city].filter(Boolean).join(", ")
+        : "Belum ada alamat tersimpan";
     }
 
     applySavedAddress() {
@@ -288,7 +295,8 @@
     groupValid(group) {
       const inputs = this.groupInputs(group);
       const fieldsValid = inputs.every((input) => {
-        if (input instanceof RadioNodeList) return Boolean(input.value);
+        const isRadioList = typeof RadioNodeList !== "undefined" && input instanceof RadioNodeList;
+        if (isRadioList) return Boolean(input.value);
         return input.validity?.valid !== false;
       });
       return group === "options" ? fieldsValid && Boolean($("#checkout-consent")?.checked) : fieldsValid;
@@ -434,12 +442,7 @@
         capturedAt: new Date().toISOString(),
       };
       order.updatedAt = new Date().toISOString();
-      write(KEYS.pending, order);
-      const orders = parse(KEYS.orders, []);
-      const index = Array.isArray(orders) ? orders.findIndex((item) => item.id === order.id) : -1;
-      if (index >= 0) orders[index] = order;
-      else if (Array.isArray(orders)) orders.unshift(order);
-      write(KEYS.orders, orders);
+      persistOrder(order);
       write(KEYS.lastOrder, order.id);
       emit("checkout-snapshot", { orderId: order.id, total: order.total, eta: eta.label });
     }
@@ -448,13 +451,12 @@
       window.clearTimeout(this.saveTimer);
       this.saveTimer = window.setTimeout(() => {
         if (this.groupValid("contact")) {
-          const profile = {
+          write(KEYS.profile, {
             name: this.form.elements.namedItem("customerName")?.value.trim() || "",
             phone: this.form.elements.namedItem("customerPhone")?.value.trim() || "",
             email: this.form.elements.namedItem("customerEmail")?.value.trim() || "",
             updatedAt: new Date().toISOString(),
-          };
-          write(KEYS.profile, profile);
+          });
         }
       }, 280);
     }
@@ -464,9 +466,7 @@
         this.scheduleSave();
         requestAnimationFrame(() => this.syncAll());
       });
-      this.form.addEventListener("change", () => {
-        requestAnimationFrame(() => this.syncAll());
-      });
+      this.form.addEventListener("change", () => requestAnimationFrame(() => this.syncAll()));
       this.savedToggle?.addEventListener("change", () => {
         if (this.savedToggle.checked) window.setTimeout(() => this.applySavedAddress(), 0);
       });
@@ -479,9 +479,7 @@
         window.setTimeout(() => this.augmentPendingOrder(), 0);
       });
       window.addEventListener("storage", (event) => {
-        if ([KEYS.profile, KEYS.address, KEYS.preferences].includes(event.key)) {
-          this.refreshSavedAddressLabel();
-        }
+        if ([KEYS.profile, KEYS.address, KEYS.preferences].includes(event.key)) this.refreshSavedAddressLabel();
       });
     }
   }
@@ -526,12 +524,22 @@
       else container.append(card);
     }
 
-    persistPreference() {
-      write(KEYS.preferences, {
+    persistPaymentSnapshot() {
+      const preferences = {
         ...parse(KEYS.preferences, {}),
         payment: this.order.payment?.code || "bca-va",
         updatedAt: new Date().toISOString(),
-      });
+      };
+      write(KEYS.preferences, preferences);
+      this.order.checkoutSnapshot = {
+        ...(this.order.checkoutSnapshot || {}),
+        total: Number(this.order.total) || 0,
+        paymentCode: this.order.payment?.code || "bca-va",
+        paymentLabel: this.order.payment?.label || "Virtual Account BCA",
+        capturedAt: new Date().toISOString(),
+      };
+      this.order.updatedAt = new Date().toISOString();
+      persistOrder(this.order);
     }
 
     initPayment() {
@@ -546,7 +554,7 @@
         if (!method) return;
         window.setTimeout(() => {
           this.order = this.loadOrder() || this.order;
-          this.persistPreference();
+          this.persistPaymentSnapshot();
           $("[data-persona-order-continuity]", summary)?.remove();
           this.createCard(summary, $(".payment-edit-order", summary));
         }, 0);
@@ -569,15 +577,18 @@
     }
   }
 
+  let initialized = false;
   const init = () => {
+    if (initialized) return;
+    initialized = true;
     if (page === "checkout.html") new CheckoutEnhancer();
     if (["payment.html", "success.html"].includes(page)) new OrderContinuityEnhancer();
-    if (page === "cart.html") {
-      document.body.dataset.personaCheckoutPhase = "cart-ready";
-    }
+    if (page === "cart.html") document.body.dataset.personaCheckoutPhase = "cart-ready";
   };
 
-  window.addEventListener("load", init, { once: true });
+  if (document.readyState === "complete") window.setTimeout(init, 0);
+  else window.addEventListener("load", init, { once: true });
+
   window.NexPersonaCheckoutFlow = Object.freeze({
     shippingWindow,
     refresh: init,
