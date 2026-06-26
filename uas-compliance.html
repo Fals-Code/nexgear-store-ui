@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Peta kelengkapan UI NEXGEAR terhadap brief UAS Workshop UI: compatibility, flow, layout, warna, tipografi, konten, dan 13 laman minimum."
+      content="Peta kelengkapan UI NEXGEAR terhadap brief UAS Workshop UI: persona, user story, compatibility, flow, layout, warna, tipografi, konten, dan 13 laman minimum."
     />
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/uas-compliance.css" />
@@ -22,7 +22,6 @@
       <span class="page-transition__brand">NEXGEAR</span>
     </div>
 
-    <!-- GLOBAL HEADER COMPONENT -->
     <div id="global-header"></div>
 
     <main class="site-main uas-main" id="main-content">
@@ -32,10 +31,9 @@
             <p class="uas-eyebrow">Workshop UI · UAS Readiness</p>
             <h1 id="uas-title">Peta Kesesuaian Brief UAS</h1>
             <p>
-              Halaman ini menjadi audit visual untuk memastikan NEXGEAR memenuhi
-              requirement UAS: desktop-mobile compatibility, alur transaksi jelas,
-              struktur laman lengkap, warna konsisten, tipografi rapi, dan aset
-              visual relevan.
+              Audit visual dan fungsional NEXGEAR terhadap persona Andy, user story,
+              desktop-mobile compatibility, flow transaksi, struktur laman, warna,
+              tipografi, dan aset visual.
             </p>
             <div class="uas-hero-actions" aria-label="Aksi utama">
               <a class="btn btn-primary" href="catalog.html">Uji Flow Pembelian</a>
@@ -44,9 +42,9 @@
           </div>
 
           <aside class="uas-score-card" aria-label="Ringkasan skor UAS">
-            <span class="uas-score-label">Coverage</span>
+            <span class="uas-score-label">Page Coverage</span>
             <strong class="uas-score-value" data-count-up="100">100%</strong>
-            <p>13 laman minimum brief sudah dipetakan dan tersedia di repo.</p>
+            <p>13 laman minimum tersedia dan fase penyelarasan persona sudah dimulai.</p>
             <div class="uas-score-bars" aria-hidden="true">
               <span style="--bar: 25%"></span>
               <span style="--bar: 20%"></span>
@@ -59,14 +57,43 @@
         </div>
       </section>
 
+      <section class="uas-section reveal" aria-labelledby="persona-title">
+        <div class="container uas-flow-grid">
+          <div class="uas-section-heading uas-flow-heading">
+            <p class="uas-eyebrow">Audience Alignment</p>
+            <h2 id="persona-title">Persona Andy Menjadi Dasar Keputusan UI</h2>
+            <p>
+              Andy adalah mahasiswa berusia 29 tahun yang tinggal di kos Surabaya
+              Timur, memiliki literasi teknologi cukup baik, aktif online sekitar
+              2-3 jam per hari, dan mengutamakan user-friendly, vibes, kualitas,
+              serta color.
+            </p>
+            <p>
+              <strong>User story utama:</strong> Sebagai Andy, saya ingin menemukan
+              gear berkualitas, melakukan pembelian, dan memantau pesanan dengan
+              langkah sesingkat mungkin agar tidak membuang waktu pada proses yang
+              rumit.
+            </p>
+          </div>
+
+          <ol class="uas-flow-list" aria-label="Pemetaan kebutuhan persona">
+            <li><span>Fast Path</span><strong>Catalog, Track Order, Help, dan Customer Panel tersedia langsung.</strong></li>
+            <li><span>User Friendly</span><strong>Aksi utama konsisten dan status sistem diberi feedback jelas.</strong></li>
+            <li><span>Vibes</span><strong>Dark premium gaming dengan hierarchy dan whitespace terukur.</strong></li>
+            <li><span>Kualitas</span><strong>Garansi, rating, stok, pembayaran aman, dan tracking ditampilkan.</strong></li>
+            <li><span>Color</span><strong>Cyan digunakan sebagai action color dan status penting.</strong></li>
+          </ol>
+        </div>
+      </section>
+
       <section class="uas-section reveal" aria-labelledby="rubric-title">
         <div class="container">
           <div class="uas-section-heading">
             <p class="uas-eyebrow">Approval Weight</p>
             <h2 id="rubric-title">Rubrik Penilaian Dijadikan Checklist UI</h2>
             <p>
-              Karena manusia memang suka bikin rubrik lalu berharap layout patuh
-              tanpa diawasi, halaman ini memaksa setiap bobot punya bukti laman.
+              Setiap bobot penilaian dipetakan ke keputusan desain dan halaman yang
+              dapat diuji secara langsung.
             </p>
           </div>
 
@@ -74,32 +101,32 @@
             <article class="uas-rubric-card" data-state="ready">
               <span>25%</span>
               <h3>Compatibility</h3>
-              <p>Responsive breakpoint, tap target besar, dan layout tetap terbaca di mobile sampai desktop.</p>
+              <p>Responsive breakpoint, tap target, dan layout diuji dari mobile sampai desktop.</p>
             </article>
             <article class="uas-rubric-card" data-state="ready">
               <span>20%</span>
               <h3>Flow</h3>
-              <p>Alur user dari landing → katalog → detail → keranjang → checkout → pembayaran → history.</p>
+              <p>Alur user dari landing, katalog, detail, keranjang, checkout, pembayaran, sampai history.</p>
             </article>
             <article class="uas-rubric-card" data-state="ready">
               <span>20%</span>
               <h3>Layout & Struktur</h3>
-              <p>Halaman storefront dan admin dipisahkan agar hierarchy tidak berubah jadi lemari arsip digital.</p>
+              <p>Storefront, customer panel, dan administrasi memiliki hierarchy dan fungsi yang terpisah.</p>
             </article>
             <article class="uas-rubric-card" data-state="ready">
               <span>15%</span>
               <h3>Color</h3>
-              <p>Dark premium gaming dengan cyan accent sebagai action color, bukan lampu pasar malam.</p>
+              <p>Dark premium gaming menggunakan cyan sebagai action color dan penanda status utama.</p>
             </article>
             <article class="uas-rubric-card" data-state="ready">
               <span>15%</span>
               <h3>Tipografi</h3>
-              <p>Orbitron untuk headline brand, Inter untuk body text supaya tetap kebaca saat dosen mulai zoom in.</p>
+              <p>Display type digunakan untuk identitas, sedangkan body type menjaga keterbacaan konten.</p>
             </article>
             <article class="uas-rubric-card" data-state="ready">
               <span>5%</span>
               <h3>Content & Aset</h3>
-              <p>Aset produk, artikel, CTA, empty state, dan admin table tersedia sebagai simulasi konten dinamis.</p>
+              <p>Aset produk, artikel, CTA, empty state, dan tabel admin mendukung simulasi konten dinamis.</p>
             </article>
           </div>
         </div>
@@ -111,8 +138,7 @@
             <p class="uas-eyebrow">Minimum Requirement</p>
             <h2 id="pages-title">13 Laman Wajib Brief</h2>
             <p>
-              Daftar ini bukan dekorasi. Ini peta cepat untuk dosen mengecek semua
-              laman yang diminta brief tanpa harus berburu file seperti side quest.
+              Peta cepat untuk memeriksa seluruh laman minimum yang diminta pada brief.
             </p>
           </div>
 
@@ -140,9 +166,9 @@
             <p class="uas-eyebrow">User Story Coverage</p>
             <h2 id="flow-title">Flow Storefront dan Admin Dipisahkan</h2>
             <p>
-              User bisa mencari produk, membaca artikel, membeli gear, membayar,
-              lalu mengecek transaksi. Admin bisa mengelola produk, artikel,
-              pengguna, transaksi, dan melihat dashboard.
+              Customer dapat menemukan produk, membaca informasi kualitas, membeli,
+              membayar, melacak, dan melihat transaksi. Admin mengelola produk,
+              artikel, pengguna, transaksi, dan dashboard melalui area terpisah.
             </p>
           </div>
 
@@ -151,13 +177,13 @@
             <li><span>Evaluate</span><strong>Product Detail → Review</strong></li>
             <li><span>Purchase</span><strong>Cart → Checkout → Payment</strong></li>
             <li><span>After-sales</span><strong>Success → Track → History</strong></li>
+            <li><span>Customer</span><strong>Login → Customer Panel</strong></li>
             <li><span>Admin</span><strong>Dashboard → Manage Data</strong></li>
           </ol>
         </div>
       </section>
     </main>
 
-    <!-- GLOBAL FOOTER COMPONENT -->
     <div id="global-footer"></div>
 
     <script src="scripts/global-components.js"></script>
