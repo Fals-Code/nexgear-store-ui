@@ -712,6 +712,7 @@
 }
 
 .checkout-consent {
+  position: relative;
   display: grid;
   grid-template-columns: 20px minmax(0, 1fr);
   align-items: start;
@@ -725,7 +726,14 @@
 
 .checkout-consent input {
   position: absolute;
+  top: 14px;
+  left: 16px;
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  margin: 0;
   opacity: 0;
+  cursor: pointer;
 }
 
 .checkout-consent > span {
@@ -735,6 +743,12 @@
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 6px;
   background: rgba(4, 5, 10, 0.72);
+  pointer-events: none;
+}
+
+.checkout-consent input:focus-visible + span {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
 }
 
 .checkout-consent > span::after {
