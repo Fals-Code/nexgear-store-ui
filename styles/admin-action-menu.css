@@ -2,7 +2,10 @@
 .page-admin .suite-menu,
 .page-admin .row-menu {
   position: fixed !important;
-  inset: auto !important;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
   z-index: 220;
   width: min(224px, calc(100vw - 24px));
   max-height: min(360px, calc(100dvh - 24px));
