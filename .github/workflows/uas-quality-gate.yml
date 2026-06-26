@@ -34,11 +34,28 @@ jobs:
           done < <(find scripts -type f -name '*.js' -print0)
 
       - name: Validate UAS pages and local references
-        run: python3 tools/validate_uas_project.py
-
-      - name: Report source footprint
         shell: bash
         run: |
-          echo "HTML pages: $(find . -maxdepth 1 -type f -name '*.html' | wc -l)"
-          echo "JavaScript files: $(find scripts -type f -name '*.js' | wc -l)"
-          echo "CSS files: $(find styles -type f -name '*.css' | wc -l)"
+          set -o pipefail
+          python3 tools/validate_uas_project.py | tee uas-validation.txt
+
+      - name: Report source footprint
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "HTML pages: $(find . -maxdepth 1 -type f -name '*.html' | wc -l)"
+            echo "JavaScript files: $(find scripts -type f -name '*.js' | wc -l)"
+            echo "CSS files: $(find styles -type f -name '*.css' | wc -l)"
+          } | tee source-footprint.txt
+
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: uas-quality-report
+          path: |
+            uas-validation.txt
+            source-footprint.txt
+          if-no-files-found: warn
+          retention-days: 14
