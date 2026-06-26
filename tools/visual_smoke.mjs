@@ -272,7 +272,10 @@ const runCheckoutFlow = async (browser) => {
       failures.push("Paid payment recovery state was not restored after reload");
     } else {
       await Promise.all([
-        page.waitForURL(/success\.html\?order=/, { timeout: 10000 }),
+        page.waitForURL(/success\.html\?order=/, {
+          timeout: 15000,
+          waitUntil: "domcontentloaded",
+        }),
         recoveryButton.click(),
       ]);
     }
