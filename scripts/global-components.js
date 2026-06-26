@@ -177,7 +177,7 @@
     }
 
     try {
-      await ensureScript("scripts/persona-customer-flow.js?v=1");
+      await ensureScript("scripts/persona-customer-flow.js?v=2");
     } catch (error) {
       console.warn("NEXGEAR persona customer flow fallback", error);
     }
