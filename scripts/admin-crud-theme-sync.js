@@ -32,37 +32,56 @@
     gridButton.click();
   };
 
+  const loadScript = ({ globalName, selector, src, dataName }) => {
+    if (window[globalName] || document.querySelector(selector)) return;
+    const script = document.createElement("script");
+    script.src = src;
+    script.dataset[dataName] = "true";
+    document.body.append(script);
+  };
+
   const loadArticlePersistence = () => {
-    if (page !== "articles" || window.NexArticleWorkspacePersistence || document.querySelector('script[data-article-workspace-persistence]')) return;
-    const script = document.createElement("script");
-    script.src = "scripts/admin-article-workspace-persistence.js?v=1";
-    script.dataset.articleWorkspacePersistence = "true";
-    document.body.append(script);
+    if (page !== "articles") return;
+    loadScript({
+      globalName: "NexArticleWorkspacePersistence",
+      selector: 'script[data-article-workspace-persistence]',
+      src: "scripts/admin-article-workspace-persistence.js?v=1",
+      dataName: "articleWorkspacePersistence",
+    });
   };
 
-  const loadEntityActions = () => {
-    if (window.NexAdminEntityActions || document.querySelector('script[data-admin-entity-actions]')) return;
-    const script = document.createElement("script");
-    script.src = "scripts/admin-entity-actions.js?v=2";
-    script.dataset.adminEntityActions = "true";
-    document.body.append(script);
-  };
+  const loadEntityActions = () => loadScript({
+    globalName: "NexAdminEntityActions",
+    selector: 'script[data-admin-entity-actions]',
+    src: "scripts/admin-entity-actions.js?v=2",
+    dataName: "adminEntityActions",
+  });
 
-  const loadFullscreenWorkspace = () => {
-    if (window.NexAdminFullscreenWorkspace || document.querySelector('script[data-admin-fullscreen-workspace]')) return;
-    const script = document.createElement("script");
-    script.src = "scripts/admin-fullscreen-workspace.js?v=3";
-    script.dataset.adminFullscreenWorkspace = "true";
-    document.body.append(script);
-  };
+  const loadFullscreenWorkspace = () => loadScript({
+    globalName: "NexAdminFullscreenWorkspace",
+    selector: 'script[data-admin-fullscreen-workspace]',
+    src: "scripts/admin-fullscreen-workspace.js?v=4",
+    dataName: "adminFullscreenWorkspace",
+  });
+
+  const loadWorkspaceRegression = () => loadScript({
+    globalName: "NexAdminWorkspaceRegression",
+    selector: 'script[data-admin-workspace-regression]',
+    src: "scripts/admin-workspace-regression.js?v=1",
+    dataName: "adminWorkspaceRegression",
+  });
 
   const restoreAdminTheme = () => applyTheme(body.dataset.adminTheme || readTheme());
+  const loadAdminEnhancements = () => {
+    loadArticlePersistence();
+    loadEntityActions();
+    loadFullscreenWorkspace();
+    loadWorkspaceRegression();
+  };
 
   applyTheme(readTheme());
   window.setTimeout(applyMobileArticleView, 80);
-  loadArticlePersistence();
-  loadEntityActions();
-  loadFullscreenWorkspace();
+  loadAdminEnhancements();
 
   new MutationObserver(() => {
     const current = body.dataset.adminTheme;
@@ -80,20 +99,22 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     restoreAdminTheme();
-    loadArticlePersistence();
-    loadEntityActions();
-    loadFullscreenWorkspace();
+    loadAdminEnhancements();
     window.setTimeout(applyMobileArticleView, 120);
   }, { once: true });
 
   window.addEventListener("load", () => {
     restoreAdminTheme();
-    loadEntityActions();
-    loadFullscreenWorkspace();
+    loadAdminEnhancements();
     window.setTimeout(applyMobileArticleView, 120);
   }, { once: true });
 
   document.addEventListener("nexgear:themechange", (event) => applyTheme(event.detail?.theme));
 
-  window.NexAdminCrudThemeSync = Object.freeze({ applyTheme, loadEntityActions, loadFullscreenWorkspace });
+  window.NexAdminCrudThemeSync = Object.freeze({
+    applyTheme,
+    loadEntityActions,
+    loadFullscreenWorkspace,
+    loadWorkspaceRegression,
+  });
 })();
