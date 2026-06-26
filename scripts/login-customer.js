@@ -14,8 +14,11 @@
     return words.join(" ") || "Customer NEXGEAR";
   };
 
-  form.addEventListener("submit", () => {
+  form.addEventListener("submit", (event) => {
     if (!form.checkValidity()) return;
+
+    event.preventDefault();
+    event.stopPropagation();
 
     const email = String(form.elements.email?.value || "").trim().toLowerCase();
     const user = {
@@ -29,6 +32,7 @@
       localStorage.setItem("nexgear_auth", "true");
       localStorage.setItem("nexgear_user", JSON.stringify(user));
       sessionStorage.setItem("nexgear-login-source", "customer-login");
+      sessionStorage.setItem("nexgear-page-transition-mode", "open");
     } catch {
       // Navigasi ke panel customer tetap berjalan saat storage dibatasi browser.
     }
@@ -39,5 +43,7 @@
         user,
       },
     }));
+
+    window.location.href = "profile.html";
   });
 })();
