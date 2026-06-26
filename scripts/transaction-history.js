@@ -72,6 +72,16 @@
     if (panel) panel.hidden = true;
   }
 
+  function hydrateTrackingLinks() {
+    cards.forEach((card) => {
+      const orderNumber = card.querySelector(".transaction-card__header h2")?.textContent?.trim();
+      const trackLink = card.querySelector('a[href^="track-order.html"]');
+      if (!orderNumber || !trackLink) return;
+      trackLink.href = `track-order.html?order=${encodeURIComponent(orderNumber)}`;
+      trackLink.setAttribute("aria-label", `Lacak pesanan ${orderNumber}`);
+    });
+  }
+
   function render() {
     sortCards();
 
@@ -193,5 +203,6 @@
     }
   });
 
+  hydrateTrackingLinks();
   render();
 })();
