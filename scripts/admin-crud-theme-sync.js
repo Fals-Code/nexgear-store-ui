@@ -19,12 +19,20 @@
 
   const applyTheme = (theme) => {
     const next = theme === "light" ? "light" : "dark";
-    body.dataset.adminTheme = next;
-    document.documentElement.dataset.theme = next;
-    document.documentElement.style.colorScheme = next;
+    if (body.dataset.adminTheme !== next) body.dataset.adminTheme = next;
+    if (document.documentElement.dataset.theme !== next) document.documentElement.dataset.theme = next;
+    if (document.documentElement.style.colorScheme !== next) document.documentElement.style.colorScheme = next;
+  };
+
+  const applyMobileArticleView = () => {
+    if (page !== "articles" || !window.matchMedia("(max-width: 720px)").matches) return;
+    const gridButton = document.querySelector(".article-view-toggle [data-view='grid']");
+    if (!gridButton || gridButton.classList.contains("is-active")) return;
+    window.setTimeout(() => gridButton.click(), 80);
   };
 
   applyTheme(readTheme());
+  applyMobileArticleView();
 
   new MutationObserver(() => {
     const current = body.dataset.adminTheme;
