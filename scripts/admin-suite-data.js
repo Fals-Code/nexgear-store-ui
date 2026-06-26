@@ -13,7 +13,7 @@ window.NEXGEAR_ADMIN_DATA={products:[{id:'NX-KB-001',name:'Vortex VX Pro Mechani
       await new Promise((resolve) => {
         const script = document.createElement('script');
         script.src = src;
-        script.dataset[key] = 'true';
+        script.setAttribute(`data-${key}`, 'true');
         script.addEventListener('load', resolve, { once: true });
         script.addEventListener('error', resolve, { once: true });
         document.body.appendChild(script);
