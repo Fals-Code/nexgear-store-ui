@@ -1,0 +1,49 @@
+name: Apply second visual fixes
+
+on:
+  push:
+    branches:
+      - quality/uas-rubric-hardening
+    paths:
+      - tools/apply_second_visual_fixes.py
+      - .github/workflows/apply-second-visual-fixes.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: ${{ !contains(github.event.head_commit.message || '', '[second-visual-fix]') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout working branch
+        uses: actions/checkout@v4
+        with:
+          ref: quality/uas-rubric-hardening
+          fetch-depth: 0
+
+      - name: Apply second visual repairs
+        run: python3 tools/apply_second_visual_fixes.py
+
+      - name: Validate repaired source
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check scripts/admin-articles.js
+          node --check tools/visual_smoke.mjs
+          python3 tools/validate_uas_project.py
+
+      - name: Commit repaired source
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No second-pass repairs detected."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/admin-articles.js styles/quality-hardening.css tools/visual_smoke.mjs
+          git commit -m "[second-visual-fix] Repair admin articles, reduced motion, and flow seeding"
+          git push origin HEAD:quality/uas-rubric-hardening
