@@ -3,6 +3,12 @@
 
   if (window.NexOrderTracking) return;
 
+  const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=420&q=82";
+  const STORAGE_KEYS = {
+    orders: "nexgear_orders",
+    pending: "nexgear_pending_order",
+  };
+
   const ORDERS = [
     {
       id: "NEX-88392019A",
@@ -17,6 +23,7 @@
       address: "Jakarta Selatan, DKI Jakarta",
       payment: "Virtual Account BCA",
       total: "Rp1.599.000",
+      routeStatus: "Live route",
       route: { origin: "Surabaya", current: "Jakarta Gateway", destination: "Jakarta Selatan" },
       products: [
         {
@@ -46,6 +53,7 @@
       address: "Bandung, Jawa Barat",
       payment: "Virtual Account Mandiri",
       total: "Rp4.299.000",
+      routeStatus: "Menunggu pembayaran",
       route: { origin: "Surabaya", current: "Menunggu pembayaran", destination: "Bandung" },
       products: [
         {
@@ -71,12 +79,13 @@
       address: "Yogyakarta, DI Yogyakarta",
       payment: "GoPay",
       total: "Rp2.398.000",
+      routeStatus: "Persiapan gudang",
       route: { origin: "Surabaya", current: "NEXGEAR Fulfillment", destination: "Yogyakarta" },
       products: [
         {
           name: "HyperX Pulsefire Haste",
           meta: "Gaming Mouse · Black · 1 item",
-          image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c9?auto=format&fit=crop&w=420&q=85",
+          image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c?auto=format&fit=crop&w=420&q=85",
         },
         {
           name: "Artisan Zero FX XL",
@@ -102,12 +111,13 @@
       address: "Jakarta Selatan, DKI Jakarta",
       payment: "Kartu Kredit",
       total: "Rp899.000",
+      routeStatus: "Pengiriman selesai",
       route: { origin: "Surabaya", current: "Diterima pelanggan", destination: "Jakarta Selatan" },
       products: [
         {
           name: "HyperX Pulsefire Haste",
           meta: "Gaming Mouse · Black · 1 item",
-          image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c9?auto=format&fit=crop&w=420&q=85",
+          image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c?auto=format&fit=crop&w=420&q=85",
         },
       ],
       events: [
@@ -131,6 +141,7 @@
       address: "Semarang, Jawa Tengah",
       payment: "QRIS",
       total: "Rp1.100.000",
+      routeStatus: "Refund selesai",
       route: { origin: "Surabaya", current: "Refund selesai", destination: "Semarang" },
       products: [
         {
@@ -158,6 +169,7 @@
       address: "Malang, Jawa Timur",
       payment: "Virtual Account BNI",
       total: "Rp7.499.000",
+      routeStatus: "Pesanan berhenti",
       route: { origin: "Surabaya", current: "Pesanan dibatalkan", destination: "Malang" },
       products: [
         {
@@ -188,7 +200,6 @@
   };
 
   const $ = (selector, context = document) => context.querySelector(selector);
-  const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
   const escapeHtml = (value) => String(value ?? "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
@@ -196,10 +207,233 @@
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 
+  const parseStorage = (key, fallback) => {
+    try {
+      return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback));
+    } catch {
+      return fallback;
+    }
+  };
+
+  const money = (value) => new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0,
+  }).format(Number(value) || 0);
+
+  const formatDate = (value, withTime = false) => {
+    if (!value) return "Belum tersedia";
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return "Belum tersedia";
+    return new Intl.DateTimeFormat("id-ID", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      ...(withTime ? { hour: "2-digit", minute: "2-digit" } : {}),
+    }).format(date).replace("pukul", "·");
+  };
+
+  const addDays = (value, days) => {
+    const date = new Date(value || Date.now());
+    date.setDate(date.getDate() + days);
+    return date;
+  };
+
+  const normalizePersistedStatus = (order) => {
+    const status = String(order?.status || "").toLowerCase();
+    const payment = String(order?.paymentStatus || "").toLowerCase();
+    if (["cancelled", "canceled"].includes(status)) return "cancelled";
+    if (["refund", "refunded"].includes(status) || payment === "refund") return "refund";
+    if (["completed", "delivered"].includes(status)) return "delivered";
+    if (["shipping", "shipped", "out-for-delivery"].includes(status)) return "shipping";
+    if (status === "processing" || payment === "paid") return "processing";
+    return "waiting-payment";
+  };
+
+  const normalizePersistedOrder = (order) => {
+    if (!order?.id) return null;
+    const status = normalizePersistedStatus(order);
+    const createdAt = order.createdAt || order.updatedAt || Date.now();
+    const paidAt = order.paidAt || order.updatedAt || createdAt;
+    const destination = order.address?.city || order.address?.province || "Alamat tujuan";
+    const address = [
+      order.address?.line,
+      order.address?.district,
+      order.address?.city,
+      order.address?.province,
+      order.address?.postalCode,
+    ].filter(Boolean).join(", ") || "Alamat pengiriman belum tersedia";
+    const courier = order.shipping?.label || "Kurir belum ditentukan";
+    const receipt = order.receipt || order.trackingNumber || order.shipping?.trackingNumber || (status === "shipping" ? "Menunggu pembaruan resi" : "Belum tersedia");
+    const shippingDays = order.shipping?.code === "same-day" ? 0 : order.shipping?.code === "next-day" ? 1 : 3;
+    const etaDate = addDays(paidAt, shippingDays);
+    const items = Array.isArray(order.items) ? order.items : [];
+    const products = items.length
+      ? items.map((item) => ({
+        name: String(item.name || "Produk NEXGEAR").split(" - ")[0],
+        meta: `${Math.max(1, Number(item.qty) || 1)} item · ${money(item.price)}`,
+        image: item.image || FALLBACK_IMAGE,
+      }))
+      : [{ name: "Produk NEXGEAR", meta: "Detail produk tidak tersedia", image: FALLBACK_IMAGE }];
+
+    const meta = {
+      "waiting-payment": {
+        title: "Menunggu pembayaran",
+        description: "Pesanan sudah dibuat dan menunggu konfirmasi pembayaran.",
+        eta: "Belum tersedia",
+        countdown: "Dihitung setelah pembayaran",
+        routeStatus: "Menunggu pembayaran",
+        current: "Menunggu pembayaran",
+      },
+      processing: {
+        title: "Sedang diproses",
+        description: "Pembayaran diterima dan pesanan sedang disiapkan oleh tim gudang.",
+        eta: formatDate(etaDate),
+        countdown: shippingDays === 0 ? "Estimasi hari ini" : `Estimasi ${Math.max(1, shippingDays)} hari`,
+        routeStatus: "Persiapan gudang",
+        current: "NEXGEAR Fulfillment",
+      },
+      shipping: {
+        title: "Dalam pengiriman",
+        description: "Paket sudah diserahkan kepada kurir dan sedang menuju alamat tujuan.",
+        eta: formatDate(etaDate),
+        countdown: shippingDays === 0 ? "Estimasi hari ini" : `Sekitar ${Math.max(1, shippingDays)} hari`,
+        routeStatus: "Live route",
+        current: order.currentHub || courier,
+      },
+      delivered: {
+        title: "Pesanan diterima",
+        description: "Paket telah diterima di alamat tujuan.",
+        eta: `Diterima ${formatDate(order.deliveredAt || order.updatedAt || paidAt)}`,
+        countdown: "Pengiriman selesai",
+        routeStatus: "Pengiriman selesai",
+        current: "Diterima pelanggan",
+      },
+      cancelled: {
+        title: "Pesanan dibatalkan",
+        description: "Pesanan dihentikan dan tidak ada paket yang sedang dikirim.",
+        eta: "Tidak berlaku",
+        countdown: "Pesanan berhenti",
+        routeStatus: "Pesanan berhenti",
+        current: "Pesanan dibatalkan",
+      },
+      refund: {
+        title: "Refund diproses",
+        description: "Permintaan pengembalian dana sedang atau telah diproses.",
+        eta: formatDate(order.refundedAt || order.updatedAt || paidAt),
+        countdown: "Tidak ada pengiriman aktif",
+        routeStatus: "Proses refund",
+        current: "NEXGEAR Finance",
+      },
+    }[status];
+
+    const events = [
+      {
+        title: "Pesanan dibuat",
+        detail: "Pesanan tercatat pada sistem NEXGEAR.",
+        location: "NEXGEAR System",
+        time: formatDate(createdAt, true),
+        state: "complete",
+      },
+    ];
+
+    if (status !== "waiting-payment" && status !== "cancelled") {
+      events.unshift({
+        title: "Pembayaran dikonfirmasi",
+        detail: `Pembayaran melalui ${order.payment?.label || "metode terpilih"} berhasil diterima.`,
+        location: "NEXGEAR System",
+        time: formatDate(paidAt, true),
+        state: status === "processing" ? "current" : "complete",
+      });
+    }
+
+    if (["processing", "shipping", "delivered"].includes(status)) {
+      events.unshift({
+        title: status === "processing" ? "Pesanan sedang disiapkan" : "Pesanan selesai disiapkan",
+        detail: "Produk diperiksa, dikemas, dan disiapkan untuk proses pengiriman.",
+        location: "NEXGEAR Fulfillment",
+        time: formatDate(order.processingAt || order.updatedAt || paidAt, true),
+        state: status === "processing" ? "current" : "complete",
+      });
+    }
+
+    if (["shipping", "delivered"].includes(status)) {
+      events.unshift({
+        title: status === "shipping" ? "Paket dalam pengiriman" : "Paket diserahkan kepada kurir",
+        detail: `Paket ditangani oleh ${courier}.`,
+        location: order.currentHub || courier,
+        time: formatDate(order.shippedAt || order.updatedAt || paidAt, true),
+        state: status === "shipping" ? "current" : "complete",
+      });
+    }
+
+    if (status === "delivered") {
+      events.unshift({
+        title: "Paket diterima",
+        detail: "Pengiriman selesai di alamat tujuan.",
+        location: destination,
+        time: formatDate(order.deliveredAt || order.updatedAt || paidAt, true),
+        state: "current",
+      });
+    }
+
+    if (status === "cancelled") {
+      events.unshift({
+        title: "Pesanan dibatalkan",
+        detail: order.cancelReason || "Pesanan dihentikan sebelum proses pengiriman.",
+        location: "NEXGEAR System",
+        time: formatDate(order.cancelledAt || order.updatedAt || createdAt, true),
+        state: "current",
+      });
+    }
+
+    if (status === "refund") {
+      events.unshift({
+        title: "Refund diproses",
+        detail: order.refundReason || "Dana dikembalikan melalui metode pembayaran awal.",
+        location: "NEXGEAR Finance",
+        time: formatDate(order.refundedAt || order.updatedAt || paidAt, true),
+        state: "current",
+      });
+    }
+
+    return {
+      id: order.id,
+      status,
+      statusTitle: meta.title,
+      statusDescription: meta.description,
+      eta: meta.eta,
+      countdown: meta.countdown,
+      courier,
+      receipt,
+      recipient: order.customer?.name || "Pelanggan NEXGEAR",
+      address,
+      payment: order.payment?.label || "Metode pembayaran belum tersedia",
+      total: money(order.total),
+      routeStatus: meta.routeStatus,
+      route: {
+        origin: order.originCity || "Surabaya",
+        current: meta.current,
+        destination,
+      },
+      products,
+      events,
+    };
+  };
+
   class PrototypeOrderRepository {
+    findPersisted(orderNumber) {
+      const storedOrders = parseStorage(STORAGE_KEYS.orders, []);
+      const pending = parseStorage(STORAGE_KEYS.pending, null);
+      const orders = Array.isArray(storedOrders) ? [...storedOrders] : [];
+      if (pending?.id && !orders.some((item) => item.id === pending.id)) orders.push(pending);
+      const order = orders.find((item) => String(item?.id || "").toUpperCase() === orderNumber);
+      return order ? normalizePersistedOrder(order) : null;
+    }
+
     async find(orderNumber) {
       await new Promise((resolve) => window.setTimeout(resolve, 520));
-      return ORDERS.find((order) => order.id === orderNumber) || null;
+      return this.findPersisted(orderNumber) || ORDERS.find((order) => order.id === orderNumber) || null;
     }
   }
 
@@ -240,8 +474,10 @@
       this.empty.hidden = state !== "not-found";
       this.error.hidden = state !== "error";
       this.result.hidden = state !== "success";
-      this.submit.disabled = state === "loading";
-      this.submit.setAttribute("aria-busy", String(state === "loading"));
+      if (this.submit) {
+        this.submit.disabled = state === "loading";
+        this.submit.setAttribute("aria-busy", String(state === "loading"));
+      }
       if (this.formStatus) this.formStatus.textContent = message;
     }
 
@@ -281,7 +517,7 @@
       this.input?.addEventListener("input", () => {
         this.input.value = this.normalize(this.input.value);
         this.input.setCustomValidity("");
-        if (this.root.dataset.trackState === "error") this.setState("idle");
+        if (["error", "not-found"].includes(this.root.dataset.trackState)) this.setState("idle");
       });
     }
 
@@ -289,7 +525,7 @@
       const selector = button.dataset.copyValue;
       const target = selector ? $(selector, this.root) : null;
       const value = target?.textContent?.trim();
-      if (!value || value === "Belum tersedia" || value === "Tidak tersedia") return;
+      if (!value || ["Belum tersedia", "Tidak tersedia"].includes(value)) return;
 
       try {
         await navigator.clipboard.writeText(value);
@@ -339,6 +575,7 @@
         return;
       }
 
+      this.input.setCustomValidity("");
       const currentRequest = ++this.requestId;
       this.setState("loading", `Mencari status ${orderNumber}...`);
       this.emit("tracking-started", { orderNumber });
@@ -365,6 +602,7 @@
       } catch (error) {
         if (currentRequest !== this.requestId) return;
         this.setState("error", "Status pesanan gagal dimuat. Coba kembali.");
+        this.error.focus({ preventScroll: true });
         this.emit("tracking-error", { reason: "repository-error", orderNumber, message: error?.message });
       }
     }
@@ -382,6 +620,7 @@
       $("[data-track-address]", this.root).textContent = order.address;
       $("[data-track-payment]", this.root).textContent = order.payment;
       $("[data-track-total]", this.root).textContent = order.total;
+      $("[data-track-route-status]", this.root).textContent = order.routeStatus;
       $("[data-route-origin]", this.root).textContent = order.route.origin;
       $("[data-route-current]", this.root).textContent = order.route.current;
       $("[data-route-destination]", this.root).textContent = order.route.destination;
@@ -397,7 +636,7 @@
     renderMilestones(status) {
       const container = $("[data-track-milestones]", this.root);
       if (!container) return;
-      const terminal = status === "cancelled" || status === "refund";
+      const terminal = ["cancelled", "refund"].includes(status);
       const activeIndex = STATUS_INDEX[status] ?? 0;
 
       container.innerHTML = STATUS_STEPS.map((step, index) => {
