@@ -13,6 +13,7 @@
   let drawer = null;
   let resizeTimer = 0;
   let active = false;
+  let lastDirty = null;
 
   const emit = (name, detail = {}) => {
     window.dispatchEvent(new CustomEvent(`nexgear:${name}`, {
@@ -158,31 +159,65 @@
     if (badge && badge.textContent !== text) badge.textContent = text;
   };
 
+  const bindFormLifecycle = () => {
+    if (!drawer) return;
+    const form = $("form", drawer);
+    if (!form || form.dataset.workspaceLifecycleBound === "true") return;
+    form.dataset.workspaceLifecycleBound = "true";
+
+    form.addEventListener("invalid", (event) => {
+      const field = event.target;
+      emit("workspace-validated", {
+        valid: false,
+        field: field?.name || field?.id || "unknown",
+      });
+    }, true);
+
+    form.addEventListener("submit", () => {
+      emit("workspace-validated", { valid: true });
+      emit("entity-save-requested", {
+        mode: drawer.dataset.workspaceMode || "edit",
+      });
+    }, true);
+  };
+
+  const syncDirtyState = () => {
+    if (!drawer || !active) return;
+    const dirty = drawer.dataset.dirty === "true";
+    if (lastDirty === dirty) return;
+    lastDirty = dirty;
+    emit("workspace-dirty", { dirty });
+  };
+
   const activate = () => {
     if (!drawer) return;
     body.classList.add("admin-workspace-fullscreen", "admin-workspace-active");
     drawer.dataset.workspaceDisplay = "full";
     enhanceHeader();
     syncModeLabel();
+    bindFormLifecycle();
     const layout = defaultLayout();
     setSummary(layout.summary, false);
     setNavigation(layout.nav, false);
 
     if (!active) {
       active = true;
+      lastDirty = null;
       emit("workspace-opened", {
         mode: drawer.dataset.workspaceMode || "edit",
         navigation: drawer.dataset.nav || "expanded",
         summary: drawer.dataset.summary || "visible",
       });
     }
+    syncDirtyState();
   };
 
   const deactivate = () => {
     body.classList.remove("admin-workspace-active");
     if (!active) return;
     active = false;
-    emit("workspace-closed");
+    emit("workspace-closed", { dirty: lastDirty === true });
+    lastDirty = null;
   };
 
   const syncDrawer = () => (isOpen() ? activate() : deactivate());
@@ -191,9 +226,13 @@
     drawer = $(page === "articles" ? "#editor-drawer" : "#suite-drawer");
     if (!drawer) return;
 
-    new MutationObserver(syncDrawer).observe(drawer, {
+    new MutationObserver((mutations) => {
+      const dirtyChanged = mutations.some((mutation) => mutation.attributeName === "data-dirty");
+      if (dirtyChanged) syncDirtyState();
+      if (mutations.some((mutation) => mutation.attributeName !== "data-dirty")) syncDrawer();
+    }).observe(drawer, {
       attributes: true,
-      attributeFilter: ["class", "aria-hidden", "data-form-mode"],
+      attributeFilter: ["class", "aria-hidden", "data-form-mode", "data-dirty"],
     });
 
     syncDrawer();
