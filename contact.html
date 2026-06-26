@@ -6,9 +6,10 @@
   <meta name="description" content="Hubungi tim support NEXGEAR untuk bantuan pesanan, pembayaran, garansi, retur, dan troubleshooting perangkat gaming.">
   <title>Contact Support | NEXGEAR</title>
   <link rel="stylesheet" href="styles/global.css">
-  <link rel="stylesheet" href="styles/contact.css?v=3">
+  <link rel="stylesheet" href="styles/contact.css?v=4">
+  <link rel="stylesheet" href="styles/editorial-pages-upgrade.css?v=1">
 </head>
-<body class="page-contact" data-footer-reveal="compact">
+<body class="page-contact">
   <div id="global-header"></div>
 
   <main class="site-main contact-main">
@@ -16,15 +17,31 @@
       <div class="contact-hero__media" aria-hidden="true"></div>
       <div class="contact-hero__overlay" aria-hidden="true"></div>
       <div class="container contact-hero__content">
-        <span class="contact-kicker"><i aria-hidden="true"></i>NEXGEAR / SUPPORT</span>
-        <h1 id="contact-title">Bantuan yang jelas, tanpa memutar-mutar.</h1>
-        <p>Pilih jalur bantuan yang sesuai atau kirim detail kendala agar tim support dapat menangani masalah sejak respons pertama.</p>
+        <div class="contact-hero__grid">
+          <div class="contact-hero__copy" data-page-reveal>
+            <span class="contact-kicker"><i aria-hidden="true"></i>NEXGEAR / SUPPORT</span>
+            <h1 id="contact-title">Bantuan yang jelas, tanpa memutar-mutar.</h1>
+            <p>Pilih jalur bantuan yang sesuai atau kirim detail kendala agar tim support dapat menangani masalah sejak respons pertama.</p>
+          </div>
+
+          <aside class="contact-hero__status ui-glow-card" aria-label="Status dukungan NEXGEAR" data-page-reveal data-delay="120">
+            <div class="contact-hero__status-head">
+              <span><i aria-hidden="true"></i>Support online</span>
+              <small>09.00–18.00 WIB</small>
+            </div>
+            <h2>Respons lebih cepat dimulai dari konteks yang lengkap.</h2>
+            <div class="contact-hero__metrics">
+              <div><strong>&lt; 24h</strong><span>Target respons awal</span></div>
+              <div><strong>3 kanal</strong><span>Email, hotline, ticket</span></div>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
 
     <section class="contact-shortcuts section-padding" aria-labelledby="shortcut-title">
       <div class="container">
-        <header class="contact-section-heading">
+        <header class="contact-section-heading" data-page-reveal>
           <div>
             <span class="contact-section-label">QUICK SUPPORT</span>
             <h2 id="shortcut-title">Selesaikan hal umum lebih cepat.</h2>
@@ -33,21 +50,21 @@
         </header>
 
         <div class="contact-shortcuts__grid">
-          <a href="track-order.html" class="contact-shortcut-card">
+          <a href="track-order.html" class="contact-shortcut-card ui-glow-card" data-page-reveal>
             <span>01</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h11v9H3z"></path><path d="M14 10h4l3 3v3h-7z"></path><circle cx="7" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>
             <h3>Lacak Pesanan</h3>
             <p>Periksa status pembayaran, packing, dan pengiriman.</p>
             <b>Mulai sekarang →</b>
           </a>
-          <a href="help.html#faq-warranty" class="contact-shortcut-card">
+          <a href="help.html#faq-warranty" class="contact-shortcut-card ui-glow-card" data-page-reveal data-delay="70">
             <span>02</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6z"></path><path d="m9 12 2 2 4-5"></path></svg>
             <h3>Garansi & Retur</h3>
             <p>Cek dokumen, periode, dan tahapan pengajuan.</p>
             <b>Baca panduan →</b>
           </a>
-          <a href="help.html#faq-payment" class="contact-shortcut-card">
+          <a href="help.html#faq-payment" class="contact-shortcut-card ui-glow-card" data-page-reveal data-delay="140">
             <span>03</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg>
             <h3>Pembayaran</h3>
@@ -60,7 +77,7 @@
 
     <section id="support-form" class="contact-support section-padding" aria-labelledby="support-form-title">
       <div class="container contact-support__layout">
-        <div class="contact-form-panel">
+        <div class="contact-form-panel ui-glow-card" data-page-reveal>
           <header class="contact-panel-header">
             <span class="contact-panel-number">01</span>
             <div>
@@ -70,11 +87,17 @@
             </div>
           </header>
 
+          <div class="support-evidence-bar" aria-label="Informasi yang mempercepat penanganan">
+            <span>Nomor pesanan</span>
+            <span>Gejala perangkat</span>
+            <span>Langkah yang dicoba</span>
+          </div>
+
           <form class="support-form" data-support-form novalidate>
             <div class="support-form__grid">
               <label><span>Topik bantuan</span><select name="topic" required><option value="">Pilih topik</option><option value="technical">Technical Support</option><option value="order">Pesanan</option><option value="payment">Pembayaran</option><option value="return">Retur dan Refund</option><option value="warranty">Garansi</option></select></label>
-              <label><span>Nomor pesanan <small>Opsional</small></span><input name="orderNumber" type="text" placeholder="Contoh: NXG-20481"></label>
-              <label><span>Produk terkait <small>Opsional</small></span><input name="product" type="text" placeholder="Nama atau tipe perangkat"></label>
+              <label><span>Nomor pesanan <small>Opsional</small></span><input name="orderNumber" type="text" inputmode="text" placeholder="Contoh: NXG-20481"></label>
+              <label><span>Produk terkait <small>Opsional</small></span><input name="product" type="text" autocomplete="off" placeholder="Nama atau tipe perangkat"></label>
               <label><span>Email</span><input name="email" type="email" autocomplete="email" placeholder="nama@email.com" required></label>
             </div>
 
@@ -94,8 +117,8 @@
           </form>
         </div>
 
-        <aside class="contact-side">
-          <div class="contact-status-card">
+        <aside class="contact-side" data-page-reveal data-delay="100">
+          <div class="contact-status-card ui-glow-card">
             <div class="contact-status-card__head"><span><i aria-hidden="true"></i>Support online</span><small>09.00–18.00 WIB</small></div>
             <h2>Hubungi kanal yang paling sesuai.</h2>
             <div class="contact-channel-list">
@@ -105,7 +128,7 @@
             </div>
           </div>
 
-          <div class="support-summary" aria-label="Ringkasan support ticket">
+          <div class="support-summary ui-glow-card" aria-label="Ringkasan support ticket">
             <div class="support-summary__head"><span>TICKET PREVIEW</span><i aria-hidden="true"></i></div>
             <h3 data-summary-title>Permintaan bantuan baru</h3>
             <dl>
@@ -114,6 +137,13 @@
               <div><dt>Prioritas</dt><dd>Normal</dd></div>
               <div><dt>Estimasi respons</dt><dd>&lt; 24 jam</dd></div>
             </dl>
+
+            <div class="support-readiness">
+              <div class="support-readiness__head"><span>Kelengkapan tiket</span><strong data-ticket-readiness-value>0%</strong></div>
+              <div class="support-readiness__track" role="progressbar" aria-label="Kelengkapan support ticket" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-ticket-readiness><span data-ticket-progress></span></div>
+              <p data-ticket-readiness-label>Mulai dari topik dan email aktif.</p>
+            </div>
+
             <p class="support-summary__note">Sertakan gejala, perangkat, dan langkah yang sudah dicoba agar tim dapat menilai masalah sejak respons pertama.</p>
             <div class="support-summary__success" hidden data-ticket-success><span>TICKET CREATED</span><strong data-ticket-id>NXG-000000</strong><p>Simpan nomor ini untuk referensi permintaanmu.</p></div>
           </div>
@@ -123,7 +153,7 @@
 
     <section class="contact-faq section-padding" aria-labelledby="contact-faq-title">
       <div class="container">
-        <header class="contact-section-heading">
+        <header class="contact-section-heading" data-page-reveal>
           <div>
             <span class="contact-section-label">BEFORE YOU SEND</span>
             <h2 id="contact-faq-title">Jawaban singkat untuk kendala umum.</h2>
@@ -132,9 +162,9 @@
         </header>
 
         <div class="contact-faq__list">
-          <article data-faq-item data-category="warranty" data-state="closed"><h3><button type="button" aria-expanded="false" aria-controls="contact-faq-1" data-faq-trigger>Apakah klaim garansi memerlukan invoice?<span aria-hidden="true">+</span></button></h3><div id="contact-faq-1" hidden><p>Ya. Invoice diperlukan untuk memverifikasi tanggal pembelian, produk, dan cakupan garansi.</p></div></article>
-          <article data-faq-item data-category="order" data-state="closed"><h3><button type="button" aria-expanded="false" aria-controls="contact-faq-2" data-faq-trigger>Bisakah alamat diubah setelah pesanan dibuat?<span aria-hidden="true">+</span></button></h3><div id="contact-faq-2" hidden><p>Alamat hanya dapat diubah sebelum pesanan masuk ke proses packing.</p></div></article>
-          <article data-faq-item data-category="payment" data-state="closed"><h3><button type="button" aria-expanded="false" aria-controls="contact-faq-3" data-faq-trigger>Pembayaran gagal tetapi saldo sudah terpotong?<span aria-hidden="true">+</span></button></h3><div id="contact-faq-3" hidden><p>Tunggu rekonsiliasi maksimal 1×24 jam, lalu buat tiket bila status belum berubah.</p></div></article>
+          <article class="ui-glow-card" data-faq-item data-category="warranty" data-state="closed" data-page-reveal><h3><button type="button" aria-expanded="false" aria-controls="contact-faq-1" data-faq-trigger>Apakah klaim garansi memerlukan invoice?<span aria-hidden="true">+</span></button></h3><div id="contact-faq-1" hidden><p>Ya. Invoice diperlukan untuk memverifikasi tanggal pembelian, produk, dan cakupan garansi.</p></div></article>
+          <article class="ui-glow-card" data-faq-item data-category="order" data-state="closed" data-page-reveal data-delay="60"><h3><button type="button" aria-expanded="false" aria-controls="contact-faq-2" data-faq-trigger>Bisakah alamat diubah setelah pesanan dibuat?<span aria-hidden="true">+</span></button></h3><div id="contact-faq-2" hidden><p>Alamat hanya dapat diubah sebelum pesanan masuk ke proses packing.</p></div></article>
+          <article class="ui-glow-card" data-faq-item data-category="payment" data-state="closed" data-page-reveal data-delay="120"><h3><button type="button" aria-expanded="false" aria-controls="contact-faq-3" data-faq-trigger>Pembayaran gagal tetapi saldo sudah terpotong?<span aria-hidden="true">+</span></button></h3><div id="contact-faq-3" hidden><p>Tunggu rekonsiliasi maksimal 1×24 jam, lalu buat tiket bila status belum berubah.</p></div></article>
         </div>
       </div>
     </section>
@@ -143,6 +173,7 @@
   <div id="global-footer"></div>
   <script src="scripts/global-components.js"></script>
   <script src="scripts/main.js"></script>
-  <script src="scripts/contact-page.js?v=1"></script>
+  <script src="scripts/editorial-pages.js?v=1"></script>
+  <script src="scripts/contact-page.js?v=2"></script>
 </body>
 </html>
