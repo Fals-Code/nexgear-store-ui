@@ -63,12 +63,31 @@ try {
       await page.locator(testCase.trigger).first().click();
       const action = page.locator(testCase.action).first();
       await action.waitFor({ state: "visible", timeout: 5000 });
-      await action.click();
+      await page.waitForFunction(
+        (selector) => {
+          const element = document.querySelector(selector);
+          if (!element) return false;
+          const rect = element.getBoundingClientRect();
+          return rect.width > 0
+            && rect.height > 0
+            && rect.top >= 0
+            && rect.left >= 0
+            && rect.bottom <= window.innerHeight
+            && rect.right <= window.innerWidth;
+        },
+        testCase.action,
+        { timeout: 5000 },
+      );
+      await action.click({ timeout: 5000 });
 
       const toast = page.locator(testCase.toast);
       await toast.waitFor({ state: "visible", timeout: 5000 });
       await page.waitForFunction(
-        (selector) => document.querySelector(selector)?.classList.contains("is-visible"),
+        (selector) => {
+          const element = document.querySelector(selector);
+          if (!element?.classList.contains("is-visible")) return false;
+          return Number.parseFloat(getComputedStyle(element).opacity || "0") >= 0.9;
+        },
         testCase.toast,
         { timeout: 5000 },
       );
