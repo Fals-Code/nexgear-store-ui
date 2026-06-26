@@ -73,7 +73,7 @@
   const loadWorkspaceRegression = () => loadScript({
     globalName: "NexAdminWorkspaceRegression",
     selector: 'script[data-admin-workspace-regression]',
-    src: "scripts/admin-workspace-regression.js?v=1",
+    src: "scripts/admin-workspace-regression.js?v=2",
     dataName: "adminWorkspaceRegression",
   });
 
