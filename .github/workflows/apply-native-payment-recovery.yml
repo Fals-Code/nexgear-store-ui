@@ -1,0 +1,44 @@
+name: Apply native payment recovery
+
+on:
+  push:
+    branches:
+      - quality/uas-rubric-hardening
+    paths:
+      - tools/apply_native_payment_recovery.py
+      - .github/workflows/apply-native-payment-recovery.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: ${{ !contains(github.event.head_commit.message || '', '[native-payment-fix]') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout working branch
+        uses: actions/checkout@v4
+        with:
+          ref: quality/uas-rubric-hardening
+          fetch-depth: 0
+
+      - name: Apply native payment recovery
+        run: python3 tools/apply_native_payment_recovery.py
+
+      - name: Validate payment controller
+        run: node --check scripts/payment-page.js
+
+      - name: Commit payment fix
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No payment recovery changes detected."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/payment-page.js
+          git commit -m "[native-payment-fix] Route paid orders to their success page"
+          git push origin HEAD:quality/uas-rubric-hardening
