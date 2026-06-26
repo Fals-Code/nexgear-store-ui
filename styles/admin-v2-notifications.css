@@ -1,0 +1,20 @@
+.page-admin .admin-notification-panel{position:absolute;top:calc(100% + 12px);right:52px;z-index:170;width:min(390px,calc(100vw - 24px));overflow:hidden;border:1px solid var(--admin-line-strong);border-radius:16px;background:var(--admin-panel-strong);box-shadow:var(--admin-shadow)}
+.page-admin .admin-notification-panel[hidden]{display:none}
+.page-admin .admin-notification-panel>header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;border-bottom:1px solid var(--admin-line)}
+.page-admin .admin-notification-panel>header div{display:grid;gap:2px}
+.page-admin .admin-notification-panel>header span{color:var(--admin-text-muted);font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.page-admin .admin-notification-panel>header strong{color:var(--admin-text);font-size:.9rem}
+.page-admin .admin-notification-panel>header small{padding:5px 8px;border-radius:999px;background:rgba(255,126,139,.1);color:var(--admin-danger);font-size:.61rem;font-weight:800}
+.page-admin .admin-notification-list{display:grid}
+.page-admin .admin-notification-list a{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:11px;padding:14px 16px;border-bottom:1px solid var(--admin-line)}
+.page-admin .admin-notification-list a:hover{background:rgba(0,229,255,.04)}
+.page-admin .admin-notification-list i{width:9px;height:9px;margin-top:5px;border-radius:50%;background:var(--admin-accent);box-shadow:0 0 10px currentColor}
+.page-admin .admin-notification-list i.is-warning{color:var(--admin-warning);background:var(--admin-warning)}
+.page-admin .admin-notification-list i.is-danger{color:var(--admin-danger);background:var(--admin-danger)}
+.page-admin .admin-notification-list i.is-info{color:var(--admin-accent);background:var(--admin-accent)}
+.page-admin .admin-notification-list span{display:grid;min-width:0;gap:3px}
+.page-admin .admin-notification-list strong{overflow:hidden;color:var(--admin-text);font-size:.71rem;text-overflow:ellipsis;white-space:nowrap}
+.page-admin .admin-notification-list small{color:var(--admin-text-muted);font-size:.63rem;line-height:1.45}
+.page-admin .admin-notification-list time{color:var(--admin-text-muted);font-size:.59rem}
+.page-admin .admin-notification-panel>footer{padding:10px}
+.page-admin .admin-notification-panel>footer button{width:100%;min-height:36px;border:0;border-radius:9px;background:var(--admin-panel-soft);color:var(--admin-accent);font-size:.67rem;font-weight:800;cursor:pointer}
