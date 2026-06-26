@@ -3,8 +3,13 @@
 
   const authPages = new Set(["login.html", "register.html", "registration.html", "signup.html"]);
   const page = window.location.pathname.split("/").pop() || "index.html";
+  const fullFooterRevealPages = new Set(["about.html", "help.html", "contact.html"]);
   const scriptUrl = document.currentScript?.src || "";
   const asset = (path) => scriptUrl ? new URL(`../${path}`, scriptUrl).href : path;
+
+  if (fullFooterRevealPages.has(page)) {
+    document.body.dataset.footerReveal = "normal";
+  }
 
   const ensureStyle = (path) => {
     const href = asset(path);
