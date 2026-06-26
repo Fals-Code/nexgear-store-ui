@@ -1,6 +1,8 @@
 (function () {
   "use strict";
 
+  if (window.NexTransactionHistory) return;
+
   const list = document.getElementById("history-list");
   if (!list) return;
 
@@ -371,4 +373,17 @@
   hydrateTrackingLinks();
   updateTabCounts();
   render();
+
+  window.NexTransactionHistory = Object.freeze({
+    render,
+    refresh() {
+      hydratePersistedOrders();
+      hydrateTrackingLinks();
+      updateTabCounts();
+      render();
+    },
+    get count() {
+      return cards.length;
+    },
+  });
 })();
