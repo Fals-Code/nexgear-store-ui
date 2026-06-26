@@ -1,0 +1,40 @@
+@media (max-width: 720px) {
+  .page-admin { --admin-topbar-height: 64px; }
+  .page-admin .admin-content { width: min(100% - 20px, 1640px); padding-bottom: 76px; }
+  .page-admin .admin-breadcrumb,
+  .page-admin .admin-global-search,
+  .page-admin .admin-user-chip { display: none; }
+  .page-admin .admin-topbar { justify-content: space-between; }
+  .page-admin .admin-topbar-actions { margin-left: auto; }
+  .page-admin .admin-hero { padding: 24px 20px; border-radius: 18px; }
+  .page-admin .admin-hero::after,
+  .page-admin .admin-hero-bg { display: none; }
+  .page-admin .admin-hero h1 { font-size: clamp(1.8rem, 9vw, 2.55rem); }
+  .page-admin .admin-hero-actions { display: grid; grid-template-columns: 1fr; }
+  .page-admin .admin-context-strip { margin-bottom: 14px; }
+  .page-admin .metric-grid,
+  .page-admin .admin-stat-grid { grid-template-columns: 1fr; }
+  .page-admin .metric-card,
+  .page-admin .admin-stat-card { min-height: 104px; }
+  .page-admin .admin-ops-strip { border-radius: 14px; }
+  .page-admin .suite-toolbar,
+  .page-admin .article-toolbar { align-items: stretch; flex-direction: column; }
+  .page-admin .suite-toolbar-main,
+  .page-admin .article-toolbar-main { grid-template-columns: 1fr; }
+  .page-admin .suite-view-toggle,
+  .page-admin .article-view-toggle { width: 100%; }
+  .page-admin .suite-view-toggle button,
+  .page-admin .article-view-toggle button { flex: 1; }
+  .page-admin .suite-footer,
+  .page-admin .article-panel-footer { align-items: flex-start; flex-direction: column; }
+  .page-admin .suite-grid,
+  .page-admin .article-grid-view { grid-template-columns: 1fr; }
+  .page-admin .suite-drawer-panel,
+  .page-admin .editor-drawer__panel { padding: 20px; }
+  .page-admin .suite-form-grid,
+  .page-admin .editor-grid { grid-template-columns: 1fr; }
+  .page-admin .admin-command-palette { align-items: end; padding: 12px; }
+  .page-admin .admin-command-dialog { width: 100%; max-height: calc(100vh - 24px); border-radius: 18px; }
+  .page-admin .admin-command-footer { justify-content: flex-start; overflow-x: auto; }
+  .page-admin .admin-notification-panel { position: fixed; top: calc(var(--admin-topbar-height) + 8px); right: 10px; left: 10px; width: auto; }
+}
