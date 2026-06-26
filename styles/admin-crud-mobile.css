@@ -1,0 +1,29 @@
+/* Mobile CRUD fallback: article records use cards instead of a clipped desktop table. */
+@media (max-width: 720px) {
+  .page-admin-articles.admin-crud-modern .article-view-toggle {
+    display: none;
+  }
+
+  .page-admin-articles.admin-crud-modern .article-table-wrap {
+    display: none !important;
+  }
+
+  .page-admin-articles.admin-crud-modern .article-grid-view:not(:empty) {
+    display: grid !important;
+    grid-template-columns: 1fr;
+  }
+
+  .page-admin-articles.admin-crud-modern .article-grid-card {
+    min-width: 0;
+  }
+
+  .page-admin-articles.admin-crud-modern .article-grid-card h2 {
+    min-height: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .page-admin-articles.admin-crud-modern .article-grid-card__meta {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
