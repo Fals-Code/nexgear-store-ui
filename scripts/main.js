@@ -123,6 +123,84 @@
     });
   }
 
+  function announceFeedback(message) {
+    const text = String(message || "").trim();
+    if (!text) return;
+
+    if (typeof showNexToast === "function") {
+      showNexToast(text);
+      return;
+    }
+
+    if (typeof showToast === "function") {
+      showToast(text);
+      return;
+    }
+
+    let liveRegion = document.querySelector("[data-nex-live-region]");
+    if (!liveRegion) {
+      liveRegion = document.createElement("div");
+      liveRegion.setAttribute("data-nex-live-region", "");
+      liveRegion.setAttribute("role", "status");
+      liveRegion.setAttribute("aria-live", "polite");
+      liveRegion.style.position = "absolute";
+      liveRegion.style.width = "1px";
+      liveRegion.style.height = "1px";
+      liveRegion.style.margin = "-1px";
+      liveRegion.style.padding = "0";
+      liveRegion.style.overflow = "hidden";
+      liveRegion.style.clip = "rect(0 0 0 0)";
+      liveRegion.style.whiteSpace = "nowrap";
+      liveRegion.style.border = "0";
+      document.body.appendChild(liveRegion);
+    }
+
+    liveRegion.textContent = "";
+    window.setTimeout(() => {
+      liveRegion.textContent = text;
+    }, 10);
+  }
+
+  function initSearchDrawerControls() {
+    document.querySelectorAll("[data-search-drawer-close]").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.getElementById("search-drawer")?.classList.remove("active");
+      });
+    });
+  }
+
+  function initReviewForm() {
+    const form = document.querySelector("[data-review-form]");
+    if (!form) return;
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      announceFeedback("Ulasan Anda telah dikirim untuk dimoderasi. Terima kasih!");
+      window.setTimeout(() => {
+        window.location.href = "product-detail.html";
+      }, 700);
+    });
+  }
+
+  function initProfileFeedback() {
+    document.querySelectorAll("[data-profile-feedback]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const message = link.dataset.profileFeedback;
+        const href = link.getAttribute("href");
+        if (!href) {
+          announceFeedback(message);
+          return;
+        }
+
+        event.preventDefault();
+        announceFeedback(message);
+        window.setTimeout(() => {
+          window.location.href = href;
+        }, 500);
+      });
+    });
+  }
+
   /* INIT */
 
   function initFooterReveal() {
@@ -307,6 +385,9 @@
       initCountUp,
       initParallax,
       initLoginReveal,
+      initSearchDrawerControls,
+      initReviewForm,
+      initProfileFeedback,
       syncFooterRevealSpace,
       initPromoWindowReveal,
       initShowcaseFilters,

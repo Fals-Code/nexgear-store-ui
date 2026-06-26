@@ -1808,7 +1808,7 @@ $(document).ready(function () {
             )),
           c.dotsData ||
             (this._templates = [
-              a('<button role="button">')
+              a('<button type="button" role="button">')
                 .addClass(c.dotClass)
                 .append(a("<span>"))
                 .prop("outerHTML"),

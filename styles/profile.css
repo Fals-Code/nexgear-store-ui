@@ -59,7 +59,8 @@
   flex-direction: column;
 }
 
-.profile-nav a {
+.profile-nav a,
+.profile-nav span[aria-disabled="true"] {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -399,4 +400,9 @@
     width: 100%;
     text-align: center;
   }
+}
+.profile-nav span[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
 }

@@ -984,3 +984,8 @@ body::after {
     letter-spacing: 0.14em;
   }
 }
+.forgot-link.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}

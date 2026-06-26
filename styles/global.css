@@ -1947,7 +1947,8 @@ main > section:last-child {
   gap: 16px;
 }
 
-.footer-minimal-bottom a {
+.footer-minimal-bottom a,
+.footer-minimal-bottom span[aria-disabled="true"] {
   color: rgba(226, 232, 240, 0.48);
   font-weight: 700;
   text-decoration: none;
@@ -2373,4 +2374,13 @@ main > section:last-child {
   .mobile-nav-drawer {
     transition: none;
   }
+}
+/* ==========================================
+   P1 DISABLED PLACEHOLDERS
+   ========================================== */
+.footer-social-link[aria-disabled="true"],
+.footer-minimal-bottom span[aria-disabled="true"] {
+  opacity: 0.42;
+  cursor: not-allowed;
+  pointer-events: none;
 }

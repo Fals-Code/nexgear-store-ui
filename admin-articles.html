@@ -60,7 +60,7 @@
               <label class="article-select-wrap"><select id="article-category-filter"><option value="all">Semua Kategori</option><option>Hardware</option><option>Setup Tips</option><option>Buying Guide</option><option>Audio</option><option>Performance</option><option>Upgrade</option></select></label>
               <label class="article-select-wrap"><select id="article-sort"><option value="updated">Update Terbaru</option><option value="views">Views Tertinggi</option><option value="title">Judul A-Z</option></select></label>
             </div>
-            <div class="article-view-toggle"><button class="is-active" data-view="table" aria-pressed="true">Table</button><button data-view="grid" aria-pressed="false">Grid</button></div>
+            <div class="article-view-toggle"><button type="button" class="is-active" data-view="table" aria-pressed="true">Table</button><button type="button" data-view="grid" aria-pressed="false">Grid</button></div>
           </header>
 
           <div class="article-table-wrap" id="article-table-wrap">
@@ -86,15 +86,15 @@
             </table>
           </div>
           <div class="article-grid-view" id="article-grid-view" hidden></div>
-          <div class="article-empty" id="article-empty" hidden><span>⌁</span><h2>Tidak ada artikel yang cocok</h2><p>Ubah filter atau buat artikel baru.</p><button class="btn btn-outline" id="article-reset-filter">Reset Filter</button></div>
-          <footer class="article-panel-footer"><p><strong id="article-visible-count">3</strong> artikel ditampilkan</p><nav class="article-pagination" aria-label="Paginasi artikel"><button aria-current="page">1</button><button>2</button><button>3</button></nav></footer>
+          <div class="article-empty" id="article-empty" hidden><span>⌁</span><h2>Tidak ada artikel yang cocok</h2><p>Ubah filter atau buat artikel baru.</p><button type="button" class="btn btn-outline" id="article-reset-filter">Reset Filter</button></div>
+          <footer class="article-panel-footer"><p><strong id="article-visible-count">3</strong> artikel ditampilkan</p><nav class="article-pagination" aria-label="Paginasi artikel"><button type="button" aria-current="page">1</button><button type="button">2</button><button type="button">3</button></nav></footer>
         </section>
       </main>
     </div>
   </div>
 
-  <div class="row-menu" id="article-row-menu" hidden><button data-menu-action="view">Lihat Artikel</button><button data-menu-action="edit">Edit</button><button data-menu-action="duplicate">Duplikasi</button><button data-menu-action="schedule">Jadwalkan</button><button data-menu-action="archive">Arsipkan</button><button class="danger" data-menu-action="delete">Hapus</button></div>
-  <div class="bulk-action" id="bulk-action" hidden><strong><span id="bulk-count">0</span> artikel dipilih</strong><button data-bulk-action="publish">Terbitkan</button><button data-bulk-action="archive">Arsipkan</button><button class="danger" data-bulk-action="delete">Hapus</button><button id="bulk-close" aria-label="Tutup aksi massal">×</button></div>
+  <div class="row-menu" id="article-row-menu" hidden><button type="button" data-menu-action="view">Lihat Artikel</button><button type="button" data-menu-action="edit">Edit</button><button type="button" data-menu-action="duplicate">Duplikasi</button><button type="button" data-menu-action="schedule">Jadwalkan</button><button type="button" data-menu-action="archive">Arsipkan</button><button type="button" class="danger" data-menu-action="delete">Hapus</button></div>
+  <div class="bulk-action" id="bulk-action" hidden><strong><span id="bulk-count">0</span> artikel dipilih</strong><button type="button" data-bulk-action="publish">Terbitkan</button><button type="button" data-bulk-action="archive">Arsipkan</button><button type="button" class="danger" data-bulk-action="delete">Hapus</button><button type="button" id="bulk-close" aria-label="Tutup aksi massal">×</button></div>
 
   <aside class="editor-drawer" id="editor-drawer" aria-hidden="true">
     <div class="editor-drawer__overlay" data-close-editor></div>
@@ -109,7 +109,7 @@
     </form>
   </aside>
 
-  <div class="confirm-modal" id="delete-modal" hidden><div class="confirm-modal__card"><span class="confirm-icon">!</span><h2>Hapus artikel?</h2><p id="delete-message">Artikel akan dihapus.</p><div><button class="btn btn-outline" id="delete-cancel">Batal</button><button class="btn btn-danger" id="delete-confirm">Hapus Artikel</button></div></div></div>
+  <div class="confirm-modal" id="delete-modal" hidden><div class="confirm-modal__card"><span class="confirm-icon">!</span><h2>Hapus artikel?</h2><p id="delete-message">Artikel akan dihapus.</p><div><button type="button" class="btn btn-outline" id="delete-cancel">Batal</button><button type="button" class="btn btn-danger" id="delete-confirm">Hapus Artikel</button></div></div></div>
   <div class="admin-toast" id="admin-toast" hidden></div>
   <script src="scripts/admin-articles.js?v=2"></script>
   <script src="scripts/admin-action-menu.js?v=2"></script>
