@@ -51,7 +51,7 @@
   const loadFullscreenWorkspace = () => {
     if (window.NexAdminFullscreenWorkspace || document.querySelector('script[data-admin-fullscreen-workspace]')) return;
     const script = document.createElement("script");
-    script.src = "scripts/admin-fullscreen-workspace.js?v=1";
+    script.src = "scripts/admin-fullscreen-workspace.js?v=2";
     script.dataset.adminFullscreenWorkspace = "true";
     document.body.append(script);
   };
@@ -75,9 +75,7 @@
   }).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
 
   document.addEventListener("input", (event) => {
-    if (event.target.matches('input[name="id"], input[name="email"]')) {
-      event.target.setCustomValidity("");
-    }
+    if (event.target.matches('input[name="id"], input[name="email"]')) event.target.setCustomValidity("");
   });
 
   document.addEventListener("DOMContentLoaded", () => {
