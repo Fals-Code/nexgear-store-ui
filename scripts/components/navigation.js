@@ -40,35 +40,121 @@
   }
 
   function initMobileMenu() {
-    const nav = document.querySelector("nav");
-    const navLinks = document.querySelector(".nav-links");
-    const hamburger = document.querySelector(".hamburger");
-    if (!nav || !navLinks || !hamburger) return;
+    const trigger = document.querySelector("[data-mobile-nav-toggle]");
+    const layer = document.querySelector("[data-mobile-nav-layer]");
+    const drawer = document.getElementById("mobile-nav-drawer");
+    if (!trigger || !layer || !drawer) return;
 
-    hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active");
-      navLinks.classList.toggle("mobile-active");
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(",");
+    let returnFocus = null;
+    let previousBodyOverflow = "";
+
+    const focusable = () =>
+      Array.from(drawer.querySelectorAll(focusableSelector)).filter(
+        (element) => element.getClientRects().length > 0,
+      );
+
+    const setState = (open) => {
+      trigger.dataset.state = open ? "open" : "closed";
+      trigger.setAttribute("aria-expanded", String(open));
+      layer.dataset.state = open ? "open" : "closed";
+      layer.setAttribute("aria-hidden", String(!open));
+      drawer.dataset.state = open ? "open" : "closed";
+      document.body.classList.toggle("mobile-nav-open", open);
+
+      if (open) {
+        previousBodyOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        window.setTimeout(() => (focusable()[0] || drawer).focus(), 0);
+        return;
+      }
+
+      document.body.style.overflow = previousBodyOverflow;
+      if (returnFocus instanceof HTMLElement) {
+        window.setTimeout(() => returnFocus.focus(), 0);
+      }
+    };
+
+    const open = () => {
+      if (layer.dataset.state === "open") return;
+      returnFocus = document.activeElement;
+      setState(true);
+    };
+
+    const close = () => {
+      if (layer.dataset.state !== "open") return;
+      setState(false);
+    };
+
+    const trapFocus = (event) => {
+      if (layer.dataset.state !== "open" || event.key !== "Tab") return;
+      const items = focusable();
+      if (!items.length) {
+        event.preventDefault();
+        drawer.focus();
+        return;
+      }
+
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    trigger.addEventListener("click", () => {
+      if (layer.dataset.state === "open") close();
+      else open();
     });
 
-    // Close on link click
-    navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        hamburger.classList.remove("active");
-        navLinks.classList.remove("mobile-active");
-      });
+    layer.querySelectorAll("[data-mobile-nav-close]").forEach((control) => {
+      control.addEventListener("click", close);
+    });
+
+    drawer.querySelectorAll("[data-mobile-nav-link]").forEach((link) => {
+      link.addEventListener("click", close);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (layer.dataset.state !== "open") return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        close();
+        return;
+      }
+      trapFocus(event);
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.matchMedia("(min-width: 992px)").matches) close();
     });
   }
 
   function setActiveNav() {
     const path = window.location.pathname.split("/").pop() || "index.html";
-    document.querySelectorAll(".nav-links a").forEach((link) => {
-      const href = link.getAttribute("href");
-      if (href === path || (path === "" && href === "index.html")) {
-        link.classList.add("active");
-      }
-    });
+    document
+      .querySelectorAll(".nav-links a, .mobile-primary-nav a")
+      .forEach((link) => {
+        const href = (link.getAttribute("href") || "").split("?")[0];
+        const current = href === path || (path === "" && href === "index.html");
+        link.classList.toggle("active", current);
+        if (current) link.setAttribute("aria-current", "page");
+        else if (link.getAttribute("aria-current") === "page") {
+          link.removeAttribute("aria-current");
+        }
+      });
   }
-
   function initMiniCartDropdownRemove() {
     document
       .querySelectorAll(".mini-cart-dropdown .mini-cart-remove")
