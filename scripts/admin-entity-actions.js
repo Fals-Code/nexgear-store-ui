@@ -1,56 +1,16 @@
 (() => {
   "use strict";
-
   if (window.NexAdminEntityActions) return;
 
   const body = document.body;
   const page = body?.dataset.adminPage || (body?.classList.contains("page-admin-articles") ? "articles" : "");
-  const supported = new Set(["articles", "products", "users", "transactions"]);
-  if (!body?.classList.contains("page-admin") || !supported.has(page)) return;
+  if (!body?.classList.contains("page-admin") || !["articles", "products", "users", "transactions"].includes(page)) return;
 
   const $ = (selector, context = document) => context.querySelector(selector);
   const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
-  const entityLabels = {
-    articles: { singular: "artikel", plural: "artikel", code: "AR" },
-    products: { singular: "produk", plural: "produk", code: "PR" },
-    users: { singular: "pengguna", plural: "pengguna", code: "US" },
-    transactions: { singular: "transaksi", plural: "transaksi", code: "TR" },
-  };
-  const storageKeys = {
-    articles: "nexgear-admin-articles-v1",
-    products: "nexgear-admin-products-v1",
-    users: "nexgear-admin-users-v1",
-    transactions: "nexgear-admin-transactions-v1",
-  };
-  const fieldLabels = {
-    title: "Judul",
-    slug: "Slug",
-    content: "Isi artikel",
-    excerpt: "Excerpt",
-    category: "Kategori",
-    status: "Status",
-    image: "Gambar",
-    name: "Nama",
-    id: "ID / SKU",
-    brand: "Brand",
-    price: "Harga",
-    salePrice: "Harga promo",
-    cost: "Harga modal",
-    stock: "Stok",
-    minStock: "Batas stok",
-    role: "Role",
-    email: "Email",
-    phone: "Nomor telepon",
-    courier: "Kurir",
-    resi: "Nomor resi",
-    eta: "Estimasi tiba",
-    internalNote: "Catatan internal",
-  };
-
-  let lastContext = null;
+  const storageKey = `nexgear-admin-${page}-v1`;
+  let activeContext = null;
   let activePolicy = null;
-  let drawerSnapshots = new WeakMap();
-  let observerRegistry = new WeakSet();
 
   const escapeHtml = (value) => String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -61,317 +21,157 @@
 
   const clone = (value) => JSON.parse(JSON.stringify(value));
 
-  const storage = {
-    read(key, fallback = null) {
-      try {
-        const raw = localStorage.getItem(key);
-        return raw === null ? fallback : JSON.parse(raw);
-      } catch {
-        return fallback;
-      }
-    },
-    write(key, value) {
-      try {
-        localStorage.setItem(key, JSON.stringify(value));
-        return true;
-      } catch {
-        return false;
-      }
-    },
-  };
-
-  const ensureStyles = () => {
-    if ($('link[data-entity-actions-css]')) return;
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "styles/admin-entity-actions.css?v=1";
-    link.dataset.entityActionsCss = "true";
-    document.head.append(link);
-  };
-
-  const announce = (message) => {
-    if (window.NexA11y?.announce) {
-      window.NexA11y.announce(message);
-      return;
-    }
-    let region = $("#entity-actions-live-region");
-    if (!region) {
-      region = document.createElement("div");
-      region.id = "entity-actions-live-region";
-      region.className = "visually-hidden";
-      region.setAttribute("role", "status");
-      region.setAttribute("aria-live", "polite");
-      document.body.append(region);
-    }
-    region.textContent = "";
-    requestAnimationFrame(() => { region.textContent = message; });
-  };
-
-  const showToast = (message) => {
-    const toast = $(page === "articles" ? "#admin-toast" : "#suite-toast");
-    if (!toast) {
-      announce(message);
-      return;
-    }
-    toast.textContent = message;
-    toast.hidden = false;
-    clearTimeout(showToast.timer);
-    showToast.timer = window.setTimeout(() => { toast.hidden = true; }, 3200);
-    announce(message);
-  };
-
-  const consumeFlash = () => {
-    try {
-      const message = sessionStorage.getItem("nexgear-admin-action-flash");
-      if (!message) return;
-      sessionStorage.removeItem("nexgear-admin-action-flash");
-      window.setTimeout(() => showToast(message), 180);
-    } catch {
-      // Tidak kritis untuk fungsi utama.
-    }
-  };
-
-  const setFlash = (message) => {
-    try {
-      sessionStorage.setItem("nexgear-admin-action-flash", message);
-    } catch {
-      // Reload tetap dilakukan walau session storage diblokir.
-    }
-  };
-
-  const serializeArticleRows = () => $$("#article-list .article-row").map((row, index) => {
-    const title = $("h2", row)?.textContent.trim() || `Artikel ${index + 1}`;
-    const meta = $(".article-title-cell p", row)?.textContent || "/artikel · 6 menit baca";
-    const reading = Number(meta.match(/(\d+)\s+menit/)?.[1] || 6);
-    return {
-      id: row.dataset.id || `seed-${index + 1}`,
-      title,
-      slug: meta.split("·")[0].trim(),
-      reading,
-      category: row.dataset.category || "Hardware",
-      status: row.dataset.status || "draft",
-      author: row.dataset.author || "Admin NEXGEAR",
-      views: Number(row.dataset.views || 0),
-      updated: row.dataset.updated || new Date().toISOString().slice(0, 10),
-      excerpt: row.dataset.excerpt || "",
-      image: row.dataset.image || $("img", row)?.src || "",
-    };
-  });
-
   const readRecords = () => {
-    const saved = storage.read(storageKeys[page]);
-    if (Array.isArray(saved)) return clone(saved);
-    if (page === "articles") return serializeArticleRows();
-    const seed = window.NEXGEAR_ADMIN_DATA?.[page];
-    return Array.isArray(seed) ? clone(seed) : [];
-  };
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey));
+      if (Array.isArray(saved)) return clone(saved);
+    } catch {}
 
-  const writeRecords = (records) => storage.write(storageKeys[page], records);
+    if (page !== "articles") return clone(window.NEXGEAR_ADMIN_DATA?.[page] || []);
 
-  const recordName = (record) => record?.title || record?.name || record?.customer || record?.email || record?.id || entityLabels[page].singular;
-
-  const appendAudit = (record, action, reason = "") => {
-    const audit = Array.isArray(record.auditLog) ? record.auditLog : [];
-    audit.unshift({
-      action,
-      reason,
-      actor: "Admin NEXGEAR",
-      at: new Date().toISOString(),
-    });
-    record.auditLog = audit.slice(0, 20);
-    record.updated = new Date().toISOString();
-  };
-
-  const contextFromTrigger = (trigger) => {
-    if (page === "articles") {
-      const row = trigger.closest(".article-row")
-        || (() => {
-          const card = trigger.closest(".article-grid-card");
-          return card ? $(`#article-list .article-row[data-id="${CSS.escape(card.dataset.rowId || "")}"]`) : null;
-        })();
-      if (!row) return null;
+    return $$("#article-list .article-row").map((row, index) => {
+      const meta = $(".article-title-cell p", row)?.textContent || "/artikel · 6 menit baca";
       return {
-        id: row.dataset.id,
-        title: $("h2", row)?.textContent.trim() || "Artikel",
+        id: row.dataset.id || `seed-${index + 1}`,
+        title: $("h2", row)?.textContent.trim() || `Artikel ${index + 1}`,
+        slug: meta.split("·")[0].trim(),
+        reading: Number(meta.match(/(\d+)\s+menit/)?.[1] || 6),
+        category: row.dataset.category || "Hardware",
         status: row.dataset.status || "draft",
+        author: row.dataset.author || "Admin NEXGEAR",
+        views: Number(row.dataset.views || 0),
+        updated: row.dataset.updated || new Date().toISOString().slice(0, 10),
+        excerpt: row.dataset.excerpt || "",
+        image: row.dataset.image || $("img", row)?.src || "",
       };
-    }
-
-    const host = trigger.closest("[data-id]");
-    if (!host) return null;
-    const records = readRecords();
-    const record = records.find((item) => String(item.id) === String(host.dataset.id));
-    return {
-      id: host.dataset.id,
-      title: recordName(record),
-      status: record?.status || "",
-    };
+    });
   };
 
-  const selectedIds = () => {
-    if (page === "articles") {
-      return $$("#article-list .article-row").filter((row) => $(".article-check", row)?.checked).map((row) => row.dataset.id);
+  const writeRecords = (records) => {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(records));
+      return true;
+    } catch {
+      return false;
     }
-    return $$("[data-id]").filter((host) => $(".suite-check", host)?.checked).map((host) => host.dataset.id).filter((id, index, array) => array.indexOf(id) === index);
   };
 
-  const resolveTargets = (bulk) => {
-    const ids = bulk ? selectedIds() : [lastContext?.id].filter(Boolean);
+  const recordName = (record) => record?.title || record?.name || record?.customer || record?.email || record?.id || "data";
+
+  const selectedIds = () => page === "articles"
+    ? $$("#article-list .article-row").filter((row) => $(".article-check", row)?.checked).map((row) => row.dataset.id)
+    : $$("[data-id]").filter((host) => $(".suite-check", host)?.checked).map((host) => host.dataset.id).filter((id, index, ids) => ids.indexOf(id) === index);
+
+  const resolveBundle = (bulk) => {
     const records = readRecords();
+    const ids = bulk ? selectedIds() : [activeContext?.id].filter(Boolean);
     return {
-      ids,
       records,
+      ids,
       targets: ids.map((id) => records.find((record) => String(record.id) === String(id))).filter(Boolean),
     };
   };
 
-  const buildPolicy = (bulk = false) => {
-    const { ids, records, targets } = resolveTargets(bulk);
-    const count = targets.length;
-    const label = count === 1 ? `“${recordName(targets[0])}”` : `${count} ${entityLabels[page].plural}`;
+  const policy = (kind, bundle, options) => ({ kind, tone: kind, ...bundle, ...options });
 
-    if (!count) {
-      return {
-        kind: "protect",
-        tone: "archive",
-        ids,
-        records,
-        targets,
-        title: "Tidak ada data yang dipilih",
-        description: "Pilih data terlebih dahulu sebelum menjalankan aksi ini.",
-        primary: "Tutup",
-        impacts: ["Tidak ada perubahan yang dilakukan."],
-      };
-    }
+  const buildPolicy = (bulk) => {
+    const bundle = resolveBundle(bulk);
+    const count = bundle.targets.length;
+    if (!count) return policy("protect", bundle, {
+      tone: "archive",
+      title: "Tidak ada data yang dipilih",
+      description: "Pilih data terlebih dahulu sebelum menjalankan aksi ini.",
+      primary: "Tutup",
+      impacts: ["Tidak ada perubahan yang dilakukan."],
+    });
 
     if (page === "articles") {
-      const deletable = targets.every((record) => record.status === "draft");
-      if (deletable) {
-        return {
-          kind: "delete",
-          tone: "delete",
-          ids,
-          records,
-          targets,
-          label,
-          title: count === 1 ? "Hapus draft artikel?" : `Hapus ${count} draft artikel?`,
-          description: "Draft belum dipublikasikan dapat dihapus permanen dari prototype editorial.",
-          primary: count === 1 ? "Hapus Draft" : `Hapus ${count} Draft`,
-          confirmToken: count === 1 ? recordName(targets[0]) : `HAPUS ${count} DRAFT`,
-          impacts: ["Draft hilang dari tabel dan penyimpanan lokal.", "Artikel yang sudah terbit tidak ikut dihapus.", "Tindakan dicatat pada alur UI sebelum data dilepas."],
-        };
-      }
-      return {
-        kind: "archive",
-        tone: "archive",
-        ids,
-        records,
-        targets,
-        label,
+      if (bundle.targets.every((record) => record.status === "draft")) return policy("delete", bundle, {
+        title: count === 1 ? "Hapus draft artikel?" : `Hapus ${count} draft artikel?`,
+        description: "Draft yang belum dipublikasikan dapat dihapus permanen.",
+        primary: count === 1 ? "Hapus Draft" : `Hapus ${count} Draft`,
+        token: count === 1 ? recordName(bundle.targets[0]) : `HAPUS ${count} DRAFT`,
+        impacts: ["Draft hilang dari penyimpanan lokal.", "Artikel terbit tidak ikut dihapus.", "URL publik tetap aman."],
+      });
+      return policy("archive", bundle, {
         title: count === 1 ? "Arsipkan artikel?" : `Arsipkan ${count} artikel?`,
-        description: "Artikel yang pernah terbit atau dijadwalkan tidak dihapus agar URL dan histori editorial tetap aman.",
+        description: "Artikel terbit atau terjadwal dipindahkan ke arsip agar histori editorial tetap aman.",
         primary: count === 1 ? "Arsipkan Artikel" : `Arsipkan ${count} Artikel`,
-        impacts: ["Status artikel berubah menjadi Arsip.", "Data, metadata, dan histori tetap tersimpan.", "Artikel dapat dipulihkan melalui perubahan status."],
-      };
+        impacts: ["Status berubah menjadi Arsip.", "Metadata dan histori tetap tersimpan.", "Artikel dapat dipulihkan kembali."],
+      });
     }
 
     if (page === "products") {
-      const deletable = targets.every((record) => record.status === "draft");
-      if (deletable) {
-        return {
-          kind: "delete",
-          tone: "delete",
-          ids,
-          records,
-          targets,
-          label,
-          title: count === 1 ? "Hapus produk draft?" : `Hapus ${count} produk draft?`,
-          description: "Hanya produk draft yang boleh dihapus permanen. Produk katalog aktif tetap dilindungi.",
-          primary: count === 1 ? "Hapus Produk Draft" : `Hapus ${count} Draft`,
-          confirmToken: count === 1 ? recordName(targets[0]) : `HAPUS ${count} PRODUK`,
-          impacts: ["Produk draft hilang dari inventori lokal.", "Produk aktif dan histori katalog tidak terpengaruh.", "SKU draft tersebut dapat digunakan kembali."],
-        };
-      }
-      return {
-        kind: "archive",
-        tone: "archive",
-        ids,
-        records,
-        targets,
-        label,
+      if (bundle.targets.every((record) => record.status === "draft")) return policy("delete", bundle, {
+        title: count === 1 ? "Hapus produk draft?" : `Hapus ${count} produk draft?`,
+        description: "Hanya produk draft yang boleh dihapus permanen.",
+        primary: count === 1 ? "Hapus Produk Draft" : `Hapus ${count} Draft`,
+        token: count === 1 ? recordName(bundle.targets[0]) : `HAPUS ${count} PRODUK`,
+        impacts: ["Produk draft hilang dari inventori lokal.", "Produk aktif tidak terpengaruh.", "SKU draft dapat digunakan kembali."],
+      });
+      return policy("archive", bundle, {
         title: count === 1 ? "Arsipkan produk?" : `Arsipkan ${count} produk?`,
         description: "Produk aktif tidak dihapus agar referensi katalog dan transaksi tetap konsisten.",
         primary: count === 1 ? "Arsipkan Produk" : `Arsipkan ${count} Produk`,
-        impacts: ["Produk tidak lagi tampil sebagai item aktif.", "SKU, harga, dan histori produk tetap tersimpan.", "Produk dapat diaktifkan kembali dari workspace edit."],
-      };
+        impacts: ["Produk tidak lagi aktif.", "SKU dan histori tetap tersimpan.", "Produk dapat diaktifkan kembali."],
+      });
     }
 
     if (page === "users") {
-      const deletableInvite = targets.every((record) => record.status === "invited" && Number(record.orders || 0) === 0);
-      if (deletableInvite) {
-        return {
-          kind: "delete",
-          tone: "delete",
-          ids,
-          records,
-          targets,
-          label,
-          title: count === 1 ? "Batalkan undangan pengguna?" : `Batalkan ${count} undangan?`,
-          description: "Akun yang belum aktif dan belum memiliki transaksi dapat dilepas dari daftar undangan.",
-          primary: count === 1 ? "Batalkan Undangan" : `Batalkan ${count} Undangan`,
-          confirmToken: count === 1 ? recordName(targets[0]) : `BATALKAN ${count} UNDANGAN`,
-          impacts: ["Tautan undangan tidak lagi berlaku.", "Tidak ada transaksi atau histori pelanggan yang dihapus.", "Email dapat diundang kembali di kemudian hari."],
-        };
-      }
-      return {
-        kind: "deactivate",
-        tone: "deactivate",
-        ids,
-        records,
-        targets,
-        label,
+      if (bundle.targets.every((record) => record.status === "invited" && Number(record.orders || 0) === 0)) return policy("delete", bundle, {
+        title: count === 1 ? "Batalkan undangan pengguna?" : `Batalkan ${count} undangan?`,
+        description: "Undangan yang belum aktif dan belum memiliki transaksi dapat dilepas.",
+        primary: count === 1 ? "Batalkan Undangan" : `Batalkan ${count} Undangan`,
+        token: count === 1 ? recordName(bundle.targets[0]) : `BATALKAN ${count} UNDANGAN`,
+        impacts: ["Tautan undangan tidak berlaku.", "Tidak ada transaksi yang dihapus.", "Email dapat diundang kembali."],
+      });
+      return policy("deactivate", bundle, {
         title: count === 1 ? "Nonaktifkan akun?" : `Nonaktifkan ${count} akun?`,
-        description: "Akun yang memiliki aktivitas tidak dihapus. Akses dihentikan tanpa merusak transaksi dan audit log.",
+        description: "Akses dihentikan tanpa menghapus transaksi dan audit log.",
         primary: count === 1 ? "Nonaktifkan Akun" : `Nonaktifkan ${count} Akun`,
-        reasonRequired: true,
-        impacts: ["Pengguna tidak dapat masuk setelah status diperbarui.", "Riwayat transaksi dan identitas audit tetap tersimpan.", "Akun dapat diaktifkan kembali oleh admin."],
-      };
+        reason: true,
+        impacts: ["Pengguna tidak dapat masuk.", "Riwayat transaksi tetap tersimpan.", "Akun dapat diaktifkan kembali."],
+      });
     }
 
-    const finalOnly = targets.every((record) => ["cancelled", "refund"].includes(record.status));
-    if (finalOnly) {
-      return {
-        kind: "protect",
-        tone: "archive",
-        ids,
-        records,
-        targets,
-        label,
-        title: "Transaksi sudah berstatus final",
-        description: "Transaksi batal atau refund dipertahankan sebagai bukti audit dan tidak dapat dihapus dari panel.",
-        primary: "Tutup",
-        impacts: ["Data finansial tetap utuh.", "Status final tidak diubah.", "Riwayat tetap tersedia untuk laporan dan investigasi."],
-      };
-    }
+    const groups = new Set(bundle.targets.map((record) => {
+      if (["cancelled", "refund"].includes(record.status)) return "final";
+      if (["shipping", "completed"].includes(record.status)) return "refund";
+      return "cancel";
+    }));
 
-    const needsRefund = targets.some((record) => ["shipping", "completed"].includes(record.status));
-    return {
-      kind: needsRefund ? "refund" : "cancel",
-      tone: needsRefund ? "refund" : "cancel",
-      ids,
-      records,
-      targets,
-      label,
-      title: needsRefund ? (count === 1 ? "Ajukan refund transaksi?" : `Refund ${count} transaksi?`) : (count === 1 ? "Batalkan transaksi?" : `Batalkan ${count} transaksi?`),
-      description: needsRefund
-        ? "Pesanan yang sudah dikirim atau selesai tidak dihapus. Status dipindahkan ke refund dengan alasan yang tercatat."
-        : "Pesanan aktif tidak dihapus. Status dipindahkan ke dibatalkan agar alur pembayaran dan audit tetap konsisten.",
-      primary: needsRefund ? (count === 1 ? "Proses Refund" : `Refund ${count} Transaksi`) : (count === 1 ? "Batalkan Transaksi" : `Batalkan ${count} Transaksi`),
-      reasonRequired: true,
-      impacts: needsRefund
-        ? ["Status transaksi dan pembayaran menjadi Refund.", "Alasan refund dicatat pada data transaksi.", "Nomor pesanan dan snapshot nilai tetap dipertahankan."]
-        : ["Status transaksi menjadi Dibatalkan.", "Alasan pembatalan dicatat untuk audit.", "Nomor pesanan dan nilai transaksi tidak dihapus."],
-    };
+    if (groups.size > 1) return policy("protect", bundle, {
+      tone: "archive",
+      title: "Pisahkan transaksi berdasarkan status",
+      description: "Pilihan berisi tahap transaksi berbeda. Proses pembatalan dan refund secara terpisah.",
+      primary: "Tutup",
+      impacts: ["Tidak ada transaksi yang diubah.", "Pilih transaksi dengan status sejenis.", "Snapshot nilai tetap aman."],
+    });
+
+    const group = [...groups][0];
+    if (group === "final") return policy("protect", bundle, {
+      tone: "archive",
+      title: "Transaksi sudah berstatus final",
+      description: "Transaksi batal atau refund dipertahankan sebagai bukti audit.",
+      primary: "Tutup",
+      impacts: ["Data finansial tetap utuh.", "Status final tidak berubah.", "Riwayat tetap tersedia."],
+    });
+
+    if (group === "refund") return policy("refund", bundle, {
+      title: count === 1 ? "Ajukan refund transaksi?" : `Refund ${count} transaksi?`,
+      description: "Pesanan yang sudah dikirim atau selesai dipindahkan ke refund, bukan dihapus.",
+      primary: count === 1 ? "Proses Refund" : `Refund ${count} Transaksi`,
+      reason: true,
+      impacts: ["Status transaksi dan pembayaran menjadi Refund.", "Alasan dicatat untuk audit.", "Nomor pesanan tetap dipertahankan."],
+    });
+
+    return policy("cancel", bundle, {
+      title: count === 1 ? "Batalkan transaksi?" : `Batalkan ${count} transaksi?`,
+      description: "Pesanan aktif dipindahkan ke dibatalkan agar alur pembayaran tetap konsisten.",
+      primary: count === 1 ? "Batalkan Transaksi" : `Batalkan ${count} Transaksi`,
+      reason: true,
+      impacts: ["Status menjadi Dibatalkan.", "Alasan dicatat untuk audit.", "Nilai transaksi tidak dihapus."],
+    });
   };
 
   const createDialog = () => {
@@ -380,91 +180,48 @@
     dialog.id = "entity-action-dialog";
     dialog.className = "entity-action-dialog";
     dialog.hidden = true;
-    dialog.dataset.tone = "delete";
-    dialog.innerHTML = `
-      <button class="entity-action-dialog__backdrop" type="button" data-safe-close aria-label="Tutup dialog"></button>
-      <section class="entity-action-dialog__card" role="dialog" aria-modal="true" aria-labelledby="entity-action-title" aria-describedby="entity-action-description">
-        <div class="entity-action-dialog__topline"></div>
-        <header class="entity-action-dialog__header">
-          <span class="entity-action-dialog__icon" data-safe-icon aria-hidden="true">!</span>
-          <div class="entity-action-dialog__heading">
-            <span class="entity-action-dialog__kicker" data-safe-kicker>Aksi sensitif</span>
-            <h2 id="entity-action-title" data-safe-title>Konfirmasi tindakan</h2>
-            <p id="entity-action-description" data-safe-description></p>
-          </div>
-          <button class="entity-action-dialog__close" type="button" data-safe-close aria-label="Tutup dialog">×</button>
-        </header>
-        <div class="entity-action-dialog__body">
-          <div class="entity-protected-note" data-safe-protected hidden></div>
-          <ul class="entity-action-impact" data-safe-impact></ul>
-          <label class="entity-action-field" data-safe-reason-field hidden>
-            <span>Alasan tindakan *</span>
-            <textarea data-safe-reason rows="3" maxlength="280" placeholder="Tuliskan alasan yang jelas untuk audit internal"></textarea>
-            <small>Alasan disimpan bersama perubahan status.</small>
-          </label>
-          <label class="entity-action-field" data-safe-confirm-field hidden>
-            <span>Ketik teks konfirmasi</span>
-            <input data-safe-confirm type="text" autocomplete="off" spellcheck="false">
-            <small>Ketik <strong data-safe-token></strong> untuk membuka aksi permanen.</small>
-          </label>
-        </div>
-        <footer class="entity-action-dialog__footer">
-          <button class="btn btn-outline" type="button" data-safe-close>Batal</button>
-          <button class="btn btn-danger entity-action-dialog__primary" type="button" data-safe-apply>Konfirmasi</button>
-        </footer>
-      </section>`;
+    dialog.innerHTML = `<button class="entity-action-dialog__backdrop" type="button" data-safe-close aria-label="Tutup dialog"></button><section class="entity-action-dialog__card" role="dialog" aria-modal="true" aria-labelledby="entity-action-title"><div class="entity-action-dialog__topline"></div><header class="entity-action-dialog__header"><span class="entity-action-dialog__icon" data-safe-icon aria-hidden="true">!</span><div class="entity-action-dialog__heading"><span class="entity-action-dialog__kicker" data-safe-kicker></span><h2 id="entity-action-title" data-safe-title></h2><p data-safe-description></p></div><button class="entity-action-dialog__close" type="button" data-safe-close aria-label="Tutup dialog">×</button></header><div class="entity-action-dialog__body"><div class="entity-protected-note" data-safe-protected hidden></div><ul class="entity-action-impact" data-safe-impact></ul><label class="entity-action-field" data-safe-reason-field hidden><span>Alasan tindakan *</span><textarea data-safe-reason rows="3" maxlength="280" placeholder="Tuliskan alasan minimal 8 karakter"></textarea><small>Alasan disimpan bersama perubahan status.</small></label><label class="entity-action-field" data-safe-token-field hidden><span>Ketik teks konfirmasi</span><input data-safe-token type="text" autocomplete="off"><small>Ketik <strong data-safe-token-label></strong> untuk membuka aksi permanen.</small></label></div><footer class="entity-action-dialog__footer"><button class="btn btn-outline" type="button" data-safe-close>Batal</button><button class="btn btn-danger entity-action-dialog__primary" type="button" data-safe-apply>Konfirmasi</button></footer></section>`;
     document.body.append(dialog);
-
     dialog.addEventListener("click", (event) => {
       if (event.target.closest("[data-safe-close]")) closeDialog();
       if (event.target.closest("[data-safe-apply]")) applyPolicy();
     });
-    $("[data-safe-confirm]", dialog).addEventListener("input", syncDialogValidity);
-    $("[data-safe-reason]", dialog).addEventListener("input", syncDialogValidity);
-    dialog.addEventListener("keydown", trapDialogFocus);
+    $("[data-safe-token]", dialog).addEventListener("input", validateDialog);
+    $("[data-safe-reason]", dialog).addEventListener("input", validateDialog);
+    dialog.addEventListener("keydown", (event) => { if (event.key === "Escape") closeDialog(); });
   };
 
-  const openDialog = (policy) => {
-    activePolicy = policy;
+  const closeMenus = () => {
+    if ($("#article-row-menu")) $("#article-row-menu").hidden = true;
+    if ($("#suite-menu")) $("#suite-menu").hidden = true;
+    $$("[data-row-menu], [data-grid-menu], [data-menu]").forEach((button) => button.setAttribute("aria-expanded", "false"));
+  };
+
+  const openDialog = (nextPolicy) => {
+    activePolicy = nextPolicy;
+    closeMenus();
     const dialog = $("#entity-action-dialog");
-    if (!dialog) return;
-    dialog.dataset.tone = policy.tone;
-    $("[data-safe-title]", dialog).textContent = policy.title;
-    $("[data-safe-description]", dialog).textContent = policy.description;
-    $("[data-safe-kicker]", dialog).textContent = policy.kind === "delete" ? "PENGHAPUSAN PERMANEN" : policy.kind === "protect" ? "DATA DILINDUNGI" : "PERUBAHAN STATUS";
-    $("[data-safe-icon]", dialog).textContent = policy.kind === "delete" ? "!" : policy.kind === "protect" ? "✓" : "↻";
-    $("[data-safe-impact]", dialog).innerHTML = policy.impacts.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
-
-    const protectedNote = $("[data-safe-protected]", dialog);
-    protectedNote.hidden = policy.kind !== "protect";
-    protectedNote.textContent = policy.kind === "protect" ? "Data ini sengaja dipertahankan karena merupakan bagian dari jejak operasional dan audit." : "";
-
-    const confirmField = $("[data-safe-confirm-field]", dialog);
-    const confirmInput = $("[data-safe-confirm]", dialog);
-    confirmField.hidden = !policy.confirmToken;
-    confirmInput.value = "";
-    confirmInput.placeholder = policy.confirmToken || "";
-    $("[data-safe-token]", dialog).textContent = policy.confirmToken || "";
-
-    const reasonField = $("[data-safe-reason-field]", dialog);
-    const reasonInput = $("[data-safe-reason]", dialog);
-    reasonField.hidden = !policy.reasonRequired;
-    reasonInput.value = "";
-
+    dialog.dataset.tone = activePolicy.tone;
+    $("[data-safe-title]", dialog).textContent = activePolicy.title;
+    $("[data-safe-description]", dialog).textContent = activePolicy.description;
+    $("[data-safe-kicker]", dialog).textContent = activePolicy.kind === "delete" ? "PENGHAPUSAN PERMANEN" : activePolicy.kind === "protect" ? "DATA DILINDUNGI" : "PERUBAHAN STATUS";
+    $("[data-safe-icon]", dialog).textContent = activePolicy.kind === "delete" ? "!" : activePolicy.kind === "protect" ? "✓" : "↻";
+    $("[data-safe-impact]", dialog).innerHTML = activePolicy.impacts.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+    $("[data-safe-protected]", dialog).hidden = activePolicy.kind !== "protect";
+    $("[data-safe-protected]", dialog).textContent = activePolicy.kind === "protect" ? "Data dipertahankan karena merupakan bagian dari jejak operasional dan audit." : "";
+    $("[data-safe-reason-field]", dialog).hidden = !activePolicy.reason;
+    $("[data-safe-reason]", dialog).value = "";
+    $("[data-safe-token-field]", dialog).hidden = !activePolicy.token;
+    $("[data-safe-token]", dialog).value = "";
+    $("[data-safe-token]", dialog).placeholder = activePolicy.token || "";
+    $("[data-safe-token-label]", dialog).textContent = activePolicy.token || "";
     const apply = $("[data-safe-apply]", dialog);
-    apply.textContent = policy.primary;
-    apply.dataset.tone = policy.tone;
-    apply.classList.toggle("btn-danger", policy.tone === "delete");
-    apply.hidden = false;
-
+    apply.textContent = activePolicy.primary;
+    apply.dataset.tone = activePolicy.tone;
     dialog.hidden = false;
     body.style.overflow = "hidden";
-    syncDialogValidity();
-    window.setTimeout(() => {
-      const first = policy.confirmToken ? confirmInput : policy.reasonRequired ? reasonInput : apply;
-      first?.focus();
-    }, 20);
-    announce(policy.title);
+    validateDialog();
+    window.setTimeout(() => (activePolicy.token ? $("[data-safe-token]", dialog) : activePolicy.reason ? $("[data-safe-reason]", dialog) : apply).focus(), 20);
   };
 
   function closeDialog() {
@@ -473,246 +230,114 @@
     dialog.hidden = true;
     body.style.overflow = "";
     activePolicy = null;
-    lastContext?.trigger?.focus?.();
+    activeContext?.trigger?.focus?.();
   }
 
-  function syncDialogValidity() {
+  function validateDialog() {
     const dialog = $("#entity-action-dialog");
-    const apply = $("[data-safe-apply]", dialog);
-    if (!activePolicy || !apply) return;
-    const confirmed = !activePolicy.confirmToken || $("[data-safe-confirm]", dialog).value.trim() === activePolicy.confirmToken;
-    const reasonReady = !activePolicy.reasonRequired || $("[data-safe-reason]", dialog).value.trim().length >= 8;
-    apply.disabled = !(confirmed && reasonReady);
-  }
-
-  function trapDialogFocus(event) {
-    if (event.key === "Escape") {
-      event.preventDefault();
-      closeDialog();
-      return;
-    }
-    if (event.key !== "Tab") return;
-    const focusable = $$('button:not([hidden]):not(:disabled), input:not([hidden]):not(:disabled), textarea:not([hidden]):not(:disabled)', event.currentTarget);
-    if (!focusable.length) return;
-    const first = focusable[0];
-    const last = focusable.at(-1);
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
-    }
+    if (!activePolicy || !dialog) return;
+    const tokenReady = !activePolicy.token || $("[data-safe-token]", dialog).value.trim() === activePolicy.token;
+    const reasonReady = !activePolicy.reason || $("[data-safe-reason]", dialog).value.trim().length >= 8;
+    $("[data-safe-apply]", dialog).disabled = !(tokenReady && reasonReady);
   }
 
   function applyPolicy() {
     if (!activePolicy) return;
-    if (activePolicy.kind === "protect") {
-      closeDialog();
-      return;
-    }
-
+    if (activePolicy.kind === "protect") return closeDialog();
+    const ids = new Set(activePolicy.ids.map(String));
     const reason = $("[data-safe-reason]", $("#entity-action-dialog"))?.value.trim() || "";
     let records = activePolicy.records;
-    const ids = new Set(activePolicy.ids.map(String));
-    const count = ids.size;
 
-    if (activePolicy.kind === "delete") {
-      records = records.filter((record) => !ids.has(String(record.id)));
-    } else {
-      records.forEach((record) => {
-        if (!ids.has(String(record.id))) return;
-        if (activePolicy.kind === "archive") record.status = "archived";
-        if (activePolicy.kind === "deactivate") record.status = "inactive";
-        if (activePolicy.kind === "cancel") {
-          record.status = "cancelled";
-          record.cancellationReason = reason;
-        }
-        if (activePolicy.kind === "refund") {
-          record.status = "refund";
-          record.paymentStatus = "refund";
-          record.refundReason = reason;
-        }
-        appendAudit(record, activePolicy.kind, reason);
-      });
-    }
+    if (activePolicy.kind === "delete") records = records.filter((record) => !ids.has(String(record.id)));
+    else records.forEach((record) => {
+      if (!ids.has(String(record.id))) return;
+      if (activePolicy.kind === "archive") record.status = "archived";
+      if (activePolicy.kind === "deactivate") record.status = "inactive";
+      if (activePolicy.kind === "cancel") { record.status = "cancelled"; record.cancellationReason = reason; }
+      if (activePolicy.kind === "refund") { record.status = "refund"; record.paymentStatus = "refund"; record.refundReason = reason; }
+      record.auditLog = Array.isArray(record.auditLog) ? record.auditLog : [];
+      record.auditLog.unshift({ action: activePolicy.kind, reason, actor: "Admin NEXGEAR", at: new Date().toISOString() });
+      record.updated = new Date().toISOString();
+    });
 
-    if (!writeRecords(records)) {
-      showToast("Perubahan tidak dapat disimpan karena penyimpanan browser diblokir.");
-      return;
-    }
-
+    if (!writeRecords(records)) return;
     const messages = {
-      delete: `${count} data berhasil dihapus permanen.`,
-      archive: `${count} data berhasil dipindahkan ke arsip.`,
-      deactivate: `${count} akun berhasil dinonaktifkan.`,
-      cancel: `${count} transaksi berhasil dibatalkan.`,
-      refund: `${count} transaksi dipindahkan ke proses refund.`,
+      delete: `${ids.size} data berhasil dihapus.`,
+      archive: `${ids.size} data berhasil diarsipkan.`,
+      deactivate: `${ids.size} akun berhasil dinonaktifkan.`,
+      cancel: `${ids.size} transaksi berhasil dibatalkan.`,
+      refund: `${ids.size} transaksi dipindahkan ke refund.`,
     };
-    setFlash(messages[activePolicy.kind]);
-    closeDialog();
+    try { sessionStorage.setItem("nexgear-admin-action-flash", messages[activePolicy.kind]); } catch {}
     window.location.reload();
   }
 
-  const decorateActionLabels = () => {
-    const menuDelete = page === "articles" ? $("#article-row-menu [data-menu-action='delete']") : $("#suite-menu [data-action='delete']");
-    const bulkDelete = page === "articles" ? $("#bulk-action [data-bulk-action='delete']") : $("#suite-bulk [data-bulk='delete']");
-    if (menuDelete) {
-      menuDelete.dataset.safeAction = "true";
-      menuDelete.textContent = page === "transactions" ? "Batalkan / Refund" : page === "users" ? "Nonaktifkan / Hapus Undangan" : "Arsipkan / Hapus Draft";
-    }
-    if (bulkDelete) {
-      bulkDelete.dataset.safeAction = "true";
-      bulkDelete.textContent = page === "transactions" ? "Batalkan / Refund" : page === "users" ? "Nonaktifkan" : "Arsipkan / Hapus Draft";
-    }
+  const decorateLabels = () => {
+    const menu = page === "articles" ? $("#article-row-menu [data-menu-action='delete']") : $("#suite-menu [data-action='delete']");
+    const bulk = page === "articles" ? $("#bulk-action [data-bulk-action='delete']") : $("#suite-bulk [data-bulk='delete']");
+    const menuText = page === "transactions" ? "Batalkan / Refund" : page === "users" ? "Nonaktifkan / Hapus Undangan" : "Arsipkan / Hapus Draft";
+    const bulkText = page === "transactions" ? "Batalkan / Refund" : page === "users" ? "Nonaktifkan" : "Arsipkan / Hapus Draft";
+    if (menu) menu.textContent = menuText;
+    if (bulk) bulk.textContent = bulkText;
   };
 
-  const controlValue = (control) => control.type === "checkbox" ? String(control.checked) : control.value;
-
-  const captureFormSnapshot = (form) => {
-    const values = new Map();
-    $$('input, select, textarea', form).forEach((control) => {
-      if (!control.name || control.disabled) return;
-      const key = control.type === "checkbox" ? `${control.name}:${control.value}` : control.name;
-      values.set(key, controlValue(control));
-    });
-    drawerSnapshots.set(form, values);
-  };
-
-  const changedFields = (form) => {
-    const snapshot = drawerSnapshots.get(form) || new Map();
-    const changes = [];
-    $$('input, select, textarea', form).forEach((control) => {
-      if (!control.name || control.disabled) return;
-      const key = control.type === "checkbox" ? `${control.name}:${control.value}` : control.name;
-      if (snapshot.get(key) === controlValue(control)) return;
-      const label = fieldLabels[control.name] || control.closest("label")?.querySelector(".form-field__label span, .form-field__label, span")?.textContent.trim().replace(/\s+/g, " ") || control.name;
-      if (!changes.includes(label)) changes.push(label);
-    });
-    return changes;
-  };
-
-  const updateDrawerChanges = (drawer) => {
-    const form = $("form", drawer);
-    if (!form) return;
-    const changes = changedFields(form);
-    const chip = $(".entity-change-chip", drawer);
-    const diff = $(".entity-diff-card", drawer);
-    if (chip) {
-      chip.dataset.state = changes.length ? "dirty" : "saved";
-      chip.textContent = changes.length ? `${changes.length} perubahan` : "Semua tersimpan";
+  const trackContext = (trigger) => {
+    if (page === "articles") {
+      const card = trigger.closest(".article-grid-card");
+      const row = trigger.closest(".article-row") || (card ? $(`#article-list .article-row[data-id="${CSS.escape(card.dataset.rowId || "")}"]`) : null);
+      if (row) activeContext = { id: row.dataset.id, trigger };
+      return;
     }
-    if (diff) {
-      diff.hidden = changes.length === 0;
-      $(".entity-diff-card__header span", diff).textContent = `${changes.length} field`;
-      $(".entity-diff-list", diff).innerHTML = changes.slice(0, 6).map((label) => `<li><span>${escapeHtml(label)}</span></li>`).join("");
-    }
+    const host = trigger.closest("[data-id]");
+    if (host) activeContext = { id: host.dataset.id, trigger };
   };
 
-  const activateSectionObserver = (drawer) => {
-    const form = $("form", drawer);
-    const root = $(".form-workspace__main", drawer);
-    const sections = $$(".form-section", drawer);
-    if (!form || !root || !sections.length || observerRegistry.has(root)) return;
-    observerRegistry.add(root);
-    const observer = new IntersectionObserver((entries) => {
-      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (!visible) return;
-      sections.forEach((section) => { section.dataset.sectionActive = String(section === visible.target); });
-    }, { root, threshold: [0.22, 0.5, 0.72], rootMargin: "-8% 0px -58% 0px" });
-    sections.forEach((section) => observer.observe(section));
+  const ensureCss = () => {
+    if ($("link[data-entity-actions-css]")) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "styles/admin-entity-actions.css?v=1";
+    link.dataset.entityActionsCss = "true";
+    document.head.append(link);
   };
 
-  const enhanceDrawer = (drawer) => {
-    const form = $("form", drawer);
-    const header = $(".suite-drawer-header, .editor-drawer__panel > header", drawer);
-    if (!form || !header) return;
-    const mode = page === "articles"
-      ? ($("#editor-title")?.textContent.includes("Baru") ? "create" : "edit")
-      : (drawer.dataset.formMode === "new" ? "create" : "edit");
-    drawer.dataset.entityMode = mode;
-
-    let modebar = $(".entity-modebar", drawer);
-    if (!modebar) {
-      modebar = document.createElement("div");
-      modebar.className = "entity-modebar";
-      header.insertAdjacentElement("afterend", modebar);
-    }
-    modebar.innerHTML = `
-      <div class="entity-modebar__identity">
-        <span class="entity-modebar__glyph" aria-hidden="true">${entityLabels[page].code}</span>
-        <span class="entity-modebar__copy"><strong>${mode === "create" ? "Create workspace" : "Update workspace"}</strong><small>${mode === "create" ? "Data baru belum dipublikasikan" : "Perubahan tercatat pada state lokal"}</small></span>
-      </div>
-      <div class="entity-modebar__state"><span class="entity-change-chip" data-state="saved">Semua tersimpan</span><span class="entity-modebar__shortcuts"><kbd>⌘S</kbd><span>Simpan</span><kbd>ESC</kbd><span>Tutup</span></span></div>`;
-
-    const aside = $(".form-workspace__aside", drawer);
-    if (aside && !$(".entity-diff-card", aside)) {
-      const diff = document.createElement("article");
-      diff.className = "entity-diff-card";
-      diff.hidden = true;
-      diff.innerHTML = '<div class="entity-diff-card__header"><strong>Ringkasan perubahan</strong><span>0 field</span></div><ul class="entity-diff-list"></ul>';
-      aside.prepend(diff);
-    }
-
-    if (!form.dataset.entityChangeReady) {
-      form.dataset.entityChangeReady = "true";
-      form.addEventListener("input", () => updateDrawerChanges(drawer));
-      form.addEventListener("change", () => updateDrawerChanges(drawer));
-      form.addEventListener("submit", () => window.setTimeout(() => captureFormSnapshot(form), 0));
-    }
-    window.setTimeout(() => {
-      captureFormSnapshot(form);
-      updateDrawerChanges(drawer);
-      activateSectionObserver(drawer);
-    }, 80);
-  };
-
-  const observeDrawers = () => {
-    $$("#suite-drawer, #editor-drawer").forEach((drawer) => {
-      const observer = new MutationObserver(() => {
-        const open = drawer.classList.contains("is-open") || drawer.getAttribute("aria-hidden") === "false";
-        if (open) enhanceDrawer(drawer);
-      });
-      observer.observe(drawer, { attributes: true, childList: true, subtree: true, attributeFilter: ["class", "aria-hidden"] });
-    });
-  };
-
-  const interceptActions = () => {
-    document.addEventListener("click", (event) => {
-      const trigger = event.target.closest("[data-row-menu], [data-grid-menu], [data-menu]");
-      if (trigger) {
-        const context = contextFromTrigger(trigger);
-        if (context) lastContext = { ...context, trigger };
-      }
-
-      const singleDelete = event.target.closest("[data-menu-action='delete'], [data-action='delete']");
-      const bulkDelete = event.target.closest("[data-bulk-action='delete'], [data-bulk='delete']");
-      if (!singleDelete && !bulkDelete) return;
-      event.preventDefault();
-      event.stopPropagation();
-      event.stopImmediatePropagation();
-      openDialog(buildPolicy(Boolean(bulkDelete)));
-    }, true);
+  const consumeFlash = () => {
+    try {
+      const message = sessionStorage.getItem("nexgear-admin-action-flash");
+      if (!message) return;
+      sessionStorage.removeItem("nexgear-admin-action-flash");
+      window.setTimeout(() => {
+        const toast = $(page === "articles" ? "#admin-toast" : "#suite-toast");
+        if (!toast) return;
+        toast.textContent = message;
+        toast.hidden = false;
+        window.setTimeout(() => { toast.hidden = true; }, 3000);
+      }, 180);
+    } catch {}
   };
 
   const init = () => {
-    ensureStyles();
+    ensureCss();
     createDialog();
-    decorateActionLabels();
-    observeDrawers();
-    interceptActions();
+    decorateLabels();
     consumeFlash();
     body.classList.add("admin-entity-actions");
 
-    const mutationTarget = page === "articles" ? $("#article-list") : $("#suite-body");
-    if (mutationTarget) new MutationObserver(decorateActionLabels).observe(mutationTarget, { childList: true, subtree: true });
+    document.addEventListener("click", (event) => {
+      const trigger = event.target.closest("[data-row-menu], [data-grid-menu], [data-menu]");
+      if (trigger) trackContext(trigger);
+
+      const single = event.target.closest("[data-menu-action='delete'], [data-action='delete']");
+      const bulk = event.target.closest("[data-bulk-action='delete'], [data-bulk='delete']");
+      if (!single && !bulk) return;
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      openDialog(buildPolicy(Boolean(bulk)));
+    }, true);
   };
 
-  window.NexAdminEntityActions = Object.freeze({
-    open: (bulk = false) => openDialog(buildPolicy(bulk)),
-    refreshLabels: decorateActionLabels,
-  });
-
+  window.NexAdminEntityActions = Object.freeze({ open: (bulk = false) => openDialog(buildPolicy(bulk)) });
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
 })();
