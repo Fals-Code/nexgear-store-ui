@@ -12,6 +12,13 @@
   const storageKey = `nexgear-admin-workspace-layout-${page}`;
   let drawer = null;
   let resizeTimer = 0;
+  let active = false;
+
+  const emit = (name, detail = {}) => {
+    window.dispatchEvent(new CustomEvent(`nexgear:${name}`, {
+      detail: { page, drawer, ...detail },
+    }));
+  };
 
   const readPreference = () => {
     try {
@@ -42,6 +49,7 @@
   const setSummary = (value, persist = true) => {
     if (!drawer || !hasSummary()) return;
     const next = value === "collapsed" ? "collapsed" : "visible";
+    const changed = drawer.dataset.summary !== next;
     drawer.dataset.summary = next;
     const button = $("[data-workspace-summary-toggle]", drawer);
     if (button) {
@@ -53,11 +61,13 @@
       setButtonLabel(button, "Ringkasan");
     }
     if (persist) writePreference({ ...readPreference(), summary: next });
+    if (changed && active) emit("workspace-layoutchange", { property: "summary", value: next });
   };
 
   const setNavigation = (value, persist = true) => {
     if (!drawer || !hasNavigation()) return;
     const next = value === "compact" ? "compact" : "expanded";
+    const changed = drawer.dataset.nav !== next;
     drawer.dataset.nav = next;
     const button = $("[data-workspace-nav-toggle]", drawer);
     if (button) {
@@ -69,6 +79,7 @@
       setButtonLabel(button, "Navigasi");
     }
     if (persist) writePreference({ ...readPreference(), nav: next });
+    if (changed && active) emit("workspace-layoutchange", { property: "navigation", value: next });
   };
 
   const defaultLayout = () => {
@@ -156,9 +167,24 @@
     const layout = defaultLayout();
     setSummary(layout.summary, false);
     setNavigation(layout.nav, false);
+
+    if (!active) {
+      active = true;
+      emit("workspace-opened", {
+        mode: drawer.dataset.workspaceMode || "edit",
+        navigation: drawer.dataset.nav || "expanded",
+        summary: drawer.dataset.summary || "visible",
+      });
+    }
   };
 
-  const deactivate = () => body.classList.remove("admin-workspace-active");
+  const deactivate = () => {
+    body.classList.remove("admin-workspace-active");
+    if (!active) return;
+    active = false;
+    emit("workspace-closed");
+  };
+
   const syncDrawer = () => (isOpen() ? activate() : deactivate());
 
   const observeDrawer = () => {
