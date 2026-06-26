@@ -19,13 +19,13 @@ Persona utama adalah Andy, 29 tahun, mahasiswa yang tinggal di kos Surabaya Timu
 
 ## Fase 1 - Fast Path dan Navigasi Customer
 
-Status: Implementasi dimulai.
+Status: Selesai.
 
-Target:
-- Menghapus tautan akademik dan admin dari navigasi storefront.
-- Menyediakan akses cepat ke katalog, tracking, pesanan, bantuan, dan panel customer.
-- Mengubah account dropdown berdasarkan status login prototype.
-- Memisahkan perjalanan customer dari perjalanan admin.
+Implementasi:
+- Tautan akademik dan admin dihapus dari navigasi storefront.
+- Catalog, Track Order, Help, Pesanan Saya, dan Customer Panel tersedia melalui jalur langsung.
+- Account dropdown menyesuaikan status login prototype.
+- Logout membersihkan session prototype.
 
 Acceptance criteria:
 - Customer tidak melihat menu admin pada header storefront.
@@ -36,18 +36,27 @@ Acceptance criteria:
 
 ## Fase 2 - Keputusan Produk Cepat dan Berbasis Kualitas
 
-Target:
-- Menambahkan filter cepat berdasarkan kebutuhan: hemat, performa, setup ringkas, dan best seller.
-- Membuat informasi kualitas, garansi, rating, stok, dan kecocokan setup lebih mudah dipindai.
-- Menambahkan aksi Beli Sekarang tanpa menghilangkan Tambah ke Keranjang.
-- Memastikan wishlist dan compare memiliki feedback yang jelas.
+Status: Selesai.
+
+Implementasi:
+- Katalog memiliki fast pick berdasarkan setup ringkas, hemat, sound, dan performa tinggi.
+- Setiap kartu produk menampilkan rating, jumlah ulasan, garansi, stok, dan value signal.
+- Setiap kartu memiliki Lihat Detail dan Beli Sekarang.
+- Product detail menampilkan evidence ringkas sebelum area pembelian.
+- Tambah ke Keranjang, Beli Sekarang, wishlist, dan compare memiliki state serta feedback.
+- Mobile memiliki sticky buy bar agar CTA tetap terlihat.
+- Runtime regression guard memeriksa quality signal, CTA, accessibility state, dan horizontal overflow.
 
 Acceptance criteria:
 - Produk dapat ditemukan maksimal melalui dua interaksi dari landing page.
-- Product detail memiliki satu CTA primer dan satu CTA pembelian cepat.
+- Product detail memiliki CTA Tambah ke Keranjang dan Beli Sekarang.
 - Informasi kualitas utama terlihat sebelum pengguna melakukan scroll panjang.
+- Wishlist dan compare memiliki state `aria-pressed` dan persistence prototype.
+- Beli Sekarang menyimpan produk dan membuka checkout.
 
 ## Fase 3 - Checkout Tanpa Ribet
+
+Status: Menunggu implementasi.
 
 Target:
 - Mengurangi pengulangan data pada cart, checkout, dan payment.
@@ -62,6 +71,8 @@ Acceptance criteria:
 
 ## Fase 4 - Customer Hub dan After-Sales
 
+Status: Menunggu implementasi.
+
 Target:
 - Menyesuaikan profile dengan data login dan transaksi aktual prototype.
 - Menghubungkan dashboard customer ke history, tracking, wishlist, alamat, dan review.
@@ -74,6 +85,8 @@ Acceptance criteria:
 - Track order dapat dibuka langsung melalui query nomor pesanan.
 
 ## Fase 5 - Compatibility, Accessibility, dan Bukti UAS
+
+Status: Menunggu implementasi final.
 
 Target:
 - Regression test pada 390px, 768px, 1366px, dan 1440px.
