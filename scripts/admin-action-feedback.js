@@ -13,6 +13,7 @@
   const toast = $(page === "articles" ? "#admin-toast" : "#suite-toast");
   let toastTimer = 0;
   let activeButton = null;
+  let internalRender = false;
 
   const escapeHtml = (value) => String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -79,8 +80,12 @@
     toast.classList.remove("is-visible");
     toast.dataset.state = "closing";
     window.setTimeout(() => {
+      internalRender = true;
       toast.hidden = true;
       toast.dataset.state = "closed";
+      queueMicrotask(() => {
+        internalRender = false;
+      });
     }, 180);
   };
 
@@ -96,6 +101,7 @@
 
     if (!toast) return;
     window.clearTimeout(toastTimer);
+    internalRender = true;
     toast.hidden = false;
     toast.dataset.tone = tone;
     toast.dataset.state = "open";
@@ -116,6 +122,27 @@
     requestAnimationFrame(() => toast.classList.add("is-visible"));
     $(".admin-toast__close", toast)?.addEventListener("click", hide, { once: true });
     toastTimer = window.setTimeout(hide, duration);
+    queueMicrotask(() => {
+      internalRender = false;
+    });
+  };
+
+  const inferLegacyTone = (message) => {
+    if (/gagal|error|tidak dapat/i.test(message)) return "danger";
+    if (/diblokir|arsip|dihapus/i.test(message)) return "warning";
+    if (/dijadwalkan|dibuka/i.test(message)) return "info";
+    return "success";
+  };
+
+  const adaptLegacyToast = () => {
+    if (!toast || internalRender || toast.hidden || $(".admin-toast__copy", toast)) return;
+    const message = toast.textContent.trim();
+    if (!message) return;
+    show(message, {
+      tone: inferLegacyTone(message),
+      title: /dihapus/i.test(message) ? "Data dihapus" : undefined,
+      duration: 2400,
+    });
   };
 
   const csvCell = (value) => `"${String(value ?? "").replaceAll('"', '""').replace(/\s+/g, " ").trim()}"`;
@@ -127,14 +154,14 @@
       return;
     }
 
-    const headerCells = $$('thead th', table);
+    const headerCells = $$("thead th", table);
     const excluded = new Set([0, headerCells.length - 1]);
     const headers = headerCells
       .filter((_, index) => !excluded.has(index))
       .map((cell) => csvCell(cell.textContent));
-    const rows = $$('tbody tr', table)
+    const rows = $$("tbody tr", table)
       .filter((row) => !row.hidden)
-      .map((row) => $$('td', row)
+      .map((row) => $$("td", row)
         .filter((_, index) => !excluded.has(index))
         .map((cell) => csvCell(cell.textContent)));
 
@@ -191,6 +218,16 @@
   toast?.addEventListener("mouseleave", () => {
     toastTimer = window.setTimeout(hide, 1400);
   });
+
+  if (toast) {
+    new MutationObserver(adaptLegacyToast).observe(toast, {
+      attributes: true,
+      attributeFilter: ["hidden"],
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
+  }
 
   decorateExportButtons();
 
