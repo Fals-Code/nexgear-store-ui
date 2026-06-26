@@ -56,18 +56,25 @@ Acceptance criteria:
 
 ## Fase 3 - Checkout Tanpa Ribet
 
-Status: Menunggu implementasi.
+Status: Selesai.
 
-Target:
-- Mengurangi pengulangan data pada cart, checkout, dan payment.
-- Menyimpan data alamat prototype secara aman di localStorage.
-- Menampilkan ringkasan harga, kurir, ETA, dan metode bayar secara konsisten.
-- Menambah validasi per langkah dengan pesan error yang jelas.
+Implementasi:
+- Data nama, telepon, email, alamat, pilihan kurir, metode pembayaran, dan proteksi dapat digunakan kembali.
+- Alamat utama serta preferensi checkout disimpan pada localStorage prototype.
+- Checkout memiliki progress kelengkapan kontak, alamat, serta pengiriman dan pembayaran.
+- Tombol Buat Pesanan hanya aktif saat data minimum valid.
+- Setiap metode pengiriman menampilkan ETA sebelum pesanan dibuat.
+- Snapshot order menyimpan subtotal, pengiriman, proteksi, diskon, total, pembayaran, dan ETA.
+- Payment dan success menampilkan continuity card dari sumber order yang sama.
+- Riwayat transaksi merender pesanan yang dibuat melalui checkout beserta total dan tindakan sesuai status.
+- Runtime regression guard memeriksa total, snapshot, persisted order, overflow, dan state submit.
 
 Acceptance criteria:
-- Pengguna dapat menyelesaikan checkout tanpa kembali ke halaman sebelumnya.
+- Pengguna dapat menyelesaikan checkout tanpa mengisi ulang data yang sudah tersimpan.
 - Tombol lanjut hanya aktif saat data minimum valid.
-- Total pembayaran konsisten di cart, checkout, payment, success, dan history.
+- Total pembayaran menggunakan sumber order yang sama pada checkout, payment, success, dan history.
+- Kurir, ETA, metode pembayaran, serta alamat tetap konsisten sepanjang alur.
+- Pesanan yang dibuat melalui checkout muncul pada history.
 
 ## Fase 4 - Customer Hub dan After-Sales
 
