@@ -40,11 +40,20 @@
     document.body.append(script);
   };
 
+  const loadEntityActions = () => {
+    if (window.NexAdminEntityActions || document.querySelector('script[data-admin-entity-actions]')) return;
+    const script = document.createElement("script");
+    script.src = "scripts/admin-entity-actions.js?v=1";
+    script.dataset.adminEntityActions = "true";
+    document.body.append(script);
+  };
+
   const restoreAdminTheme = () => applyTheme(body.dataset.adminTheme || readTheme());
 
   applyTheme(readTheme());
   window.setTimeout(applyMobileArticleView, 80);
   loadArticlePersistence();
+  loadEntityActions();
 
   new MutationObserver(() => {
     const current = body.dataset.adminTheme;
@@ -65,15 +74,17 @@
   document.addEventListener("DOMContentLoaded", () => {
     restoreAdminTheme();
     loadArticlePersistence();
+    loadEntityActions();
     window.setTimeout(applyMobileArticleView, 120);
   }, { once: true });
 
   window.addEventListener("load", () => {
     restoreAdminTheme();
+    loadEntityActions();
     window.setTimeout(applyMobileArticleView, 120);
   }, { once: true });
 
   document.addEventListener("nexgear:themechange", (event) => applyTheme(event.detail?.theme));
 
-  window.NexAdminCrudThemeSync = Object.freeze({ applyTheme });
+  window.NexAdminCrudThemeSync = Object.freeze({ applyTheme, loadEntityActions });
 })();
