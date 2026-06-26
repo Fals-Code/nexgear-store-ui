@@ -1,0 +1,176 @@
+/* Visible feedback for every meaningful CRUD action. */
+.page-admin.admin-crud-modern .admin-toast {
+  position: fixed !important;
+  inset: auto max(18px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) auto !important;
+  z-index: 100080;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 32px;
+  align-items: center;
+  gap: 12px;
+  width: min(430px, calc(100vw - 36px));
+  min-width: 0;
+  max-width: none;
+  padding: 14px 14px 16px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--feedback-color, var(--admin-success)) 34%, var(--admin-line));
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--feedback-color, var(--admin-success)) 8%, transparent), transparent 56%),
+    color-mix(in srgb, var(--admin-panel-strong) 97%, transparent);
+  color: var(--admin-text);
+  box-shadow: 0 28px 72px rgba(0, 0, 0, .46), 0 0 0 1px rgba(255, 255, 255, .025);
+  opacity: 0;
+  pointer-events: auto;
+  transform: translate3d(0, 14px, 0) scale(.98);
+  transition: opacity 180ms ease, transform 180ms ease;
+  backdrop-filter: blur(24px) saturate(145%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
+}
+
+.page-admin.admin-crud-modern .admin-toast.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.page-admin.admin-crud-modern .admin-toast[hidden] {
+  display: none !important;
+}
+
+.page-admin.admin-crud-modern .admin-toast[data-tone="success"] { --feedback-color: var(--admin-success); }
+.page-admin.admin-crud-modern .admin-toast[data-tone="info"] { --feedback-color: var(--admin-accent); }
+.page-admin.admin-crud-modern .admin-toast[data-tone="warning"] { --feedback-color: var(--admin-warning); }
+.page-admin.admin-crud-modern .admin-toast[data-tone="danger"] { --feedback-color: var(--admin-danger); }
+
+.page-admin.admin-crud-modern .admin-toast::before,
+.page-admin.admin-crud-modern .admin-toast::after {
+  content: none !important;
+}
+
+.page-admin.admin-crud-modern .admin-toast__icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--feedback-color) 34%, transparent);
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--feedback-color) 11%, transparent);
+  color: var(--feedback-color);
+  font-size: .78rem;
+  font-weight: 950;
+  box-shadow: 0 0 18px color-mix(in srgb, var(--feedback-color) 22%, transparent);
+}
+
+.page-admin.admin-crud-modern .admin-toast__copy {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.page-admin.admin-crud-modern .admin-toast__copy strong {
+  color: var(--admin-text);
+  font-size: .76rem;
+  line-height: 1.25;
+}
+
+.page-admin.admin-crud-modern .admin-toast__copy span {
+  color: var(--admin-text-muted);
+  font-size: .68rem;
+  line-height: 1.45;
+}
+
+.page-admin.admin-crud-modern .admin-toast__close {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--admin-text-muted);
+  cursor: pointer;
+}
+
+.page-admin.admin-crud-modern .admin-toast__close:hover,
+.page-admin.admin-crud-modern .admin-toast__close:focus-visible {
+  outline: 0;
+  background: rgba(255, 255, 255, .055);
+  color: var(--admin-text);
+}
+
+.page-admin.admin-crud-modern .admin-toast__progress {
+  position: absolute;
+  inset: auto 0 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--feedback-color), color-mix(in srgb, var(--feedback-color) 40%, var(--admin-accent)));
+  transform-origin: left;
+  animation: admin-feedback-progress var(--feedback-duration, 3200ms) linear forwards;
+}
+
+.page-admin.admin-crud-modern button[data-feedback-state="processing"] {
+  position: relative;
+  cursor: progress;
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, .09), inset 0 0 0 1px rgba(0, 229, 255, .18);
+}
+
+.page-admin.admin-crud-modern button[data-feedback-state="processing"]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 13px;
+  height: 13px;
+  margin-top: -7px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: admin-feedback-spin 560ms linear infinite;
+}
+
+.page-admin.admin-crud-modern .suite-action[data-feedback-state="processing"]::after,
+.page-admin.admin-crud-modern .row-action[data-feedback-state="processing"]::after,
+.page-admin.admin-crud-modern .admin-toast__close[data-feedback-state="processing"]::after {
+  right: 50%;
+  margin-right: -7px;
+}
+
+.page-admin.admin-crud-modern button[data-feedback-state="success"] {
+  box-shadow: 0 0 0 3px rgba(69, 230, 168, .1), inset 0 0 0 1px rgba(69, 230, 168, .22);
+}
+
+.page-admin.admin-crud-modern button:active {
+  transform: translateY(1px) scale(.985);
+}
+
+@keyframes admin-feedback-progress {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+@keyframes admin-feedback-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 720px) {
+  .page-admin.admin-crud-modern .admin-toast {
+    inset: auto 10px max(10px, env(safe-area-inset-bottom)) 10px !important;
+    width: auto;
+    border-radius: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-admin.admin-crud-modern .admin-toast,
+  .page-admin.admin-crud-modern .admin-toast__progress,
+  .page-admin.admin-crud-modern button[data-feedback-state="processing"]::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .page-admin.admin-crud-modern .admin-toast,
+  .page-admin.admin-crud-modern .admin-toast__icon,
+  .page-admin.admin-crud-modern button[data-feedback-state] {
+    border: 1px solid CanvasText;
+  }
+}
