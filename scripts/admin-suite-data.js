@@ -2,6 +2,7 @@ window.NEXGEAR_ADMIN_DATA={products:[{id:'NX-KB-001',name:'Vortex VX Pro Mechani
 (() => {
   const loadEnhancements = async () => {
     const assets = [
+      ['scripts/admin-action-feedback.js?v=1', 'admin-action-feedback'],
       ['scripts/admin-action-menu.js?v=2', 'admin-action-menu'],
       ['scripts/admin-crud-modern.js?v=1', 'admin-crud-modern'],
       ['scripts/admin-crud-theme-sync.js?v=1', 'admin-crud-theme-sync'],
