@@ -36,6 +36,7 @@
     if (page === "checkout.html") {
       const form = $("#checkout-form");
       const submit = $("#checkout-submit");
+      const empty = Boolean($("#checkout-layout")?.hidden);
       const ready = document.body.dataset.checkoutValidity === "ready";
       checks.push(
         {
@@ -60,17 +61,17 @@
         },
         {
           name: "checkout:shipping-eta",
-          pass: $$("input[name='shipping']", form).every((input) => Boolean($(".persona-shipping-eta", input.closest(".checkout-choice")))),
+          pass: $$(`input[name='shipping']`, form).every((input) => Boolean($(".persona-shipping-eta", input.closest(".checkout-choice")))),
           detail: "Setiap metode pengiriman memiliki ETA.",
         },
         {
           name: "checkout:submit-state",
-          pass: Boolean(submit) && submit.disabled === !ready,
-          detail: `Ready: ${ready}; disabled: ${submit?.disabled}`,
+          pass: Boolean(submit) && (empty ? submit.disabled : submit.disabled === !ready),
+          detail: `Empty: ${empty}; ready: ${ready}; disabled: ${submit?.disabled}`,
         },
         {
           name: "checkout:total-visible",
-          pass: textNumber("#checkout-total") > 0 || $("#checkout-layout")?.hidden,
+          pass: textNumber("#checkout-total") > 0 || empty,
           detail: `Total: ${$("#checkout-total")?.textContent || "missing"}`,
         },
       );
@@ -80,33 +81,41 @@
       const orderId = new URLSearchParams(location.search).get("order");
       const orders = parse("nexgear_orders", []);
       const pending = parse("nexgear_pending_order", null);
-      const order = (Array.isArray(orders) ? orders.find((item) => item.id === orderId) : null) || pending;
+      const order = (Array.isArray(orders) ? orders.find((item) => item.id === orderId) : null) || ((!orderId || pending?.id === orderId) ? pending : null);
+      const emptySelector = page === "payment.html" ? "#payment-empty" : "#success-empty";
+      const emptyState = $(emptySelector);
+      const intentionalEmpty = !order && emptyState && !emptyState.hidden;
       const renderedTotal = page === "payment.html" ? textNumber("#payment-total") : textNumber("#success-total");
       checks.push(
         {
+          name: `${page}:state-resolved`,
+          pass: Boolean(order) || intentionalEmpty,
+          detail: order ? `Order: ${order.id}` : "Intentional empty state.",
+        },
+        {
           name: `${page}:phase-ready`,
-          pass: document.body.dataset.personaCheckoutPhase === "continuity-ready",
-          detail: `State: ${document.body.dataset.personaCheckoutPhase || "missing"}`,
+          pass: intentionalEmpty || document.body.dataset.personaCheckoutPhase === "continuity-ready",
+          detail: `State: ${document.body.dataset.personaCheckoutPhase || "empty"}`,
         },
         {
           name: `${page}:continuity-card`,
-          pass: Boolean($("[data-persona-order-continuity]")),
-          detail: "Order continuity card tersedia.",
+          pass: intentionalEmpty || Boolean($("[data-persona-order-continuity]")),
+          detail: intentionalEmpty ? "Empty state tidak memerlukan continuity card." : "Order continuity card tersedia.",
         },
         {
           name: `${page}:total-consistent`,
-          pass: !order || renderedTotal === Number(order.total || 0),
+          pass: intentionalEmpty || renderedTotal === Number(order?.total || 0),
           detail: `Rendered: ${renderedTotal}; stored: ${order?.total || 0}`,
         },
         {
           name: `${page}:shipping-snapshot`,
-          pass: !order || Boolean(order.shipping?.label),
-          detail: `Shipping: ${order?.shipping?.label || "missing"}`,
+          pass: intentionalEmpty || Boolean(order?.shipping?.label),
+          detail: `Shipping: ${order?.shipping?.label || "empty"}`,
         },
         {
           name: `${page}:payment-snapshot`,
-          pass: !order || Boolean(order.payment?.label),
-          detail: `Payment: ${order?.payment?.label || "missing"}`,
+          pass: intentionalEmpty || Boolean(order?.payment?.label),
+          detail: `Payment: ${order?.payment?.label || "empty"}`,
         },
       );
     }
@@ -145,7 +154,8 @@
   };
 
   const schedule = () => requestAnimationFrame(() => requestAnimationFrame(run));
-  window.addEventListener("load", schedule, { once: true });
+  if (document.readyState === "complete") window.setTimeout(schedule, 0);
+  else window.addEventListener("load", schedule, { once: true });
   window.addEventListener("resize", schedule, { passive: true });
   window.addEventListener("nexgear:checkout-continuity-ready", schedule);
   window.addEventListener("nexgear:checkout-snapshot", schedule);
