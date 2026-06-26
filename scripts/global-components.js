@@ -176,6 +176,12 @@
       console.warn("NEXGEAR cart sync fallback", error);
     }
 
+    try {
+      await ensureScript("scripts/persona-customer-flow.js?v=1");
+    } catch (error) {
+      console.warn("NEXGEAR persona customer flow fallback", error);
+    }
+
     document.documentElement.classList.add("global-components-ready");
     document.dispatchEvent(
       new CustomEvent("nexgear:components-ready", {
