@@ -267,16 +267,18 @@ const runCheckoutFlow = async (browser) => {
     await page.goto(paymentUrl, { waitUntil: "domcontentloaded" });
     await waitForStablePage(page);
 
-    const recoveryButton = page.locator("#payment-mobile-action");
-    if ((await recoveryButton.getAttribute("data-payment-complete")) !== "true") {
-      failures.push("Paid payment recovery state was not restored after reload");
+    const recoveryLink = page.locator(
+      '.quality-payment-complete a[href^="success.html?order="]',
+    );
+    if (!(await recoveryLink.isVisible())) {
+      failures.push("Paid payment recovery CTA was not restored after reload");
     } else {
       await Promise.all([
         page.waitForURL(/success\.html\?order=/, {
           timeout: 15000,
           waitUntil: "domcontentloaded",
         }),
-        recoveryButton.click(),
+        recoveryLink.click(),
       ]);
     }
   } catch (error) {
