@@ -1,14 +1,11 @@
-name: Refactor frontend architecture
+name: Refactor global HTML components
 
 on:
   push:
     branches:
       - main
-      - refactor/modular-js-product-css
     paths:
       - tools/refactor_global_components.py
-      - tools/refactor_main_modules.py
-      - tools/consolidate_product_css.py
       - .github/workflows/refactor-global-components.yml
   workflow_dispatch:
 
@@ -16,12 +13,12 @@ permissions:
   contents: write
 
 concurrency:
-  group: refactor-frontend-${{ github.ref }}
+  group: refactor-global-components
   cancel-in-progress: true
 
 jobs:
   migrate:
-    if: ${{ !contains(github.event.head_commit.message || '', '[frontend-refactor]') }}
+    if: ${{ !contains(github.event.head_commit.message || '', '[components-refactor]') }}
     runs-on: ubuntu-latest
 
     steps:
@@ -30,39 +27,27 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+      - name: Run global component migration
+        run: python3 tools/refactor_global_components.py
 
-      - name: Run frontend migration
+      - name: Validate generated components
         run: |
-          python3 tools/refactor_main_modules.py
-          python3 tools/consolidate_product_css.py
+          test -s components/header.html
+          test -s components/footer.html
+          grep -q 'id="global-header"' index.html
+          grep -q 'id="global-footer"' index.html
+          grep -q 'scripts/global-components.js' index.html
+          ! grep -q 'id="global-header"' login.html
 
-      - name: Format readable source
-        run: |
-          npx --yes prettier@3.3.3 --write scripts/main.js scripts/core/*.js scripts/components/*.js scripts/pages/*.js scripts/checkout-page.js scripts/payment-page.js scripts/success-page.js scripts/admin-suite.js styles/product.css styles/product-responsive.css product-detail.html docs/ARCHITECTURE.md
-
-      - name: Validate JavaScript syntax
-        run: |
-          node --check scripts/main.js
-          for file in scripts/core/*.js scripts/components/*.js scripts/pages/*.js scripts/checkout-page.js scripts/payment-page.js scripts/success-page.js scripts/admin-suite.js; do node --check "$file"; done
-          test "$(wc -l < scripts/main.js)" -lt 1000
-          test ! -e styles/product-review.css
-          test ! -e styles/product-media-badge.css
-          test ! -e styles/product-related-catalog-clean.css
-          grep -q 'styles/product-responsive.css' product-detail.html
-          git diff --check
-
-      - name: Commit migrated source
+      - name: Commit migrated pages
         run: |
           if git diff --quiet; then
             echo "No migration changes detected."
             exit 0
           fi
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "[frontend-refactor] Modularize JavaScript and product CSS"
-          git push origin HEAD:${GITHUB_REF_NAME}
+          git add components scripts/main.js *.html
+          git commit -m "[components-refactor] Centralize global header and footer"
+          git push origin HEAD:main
