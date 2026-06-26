@@ -31,9 +31,13 @@
   };
 
   const isOpen = () => drawer?.classList.contains("is-open") || drawer?.getAttribute("aria-hidden") === "false";
+  const hasSummary = () => Boolean($?.call(null, ".form-workspace__aside", drawer));
+  const hasNavigation = () => Boolean($?.call(null, ".form-workspace__nav", drawer));
 
-  const hasSummary = () => Boolean($(".form-workspace__aside", drawer));
-  const hasNavigation = () => Boolean($(".form-workspace__nav", drawer));
+  const setButtonLabel = (button, text) => {
+    const label = $("span", button);
+    if (label && label.textContent !== text) label.textContent = text;
+  };
 
   const setSummary = (value, persist = true) => {
     if (!drawer || !hasSummary()) return;
@@ -42,10 +46,11 @@
     const button = $("[data-workspace-summary-toggle]", drawer);
     if (button) {
       const collapsed = next === "collapsed";
+      const text = collapsed ? "Tampilkan ringkasan" : "Sembunyikan ringkasan";
       button.setAttribute("aria-pressed", String(collapsed));
-      button.setAttribute("aria-label", collapsed ? "Tampilkan panel ringkasan" : "Sembunyikan panel ringkasan");
-      button.title = collapsed ? "Tampilkan ringkasan" : "Sembunyikan ringkasan";
-      $("span", button).textContent = collapsed ? "Tampilkan ringkasan" : "Sembunyikan ringkasan";
+      button.setAttribute("aria-label", text);
+      button.title = text;
+      setButtonLabel(button, text);
     }
     if (persist) writePreference({ ...readPreference(), summary: next });
   };
@@ -57,10 +62,11 @@
     const button = $("[data-workspace-nav-toggle]", drawer);
     if (button) {
       const compact = next === "compact";
+      const text = compact ? "Perluas navigasi" : "Ringkas navigasi";
       button.setAttribute("aria-pressed", String(compact));
-      button.setAttribute("aria-label", compact ? "Perluas navigasi form" : "Ringkas navigasi form");
-      button.title = compact ? "Perluas navigasi" : "Ringkas navigasi";
-      $("span", button).textContent = compact ? "Perluas navigasi" : "Ringkas navigasi";
+      button.setAttribute("aria-label", text);
+      button.title = text;
+      setButtonLabel(button, text);
     }
     if (persist) writePreference({ ...readPreference(), nav: next });
   };
@@ -68,9 +74,10 @@
   const defaultLayout = () => {
     const saved = readPreference();
     const width = window.innerWidth;
-    const summary = saved.summary || (width < 1180 ? "collapsed" : "visible");
-    const nav = saved.nav || (width < 1360 && width > 820 ? "compact" : "expanded");
-    return { summary, nav };
+    return {
+      summary: saved.summary || (width < 1180 ? "collapsed" : "visible"),
+      nav: saved.nav || (width < 1360 && width > 820 ? "compact" : "expanded"),
+    };
   };
 
   const createHeaderButton = ({ attribute, icon, label }) => {
@@ -121,9 +128,10 @@
     const header = $(".suite-drawer-header, .editor-drawer__panel > header", drawer);
     if (!workspace || !header) return;
     const mode = workspace.dataset.formMode || drawer.dataset.formMode || "edit";
+    const text = mode === "create" ? "Create workspace" : "Full edit workspace";
     drawer.dataset.workspaceMode = mode;
     const badge = $(".form-mode-badge", header);
-    if (badge) badge.textContent = mode === "create" ? "Create workspace" : "Full edit workspace";
+    if (badge && badge.textContent !== text) badge.textContent = text;
   };
 
   const activate = () => {
@@ -137,24 +145,16 @@
     setNavigation(layout.nav, false);
   };
 
-  const deactivate = () => {
-    body.classList.remove("admin-workspace-active");
-  };
-
-  const syncDrawer = () => {
-    if (isOpen()) activate();
-    else deactivate();
-  };
+  const deactivate = () => body.classList.remove("admin-workspace-active");
+  const syncDrawer = () => (isOpen() ? activate() : deactivate());
 
   const observeDrawer = () => {
     drawer = $(page === "articles" ? "#editor-drawer" : "#suite-drawer");
     if (!drawer) return;
 
-    new MutationObserver(() => window.setTimeout(syncDrawer, 0)).observe(drawer, {
+    new MutationObserver(syncDrawer).observe(drawer, {
       attributes: true,
       attributeFilter: ["class", "aria-hidden", "data-form-mode"],
-      childList: true,
-      subtree: true,
     });
 
     syncDrawer();
@@ -178,11 +178,9 @@
     window.addEventListener("resize", () => {
       window.clearTimeout(resizeTimer);
       resizeTimer = window.setTimeout(() => {
-        if (!isOpen()) return;
-        if (window.innerWidth <= 820) {
-          setNavigation("expanded", false);
-          setSummary("collapsed", false);
-        }
+        if (!isOpen() || window.innerWidth > 820) return;
+        setNavigation("expanded", false);
+        setSummary("collapsed", false);
       }, 120);
     }, { passive: true });
   };
