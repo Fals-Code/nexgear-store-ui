@@ -374,7 +374,13 @@
     if (m) updateMethod(m.dataset.paymentMethod);
   });
   $("#payment-change-method").addEventListener("click", openModal);
-  $("#payment-mobile-action").addEventListener("click", verify);
+  $("#payment-mobile-action").addEventListener("click", () => {
+    if (order?.paymentStatus === "paid") {
+      location.href = `success.html?order=${encodeURIComponent(order.id)}`;
+      return;
+    }
+    verify();
+  });
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
   });
