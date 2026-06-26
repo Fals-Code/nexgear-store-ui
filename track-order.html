@@ -3,109 +3,190 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Lacak status pesanan, kurir, dan estimasi kedatangan pesanan NEXGEAR.">
+  <meta name="description" content="Pantau pembayaran, pemrosesan gudang, kurir, dan estimasi kedatangan pesanan NEXGEAR.">
   <title>Lacak Pesanan | NEXGEAR</title>
   <link rel="stylesheet" href="styles/global.css">
-  <link rel="stylesheet" href="styles/track-order.css">
+  <link rel="stylesheet" href="styles/track-order.css?v=2">
 </head>
-<body class="page-track-order" data-footer-reveal="compact">
+<body class="page-track-order" data-footer-reveal="compact" data-track-state="idle" data-shipment-status="shipping">
   <div id="global-header"></div>
 
   <main class="site-main">
-    <div class="container section-padding">
-      <header class="section-header">
-        <h1>Lacak Pesanan</h1>
-        <p>Masukkan nomor pesanan untuk melihat proses pembayaran, packing, dan perjalanan paket.</p>
-      </header>
-
-      <section class="track-form-container" aria-labelledby="track-form-title">
-        <h2 id="track-form-title" class="sr-only">Form pelacakan pesanan</h2>
-        <form class="track-form" data-order-track>
-          <label class="sr-only" for="track-order-number">Nomor pesanan</label>
-          <input id="track-order-number" name="orderNumber" type="text" class="form-input" placeholder="Contoh: NEX-88392019A" autocomplete="off" required>
-          <button type="submit" class="btn btn-primary">Lacak Pesanan</button>
-        </form>
-        <p class="track-form-hint">Nomor pesanan tersedia pada email konfirmasi dan riwayat transaksi.</p>
-      </section>
-
-      <section id="track-result" class="track-result" data-track-result aria-live="polite" aria-labelledby="tracking-status-title" hidden>
-        <header class="tracking-result-heading">
-          <span>LIVE ORDER STATUS</span>
-          <h2 id="tracking-status-title">Paket sedang dalam perjalanan.</h2>
-        </header>
-
-        <dl class="order-info-card">
-          <div class="order-info-row">
-            <dt>Nomor Pesanan</dt>
-            <dd><strong data-order-number>NEX-88392019A</strong></dd>
+    <section class="tracking-search" aria-labelledby="tracking-title">
+      <div class="container tracking-search__layout">
+        <div class="tracking-search__copy">
+          <span class="tracking-eyebrow">ORDER / TRACKING</span>
+          <h1 id="tracking-title">Track your gear.</h1>
+          <p>Pantau pembayaran, proses gudang, dan perjalanan paket dalam satu tampilan yang benar-benar berguna.</p>
+          <div class="tracking-trust" aria-label="Keunggulan pelacakan">
+            <span><i aria-hidden="true"></i>Status terpusat</span>
+            <span><i aria-hidden="true"></i>Update perjalanan</span>
+            <span><i aria-hidden="true"></i>Akses support cepat</span>
           </div>
-          <div class="order-info-row">
-            <dt>Kurir</dt>
-            <dd><strong>JNE Reguler</strong><small>Resi 88392019A123</small></dd>
-          </div>
-          <div class="order-info-row">
-            <dt>Estimasi Tiba</dt>
-            <dd><strong class="text-accent">08 Jun 2026</strong></dd>
-          </div>
-        </dl>
-
-        <div class="tracking-timeline" aria-label="Riwayat status pesanan">
-          <article class="timeline-item completed">
-            <div class="timeline-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"></path></svg></div>
-            <div class="timeline-content">
-              <div><h3>Pesanan Diterima</h3><time datetime="2026-06-05T14:30:00+07:00">05 Jun 2026, 14:30 WIB</time></div>
-              <p>Pembayaran telah diverifikasi dan pesanan masuk ke antrean gudang.</p>
-            </div>
-          </article>
-
-          <article class="timeline-item completed">
-            <div class="timeline-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"></path></svg></div>
-            <div class="timeline-content">
-              <div><h3>Pesanan Diproses</h3><time datetime="2026-06-06T09:15:00+07:00">06 Jun 2026, 09:15 WIB</time></div>
-              <p>Produk telah diperiksa dan disiapkan untuk proses pickup.</p>
-            </div>
-          </article>
-
-          <article class="timeline-item active" aria-current="step">
-            <div class="timeline-icon" aria-hidden="true"><span class="active-dot"></span></div>
-            <div class="timeline-content">
-              <div><h3>Dalam Pengiriman</h3><time datetime="2026-06-06T16:40:00+07:00">06 Jun 2026, 16:40 WIB</time></div>
-              <p>Paket sudah diserahkan kepada kurir dan sedang menuju kota tujuan.</p>
-            </div>
-          </article>
-
-          <article class="timeline-item">
-            <div class="timeline-icon" aria-hidden="true"></div>
-            <div class="timeline-content">
-              <div><h3>Pesanan Selesai</h3><span>Menunggu pembaruan</span></div>
-              <p>Status selesai setelah paket diterima di alamat tujuan.</p>
-            </div>
-          </article>
         </div>
 
-        <aside class="help-action">
-          <div>
-            <strong>Ada kendala dengan pengiriman?</strong>
-            <p>Sertakan nomor pesanan saat menghubungi tim support.</p>
+        <form class="tracking-search__form" data-order-track novalidate>
+          <div class="tracking-search__form-head">
+            <span>Masukkan nomor pesanan</span>
+            <small>Tersedia di email konfirmasi dan Pesanan Saya.</small>
           </div>
-          <a href="contact.html#support-form" class="btn btn-outline">Buat Support Ticket</a>
-        </aside>
+
+          <label class="tracking-input" for="track-order-number">
+            <span class="tracking-input__prefix" aria-hidden="true">NX</span>
+            <input
+              id="track-order-number"
+              name="orderNumber"
+              type="text"
+              inputmode="text"
+              placeholder="NEX-88392019A"
+              autocomplete="off"
+              spellcheck="false"
+              required
+              aria-describedby="track-form-help track-form-status"
+            >
+            <button type="submit" class="btn btn-primary">Lacak Pesanan</button>
+          </label>
+
+          <p id="track-form-help" class="tracking-search__hint">Format contoh: NEX-88392019A</p>
+          <p id="track-form-status" class="tracking-search__status" data-track-form-status aria-live="polite"></p>
+
+          <div class="tracking-samples" aria-label="Contoh status pesanan">
+            <span>Coba contoh:</span>
+            <button type="button" data-track-sample="NEX-88392019A">Dikirim</button>
+            <button type="button" data-track-sample="NEX-88271018C">Menunggu</button>
+            <button type="button" data-track-sample="NEX-77281920B">Selesai</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="tracking-state container" data-track-loading hidden aria-live="polite">
+      <div class="tracking-state__visual tracking-loader" aria-hidden="true"><i></i><i></i><i></i></div>
+      <span>SYNCING ORDER DATA</span>
+      <h2>Mengambil status terbaru.</h2>
+      <p>Menghubungkan nomor pesanan dengan pembayaran, gudang, dan aktivitas kurir.</p>
+    </section>
+
+    <section class="tracking-state container" data-track-empty hidden tabindex="-1" aria-labelledby="track-empty-title">
+      <div class="tracking-state__visual" aria-hidden="true">?</div>
+      <span>ORDER NOT FOUND</span>
+      <h2 id="track-empty-title">Pesanan tidak ditemukan.</h2>
+      <p>Nomor <strong data-track-missing-number></strong> tidak tersedia pada data prototype. Periksa kembali atau buka riwayat transaksi.</p>
+      <div class="tracking-state__actions">
+        <button type="button" class="btn btn-outline" data-track-change>Periksa Nomor</button>
+        <a href="transaction-history.html" class="btn btn-primary">Buka Pesanan Saya</a>
+      </div>
+    </section>
+
+    <section class="tracking-state container" data-track-error hidden tabindex="-1" aria-labelledby="track-error-title">
+      <div class="tracking-state__visual tracking-state__visual--danger" aria-hidden="true">!</div>
+      <span>TRACKING INTERRUPTED</span>
+      <h2 id="track-error-title">Status belum dapat dimuat.</h2>
+      <p>Periksa format nomor pesanan lalu coba kembali. Internet, seperti manusia, terkadang memutuskan untuk tidak kooperatif.</p>
+      <button type="button" class="btn btn-primary" data-track-retry>Coba Lagi</button>
+    </section>
+
+    <section class="tracking-dashboard container" data-track-result hidden tabindex="-1" aria-labelledby="tracking-status-title">
+      <header class="tracking-status-hero">
+        <div class="tracking-status-hero__main">
+          <div class="tracking-live-status"><i aria-hidden="true"></i><span>LIVE ORDER STATUS</span></div>
+          <h2 id="tracking-status-title" data-track-status-title>Dalam pengiriman</h2>
+          <p data-track-status-description>Paket sedang menuju kota tujuan.</p>
+          <div class="tracking-order-id">
+            <span>Nomor Pesanan</span>
+            <strong data-track-order-number>NEX-88392019A</strong>
+            <button type="button" data-copy-value="[data-track-order-number]">Salin</button>
+          </div>
+        </div>
+
+        <div class="tracking-eta">
+          <span>Estimasi tiba</span>
+          <strong data-track-eta>08 Jun 2026</strong>
+          <small data-track-countdown>1–2 hari lagi</small>
+          <button type="button" data-track-change>Ganti pesanan</button>
+        </div>
+      </header>
+
+      <ol class="tracking-progress" data-track-milestones aria-label="Progres utama pesanan"></ol>
+
+      <section class="tracking-route" aria-labelledby="tracking-route-title">
+        <header>
+          <div>
+            <span>DELIVERY ROUTE</span>
+            <h2 id="tracking-route-title">Perjalanan paket</h2>
+          </div>
+          <span class="tracking-route__status">Live route</span>
+        </header>
+        <div class="tracking-route__rail" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="tracking-route__points">
+          <div><span>Asal</span><strong data-route-origin>Surabaya</strong></div>
+          <div><span>Posisi terakhir</span><strong data-route-current>Jakarta Gateway</strong></div>
+          <div><span>Tujuan</span><strong data-route-destination>Jakarta Selatan</strong></div>
+        </div>
       </section>
-    </div>
+
+      <div class="tracking-bento">
+        <section class="tracking-activity" aria-labelledby="tracking-activity-title">
+          <header class="tracking-panel-heading">
+            <div>
+              <span>SHIPMENT ACTIVITY</span>
+              <h2 id="tracking-activity-title">Aktivitas pengiriman</h2>
+            </div>
+            <small>Urutan terbaru</small>
+          </header>
+          <ol class="tracking-event-list" data-track-events></ol>
+        </section>
+
+        <aside class="tracking-sidebar" aria-label="Informasi pesanan">
+          <article class="tracking-card tracking-card--courier">
+            <header><span>Kurir & resi</span><i aria-hidden="true">01</i></header>
+            <strong data-track-courier>JNE Reguler</strong>
+            <div class="tracking-copy-row">
+              <code data-track-receipt>88392019A123</code>
+              <button type="button" data-copy-value="[data-track-receipt]">Salin</button>
+            </div>
+          </article>
+
+          <article class="tracking-card">
+            <header><span>Tujuan</span><i aria-hidden="true">02</i></header>
+            <strong data-track-recipient>John Doe</strong>
+            <p data-track-address>Jakarta Selatan, DKI Jakarta</p>
+          </article>
+
+          <article class="tracking-card tracking-card--route-meta">
+            <header><span>Pembayaran</span><i aria-hidden="true">03</i></header>
+            <div class="tracking-summary-row"><span>Metode</span><strong data-track-payment>Virtual Account BCA</strong></div>
+            <div class="tracking-summary-row"><span>Total</span><strong data-track-total>Rp1.599.000</strong></div>
+          </article>
+
+          <article class="tracking-card tracking-card--products">
+            <header><span>Isi paket</span><i data-track-product-count>1 produk</i></header>
+            <div class="tracking-product-list" data-track-products></div>
+          </article>
+
+          <article class="tracking-card tracking-card--support">
+            <span>NEED ASSISTANCE?</span>
+            <strong>Ada masalah dengan paket?</strong>
+            <p>Tim support dapat membantu menggunakan nomor pesanan yang sedang dibuka.</p>
+            <a href="contact.html#support-form" class="btn btn-outline" data-track-support>Hubungi Support</a>
+          </article>
+        </aside>
+      </div>
+    </section>
   </main>
 
   <div id="global-footer"></div>
   <script src="scripts/global-components.js"></script>
   <script src="scripts/core/storage.js"></script>
-    <script src="scripts/core/events.js"></script>
-    <script src="scripts/core/currency.js"></script>
-    <script src="scripts/components/toast.js"></script>
-    <script src="scripts/core/cart.js"></script>
-    <script src="scripts/core/auth.js"></script>
-    <script src="scripts/components/dialog.js"></script>
-    <script src="scripts/components/navigation.js"></script>
-    <script src="scripts/pages/catalog.js"></script>
-    <script src="scripts/main.js"></script>
-  <script src="scripts/support-utilities.js"></script>
+  <script src="scripts/core/events.js"></script>
+  <script src="scripts/core/currency.js"></script>
+  <script src="scripts/components/toast.js"></script>
+  <script src="scripts/core/cart.js"></script>
+  <script src="scripts/core/auth.js"></script>
+  <script src="scripts/components/dialog.js"></script>
+  <script src="scripts/components/navigation.js"></script>
+  <script src="scripts/pages/catalog.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/track-order.js?v=1"></script>
 </body>
 </html>
