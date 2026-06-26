@@ -15,9 +15,28 @@
   const menu = document.querySelector("#suite-menu, #article-row-menu");
   if (!menu) return;
 
-  const triggerSelector = menu.id === "suite-menu"
-    ? "[data-menu]"
-    : "[data-row-menu], [data-grid-menu]";
+  const assignMenuRoles = () => {
+    menu.setAttribute("role", "menu");
+    menu.querySelectorAll("button").forEach((button) => button.setAttribute("role", "menuitem"));
+  };
+
+  /*
+   * Suite pages already own their menu state and viewport coordinates in
+   * admin-suite.js. Repositioning the same menu from a second controller caused
+   * the action list to jump outside the viewport. Preserve one source of truth.
+   */
+  if (menu.id === "suite-menu") {
+    assignMenuRoles();
+    new MutationObserver(assignMenuRoles).observe(menu, {
+      attributes: true,
+      attributeFilter: ["hidden"],
+      childList: true,
+    });
+    window.NexAdminActionMenu = Object.freeze({ position: () => {} });
+    return;
+  }
+
+  const triggerSelector = "[data-row-menu], [data-grid-menu]";
   const viewportGap = 12;
   const anchorGap = 8;
   let activeTrigger = null;
@@ -66,8 +85,7 @@
     menu.style.setProperty("visibility", "visible");
     menu.dataset.placement = openAbove ? "top" : "bottom";
     menu.dataset.state = "open";
-    menu.setAttribute("role", "menu");
-    menu.querySelectorAll("button").forEach((button) => button.setAttribute("role", "menuitem"));
+    assignMenuRoles();
 
     if (keyboardOpening) {
       keyboardOpening = false;
