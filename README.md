@@ -1,46 +1,81 @@
 # NEXGEAR - Premium Gaming Gear E-Commerce
 
-Sebuah _prototype_ frontend antarmuka pengguna e-commerce kelas premium yang berfokus pada kecepatan, konsistensi desain, dan pengalaman pengguna (_User Experience_). Proyek ini dirancang sebagai pemenuhan **UAS Mata Kuliah Workshop Desain UI**, yang mendemonstrasikan keahlian penyusunan struktur situs web tanpa ketergantungan kerangka kerja (_framework_) eksternal.
+NEXGEAR adalah prototipe frontend e-commerce premium untuk **UAS Workshop Desain UI**. Proyek menggunakan HTML semantik, CSS, dan Vanilla JavaScript tanpa framework runtime.
 
-## 🎯 Fokus Proyek: Frontend UI/UX
+## Fokus UI/UX
 
-NEXGEAR adalah purwarupa antarmuka (_UI Mockup_) yang dioptimalkan untuk menunjukkan kelancaran interaksi di sisi klien. Desain mengadopsi tema "Dark Premium Gaming" dengan ruang kosong yang tertata, tipografi _sans-serif_ berlapis, aksen biru neon (`#00E5FF`), serta form bergaya minimalis. Kami berprinsip pada pendekatan _Desktop-First_ yang tetap lincah merespons transisi ukuran layar.
+Desain mengadopsi tema dark premium gaming dengan aksen cyan `#00E5FF`, hierarki visual tegas, whitespace terukur, layout responsif, serta alur transaksi yang dapat disimulasikan melalui `localStorage`.
 
-## 📄 Daftar Halaman (18 Halaman)
+## Daftar Halaman (23 Halaman)
 
-Keseluruhan siklus e-commerce telah didesain secara independen dengan gaya yang terpusat:
+### Storefront dan transaksi
 
-1. `index.html` — Beranda (Landing Page)
-2. `catalog.html` — Katalog pencarian produk
-3. `product-detail.html` — Rincian produk lengkap
-4. `cart.html` — Keranjang belanja interaktif
-5. `checkout.html` — Formulir pembayaran 1-Halaman
-6. `success.html` — Konfirmasi pesanan sukses
-7. `track-order.html` — Simulasi pelacakan resi
-8. `transaction-history.html` — Riwayat transaksi, pencarian, filter status, dan detail pesanan
-9. `admin-articles.html` — Kelola artikel editorial, draft, jadwal publikasi, dan bulk action
-10. `about.html` — Kisah dan filosofi merk NEXGEAR
-11. `contact.html` — Form kontak dukungan
-12. `help.html` — Pusat FAQ interaktif
-13. `leave-review.html` — Antarmuka penulisan ulasan
-14. `login.html` — Simulasi masuk dan pendaftaran akun
-15. `profile.html` — Dasbor manajemen profil
-16. `blog.html` — Daftar artikel dan ulasan produk
-17. `blog-post.html` — Layout baca artikel tunggal
-18. `404.html` — Penanganan _error_ tautan mati
+1. `index.html` - landing page
+2. `catalog.html` - katalog dan filter produk
+3. `product-detail.html` - detail, galeri, spesifikasi, dan ulasan produk
+4. `cart.html` - keranjang interaktif
+5. `checkout.html` - data pelanggan, alamat, pengiriman, dan metode pembayaran
+6. `payment.html` - simulasi instruksi dan verifikasi pembayaran
+7. `success.html` - konfirmasi pesanan
+8. `track-order.html` - pelacakan status pesanan
+9. `transaction-history.html` - riwayat transaksi
 
-## 🚀 Cara Menjalankan
+### Konten dan akun
 
-Proyek ini dibangun menggunakan **100% Vanilla HTML, CSS, dan JavaScript**.
+10. `blog.html` - arsip artikel
+11. `blog-post.html` - detail artikel
+12. `leave-review.html` - formulir ulasan
+13. `login.html` - simulasi autentikasi
+14. `profile.html` - profil pengguna
+15. `about.html` - profil NEXGEAR
+16. `contact.html` - kontak dukungan
+17. `help.html` - pusat bantuan
+18. `404.html` - halaman tautan tidak ditemukan
 
-1. Unduh atau klon seluruh repositori proyek ini ke dalam sistem Anda.
-2. Tidak diperlukan instalasi _package_ atau peladen (_server_) lokal.
-3. Buka file `index.html` dengan peramban (Chrome/Firefox/Edge) untuk mulai merambah ekosistem NEXGEAR.
-4. Anda dapat menavigasi ke seluruh 17 halaman lainnya secara mulus melalui tautan navigasi dan _footer_.
+### Administrasi
+
+19. `admin-dashboard.html` - ringkasan administrasi
+20. `admin-articles.html` - pengelolaan artikel
+21. `admin-products.html` - pengelolaan produk
+22. `admin-users.html` - pengelolaan pengguna
+23. `admin-transactions.html` - pengelolaan transaksi
+
+## Cara Menjalankan
+
+Header dan footer dimuat sebagai komponen dengan `fetch()`. Karena itu proyek perlu dijalankan melalui server lokal, bukan dengan membuka `index.html` langsung melalui protokol `file://`.
+
+```bash
+python -m http.server 5500
+```
+
+Buka `http://localhost:5500` melalui Chrome, Edge, atau Firefox.
+
+## Arsitektur Frontend
+
+Pembagian tanggung jawab JavaScript dan alur state dijelaskan pada [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+
+Ringkasan struktur:
+
+```text
+scripts/
+├── core/          # storage, events, currency, cart, auth
+├── components/    # toast, dialog, navigation
+├── pages/         # perilaku khusus katalog
+├── *-page.js      # controller alur transaksi per halaman
+└── main.js        # orchestrator fitur umum
+```
+
+CSS detail produk dikonsolidasikan menjadi:
+
+```text
+styles/
+├── product.css
+└── product-responsive.css
+```
+
+Source JavaScript untuk checkout, pembayaran, konfirmasi, dan administrasi disimpan dalam bentuk readable agar struktur fungsi, validasi, event listener, dan pemakaian `localStorage` dapat diaudit pada penilaian akademik.
 
 ---
 
-**Dibuat untuk Tugas UAS Workshop Desain UI**
-_Universitas Airlangga - Jurusan D4 Teknik Informatika_
-
-<!-- Admin article page added. -->
+**Dibuat untuk Tugas UAS Workshop Desain UI**  
+Universitas Airlangga - D4 Teknik Informatika
