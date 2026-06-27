@@ -443,7 +443,7 @@
 
 .row-menu {
   position: fixed;
-  z-index: 140;
+  z-index: 320;
   width: 190px;
   overflow: hidden;
   padding: 7px;
@@ -460,7 +460,7 @@
 
 .row-menu button {
   width: 100%;
-  min-height: 39px;
+  min-height: 44px;
   padding: 0 12px;
   border: 0;
   border-radius: 7px;
@@ -865,3 +865,31 @@
     padding: 22px 18px;
   }
 }
+/* ==========================================
+   P1 ARTICLE MOBILE TABLE CARDS
+   ========================================== */
+@media (max-width:720px){
+  .article-table-wrap{overflow:visible;}
+  .article-table{display:block;width:100%;min-width:0;border-collapse:separate;}
+  .article-table thead{display:none;}
+  .article-table tbody{display:grid;gap:12px;padding:12px;}
+  .article-row{display:grid;gap:10px;min-width:0;padding:14px;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:linear-gradient(145deg,rgba(18,18,27,.97),rgba(9,9,14,.99));box-shadow:0 14px 36px rgba(0,0,0,.26);}
+  .article-row:hover,.article-row:focus-within{background:linear-gradient(145deg,rgba(22,22,32,.98),rgba(9,9,14,.99));box-shadow:inset 3px 0 0 var(--color-primary),0 14px 36px rgba(0,0,0,.28);}
+  .article-row[hidden]{display:none;}
+  .article-table td{display:flex;min-width:0;align-items:flex-start;justify-content:space-between;gap:12px;padding:0;border:0;color:var(--color-text-secondary);overflow-wrap:anywhere;}
+  .article-table td::before{content:attr(data-label);flex:0 0 92px;color:var(--color-text-muted);font-size:.64rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;}
+  .article-table td[data-card-select]{order:-4;justify-content:flex-end;min-height:24px;}
+  .article-table td[data-card-select]::before,.article-table td[data-card-primary]::before{display:none;}
+  .article-table td[data-card-primary]{order:-3;display:block;color:#fff;}
+  .article-table td[data-card-status]{order:-2;align-items:center;justify-content:flex-start;}
+  .article-table td[data-card-actions]{margin-top:4px;padding-top:12px;border-top:1px solid var(--color-border-subtle);justify-content:flex-end;}
+  .article-table td[data-card-actions]::before{align-self:center;}
+  .article-title-cell{min-width:0;align-items:flex-start;}
+  .article-title-cell img{flex-basis:64px;width:64px;height:48px;}
+  .article-title-cell h2{max-width:none;overflow-wrap:anywhere;word-break:break-word;}
+  .article-title-cell p{overflow-wrap:anywhere;}
+  .row-action{width:44px;height:44px;min-width:44px;}
+}
+/* Regression fix: keep action menu above mobile cards and admin chrome. */
+body.page-admin .row-menu{z-index:320!important;}
+body.page-admin .row-menu button{min-height:44px;}

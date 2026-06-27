@@ -63,6 +63,7 @@
   };
 
   let activeRow = null;
+  let rowMenuReturnFocus = null;
   let editingRow = null;
   let pendingDeleteRows = [];
   let currentView = "table";
@@ -84,6 +85,29 @@
       .replace(/^-+|-+$/g, "")}`;
   }
 
+
+  const articleColumnLabels = ["Pilih", "Artikel", "Kategori", "Status", "Update", "Views", "Aksi"];
+
+  function getArticleTitle(row) {
+    return row?.querySelector("h2")?.textContent.trim() || "artikel";
+  }
+
+  function applyArticleRowMetadata(row) {
+    if (!row) return;
+    Array.from(row.children).forEach((cell, index) => {
+      cell.dataset.label = articleColumnLabels[index] || "";
+    });
+    row.children[0]?.setAttribute("data-card-select", "");
+    row.children[1]?.setAttribute("data-card-primary", "");
+    row.children[3]?.setAttribute("data-card-status", "");
+    row.children[6]?.setAttribute("data-card-actions", "");
+    const action = row.querySelector("[data-row-menu]");
+    if (action) action.setAttribute("aria-label", `Buka aksi untuk artikel ${getArticleTitle(row)}`);
+  }
+
+  function hydrateArticleRows() {
+    rows().forEach(applyArticleRowMetadata);
+  }
   function todayIso() {
     return new Date().toISOString().slice(0, 10);
   }
@@ -132,18 +156,18 @@
     tr.dataset.excerpt = article.excerpt || "";
     tr.dataset.image = article.image || "";
     tr.innerHTML = `
-      <td><input type="checkbox" class="article-check" aria-label="Pilih artikel ${article.title}"></td>
-      <td>
+      <td data-label="Pilih" data-card-select><input type="checkbox" class="article-check" aria-label="Pilih artikel ${article.title}"></td>
+      <td data-label="Artikel" data-card-primary>
         <div class="article-title-cell">
           <img src="${article.image}" alt="${article.title}">
           <div><h2>${article.title}</h2><p>${article.slug} · ${article.reading || 6} menit baca</p></div>
         </div>
       </td>
-      <td><span class="article-category-pill">${article.category}</span></td>
-      <td><span class="status-pill ${status.className}"><i></i>${status.label}</span></td>
-      <td><time datetime="${article.updated}">${formatDate(article.updated)}</time></td>
-      <td>${formatViews(article.views)}</td>
-      <td><button class="row-action" type="button" data-row-menu aria-label="Aksi artikel ${article.title}">•••</button></td>`;
+      <td data-label="Kategori"><span class="article-category-pill">${article.category}</span></td>
+      <td data-label="Status" data-card-status><span class="status-pill ${status.className}"><i></i>${status.label}</span></td>
+      <td data-label="Update"><time datetime="${article.updated}">${formatDate(article.updated)}</time></td>
+      <td data-label="Views">${formatViews(article.views)}</td>
+      <td data-label="Aksi" data-card-actions><button class="row-action" type="button" data-row-menu aria-label="Buka aksi untuk artikel ${article.title}">•••</button></td>`;
     return tr;
   }
 
@@ -268,19 +292,68 @@
     updateBulkBar();
   }
 
-  function closeRowMenu() {
-    rowMenu.hidden = true;
-    document.querySelectorAll("[data-row-menu], [data-grid-menu]").forEach((button) => button.setAttribute("aria-expanded", "false"));
-    activeRow = null;
+  function positionRowMenu(button) {
+    const gutter = 12;
+    const gap = 7;
+    const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+    const viewportHeight = document.documentElement.clientHeight || window.innerHeight;
+    const rect = button.getBoundingClientRect();
+
+    rowMenu.hidden = false;
+    rowMenu.style.position = "fixed";
+    rowMenu.style.visibility = "hidden";
+    rowMenu.style.top = "0px";
+    rowMenu.style.left = "0px";
+
+    const menuWidth = rowMenu.offsetWidth || 190;
+    const menuHeight = rowMenu.offsetHeight || 220;
+    const maxLeft = Math.max(gutter, viewportWidth - menuWidth - gutter);
+    const maxTop = Math.max(gutter, viewportHeight - menuHeight - gutter);
+    let top = rect.bottom + gap;
+    let left = rect.right - menuWidth;
+    let placement = "bottom";
+
+    if (top + menuHeight > viewportHeight - gutter) {
+      top = rect.top - menuHeight - gap;
+      placement = "top";
+    }
+    top = Math.max(gutter, Math.min(top, maxTop));
+    left = Math.max(gutter, Math.min(left, maxLeft));
+
+    rowMenu.style.setProperty("top", `${Math.round(top)}px`, "important");
+    rowMenu.style.setProperty("left", `${Math.round(left)}px`, "important");
+    rowMenu.style.setProperty("right", "auto", "important");
+    rowMenu.style.setProperty("bottom", "auto", "important");
+    rowMenu.style.visibility = "";
+    rowMenu.dataset.placement = placement;
+    rowMenu.dataset.state = "open";
   }
 
+  function closeRowMenu() {
+    const restoreFocus = rowMenu.contains(document.activeElement);
+    rowMenu.hidden = true;
+    rowMenu.dataset.state = "closed";
+    rowMenu.removeAttribute("data-placement");
+    document.querySelectorAll("[data-row-menu], [data-grid-menu]").forEach((button) => button.setAttribute("aria-expanded", "false"));
+    activeRow = null;
+    if (restoreFocus && rowMenuReturnFocus instanceof HTMLElement) rowMenuReturnFocus.focus();
+  }
+
+
+  function labelArticleMenuActions(row) {
+    const target = getArticleTitle(row);
+    rowMenu.querySelectorAll("[data-menu-action]").forEach((button) => {
+      const actionText = button.textContent.trim() || button.dataset.menuAction;
+      button.setAttribute("aria-label", `${actionText} untuk artikel ${target}`);
+    });
+  }
   function openRowMenu(button, row) {
     activeRow = row;
-    const rect = button.getBoundingClientRect();
-    rowMenu.hidden = false;
-    rowMenu.style.top = `${Math.min(rect.bottom + 7, window.innerHeight - rowMenu.offsetHeight - 12)}px`;
-    rowMenu.style.left = `${Math.max(12, Math.min(rect.right - rowMenu.offsetWidth, window.innerWidth - rowMenu.offsetWidth - 12))}px`;
+    rowMenuReturnFocus = button;
+    labelArticleMenuActions(row);
+    positionRowMenu(button);
     button.setAttribute("aria-expanded", "true");
+    rowMenu.querySelector("[data-menu-action]")?.focus();
   }
 
   function openEditor(row, mode) {
@@ -344,8 +417,10 @@
       excerpt: excerptInput.value.trim(),
       image: imageInput.value.trim() || "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=85",
     };
-    if (editingRow) editingRow.replaceWith(createRow(article));
-    else tableBody.prepend(createRow(article));
+    const nextRow = createRow(article);
+    applyArticleRowMetadata(nextRow);
+    if (editingRow) editingRow.replaceWith(nextRow);
+    else tableBody.prepend(nextRow);
     saveState();
     closeEditor();
     render();
@@ -414,6 +489,7 @@
     const button = event.target.closest("[data-row-menu]");
     if (!button) return;
     const row = button.closest(".article-row");
+    if (!row) return;
     if (!rowMenu.hidden && activeRow === row) closeRowMenu();
     else {
       closeRowMenu();
@@ -434,6 +510,7 @@
     const button = event.target.closest("[data-grid-menu]");
     if (!button) return;
     const card = button.closest(".article-grid-card");
+    if (!card) return;
     const row = rows().find((item) => item.dataset.id === card.dataset.rowId);
     if (row) {
       closeRowMenu();
@@ -458,7 +535,9 @@
       article.status = "draft";
       article.views = 0;
       article.updated = todayIso();
-      tableBody.prepend(createRow(article));
+      const duplicateRow = createRow(article);
+      applyArticleRowMetadata(duplicateRow);
+      tableBody.prepend(duplicateRow);
       saveState();
       render();
       showToast("Artikel berhasil diduplikasi sebagai draft.");
@@ -558,5 +637,6 @@
   });
 
   restoreState();
+  hydrateArticleRows();
   render();
 })();

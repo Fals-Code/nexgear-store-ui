@@ -206,22 +206,76 @@
     selectAll.indeterminate = visible.some((entry) => selected.has(entry.id)) && !selectAll.checked;
   }
 
+
+  function suiteItemLabel(item) {
+    return item?.name || item?.customer || item?.id || "data";
+  }
+
+  function labelSuiteMenuActions(item) {
+    const target = suiteItemLabel(item);
+    $$("#suite-menu [data-action]").forEach((button) => {
+      const actionText = button.textContent.trim() || button.dataset.action;
+      button.setAttribute("aria-label", `${actionText} untuk ${target}`);
+    });
+  }
+
+  function positionMenu(menu, button) {
+    const gutter = 12;
+    const gap = 6;
+    const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+    const viewportHeight = document.documentElement.clientHeight || window.innerHeight;
+    const rect = button.getBoundingClientRect();
+
+    menu.hidden = false;
+    menu.style.position = "fixed";
+    menu.style.visibility = "hidden";
+    menu.style.top = "0px";
+    menu.style.left = "0px";
+
+    const menuWidth = menu.offsetWidth || 200;
+    const menuHeight = menu.offsetHeight || 180;
+    const maxLeft = Math.max(gutter, viewportWidth - menuWidth - gutter);
+    const maxTop = Math.max(gutter, viewportHeight - menuHeight - gutter);
+    let top = rect.bottom + gap;
+    let left = rect.right - menuWidth;
+    let placement = "bottom";
+
+    if (top + menuHeight > viewportHeight - gutter) {
+      top = rect.top - menuHeight - gap;
+      placement = "top";
+    }
+    top = Math.max(gutter, Math.min(top, maxTop));
+    left = Math.max(gutter, Math.min(left, maxLeft));
+
+    menu.style.setProperty("top", `${Math.round(top)}px`, "important");
+    menu.style.setProperty("left", `${Math.round(left)}px`, "important");
+    menu.style.setProperty("right", "auto", "important");
+    menu.style.setProperty("bottom", "auto", "important");
+    menu.style.visibility = "";
+    menu.dataset.placement = placement;
+    menu.dataset.state = "open";
+  }
+
   function closeMenu() {
     const menu = $("#suite-menu");
     if (!menu) return;
+    const restoreFocus = menu.contains(document.activeElement);
     menu.hidden = true;
+    menu.dataset.state = "closed";
+    menu.removeAttribute("data-placement");
     $$('[data-menu]').forEach((button) => button.setAttribute("aria-expanded", "false"));
+    if (restoreFocus && menuReturnFocus instanceof HTMLElement) menuReturnFocus.focus();
   }
 
   function openMenu(button, id) {
     activeId = id;
     menuReturnFocus = button;
     const menu = $("#suite-menu");
-    const rect = button.getBoundingClientRect();
-    menu.hidden = false;
-    menu.style.top = `${Math.min(rect.bottom + 6, innerHeight - menu.offsetHeight - 12)}px`;
-    menu.style.left = `${Math.max(12, Math.min(rect.right - menu.offsetWidth, innerWidth - menu.offsetWidth - 12))}px`;
+    if (!menu) return;
+    labelSuiteMenuActions(currentItem());
+    positionMenu(menu, button);
     button.setAttribute("aria-expanded", "true");
+    menu.querySelector("[data-action]")?.focus();
   }
 
   function openDrawer(mode, trigger = document.activeElement) {
@@ -443,6 +497,7 @@
       const button = event.target.closest("[data-menu]");
       if (button) {
         const host = button.closest("[data-id]");
+        if (!host) return;
         closeMenu();
         openMenu(button, host.dataset.id);
         return;
