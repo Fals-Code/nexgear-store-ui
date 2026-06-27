@@ -1,6 +1,6 @@
 /**
- * NEXGEAR Main Script â€” Handmade Edition
- * No ESM exports â€” classic script loading
+ * NEXGEAR Main Script - Handmade Edition
+ * No ESM exports - classic script loading
  */
 
 (function () {
@@ -12,9 +12,9 @@
   const showToast = window.NexToast?.show || window.showToast;
   const showNexToast = window.NexToast?.showCompact || window.showNexToast;
 
-  /* — Mobile Menu — */
+  /* Mobile Menu */
 
-  /* â”€â”€ Scroll Reveal â”€â”€ */
+  /* Scroll Reveal */
   function initReveal() {
     const els = document.querySelectorAll(".reveal");
     if (!els.length) return;
@@ -38,7 +38,7 @@
     els.forEach((el) => observer.observe(el));
   }
 
-  /* â”€â”€ Stat Count-Up â”€â”€ */
+  /* Stat Count-Up */
   function initCountUp() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -86,7 +86,7 @@
     nums.forEach((el) => observer.observe(el));
   }
 
-  /* â”€â”€ Hero Parallax â”€â”€ */
+  /* Hero Parallax */
   function initParallax() {
     const heroH1 = document.querySelector(".hero h1");
     if (!heroH1) return;
@@ -98,17 +98,17 @@
     });
   }
 
-  /* â”€â”€ Price Filter (catalog) â”€â”€ */
+  /* Price Filter (catalog) */
 
-  /* â”€â”€ Search & Filter Logic (catalog) â”€â”€ */
+  /* Search & Filter Logic (catalog) */
 
-  /* â”€â”€ Add-to-Cart Buttons â”€â”€ */
+  /* Add-to-Cart Buttons */
 
-  /* â”€â”€ Set Active Nav Link â”€â”€ */
+  /* Set Active Nav Link */
 
-  /* â”€â”€ Random slight rotations for sketch cards â”€â”€ */
+  /* Random slight rotations for sketch cards */
 
-  /* â”€â”€ Filter Drawer (catalog) â”€â”€ */
+  /* Filter Drawer (catalog) */
 
   function initLoginReveal() {
     const loginShell = document.querySelector(".login-shell");
@@ -120,6 +120,71 @@
 
     loginShell.addEventListener("click", () => {
       loginShell.classList.add("is-open");
+    });
+  }
+
+  function announceFeedback(message) {
+    const text = String(message || "").trim();
+    if (!text) return;
+
+    if (typeof showNexToast === "function") {
+      showNexToast(text);
+      return;
+    }
+
+    if (typeof showToast === "function") {
+      showToast(text);
+      return;
+    }
+
+    let liveRegion = document.querySelector("[data-nex-live-region]");
+    if (!liveRegion) {
+      liveRegion = document.createElement("div");
+      liveRegion.setAttribute("data-nex-live-region", "");
+      liveRegion.setAttribute("role", "status");
+      liveRegion.setAttribute("aria-live", "polite");
+      liveRegion.style.position = "absolute";
+      liveRegion.style.width = "1px";
+      liveRegion.style.height = "1px";
+      liveRegion.style.margin = "-1px";
+      liveRegion.style.padding = "0";
+      liveRegion.style.overflow = "hidden";
+      liveRegion.style.clip = "rect(0 0 0 0)";
+      liveRegion.style.whiteSpace = "nowrap";
+      liveRegion.style.border = "0";
+      document.body.appendChild(liveRegion);
+    }
+
+    liveRegion.textContent = "";
+    window.setTimeout(() => {
+      liveRegion.textContent = text;
+    }, 10);
+  }
+
+  function initSearchDrawerControls() {
+    document.querySelectorAll("[data-search-drawer-close]").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.getElementById("search-drawer")?.classList.remove("active");
+      });
+    });
+  }
+
+  function initProfileFeedback() {
+    document.querySelectorAll("[data-profile-feedback]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const message = link.dataset.profileFeedback;
+        const href = link.getAttribute("href");
+        if (!href) {
+          announceFeedback(message);
+          return;
+        }
+
+        event.preventDefault();
+        announceFeedback(message);
+        window.setTimeout(() => {
+          window.location.href = href;
+        }, 500);
+      });
     });
   }
 
@@ -307,6 +372,8 @@
       initCountUp,
       initParallax,
       initLoginReveal,
+      initSearchDrawerControls,
+      initProfileFeedback,
       syncFooterRevealSpace,
       initPromoWindowReveal,
       initShowcaseFilters,

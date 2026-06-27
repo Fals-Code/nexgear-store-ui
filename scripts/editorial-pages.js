@@ -2,7 +2,7 @@
   "use strict";
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const pageRoot = document.querySelector(".page-about, .page-help, .page-contact");
+  const pageRoot = document.querySelector(".page-about, .page-help, .page-contact, .page-blog-post");
   if (!pageRoot) return;
 
   class EditorialPages {
@@ -15,6 +15,10 @@
       this.progress = root.querySelector("[data-ticket-progress]");
       this.readinessValue = root.querySelector("[data-ticket-readiness-value]");
       this.readinessLabel = root.querySelector("[data-ticket-readiness-label]");
+      this.commentForm = root.querySelector("#comment-form");
+      this.commentStatus = root.querySelector("[data-comment-status]");
+      this.newsletterForm = root.querySelector(".article-detail-newsletter-form");
+      this.newsletterStatus = root.querySelector("[data-article-newsletter-status]");
       this.init();
     }
 
@@ -23,6 +27,7 @@
       this.initGlowCards();
       this.initHelpQueries();
       this.initTicketReadiness();
+      this.initBlogPostForms();
       this.openHelpHash();
       window.addEventListener("hashchange", () => this.openHelpHash());
     }
@@ -80,6 +85,29 @@
           search.focus({ preventScroll: true });
         });
       });
+    }
+
+    initBlogPostForms() {
+      if (!this.root.classList.contains("page-blog-post")) return;
+
+      const bindForm = (form, status, successMessage) => {
+        if (!form) return;
+
+        form.addEventListener("submit", (event) => {
+          if (!form.checkValidity()) return;
+
+          event.preventDefault();
+
+          if (status) {
+            status.textContent = successMessage;
+          }
+
+          form.reset();
+        });
+      };
+
+      bindForm(this.commentForm, this.commentStatus, "Komentar Anda berhasil dikirim.");
+      bindForm(this.newsletterForm, this.newsletterStatus, "Email Anda berhasil didaftarkan untuk update artikel.");
     }
 
     openHelpHash() {

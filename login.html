@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NEXGEAR — Access</title>
+    <title>NEXGEAR - Access</title>
 
     <script>
       (function () {
@@ -52,16 +52,11 @@
           </div>
 
           <div class="auth-panels">
-            <form
-              class="login-form auth-panel login-panel"
-              action="#"
-              method="post"
-              data-transition-href="profile.html"
-            >
+            <form class="login-form auth-panel login-panel" action="profile.html" method="get" data-transition-href="profile.html">
               <div class="field">
+                <label class="sr-only" for="email">Email address</label>
                 <input
                   id="email"
-                  name="email"
                   type="email"
                   placeholder="Email address"
                   autocomplete="email"
@@ -70,9 +65,9 @@
               </div>
 
               <div class="field password-field">
+                <label class="sr-only" for="password">Password</label>
                 <input
                   id="password"
-                  name="password"
                   type="password"
                   placeholder="Password"
                   autocomplete="current-password"
@@ -80,9 +75,9 @@
                 />
               </div>
 
-              <a href="#" class="forgot-link" data-no-transition="true">
+              <span class="forgot-link is-disabled" aria-disabled="true">
                 Forgot password?
-              </a>
+              </span>
 
               <button class="btn-auth" type="submit">Sign In</button>
 
@@ -105,13 +100,12 @@
                 <span>Your NEXGEAR access is ready.</span>
               </div>
 
-              <form class="register-form" action="#" method="post">
+              <form class="register-form" action="profile.html" method="get">
                 <div class="register-group register-step-1">
                   <label class="register-field" for="username">
                     <input
                       type="text"
                       id="username"
-                      name="username"
                       class="register-input"
                       placeholder=" "
                       pattern="[^\s]+"
@@ -138,7 +132,6 @@
                     <input
                       type="email"
                       id="register-email"
-                      name="register-email"
                       class="register-input"
                       placeholder=" "
                       autocomplete="email"
@@ -164,7 +157,6 @@
                     <input
                       type="password"
                       id="register-password"
-                      name="register-password"
                       class="register-input"
                       placeholder=" "
                       autocomplete="new-password"
@@ -175,15 +167,13 @@
                     <span class="register-label">Create your password.</span>
                     <b class="register-border" aria-hidden="true"></b>
                   </label>
-
-                  <label
-                    class="register-next"
-                    for="reg-finish"
-                    role="button"
+                  <button
+                    class="register-next register-submit"
+                    type="submit"
                     aria-label="Finish registration"
                   >
                     <span class="register-next-icon" aria-hidden="true"></span>
-                  </label>
+                  </button>
                 </div>
               </form>
 

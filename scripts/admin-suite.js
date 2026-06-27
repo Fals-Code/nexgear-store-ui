@@ -34,6 +34,18 @@
   let selected = new Set();
   let activeId = null;
   let deleteIds = [];
+  let menuReturnFocus = null;
+  let drawerReturnFocus = null;
+  let deleteReturnFocus = null;
+  let activeDialog = null;
+  const dialogFocusableSelector = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
+  ].join(",");
 
   function load() {
     try {
@@ -61,6 +73,86 @@
     window.clearTimeout(toast.timer);
     toast.timer = window.setTimeout(() => { element.hidden = true; }, 2800);
     window.NexA11y?.announce?.(message);
+  }
+
+  function isVisible(element) {
+    return element instanceof HTMLElement && element.getClientRects().length > 0;
+  }
+
+  function getDialogFocusable(dialog) {
+    if (!dialog) return [];
+    return $$(dialogFocusableSelector, dialog).filter(isVisible);
+  }
+
+  function restoreFocus(element) {
+    const fallback = $("#suite-search") || $("#suite-add") || $(".admin-menu-toggle");
+    const target = element instanceof HTMLElement && element.isConnected ? element : fallback;
+    window.setTimeout(() => target?.focus(), 0);
+  }
+
+  function syncBodyLock() {
+    const drawerOpen = $("#suite-drawer")?.classList.contains("is-open");
+    const deleteOpen = $("#suite-delete-modal") && !$("#suite-delete-modal").hidden;
+    document.body.style.overflow = drawerOpen || deleteOpen ? "hidden" : "";
+  }
+
+  function setDialogState(dialog, open) {
+    if (!dialog) return;
+    dialog.dataset.state = open ? "open" : "closed";
+    dialog.setAttribute("aria-hidden", String(!open));
+    activeDialog = open ? dialog : activeDialog === dialog ? null : activeDialog;
+    syncBodyLock();
+  }
+
+  function focusDialog(dialog) {
+    window.setTimeout(() => {
+      const first = getDialogFocusable(dialog)[0];
+      (first || dialog)?.focus();
+    }, 0);
+  }
+
+  function trapDialogFocus(event) {
+    if (!activeDialog || event.key !== "Tab") return;
+    const items = getDialogFocusable(activeDialog);
+    if (!items.length) {
+      event.preventDefault();
+      activeDialog.focus();
+      return;
+    }
+
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  function prepareDialogAccessibility() {
+    const drawer = $("#suite-drawer");
+    if (drawer) {
+      drawer.setAttribute("role", "dialog");
+      drawer.setAttribute("aria-modal", "true");
+      drawer.setAttribute("aria-labelledby", "suite-drawer-title");
+      drawer.setAttribute("tabindex", "-1");
+      drawer.dataset.state = drawer.classList.contains("is-open") ? "open" : "closed";
+      drawer.setAttribute("aria-hidden", String(!drawer.classList.contains("is-open")));
+    }
+
+    const deleteModal = $("#suite-delete-modal");
+    if (deleteModal) {
+      const title = deleteModal.querySelector("h2");
+      if (title && !title.id) title.id = "suite-delete-modal-title";
+      deleteModal.setAttribute("role", "dialog");
+      deleteModal.setAttribute("aria-modal", "true");
+      if (title) deleteModal.setAttribute("aria-labelledby", title.id);
+      deleteModal.setAttribute("tabindex", "-1");
+      deleteModal.dataset.state = deleteModal.hidden ? "closed" : "open";
+      deleteModal.setAttribute("aria-hidden", String(deleteModal.hidden));
+    }
   }
 
   function searchable(entry) {
@@ -114,44 +206,101 @@
     selectAll.indeterminate = visible.some((entry) => selected.has(entry.id)) && !selectAll.checked;
   }
 
+
+  function suiteItemLabel(item) {
+    return item?.name || item?.customer || item?.id || "data";
+  }
+
+  function labelSuiteMenuActions(item) {
+    const target = suiteItemLabel(item);
+    $$("#suite-menu [data-action]").forEach((button) => {
+      const actionText = button.textContent.trim() || button.dataset.action;
+      button.setAttribute("aria-label", `${actionText} untuk ${target}`);
+    });
+  }
+
+  function positionMenu(menu, button) {
+    const gutter = 12;
+    const gap = 6;
+    const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+    const viewportHeight = document.documentElement.clientHeight || window.innerHeight;
+    const rect = button.getBoundingClientRect();
+
+    menu.hidden = false;
+    menu.style.position = "fixed";
+    menu.style.visibility = "hidden";
+    menu.style.top = "0px";
+    menu.style.left = "0px";
+
+    const menuWidth = menu.offsetWidth || 200;
+    const menuHeight = menu.offsetHeight || 180;
+    const maxLeft = Math.max(gutter, viewportWidth - menuWidth - gutter);
+    const maxTop = Math.max(gutter, viewportHeight - menuHeight - gutter);
+    let top = rect.bottom + gap;
+    let left = rect.right - menuWidth;
+    let placement = "bottom";
+
+    if (top + menuHeight > viewportHeight - gutter) {
+      top = rect.top - menuHeight - gap;
+      placement = "top";
+    }
+    top = Math.max(gutter, Math.min(top, maxTop));
+    left = Math.max(gutter, Math.min(left, maxLeft));
+
+    menu.style.setProperty("top", `${Math.round(top)}px`, "important");
+    menu.style.setProperty("left", `${Math.round(left)}px`, "important");
+    menu.style.setProperty("right", "auto", "important");
+    menu.style.setProperty("bottom", "auto", "important");
+    menu.style.visibility = "";
+    menu.dataset.placement = placement;
+    menu.dataset.state = "open";
+  }
+
   function closeMenu() {
     const menu = $("#suite-menu");
     if (!menu) return;
+    const restoreFocus = menu.contains(document.activeElement);
     menu.hidden = true;
+    menu.dataset.state = "closed";
+    menu.removeAttribute("data-placement");
     $$('[data-menu]').forEach((button) => button.setAttribute("aria-expanded", "false"));
+    if (restoreFocus && menuReturnFocus instanceof HTMLElement) menuReturnFocus.focus();
   }
 
   function openMenu(button, id) {
     activeId = id;
+    menuReturnFocus = button;
     const menu = $("#suite-menu");
-    const rect = button.getBoundingClientRect();
-    menu.hidden = false;
-    menu.style.top = `${Math.min(rect.bottom + 6, innerHeight - menu.offsetHeight - 12)}px`;
-    menu.style.left = `${Math.max(12, Math.min(rect.right - menu.offsetWidth, innerWidth - menu.offsetWidth - 12))}px`;
+    if (!menu) return;
+    labelSuiteMenuActions(currentItem());
+    positionMenu(menu, button);
     button.setAttribute("aria-expanded", "true");
+    menu.querySelector("[data-action]")?.focus();
   }
 
-  function openDrawer(mode) {
+  function openDrawer(mode, trigger = document.activeElement) {
     const drawer = $("#suite-drawer");
     const object = mode === "new" ? null : currentItem();
+    if (!drawer) return;
+    drawerReturnFocus = trigger instanceof HTMLElement ? trigger : menuReturnFocus;
     $("#suite-drawer-title").textContent = mode === "new"
       ? document.body.dataset.newLabel || "Tambah Data"
       : document.body.dataset.editLabel || "Detail Data";
     $("#suite-form-fields").innerHTML = renderer.form(page, object);
     drawer.dataset.formMode = mode;
     drawer.classList.add("is-open");
-    drawer.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+    setDialogState(drawer, true);
+    focusDialog(drawer);
   }
 
-  function closeDrawer() {
+  function closeDrawer({ restore = true } = {}) {
     const drawer = $("#suite-drawer");
-    if (!drawer) return;
+    if (!drawer || !drawer.classList.contains("is-open")) return;
     drawer.classList.remove("is-open");
-    drawer.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+    setDialogState(drawer, false);
+    if (restore) restoreFocus(drawerReturnFocus);
+    drawerReturnFocus = null;
   }
-
   function checkboxValues(form, name) {
     return $$(`input[name="${name}"]:checked`, form).map((input) => input.value);
   }
@@ -269,21 +418,33 @@
     toast(page === "users" && !object ? "Undangan staf berhasil dibuat." : "Perubahan berhasil disimpan.");
   }
 
-  function askDelete(ids) {
+  function askDelete(ids, trigger = document.activeElement) {
+    const modal = $("#suite-delete-modal");
+    if (!modal) return;
     deleteIds = ids;
-    $("#suite-delete-modal").hidden = false;
+    deleteReturnFocus = trigger instanceof HTMLElement ? trigger : menuReturnFocus;
+    modal.hidden = false;
     $("#suite-delete-message").textContent = `${ids.length} data akan dihapus dari daftar.`;
+    setDialogState(modal, true);
+    focusDialog(modal);
   }
 
-  function closeDelete() {
-    $("#suite-delete-modal").hidden = true;
+  function closeDelete({ restore = true } = {}) {
+    const modal = $("#suite-delete-modal");
+    if (!modal || modal.hidden) return;
+    modal.hidden = true;
     deleteIds = [];
+    setDialogState(modal, false);
+    const drawer = $("#suite-drawer");
+    activeDialog = drawer?.classList.contains("is-open") ? drawer : null;
+    syncBodyLock();
+    if (restore) restoreFocus(deleteReturnFocus);
+    deleteReturnFocus = null;
   }
-
   function action(name) {
     const object = currentItem();
     if (!object) return;
-    if (name === "view" || name === "edit") openDrawer("edit");
+    if (name === "view" || name === "edit") openDrawer("edit", menuReturnFocus || document.activeElement);
     if (name === "duplicate" && page === "products") {
       data.unshift({ ...object, id: `${object.id}-COPY`, name: `${object.name} Copy`, status: "draft", updated: new Date().toISOString().slice(0, 10) });
       save();
@@ -309,7 +470,7 @@
       render();
       toast("Status transaksi diperbarui.");
     }
-    if (name === "delete") askDelete([object.id]);
+    if (name === "delete") askDelete([object.id], menuReturnFocus || document.activeElement);
   }
 
   function setupCrud() {
@@ -336,6 +497,7 @@
       const button = event.target.closest("[data-menu]");
       if (button) {
         const host = button.closest("[data-id]");
+        if (!host) return;
         closeMenu();
         openMenu(button, host.dataset.id);
         return;
@@ -363,9 +525,9 @@
       action(name);
     });
 
-    $("#suite-add")?.addEventListener("click", () => {
+    $("#suite-add")?.addEventListener("click", (event) => {
       activeId = null;
-      openDrawer("new");
+      openDrawer("new", event.currentTarget);
     });
 
     $$('[data-close-drawer]').forEach((button) => button.addEventListener("click", closeDrawer));
@@ -380,7 +542,7 @@
       const button = event.target.closest("[data-bulk]");
       if (!button) return;
       const ids = [...selected];
-      if (button.dataset.bulk === "delete") return askDelete(ids);
+      if (button.dataset.bulk === "delete") return askDelete(ids, button);
       data.forEach((entry) => {
         if (!selected.has(entry.id)) return;
         if (button.dataset.bulk === "activate") entry.status = "active";
@@ -393,7 +555,11 @@
       toast(`${ids.length} data diperbarui.`);
     });
 
-    $("#suite-delete-cancel")?.addEventListener("click", closeDelete);
+    $("#suite-delete-modal")?.addEventListener("click", (event) => {
+      if (event.target === event.currentTarget) closeDelete();
+    });
+
+    $("#suite-delete-cancel")?.addEventListener("click", () => closeDelete());
     $("#suite-delete-confirm")?.addEventListener("click", () => {
       data = data.filter((entry) => !deleteIds.includes(entry.id));
       selected.clear();
@@ -412,12 +578,26 @@
   });
 
   document.addEventListener("keydown", (event) => {
+    if (activeDialog && event.key === "Tab") {
+      trapDialogFocus(event);
+      return;
+    }
+
     if (event.key !== "Escape") return;
+    if ($("#suite-delete-modal") && !$("#suite-delete-modal").hidden) {
+      event.preventDefault();
+      closeDelete();
+      return;
+    }
+    if ($("#suite-drawer")?.classList.contains("is-open")) {
+      event.preventDefault();
+      closeDrawer();
+      return;
+    }
     closeMenu();
-    closeDrawer();
-    if ($("#suite-delete-modal") && !$("#suite-delete-modal").hidden) closeDelete();
     document.body.classList.remove("admin-menu-open");
   });
 
+  prepareDialogAccessibility();
   if (page !== "dashboard") setupCrud();
 })();

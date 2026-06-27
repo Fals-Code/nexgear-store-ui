@@ -100,6 +100,18 @@
       </div>
 
       <div class="shop-actions">
+        <button
+          class="mobile-nav-toggle"
+          type="button"
+          aria-label="Buka navigasi utama"
+          aria-controls="mobile-nav-drawer"
+          aria-expanded="false"
+          data-mobile-nav-toggle
+          data-state="closed"
+        >
+          <span class="mobile-nav-toggle__icon" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="mobile-nav-toggle__text">Menu</span>
+        </button>
         <div class="nav-item action-wrapper">
           <a href="login.html" class="action-btn" aria-label="Account" aria-haspopup="true" aria-expanded="false" data-customer-account-button><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg></a>
           <div class="nav-dropdown account-dropdown"><a href="login.html" class="dropdown-cta-btn" data-customer-account-cta>Masuk / Daftar</a><ul data-customer-account-list><li><a href="profile.html" class="account-dropdown-link dropdown-link" data-customer-profile-link><span>Panel Customer</span></a></li><li><a href="transaction-history.html" class="account-dropdown-link dropdown-link" data-customer-orders-link><span>Pesanan Saya</span></a></li><li><a href="track-order.html" class="account-dropdown-link dropdown-link"><span>Lacak Pesanan</span></a></li><li><a href="help.html" class="account-dropdown-link dropdown-link"><span>Bantuan</span></a></li></ul></div>
@@ -114,5 +126,58 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="mobile-nav-layer" data-mobile-nav-layer data-state="closed" aria-hidden="true">
+    <button class="mobile-nav-backdrop" type="button" aria-label="Tutup navigasi utama" data-mobile-nav-close tabindex="-1"></button>
+    <aside
+      class="mobile-nav-drawer"
+      id="mobile-nav-drawer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="mobile-nav-title"
+      data-state="closed"
+      tabindex="-1"
+    >
+      <header class="mobile-nav-header">
+        <div>
+          <span>NEXGEAR</span>
+          <h2 id="mobile-nav-title">Navigasi Utama</h2>
+        </div>
+        <button class="mobile-nav-close" type="button" aria-label="Tutup navigasi utama" data-mobile-nav-close>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </header>
+
+      <nav class="mobile-primary-nav" aria-label="Navigasi utama mobile">
+        <a href="index.html" data-mobile-nav-link>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12 12 4l8 8M6 10v10h12V10" /></svg>
+          <span>Home</span>
+        </a>
+        <a href="catalog.html" data-mobile-nav-link>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+          <span>Catalog</span>
+        </a>
+        <a href="blog.html" data-mobile-nav-link>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5" /></svg>
+          <span>Blog</span>
+        </a>
+        <a href="track-order.html" data-mobile-nav-link>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h11v10H4zM15 10h3l2 3v4h-5zM7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM17 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" /></svg>
+          <span>Track Order</span>
+        </a>
+        <a href="help.html" data-mobile-nav-link>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 18h.01M9.5 9a2.6 2.6 0 1 1 4.1 2.1c-.9.6-1.6 1.2-1.6 2.4M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z" /></svg>
+          <span>Help</span>
+        </a>
+        <a href="cart.html" data-mobile-nav-link>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h2l2 13h11l3-9H6M9 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM18 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" /></svg>
+          <span>Cart</span>
+        </a>
+        <a href="login.html" data-mobile-nav-link data-mobile-account-link>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" /></svg>
+          <span>Account</span>
+        </a>
+      </nav>
+    </aside>
   </div>
 </header>

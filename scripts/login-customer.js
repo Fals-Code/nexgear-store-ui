@@ -1,11 +1,10 @@
 (() => {
   "use strict";
 
-  const form = document.querySelector(".login-form");
-  if (!form) return;
+  const PROFILE_URL = "profile.html";
 
-  const deriveName = (email) => {
-    const localPart = String(email || "customer").split("@")[0];
+  const deriveName = (source) => {
+    const localPart = String(source || "customer").split("@")[0];
     const words = localPart
       .split(/[._-]+/)
       .filter(Boolean)
@@ -14,36 +13,91 @@
     return words.join(" ") || "Customer NEXGEAR";
   };
 
-  form.addEventListener("submit", (event) => {
-    if (!form.checkValidity()) return;
+  const getFieldValue = (form, selector) => {
+    const field = form.querySelector(selector);
+    return String(field?.value || "").trim();
+  };
 
-    event.preventDefault();
-    event.stopPropagation();
-
-    const email = String(form.elements.email?.value || "").trim().toLowerCase();
-    const user = {
-      id: "CUS-DEMO-001",
-      role: "customer",
-      name: deriveName(email),
-      email,
-    };
-
+  const persistDemoUser = (user, source) => {
     try {
       localStorage.setItem("nexgear_auth", "true");
       localStorage.setItem("nexgear_user", JSON.stringify(user));
-      sessionStorage.setItem("nexgear-login-source", "customer-login");
+      sessionStorage.setItem("nexgear-login-source", source);
       sessionStorage.setItem("nexgear-page-transition-mode", "open");
     } catch {
-      // Navigasi ke panel customer tetap berjalan saat storage dibatasi browser.
+      // Navigasi ke profile tetap berjalan saat storage dibatasi browser.
     }
+  };
 
-    window.dispatchEvent(new CustomEvent("nexgear:auth-change", {
-      detail: {
-        authenticated: true,
-        user,
-      },
-    }));
+  const goToProfile = () => {
+    window.location.href = PROFILE_URL;
+  };
 
-    window.location.href = "profile.html";
-  });
+  const bindLoginForm = () => {
+    const form = document.querySelector(".login-form");
+    if (!form) return;
+
+    form.addEventListener("submit", (event) => {
+      if (!form.checkValidity()) return;
+
+      event.preventDefault();
+
+      const email = getFieldValue(form, "#email").toLowerCase();
+      const user = {
+        id: "CUS-DEMO-001",
+        role: "customer",
+        name: deriveName(email),
+        email,
+      };
+
+      persistDemoUser(user, "customer-login");
+
+      window.dispatchEvent(
+        new CustomEvent("nexgear:auth-change", {
+          detail: {
+            authenticated: true,
+            user,
+          },
+        }),
+      );
+
+      goToProfile();
+    });
+  };
+
+  const bindRegisterForm = () => {
+    const form = document.querySelector(".register-form");
+    if (!form) return;
+
+    form.addEventListener("submit", (event) => {
+      if (!form.checkValidity()) return;
+
+      event.preventDefault();
+
+      const username = getFieldValue(form, "#username");
+      const email = getFieldValue(form, "#register-email").toLowerCase();
+      const user = {
+        id: "CUS-DEMO-001",
+        role: "customer",
+        name: deriveName(username || email),
+        email,
+      };
+
+      persistDemoUser(user, "customer-register");
+
+      window.dispatchEvent(
+        new CustomEvent("nexgear:auth-change", {
+          detail: {
+            authenticated: true,
+            user,
+          },
+        }),
+      );
+
+      goToProfile();
+    });
+  };
+
+  bindLoginForm();
+  bindRegisterForm();
 })();
