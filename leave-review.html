@@ -19,7 +19,7 @@
       </div>
 
       <div class="review-container">
-        
+
         <!-- PRODUCT SUMMARY -->
         <div class="review-product-card">
           <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Keyboard">
@@ -31,28 +31,32 @@
         </div>
 
         <!-- REVIEW FORM -->
-        <form class="review-form" data-review-form>
-          
-          <div class="form-group text-center">
-            <label>Beri Rating Bintang</label>
-            <div class="rating-selector">
-              <!-- Reversed for pure CSS hover trick, or handled via JS. We'll use simple icons for mockup -->
-              <button type="button" class="star-btn active"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
-              <button type="button" class="star-btn active"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
-              <button type="button" class="star-btn active"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
-              <button type="button" class="star-btn active"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
-              <button type="button" class="star-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+        <form class="review-form" action="product-detail.html" method="get" data-review-form>
+                    <fieldset class="form-group text-center rating-group">
+            <legend id="rating-label">Beri Rating Bintang</legend>
+            <div class="rating-selector" aria-labelledby="rating-label" aria-describedby="rating-status">
+              <input class="rating-input" type="radio" id="rating-1" name="rating" value="1">
+              <label class="star-btn" for="rating-1" aria-label="Beri rating 1 bintang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
+              <input class="rating-input" type="radio" id="rating-2" name="rating" value="2">
+              <label class="star-btn" for="rating-2" aria-label="Beri rating 2 bintang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
+              <input class="rating-input" type="radio" id="rating-3" name="rating" value="3">
+              <label class="star-btn" for="rating-3" aria-label="Beri rating 3 bintang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
+              <input class="rating-input" type="radio" id="rating-4" name="rating" value="4" checked>
+              <label class="star-btn" for="rating-4" aria-label="Beri rating 4 bintang"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
+              <input class="rating-input" type="radio" id="rating-5" name="rating" value="5">
+              <label class="star-btn" for="rating-5" aria-label="Beri rating 5 bintang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
             </div>
+            <p id="rating-status" class="sr-only" aria-live="polite">Rating 4 bintang dipilih.</p>
+          </fieldset>
+
+          <div class="form-group">
+            <label for="review-title">Judul Ulasan</label>
+            <input id="review-title" type="text" class="form-input" placeholder="Ringkasan kesan Anda (contoh: Switch sangat responsif!)" required>
           </div>
 
           <div class="form-group">
-            <label>Judul Ulasan</label>
-            <input type="text" class="form-input" placeholder="Ringkasan kesan Anda (contoh: Switch sangat responsif!)" required>
-          </div>
-
-          <div class="form-group">
-            <label>Detail Ulasan</label>
-            <textarea class="form-input" rows="6" placeholder="Ceritakan pengalaman Anda menggunakan produk ini. Apa yang Anda suka atau tidak suka?" required></textarea>
+            <label for="review-detail">Detail Ulasan</label>
+            <textarea id="review-detail" class="form-input" rows="6" placeholder="Ceritakan pengalaman Anda menggunakan produk ini. Apa yang Anda suka atau tidak suka?" required></textarea>
           </div>
 
           <div class="form-group">
@@ -66,7 +70,7 @@
             <div class="upload-preview">
               <div class="preview-item">
                 <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Preview">
-                <button type="button" class="remove-preview">x</button>
+                <button type="button" class="remove-preview" aria-label="Hapus foto pratinjau produk">x</button>
               </div>
             </div>
           </div>
@@ -93,7 +97,7 @@
     <script src="scripts/core/auth.js"></script>
     <script src="scripts/components/dialog.js"></script>
     <script src="scripts/components/navigation.js"></script>
-    <script src="scripts/pages/catalog.js"></script>
+    <script src="scripts/pages/review.js"></script>
     <script src="scripts/main.js"></script>
 </body>
 </html>

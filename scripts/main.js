@@ -1,6 +1,6 @@
 /**
- * NEXGEAR Main Script â€” Handmade Edition
- * No ESM exports â€” classic script loading
+ * NEXGEAR Main Script - Handmade Edition
+ * No ESM exports - classic script loading
  */
 
 (function () {
@@ -12,9 +12,9 @@
   const showToast = window.NexToast?.show || window.showToast;
   const showNexToast = window.NexToast?.showCompact || window.showNexToast;
 
-  /* — Mobile Menu — */
+  /* Mobile Menu */
 
-  /* â”€â”€ Scroll Reveal â”€â”€ */
+  /* Scroll Reveal */
   function initReveal() {
     const els = document.querySelectorAll(".reveal");
     if (!els.length) return;
@@ -38,7 +38,7 @@
     els.forEach((el) => observer.observe(el));
   }
 
-  /* â”€â”€ Stat Count-Up â”€â”€ */
+  /* Stat Count-Up */
   function initCountUp() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -86,7 +86,7 @@
     nums.forEach((el) => observer.observe(el));
   }
 
-  /* â”€â”€ Hero Parallax â”€â”€ */
+  /* Hero Parallax */
   function initParallax() {
     const heroH1 = document.querySelector(".hero h1");
     if (!heroH1) return;
@@ -98,17 +98,17 @@
     });
   }
 
-  /* â”€â”€ Price Filter (catalog) â”€â”€ */
+  /* Price Filter (catalog) */
 
-  /* â”€â”€ Search & Filter Logic (catalog) â”€â”€ */
+  /* Search & Filter Logic (catalog) */
 
-  /* â”€â”€ Add-to-Cart Buttons â”€â”€ */
+  /* Add-to-Cart Buttons */
 
-  /* â”€â”€ Set Active Nav Link â”€â”€ */
+  /* Set Active Nav Link */
 
-  /* â”€â”€ Random slight rotations for sketch cards â”€â”€ */
+  /* Random slight rotations for sketch cards */
 
-  /* â”€â”€ Filter Drawer (catalog) â”€â”€ */
+  /* Filter Drawer (catalog) */
 
   function initLoginReveal() {
     const loginShell = document.querySelector(".login-shell");
@@ -166,19 +166,6 @@
       button.addEventListener("click", () => {
         document.getElementById("search-drawer")?.classList.remove("active");
       });
-    });
-  }
-
-  function initReviewForm() {
-    const form = document.querySelector("[data-review-form]");
-    if (!form) return;
-
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      announceFeedback("Ulasan Anda telah dikirim untuk dimoderasi. Terima kasih!");
-      window.setTimeout(() => {
-        window.location.href = "product-detail.html";
-      }, 700);
     });
   }
 
@@ -386,7 +373,6 @@
       initParallax,
       initLoginReveal,
       initSearchDrawerControls,
-      initReviewForm,
       initProfileFeedback,
       syncFooterRevealSpace,
       initPromoWindowReveal,
