@@ -1,91 +1,242 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tulis Ulasan | NEXGEAR</title>
-  <link rel="stylesheet" href="styles/global.css">
-  <link rel="stylesheet" href="styles/leave-review.css">
-</head>
-<body class="page-review">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tulis Ulasan | NEXGEAR</title>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/leave-review.css" />
+  </head>
+  <body class="page-review">
     <!-- GLOBAL HEADER COMPONENT -->
     <div id="global-header"></div>
 
-  <main class="site-main">
-    <div class="container section-padding">
-      <div class="section-header text-center">
-        <h2>Tulis Ulasan</h2>
-        <p class="text-secondary">Bagikan pengalaman Anda tentang produk ini.</p>
-      </div>
-
-      <div class="review-container">
-
-        <!-- PRODUCT SUMMARY -->
-        <div class="review-product-card">
-          <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Keyboard">
-          <div class="rp-info">
-            <span class="product-cat">Control</span>
-            <h3>Vortex VX Pro Mechanical</h3>
-            <p>Dibeli pada 05 Jun 2026</p>
-          </div>
+    <main class="site-main">
+      <div class="container section-padding">
+        <div class="section-header text-center">
+          <h2>Tulis Ulasan</h2>
+          <p class="text-secondary">
+            Bagikan pengalaman Anda tentang produk ini.
+          </p>
         </div>
 
-        <!-- REVIEW FORM -->
-        <form class="review-form" action="product-detail.html" method="get" data-review-form>
-                    <fieldset class="form-group text-center rating-group">
-            <legend id="rating-label">Beri Rating Bintang</legend>
-            <div class="rating-selector" aria-labelledby="rating-label" aria-describedby="rating-status">
-              <input class="rating-input" type="radio" id="rating-1" name="rating" value="1">
-              <label class="star-btn" for="rating-1" aria-label="Beri rating 1 bintang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
-              <input class="rating-input" type="radio" id="rating-2" name="rating" value="2">
-              <label class="star-btn" for="rating-2" aria-label="Beri rating 2 bintang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
-              <input class="rating-input" type="radio" id="rating-3" name="rating" value="3">
-              <label class="star-btn" for="rating-3" aria-label="Beri rating 3 bintang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
-              <input class="rating-input" type="radio" id="rating-4" name="rating" value="4" checked>
-              <label class="star-btn" for="rating-4" aria-label="Beri rating 4 bintang"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
-              <input class="rating-input" type="radio" id="rating-5" name="rating" value="5">
-              <label class="star-btn" for="rating-5" aria-label="Beri rating 5 bintang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
+        <div class="review-container">
+          <!-- PRODUCT SUMMARY -->
+          <div class="review-product-card">
+            <img
+              src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+              alt="Keyboard"
+            />
+            <div class="rp-info">
+              <span class="product-cat">Control</span>
+              <h3>Vortex VX Pro Mechanical</h3>
+              <p>Dibeli pada 05 Jun 2026</p>
             </div>
-            <p id="rating-status" class="sr-only" aria-live="polite">Rating 4 bintang dipilih.</p>
-          </fieldset>
-
-          <div class="form-group">
-            <label for="review-title">Judul Ulasan</label>
-            <input id="review-title" type="text" class="form-input" placeholder="Ringkasan kesan Anda (contoh: Switch sangat responsif!)" required>
           </div>
 
-          <div class="form-group">
-            <label for="review-detail">Detail Ulasan</label>
-            <textarea id="review-detail" class="form-input" rows="6" placeholder="Ceritakan pengalaman Anda menggunakan produk ini. Apa yang Anda suka atau tidak suka?" required></textarea>
-          </div>
+          <!-- REVIEW FORM -->
+          <form
+            class="review-form"
+            action="product-detail.html"
+            method="get"
+            data-review-form
+          >
+            <fieldset class="form-group text-center rating-group">
+              <legend id="rating-label">Beri Rating Bintang</legend>
+              <div
+                class="rating-selector"
+                aria-labelledby="rating-label"
+                aria-describedby="rating-status"
+              >
+                <input
+                  class="rating-input"
+                  type="radio"
+                  id="rating-1"
+                  name="rating"
+                  value="1"
+                />
+                <label
+                  class="star-btn"
+                  for="rating-1"
+                  aria-label="Beri rating 1 bintang"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                    /></svg
+                ></label>
+                <input
+                  class="rating-input"
+                  type="radio"
+                  id="rating-2"
+                  name="rating"
+                  value="2"
+                />
+                <label
+                  class="star-btn"
+                  for="rating-2"
+                  aria-label="Beri rating 2 bintang"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                    /></svg
+                ></label>
+                <input
+                  class="rating-input"
+                  type="radio"
+                  id="rating-3"
+                  name="rating"
+                  value="3"
+                />
+                <label
+                  class="star-btn"
+                  for="rating-3"
+                  aria-label="Beri rating 3 bintang"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                    /></svg
+                ></label>
+                <input
+                  class="rating-input"
+                  type="radio"
+                  id="rating-4"
+                  name="rating"
+                  value="4"
+                  checked
+                />
+                <label
+                  class="star-btn"
+                  for="rating-4"
+                  aria-label="Beri rating 4 bintang"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                    /></svg
+                ></label>
+                <input
+                  class="rating-input"
+                  type="radio"
+                  id="rating-5"
+                  name="rating"
+                  value="5"
+                />
+                <label
+                  class="star-btn"
+                  for="rating-5"
+                  aria-label="Beri rating 5 bintang"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                    /></svg
+                ></label>
+              </div>
+              <p id="rating-status" class="sr-only" aria-live="polite">
+                Rating 4 bintang dipilih.
+              </p>
+            </fieldset>
 
-          <div class="form-group">
-            <label>Unggah Foto Produk (Opsional)</label>
-            <div class="upload-area">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-              <span>Klik atau seret foto ke area ini</span>
-              <p class="text-secondary" style="font-size: 0.8rem; margin-top: 5px;">Maks. 3 foto (JPG, PNG), per foto maks 5MB.</p>
+            <div class="form-group">
+              <label for="review-title">Judul Ulasan</label>
+              <input
+                id="review-title"
+                type="text"
+                class="form-input"
+                placeholder="Ringkasan kesan Anda (contoh: Switch sangat responsif!)"
+                required
+              />
             </div>
-            <!-- Dummy Preview -->
-            <div class="upload-preview">
-              <div class="preview-item">
-                <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Preview">
-                <button type="button" class="remove-preview" aria-label="Hapus foto pratinjau produk">x</button>
+
+            <div class="form-group">
+              <label for="review-detail">Detail Ulasan</label>
+              <textarea
+                id="review-detail"
+                class="form-input"
+                rows="6"
+                placeholder="Ceritakan pengalaman Anda menggunakan produk ini. Apa yang Anda suka atau tidak suka?"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Unggah Foto Produk (Opsional)</label>
+              <div class="upload-area">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="17 8 12 3 7 8" />
+                  <line x1="12" y1="3" x2="12" y2="15" />
+                </svg>
+                <span>Klik atau seret foto ke area ini</span>
+                <p
+                  class="text-secondary"
+                  style="font-size: 0.8rem; margin-top: 5px"
+                >
+                  Maks. 3 foto (JPG, PNG), per foto maks 5MB.
+                </p>
+              </div>
+              <!-- Dummy Preview -->
+              <div class="upload-preview">
+                <div class="preview-item">
+                  <img
+                    src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                    alt="Preview"
+                  />
+                  <button
+                    type="button"
+                    class="remove-preview"
+                    aria-label="Hapus foto pratinjau produk"
+                  >
+                    x
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="review-actions">
-            <button type="submit" class="btn btn-primary w-100">Kirim Ulasan</button>
-            <a href="product-detail.html" class="btn btn-outline w-100 text-center" style="margin-top: 15px;">Batal</a>
-          </div>
-
-        </form>
-
+            <div class="review-actions">
+              <button type="submit" class="btn btn-primary w-100">
+                Kirim Ulasan
+              </button>
+              <a
+                href="product-detail.html"
+                class="btn btn-outline w-100 text-center"
+                style="margin-top: 15px"
+                >Batal</a
+              >
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
-  </main>
-            <!-- GLOBAL FOOTER COMPONENT -->
+    </main>
+    <!-- GLOBAL FOOTER COMPONENT -->
     <div id="global-footer"></div>
 
     <script src="scripts/global-components.js"></script>
@@ -99,5 +250,5 @@
     <script src="scripts/components/navigation.js"></script>
     <script src="scripts/pages/review.js"></script>
     <script src="scripts/main.js"></script>
-</body>
+  </body>
 </html>

@@ -2,12 +2,8 @@
   "use strict";
 
   function initBlogFilters() {
-    const buttons = Array.from(
-      document.querySelectorAll("[data-blog-filter]"),
-    );
-    const articles = Array.from(
-      document.querySelectorAll(".journal-article[data-category]"),
-    );
+    const buttons = Array.from(document.querySelectorAll("[data-blog-filter]"));
+    const articles = Array.from(document.querySelectorAll(".journal-article[data-category]"));
     const status = document.getElementById("journal-filter-status");
     const target = document.getElementById("latest");
 
@@ -15,8 +11,7 @@
 
     function updateStatus(count, label) {
       if (!status) return;
-      status.textContent =
-        label === "Semua" ? `${count} artikel` : `${count} artikel · ${label}`;
+      status.textContent = label === "Semua" ? `${count} artikel` : `${count} artikel · ${label}`;
     }
 
     function applyFilter(button, shouldScroll) {
@@ -31,9 +26,7 @@
       });
 
       articles.forEach((article) => {
-        const categories = (article.dataset.category || "")
-          .split(" ")
-          .filter(Boolean);
+        const categories = (article.dataset.category || "").split(" ").filter(Boolean);
         const visible = filter === "all" || categories.includes(filter);
         article.hidden = !visible;
         if (visible) visibleCount += 1;
@@ -50,31 +43,32 @@
       button.addEventListener("click", () => applyFilter(button, true));
     });
 
-    const initial =
-      buttons.find((button) => button.classList.contains("is-active")) ||
-      buttons[0];
-
+    const initial = buttons.find((button) => button.classList.contains("is-active")) || buttons[0];
     applyFilter(initial, false);
   }
 
   function initNewsletterFeedback() {
     const form = document.querySelector(".journal-newsletter-form");
+    const status = document.querySelector("[data-journal-newsletter-status]");
     if (!form) return;
 
     form.addEventListener("submit", (event) => {
+      if (!form.checkValidity()) return;
+
       event.preventDefault();
 
       const button = form.querySelector("button[type='submit']");
-      const input = form.querySelector("input[type='email']");
-      if (!input?.value.trim()) return;
-
       const originalText = button?.textContent || "Berlangganan";
+
       if (button) {
         button.disabled = true;
         button.textContent = "Tersimpan";
       }
 
-      window.showNexToast?.("Berhasil berlangganan NEXGEAR Dispatch");
+      if (status) {
+        status.textContent = "Email Anda berhasil didaftarkan untuk NEXGEAR Dispatch.";
+      }
+
       form.reset();
 
       window.setTimeout(() => {

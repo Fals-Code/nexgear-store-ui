@@ -227,23 +227,24 @@
               </article>
             </div>
 
-            <form id="comment-form" class="comment-form-card" action="#" method="post">
+                        <form id="comment-form" class="comment-form-card" action="blog-post.html" method="get">
               <h2>Tinggalkan komentar</h2>
               <div class="comment-form-grid">
                 <label>
                   Nama
-                  <input type="text" name="name" autocomplete="name" required />
+                  <input type="text" autocomplete="name" required />
                 </label>
                 <label>
                   Email
-                  <input type="email" name="email" autocomplete="email" required />
+                  <input type="email" autocomplete="email" required />
                 </label>
                 <label class="message-field">
                   Pesan
-                  <textarea name="message" required></textarea>
+                  <textarea required></textarea>
                 </label>
               </div>
               <button type="submit" class="btn btn-primary comment-submit">Post Comment</button>
+              <p class="sr-only" data-comment-status role="status" aria-live="polite"></p>
             </form>
           </section>
         </div>
@@ -255,22 +256,22 @@
             <span>NEXGEAR Dispatch</span>
             <h2 id="article-newsletter-title">Stay tuned untuk artikel gear berikutnya.</h2>
           </div>
-          <form class="article-detail-newsletter-form" action="#" method="post">
+                    <form class="article-detail-newsletter-form" action="blog-post.html" method="get">
             <input
               type="email"
-              name="email"
               aria-label="Alamat email"
               placeholder="nama@email.com"
               autocomplete="email"
               required
             />
             <button type="submit">Subscribe</button>
+            <p class="sr-only" data-article-newsletter-status role="status" aria-live="polite"></p>
           </form>
         </div>
       </section>
     </main>
 
-    <!-- GLOBAL FOOTER COMPONENT -->
+        <!-- GLOBAL FOOTER COMPONENT -->
     <div id="global-footer"></div>
 
     <script src="scripts/global-components.js"></script>
@@ -282,7 +283,7 @@
     <script src="scripts/core/auth.js"></script>
     <script src="scripts/components/dialog.js"></script>
     <script src="scripts/components/navigation.js"></script>
-    <script src="scripts/pages/catalog.js"></script>
+    <script src="scripts/editorial-pages.js"></script>
     <script src="scripts/main.js"></script>
   </body>
 </html>

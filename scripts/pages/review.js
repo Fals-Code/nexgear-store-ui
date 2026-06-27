@@ -1,4 +1,4 @@
-﻿(() => {
+(() => {
   "use strict";
 
   const form = document.querySelector("[data-review-form]");
@@ -10,33 +10,33 @@
     ? Array.from(ratingFieldset.querySelectorAll('input[type="radio"][name="rating"]'))
     : [];
 
-  const syncVisualState = () => {
-    if (!radios.length) return;
+  const syncRatingStatus = () => {
+    if (!radios.length || !ratingStatus) return;
 
-    const active = radios.find((radio) => radio.checked) || radios[0];
-    const activeValue = Number((active && active.value) || "1");
-
-    radios.forEach((radio) => {
-      const label = form.querySelector('label[for="' + radio.id + '"]');
-      if (!label) return;
-
-      const ratingValue = Number(radio.value || "0");
-      label.classList.toggle("active", ratingValue <= activeValue);
-    });
-
-    if (ratingStatus) {
-      ratingStatus.textContent = "Rating " + activeValue + " bintang dipilih.";
-    }
+    const selected = radios.find((radio) => radio.checked) || radios[0];
+    const selectedValue = Number((selected && selected.value) || "1");
+    ratingStatus.textContent = "Rating " + selectedValue + " bintang dipilih.";
   };
 
   radios.forEach((radio) => {
-    radio.addEventListener("change", syncVisualState);
+    radio.addEventListener("change", syncRatingStatus);
   });
 
-  syncVisualState();
+  syncRatingStatus();
 
   form.addEventListener("submit", (event) => {
+    if (!form.checkValidity()) return;
+
     event.preventDefault();
-    window.location.href = "product-detail.html";
+    if (ratingStatus) {
+      ratingStatus.textContent = "Ulasan Anda berhasil dikirim. Kembali ke detail produk.";
+    }
+
+    form.reset();
+    syncRatingStatus();
+
+    window.setTimeout(() => {
+      window.location.href = "product-detail.html";
+    }, 600);
   });
 })();
