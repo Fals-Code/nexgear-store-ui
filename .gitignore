@@ -5,3 +5,8 @@ CARA-PAKAI.md
 
 # External skill source repositories
 _skill-sources/
+
+# Keep project Codex skills in repository
+!.agents/
+!.agents/skills/
+!.agents/skills/**
