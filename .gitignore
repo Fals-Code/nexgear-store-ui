@@ -10,3 +10,8 @@ _skill-sources/
 !.agents/
 !.agents/skills/
 !.agents/skills/**
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
