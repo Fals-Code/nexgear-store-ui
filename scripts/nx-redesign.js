@@ -69,14 +69,24 @@
   const cleanProductDetailClaims = () => {
     if (page !== "product-detail.html") return;
 
-    removeElements(
-      ".product-promo-strip",
-      ".stock-status",
-      ".rating",
-      ".product-service-list",
-      ".promo-countdown",
-      ".review-score-card",
-    );
+    const removeUnsupportedClaims = () => {
+      removeElements(
+        ".product-promo-strip",
+        ".stock-status",
+        ".rating",
+        ".product-service-list",
+        ".promo-countdown",
+        ".review-score-card",
+        ".persona-detail-evidence",
+        ".persona-buy-now",
+        ".persona-mobile-buy-bar",
+      );
+    };
+
+    removeUnsupportedClaims();
+
+    const observer = new MutationObserver(removeUnsupportedClaims);
+    observer.observe(document.body, { childList: true, subtree: true });
 
     const mediaBadge = document.querySelector(".product-media-badge");
     if (mediaBadge) mediaBadge.textContent = "Product Preview";
