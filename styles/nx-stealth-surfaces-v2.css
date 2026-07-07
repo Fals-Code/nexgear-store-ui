@@ -1,0 +1,209 @@
+/* High-specificity surface pass so legacy page skins cannot wash out the redesign. */
+body.nx-redesign,
+.nx-redesign .site-main,
+.nx-redesign .product-detail-main,
+.nx-redesign .cart-main,
+.nx-redesign .checkout-main,
+.nx-redesign .payment-main,
+.nx-redesign .success-main,
+.nx-redesign .history-main,
+.nx-redesign .profile-main,
+.nx-redesign .contact-main,
+.nx-redesign .help-main,
+.nx-redesign .about-main,
+.nx-redesign .uas-main {
+  color: var(--nx-text-primary) !important;
+  background-color: var(--nx-bg-base) !important;
+}
+
+.nx-redesign :where(
+  .product-detail-section,
+  .product-recommendations,
+  .cart-content,
+  .checkout-content,
+  .payment-content,
+  .success-content,
+  .history-content,
+  .profile-content,
+  .contact-shortcuts,
+  .contact-support,
+  .contact-faq,
+  .help-content,
+  .about-intro,
+  .about-approach,
+  .about-example,
+  .about-categories,
+  .about-cta
+) {
+  color: var(--nx-text-primary) !important;
+  background: var(--nx-bg-base) !important;
+}
+
+.nx-redesign :where(
+  .cart-summary--premium,
+  .checkout-summary,
+  .checkout-summary-card,
+  .order-summary,
+  .payment-summary,
+  .payment-status-card,
+  .payment-method-card,
+  .payment-instructions-card,
+  .profile-sidebar,
+  .dashboard-section,
+  .contact-form-panel,
+  .contact-status-card,
+  .support-summary,
+  .help-guide,
+  .help-hero__pulse,
+  .uas-score-card
+) {
+  color: var(--nx-text-primary) !important;
+  background: #090909 !important;
+}
+
+.nx-redesign :where(
+  .cart-summary--premium,
+  .checkout-summary,
+  .checkout-summary-card,
+  .order-summary,
+  .payment-summary,
+  .payment-status-card,
+  .payment-method-card,
+  .payment-instructions-card
+) :where(h2, h3, strong, b, label, span) {
+  color: var(--nx-text-primary) !important;
+}
+
+.nx-redesign :where(
+  .cart-summary--premium,
+  .checkout-summary,
+  .checkout-summary-card,
+  .order-summary,
+  .payment-summary,
+  .payment-status-card,
+  .payment-method-card,
+  .payment-instructions-card
+) :where(p, small, em) {
+  color: var(--nx-text-secondary) !important;
+}
+
+.nx-redesign .cart-items > *,
+.nx-redesign .history-list > *,
+.nx-redesign .transaction-list > * {
+  color: var(--nx-text-primary) !important;
+  background: transparent !important;
+}
+
+.nx-redesign .cart-item :where(h3, strong, a),
+.nx-redesign .history-card :where(h2, h3, strong),
+.nx-redesign .transaction-card :where(h2, h3, strong) {
+  color: var(--nx-text-primary) !important;
+}
+
+.nx-redesign .cart-item :where(p, small, span:not(.product-cat)),
+.nx-redesign .history-card :where(p, small, span),
+.nx-redesign .transaction-card :where(p, small, span) {
+  color: var(--nx-text-secondary) !important;
+}
+
+.nx-redesign .cart-item-meta {
+  display: none !important;
+}
+
+.nx-redesign .product-recommendations :where(h2, h3, strong, a),
+.nx-redesign .related-products :where(h2, h3, strong, a) {
+  color: var(--nx-text-primary) !important;
+}
+
+.nx-redesign .product-recommendations :where(p, small, span),
+.nx-redesign .related-products :where(p, small, span) {
+  color: var(--nx-text-secondary) !important;
+}
+
+.nx-redesign .product-card,
+.nx-redesign .related-product-card,
+.nx-redesign .recommendation-card {
+  border-color: var(--nx-border-subtle) !important;
+  border-radius: 0 !important;
+  background: #090909 !important;
+  box-shadow: none !important;
+}
+
+.nx-redesign .product-buy-panel :where(h1, h2, h3, strong, label),
+.nx-redesign .product-info-section :where(h2, h3, strong, th, td) {
+  color: var(--nx-text-primary) !important;
+}
+
+.nx-redesign .product-buy-panel :where(p, small, span:not(.product-cat)),
+.nx-redesign .product-info-section :where(p, small) {
+  color: var(--nx-text-secondary) !important;
+}
+
+.nx-redesign .product-buy-panel .price-stack strong,
+.nx-redesign .summary-total strong,
+.nx-redesign .payment-total strong {
+  color: var(--nx-accent-cyan) !important;
+}
+
+.nx-redesign .checkout-panel,
+.nx-redesign .checkout-choice,
+.nx-redesign .payment-method-picker button,
+.nx-redesign .help-cat-card,
+.nx-redesign .contact-shortcut-card,
+.nx-redesign .about-approach__card,
+.nx-redesign .about-signal-strip article {
+  color: var(--nx-text-primary) !important;
+  background: #090909 !important;
+}
+
+.nx-redesign :where(
+  .checkout-panel,
+  .checkout-choice,
+  .payment-method-picker button,
+  .help-cat-card,
+  .contact-shortcut-card,
+  .about-approach__card,
+  .about-signal-strip article
+) :where(h2, h3, strong, label) {
+  color: var(--nx-text-primary) !important;
+}
+
+.nx-redesign :where(
+  .checkout-panel,
+  .checkout-choice,
+  .payment-method-picker button,
+  .help-cat-card,
+  .contact-shortcut-card,
+  .about-approach__card,
+  .about-signal-strip article
+) :where(p, small, span:not(.product-cat)) {
+  color: var(--nx-text-secondary) !important;
+}
+
+.nx-redesign .payment-deadline {
+  border: 1px solid var(--nx-border-subtle) !important;
+  border-radius: 0 !important;
+  background: #0c0c0c !important;
+}
+
+.nx-redesign .payment-deadline #payment-countdown {
+  color: var(--nx-accent-cyan) !important;
+}
+
+.nx-redesign.page-admin .admin-content {
+  color: var(--nx-text-primary) !important;
+  background: var(--nx-bg-base) !important;
+}
+
+.nx-redesign.page-admin .admin-content::before {
+  display: none !important;
+  content: none !important;
+}
+
+@media (max-width: 767px) {
+  .nx-redesign .cart-summary--premium,
+  .nx-redesign .checkout-summary,
+  .nx-redesign .payment-summary {
+    width: 100% !important;
+  }
+}
