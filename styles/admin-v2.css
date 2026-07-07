@@ -8,6 +8,7 @@
 @import url("admin-form-workspaces.css?v=1");
 @import url("admin-entity-actions.css?v=2");
 @import url("admin-form-workspaces-fixes.css?v=3");
+@import url("admin-stealth-redesign.css?v=1");
 
 /* Compatibility boundary: modern workspaces own their header and footer layout. */
 .page-admin.admin-workspace-fullscreen .suite-drawer-header,
