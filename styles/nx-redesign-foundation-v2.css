@@ -1,0 +1,239 @@
+/*
+ * NEXGEAR Stealth Laboratory v2
+ * Scoped exclusively to body.nx-redesign.
+ * Protected pages never receive the nx-redesign class.
+ */
+
+.nx-redesign {
+  --nx-bg-base: #050505;
+  --nx-bg-elevated: #0a0a0a;
+  --nx-surface-1: #111111;
+  --nx-surface-2: #1b1b1b;
+  --nx-surface-3: #242424;
+  --nx-accent-cyan: #00e5ff;
+  --nx-accent-hover: #00b3cc;
+  --nx-text-primary: #f3f4f6;
+  --nx-text-secondary: #a4a8af;
+  --nx-text-muted: #6f747c;
+  --nx-border-subtle: #2a2a2a;
+  --nx-border-strong: #3a3a3a;
+  --nx-success: #34c759;
+  --nx-warning: #ffcc00;
+  --nx-error: #ff3b30;
+  --nx-radius-sm: 2px;
+  --nx-radius-md: 4px;
+  --nx-transition-fast: 150ms ease-in-out;
+  --nx-transition-layout: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --nx-max: 1440px;
+  color: var(--nx-text-primary);
+  background: var(--nx-bg-base);
+}
+
+.nx-redesign,
+.nx-redesign .site-main,
+.nx-redesign .admin-main,
+.nx-redesign .admin-content {
+  background-color: var(--nx-bg-base);
+}
+
+.nx-redesign *,
+.nx-redesign *::before,
+.nx-redesign *::after {
+  box-sizing: border-box;
+}
+
+.nx-redesign .container {
+  width: min(var(--nx-max), calc(100% - clamp(32px, 6vw, 104px)));
+  margin-inline: auto;
+}
+
+.nx-redesign .site-main,
+.nx-redesign .admin-main {
+  color: var(--nx-text-primary);
+}
+
+.nx-redesign .site-main {
+  position: relative;
+  isolation: isolate;
+  min-height: 72vh;
+  overflow: clip;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.016) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px),
+    radial-gradient(circle at 86% 4%, rgba(0, 229, 255, 0.075), transparent 28rem),
+    var(--nx-bg-base);
+  background-size: 48px 48px, 48px 48px, auto, auto;
+}
+
+.nx-redesign .site-main::after {
+  position: absolute;
+  top: 80px;
+  right: clamp(18px, 3vw, 46px);
+  z-index: -1;
+  content: var(--nx-page-index);
+  color: rgba(255, 255, 255, 0.024);
+  font: 800 clamp(7rem, 17vw, 18rem) / 0.8 "Orbitron", system-ui, sans-serif;
+  letter-spacing: -0.09em;
+  pointer-events: none;
+}
+
+.nx-redesign :where(h1, h2, h3, h4) {
+  margin-top: 0;
+  color: var(--nx-text-primary);
+  text-wrap: balance;
+}
+
+.nx-redesign :where(h1, h2) {
+  font-family: "Orbitron", system-ui, sans-serif;
+  letter-spacing: -0.035em;
+}
+
+.nx-redesign :where(p, li, dd, small) {
+  color: var(--nx-text-secondary);
+}
+
+.nx-redesign :where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--nx-accent-cyan) !important;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(0, 229, 255, 0.15);
+}
+
+.nx-redesign :where(button, .btn, [class*="button"], [class*="-btn"]) {
+  min-height: 44px;
+  border-radius: var(--nx-radius-sm) !important;
+  transition:
+    transform var(--nx-transition-fast),
+    border-color var(--nx-transition-fast),
+    background-color var(--nx-transition-fast),
+    color var(--nx-transition-fast),
+    opacity var(--nx-transition-fast);
+}
+
+.nx-redesign :where(button, .btn, [class*="button"], [class*="-btn"]):not(:disabled):hover {
+  transform: translateY(-2px);
+}
+
+.nx-redesign :where(.btn-primary, [class*="btn-primary"]) {
+  border: 1px solid var(--nx-accent-cyan) !important;
+  color: #001014 !important;
+  background: var(--nx-accent-cyan) !important;
+  box-shadow: none !important;
+}
+
+.nx-redesign :where(.btn-primary, [class*="btn-primary"]):hover {
+  border-color: var(--nx-accent-hover) !important;
+  background: var(--nx-accent-hover) !important;
+}
+
+.nx-redesign :where(.btn-outline, [class*="btn-outline"]) {
+  border: 1px solid var(--nx-border-strong) !important;
+  color: var(--nx-text-primary) !important;
+  background: transparent !important;
+}
+
+.nx-redesign :where(input, select, textarea) {
+  min-height: 48px;
+  border: 1px solid var(--nx-border-subtle) !important;
+  border-radius: var(--nx-radius-sm) !important;
+  color: var(--nx-text-primary) !important;
+  background: #0a0a0a !important;
+  box-shadow: none !important;
+}
+
+.nx-redesign :where(input, select, textarea):hover {
+  border-color: var(--nx-border-strong) !important;
+}
+
+.nx-redesign :where(input, select, textarea):focus {
+  border-color: var(--nx-accent-cyan) !important;
+}
+
+.nx-redesign :where(input, select, textarea)[aria-invalid="true"] {
+  border-color: var(--nx-error) !important;
+}
+
+.nx-redesign :where(input, textarea)::placeholder {
+  color: #5f646b;
+}
+
+.nx-redesign .nx-skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10000;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--nx-accent-cyan);
+  color: #001014;
+  background: var(--nx-accent-cyan);
+  transform: translateY(-170%);
+}
+
+.nx-redesign .nx-skip-link:focus {
+  transform: translateY(0);
+}
+
+.nx-redesign .nx-section-rail {
+  position: absolute;
+  top: 168px;
+  left: max(12px, calc((100vw - var(--nx-max)) / 2 - 54px));
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  align-items: center;
+  color: var(--nx-text-muted);
+  pointer-events: none;
+}
+
+.nx-redesign .nx-section-rail span {
+  color: var(--nx-accent-cyan);
+  font: 800 0.76rem/1 "Orbitron", system-ui, sans-serif;
+  letter-spacing: 0.16em;
+}
+
+.nx-redesign .nx-section-rail strong {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+}
+
+.nx-redesign [data-page-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.nx-redesign [data-page-reveal][data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+.nx-redesign .nx-empty-state {
+  display: grid;
+  place-items: center;
+  min-height: 320px;
+  padding: clamp(2.5rem, 7vw, 6rem);
+  border: 1px dashed var(--nx-border-strong);
+  border-radius: var(--nx-radius-sm);
+  text-align: center;
+  background: #090909;
+}
+
+.nx-redesign .nx-empty-state__index {
+  margin-bottom: 1rem;
+  color: var(--nx-accent-cyan);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.nx-redesign .nx-empty-state h2 {
+  margin-bottom: 0.75rem;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+}
+
+.nx-redesign .nx-empty-state p {
+  max-width: 560px;
+  margin: 0 auto 1.5rem;
+}
