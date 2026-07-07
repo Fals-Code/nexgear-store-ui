@@ -50,6 +50,13 @@
     if (!main) return;
     main.classList.add("nx-redesign-wrapper");
     if (!main.id) main.id = "main-content";
+    if (!document.querySelector(".skip-link")) {
+      const skipLink = document.createElement("a");
+      skipLink.className = "skip-link nx-skip-link";
+      skipLink.href = `#${main.id}`;
+      skipLink.textContent = "Lewati ke konten utama";
+      document.body.prepend(skipLink);
+    }
     if (!page.startsWith("admin-") && !main.querySelector(".nx-section-rail")) {
       const rail = document.createElement("div");
       rail.className = "nx-section-rail";
@@ -96,8 +103,8 @@
       });
     }
     if (page === "payment.html") {
-      remove(".payment-deadline");
       text("#payment-status-description", "Pilih kanal simulasi lalu konfirmasi transaksi.");
+      document.querySelector(".payment-deadline")?.setAttribute("aria-label", "Batas waktu pembayaran simulasi");
     }
     if (page === "success.html") {
       remove(".success-estimate-badge");
