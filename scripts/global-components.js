@@ -13,6 +13,27 @@
     "help.html",
     "contact.html",
   ]);
+  const redesignPages = new Set([
+    "product-detail.html",
+    "cart.html",
+    "checkout.html",
+    "payment.html",
+    "success.html",
+    "track-order.html",
+    "transaction-history.html",
+    "leave-review.html",
+    "profile.html",
+    "about.html",
+    "contact.html",
+    "help.html",
+    "404.html",
+    "admin-dashboard.html",
+    "admin-articles.html",
+    "admin-products.html",
+    "admin-users.html",
+    "admin-transactions.html",
+    "uas-compliance.html",
+  ]);
   const scriptUrl = document.currentScript?.src || "";
   const asset = (path) =>
     scriptUrl ? new URL(`../${path}`, scriptUrl).href : path;
@@ -52,6 +73,17 @@
       console.warn("NEXGEAR quality hardening fallback", error);
     },
   );
+
+  let redesignReady = Promise.resolve();
+  if (redesignPages.has(page)) {
+    document.documentElement.classList.add("nx-redesign-loading");
+    document.body.classList.add("nx-redesign");
+    ensureStyle("styles/nx-redesign.css?v=1");
+    redesignReady = ensureScript("scripts/nx-redesign.js?v=1").catch((error) => {
+      console.warn("NEXGEAR redesign fallback", error);
+      document.documentElement.classList.remove("nx-redesign-loading");
+    });
+  }
 
   if (["contact.html", "help.html", "track-order.html"].includes(page)) {
     ensureStyle("styles/support-accessibility.css?v=1");
@@ -96,7 +128,7 @@
   };
 
   const initPromoCountdown = () => {
-    if (page !== "product-detail.html") return;
+    if (page !== "product-detail.html" || redesignPages.has(page)) return;
     const card = document.querySelector(".price-action-card");
     const stack = card?.querySelector(".price-stack");
     if (!card || !stack || card.querySelector(".promo-countdown")) return;
@@ -198,9 +230,11 @@
         throw error;
       });
 
-  const ready = Promise.all([qualityReady, componentsReady]).then(
-    () => undefined,
-  );
+  const ready = Promise.all([
+    qualityReady,
+    componentsReady,
+    redesignReady,
+  ]).then(() => undefined);
 
   window.NexGlobalComponents = Object.freeze({ ready });
 })();
