@@ -94,7 +94,13 @@
     var(--admin-panel) !important;
 }
 
-.page-admin :is(.dashboard-kpi-grid, .dashboard-health, .dashboard-notifications, .admin-dot) {
+.page-admin :is(
+  .dashboard-kpi-grid,
+  .dashboard-health,
+  .dashboard-notifications,
+  .admin-dot,
+  .metric-grid
+) {
   display: none !important;
 }
 
