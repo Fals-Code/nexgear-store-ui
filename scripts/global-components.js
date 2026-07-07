@@ -79,13 +79,13 @@
   if (redesignPages.has(page)) {
     document.documentElement.classList.add("nx-redesign-loading");
     document.body.classList.add("nx-redesign");
-    ensureStyle("styles/nx-redesign.css?v=1");
-    redesignReady = ensureScript("scripts/nx-redesign.js?v=1").catch((error) => {
+    ensureStyle("styles/nx-redesign.css?v=2");
+    redesignReady = ensureScript("scripts/nx-redesign.js?v=2").catch((error) => {
       console.warn("NEXGEAR redesign fallback", error);
       document.documentElement.classList.remove("nx-redesign-loading");
     });
     contentIntegrityReady = ensureScript(
-      "scripts/nx-content-integrity.js?v=1",
+      "scripts/nx-content-integrity.js?v=2",
     ).catch((error) => {
       console.warn("NEXGEAR content integrity fallback", error);
     });
