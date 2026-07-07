@@ -75,6 +75,7 @@
   );
 
   let redesignReady = Promise.resolve();
+  let contentIntegrityReady = Promise.resolve();
   if (redesignPages.has(page)) {
     document.documentElement.classList.add("nx-redesign-loading");
     document.body.classList.add("nx-redesign");
@@ -82,6 +83,11 @@
     redesignReady = ensureScript("scripts/nx-redesign.js?v=1").catch((error) => {
       console.warn("NEXGEAR redesign fallback", error);
       document.documentElement.classList.remove("nx-redesign-loading");
+    });
+    contentIntegrityReady = ensureScript(
+      "scripts/nx-content-integrity.js?v=1",
+    ).catch((error) => {
+      console.warn("NEXGEAR content integrity fallback", error);
     });
   }
 
@@ -234,6 +240,7 @@
     qualityReady,
     componentsReady,
     redesignReady,
+    contentIntegrityReady,
   ]).then(() => undefined);
 
   window.NexGlobalComponents = Object.freeze({ ready });
