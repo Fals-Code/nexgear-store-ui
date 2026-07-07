@@ -9,6 +9,7 @@
 @import url("./nx-account-layout-v2.css");
 @import url("./nx-editorial-hero-v2.css");
 @import url("./nx-help-workspace-v2.css");
+@import url("./nx-message-center-v2.css");
 @import url("./nx-admin-shell-v2.css");
 
 .nx-redesign .nx-prototype-disclosure,.nx-redesign .nx-content-integrity-note,.nx-redesign .nx-admin-disclosure,.nx-redesign.page-admin .admin-content::before{display:none!important}
