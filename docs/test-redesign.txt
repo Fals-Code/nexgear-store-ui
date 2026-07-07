@@ -1,1 +1,1 @@
-redesign boundary
+NEXGEAR redesign work is isolated on the redesign-remaining-pages branch. This documentation note has no runtime effect.
