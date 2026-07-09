@@ -188,9 +188,9 @@
           variant,
           image: "",
         });
-      } else {
-        setLive(`${name} ditambahkan ke keranjang.`);
       }
+
+      setLive(`${name} ditambahkan ke keranjang.`);
 
       addButton.dataset.state = "success";
       addButton.innerHTML = "✓ Ditambahkan";
@@ -211,6 +211,22 @@
     mobileAdd?.addEventListener("click", addToCart);
   }
 
+  function initReviewLink() {
+    const reviewLink = root.querySelector('.pd-rating-row a[href="#reviews"]');
+    const reviewTab = root.querySelector('[data-tab-target="reviews"]');
+
+    if (!reviewLink || !reviewTab) return;
+
+    reviewLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      reviewTab.click();
+      root.querySelector("#reviews-panel")?.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+  }
+
   function initRelatedWishlists() {
     root.querySelectorAll(".pd-related-card > button").forEach((button) => {
       button.addEventListener("click", () => {
@@ -229,6 +245,7 @@
     initTabs();
     initFeedbackButtons();
     initCart();
+    initReviewLink();
     initRelatedWishlists();
   }
 
