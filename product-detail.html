@@ -218,6 +218,36 @@
             </dl>
           </aside>
         </div>
+
+        <section class="pd-decision-bento reveal" aria-label="Ringkasan keputusan pembelian">
+          <article class="pd-decision-card pd-decision-card--wide">
+            <span>Best for FPS</span>
+            <h2>Ringan untuk flick cepat dan tracking stabil</h2>
+            <p>
+              Diposisikan untuk user yang butuh gerak cepat, kontrol presisi, dan setup meja yang tetap bersih.
+            </p>
+          </article>
+          <article class="pd-decision-card">
+            <span>Grip Ready</span>
+            <h2>Palm, claw, fingertip</h2>
+            <p>Bentuk visual dan ukuran CTA dibuat untuk menjelaskan kompatibilitas grip tanpa bikin user mikir keras.</p>
+          </article>
+          <article class="pd-decision-card">
+            <span>Low Latency</span>
+            <h2>2.4GHz priority</h2>
+            <p>Opsi konektivitas paling penting diletakkan pertama agar keputusan teknis lebih cepat.</p>
+          </article>
+          <article class="pd-decision-card pd-compatibility-card">
+            <span>Compatible with</span>
+            <div class="pd-compatibility-chips" aria-label="Kompatibilitas produk">
+              <em>Windows</em>
+              <em>macOS</em>
+              <em>Bluetooth</em>
+              <em>USB-C</em>
+              <em>2.4GHz Receiver</em>
+            </div>
+          </article>
+        </section>
       </section>
 
       <section class="pd-info-section" aria-label="Informasi detail produk">
@@ -326,12 +356,29 @@
               hidden
             >
               <h2>Ringkasan ulasan</h2>
-              <div class="pd-review-summary" id="reviews">
-                <strong>4.7/5</strong>
-                <p>
-                  Area ulasan disiapkan sebagai slot dinamis untuk komentar pengguna.
-                  Pada integrasi backend, bagian ini dapat diisi dari database review.
-                </p>
+              <div class="pd-review-layout" id="reviews">
+                <div class="pd-review-summary">
+                  <strong>4.7/5</strong>
+                  <p>
+                    Contoh tampilan ulasan disiapkan sebagai slot dinamis. Saat backend aktif, data ini dapat diganti dari database review.
+                  </p>
+                </div>
+                <div class="pd-rating-bars" aria-label="Distribusi rating contoh UI">
+                  <span><b>5★</b><i style="--bar: 86%"></i><em>86%</em></span>
+                  <span><b>4★</b><i style="--bar: 12%"></i><em>12%</em></span>
+                  <span><b>3★</b><i style="--bar: 2%"></i><em>2%</em></span>
+                </div>
+                <div class="pd-review-cards">
+                  <article>
+                    <h3>Responsif buat aim training</h3>
+                    <p>Mode 2.4GHz jadi opsi utama karena stabil dan cepat. Untuk UI, ini membantu user langsung paham pilihan terbaik.</p>
+                  </article>
+                  <article>
+                    <h3>Ringan tanpa terasa kosong</h3>
+                    <p>Berat 62g dan bentuk grip dijelaskan singkat supaya pembeli tidak harus mencari informasi di bagian lain.</p>
+                  </article>
+                </div>
+                <a class="pd-review-action" href="leave-review.html">Tulis Ulasan</a>
               </div>
             </div>
           </article>
@@ -379,12 +426,29 @@
         </div>
       </section>
 
+      <section class="pd-box-section container reveal" aria-labelledby="box-title">
+        <div class="pd-box-copy">
+          <span>In The Box</span>
+          <h2 id="box-title">Apa saja yang didapat?</h2>
+          <p>
+            Bagian ini mengurangi keraguan user sebelum checkout. Karena ternyata pembeli ingin tahu isi paket, sebuah konsep liar bernama kepastian.
+          </p>
+        </div>
+        <ul class="pd-box-list" aria-label="Isi paket QuantumGrip X9 Wireless">
+          <li>QuantumGrip X9 Wireless</li>
+          <li>USB-C braided cable</li>
+          <li>2.4GHz receiver</li>
+          <li>Quick guide</li>
+          <li>Extra mouse feet</li>
+        </ul>
+      </section>
+
       <section class="pd-related-section" aria-labelledby="related-title">
         <div class="container">
           <div class="pd-related-heading">
             <div>
-              <span>Pair It</span>
-              <h2 id="related-title">You May Also Like</h2>
+              <span>Complete Your Setup</span>
+              <h2 id="related-title">Pair It With These</h2>
             </div>
             <a href="catalog.html">View All</a>
           </div>
