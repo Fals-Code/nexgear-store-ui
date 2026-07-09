@@ -42,8 +42,13 @@
       </section>
 
       <section class="container product-detail-shell" aria-labelledby="product-title">
-        <nav class="product-breadcrumb" aria-label="Breadcrumb">
-          <a href="index.html" aria-label="Kembali ke beranda">←</a><span>Kembali ke Beranda</span>
+        <nav class="product-breadcrumb product-breadcrumb--trail" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="catalog.html">Koleksi Gear</a></li>
+            <li><a href="catalog.html?category=keyboard">Keyboard</a></li>
+            <li aria-current="page">Vortex VX Pro Mechanical</li>
+          </ol>
         </nav>
 
         <div class="product-hero-grid">
@@ -131,9 +136,10 @@
 
           <section class="product-gallery-panel" aria-label="Galeri produk">
             <div class="product-gallery-sticky-inner">
-              <div class="product-main-media">
+              <div class="product-main-media" data-zoom-ready="true">
                 <span class="product-media-badge">Showcase</span>
                 <img id="mainImage" src="https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=1200" alt="Tampilan utama Vortex VX Pro Mechanical" />
+                <button class="product-zoom-trigger" type="button" aria-label="Perbesar gambar produk">Perbesar gambar</button>
               </div>
 
               <div class="product-thumb-row" aria-label="Thumbnail produk">
@@ -229,16 +235,18 @@
             </div>
 
             <div class="tab-content product-review-tab" id="reviews" data-tab-panel="reviews" hidden>
-              <div class="review-section-heading review-section-heading--tab">
-                <div>
-                  <span class="review-eyebrow">Ulasan Pengguna</span>
-                  <h2>Review produk</h2>
-                  <p>Panel ini tidak mengarang rating, jumlah pembeli, atau klaim verifikasi. Data ulasan sebaiknya muncul dari transaksi asli saat backend tersedia.</p>
+              <section class="review-empty-state" aria-labelledby="review-empty-title">
+                <div class="review-empty-icon" aria-hidden="true">
+                  <svg viewBox="0 0 80 80" role="img" focusable="false">
+                    <path d="M40 9l8.7 17.6 19.4 2.8-14 13.7 3.3 19.3L40 53.3 22.6 62.4l3.3-19.3-14-13.7 19.4-2.8L40 9z" />
+                    <path d="M22 66h36" />
+                  </svg>
                 </div>
-                <div class="review-score-card" aria-label="Belum ada rating asli">
-                  <strong>—</strong><span>Belum ada rating</span><em>Menunggu data ulasan asli</em>
-                </div>
-              </div>
+                <span class="review-eyebrow">Ulasan Pengguna</span>
+                <h2 id="review-empty-title">Belum ada ulasan untuk produk ini</h2>
+                <p>Jadilah yang pertama memberikan penilaian setelah transaksi selesai. Data rating dan review akan tampil dari ulasan asli, bukan angka hiasan yang dipasang supaya terlihat ramai.</p>
+                <a href="cart.html" class="btn btn-outline review-empty-action">Mulai dari Keranjang</a>
+              </section>
             </div>
           </article>
 
@@ -285,5 +293,14 @@
         </div>
       </div>
     </aside>
+
+    <div class="product-lightbox" role="dialog" aria-modal="true" aria-labelledby="product-lightbox-title" hidden>
+      <div class="product-lightbox__backdrop" data-lightbox-close></div>
+      <figure class="product-lightbox__panel">
+        <button class="product-lightbox__close" type="button" data-lightbox-close aria-label="Tutup tampilan gambar besar">×</button>
+        <figcaption id="product-lightbox-title">Detail gambar Vortex VX Pro Mechanical</figcaption>
+        <img class="product-lightbox__image" src="" alt="Gambar produk diperbesar" />
+      </figure>
+    </div>
   </body>
 </html>
