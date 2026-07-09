@@ -170,8 +170,8 @@
   };
 
   const getSelectedVariant = () => {
-    const color = $(".color-dot.is-active, .color-dot.active")?.getAttribute("aria-label") || "Stealth Black";
-    const switchType = $(".option-btn.active, .option-btn.is-active")?.textContent?.trim() || "Linear Red";
+    const color = $(".color-choice.is-active")?.dataset.color || $(".color-dot.is-active, .color-dot.active")?.getAttribute("aria-label") || "Stealth Black";
+    const switchType = $(".opt-btn.active, .option-btn.active, .option-btn.is-active")?.textContent?.trim() || "Linear Red";
     return `${color} · ${switchType}`;
   };
 
@@ -191,23 +191,13 @@
   };
 
   const createDetailEvidence = () => {
-    const panel = $(".product-buy-panel");
-    const meta = $(".product-meta-row", panel);
-    if (!panel || !meta || $("[data-product-decision-evidence]", panel)) return;
-
-    const evidence = document.createElement("section");
-    evidence.className = "persona-detail-evidence";
-    evidence.dataset.productDecisionEvidence = "true";
-    evidence.setAttribute("aria-label", "Alasan produk layak dipilih");
-    evidence.innerHTML = `
-      <div><strong>4.8/5</strong><span>124 pembeli terverifikasi</span></div>
-      <div><strong>2 tahun</strong><span>Garansi resmi</span></div>
-      <div><strong>Ready Stock</strong><span>Dapat segera diproses</span></div>
-      <div><strong>TKL</strong><span>Hemat ruang meja kos</span></div>`;
-    meta.insertAdjacentElement("afterend", evidence);
+    // Product Detail intentionally uses a single source of truth from rendered review state.
+    // No synthetic rating, verified-buyer, warranty, or stock evidence is injected here.
   };
 
   const bindDetailActions = () => {
+    if (document.body.classList.contains("product-detail-reference")) return;
+
     const addButton = $(".btn-add-cart");
     const actionRow = $(".product-action-row");
     if (!addButton || !actionRow || actionRow.dataset.personaBound === "true") return;
@@ -225,6 +215,9 @@
       }, 1200);
     });
 
+    const existingBuyButton = $("[data-product-action='buy'], .btn-buy-now, .persona-buy-now", actionRow);
+    if (existingBuyButton) return;
+
     const buyButton = document.createElement("button");
     buyButton.type = "button";
     buyButton.className = "btn persona-buy-now";
@@ -234,6 +227,8 @@
   };
 
   const bindDetailSecondaryActions = () => {
+    if (document.body.classList.contains("product-detail-reference")) return;
+
     const container = $(".product-secondary-actions");
     const buttons = $$("button", container);
     if (!container || buttons.length < 2 || container.dataset.personaBound === "true") return;
@@ -288,7 +283,9 @@
   };
 
   const createMobileDecisionBar = () => {
+    if (document.body.classList.contains("product-detail-reference")) return;
     if ($(".persona-mobile-buy-bar")) return;
+
     const price = $(".price-stack strong")?.textContent?.trim() || "Rp1.850.000";
     const bar = document.createElement("aside");
     bar.className = "persona-mobile-buy-bar";
