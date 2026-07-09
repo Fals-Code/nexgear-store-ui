@@ -28,43 +28,44 @@
     <div class="page-transition" aria-hidden="true">
       <span class="page-transition__panel page-transition__panel--a"></span><span class="page-transition__panel page-transition__panel--b"></span><span class="page-transition__panel page-transition__panel--c"></span><span class="page-transition__panel page-transition__panel--d"></span><span class="page-transition__brand">NEXGEAR</span>
     </div>
+
     <div id="global-header"></div>
 
     <main class="site-main product-detail-main">
-      <section class="product-promo-strip" aria-label="Promotion">
+      <section class="product-promo-strip" aria-label="Pengumuman koleksi">
         <div class="container product-promo-inner">
-          <span>New accessories, selected setup deals</span>
-          <strong>Control gear collection</strong>
-          <a href="catalog.html">New Collection</a>
+          <span>Aksesori baru dan paket setup pilihan</span>
+          <strong>Koleksi control gear</strong>
+          <a href="catalog.html">Lihat Koleksi Baru</a>
         </div>
       </section>
 
       <section class="container product-detail-shell" aria-labelledby="product-title">
         <nav class="product-breadcrumb" aria-label="Breadcrumb">
-          <a href="index.html" aria-label="Kembali ke halaman utama">←</a><span>Back To Home</span>
+          <a href="index.html" aria-label="Kembali ke beranda">←</a><span>Kembali ke Beranda</span>
         </nav>
 
         <div class="product-hero-grid">
           <section class="product-buy-panel" aria-labelledby="product-title">
             <div class="product-kicker-row">
               <span class="product-cat">NEX</span>
-              <span class="stock-status in-stock">Stock status: available for demo</span>
+              <span class="stock-status in-stock">Status stok: tersedia untuk demo</span>
             </div>
 
             <h1 id="product-title" class="product-title-lg">Vortex VX Pro Mechanical</h1>
 
             <div class="product-meta-row">
               <div class="rating" aria-label="Rating akan mengikuti data ulasan asli">
-                <span aria-hidden="true">☆ ☆ ☆ ☆ ☆</span><strong>Belum dirating</strong><a href="#reviews">Lihat review</a>
+                <span aria-hidden="true">☆ ☆ ☆ ☆ ☆</span><strong>Belum dirating</strong><a href="#reviews">Lihat ulasan</a>
               </div>
-              <span class="product-sku">TYPE: KEYBOARD &nbsp; SKU: NEX-CTRL-VXPRO</span>
+              <span class="product-sku">Tipe: Keyboard &nbsp; SKU: NEX-CTRL-VXPRO</span>
             </div>
 
             <p class="product-desc">
-              Keyboard mekanikal TKL untuk setup gaming yang rapi dan responsif. Fokus halaman ini dibuat seperti product showcase modern: visual besar, opsi terlihat, harga jelas, dan CTA tidak ngumpet seperti niat manusia saat ditanya revisi.
+              Keyboard mekanikal TKL untuk setup gaming yang rapi, responsif, dan nyaman dipakai harian. Halaman ini menonjolkan visual produk, pilihan konfigurasi, harga, dan aksi pembelian tanpa membuat pengguna menebak-nebak alur belanja.
             </p>
 
-            <dl class="product-quick-specs" aria-label="Key specifications">
+            <dl class="product-quick-specs" aria-label="Spesifikasi utama">
               <div><dt>Layout</dt><dd>TKL 87 Keys</dd></div>
               <div><dt>Polling</dt><dd>1000Hz</dd></div>
               <div><dt>Koneksi</dt><dd>Type-C / 2.4G</dd></div>
@@ -72,20 +73,26 @@
 
             <div class="product-options">
               <div class="option-group">
-                <label id="color-label">Color Block</label>
-                <div class="color-options" aria-labelledby="color-label">
-                  <button class="color-dot is-active" type="button" style="--dot:#111827" aria-label="Stealth Black"></button>
-                  <button class="color-dot" type="button" style="--dot:#e5e7eb" aria-label="Frost White"></button>
-                  <button class="color-dot" type="button" style="--dot:#00e5ff" aria-label="Cyan Accent"></button>
+                <label id="color-label">Pilihan Warna</label>
+                <div class="color-options color-options--named" aria-labelledby="color-label">
+                  <button class="color-choice is-active" type="button" data-color="Stealth Black" aria-label="Pilih warna Stealth Black" aria-pressed="true">
+                    <span class="color-choice__swatch" style="--dot:#111827" aria-hidden="true"></span><span>Stealth Black</span>
+                  </button>
+                  <button class="color-choice" type="button" data-color="Frost White" aria-label="Pilih warna Frost White" aria-pressed="false">
+                    <span class="color-choice__swatch" style="--dot:#e5e7eb" aria-hidden="true"></span><span>Frost White</span>
+                  </button>
+                  <button class="color-choice" type="button" data-color="Cyan Accent" aria-label="Pilih warna Cyan Accent" aria-pressed="false">
+                    <span class="color-choice__swatch" style="--dot:#00e5ff" aria-hidden="true"></span><span>Cyan Accent</span>
+                  </button>
                 </div>
               </div>
 
               <div class="option-group">
-                <label id="switch-label">Switch Type</label>
+                <label id="switch-label">Pilihan Switch</label>
                 <div class="option-btns" aria-labelledby="switch-label">
-                  <button class="opt-btn active" type="button">Linear Red</button>
-                  <button class="opt-btn" type="button">Tactile Brown</button>
-                  <button class="opt-btn" type="button">Silent Yellow</button>
+                  <button class="opt-btn active" type="button" aria-pressed="true">Linear Red</button>
+                  <button class="opt-btn" type="button" aria-pressed="false">Tactile Brown</button>
+                  <button class="opt-btn" type="button" aria-pressed="false">Silent Yellow</button>
                 </div>
               </div>
             </div>
@@ -96,47 +103,50 @@
               </div>
 
               <div class="product-action-row">
-                <div class="quantity-selector" aria-label="Quantity selector">
+                <div class="quantity-selector" aria-label="Pengatur jumlah produk">
                   <button class="qty-btn" type="button" data-qty="minus" aria-label="Kurangi jumlah">−</button>
-                  <input type="number" value="1" min="1" max="10" class="qty-input" aria-label="Quantity" />
+                  <input type="number" value="1" min="1" max="10" class="qty-input" aria-label="Jumlah produk" />
                   <button class="qty-btn" type="button" data-qty="plus" aria-label="Tambah jumlah">+</button>
                 </div>
-                <button class="btn btn-primary btn-add-cart" type="button" data-product-name="Vortex VX Pro Mechanical" data-product-price="1850000">
-                  Add To Cart
+                <button class="btn btn-outline btn-add-cart" type="button" data-product-action="cart" data-product-name="Vortex VX Pro Mechanical" data-product-price="1850000">
+                  Tambah ke Keranjang
+                </button>
+                <button class="btn btn-primary btn-buy-now" type="button" data-product-action="buy" data-product-name="Vortex VX Pro Mechanical" data-product-price="1850000">
+                  Beli Sekarang
                 </button>
               </div>
             </div>
 
-            <div class="product-secondary-actions" aria-label="Secondary actions">
-              <button type="button">Size Guide</button><button type="button">Compare</button><button type="button">Ask A Question</button><button type="button">Share</button>
+            <div class="product-secondary-actions" aria-label="Aksi tambahan produk">
+              <button type="button">Panduan Ukuran</button><button type="button">Bandingkan</button><button type="button">Tanya Produk</button><button type="button">Bagikan</button>
             </div>
 
-            <div class="product-service-list" aria-label="Purchase notes">
-              <div><strong>Modular</strong><span>Backend-ready markup</span></div>
-              <div><strong>Accessible</strong><span>Keyboard-friendly controls</span></div>
-              <div><strong>Responsive</strong><span>Desktop and mobile flow</span></div>
+            <div class="product-service-list" aria-label="Catatan pengalaman belanja">
+              <div><strong>Modular</strong><span>Markup siap backend</span></div>
+              <div><strong>Aksesibel</strong><span>Kontrol ramah keyboard</span></div>
+              <div><strong>Responsif</strong><span>Flow desktop dan mobile</span></div>
             </div>
           </section>
 
-          <section class="product-gallery-panel" aria-label="Product gallery">
+          <section class="product-gallery-panel" aria-label="Galeri produk">
             <div class="product-gallery-sticky-inner">
               <div class="product-main-media">
                 <span class="product-media-badge">Showcase</span>
-                <img id="mainImage" src="https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=1200" alt="Vortex VX Pro Mechanical keyboard main view" />
+                <img id="mainImage" src="https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=1200" alt="Tampilan utama Vortex VX Pro Mechanical" />
               </div>
 
-              <div class="product-thumb-row" aria-label="Product thumbnails">
-                <button class="product-thumb is-active" type="button" data-image="https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=1200" aria-label="Keyboard front view">
-                  <img src="https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=320" alt="Keyboard front thumbnail" />
+              <div class="product-thumb-row" aria-label="Thumbnail produk">
+                <button class="product-thumb is-active" type="button" data-image="https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=1200" aria-label="Tampilan depan keyboard">
+                  <img src="https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=320" alt="Thumbnail tampilan depan keyboard" />
                 </button>
-                <button class="product-thumb" type="button" data-image="https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=1200&q=82" aria-label="Keyboard angled view">
-                  <img src="https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=320&q=70" alt="Keyboard angled thumbnail" />
+                <button class="product-thumb" type="button" data-image="https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=1200&q=82" aria-label="Tampilan sudut keyboard">
+                  <img src="https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=320&q=70" alt="Thumbnail tampilan sudut keyboard" />
                 </button>
-                <button class="product-thumb" type="button" data-image="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=1200&q=82" aria-label="Keyboard detail view">
-                  <img src="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=320&q=70" alt="Keyboard detail thumbnail" />
+                <button class="product-thumb" type="button" data-image="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=1200&q=82" aria-label="Tampilan detail keyboard">
+                  <img src="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=320&q=70" alt="Thumbnail detail keyboard" />
                 </button>
-                <button class="product-thumb" type="button" data-image="https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=1200&q=82" aria-label="Gaming desk setup view">
-                  <img src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=320&q=70" alt="Gaming desk thumbnail" />
+                <button class="product-thumb" type="button" data-image="https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=1200&q=82" aria-label="Tampilan setup gaming">
+                  <img src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=320&q=70" alt="Thumbnail setup gaming" />
                 </button>
               </div>
             </div>
@@ -144,53 +154,53 @@
         </div>
       </section>
 
-      <section class="product-info-section" aria-label="Product details">
+      <section class="product-info-section" aria-label="Informasi produk">
         <div class="container product-info-grid product-info-grid--single">
           <article class="product-tab-card">
-            <div class="tab-headers" role="tablist" aria-label="Product information tabs">
-              <button class="tab-btn active" type="button" data-tab="description" aria-selected="true">Description</button>
-              <button class="tab-btn" type="button" data-tab="shipping" aria-selected="false">Shipping Policy</button>
-              <button class="tab-btn" type="button" data-tab="reviews" aria-selected="false" id="reviews-tab">Reviews</button>
+            <div class="tab-headers" role="tablist" aria-label="Tab informasi produk">
+              <button class="tab-btn active" type="button" data-tab="description" aria-selected="true">Deskripsi</button>
+              <button class="tab-btn" type="button" data-tab="shipping" aria-selected="false">Kebijakan Pengiriman</button>
+              <button class="tab-btn" type="button" data-tab="reviews" aria-selected="false" id="reviews-tab">Ulasan</button>
               <span class="tab-active-pill" aria-hidden="true"></span>
             </div>
 
             <div class="tab-content active" data-tab-panel="description">
               <div class="reference-story-grid">
                 <figure class="reference-story-media">
-                  <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=920&q=82" alt="Gaming setup dengan monitor dan keyboard" loading="lazy" />
+                  <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=920&q=82" alt="Setup gaming dengan monitor dan keyboard" loading="lazy" />
                 </figure>
                 <div class="reference-story-copy">
-                  <h2>Explore The Ultimate Gaming Experience</h2>
-                  <p>Struktur halaman dibuat agar pengguna langsung melihat visual produk, konteks penggunaan, pilihan konfigurasi, dan aksi pembelian. Ini menjaga flow belanja tetap singkat tanpa mengorbankan detail teknis.</p>
+                  <h2>Pengalaman Gaming yang Lebih Fokus</h2>
+                  <p>Struktur halaman dibuat agar pengguna langsung melihat visual produk, konteks penggunaan, pilihan konfigurasi, dan aksi pembelian. Flow belanja tetap singkat tanpa mengorbankan detail teknis.</p>
                 </div>
               </div>
 
               <div class="reference-story-grid">
                 <figure class="reference-story-media">
-                  <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=920&q=82" alt="Gamer memakai perangkat gaming" loading="lazy" />
+                  <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=920&q=82" alt="Pengguna memakai perangkat gaming" loading="lazy" />
                 </figure>
                 <div class="reference-story-copy">
-                  <h2>Dive Into The World Of Gaming Excellence</h2>
-                  <p>Detail teknis ditampilkan dalam blok yang mudah dipindai. Pengguna bisa memahami layout, switch, koneksi, dan build tanpa dipaksa membaca esai kecil yang berpura-pura jadi novel.</p>
+                  <h2>Kontrol Lebih Rapi untuk Setup Harian</h2>
+                  <p>Detail teknis ditampilkan dalam blok yang mudah dipindai. Pengguna bisa memahami layout, switch, koneksi, dan build tanpa dipaksa membaca paragraf panjang yang memperlambat keputusan.</p>
                 </div>
               </div>
 
-              <div class="description-spec-layout" style="margin-top: clamp(42px, 6vw, 78px)">
+              <div class="description-spec-layout">
                 <div class="description-copy">
                   <h2>Detail Produk</h2>
                   <p>Vortex VX Pro Mechanical memakai layout TKL, dukungan hot-swappable switch, keycaps PBT double-shot, dan opsi koneksi fleksibel untuk setup gaming maupun produktivitas.</p>
-                  <p>Halaman ini disiapkan modular agar mudah dipindah ke template backend seperti Blade atau Twig, dengan struktur section yang jelas dan slot konten dinamis yang gampang dibaca manusia, kejadian langka tapi kita rayakan.</p>
+                  <p>Halaman ini disiapkan modular agar mudah dipindah ke template backend seperti Blade atau Twig, dengan struktur section yang jelas dan slot konten dinamis yang mudah dirawat.</p>
                 </div>
-                <aside class="product-spec-card product-spec-card--inside" aria-label="Specifications">
-                  <h2>Specifications</h2>
+                <aside class="product-spec-card product-spec-card--inside" aria-label="Spesifikasi">
+                  <h2>Spesifikasi</h2>
                   <table class="specs-table">
                     <tbody>
                       <tr><th>Layout</th><td>TKL 87 Keys</td></tr>
                       <tr><th>Switch</th><td>Hot-swappable 3/5 pin</td></tr>
                       <tr><th>Keycaps</th><td>PBT Double-shot</td></tr>
-                      <tr><th>Connection</th><td>Type-C, 2.4GHz, Bluetooth</td></tr>
-                      <tr><th>Battery</th><td>4000mAh</td></tr>
-                      <tr><th>Weight</th><td>860g</td></tr>
+                      <tr><th>Koneksi</th><td>Type-C, 2.4GHz, Bluetooth</td></tr>
+                      <tr><th>Baterai</th><td>4000mAh</td></tr>
+                      <tr><th>Berat</th><td>860g</td></tr>
                     </tbody>
                   </table>
                 </aside>
@@ -200,17 +210,17 @@
             <div class="tab-content" data-tab-panel="shipping" hidden>
               <div class="description-spec-layout">
                 <div class="description-copy">
-                  <h2>Shipping Policy</h2>
-                  <p>Pengiriman dibuat sebagai konten kebijakan statis untuk kebutuhan UI. Pada implementasi backend, estimasi ongkir, kurir, dan status stok sebaiknya diambil dari database agar halaman tidak memelihara dongeng operasional.</p>
+                  <h2>Kebijakan Pengiriman</h2>
+                  <p>Pengiriman ditampilkan sebagai konten kebijakan statis untuk kebutuhan UI. Pada implementasi backend, estimasi ongkir, kurir, dan status stok sebaiknya diambil dari database agar informasi selalu konsisten.</p>
                 </div>
-                <aside class="product-spec-card product-spec-card--inside">
+                <aside class="product-spec-card product-spec-card--inside flow-checkout-card">
                   <h2>Flow Checkout</h2>
-                  <table class="specs-table">
+                  <table class="specs-table specs-table--high-contrast">
                     <tbody>
-                      <tr><th>Step 1</th><td>Add to cart</td></tr>
-                      <tr><th>Step 2</th><td>Review cart</td></tr>
-                      <tr><th>Step 3</th><td>Checkout and payment</td></tr>
-                      <tr><th>Step 4</th><td>Transaction history</td></tr>
+                      <tr><th>Step 1</th><td>Tambah ke keranjang</td></tr>
+                      <tr><th>Step 2</th><td>Tinjau keranjang</td></tr>
+                      <tr><th>Step 3</th><td>Checkout dan pembayaran</td></tr>
+                      <tr><th>Step 4</th><td>Riwayat transaksi</td></tr>
                     </tbody>
                   </table>
                 </aside>
@@ -220,12 +230,12 @@
             <div class="tab-content product-review-tab" id="reviews" data-tab-panel="reviews" hidden>
               <div class="review-section-heading review-section-heading--tab">
                 <div>
-                  <span class="review-eyebrow">Customer Reviews</span>
+                  <span class="review-eyebrow">Ulasan Pengguna</span>
                   <h2>Review produk</h2>
-                  <p>Panel ini sengaja tidak mengarang rating, jumlah pembeli, atau klaim verifikasi. Data review sebaiknya muncul dari transaksi asli saat backend tersedia.</p>
+                  <p>Panel ini tidak mengarang rating, jumlah pembeli, atau klaim verifikasi. Data ulasan sebaiknya muncul dari transaksi asli saat backend tersedia.</p>
                 </div>
                 <div class="review-score-card" aria-label="Belum ada rating asli">
-                  <strong>—</strong><span>Belum ada rating</span><em>Menunggu data review asli</em>
+                  <strong>—</strong><span>Belum ada rating</span><em>Menunggu data ulasan asli</em>
                 </div>
               </div>
             </div>
@@ -233,20 +243,21 @@
 
           <section class="reference-related-section" aria-labelledby="recent-products-title">
             <div class="related-heading">
-              <h2 id="recent-products-title">Recent Products</h2>
+              <h2 id="recent-products-title">Produk Terbaru</h2>
+              <p>Rekomendasi diletakkan setelah tab agar area informasi utama tetap lega dan mudah dibaca.</p>
             </div>
             <div class="reference-product-grid">
               <!-- Slot: Dynamic Product Recommendation -->
               <a class="reference-product-card" href="product-detail.html">
-                <img src="https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?auto=format&fit=crop&w=420&q=80" alt="Gaming handheld console" loading="lazy" />
+                <img src="https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?auto=format&fit=crop&w=420&q=80" alt="Konsol handheld gaming" loading="lazy" />
                 <strong>Nova Handheld Lite</strong><span>Rp3.450.000</span>
               </a>
               <a class="reference-product-card" href="product-detail.html">
-                <img src="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=420&q=80" alt="RGB mechanical keyboard" loading="lazy" />
+                <img src="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=420&q=80" alt="Keyboard mekanikal RGB" loading="lazy" />
                 <strong>Rubber Keycaps RGB</strong><span>Rp580.000</span>
               </a>
               <a class="reference-product-card" href="product-detail.html">
-                <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c?auto=format&fit=crop&w=420&q=80" alt="Gaming mouse" loading="lazy" />
+                <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c3c9c?auto=format&fit=crop&w=420&q=80" alt="Mouse gaming" loading="lazy" />
                 <strong>Pulse Mouse Mini</strong><span>Rp720.000</span>
               </a>
             </div>
@@ -257,17 +268,20 @@
 
     <div id="global-footer"></div>
 
-    <aside class="reference-sticky-cart" aria-label="Sticky add to cart summary">
+    <aside class="reference-sticky-cart" aria-label="Ringkasan pembelian lengket">
       <div class="container reference-sticky-cart__inner">
         <div class="reference-sticky-cart__product">
-          <img src="https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=160" alt="Vortex VX Pro Mechanical thumbnail" />
+          <img src="https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=160" alt="Thumbnail Vortex VX Pro Mechanical" />
           <div><strong>Vortex VX Pro Mechanical</strong><span>Rp1.850.000</span></div>
         </div>
-        <select aria-label="Pilih warna"><option>Stealth Black</option><option>Frost White</option><option>Cyan Accent</option></select>
-        <div class="quantity-selector" aria-label="Sticky quantity selector">
-          <button class="qty-btn" type="button" data-qty="minus">−</button><input type="number" value="1" min="1" max="10" class="qty-input" aria-label="Sticky quantity" /><button class="qty-btn" type="button" data-qty="plus">+</button>
+        <label class="sticky-select-wrap"><span>Warna</span><select aria-label="Pilih warna"><option>Stealth Black</option><option>Frost White</option><option>Cyan Accent</option></select></label>
+        <div class="quantity-selector" aria-label="Pengatur jumlah sticky">
+          <button class="qty-btn" type="button" data-qty="minus" aria-label="Kurangi jumlah">−</button><input type="number" value="1" min="1" max="10" class="qty-input" aria-label="Jumlah produk sticky" /><button class="qty-btn" type="button" data-qty="plus" aria-label="Tambah jumlah">+</button>
         </div>
-        <button class="btn btn-primary btn-add-cart" type="button" data-product-name="Vortex VX Pro Mechanical" data-product-price="1850000">Add To Cart</button>
+        <div class="reference-sticky-cart__actions">
+          <button class="btn btn-outline btn-add-cart" type="button" data-product-action="cart" data-product-name="Vortex VX Pro Mechanical" data-product-price="1850000">Keranjang</button>
+          <button class="btn btn-primary btn-buy-now" type="button" data-product-action="buy" data-product-name="Vortex VX Pro Mechanical" data-product-price="1850000">Beli</button>
+        </div>
       </div>
     </aside>
   </body>
