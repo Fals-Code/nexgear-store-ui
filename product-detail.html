@@ -121,16 +121,22 @@
                   Beli Sekarang
                 </button>
               </div>
+
+              <ol class="purchase-flow-mini" aria-label="Ringkasan alur pembelian">
+                <li><span>1</span>Pilih varian</li>
+                <li><span>2</span>Masuk keranjang</li>
+                <li><span>3</span>Checkout</li>
+              </ol>
             </div>
 
             <div class="product-secondary-actions" aria-label="Aksi tambahan produk">
               <button type="button">Panduan Ukuran</button><button type="button">Bandingkan</button><button type="button">Tanya Produk</button><button type="button">Bagikan</button>
             </div>
 
-            <div class="product-service-list" aria-label="Catatan pengalaman belanja">
-              <div><strong>Modular</strong><span>Markup siap backend</span></div>
-              <div><strong>Aksesibel</strong><span>Kontrol ramah keyboard</span></div>
-              <div><strong>Responsif</strong><span>Flow desktop dan mobile</span></div>
+            <div class="product-service-list" aria-label="Keunggulan produk">
+              <div><strong>Ringkas</strong><span>Hemat ruang meja</span></div>
+              <div><strong>Nyaman</strong><span>Kontrol mudah</span></div>
+              <div><strong>Fleksibel</strong><span>Desktop dan mobile</span></div>
             </div>
           </section>
 
@@ -196,7 +202,7 @@
                 <div class="description-copy">
                   <h2>Detail Produk</h2>
                   <p>Vortex VX Pro Mechanical memakai layout TKL, dukungan hot-swappable switch, keycaps PBT double-shot, dan opsi koneksi fleksibel untuk setup gaming maupun produktivitas.</p>
-                  <p>Halaman ini disiapkan modular agar mudah dipindah ke template backend seperti Blade atau Twig, dengan struktur section yang jelas dan slot konten dinamis yang mudah dirawat.</p>
+                  <p>Build ringkasnya membantu meja tetap lega, sementara opsi switch dan koneksi membuat keyboard ini mudah disesuaikan untuk bermain, mengetik, atau setup kerja harian.</p>
                 </div>
                 <aside class="product-spec-card product-spec-card--inside" aria-label="Spesifikasi">
                   <h2>Spesifikasi</h2>
@@ -218,7 +224,8 @@
               <div class="description-spec-layout">
                 <div class="description-copy">
                   <h2>Kebijakan Pengiriman</h2>
-                  <p>Pengiriman ditampilkan sebagai konten kebijakan statis untuk kebutuhan UI. Pada implementasi backend, estimasi ongkir, kurir, dan status stok sebaiknya diambil dari database agar informasi selalu konsisten.</p>
+                  <p>Pesanan diproses setelah pembayaran berhasil dikonfirmasi. Estimasi pengiriman mengikuti alamat tujuan, pilihan kurir, dan ketersediaan produk saat checkout.</p>
+                  <p>Nomor resi dan status pengiriman dapat dilihat melalui halaman riwayat transaksi setelah pesanan masuk proses pengiriman.</p>
                 </div>
                 <aside class="product-spec-card product-spec-card--inside flow-checkout-card">
                   <h2>Flow Checkout</h2>
@@ -244,7 +251,7 @@
                 </div>
                 <span class="review-eyebrow">Ulasan Pengguna</span>
                 <h2 id="review-empty-title">Belum ada ulasan untuk produk ini</h2>
-                <p>Jadilah yang pertama memberikan penilaian setelah transaksi selesai. Data rating dan review akan tampil dari ulasan asli, bukan angka hiasan yang dipasang supaya terlihat ramai.</p>
+                <p>Jadilah yang pertama memberikan penilaian setelah transaksi selesai. Rating dan ulasan akan tampil setelah ada review asli dari pengguna.</p>
                 <a href="cart.html" class="btn btn-outline review-empty-action">Mulai dari Keranjang</a>
               </section>
             </div>
@@ -253,7 +260,7 @@
           <section class="reference-related-section" aria-labelledby="recent-products-title">
             <div class="related-heading">
               <h2 id="recent-products-title">Produk Terbaru</h2>
-              <p>Rekomendasi diletakkan setelah tab agar area informasi utama tetap lega dan mudah dibaca.</p>
+              <p>Temukan perangkat lain yang bisa melengkapi setup gaming dan produktivitas harian.</p>
             </div>
             <div class="reference-product-grid">
               <!-- Slot: Dynamic Product Recommendation -->
