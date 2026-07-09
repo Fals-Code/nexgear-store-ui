@@ -108,6 +108,48 @@
     if (select && value && select.value !== value) select.value = value;
   }
 
+  function showPanelSkeleton(panel) {
+    if (!panel) return;
+    panel.classList.add("is-loading");
+    panel.setAttribute("aria-busy", "true");
+    window.clearTimeout(panel._loadingTimer);
+    panel._loadingTimer = window.setTimeout(function () {
+      panel.classList.remove("is-loading");
+      panel.removeAttribute("aria-busy");
+    }, 360);
+  }
+
+  function showGallerySkeleton() {
+    const media = qs(".product-main-media");
+    if (!media) return;
+    media.classList.add("is-loading");
+    window.clearTimeout(media._loadingTimer);
+    media._loadingTimer = window.setTimeout(function () {
+      media.classList.remove("is-loading");
+    }, 420);
+  }
+
+  function openLightbox() {
+    const modal = qs(".product-lightbox");
+    const modalImage = qs(".product-lightbox__image");
+    const mainImage = qs("#mainImage");
+    if (!modal || !modalImage || !mainImage) return;
+
+    modalImage.src = mainImage.src;
+    modalImage.alt = mainImage.alt || "Gambar produk diperbesar";
+    modal.hidden = false;
+    document.documentElement.classList.add("lightbox-open");
+    qs(".product-lightbox__close")?.focus();
+  }
+
+  function closeLightbox() {
+    const modal = qs(".product-lightbox");
+    if (!modal) return;
+    modal.hidden = true;
+    document.documentElement.classList.remove("lightbox-open");
+    qs(".product-zoom-trigger")?.focus();
+  }
+
   function enhanceProductDetail() {
     if (!document.body.classList.contains("page-product-detail")) return;
     document.body.classList.add("product-detail-reference");
@@ -117,6 +159,7 @@
         const image = qs("#mainImage");
         if (image && button.dataset.image) image.src = button.dataset.image;
         activeToggle(button, ".product-thumb", "is-active");
+        showGallerySkeleton();
       });
     });
 
@@ -124,6 +167,7 @@
       button.addEventListener("click", function () {
         activeToggle(button, ".color-choice", "is-active");
         updateStickyColor(button.dataset.color);
+        showGallerySkeleton();
       });
     });
 
@@ -131,6 +175,15 @@
       button.addEventListener("click", function () {
         activeToggle(button, ".opt-btn", "active");
       });
+    });
+
+    qs(".product-zoom-trigger")?.addEventListener("click", openLightbox);
+    qsa("[data-lightbox-close]").forEach(function (button) {
+      button.addEventListener("click", closeLightbox);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeLightbox();
     });
 
     document.addEventListener("click", function (event) {
@@ -173,6 +226,7 @@
         return button.dataset.color === value;
       });
       if (matchingButton) activeToggle(matchingButton, ".color-choice", "is-active");
+      showGallerySkeleton();
     });
 
     qsa(".tab-btn").forEach(function (button) {
@@ -184,8 +238,10 @@
           tab.setAttribute("aria-selected", String(active));
         });
         qsa("[data-tab-panel]").forEach(function (panel) {
-          panel.classList.toggle("active", panel.dataset.tabPanel === target);
-          panel.hidden = panel.dataset.tabPanel !== target;
+          const active = panel.dataset.tabPanel === target;
+          panel.classList.toggle("active", active);
+          panel.hidden = !active;
+          if (active) showPanelSkeleton(panel);
         });
       });
     });
