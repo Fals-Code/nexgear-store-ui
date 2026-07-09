@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="styles/product-detail-reference.css" />
     <link rel="stylesheet" href="styles/transition.css" />
     <link rel="stylesheet" href="styles/product-detail-ux-fixes.css" />
+    <link rel="stylesheet" href="styles/product-detail-visual-bugfixes.css" />
     <script src="scripts/page-transition.js" defer></script>
     <script src="scripts/global-components.js" defer></script>
     <script src="scripts/cart-topbar-sync.js" defer></script>
@@ -227,16 +228,13 @@
                   <p>Pesanan diproses setelah pembayaran berhasil dikonfirmasi. Estimasi pengiriman mengikuti alamat tujuan, pilihan kurir, dan ketersediaan produk saat checkout.</p>
                   <p>Nomor resi dan status pengiriman dapat dilihat melalui halaman riwayat transaksi setelah pesanan masuk proses pengiriman.</p>
                 </div>
-                <aside class="product-spec-card product-spec-card--inside flow-checkout-card">
-                  <h2>Flow Checkout</h2>
-                  <table class="specs-table specs-table--high-contrast">
-                    <tbody>
-                      <tr><th>Step 1</th><td>Tambah ke keranjang</td></tr>
-                      <tr><th>Step 2</th><td>Tinjau keranjang</td></tr>
-                      <tr><th>Step 3</th><td>Checkout dan pembayaran</td></tr>
-                      <tr><th>Step 4</th><td>Riwayat transaksi</td></tr>
-                    </tbody>
-                  </table>
+                <aside class="product-spec-card product-spec-card--inside shipping-summary-card" aria-label="Ringkasan pengiriman">
+                  <h2>Ringkasan Pengiriman</h2>
+                  <ul class="shipping-note-list">
+                    <li><strong>Proses</strong><span>Pesanan masuk antrean setelah pembayaran dikonfirmasi.</span></li>
+                    <li><strong>Estimasi</strong><span>Waktu kirim mengikuti lokasi tujuan dan kurir yang dipilih.</span></li>
+                    <li><strong>Pelacakan</strong><span>Resi tampil pada riwayat transaksi saat paket dikirim.</span></li>
+                  </ul>
                 </aside>
               </div>
             </div>
