@@ -112,6 +112,34 @@
   line-height: 1.5;
 }
 
+.page-product-detail .footer-payment-card {
+  min-width: 64px;
+}
+
+.page-product-detail .footer-payment-card--wide {
+  min-width: 96px;
+}
+
+.page-product-detail .footer-payment-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(248, 250, 252, 0.84);
+  font-size: 0.62rem;
+  font-weight: 950;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.page-product-detail .footer-payment-logo--paypal,
+.page-product-detail .footer-payment-logo--emoney,
+.page-product-detail .footer-payment-logo--bank {
+  font-size: 0.56rem;
+  text-transform: none;
+}
+
 @media (max-width: 760px) {
   .product-detail-reference .product-breadcrumb--trail ol {
     overflow-x: auto;
