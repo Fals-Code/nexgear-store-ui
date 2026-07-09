@@ -37,31 +37,38 @@
 
   function activeToggle(button, selector, activeClass) {
     qsa(selector).forEach(function (item) {
-      item.classList.toggle(activeClass, item === button);
-      item.setAttribute("data-state", item === button ? "active" : "idle");
-      if (item.matches("button")) item.setAttribute("aria-pressed", String(item === button));
+      const active = item === button;
+      item.classList.toggle(activeClass, active);
+      item.setAttribute("data-state", active ? "active" : "idle");
+      if (item.matches("button")) item.setAttribute("aria-pressed", String(active));
     });
+  }
+
+  function getSelectedColor() {
+    const stickySelect = qs(".reference-sticky-cart select");
+    const activeColor = qs(".color-choice.is-active")?.dataset.color;
+    return stickySelect?.value || activeColor || "Stealth Black";
   }
 
   function getSelectedVariant() {
     const activeSwitch = qs(".opt-btn.active")?.textContent?.trim() || "Linear Red";
-    const activeColor = qs(".color-dot.is-active")?.getAttribute("aria-label") || "Stealth Black";
-    return `${activeColor} / ${activeSwitch}`;
+    return `${getSelectedColor()} / ${activeSwitch}`;
   }
 
-  function saveCartItem() {
-    const button = qs(".btn-add-cart");
-    const qty = clampQuantity(qs(".qty-input")?.value || 1);
-    const product = {
+  function getProductPayload(trigger) {
+    return {
       id: "vortex-vx-pro-mechanical",
-      name: button?.dataset.productName || "Vortex VX Pro Mechanical",
+      name: trigger?.dataset.productName || "Vortex VX Pro Mechanical",
       category: "Control",
       variant: getSelectedVariant(),
-      price: Number(button?.dataset.productPrice || 1850000),
-      qty,
+      price: Number(trigger?.dataset.productPrice || 1850000),
+      qty: clampQuantity(qs(".qty-input")?.value || 1),
       image: qs("#mainImage")?.src || "https://keebmechanicalkeyboard.id/wp-content/uploads/2021/04/vx8-pro-tutorial-4.jpg?w=640",
     };
+  }
 
+  function saveCartItem(trigger) {
+    const product = getProductPayload(trigger);
     const current = safeJson(localStorage.getItem(CART_KEY), []);
     const items = Array.isArray(current) ? current : [];
     const existing = items.find(function (item) {
@@ -75,7 +82,7 @@
     localStorage.setItem(CART_INIT_KEY, "true");
     window.NexCart?.updateBadge?.();
     window.dispatchEvent(new CustomEvent("nexgear:cart-updated", { detail: { items } }));
-    window.dispatchEvent(new CustomEvent("nexgear:toast", { detail: { message: "Produk masuk keranjang." } }));
+    return items;
   }
 
   function buildToast() {
@@ -84,19 +91,21 @@
     toast.className = "reference-toast";
     toast.setAttribute("role", "status");
     toast.setAttribute("aria-live", "polite");
-    toast.style.cssText = "position:fixed;right:18px;bottom:86px;z-index:60;transform:translateY(16px);opacity:0;pointer-events:none;padding:12px 16px;border-radius:14px;background:#05070b;color:#fff;border:1px solid rgba(0,229,255,.35);box-shadow:0 24px 64px rgba(0,0,0,.28);transition:opacity .2s ease,transform .2s ease;font-weight:800";
     document.body.appendChild(toast);
 
     window.addEventListener("nexgear:toast", function (event) {
       toast.textContent = event.detail?.message || "Berhasil.";
-      toast.style.opacity = "1";
-      toast.style.transform = "translateY(0)";
+      toast.classList.add("is-visible");
       window.clearTimeout(toast._timer);
       toast._timer = window.setTimeout(function () {
-        toast.style.opacity = "0";
-        toast.style.transform = "translateY(16px)";
+        toast.classList.remove("is-visible");
       }, 2200);
     });
+  }
+
+  function updateStickyColor(value) {
+    const select = qs(".reference-sticky-cart select");
+    if (select && value && select.value !== value) select.value = value;
   }
 
   function enhanceProductDetail() {
@@ -111,15 +120,14 @@
       });
     });
 
-    qsa(".color-dot").forEach(function (button) {
-      button.setAttribute("aria-pressed", String(button.classList.contains("is-active")));
+    qsa(".color-choice").forEach(function (button) {
       button.addEventListener("click", function () {
-        activeToggle(button, ".color-dot", "is-active");
+        activeToggle(button, ".color-choice", "is-active");
+        updateStickyColor(button.dataset.color);
       });
     });
 
     qsa(".opt-btn").forEach(function (button) {
-      button.setAttribute("aria-pressed", String(button.classList.contains("active")));
       button.addEventListener("click", function () {
         activeToggle(button, ".opt-btn", "active");
       });
@@ -132,14 +140,25 @@
         syncQuantity(qtyButton.dataset.qty === "plus" ? current + 1 : current - 1);
       }
 
-      if (event.target.closest(".btn-add-cart")) {
-        saveCartItem();
-        const button = event.target.closest(".btn-add-cart");
-        button.dataset.state = "added";
+      const actionButton = event.target.closest("[data-product-action]");
+      if (!actionButton) return;
+
+      const action = actionButton.dataset.productAction;
+      saveCartItem(actionButton);
+      actionButton.dataset.state = "added";
+      window.setTimeout(function () {
+        actionButton.dataset.state = "idle";
+      }, 900);
+
+      if (action === "buy") {
+        window.dispatchEvent(new CustomEvent("nexgear:toast", { detail: { message: "Produk disiapkan untuk checkout." } }));
         window.setTimeout(function () {
-          button.dataset.state = "idle";
-        }, 900);
+          window.location.href = "checkout.html";
+        }, 420);
+        return;
       }
+
+      window.dispatchEvent(new CustomEvent("nexgear:toast", { detail: { message: "Produk masuk keranjang." } }));
     });
 
     qsa(".qty-input").forEach(function (input) {
@@ -148,12 +167,21 @@
       });
     });
 
+    qs(".reference-sticky-cart select")?.addEventListener("change", function (event) {
+      const value = event.target.value;
+      const matchingButton = qsa(".color-choice").find(function (button) {
+        return button.dataset.color === value;
+      });
+      if (matchingButton) activeToggle(matchingButton, ".color-choice", "is-active");
+    });
+
     qsa(".tab-btn").forEach(function (button) {
       button.addEventListener("click", function () {
         const target = button.dataset.tab;
         qsa(".tab-btn").forEach(function (tab) {
-          tab.classList.toggle("active", tab === button);
-          tab.setAttribute("aria-selected", String(tab === button));
+          const active = tab === button;
+          tab.classList.toggle("active", active);
+          tab.setAttribute("aria-selected", String(active));
         });
         qsa("[data-tab-panel]").forEach(function (panel) {
           panel.classList.toggle("active", panel.dataset.tabPanel === target);
