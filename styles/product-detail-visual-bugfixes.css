@@ -1,0 +1,130 @@
+/* Product Detail visual bugfix layer.
+   Scope-only overrides for breadcrumb wrapping, dark continuity, gallery nav conflicts, sticky overlap, and synthetic trust badges. */
+
+.page-product-detail .site-main.product-detail-main {
+  padding-bottom: clamp(92px, 10vw, 132px);
+  background:
+    radial-gradient(circle at 74% 9%, rgba(0, 229, 255, 0.16), transparent 28rem),
+    radial-gradient(circle at 18% 14%, rgba(139, 92, 246, 0.12), transparent 24rem),
+    linear-gradient(180deg, #030507 0%, #05070b 52%, #05070b 100%) !important;
+}
+
+.product-detail-reference .product-info-section,
+.product-detail-reference .product-tab-card,
+.product-detail-reference .tab-content,
+.product-detail-reference .reference-related-section {
+  background-color: transparent !important;
+}
+
+.product-detail-reference .product-breadcrumb--trail {
+  width: 100%;
+  max-width: 100%;
+}
+
+.product-detail-reference .product-breadcrumb--trail ol {
+  gap: 10px 12px;
+}
+
+.product-detail-reference .product-breadcrumb--trail li {
+  flex: 0 1 auto;
+  min-width: max-content;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
+.product-detail-reference .product-breadcrumb--trail a,
+.product-detail-reference .product-breadcrumb--trail [aria-current="page"] {
+  min-width: max-content;
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.54);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.product-detail-reference .product-breadcrumb--trail [aria-current="page"] {
+  color: rgba(226, 232, 240, 0.78);
+}
+
+.product-detail-reference .product-detail-shell,
+.product-detail-reference .product-gallery-panel {
+  padding-bottom: clamp(92px, 12vw, 148px);
+}
+
+.product-detail-reference .product-gallery-panel button:not(.product-thumb):not(.product-zoom-trigger) {
+  display: none !important;
+}
+
+.product-detail-reference .product-gallery-panel [class*="arrow"],
+.product-detail-reference .product-gallery-panel [class*="Arrow"],
+.product-detail-reference .product-gallery-panel [class*="prev"],
+.product-detail-reference .product-gallery-panel [class*="Prev"],
+.product-detail-reference .product-gallery-panel [class*="next"],
+.product-detail-reference .product-gallery-panel [class*="Next"],
+.product-detail-reference .product-gallery-panel [class*="nav"],
+.product-detail-reference .product-gallery-panel [class*="Nav"] {
+  display: none !important;
+}
+
+.product-detail-reference .persona-detail-evidence,
+.product-detail-reference [data-product-decision-evidence],
+.product-detail-reference .trust-badge,
+.product-detail-reference [class*="trust-badge"],
+.product-detail-reference [class*="TrustBadge"] {
+  display: none !important;
+}
+
+.shipping-summary-card .shipping-note-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shipping-summary-card .shipping-note-list li {
+  display: grid;
+  gap: 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.shipping-summary-card .shipping-note-list li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.shipping-summary-card .shipping-note-list strong {
+  color: #67e8f9;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.shipping-summary-card .shipping-note-list span {
+  color: #f8fafc;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .product-detail-reference .product-breadcrumb--trail ol {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+
+  .product-detail-reference .product-breadcrumb--trail ol::-webkit-scrollbar {
+    display: none;
+  }
+
+  .product-detail-reference .product-breadcrumb--trail li {
+    flex: 0 0 auto;
+  }
+}
