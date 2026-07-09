@@ -101,26 +101,19 @@
     const stack = card?.querySelector(".price-stack");
     if (!card || !stack || card.querySelector(".promo-countdown")) return;
 
+    const configuredDeadline = Number(card.dataset.promoDeadline || document.body.dataset.promoDeadline || 0);
+    if (!configuredDeadline || configuredDeadline <= Date.now()) return;
+
     const element = document.createElement("div");
     element.className = "promo-countdown";
     element.innerHTML =
-      '<span class="promo-countdown__label">ENDS IN</span><span class="promo-countdown__time"></span>';
+      '<span class="promo-countdown__label">Promo berakhir</span><span class="promo-countdown__time"></span>';
     stack.insertAdjacentElement("afterend", element);
 
     const output = element.querySelector(".promo-countdown__time");
-    const key = "nexgear-vortex-promo-deadline";
-    const saved = Number(localStorage.getItem(key));
-    const deadline = saved > Date.now() ? saved : Date.now() + 15710000;
-
-    try {
-      localStorage.setItem(key, String(deadline));
-    } catch (error) {
-      console.warn("NEXGEAR promo persistence fallback", error);
-    }
-
     let timer = 0;
     const render = () => {
-      const seconds = Math.max(0, Math.floor((deadline - Date.now()) / 1000));
+      const seconds = Math.max(0, Math.floor((configuredDeadline - Date.now()) / 1000));
       const pad = (value) => String(value).padStart(2, "0");
       output.textContent = `${pad(Math.floor(seconds / 3600))}h : ${pad(
         Math.floor((seconds % 3600) / 60),
