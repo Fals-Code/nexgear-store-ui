@@ -1,0 +1,112 @@
+/* Product Detail UX fixes from smoke-test review.
+   Purpose: preserve dark-mode harmony, repair contrast, and clarify sticky CTA intent. */
+
+.product-detail-reference .product-info-section {
+  background:
+    radial-gradient(circle at 16% 8%, rgba(0, 229, 255, 0.08), transparent 26rem),
+    linear-gradient(180deg, #05070b 0%, #07101b 100%);
+  color: #f8fafc;
+}
+
+.product-detail-reference .tab-headers {
+  padding: 6px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.product-detail-reference .tab-btn {
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: #1e293b;
+  color: #cbd5e1;
+  box-shadow: none;
+}
+
+.product-detail-reference .tab-btn:hover,
+.product-detail-reference .tab-btn:focus-visible {
+  border-color: rgba(0, 229, 255, 0.42);
+  color: #f8fafc;
+}
+
+.product-detail-reference .tab-btn.active {
+  border-color: rgba(0, 229, 255, 0.78);
+  background: linear-gradient(135deg, #00e5ff, #2563eb);
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(0, 229, 255, 0.18);
+}
+
+.product-detail-reference .description-copy h2,
+.product-detail-reference .reference-story-copy h2,
+.product-detail-reference .related-heading h2 {
+  color: #ffffff;
+}
+
+.product-detail-reference .description-copy p,
+.product-detail-reference .reference-story-copy p,
+.product-detail-reference .related-heading p {
+  color: rgba(226, 232, 240, 0.78);
+}
+
+.product-detail-reference .product-spec-card--inside,
+.product-detail-reference .flow-checkout-card {
+  border: 1px solid rgba(0, 229, 255, 0.24);
+  background: rgba(8, 13, 20, 0.94);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+}
+
+.product-detail-reference .product-spec-card--inside h2,
+.product-detail-reference .flow-checkout-card h2 {
+  color: #ffffff;
+}
+
+.product-detail-reference .specs-table th,
+.product-detail-reference .specs-table td,
+.product-detail-reference .specs-table--high-contrast th,
+.product-detail-reference .specs-table--high-contrast td {
+  border-color: rgba(148, 163, 184, 0.22);
+}
+
+.product-detail-reference .specs-table th,
+.product-detail-reference .specs-table--high-contrast th {
+  color: #67e8f9;
+}
+
+.product-detail-reference .specs-table td,
+.product-detail-reference .specs-table--high-contrast td {
+  color: #f8fafc;
+}
+
+.product-detail-reference .reference-story-media {
+  border-color: rgba(0, 229, 255, 0.46);
+}
+
+.reference-product-card {
+  border-color: rgba(0, 229, 255, 0.22);
+  background: linear-gradient(180deg, #0f172a, #08111d);
+  color: #f8fafc;
+}
+
+.reference-product-card span {
+  color: #67e8f9;
+}
+
+.reference-sticky-cart [data-product-action="cart"] {
+  min-width: 112px;
+}
+
+@media (max-width: 640px) {
+  .product-detail-reference .tab-headers {
+    border-radius: 20px;
+  }
+
+  .product-detail-reference .tab-btn {
+    border-radius: 14px;
+  }
+
+  .reference-sticky-cart [data-product-action="cart"] {
+    min-width: 0;
+  }
+}
