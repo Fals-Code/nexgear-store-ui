@@ -55,10 +55,17 @@
                 data-gallery-thumb
                 data-visual="front"
                 data-label="Tampilan utama QuantumGrip X9"
+                data-image="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=1200&q=82"
+                data-alt="Mouse gaming wireless hitam dengan aksen RGB cyan"
                 data-state="active"
                 aria-pressed="true"
               >
-                <span class="pd-thumb-visual pd-thumb-visual--front" aria-hidden="true"></span>
+                <img
+                  class="pd-thumb-img"
+                  src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=240&q=70"
+                  alt="Thumbnail tampilan utama mouse gaming"
+                  loading="lazy"
+                />
                 <span class="sr-only">Tampilan utama</span>
               </button>
               <button
@@ -67,10 +74,17 @@
                 data-gallery-thumb
                 data-visual="side"
                 data-label="Tampilan sisi mouse"
+                data-image="https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=1200&q=82"
+                data-alt="Mouse wireless dari sisi samping di atas meja kerja"
                 data-state="idle"
                 aria-pressed="false"
               >
-                <span class="pd-thumb-visual pd-thumb-visual--side" aria-hidden="true"></span>
+                <img
+                  class="pd-thumb-img"
+                  src="https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=240&q=70"
+                  alt="Thumbnail tampilan sisi mouse"
+                  loading="lazy"
+                />
                 <span class="sr-only">Tampilan sisi</span>
               </button>
               <button
@@ -78,38 +92,57 @@
                 type="button"
                 data-gallery-thumb
                 data-visual="sensor"
-                data-label="Area sensor dan skate mouse"
+                data-label="Detail grip dan area kontrol mouse"
+                data-image="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=1200&q=82"
+                data-alt="Detail perangkat gaming dengan pencahayaan cyan"
                 data-state="idle"
                 aria-pressed="false"
               >
-                <span class="pd-thumb-visual pd-thumb-visual--sensor" aria-hidden="true"></span>
-                <span class="sr-only">Tampilan sensor</span>
+                <img
+                  class="pd-thumb-img"
+                  src="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=240&q=70"
+                  alt="Thumbnail detail perangkat gaming"
+                  loading="lazy"
+                />
+                <span class="sr-only">Tampilan detail</span>
               </button>
               <button
                 class="pd-thumb"
                 type="button"
                 data-gallery-thumb
                 data-visual="dock"
-                data-label="Charging dock dan kabel USB-C"
+                data-label="Setup meja gaming wireless"
+                data-image="https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=1200&q=82"
+                data-alt="Setup meja gaming dengan perangkat RGB"
                 data-state="idle"
                 aria-pressed="false"
               >
-                <span class="pd-thumb-visual pd-thumb-visual--dock" aria-hidden="true"></span>
-                <span class="sr-only">Tampilan dock</span>
+                <img
+                  class="pd-thumb-img"
+                  src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=240&q=70"
+                  alt="Thumbnail setup meja gaming"
+                  loading="lazy"
+                />
+                <span class="sr-only">Tampilan setup</span>
               </button>
             </div>
 
             <figure class="pd-main-media">
-              <span class="pd-media-badge">Pro Series</span>
+              <span class="pd-media-badge">4 Views</span>
               <div
                 class="pd-product-visual"
                 data-product-visual
                 data-visual="front"
-                aria-hidden="true"
               >
-                <span class="pd-mouse-render"></span>
-                <span class="pd-glow-orbit pd-glow-orbit--a"></span>
-                <span class="pd-glow-orbit pd-glow-orbit--b"></span>
+                <img
+                  class="pd-product-img"
+                  data-main-product-image
+                  src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=1200&q=82"
+                  alt="Mouse gaming wireless hitam dengan aksen RGB cyan"
+                />
+                <span class="pd-mouse-render" aria-hidden="true"></span>
+                <span class="pd-glow-orbit pd-glow-orbit--a" aria-hidden="true"></span>
+                <span class="pd-glow-orbit pd-glow-orbit--b" aria-hidden="true"></span>
               </div>
               <figcaption class="pd-media-caption" data-main-media-label>
                 Tampilan utama QuantumGrip X9
@@ -142,13 +175,12 @@
 
             <div class="pd-price-row">
               <strong>Rp899.000</strong>
-              <span>Gear mouse wireless esports</span>
+              <span>Mouse wireless esports 62g</span>
             </div>
 
             <p class="pd-summary">
-              Mouse gaming wireless ringan untuk pemain yang butuh presisi, grip stabil,
-              dan alur setup yang tetap rapi tanpa kabel berantakan. Karena meja gaming
-              bukan tempat tragedi kabel berlangsung.
+              Mouse gaming wireless untuk pemain FPS dan pengguna produktif yang butuh gerakan ringan,
+              koneksi stabil, serta kontrol presisi dalam setup meja yang bersih.
             </p>
 
             <div class="pd-option-stack">
@@ -199,7 +231,7 @@
             </div>
 
             <p class="pd-micro-feedback">
-              Pilihan warna, konektivitas, dan jumlah otomatis tersimpan saat produk ditambahkan ke keranjang.
+              Varian, konektivitas, dan jumlah otomatis ikut tersimpan saat produk masuk keranjang.
             </p>
 
             <dl class="pd-spec-strip" aria-label="Spesifikasi utama produk">
@@ -219,23 +251,21 @@
           </aside>
         </div>
 
-        <section class="pd-decision-bento reveal" aria-label="Ringkasan keputusan pembelian">
-          <article class="pd-decision-card pd-decision-card--wide">
+        <section class="pd-decision-bento" aria-label="Ringkasan keputusan pembelian">
+          <article class="pd-decision-card">
             <span>Best for FPS</span>
-            <h2>Ringan untuk flick cepat dan tracking stabil</h2>
-            <p>
-              Diposisikan untuk user yang butuh gerak cepat, kontrol presisi, dan setup meja yang tetap bersih.
-            </p>
+            <h2>Flick cepat, tracking stabil</h2>
+            <p>Bobot 62g membantu gerakan cepat tanpa membuat tangan cepat lelah.</p>
           </article>
           <article class="pd-decision-card">
             <span>Grip Ready</span>
             <h2>Palm, claw, fingertip</h2>
-            <p>Bentuk visual dan ukuran CTA dibuat untuk menjelaskan kompatibilitas grip tanpa bikin user mikir keras.</p>
+            <p>Bentuk ergonomis menjaga kontrol tetap stabil untuk tiga gaya grip utama.</p>
           </article>
           <article class="pd-decision-card">
             <span>Low Latency</span>
             <h2>2.4GHz priority</h2>
-            <p>Opsi konektivitas paling penting diletakkan pertama agar keputusan teknis lebih cepat.</p>
+            <p>Mode 2.4GHz jadi pilihan utama untuk respons paling konsisten saat gaming.</p>
           </article>
           <article class="pd-decision-card pd-compatibility-card">
             <span>Compatible with</span>
@@ -299,16 +329,15 @@
               aria-labelledby="description-tab"
               data-tab-panel="description"
             >
-              <h2>Dirancang untuk kontrol cepat tanpa layout yang ribet</h2>
+              <h2>Kontrol presisi untuk setup yang lebih bersih</h2>
               <p>
-                QuantumGrip X9 Wireless menempatkan informasi utama, pilihan varian,
-                jumlah produk, dan tombol pembelian dalam satu panel keputusan agar
-                pengguna bisa menyelesaikan aksi utama tanpa berpindah konteks.
+                QuantumGrip X9 Wireless dirancang untuk pengguna yang ingin mouse ringan, respons cepat,
+                dan koneksi fleksibel tanpa harus mengorbankan kenyamanan harian.
               </p>
               <ul class="pd-check-list">
-                <li>Galeri produk berada di kiri agar eksplorasi visual tetap dominan.</li>
-                <li>CTA ditempatkan di area kanan yang sticky pada desktop.</li>
-                <li>Spesifikasi ringkas muncul sebelum deskripsi panjang.</li>
+                <li>Sensor 26K DPI membantu tracking lebih presisi saat gaming dan editing.</li>
+                <li>Bobot 62g mendukung flick cepat tanpa terasa berat di sesi panjang.</li>
+                <li>Mode 2.4GHz, Bluetooth, dan USB-C memberi fleksibilitas untuk banyak device.</li>
               </ul>
             </div>
 
@@ -426,12 +455,12 @@
         </div>
       </section>
 
-      <section class="pd-box-section container reveal" aria-labelledby="box-title">
+      <section class="pd-box-section container" aria-labelledby="box-title">
         <div class="pd-box-copy">
           <span>In The Box</span>
           <h2 id="box-title">Apa saja yang didapat?</h2>
           <p>
-            Bagian ini mengurangi keraguan user sebelum checkout. Karena ternyata pembeli ingin tahu isi paket, sebuah konsep liar bernama kepastian.
+            Isi paket ditampilkan sebelum rekomendasi produk supaya user tahu barang utama dan aksesori bawaan sebelum checkout.
           </p>
         </div>
         <ul class="pd-box-list" aria-label="Isi paket QuantumGrip X9 Wireless">
@@ -457,6 +486,12 @@
             <!-- Slot: Dynamic Related Product Item -->
             <article class="pd-related-card">
               <a href="product-detail.html?id=apex-pro-keyboard" class="pd-related-media" aria-label="Lihat NEXGEAR Apex Pro Keyboard">
+                <img
+                  class="pd-related-img"
+                  src="https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=720&q=80"
+                  alt="Keyboard mekanikal RGB untuk setup gaming"
+                  loading="lazy"
+                />
                 <span class="pd-device-render pd-device-render--keyboard" aria-hidden="true"></span>
               </a>
               <button type="button" aria-label="Simpan NEXGEAR Apex Pro Keyboard">♡</button>
@@ -468,6 +503,12 @@
             <!-- Slot: Dynamic Related Product Item -->
             <article class="pd-related-card">
               <a href="product-detail.html?id=pulse-7-headset" class="pd-related-media" aria-label="Lihat NEXGEAR Pulse 7 Headset">
+                <img
+                  class="pd-related-img"
+                  src="https://images.unsplash.com/photo-1599669454699-248893623440?auto=format&fit=crop&w=720&q=80"
+                  alt="Headset gaming wireless dengan pencahayaan gelap"
+                  loading="lazy"
+                />
                 <span class="pd-device-render pd-device-render--headset" aria-hidden="true"></span>
               </a>
               <button type="button" aria-label="Simpan NEXGEAR Pulse 7 Headset">♡</button>
@@ -479,6 +520,12 @@
             <!-- Slot: Dynamic Related Product Item -->
             <article class="pd-related-card">
               <a href="product-detail.html?id=glide-xl-mousepad" class="pd-related-media" aria-label="Lihat NEXGEAR Glide XL Mousepad">
+                <img
+                  class="pd-related-img"
+                  src="https://images.unsplash.com/photo-1629429407756-136c996976e1?auto=format&fit=crop&w=720&q=80"
+                  alt="Meja gaming dengan mousepad besar dan perangkat RGB"
+                  loading="lazy"
+                />
                 <span class="pd-device-render pd-device-render--pad" aria-hidden="true"></span>
               </a>
               <button type="button" aria-label="Simpan NEXGEAR Glide XL Mousepad">♡</button>
@@ -490,6 +537,12 @@
             <!-- Slot: Dynamic Related Product Item -->
             <article class="pd-related-card">
               <a href="product-detail.html?id=charging-dock-pro" class="pd-related-media" aria-label="Lihat NEXGEAR Charging Dock Pro">
+                <img
+                  class="pd-related-img"
+                  src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=720&q=80"
+                  alt="Aksesori meja kerja premium dengan perangkat teknologi"
+                  loading="lazy"
+                />
                 <span class="pd-device-render pd-device-render--dock" aria-hidden="true"></span>
               </a>
               <button type="button" aria-label="Simpan NEXGEAR Charging Dock Pro">♡</button>
