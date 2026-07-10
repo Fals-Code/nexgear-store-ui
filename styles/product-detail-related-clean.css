@@ -166,67 +166,8 @@
   filter: saturate(1.03) contrast(1.05) brightness(0.9);
 }
 
-/* The existing source photos for cards three and four are generic setup shots.
-   The CSS product silhouettes restore category accuracy without adding more
-   external image dependencies during the UAS review branch. */
 .product-detail-v2 .pd-related-card .pd-device-render {
   display: none !important;
-}
-
-.product-detail-v2 .pd-related-card:nth-child(3) .pd-related-img,
-.product-detail-v2 .pd-related-card:nth-child(4) .pd-related-img {
-  opacity: 0.2;
-  filter: saturate(0.5) contrast(1.08) brightness(0.55) blur(1px);
-}
-
-.product-detail-v2 .pd-related-card:nth-child(3) .pd-device-render,
-.product-detail-v2 .pd-related-card:nth-child(4) .pd-device-render {
-  position: relative;
-  z-index: 3;
-  display: block !important;
-  border: 1px solid rgba(226, 232, 240, 0.2);
-  background:
-    linear-gradient(90deg, rgba(0, 229, 255, 0.13) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(3, 7, 14, 0.94));
-  background-size: 18px 100%, 100% 100%;
-  box-shadow:
-    0 20px 34px rgba(0, 0, 0, 0.36),
-    0 0 28px rgba(0, 229, 255, 0.18);
-}
-
-.product-detail-v2 .pd-device-render--pad {
-  width: 78% !important;
-  height: 78px !important;
-  border-radius: 16px !important;
-  transform: perspective(280px) rotateX(46deg) !important;
-}
-
-.product-detail-v2 .pd-device-render--pad::after {
-  content: "";
-  position: absolute;
-  inset: 8px;
-  border: 1px solid rgba(0, 229, 255, 0.28);
-  border-radius: 11px;
-}
-
-.product-detail-v2 .pd-device-render--dock {
-  width: 56% !important;
-  height: 54px !important;
-  border-radius: 18px !important;
-}
-
-.product-detail-v2 .pd-device-render--dock::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 24px;
-  width: 36px;
-  height: 58px;
-  border: 1px solid rgba(226, 232, 240, 0.22);
-  border-radius: 20px 20px 12px 12px;
-  background: linear-gradient(180deg, rgba(0, 229, 255, 0.2), rgba(3, 7, 14, 0.96));
-  box-shadow: 0 0 24px rgba(0, 229, 255, 0.2);
-  transform: translateX(-50%) rotate(-5deg);
 }
 
 .product-detail-v2 .pd-related-card > button {
@@ -284,8 +225,7 @@
 }
 
 .product-detail-v2 .pd-related-card strong,
-.product-detail-v2 .pd-related-card small {
-  display: block;
+.product-detail-v2 .pd-related-card .pd-related-rating {
   margin-inline: 2px;
 }
 
@@ -296,11 +236,26 @@
   line-height: 1.25;
 }
 
-.product-detail-v2 .pd-related-card small {
-  color: var(--pd-muted, #a8b2c3);
+.product-detail-v2 .pd-related-card .pd-related-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #cbd5e1;
   font-size: 0.78rem;
   font-weight: 700;
+  line-height: 1.25;
   letter-spacing: 0.01em;
+}
+
+.product-detail-v2 .pd-related-stars {
+  color: #facc15;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.product-detail-v2 .pd-related-score {
+  color: #cbd5e1;
+  font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 1180px) {

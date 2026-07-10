@@ -261,8 +261,6 @@
     const eyebrow = section.querySelector(".pd-related-heading span");
     const title = section.querySelector(".pd-related-heading h2");
     const viewAll = section.querySelector(".pd-related-heading a");
-    const productTypes = ["keyboard", "headset", "mousepad", "charging-dock"];
-
     if (eyebrow) eyebrow.textContent = "Rekomendasi Produk";
     if (title) title.textContent = "Lengkapi Setup Kamu";
 
@@ -271,8 +269,7 @@
       viewAll.setAttribute("aria-label", "Lihat semua produk rekomendasi");
     }
 
-    section.querySelectorAll(".pd-related-card").forEach((card, index) => {
-      card.dataset.productType = productTypes[index] || "accessory";
+    section.querySelectorAll(".pd-related-card").forEach((card) => {
       card.dataset.wishlist = "idle";
 
       const button = card.querySelector(":scope > button");
