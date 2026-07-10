@@ -43,6 +43,7 @@
 
   function initGallery() {
     const visual = root.querySelector("[data-product-visual]");
+    const mainImage = root.querySelector("[data-main-product-image]");
     const label = root.querySelector("[data-main-media-label]");
     const thumbs = Array.from(root.querySelectorAll("[data-gallery-thumb]"));
 
@@ -54,8 +55,16 @@
 
         const visualName = thumb.dataset.visual || "front";
         const nextLabel = thumb.dataset.label || "Tampilan produk";
+        const nextImage = thumb.dataset.image;
+        const nextAlt = thumb.dataset.alt || nextLabel;
 
         visual.dataset.visual = visualName;
+
+        if (mainImage && nextImage) {
+          mainImage.src = nextImage;
+          mainImage.alt = nextAlt;
+        }
+
         if (label) label.textContent = nextLabel;
         setLive(nextLabel);
       });
@@ -169,6 +178,7 @@
     const addButton = root.querySelector("[data-modern-add-cart]");
     const mobileAdd = root.querySelector("[data-mobile-add-cart]");
     const qtyInput = root.querySelector("[data-qty-input]");
+    const mainImage = root.querySelector("[data-main-product-image]");
 
     if (!addButton) return;
 
@@ -186,7 +196,7 @@
           price,
           qty: quantity,
           variant,
-          image: "",
+          image: mainImage?.src || "",
         });
       }
 
