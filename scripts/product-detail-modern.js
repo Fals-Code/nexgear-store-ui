@@ -7,6 +7,23 @@
   const Cart = window.NexCart;
   const toast = window.NexToast?.showCompact || window.NexToast?.show;
   const live = root.querySelector("[data-product-live]");
+  const relatedStylesheetHref = "styles/product-detail-related-clean.css";
+
+  const ensureRelatedRailStyles = () => {
+    const existing = document.querySelector(
+      `link[data-product-related-styles][href="${relatedStylesheetHref}"]`,
+    );
+
+    if (existing) return;
+
+    const stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = relatedStylesheetHref;
+    stylesheet.dataset.productRelatedStyles = "true";
+    document.head.append(stylesheet);
+  };
+
+  ensureRelatedRailStyles();
 
   const setLive = (message) => {
     const text = String(message || "").trim();
@@ -237,13 +254,54 @@
     });
   }
 
+  function initRelatedRail() {
+    const section = root.querySelector(".pd-related-section");
+    if (!section) return;
+
+    const eyebrow = section.querySelector(".pd-related-heading span");
+    const title = section.querySelector(".pd-related-heading h2");
+    const viewAll = section.querySelector(".pd-related-heading a");
+    if (eyebrow) eyebrow.textContent = "Rekomendasi Produk";
+    if (title) title.textContent = "Lengkapi Setup Kamu";
+
+    if (viewAll) {
+      viewAll.textContent = "Lihat Semua";
+      viewAll.setAttribute("aria-label", "Lihat semua produk rekomendasi");
+    }
+
+    section.querySelectorAll(".pd-related-card").forEach((card) => {
+      card.dataset.wishlist = "idle";
+
+      const button = card.querySelector(":scope > button");
+      if (!button) return;
+
+      button.dataset.state = "idle";
+      button.setAttribute("aria-pressed", "false");
+    });
+
+    section.dataset.state = "ready";
+  }
+
   function initRelatedWishlists() {
     root.querySelectorAll(".pd-related-card > button").forEach((button) => {
       button.addEventListener("click", () => {
-        const active = button.dataset.state === "active";
-        button.dataset.state = active ? "idle" : "active";
-        button.textContent = active ? "♡" : "♥";
-        setLive(active ? "Item rekomendasi dihapus dari wishlist." : "Item rekomendasi disimpan ke wishlist.");
+        const card = button.closest(".pd-related-card");
+        const active = button.getAttribute("aria-pressed") === "true";
+        const nextActive = !active;
+
+        button.setAttribute("aria-pressed", String(nextActive));
+        button.dataset.state = nextActive ? "saved" : "idle";
+        button.textContent = nextActive ? "♥" : "♡";
+
+        if (card) {
+          card.dataset.wishlist = nextActive ? "saved" : "idle";
+        }
+
+        setLive(
+          nextActive
+            ? "Item rekomendasi disimpan ke wishlist."
+            : "Item rekomendasi dihapus dari wishlist.",
+        );
       });
     });
   }
@@ -256,6 +314,7 @@
     initFeedbackButtons();
     initCart();
     initReviewLink();
+    initRelatedRail();
     initRelatedWishlists();
   }
 

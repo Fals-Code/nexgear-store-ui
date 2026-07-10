@@ -1,0 +1,325 @@
+/* Clean product recommendation rail
+   Isolated from the main product-detail stylesheet so the wireframe review
+   remains easy to revert, compare, and merge independently.
+*/
+
+.product-detail-v2 .pd-related-section {
+  margin: clamp(52px, 6vw, 82px) 0 clamp(68px, 8vw, 108px) !important;
+  padding: clamp(30px, 4vw, 48px) 0 0 !important;
+  border: 0 !important;
+  border-top: 1px solid rgba(148, 163, 184, 0.14) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.product-detail-v2 .pd-related-section > .container {
+  width: min(1440px, calc(100% - 48px));
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 0;
+}
+
+.product-detail-v2 .pd-related-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 0 clamp(20px, 2.4vw, 28px);
+}
+
+.product-detail-v2 .pd-related-heading > div {
+  min-width: 0;
+}
+
+.product-detail-v2 .pd-related-heading span {
+  display: block;
+  margin: 0 0 7px;
+  color: var(--pd-accent, #00e5ff);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.product-detail-v2 .pd-related-heading h2 {
+  margin: 0;
+  color: var(--pd-text, #f8fafc);
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.product-detail-v2 .pd-related-heading a {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 8px 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: var(--pd-muted, #a8b2c3);
+  background: transparent !important;
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.product-detail-v2 .pd-related-heading a::after {
+  content: "→";
+  color: var(--pd-accent, #00e5ff);
+  font-size: 1.05rem;
+  transition: transform 180ms ease;
+}
+
+.product-detail-v2 .pd-related-heading a:hover,
+.product-detail-v2 .pd-related-heading a:focus-visible {
+  color: var(--pd-text, #f8fafc);
+  transform: translateX(2px);
+}
+
+.product-detail-v2 .pd-related-heading a:hover::after,
+.product-detail-v2 .pd-related-heading a:focus-visible::after {
+  transform: translateX(3px);
+}
+
+.product-detail-v2 .pd-related-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(18px, 1.8vw, 24px);
+  align-items: stretch;
+}
+
+.product-detail-v2 .pd-related-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(2.8em, 1fr) auto auto;
+  min-width: 0;
+  height: 100%;
+  padding: 12px 12px 16px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.16) !important;
+  border-radius: 20px !important;
+  background: rgba(10, 15, 27, 0.72) !important;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.16) !important;
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.product-detail-v2 .pd-related-card:hover,
+.product-detail-v2 .pd-related-card:focus-within {
+  transform: translateY(-4px);
+  border-color: rgba(0, 229, 255, 0.38) !important;
+  background: rgba(12, 20, 34, 0.88) !important;
+  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.24) !important;
+}
+
+.product-detail-v2 .pd-related-media {
+  position: relative;
+  min-height: 0 !important;
+  aspect-ratio: 16 / 10;
+  display: grid !important;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 14px !important;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(0, 229, 255, 0.15), transparent 48%),
+    rgba(4, 8, 16, 0.94) !important;
+  isolation: isolate;
+}
+
+.product-detail-v2 .pd-related-img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
+  opacity: 0.86;
+  filter: saturate(0.9) contrast(1.06) brightness(0.78);
+  transition: transform 220ms ease, opacity 220ms ease, filter 220ms ease;
+}
+
+.product-detail-v2 .pd-related-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  background: linear-gradient(180deg, transparent 54%, rgba(2, 6, 13, 0.28));
+  pointer-events: none;
+}
+
+.product-detail-v2 .pd-related-card:hover .pd-related-img,
+.product-detail-v2 .pd-related-card:focus-within .pd-related-img {
+  transform: scale(1.035);
+  opacity: 0.98;
+  filter: saturate(1.03) contrast(1.05) brightness(0.9);
+}
+
+.product-detail-v2 .pd-related-card .pd-device-render {
+  display: none !important;
+}
+
+.product-detail-v2 .pd-related-card > button {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  z-index: 5;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 12px;
+  color: var(--pd-text, #f8fafc);
+  background: rgba(5, 9, 16, 0.78);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease;
+}
+
+.product-detail-v2 .pd-related-card > button:hover,
+.product-detail-v2 .pd-related-card > button:focus-visible {
+  border-color: rgba(0, 229, 255, 0.46);
+  color: var(--pd-accent, #00e5ff);
+}
+
+.product-detail-v2 .pd-related-card > button[aria-pressed="true"],
+.product-detail-v2 .pd-related-card > button[data-state="saved"] {
+  border-color: rgba(255, 105, 135, 0.42);
+  color: #ff8fa7;
+  background: rgba(255, 61, 87, 0.12);
+}
+
+.product-detail-v2 .pd-related-card h3 {
+  display: -webkit-box;
+  min-height: 2.8em;
+  margin: 15px 2px 8px;
+  overflow: hidden;
+  color: var(--pd-text, #f8fafc);
+  font-size: clamp(0.94rem, 1vw, 1.02rem);
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.product-detail-v2 .pd-related-card h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-detail-v2 .pd-related-card h3 a:hover,
+.product-detail-v2 .pd-related-card h3 a:focus-visible {
+  color: var(--pd-accent, #00e5ff);
+}
+
+.product-detail-v2 .pd-related-card strong,
+.product-detail-v2 .pd-related-card .pd-related-rating {
+  margin-inline: 2px;
+}
+
+.product-detail-v2 .pd-related-card strong {
+  margin-bottom: 8px;
+  color: var(--pd-text, #f8fafc);
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.product-detail-v2 .pd-related-card .pd-related-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+}
+
+.product-detail-v2 .pd-related-stars {
+  color: #facc15;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.product-detail-v2 .pd-related-score {
+  color: #cbd5e1;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 1180px) {
+  .product-detail-v2 .pd-related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .product-detail-v2 .pd-related-section {
+    margin-bottom: 88px !important;
+    padding-top: 30px !important;
+  }
+
+  .product-detail-v2 .pd-related-section > .container {
+    width: min(100% - 28px, 1440px);
+  }
+
+  .product-detail-v2 .pd-related-heading {
+    align-items: flex-end;
+    flex-direction: row;
+    gap: 14px;
+  }
+
+  .product-detail-v2 .pd-related-heading span {
+    display: none;
+  }
+
+  .product-detail-v2 .pd-related-heading h2 {
+    font-size: clamp(1.3rem, 7vw, 1.65rem);
+  }
+
+  .product-detail-v2 .pd-related-heading a {
+    min-height: 40px;
+    font-size: 0.8rem;
+  }
+
+  .product-detail-v2 .pd-related-grid {
+    grid-template-columns: none !important;
+    grid-auto-flow: column;
+    grid-auto-columns: min(82vw, 310px);
+    gap: 14px;
+    margin-inline: -2px;
+    padding: 2px 2px 14px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+  }
+
+  .product-detail-v2 .pd-related-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .product-detail-v2 .pd-related-card {
+    scroll-snap-align: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-detail-v2 .pd-related-card,
+  .product-detail-v2 .pd-related-img,
+  .product-detail-v2 .pd-related-heading a,
+  .product-detail-v2 .pd-related-heading a::after {
+    transition-duration: 0.01ms !important;
+  }
+}
